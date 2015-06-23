@@ -1,0 +1,32 @@
+---
+layout: html_page
+sectionid: blog
+---
+
+<link rel="stylesheet" href="/css/blogs.css">
+
+<div class="blog druid-header">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="title-image-wrap">
+        {% if page.image %}
+        <div class="title-spacer"></div>
+        <img class="title-image" src="{{ page.image }}" alt="{{ page.title }}"/>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container blog">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="blog-entry">
+        <h1>{{ page.title }}</h1>
+        <p class="text-muted">{% if page.author %}by <span class="author text-uppercase">{{ page.author }}</span>{% endif %} · {{ page.date | date: "%B %e, %Y" }}</p>
+
+        {{ content }}
+      </div>
+    </div>
+  </div>
+</div>

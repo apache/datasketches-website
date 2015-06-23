@@ -1,0 +1,54 @@
+---
+title: Documentation
+sectionid: docs
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include site_head.html %}
+  </head>
+
+  <body>
+    {% include page_header.html %}
+
+    <div class="druid-header">
+      <div class="container">
+        <h1>Documentation</h1>
+        <h4></h4>
+      </div>
+    </div>
+
+    <div class="container">
+      {% assign parts = (page.url | split: '/') %}
+      {% assign version = parts[2] %}
+      {% if version == 'latest' %}
+         {% assign apiversion = site.latest_version %}
+      {% else %}
+         {% assign apiversion = version %}
+      {% endif %}
+
+      {% if version != site.sketch_version and version != 'latest' %}
+      <p> Looking for the <a href="/docs/{{ site.sketch_version }}/">latest documentation</a>?</p>
+      {% endif %}
+
+      <div class="row">
+        <div class="col-md-9 doc-content">
+          <p><a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="#toc">Table of Contents</a>
+          {{ content }}
+        </div>
+        <div class="col-md-3">
+          <div class="searchbox" style="position:relative">
+            <gcse:searchbox-only></gcse:searchbox-only>
+          </div>
+          <div id="toc" class="nav toc hidden-print">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% include page_footer.html %}
+
+    <script>$(function() { $(".toc").load("toc.html"); });</script>
+  </body>
+</html>
