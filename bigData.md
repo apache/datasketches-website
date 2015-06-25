@@ -1,9 +1,9 @@
 ---
 layout: simple_page
-title: Sketches
+title: Big Data Sketches
 subtitle: Approximation is your friend
 ---
-
+Big Data Sketches
 Sketches are great and do wonderful things.  They
 
 1. Make you friends
