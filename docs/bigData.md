@@ -4,10 +4,24 @@ title: DataSketches are Designed for Big Data
 subtitle: 
 ---
 
-##Hadoop Pig and Hive Sketch Adaptors
+##Hadoop Sketch Adaptors
 
-### Pig
-This is a code snippet of how this sketch library can be called from Hadoop/Pig:
+Providing easy-to-use adaptors for Hadoop is essential for making the capabilities of sketching useful for a broad range of users.
+
+###Hadoop Pig
+This first set of adaptors is for Hadoop Pig and provides the following classes:
+
+* <b>DataToSketchUDF</b> provides the means to build a sketch from raw data. Returns a sketch as a byte array.
+* <b>EstimateUDF</b> Returns a double valued estimate from an input sketch.
+* <b>UnionUDF</b> Perform iterative Union Set Operations on a sketch. Returns a sketch as a byte array.
+* <b>IntersectionUDF</b> Perform iterative Intersection Set Operations on a sketch. Returns a sketch as a byte array.
+* <b>AnotBUDF</b> Perform the A-and-not-B Set Operation on two sketches. Returns a sketch as a byte array.
+* <b>SketchToString</b> Returns a human readable summary of the state of an input sketch.
+* <b>ErrorBounds</b> Returns a double valued estimate and double valued upper and lower bounds based on a 95% confidence levels given the state of an input sketch.
+
+
+This is a code snippet of how to build a sketch using Pig:
+
 <pre>
 REGISTER /.../sketches-pig.jar
 REGISTER /.../sketches-core.jar
@@ -28,6 +42,8 @@ sketch_result = FOREACH sketchData GENERATE
 DUMP sketch_result;
 </pre>
 The above script configures a simple Update Sketch UDF called 'DataToSketch' that is configured with a nominal entries of 4096 values. This size sketch will produce estimates of +/- 3.1% with a confidence of 95%.  The second object defined is a simple string converter for summarizing the internal state of the sketch for human consumption.
+
+This script reads two different identifiers from the raw data and builds a sketch for each.  At the end it converts the sketches into human readable output and then dumps the results to the console.
 
 The console output would look something like the following.  The actual result is a sketch in a compact byte array form that can be used for further downstream set operations if required.
 
@@ -57,7 +73,7 @@ The console output would look something like the following.  The actual result i
 ### END SKETCH SUMMARY)
 </pre>
 
-###Hive
+###Hadoop Hive
 <b>TODO</b>
 
 ##Compact Binary Storage
