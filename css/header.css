@@ -92,13 +92,13 @@
 }
 
 .y-bootlogo {
-  display: block;
+  display: inline-block; 
   margin: 0 auto;
   width: 100px;
   height: 35px;
   background-size: 100px 35px;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 0px 6px;
   background-image: url('/img/Yahoo_white_small.png');
 }
 
