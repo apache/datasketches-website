@@ -1,6 +1,4 @@
 ---
-layout: simple_page
-title: Architecture
-subtitle:
+layout: doc_page
 ---
-
+#Architecture

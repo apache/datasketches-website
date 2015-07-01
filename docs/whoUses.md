@@ -1,8 +1,7 @@
 ---
-layout: simple_page
-title: Who is using DataSketches?
-subtitle:
+layout: doc_page
 ---
+#Who is using DataSketches?
 
 DataSketches are used by the following companies:
 

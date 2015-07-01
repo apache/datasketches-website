@@ -1,6 +1,6 @@
 ---
-layout: simple_page
-title: Sketches 101
+layout: doc_page
 ---
+#Sketches 101
 
 This is an introduction to `sketches`.

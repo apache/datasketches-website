@@ -1,8 +1,8 @@
 ---
-layout: simple_page
-title: DataSketches are <i>Fast!</i> 
-subtitle:
+layout: doc_page
 ---
+#Sketches are <i>Fast!</i>
+
 ##Update Speed
 The following graph illustrates the update speed of 3 different sketches from the library:
 

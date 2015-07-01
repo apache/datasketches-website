@@ -1,6 +1,4 @@
 ---
-layout: simple_page
-title: Tutorials
-subtitle:
+layout: doc_page
 ---
-
+#Tutorials

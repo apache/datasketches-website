@@ -1,6 +1,4 @@
 ---
-layout: simple_page
-title: FAQ
-subtitle:
+layout: doc_page
 ---
-
+#FAQ

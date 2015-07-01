@@ -1,6 +1,7 @@
 ---
-layout: simple_page
 title: Community
 subtitle:
+sectionid: community
+layout: simple_page
 ---
 
