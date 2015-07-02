@@ -8,7 +8,7 @@ layout: simple_page
 
 <h2>Key Features</h2>
 
-<h3>Solves Computational Challenges associated with Unique Identifiers and duplicates</h3>
+<h3>Solves Computational Challenges Associated with Unique Identifiers and Duplicates</h3>
 
   * <b>Estimating cardinality</b>
   * Performing <b>set operations</b> on groups of unique identifiers, such as Union, Intersection and Difference
@@ -18,15 +18,16 @@ layout: simple_page
 
 <h3>Designed for Large-scale Computing Systems</h3>
 * <b>Small Footprint Per Sketch</b>
-  * The operating and storage footprint for both row and column oriented storage are minimized with <a href="CompactStorage.html">compact binary representations</a>. 
+  * The operating and storage footprint for both row and column oriented storage are minimized with 
+<a href="/docs/CompactStorage.html">compact binary representations</a>. 
 
 * <b>Speed</b>
   * Single-pass, "one-touch" algorithms enable real-time processing capability.
-  * These algorithms are <a href="fast.html"><i>Fast</i></a> and operate in Java nearly as fast as had they been implemented in C. 
+  * These algorithms are <a href="/docs/fast.html"><i>Fast</i></a> and operate in Java nearly as fast as had they been implemented in C. 
   * Coupled with the compact binary representations, in many cases the need for costly serialization and deserialization has been eliminated.
 
 * <b>Adaptors for Grid Computing</b>
-  * Adaptors for <a href="Adaptors.html">Hadoop Pig and Hive</a> are also included that implement the major functionality of the core algorithms.
+  * Adaptors for <a href="/docs/Adaptors.html">Hadoop Pig and Hive</a> are also included that implement the major functionality of the core algorithms.
 
 * <b>Easy to Integrate</b>
   * Can be integrated into virtually any Java-base system environment
@@ -36,8 +37,8 @@ layout: simple_page
 
 * <b>Specific Sketch Features</b>
   * <b>Hash Seed Handling</b> Additional protection for managing hash seeds which is particularly important when processing sensitive user identifiers.
-  * <a href="Sampling.html"><b>Sampling</b></a> Built-in up-front sampling for cases where additional contol is required to limit overall memory consumption when dealing with millions of sketches.
-  * On-Heap or Off-Heap <a href="MemoryPackage.html"><b>Memory Management</b></a>  Large systems often require management of their own heaps outside the JVM. The sketches in this package are designed to operate either on-heap or off-heap.
+  * <a href="/docs/Sampling.html"><b>Sampling</b></a> Built-in up-front sampling for cases where additional contol is required to limit overall memory consumption when dealing with millions of sketches.
+  * On-Heap or Off-Heap <a href="/docs/MemoryPackage.html"><b>Memory Management</b></a>  Large systems often require management of their own heaps outside the JVM. The sketches in this package are designed to operate either on-heap or off-heap.
   * Built-in <b>Upper-Bound and Lower-Bound estimators</b> You are never in the dark about how good of an estimate the sketch is providing.  All the sketches are able to estimate the upper and lower bounds of the estimate given a confidence level.
   
 * <b>Built-In, General Purpose Functions</b>

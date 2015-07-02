@@ -1,18 +1,18 @@
 ---
 layout: doc_page
 ---
-#Adaptors for Grid Systems
+#Adaptors for Grid Computing
 
-Providing easy-to-use adaptors for Hadoop is essential for making the capabilities of sketching useful for a broad range of users.
+Easy-to-use adaptors for Grid Computing.
 
 ##Hadoop Pig
-This first set of adaptors is for Hadoop Pig and provides the following classes:
+The sketches/pig/theta package provides the following adaptors to the sketches in the sketches/theta package
 
-* <b>DataToSketchUDF</b> provides the means to build a sketch from raw data. Returns a sketch as a byte array.
-* <b>EstimateUDF</b> Returns a double valued estimate from an input sketch.
-* <b>UnionUDF</b> Perform iterative Union Set Operations on a sketch. Returns a sketch as a byte array.
-* <b>IntersectionUDF</b> Perform iterative Intersection Set Operations on a sketch. Returns a sketch as a byte array.
-* <b>AnotBUDF</b> Perform the A-and-not-B Set Operation on two sketches. Returns a sketch as a byte array.
+* <b>DataToSketch</b> provides the means to build a sketch from raw data. Returns a sketch as a byte array.
+* <b>Estimate</b> Returns a double valued estimate from an input sketch.
+* <b>Merge</b> Perform iterative Union Set Operations on a sketch. Returns a sketch as a byte array.
+* <b>Intersect</b> Perform iterative Intersection Set Operations on a sketch. Returns a sketch as a byte array.
+* <b>AexcludeB</b> Perform the A-and-not-B Set Operation on two sketches. Returns a sketch as a byte array.
 * <b>SketchToString</b> Returns a human readable summary of the state of an input sketch.
 * <b>ErrorBounds</b> Returns a double valued estimate and double valued upper and lower bounds based on a 95% confidence levels given the state of an input sketch.
 

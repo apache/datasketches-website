@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" href="css/toc.css">
 
-h2. Overview
+h2. Getting Started
 * "Fast":/docs/fast.html
 * "Grid Computing":/docs/Adaptors.html
 * "Memory Management":/docs/MemoryPackage.html
