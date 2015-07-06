@@ -1,6 +1,8 @@
 ---
 layout: doc_page
 ---
+[Back](/docs/Features.html)
+
 #Adaptors for Grid Computing
 
 Easy-to-use adaptors for Grid Computing.
@@ -73,3 +75,4 @@ The console output would look something like the following.  The actual result i
 ##Hadoop Hive
 <b>TODO</b>
 
+[Back](/docs/Features.html)

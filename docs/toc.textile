@@ -2,17 +2,17 @@
 ---
 
 <link rel="stylesheet" href="css/toc.css">
+h2. The Basics
+* "The Challenge":/docs/theChallenge.html
+* "Sketch Origins":/docs/SketchOrigins.html
+* "Sketch Elements":/docs/SketchElements.html
+* "The KMV Sketch Tutorial":/docs/KMVsketch1.html
 
-h2. Getting Started
-* "Fast":/docs/fast.html
-* "Grid Computing":/docs/Adaptors.html
-* "Memory Management":/docs/MemoryPackage.html
-* "Sampling":/docs/Sampling.html
-* "Who Uses":/docs/whoUses.html
-* "Tutorials":/docs/tutorials.html
-* "Sketches 101":/docs/sketches-101.html
-* "Data Protection":/docs/SensitiveDataProtection.html
-* "Compact Storage":/docs/CompactStorage.html
+h2. Data Sketches
+* "Features":/docs/Features.html
 * "Architecture":/docs/architecture.html
 
-h2. Architecture
+h2. Getting Started
+* "Code Tutorials":/docs/tutorials.html
+
+* "Who Uses":/docs/whoUses.html

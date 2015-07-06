@@ -6,7 +6,7 @@
   padding: 0 0 30px;
   /* color: #fff; */
   color: #c3c3c5;
-  background-color: #400090; /* was: 1C1C26, Yahoo: 400090 */
+  background-color: #400090; /* was: 1C1C26 */
   text-align: center;
   margin: 0 auto 30px;
 }
@@ -100,6 +100,13 @@
   background-repeat: no-repeat;
   background-position: 0px 6px;
   background-image: url('/img/Yahoo_white_small.png');
+}
+
+.ds-img {
+  display: block; 
+  margin: 0 auto;
+  width: 700px;
+  background-repeat: no-repeat;
 }
 
 .druid-booticon {

@@ -13,8 +13,8 @@
    max-width: 847.5px;
 }
 
-/* unused */
-.doc-content graphImg {
+/* unused 
+.doc-content img {
   display: block;
   margin: 0 auto;
   width: 100px;
@@ -24,6 +24,7 @@
   background-position: center;
   background-image: url('/img/Yahoo_white_small.png');
 }
+*/
 
 .doc-content code {
    background-color: #e0e0e0;
