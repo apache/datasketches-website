@@ -11,8 +11,11 @@ h2. The Basics
 h2. Data Sketches
 * "Key Features":/docs/KeyFeatures.html
 * "Who Uses":/docs/whoUses.html
+* "Endorsements":/docs/endorsements.html
+* "License":/LICENSE.html
 
 h2. Getting Started
 * "Architecture":/docs/architecture.html
 * "Code Tutorials":/docs/tutorials.html
+
 

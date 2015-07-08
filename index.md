@@ -30,7 +30,7 @@ id: home
   </div>
   <div class="row text-center main-marketing">
     <div class="col-md-4">
-      <p><a href="/docs/fast.html">
+      <p><a href="/docs/KeyFeatures.html">
         <span class="fa fa-fighter-jet fa-4x"></span><br>
         <h2>Fast</h2>
       </a></p>
@@ -38,7 +38,7 @@ id: home
     </div>
 
     <div class="col-md-4">
-      <a href="/docs/bigData.html">
+      <a href="/docs/KeyFeatures.html">
         <span class="fa fa-database fa-4x"></span>
         <h2>Big Data</h2>
       </a>
@@ -46,7 +46,7 @@ id: home
     </div>
 
     <div class="col-md-4">
-      <p><a href="/docs/analysis.html">
+      <p><a href="/docs/KeyFeatures.html">
         <span class="fa fa-bar-chart-o fa-4x"></span><br>
         <h2>Analysis</h2>
       </a></p>
@@ -67,7 +67,7 @@ id: home
       <div class="col-sm-4">
         <h3>Learn More</h3>
         <p><a href="/docs/KeyFeatures.html">Key Features</a></p>
-        <p><a href="/docs/theChallenge.html">Sketches 101</a></p>
+        <p><a href="/docs/theChallenge.html">The Challenge</a></p>
         <p><a href="/docs/whoUses.html">Who uses DataSketches?</a></p>
       </div>
     </div>
