@@ -14,7 +14,7 @@ id: home
       <span class="ds-bootlogo"></span>
       <p class="lead" style="font-size: 28px">Sketches Library from <span class="y-bootlogo"></span></p>
       <p>
-        <a class="btn btn-lg btn-outline-inverse" href="overview.html"><span class="fa fa-info-circle"></span> Overview</a>
+        <a class="btn btn-lg btn-outline-inverse" href="docs/KeyFeatures.html"><span class="fa fa-info-circle"></span> Overview</a>
         <a class="btn btn-lg btn-outline-inverse" href="downloads.html"><span class="fa fa-download"></span> Download</a>
         <a class="btn btn-lg btn-outline-inverse" href="https://github.com/datasketches"><span class="fa fa-github"></span> GitHub</a>
       </p>

@@ -9,7 +9,7 @@ h2. The Basics
 * "The KMV Sketch Tutorial":/docs/KMVsketch1.html
 
 h2. Data Sketches
-* "Features":/docs/Features.html
+* "Key Features":/docs/KeyFeatures.html
 * "Architecture":/docs/architecture.html
 
 h2. Getting Started
