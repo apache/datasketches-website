@@ -14,6 +14,8 @@ layout: simple_page
   * Obtaining estimates of the <b>distribution of the error</b> of the result
   * Enables <b>extended analysis</b> of these sets through associations, which could include approximate joins and behavior analysis
 
+<h3>Multiple sketch algorithms
+* Theta Sketches for 
 
 <h3>Designed for Large-scale Computing Systems</h3>
 * <b>Small Footprint Per Sketch</b>
@@ -22,7 +24,7 @@ layout: simple_page
 
 * <b>Speed</b>
   * Single-pass, "one-touch" algorithms enable real-time processing capability.
-  * These algorithms are <a href="/docs/fast.html"><i>Fast</i></a> and operate in Java nearly as fast as had they been implemented in C. 
+  * These algorithms are <a href="/docs/UpdateSpeed.html"><i>Fast</i></a> and operate in Java nearly as fast as had they been implemented in C. 
   * Coupled with the compact binary representations, in many cases the need for costly serialization and deserialization has been eliminated.
 
 * <b>Adaptors for Grid Computing</b>
