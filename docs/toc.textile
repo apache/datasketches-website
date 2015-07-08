@@ -10,9 +10,9 @@ h2. The Basics
 
 h2. Data Sketches
 * "Key Features":/docs/KeyFeatures.html
-* "Architecture":/docs/architecture.html
+* "Who Uses":/docs/whoUses.html
 
 h2. Getting Started
+* "Architecture":/docs/architecture.html
 * "Code Tutorials":/docs/tutorials.html
 
-* "Who Uses":/docs/whoUses.html
