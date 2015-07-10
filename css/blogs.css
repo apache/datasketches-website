@@ -39,10 +39,12 @@
    margin-bottom: 70px;
 }
 
-.druid-header.blog {
+/*
+.ds-header.blog {
   padding: 0;
   overflow: hidden;
 }
+*/
 
 .blog .title-spacer {
   min-height: 240px;

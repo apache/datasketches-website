@@ -7,7 +7,7 @@ id: home
 
 <link rel="stylesheet" href="css/index.css">
 
-<main class="druid-masthead">
+<main class="ds-masthead">
   <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2 text-center">
@@ -55,7 +55,7 @@ id: home
   </div>
 </div>
 
-<div class="druid-panel">
+<div class="ds-panel">
   <div class="container">
     <div class="row-fluid text-center">
       <div class="col-sm-4 col-sm-offset-2">

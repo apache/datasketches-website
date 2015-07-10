@@ -6,7 +6,7 @@ layout: html_page
 
 <link rel="stylesheet" href="/css/blogs.css">
 
-<div class="druid-header">
+<div class="ds-header">
   <div class="container">
     <h1>DataSketches Blog</h1>
     <h4></h4>
