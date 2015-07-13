@@ -4,12 +4,16 @@ layout: doc_page
 [Prev](/docs/KMVsketch2.html)
 [Next](/docs/KMVsketch4.html)
 
-#The KMV Sketch, Step 3
-Now lets choose <i>k = 3</i> which means that we will keep the 3 smallest hash values that the cache has seen.  We will also alter the definition of <i>d</i> to be the value of the <i>k<sup>th</sup></i> smallest hash the cache has seen or <i>V(k<sup>th</sup>) = 0.195 = d</i>.  This is also known as the <i>k<sup>th</sup> Minimum Value</i> or <i>KMV</i>.  Since these measurements are relative to zero, a sketch constructed like this is also known as a <i>Bottom-k</i> sketch.  (It could well have been a <i>Top-k</i> sketch, but referencing to zero is just simpler.)
-
-Our new estimator becomes <i>(k-1)/V(k<sup>th</sup>)</i> = 2/0.195 = 10.26, which is much closer to 10, but with such a small sample size we were also lucky. The minus one in the numerator falls out of the statistics and is required for the estimate to be unbiased[1]. 
+#The KMV Sketch, Better Estimator, Size = <i>k</i>
+Now lets choose <i>k = 3</i>, which means that we will keep the 3 smallest hash values that the cache has seen.  The fractional distance that these <i>k</i> values consume is simply the value of the k<sup>th</sup> hash value, or <i>V(k<sup>th</sup>)</i>, which in this example is 0.195. This is also known as the <i>k<sup>th</sup> Minimum Value</i> or <i>KMV</i>.  Since these measurements are relative to zero, a sketch constructed like this is also known as a <i>Bottom-k</i> sketch.  (It could well have been a <i>Top-k</i> sketch, but referencing to zero is just simpler.)
 
 <img class="ds-img" src="/docs/img/KMV3.png" alt="KMV3" />
+
+We want not only a more accurate estimate, but one that is also <u><i>unbiased</i></u>.  I'm going to skip a few pages of calculus[1] and reveal that we only need to subtract one in the numerator to achieve that.  Our new, unbiased KMV estimator becomes
+
+<img src="/docs/img/Est2Formula.png" alt="Est2Formula" width="600" />
+
+This is much closer to 10, but with such a small sample size we were also lucky. 
 
 Note that with our new estimator based on the <i>k</i> minimum values in the cache we don't have to keep any hash values larger than <i>V(k<sup>th</sup>)</i>.  And, since <i>k</i> is a constant our cache will have a fixed upper bound size independent of how many hash values it has seen.
 

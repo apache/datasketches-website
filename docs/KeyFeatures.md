@@ -3,7 +3,7 @@ sectionid: overview
 layout: doc_page
 ---
 
-<h2><i>Data Sketches</i> is a Java software library of <a href="/docs/SketchOrigins.html">sketch</a> algorithms.</h2>
+<h3><i>Data Sketches</i> is a Java software library of <a href="/docs/SketchOrigins.html">sketch</a> algorithms and related software APIs and algorithms that provide a comprehensive solution set for system developers.</h3>
 
 <h2>Key Features</h2>
 

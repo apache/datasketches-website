@@ -8,7 +8,7 @@ Sketches are different from sampling in that they process all the elements of a 
 
 The second stage of the sketch is a data structure that follows a set of rules for retaining a small set of the hash values it receives from the transform stage.  Sketches also differ from simple sampling schemes in that the size of the sketch has a configurable, fixed upper bound, which enables straightforward memory allocation.  
 
-The final element of the sketch process is a set of estimator algorithms that on a request basis, examine the sketch data structure and return a result value.  This result value will be approximate but will have well established and mathematically proven relative error distribution bounds that remain constant independent of the size of the input data stream.
+The final element of the sketch process is a set of estimator algorithms that upon a request examine the sketch data structure and return a result value.  This result value will be approximate but will have well established and mathematically proven relative error distribution bounds that remain constant independent of the size of the input data stream.
 
 <img class="ds-img" src="/docs/img/SketchElements.png" alt="SketchElements" />
 

@@ -6,7 +6,7 @@ h2. The Basics
 * "The Challenge":/docs/theChallenge.html
 * "Sketch Origins":/docs/SketchOrigins.html
 * "Sketch Elements":/docs/SketchElements.html
-* "The KMV Sketch Tutorial":/docs/KMVsketch1.html
+* "The Sketch Tutorial":/docs/KMVsketch1.html
 
 h2. Data Sketches
 * "Key Features":/docs/KeyFeatures.html
