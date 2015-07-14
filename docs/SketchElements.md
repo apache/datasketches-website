@@ -1,6 +1,8 @@
 ---
 layout: doc_page
 ---
+[Prev](/docs/SketchOrigins.html)<br>
+[Next](/docs/KMVsketch1.html)
 
 #Sketch Elements
 
@@ -19,7 +21,7 @@ Sketches are typically
 * Highly Parallelizable.  The sketch data structures are "additive" in that they can be merged without losing relative accuracy.
 * Approximate.  The relative error bounds are a function of the configured size of the sketch.
 
-[Pref](/docs/SketchOrigins.html)
+[Prev](/docs/SketchOrigins.html)<br>
 [Next](/docs/KMVsketch1.html)
 
 

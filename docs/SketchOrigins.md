@@ -1,6 +1,8 @@
 ---
 layout: doc_page
 ---
+[Prev](/docs/theChallenge.html)<br>
+[Next](/docs/SketchElements.html)
 
 #Sketch Origins
 
@@ -28,5 +30,6 @@ Sketching is a synergistic blend of both theoretical mathematics and computer sc
 
 [1] Also known as "Approximate Query Processing", see <a href="http://people.cs.umass.edu/~mcgregor/711S12/sketches1.pdf">Sketch Techniques for Approximate Query Processing</a>
 
-[Prev](/docs/theChallenge.html)  [Next](/docs/SketchElements.html)
+[Prev](/docs/theChallenge.html)<br>
+[Next](/docs/SketchElements.html)
 

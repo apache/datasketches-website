@@ -6,7 +6,17 @@ h2. The Basics
 * "The Challenge":/docs/theChallenge.html
 * "Sketch Origins":/docs/SketchOrigins.html
 * "Sketch Elements":/docs/SketchElements.html
-* "The Sketch Tutorial":/docs/KMVsketch1.html
+* "KMV Sketch":/docs/KMVsketch1.html
+** "Empty Sketch":/docs/KMVsketch1.html
+** "First Estimator":/docs/KMVsketch2.html
+** "Better Estimator":/docs/KMVsketch3.html
+** "Rejection Rules":/docs/KMVsketch4.html
+** "Update V(kth) Rule":/docs/KMVsketch5.html
+* "Theta Sketch Framework":/docs/ThetaSketch1.html
+** "Set Operations":/docs/ThetaSketch2.html
+** "SetOp Accuracy":/docs/ThetaSketch3.html
+
+
 
 h2. Data Sketches
 * "Key Features":/docs/KeyFeatures.html

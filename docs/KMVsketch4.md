@@ -1,7 +1,7 @@
 ---
 layout: doc_page
 ---
-[Prev](/docs/KMVsketch3.html)
+[Prev](/docs/KMVsketch3.html)<br>
 [Next](/docs/KMVsketch5.html)
 
 #The KMV Sketch, Rejection Rules
@@ -11,6 +11,6 @@ Additionally, we can reject any incoming hash values that are duplicates of any 
 
 <img class="ds-img" src="/docs/img/KMV4.png" alt="KMV4" />
 
-[Prev](/docs/KMVsketch3.html)
+[Prev](/docs/KMVsketch3.html)<br>
 [Next](/docs/KMVsketch5.html)
 

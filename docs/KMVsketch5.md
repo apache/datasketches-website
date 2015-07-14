@@ -1,7 +1,7 @@
 ---
 layout: doc_page
 ---
-[Prev](/docs/KMVsketch4.html)
+[Prev](/docs/KMVsketch4.html)<br>
 [Next](/docs/ThetaSketch1.html)
 
 #The KMV Sketch, Update <i>V(k<sup>th</sup>)</i> Rule
@@ -39,6 +39,6 @@ Note that the sketch algorithms implemented in the DataSketches library are more
 has a straightforward and easy-to-follow development.
 
 
-[Prev](/docs/KMVsketch4.html)
+[Prev](/docs/KMVsketch4.html)<br>
 [Next](/docs/ThetaSketch1.html)
 

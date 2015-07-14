@@ -1,7 +1,7 @@
 ---
 layout: doc_page
 ---
-[Prev](/docs/KMVsketch2.html)
+[Prev](/docs/KMVsketch2.html)<br>
 [Next](/docs/KMVsketch4.html)
 
 #The KMV Sketch, Better Estimator, Size = <i>k</i>
@@ -21,6 +21,6 @@ Note that with our new estimator based on the <i>k</i> minimum values in the cac
 <a href="http://www-sop.inria.fr/members/Frederic.Giroire/publis/Gi05.pdf">Giroire</a>
 has a straightforward and easy-to-follow development.
 
-[Prev](/docs/KMVsketch2.html)
+[Prev](/docs/KMVsketch2.html)<br>
 [Next](/docs/KMVsketch4.html)
 

@@ -1,9 +1,10 @@
 ---
 layout: doc_page
 ---
+[Prev](/docs/SketchElements.html)<br>
 [Next](/docs/KMVsketch2.html)
 
-#The KMV Sketch, Empty State
+#The KMV Empty Sketch
 To explain how a simple sketch works, let us start with the well-known <i>k Minimum Value</i> or <i>KMV</i> sketch in its empty state. 
 
 Our objectives are as follows:
@@ -19,4 +20,5 @@ On the right we have a cache that maintains an ordered list of the hash values r
 
 <img class="ds-img" src="/docs/img/KMV1.png" alt="KMV1" />
 
+[Prev](/docs/SketchElements.html)<br>
 [Next](/docs/KMVsketch2.html)

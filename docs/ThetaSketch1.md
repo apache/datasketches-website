@@ -1,7 +1,7 @@
 ---
 layout: doc_page
 ---
-[Prev](/docs/KMVsketch5.html)
+[Prev](/docs/KMVsketch5.html)<br>
 [Next](/docs/ThetaSketch2.html)
 
 #The Theta Sketch
@@ -16,14 +16,17 @@ Note that in the KMV sketch the value <i>k</i> is overloaded with multiple roles
 
 By unloading some of these roles, we will gain degrees of freedom to do some innovative things. 
 
-Instead of having to track <i>V(k<sup>th</sup>)</i>, which is a member of the list of hash values, we are going to create a separate threshold variable and call it <i>theta</i> (&theta;). This effectively decouples #3 and #4 above from <i>k</i>. When the sketch is empty &theta; = 1.0.  After the sketch has filled with <i>k</i> minimum values &theta; is still 1.0.  When the next incoming unique value must be inserted into the sketch the <i>(k+1)<sup>th</sup></i> minimum value, (the one being tossed out) is assigned to &theta; and removed from the cache.  
+Instead of having to track <i>V(k<sup>th</sup>)</i>, which is a member of the list of hash values, we are going to create a separate threshold variable and call it <i>theta</i> (&theta;). This effectively decouples #3 and #4 above from <i>k</i>. When the sketch is empty &theta; = 1.0.  After the sketch has filled with <i>k</i> minimum values &theta; is still 1.0.  When the next incoming unique value must be inserted into the sketch the <i>(k+1)<sup>th</sup></i> minimum value, is assigned to &theta; and removed from the cache.[1]
 
-Mathematically, a <i>Theta Sketch</i> is defined as having two parameters, a set <i>S</i> of hash values, <i>h</i> (also referred to as <i>entries</i>), and a threshold &theta;; where all members, <i>h</i> of <i>S</i> are less than &theta;.  Ultimately, it will be the size of <i>S</i> or <i>|S|</i> that will determine the stored size of a sketch, which decouples #2 above from the value <i>k</i>.  In the Theta Sketch the value of <i>k</i> is only used as a <i>user specified, configuration parameter</i>, which is used by the software to determine the minimum (or sometimes average) accuracy of the sketch.
+Mathematically, a <i>Theta Sketch</i> is defined as having two parameters, a set <i>S</i> of hash values, <i>h</i> (also referred to as <i>entries</i>), and a threshold &theta;; where all members, <i>h</i> of <i>S</i> are less than &theta;.  Ultimately, it will be the size of <i>S</i>, <i>|S|</i>, that will determine the stored size of a sketch, which decouples #2 above from the value <i>k</i>.  In the Theta Sketch Framework the value of <i>k</i> is a <i>user specified, configuration parameter</i>, which is used by the software to determine the target accuracy of the sketch and the maximum size of the sketch.
 
-The unbiased estimate simplifies to \|S\|/&theta;, which is just the size of <i>S</i> divided by &theta;.  
-Computing the actual RSE is more complex (again, handled for you in the library), but it will always be &le; 1/sqrt(<i>k</i>-1). 
+The unbiased estimate simplifies to \|S\|/&theta;, which is just the size of <i>S</i> divided by &theta;. 
+We will discuss the RSE in a later section.
 
 <img class="ds-img" src="/docs/img/ThetaSketch1.png" alt="ThetaSketch1" />
 
-[Prev](/docs/KMVsketch5.html)
+
+[1] This is a restricted "KMV perspective" on how &theta; gets assigned.  If you study the attached paper <b>TODO</b>, you will understand that there are multiple ways that &theta; can be assigned and we call this the <i>Theta Choosing Function (TCF)</i>.  Different sketch algorithms have different TCFs.  And we leverage the ability to preset &theta; for up-front probability sampling, which we will discuss in another section.
+
+[Prev](/docs/KMVsketch5.html)<br>
 [Next](/docs/ThetaSketch2.html)

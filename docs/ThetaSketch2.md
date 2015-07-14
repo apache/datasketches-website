@@ -1,7 +1,7 @@
 ---
 layout: doc_page
 ---
-[Prev](/docs/ThetaSketch1.html)
+[Prev](/docs/ThetaSketch1.html)<br>
 [Next](/docs/ThetaSketch3.html)
 
 #Theta Sketch Set Operations
@@ -14,8 +14,8 @@ The diagram below illustrates how the Intersection operation can be performed by
 The fact that set operations produce sketches as results enables full set expressions, such as<br>
  ((A &#8746; B) &#8745; (C &#8746; D))\\(E &#8746; F).
 
-Computing the error bounds for set operations is more complicated.  If the result of a set operation has fewer elements in the result sketch than either of the input argument sketches, the error will be worse.  However, since we are computing the set operations based on the internals of the sketches, the error will be considerably better than if one computed the numerical result of the set operation using the <i>Include / Exclude</i> relation.  All of these complexity issues are handled for you in the library.
 
 
-[Prev](/docs/ThetaSketch1.html)
+
+[Prev](/docs/ThetaSketch1.html)<br>
 [Next](/docs/ThetaSketch3.html)
