@@ -1,8 +1,8 @@
 ---
 layout: doc_page
 ---
-[Prev](/docs/ThetaSketch1.html)<br>
-[Next](/docs/ThetaSketch3.html)
+[Prev](/docs/ThetaSketchFramework.html)<br>
+[Next](/docs/Accuracy.html)
 
 #Theta Sketch Set Operations
 The Theta Sketch definition enables a uniform and simplified approach to performing the three standard set operations, <i>Union</i> (&#8746;), <i>Intersection</i> (&#8745;) and <i>Difference</i> (\\).
@@ -17,5 +17,5 @@ The fact that set operations produce sketches as results enables full set expres
 
 
 
-[Prev](/docs/ThetaSketch1.html)<br>
-[Next](/docs/ThetaSketch3.html)
+[Prev](/docs/ThetaSketchFramework.html)<br>
+[Next](/docs/Accuracy.html)

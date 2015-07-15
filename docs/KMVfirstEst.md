@@ -1,8 +1,8 @@
 ---
 layout: doc_page
 ---
-[Prev](/docs/KMVsketch1.html)<br>
-[Next](/docs/KMVsketch3.html)
+[Prev](/docs/KMVempty.html)<br>
+[Next](/docs/KMVbetterEst.html)
 
 #The KMV Sketch, First Estimator, Size = 1
 For this step we are going to cheat a little so that we can learn about estimation. We are going to cheat in that we are going to predetermine that our data source only has <span class="doc-math">n</span> = 10 unique values (so we don't really need a sketch to estimate what we already know).  We have loaded all 10 values into our ordered list.  As one can see, the values are roughly evenly distributed between zero and one so our hash transform is doing its job.
@@ -20,6 +20,6 @@ Clearly, our first estimator, <i>1/d</i>, with a sample size of one is too noisy
 
 
 
-[Prev](/docs/KMVsketch1.html)<br>
-[Next](/docs/KMVsketch3.html)
+[Prev](/docs/KMVempty.html)<br>
+[Next](/docs/KMVbetterEst.html)
 

@@ -50,7 +50,7 @@ id: home
         <span class="fa fa-bar-chart-o fa-4x"></span><br>
         <h2>Analysis</h2>
       </a></p>
-      <p class="text-justify">Built-in set operators (Union, Intersection, Difference) produce sketches as a result (and not just a number) enabling full set expressions, such as <i>((A U B) v (C U D)) \ (E U F)</i>.  This capability along with predictable and superior accuracy (compared with <i>Include/Exclude</i> approaches) enable unprecedented analysis capabilities for fast queries. </p>
+      <p class="text-justify">Built-in set operators (Union, Intersection, Difference) produce sketches as a result (and not just a number) enabling full set expressions, such as ((A &#8746; B) &#8745; (C &#8746; D)) \ (E &#8746; F).  This capability along with predictable and superior accuracy (compared with <i>Include/Exclude</i> approaches) enable unprecedented analysis capabilities for fast queries. </p>
     </div>
   </div>
 </div>

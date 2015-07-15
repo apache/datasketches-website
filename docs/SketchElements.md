@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 [Prev](/docs/SketchOrigins.html)<br>
-[Next](/docs/KMVsketch1.html)
+[Next](/docs/KMVempty.html)
 
 #Sketch Elements
 
@@ -22,6 +22,6 @@ Sketches are typically
 * Approximate.  The relative error bounds are a function of the configured size of the sketch.
 
 [Prev](/docs/SketchOrigins.html)<br>
-[Next](/docs/KMVsketch1.html)
+[Next](/docs/KMVempty.html)
 
 

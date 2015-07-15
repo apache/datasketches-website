@@ -24,10 +24,9 @@ layout: doc_page
 <a href="/docs/CompactStorage.html">compact binary representations</a>, which are much smaller than the raw input stream and with a well defined upper bound of size that is independent of the size of the input stream.
 
 * <b>Speed</b>
-  * Single-pass, "one-touch" algorithms enable real-time processing capability.
-  * These algorithms are <a href="/docs/UpdateSpeed.html"><i>Fast</i></a> and operate in Java nearly as fast as had they been implemented in C. 
+  * These single-pass, "one-touch" algorithms are <a href="/docs/UpdateSpeed.html"><i>fast</i></a> to enable real-time processing capability.
   * Coupled with the compact binary representations, in many cases the need for costly serialization and deserialization has been eliminated.
-  * Embarassingly parallelizable in merge operations. The sketch data structures are "additive" in that they can be merged without losing relative accuracy.
+  * The sketch data structures are "additive" and embarassingly paralelizable and can be merged without losing relative accuracy.
 
 * <b>Adaptors for Grid Computing</b>
   * Adaptors for <a href="/docs/Adaptors.html">Hadoop Pig and Hive</a> are also included that implement the major functionality of the core algorithms.

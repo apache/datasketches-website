@@ -3,29 +3,33 @@
 
 <link rel="stylesheet" href="css/toc.css">
 h2. The Basics
-* "The Challenge":/docs/theChallenge.html
-* "Sketch Origins":/docs/SketchOrigins.html
-* "Sketch Elements":/docs/SketchElements.html
-* "KMV Sketch":/docs/KMVsketch1.html
-** "Empty Sketch":/docs/KMVsketch1.html
-** "First Estimator":/docs/KMVsketch2.html
-** "Better Estimator":/docs/KMVsketch3.html
-** "Rejection Rules":/docs/KMVsketch4.html
-** "Update V(kth) Rule":/docs/KMVsketch5.html
-* "Theta Sketch Framework":/docs/ThetaSketch1.html
-** "Set Operations":/docs/ThetaSketch2.html
-** "SetOp Accuracy":/docs/ThetaSketch3.html
+* "The Challenge":theChallenge.html
+* "Sketch Origins":SketchOrigins.html
+* "Sketch Elements":SketchElements.html
+* "KMV Sketch":KMVempty.html
+** "Empty Sketch":KMVempty.html
+** "First Estimator":KMVfirstEst.html
+** "Better Estimator":KMVbetterEst.html
+** "Rejection Rules":KMVrejection.html
+** "Update V(kth) Rule":KMVupdateVkth.html
+* "Theta Sketch Framework":ThetaSketchFramework.html
+** "Set Operations":ThetaSketchSetOps.html
+** "Accuracy":Accuracy.html
+
+
+
+* "HLL Sketch":/HllSketch.html
 
 
 
 h2. Data Sketches
-* "Key Features":/docs/KeyFeatures.html
-* "Who Uses":/docs/whoUses.html
-* "Endorsements":/docs/endorsements.html
+* "Key Features":KeyFeatures.html
+* "Who Uses":whoUses.html
+* "Endorsements":endorsements.html
 * "License":/LICENSE.html
 
 h2. Getting Started
-* "Architecture":/docs/architecture.html
-* "Code Tutorials":/docs/tutorials.html
+* "Architecture":architecture.html
+* "Code Tutorials":tutorials.html
 
 
