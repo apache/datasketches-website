@@ -1,8 +1,8 @@
 ---
 layout: doc_page
 ---
-[Prev](/docs/KMVupdateVkth.html)<br>
-[Next](/docs/ThetaSketchSetOps.html)
+[Prev](KMVupdateVkth.html)<br>
+[Next](ThetaSketchSetOps.html)
 
 #Theta Sketch Framework
 The <i>Theta Sketch Framework</i> (TSF) is an extension of the KMV sketch that enables multiple sketching algorithms to be implemented in a common theoretical framework and with a common API and greatly simplifies implementation of set expressions.
@@ -23,10 +23,10 @@ Mathematically, a <i>Theta Sketch</i> is defined as having two parameters, a set
 The unbiased estimate simplifies to \|S\|/&theta;, which is just the size of <i>S</i> divided by &theta;. 
 We will discuss the RSE in a later section.
 
-<img class="ds-img" src="/docs/img/ThetaSketch1.png" alt="ThetaSketch1" />
+<img class="ds-img" src="{{site.docs_img_dir}}ThetaSketch1.png" alt="ThetaSketch1" />
 
 
 [1] This is a limited "KMV perspective" on how &theta; gets assigned.  If you study the attached paper <b>TODO</b>, you will understand that there are multiple ways that &theta; can be assigned and we call this process the <i>Theta Choosing Function (TCF)</i>.  Different sketch algorithms have different TCFs.  We also take advantage of the ability to preset &theta; for up-front probability sampling, which we will discuss in another section.
 
-[Prev](/docs/KMVupdateVkth.html)<br>
-[Next](/docs/ThetaSketchSetOps.html)
+[Prev](KMVupdateVkth.html)<br>
+[Next](ThetaSketchSetOps.html)

@@ -1,8 +1,8 @@
 ---
 layout: doc_page
 ---
-[Prev](/docs/SketchElements.html)<br>
-[Next](/docs/KMVfirstEst.html)
+[Prev](SketchElements.html)<br>
+[Next](KMVfirstEst.html)
 
 #The KMV Empty Sketch
 To explain how a simple sketch works, let us start with the well-known <i>k Minimum Value</i> or <i>KMV</i> sketch in its empty state. 
@@ -18,7 +18,7 @@ In the middle of the diagram we have a hash function whose job is to transform e
 
 On the right we have a cache that maintains an ordered list of the hash values retained by the sketch. To the right of this cache we will list the rules that the sketch must follow to achieve our objectives.
 
-<img class="ds-img" src="//DataSketches.github.io/docs/img/KMV1.png" alt="KMV1" />
+<img class="ds-img" src="{{site.docs_img_dir}}KMV1.png" alt="KMV1" />
 
-[Prev](/docs/SketchElements.html)<br>
-[Next](/docs/KMVfirstEst.html)
+[Prev](SketchElements.html)<br>
+[Next](KMVfirstEst.html)

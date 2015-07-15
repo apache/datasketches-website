@@ -1,7 +1,7 @@
 ---
 layout: doc_page
 ---
-[Back](/docs/Features.html)
+[Back](Features.html)
 
 #Compact Binary Storage
 Sketches can be instantiated in two primary forms.  Both of these forms can be instantiated either in the Java heap or in direct, off-heap memory using the Memory package.
@@ -15,4 +15,4 @@ Once the updating of a sketch is completed the HT is no longer needed, so the sk
 * <b>The most compact of all</b>
 This library also has an advanced implementation of Flajolet's HLL sketch that consumes only <i>k/2</i> bytes, which is up to 16 times smaller than the Theta Sketches.
 
-[Back](/docs/Features.html)
+[Back](Features.html)

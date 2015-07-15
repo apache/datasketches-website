@@ -1,8 +1,8 @@
 ---
 layout: doc_page
 ---
-[Prev](/docs/SketchOrigins.html)<br>
-[Next](/docs/KMVempty.html)
+[Prev](SketchOrigins.html)<br>
+[Next](KMVempty.html)
 
 #Sketch Elements
 
@@ -12,7 +12,7 @@ The second stage of the sketch is a data structure that follows a set of rules f
 
 The final element of the sketch process is a set of estimator algorithms that upon a request examine the sketch data structure and return a result value.  This result value will be approximate but will have well established and mathematically proven relative error distribution bounds that remain constant independent of the size of the input data stream.
 
-<img class="ds-img" src="/docs/img/SketchElements.png" alt="SketchElements" />
+<img class="ds-img" src="{{site.docs_img_dir}}SketchElements.png" alt="SketchElements" />
 
 Sketches are typically
 
@@ -21,7 +21,7 @@ Sketches are typically
 * Highly Parallelizable.  The sketch data structures are "additive" in that they can be merged without losing relative accuracy.
 * Approximate.  The relative error bounds are a function of the configured size of the sketch.
 
-[Prev](/docs/SketchOrigins.html)<br>
-[Next](/docs/KMVempty.html)
+[Prev](SketchOrigins.html)<br>
+[Next](KMVempty.html)
 
 

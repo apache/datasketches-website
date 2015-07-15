@@ -1,9 +1,9 @@
 ---
 layout: doc_page
 ---
-[Back](/docs/Features.html)
+[Back](Features.html)
 
 #Up-Front Sampling
 
 
-[Back](/docs/Features.html)
+[Back](Features.html)

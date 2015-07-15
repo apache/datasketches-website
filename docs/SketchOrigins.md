@@ -1,8 +1,8 @@
 ---
 layout: doc_page
 ---
-[Prev](/docs/theChallenge.html)<br>
-[Next](/docs/SketchElements.html)
+[Prev](theChallenge.html)<br>
+[Next](SketchElements.html)
 
 #Sketch Origins
 
@@ -11,7 +11,7 @@ Sketching is a recent development in the field of
 Sketching has experienced a great deal of interest and growth since the mid 1990's coinciding with the growth of the Internet and the need to process and analyze 
 <a href="https://en.wikipedia.org/wiki/Big_data">Big Data</a>.  The term <i>sketch</i>, with its allusion to an artist's sketch, has become the popular term to describe these algorithms and associated data structures that implement the theory.
 
-<img class="ds-img" src="/docs/img/SketchOrigins.png" alt="SketchOrigins" />
+<img class="ds-img" src="{{site.docs_img_dir}}SketchOrigins.png" alt="SketchOrigins" />
 
 <a href="https://en.wikipedia.org/wiki/Philippe_Flajolet">Philippe Flajolet</a> 
 is often refered to as the father of sketching with his research in analytic combinatorics and analysis of algorithms.  The 1985 paper 
@@ -30,6 +30,6 @@ Sketching is a synergistic blend of both theoretical mathematics and computer sc
 
 [1] Also known as "Approximate Query Processing", see <a href="http://people.cs.umass.edu/~mcgregor/711S12/sketches1.pdf">Sketch Techniques for Approximate Query Processing</a>
 
-[Prev](/docs/theChallenge.html)<br>
-[Next](/docs/SketchElements.html)
+[Prev](theChallenge.html)<br>
+[Next](SketchElements.html)
 
