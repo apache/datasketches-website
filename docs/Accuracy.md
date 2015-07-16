@@ -8,6 +8,6 @@ When performing union operations with first generation sketches there will not b
 
 However, if you perform a union of sketches produced from the intersection or difference operations, or from sketches produced with smaller <i>k</i> configurations, the RSE will be dominated by the RSE of these later sketches.
 
-
+<img class="ds-img" src="{{site.docs_img_dir}}AlphaError.png" alt="AlphaError" />
 
 

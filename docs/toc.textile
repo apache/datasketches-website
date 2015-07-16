@@ -14,12 +14,8 @@ h2. The Basics
 ** "Update V(kth) Rule":KMVupdateVkth.html
 * "Theta Sketch Framework":ThetaSketchFramework.html
 ** "Set Operations":ThetaSketchSetOps.html
-** "Accuracy":Accuracy.html
-
-
-
-* "HLL Sketch":/HllSketch.html
-
+* "HLL Sketch":HLL.html
+* "Accuracy":Accuracy.html
 
 
 h2. Data Sketches
