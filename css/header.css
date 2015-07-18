@@ -71,13 +71,6 @@
   background-image: url('/img/Yahoo_white_small.png');
 }
 
-.ds-img {
-  display: block; 
-  margin: 0 auto;
-  width: 700px;
-  background-repeat: no-repeat;
-}
-
 .ds-booticon {
   display: block;
   text-align: center;

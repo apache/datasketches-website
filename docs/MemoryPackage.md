@@ -8,7 +8,7 @@ layout: doc_page
 
 ##Swim Lanes
 
-<img class="ds-img" src="{{site.docs_img_dir}}SwimLanes.png" alt="SwimLanes" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}SwimLanes.png" alt="SwimLanes" />
 
 
 [Back](Features.html)

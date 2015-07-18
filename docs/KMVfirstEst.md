@@ -12,7 +12,7 @@ How many hash values do we have to retain to compute the estimate of <span class
 
 Suppose we kept only one value, so <i>k = 1</i>, and we chose the smallest hash value out of all the hash values in the set, which, in this case, is 0.008.  We could assume that since the hash values are random-uniform distributed that the separation between the hash values are roughly the same.  Let's label that separation between values as <i>d</i>.  Our first estimator could be just dividing 1.0 by <i>d</i>. Unfortunately, 1/0.008 is about 125, which is way larger than 10.  And as one can see, there is a lot of variation in the separation of each of the hash values.  If the hash values had been ordered differently, the smallest hash value could have been the separation between the 3rd and 4th values. In this case our first estimator, 1/0.191 would be about 5, which is too small.  
 
-<img class="ds-img" src="{{site.docs_img_dir}}KMV2.png" alt="KMV2" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}KMV2.png" alt="KMV2" />
 
 Clearly, our first estimator, <i>1/d</i>, with a sample size of one is too noisy to be useful. However, what we do have is a simple formula for an estimate:
 

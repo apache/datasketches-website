@@ -6,7 +6,7 @@ layout: doc_page
 ##Update Speed
 The following graph illustrates the update speed of 3 different sketches from the library:
 
-<img class="ds-img" src="{{site.docs_img_dir}}UpdateSpeed.png" alt="UpdateSpeed" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}UpdateSpeed.png" alt="UpdateSpeed" />
 
 
  * The Heap Alpha Sketch (red) is the fastest sketch and primarily focused on real-time streaming environments and operates on-heap.

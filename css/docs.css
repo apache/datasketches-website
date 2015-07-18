@@ -13,6 +13,20 @@
    font-style: italic;
 }
 
+.doc-img-full {
+  display: block; 
+  margin: 0 auto;
+  width: 700px;
+  background-repeat: no-repeat;
+}
+
+.doc-img-half {
+  display: inline-block; 
+  margin: 0 auto;
+  width: 400px;
+  background-repeat: no-repeat;
+}
+
 /*** HACK: This is a horrible hack, but I have no clue why images don't want to stay in the container **/
 .doc-content img {
    max-width: 847.5px;

@@ -1,3 +1,4 @@
 
 
-docs_img_dir: '//DataSketches.github.io/docs/img/'
+# docs_img_dir: '//DataSketches.github.io/docs/img/'
+docs_img_dir: '/docs/img/'
