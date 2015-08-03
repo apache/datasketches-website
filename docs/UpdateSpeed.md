@@ -1,7 +1,7 @@
 ---
 layout: doc_page
 ---
-[Back](Features.html)
+[Back](KeyFeatures.html)
 
 ##Update Speed
 The following graph illustrates the update speed of 3 different sketches from the library:
@@ -30,6 +30,6 @@ Very few systems would actually be able to feed a single sketch at this rate so 
   Total Number of Cores:	4<br>
   L2 Cache (per Core):	256 KB<br>
   L3 Cache:	6 MB<br>
-  Memory:	16 GB
+  Memory:	16 GB 1600 MHz DDR3
 
-[Back](Features.html)
+[Back](KeyFeatures.html)

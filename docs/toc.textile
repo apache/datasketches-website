@@ -20,6 +20,12 @@ h2. The Basics
 
 h2. Data Sketches
 * "Key Features":KeyFeatures.html
+** "Update Speed":UpdateSpeed.html
+** "Merge Speed":MergeSpeed.html
+** "Compact Storage":CompactStorage.html
+** "Adaptors":Adaptors.html
+** "Memory Package":MemoryPackage.html
+** "<i>p</i>-Sampling":Sampling.html
 * "Who Uses":whoUses.html
 * "Endorsements":endorsements.html
 * "License":/LICENSE.html
