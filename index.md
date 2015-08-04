@@ -42,7 +42,7 @@ id: home
         <span class="fa fa-database fa-4x"></span>
         <h2>Big Data</h2>
       </a>
-      <p class="text-justify">This library has been specifically designed for Big Data systems: Hadoop and Hive sketch adaptors, a Memory package for managing large off-heap memory data structures, additional protection of sensitive user identifiers by special handling of hash seeds, additional reduction of memory consumption with a random sampling mode when many millions of sketches are required, and compact binary storage.</p>
+      <p class="text-justify">This library has been specifically designed for Big Data systems: Hadoop and Hive* sketch adaptors, a Memory package for managing large off-heap memory data structures, additional protection of sensitive user identifiers by special handling of hash seeds, additional reduction of memory consumption with a front-end sampling, and compact binary storage.<br>* coming soon!</p>
     </div>
 
     <div class="col-md-4">

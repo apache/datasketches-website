@@ -15,7 +15,7 @@ layout: doc_page
 
 <h3>Multiple sketch algorithms</h3>
 * Theta Sketches that enable Set Operations
-* HLL sketches for the best accuracy/storage trade-off if only counting and merging are required.
+* HLL[1] sketches for the best accuracy/storage trade-off if only counting and merging are required.
 * Tuple Sketches for aggregating associative behaviors.
 
 <h3>Designed for Large-scale Computing Systems</h3>
@@ -29,7 +29,7 @@ layout: doc_page
   * The sketch data structures are "additive" and embarassingly paralelizable and can be merged without losing relative accuracy.
 
 * <b>Adaptors for Grid Computing</b>
-  * Adaptors for <a href="Adaptors.html">Hadoop Pig and Hive</a> are also included that implement the major functionality of the core algorithms.
+  * Adaptors for <a href="Adaptors.html">Hadoop Pig and Hive[1]</a> are also included that implement the major functionality of the core algorithms.
 
 * <b>Easy to Integrate</b>
   * Can be integrated into virtually any Java-base system environment
@@ -56,4 +56,6 @@ layout: doc_page
 
 <h3>Opportunities to Extend</h3>
 * There is ample opportunity for interested parties to contribute additional algorithms in this exciting area.
-
+<br>
+<br>
+<h5>1. Coming soon!</h5>

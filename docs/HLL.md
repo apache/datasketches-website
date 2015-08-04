@@ -4,7 +4,7 @@ layout: doc_page
 [Prev](ThetaSketchSetOps.html)<br>
 [Next](Accuracy.html)
 
-#HLL Sketch
+#HLL Sketch[1]
 The hll package contains a very compact implementation of Phillipe Flajolet's
 HLL sketch but with significantly improved error behavior.  If the ONLY use case for sketching is
 counting uniques and merging, the HLL sketch is the highest performing in terms of accuracy for 
@@ -33,6 +33,7 @@ retained hash values, Theta Sketches would be a better choice.
 HLL sketches cannot be intermixed or merged in any way with Theta Sketches.
 
 
+#####[1] Coming Soon!
 
 
 
