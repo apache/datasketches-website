@@ -4,10 +4,9 @@ layout: doc_page
 [Back]()
 
 <h3>Confidence Intervals</h3>
-1. The Theta Sketch Library provides Frequentist Confidence Intervals
-based on the tails of the Binomial Distribution.
+1. The Theta Sketches within the DataSketches Library provide Frequentist Confidence Intervals based on the tails of the Binomial Distribution.
 
-2. Actually, they are only approximate, but we provide a guarantee
+2. These bounds are only approximate, but we provide a guarantee
    (backed by experiments, not by proofs) that neither bound is off
    by more than 1 percent of the estimate.
 
