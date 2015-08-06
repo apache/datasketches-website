@@ -16,7 +16,8 @@ h2. The Basics
 ** "Set Operations":ThetaSketchSetOps.html
 * "HLL Sketch":HLL.html
 * "Accuracy":Accuracy.html
-
+** "Confidence Intervals":ConfidenceIntervals.html
+** "Merging Algorithm":MergingAlgorithm.html
 
 h2. Data Sketches
 * "Key Features":KeyFeatures.html
