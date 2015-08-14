@@ -88,4 +88,6 @@ layout: doc_page
     by always checking and if necessary growing the interval to cover
     the estimate.
 
+Also see the <a href="ThetaSketchFramework.pdf">Theta Sketch Framework</a> paper.
+
 [Back]()
