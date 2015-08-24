@@ -1,8 +1,6 @@
 ---
 layout: doc_page
 ---
-[Prev](ThetaSketchFramework.html)<br>
-[Next](HLL.html)
 
 #Theta Sketch Set Operations
 The Theta Sketch definition enables a uniform and simplified approach to performing the three standard set operations, <i>Union</i> (&#8746;), <i>Intersection</i> (&#8745;) and <i>Difference</i> (\\).
@@ -14,8 +12,3 @@ The diagram below illustrates how the Intersection operation can be performed by
 The fact that set operations produce sketches as results enables full set expressions, such as<br>
  ((A &#8746; B) &#8745; (C &#8746; D))\\(E &#8746; F).
 
-
-
-
-[Prev](ThetaSketchFramework.html)<br>
-[Next](HLL.html)

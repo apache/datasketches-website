@@ -2,7 +2,6 @@
 sectionid: docs
 layout: doc_page
 ---
-[Next]()
 
 #Size in Bytes, Compact Form
 These tables compute the size of a sketch after it has been converted into Compact Form. 

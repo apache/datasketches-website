@@ -1,8 +1,6 @@
 ---
 layout: doc_page
 ---
-[Prev](ThetaSketchSetOps.html)<br>
-[Next](Accuracy.html)
 
 #HLL Sketch[1]
 The hll package contains a very compact implementation of Phillipe Flajolet's
@@ -34,8 +32,3 @@ HLL sketches cannot be intermixed or merged in any way with Theta Sketches.
 
 
 #####[1] Coming Soon!
-
-
-
-[Prev](ThetaSketchSetOps.html)<br>
-[Next](Accuracy.html)

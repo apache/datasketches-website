@@ -1,8 +1,6 @@
 ---
 layout: doc_page
 ---
-[Prev](KMVupdateVkth.html)<br>
-[Next](ThetaSketchSetOps.html)
 
 #Theta Sketch Framework
 The <a href="ThetaSketchFramework.pdf">Theta Sketch Framework</a> (TSF) is a mathematical framework 
@@ -41,5 +39,3 @@ We will discuss the RSE in a later section.
 
 [1] This is a limited "KMV perspective" on how <i>&theta;</i> gets assigned.  The attached paper <a href="ThetaSketchFramework.pdf">Theta Sketch Framework</a> presents multiple ways that <i>&theta;</i> can be assigned using the <i>Theta Choosing Function (TCF)</i>.  Different sketch algorithms have different TCFs.  
 
-[Prev](KMVupdateVkth.html)<br>
-[Next](ThetaSketchSetOps.html)

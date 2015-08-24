@@ -2,7 +2,7 @@
 sectionid: docs
 layout: doc_page
 ---
-[Next]()
+
 
 #Choosing Desired Relative Error
 

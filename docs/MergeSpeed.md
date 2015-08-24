@@ -1,7 +1,7 @@
 ---
 layout: doc_page
 ---
-[Back](Features.html)
+
 
 ##System Merge Speed
 The following graph illustrates the speed of merging millions of sketches in a large system environment.
@@ -15,4 +15,3 @@ This system had already built millions of sketches in a "sketch mart" of million
 ###Measurement Systems
 A cluster of typical data-center class systems.
 
-[Back](Features.html)

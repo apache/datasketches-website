@@ -3,7 +3,7 @@ sectionid: overview
 layout: doc_page
 ---
 
-<h3><i>Data Sketches</i> is a Java software library of <a href="SketchOrigins.html">sketch</a> algorithms and related software APIs that provide   a comprehensive basis for the analysis of sets of unique identifiers in the context of big data.</h3>
+<h3><i>Data Sketches</i> is a Java software library of <a href="SketchOrigins.html">sketch</a> algorithms and related APIs that provide a comprehensive basis for the analysis of sets of unique identifiers in the context of big data.</h3>
 
 <h2>Key Features</h2>
 
@@ -50,7 +50,7 @@ layout: doc_page
 
 <h3>Robust, High Quality Implementations.</h3>
 * Extensive test code leveraging <a href="http://testng.org">TestNG</a>.
-* Code coverage is > 95% as measured by <a href="https://www.atlassian.com/software/clover/overview">Clover</a>.
+* Test Code coverage is > 95% as measured by <a href="https://www.atlassian.com/software/clover/overview">Atlassian Clover</a>.
 * Comprehensive Javadocs that satisfy <a href="http://www.oracle.com/technetwork/java/index.html">Java JDK8</a> standards.
 * Suitable for production environments.
 

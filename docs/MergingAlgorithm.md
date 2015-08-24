@@ -1,9 +1,8 @@
 ---
 layout: doc_page
 ---
-[Back]()
 
-<h3>Merging Algorithm</h3>
+<h3>Merging Algorithm Notes</h3>
 There is a fairly simple argument for the correctness of our
 space-limited multiway merging algorithm.
 
@@ -44,4 +43,3 @@ is used as an abbreviation for the more accurate phrase
 
 ESA Paper:  <Need link>
 
-[Back]()

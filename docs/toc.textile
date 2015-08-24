@@ -2,6 +2,7 @@
 ---
 
 <link rel="stylesheet" href="css/toc.css">
+
 h2. The Basics
 * "The Challenge":theChallenge.html
 * "Sketch Origins":SketchOrigins.html
@@ -12,24 +13,36 @@ h2. The Basics
 ** "Better Estimator":KMVbetterEst.html
 ** "Rejection Rules":KMVrejection.html
 ** "Update V(kth) Rule":KMVupdateVkth.html
-* "Theta Sketch Framework":ThetaSketchFramework.html
-** "Set Operations":ThetaSketchSetOps.html
 * "HLL Sketch":HLL.html
-* "Accuracy":Accuracy.html
-** "Relative Error Table":ErrorTable.html
-** "Confidence Intervals":ConfidenceIntervals.html
-** "Merging Algorithm":MergingAlgorithm.html
-* "Size":Size.html
-** "Size Table":SizeTable.html
 
-h2. Data Sketches
+h2. Theta Sketches
+* "Theta Sketch Framework":ThetaSketchFramework.html
 * "Key Features":KeyFeatures.html
-** "Update Speed":UpdateSpeed.html
-** "Merge Speed":MergeSpeed.html
-** "Compact Storage":CompactStorage.html
-** "Adaptors":Adaptors.html
-** "Memory Package":MemoryPackage.html
-** "<i>p</i>-Sampling":Sampling.html
+
+h3. Set Operations
+* "Set Operations":ThetaSketchSetOps.html
+
+h3. Accuracy
+* "Basic Accuracy":Accuracy.html
+** "Accuracy Plots":AccuracyPlots.html
+** "Relative Error Table":ErrorTable.html
+** "Confidence Intervals Notes":ConfidenceIntervals.html
+** "Merging Algorithm Notes":MergingAlgorithm.html
+
+h3. Size
+* "Size":SizeTable.html
+* "Compact Storage":CompactStorage.html
+
+h3. Speed
+* "Update Speed":UpdateSpeed.html
+* "Merge Speed":MergeSpeed.html
+
+h3. Other Capabilities
+* "Grid Adaptors":Adaptors.html
+* "Memory Package":MemoryPackage.html
+* "<i>p</i>-Sampling":Sampling.html
+
+h3. Other Information
 * "Who Uses":whoUses.html
 * "Endorsements":endorsements.html
 * "License":/LICENSE.html
