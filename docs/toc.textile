@@ -24,10 +24,10 @@ h3. Set Operations
 
 h3. Accuracy
 * "Basic Accuracy":Accuracy.html
-** "Accuracy Plots":AccuracyPlots.html
-** "Relative Error Table":ErrorTable.html
-** "Confidence Intervals Notes":ConfidenceIntervals.html
-** "Merging Algorithm Notes":MergingAlgorithm.html
+* "Accuracy Plots":AccuracyPlots.html
+* "Relative Error Table":ErrorTable.html
+* "Confidence Intervals Notes":ConfidenceIntervals.html
+* "Merging Algorithm Notes":MergingAlgorithm.html
 
 h3. Size
 * "Size":SizeTable.html
