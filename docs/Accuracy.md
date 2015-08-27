@@ -10,19 +10,17 @@ Sketch accuracy is usually measured in terms of Relative Error (<i>RE = Measured
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}Normal2.png" alt="Normal2" />
 
-Here the sketch estimate is at the mean and median of the distribution.  Plus/minus one standard deviation (SD) in terms 
-of Relative Error is called the <i>Relative Standard Error (RSE)</i>. 
+The sketch estimator algorithm examines the internal state of the sketch and returns an estimate of the mean of the probability distribution that includes the actual value. When the sketch contains more than a hundred or so values, we can assume that the shape is pretty close to Gaussian due to the Central Limit Theorem.  It is important to understand that the sketch has no idea what the true value is; it only knows the internal state of the sketch. 
+
+From the mathematical theory of these sketches (see <a href="ThetaSketchFramework.pdf">Theta Sketch Framework</a>) we know:
+
+* That the estimate is unbiased.  If you were able to feed the same data into the sketch using <i>T</i> different hash functions, that the average of all <i>T</i> trials will converge on the true answer.
+* That the variance of the estimate across all <i>T</i> trials is &lt; <i>est<sup>2</sup>/(k-1)</i>, where <i>k</i> is the configured size of the sketch. 
+* Dividing the variance by <i>est<sup>2</sup></i> and taking the square root normalizes the error to 
+&lt; <i><span style="white-space: nowrap">1/&radic;<span style="text-decoration:overline;">&nbsp;k - 1&nbsp;</span></span></i>, 
+which is called the <i>Relative Standard Error</i> or RSE.  This corresponds to one standard deviation stated as a fraction between zero and one, which can be translated to a percent error.
+* Because <i>k</i> is a constant, the bounds of <i>Relative Error</i> of a sketch is constant. 
 
 The area under the curve of the Standard Normal (Gaussian) Distribution is defined to be 1.0.
-The fractional area between two points on the X-axis is referred to as the <i>confidence level</i>.  
-Thus, the confidence level (the fractional area) between plus 1 RSE and minus 1 RSE is 68.27% and
-the confidence level between plus 2 RSE and minus 2 RSE is 95.4%. 
-
-There are three fundamentally different sketch families in this library: the <i>QuickSelect</i>, <i>Alpha</i> and <i>HLL</i> families. The QuickSelect family is the default. 
-
-
-
-
-
-
+The fractional area between two points on the X-axis is referred to as the <i>confidence level</i>. Thus, the confidence level (the fractional area) between plus 1 RSE and minus 1 RSE is 68.27% and the confidence level between plus 2 RSE and minus 2 RSE is 95.4%. 
 

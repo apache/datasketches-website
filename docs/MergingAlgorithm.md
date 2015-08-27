@@ -41,5 +41,3 @@ Note: to avoid extreme verbosity in the above, the phrase
 is used as an abbreviation for the more accurate phrase 
 "the X smallest elements of S if |S| >= X, otherwise all of S".
 
-ESA Paper:  <Need link>
-

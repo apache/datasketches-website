@@ -4,20 +4,24 @@ layout: doc_page
 
 ##Accuracy Plots 
 
-When a sketch is constructed with a simple Builder similar to:  
+When a sketch is constructed with code similar to:  
 
 <div class="highlight"><pre><code class="language-text" data-lang="text">int k = 4096;
 UpdateSketch sketch = UpdateSketch.builder().build(k);
+
 // The sketch is fed unique values with a loop similar to
 long u; //the x-coordinate value, the number of uniques to be fed to the sketch
 for (int i=0; i&lt;u; i++) {
   sketch.update(i);
 }
+
 // After all the unique values have been fed to the sketch, the estimate of <i>u</i> is obtained from the sketch
 double est = sketch.getEstimate();
-// The upper and lower bounds at 1 RSE are obtained from the sketch:
+
+// The upper and lower bounds at 1 RSE can be obtained from the sketch:
 double ub = sketch.getUpperBound(1);
 double lb = sketch.getLowerBound(1);
+
 // The rebuild option can be used prior to obtaining the above values or storing the sketch:
 sketch.rebuild();
 </code></pre></div> 
@@ -41,7 +45,7 @@ This means that the plotted x values form an exponential series of the form <i>2
   * Connecting the plotted points with the same quantiles form the lines of the graph
 
 
-The specifics of the above graph:
+The specifics of the above pitchfork graph:
 
 * The sketch type is the Heap QuickSelect Sketch, which is the default sketch.
 * The sketch was configured with <i>k = 1024</i>.
@@ -60,7 +64,7 @@ The specifics of the above graph:
   
 This particular graph also illustrates some other subtle points about this particular sketch.
 
-* The saw-toothed variation in the overall shaped is due to the fact that the QuickSelect sketch only updates its internal theta when the hash table fills up, at which point the sketch uses the QuickSelect algorithm to find the <i>k + 1</i><sup>th</sup> order statistic from the cache, assigns this value to theta, discards all values above theta, and rebuilds the hash table.  
+* The saw-toothed variation in the overall shaped is due to the fact that the QuickSelect sketch only updates its internal theta when the hash table fills up, which occurs when the hash table reaches <i>15k/8</i> (note that the estimation starts at almost 8K), at which point the sketch uses the QuickSelect algorithm to find the <i>(k + 1)</i><sup>th</sup> order statistic from the cache, assigns this value to theta, discards all values above theta, and rebuilds the hash table.  
 * Because the number of valid points nearly reaches <i>2k</i> values means that the Relative Error of the sketch nearly reaches <i>1/sqrt(2k)</i>. The short-dashed lines are drawn at plus and minus <i>1/sqrt(2k)</i>. 
 * This behavior could possibly result in nearly <i>2k</i> values being stored.
 
@@ -69,7 +73,7 @@ This would result in the following graph:
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}QS4KErrorRebuild.png" alt="QS4KErrorRebuild" />
 
-Note that the plus and minus 1 RSE now smoothly moves up to and follows the theoretically computed RSE reference lines.  Because of the extra rebuild at the end the full cycle time of the sketch is a little slower and the average accuracy is a little less.  This is a tradeoff the user can choose to use or not.
+Note that the plus and minus 1 RSE now smoothly moves up to and follows the theoretically computed RSE reference lines and that estimation starts at 4K.  Because of the extra rebuild at the end the full cycle time of the sketch is a little slower and the average accuracy is a little less than without the rebuild.  This is a tradeoff the user can choose to use or not.
 
 Another major sketch family is the Alpha Sketch.  Its pitchfork graph looks like the following:
 
@@ -77,4 +81,4 @@ Another major sketch family is the Alpha Sketch.  Its pitchfork graph looks like
 
 This sketch was also configured with a size of 4K entries, otherwise the defaults.
 The wavy and smooth curves have the same interpretation as the wavy and straight segment lines for the QuickSelect Sketch above.
-However, the short-dashed reference lines are computed at plus and minus <i>1/sqrt(2k)</i>, which means the Alpha Sketch is about 30% more accurate than the QuickSelect Sketch for the same value of <i>k</i>.
+However, the short-dashed reference lines are computed at plus and minus <i>1/sqrt(2k)</i>, which means the Alpha Sketch is about 30% more accurate than the QuickSelect Sketch with rebuild for the same value of <i>k</i>.
