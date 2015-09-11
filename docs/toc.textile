@@ -17,6 +17,7 @@ h2. The Basics
 
 h2. Theta Sketches
 * "Theta Sketch Framework":ThetaSketchFramework.html
+* <a href="SketchEquations.pdf">Sketch Equations</a>
 * "Key Features":KeyFeatures.html
 
 h3. Set Operations
