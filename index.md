@@ -61,8 +61,8 @@ id: home
       <div class="col-sm-4 col-sm-offset-2">
         <h3>Get Started</h3>
         <p><a href="/docs/architecture.html">Architecture</a></p> <!-- add {{site.stable_version}} -->
-        <p><a href="/docs/tutorials.html">Tutorials</a></p> <!-- add {{site.stable_version}} -->
-        <p style="color:rgba(177,186,198,0.7)">Latest Stable Release</p> <!-- add {{site.stable_version}} -->
+        <p><a href="/docs/tutorials.html">Tutorials</a></p> <!-- add {{site.stable_version}} 
+        <p style="color:rgba(177,186,198,0.7)">Latest Stable Release</p> --> <!-- add {{site.stable_version}} -->
       </div>
       <div class="col-sm-4">
         <h3>Learn More</h3>

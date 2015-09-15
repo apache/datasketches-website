@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-#HLL Sketch[1]
+#HLL Sketch
 The hll package contains a very compact implementation of Phillipe Flajolet's
 HLL sketch but with significantly improved error behavior.  If the ONLY use case for sketching is
 counting uniques and merging, the HLL sketch is the highest performing in terms of accuracy for 
@@ -19,6 +19,10 @@ two to four compared to theta sketches. This behavior is strictly a function of 
 distribution of the input data so it is advisable to understand and measure this phenomenon with
 your own data.
 
+The HLL sketch algorithm is more complex than the theta sketch algorithms and, as a result,
+is about 50% slower in update times and can be a factor of 2 to 4 slower in average merge times 
+especially when merging millions of sketches.
+
 The HLL sketch is not recommended if you anticipate the need of performing set intersection 
 or difference operations with reasonable accuracy, 
 or if you anticipate the need to merge sketches that were constructed with different 
@@ -30,5 +34,3 @@ retained hash values, Theta Sketches would be a better choice.
 
 HLL sketches cannot be intermixed or merged in any way with Theta Sketches.
 
-
-#####[1] Coming Soon!

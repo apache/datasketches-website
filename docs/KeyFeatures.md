@@ -8,15 +8,15 @@ layout: doc_page
 <h2>Key Features</h2>
 
 <h3>Solves Computational Challenges Associated with Unique Identifiers and Duplicates</h3>
-  * <b>Estimating cardinality</b>
-  * Performing <b>set operations</b> on groups of unique identifiers, such as Union, Intersection and Difference
+  * <b>Estimating cardinality</b> in the context of many duplicates.
+  * Performing <a href="ThetaSketchSetOps.html">set operations</a> (e.g., Union, Intersection, and Difference) on sets of unique identifiers
   * Obtaining estimates of the <b>distribution of the error</b> of the result
-  * Enables <b>extended analysis</b> of these sets through associations, which could include approximate joins and behavior analysis
+  * Enables <b>extended analysis</b> of these sets through associations, which could include approximate joins and behavior analysis[1]
 
 <h3>Multiple sketch algorithms</h3>
 * Theta Sketches that enable Set Operations
-* HLL[1] sketches for the best accuracy/storage trade-off if only counting and merging are required.
-* Tuple Sketches for aggregating associative behaviors.
+* <a href="HLL.html">HLL</a> sketches for the best accuracy/storage trade-off where only counting and merging are required.
+* Tuple Sketches for aggregating associative behaviors[1].
 
 <h3>Designed for Large-scale Computing Systems</h3>
 * <b>Small Footprint Per Sketch</b>
@@ -50,7 +50,8 @@ layout: doc_page
 
 <h3>Robust, High Quality Implementations.</h3>
 * Extensive test code leveraging <a href="http://testng.org">TestNG</a>.
-* Test Code coverage is > 95% as measured by <a href="https://www.atlassian.com/software/clover/overview">Atlassian Clover</a>.
+* Benchmarking, speed and accuracy characterization and performance testing code included in the <i>test</i> package.
+* Test Code coverage is > 90% as measured by <a href="https://www.atlassian.com/software/clover/overview">Atlassian Clover</a>.
 * Comprehensive Javadocs that satisfy <a href="http://www.oracle.com/technetwork/java/index.html">Java JDK8</a> standards.
 * Suitable for production environments.
 

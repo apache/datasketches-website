@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-<h3>Merging Algorithm Notes</h3>
+<h3>Theta Sketch Merging (Union) Algorithm Notes</h3>
 There is a fairly simple argument for the correctness of our
 space-limited multiway merging algorithm.
 
