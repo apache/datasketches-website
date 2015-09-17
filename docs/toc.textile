@@ -31,8 +31,7 @@ h3. Accuracy
 * "Merging Algorithm Notes":MergingAlgorithm.html
 
 h3. Size
-* "Size":SizeTable.html
-* "Compact Storage":CompactStorage.html
+* "Theta Sketch Size":ThetaSize.html
 
 h3. Speed
 * "Update Speed":UpdateSpeed.html

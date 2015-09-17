@@ -21,7 +21,7 @@ layout: doc_page
 <h3>Designed for Large-scale Computing Systems</h3>
 * <b>Small Footprint Per Sketch</b>
   * The operating and storage footprint for both row and column oriented storage are minimized with 
-<a href="CompactStorage.html">compact binary representations</a>, which are much smaller than the raw input stream and with a well defined upper bound of size that is independent of the size of the input stream.
+<a href="ThetaSize.html">compact binary representations</a>, which are much smaller than the raw input stream and with a well defined upper bound of size.
 
 * <b>Speed</b>
   * These single-pass, "one-touch" algorithms are <a href="UpdateSpeed.html"><i>fast</i></a> to enable real-time processing capability.

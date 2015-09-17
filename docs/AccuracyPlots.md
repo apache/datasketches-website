@@ -47,8 +47,8 @@ This means that the plotted x values form an exponential series of the form <i>2
 
 The specifics of the above pitchfork graph:
 
-* The sketch type is the Heap QuickSelect Sketch, which is the default sketch.
-* The sketch was configured with <i>k = 1024</i>.
+* The sketch type is the Heap QuickSelect Sketch, which is the default theta UpdateSketch.
+* The sketch was configured with <i>k = 4096</i>.
 * The x-axis varies from 1024 (2^10) uniques per sketch to 1,048,576 (2^20) uniques per sketch. 
 * PPO = 16.
 * T = 1000.
@@ -68,7 +68,7 @@ This particular graph also illustrates some other subtle points about this parti
 * Because the number of valid points nearly reaches <i>2k</i> values means that the Relative Error of the sketch nearly reaches <i>1/sqrt(2k)</i>. The short-dashed lines are drawn at plus and minus <i>1/sqrt(2k)</i>. 
 * This behavior could possibly result in nearly <i>2k</i> values being stored.
 
-If the user does not want the sketch ever to exceed <i>k</i> values, then there is an optional rebuild method that can be used.
+If the user does not want the sketch ever to exceed <i>k</i> values, then there is an optional rebuild method that can be used as mentioned in the above code snippet.
 This would result in the following graph:
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}QS4KErrorRebuild.png" alt="QS4KErrorRebuild" />
