@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 [Prev](KMVrejection.html)<br>
-[Next](ThetaSketchFramework.html)
+
 
 #The KMV Sketch, Update <i>V(k<sup>th</sup>)</i> Rule
 Our final rules: 
@@ -40,5 +40,4 @@ has a straightforward and easy-to-follow development.
 
 
 [Prev](KMVrejection.html)<br>
-[Next](ThetaSketchFramework.html)
 

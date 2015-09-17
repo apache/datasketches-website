@@ -2,7 +2,6 @@
 sectionid: docs
 layout: doc_page
 ---
-[Next](SketchOrigins.html)
 
 #The Challenge
 Internet content, search and media companies like Yahoo, Google, Facebook, etc., collect many tens of billions of event records from the many millions of users to their web sites each day.  These events can be classified by many different dimensions, such as the page visited and user location and profile information.  Each event also contains some unique identifiers associated with the specific device (cell phone, tablet, computer, etc.) and the web browser used.  
@@ -15,5 +14,3 @@ These same unique identifiers will appear on every page that the user visits.  I
 
 However, there are many situations where an exact answer is not required.  If an approximate answer is acceptable there are much more efficient solutions using 
 <a href="SketchOrigins.html">sketches</a>.
-
-[Next](SketchOrigins.html)

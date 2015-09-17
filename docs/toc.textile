@@ -3,32 +3,19 @@
 
 <link rel="stylesheet" href="css/toc.css">
 
-h2. The Basics
+h2. Data Sketches
 * "The Challenge":theChallenge.html
 * "Sketch Origins":SketchOrigins.html
 * "Sketch Elements":SketchElements.html
-* "KMV Sketch":KMVempty.html
-** "Empty Sketch":KMVempty.html
-** "First Estimator":KMVfirstEst.html
-** "Better Estimator":KMVbetterEst.html
-** "Rejection Rules":KMVrejection.html
-** "Update V(kth) Rule":KMVupdateVkth.html
-* "HLL Sketch":HLL.html
+* "Key Features":KeyFeatures.html
 
 h2. Theta Sketches
-* "Key Features":KeyFeatures.html
 * "Theta Sketch Framework":ThetaSketchFramework.html
-* <a href="SketchEquations.pdf">Sketch Equations</a>
-
-h3. Set Operations
-* "Set Operations":ThetaSketchSetOps.html
 
 h3. Accuracy
 * "Basic Accuracy":Accuracy.html
 * "Accuracy Plots":AccuracyPlots.html
 * "Relative Error Table":ErrorTable.html
-* "Confidence Intervals Notes":ConfidenceIntervals.html
-* "Merging Algorithm Notes":MergingAlgorithm.html
 
 h3. Size
 * "Theta Sketch Size":ThetaSize.html
@@ -37,18 +24,37 @@ h3. Speed
 * "Update Speed":UpdateSpeed.html
 * "Merge Speed":MergeSpeed.html
 
+h3. Set Operations
+* "Set Operations":ThetaSketchSetOps.html
+
 h3. Other Capabilities
 * "Grid Adaptors":Adaptors.html
 * "Memory Package":MemoryPackage.html
 * "<i>p</i>-Sampling":Sampling.html
 
-h3. Other Information
-* "Who Uses":whoUses.html
-<!-- * "Endorsements":endorsements.html -->
-* "License":/LICENSE.html
+h2. HLL Sketches
+* "HLL Sketch":HLL.html
 
 h2. Getting Started
 * "Architecture":architecture.html
-* "Code Tutorials":tutorials.html
 
+h3. Code Examples
+* "Code Examples":CodeExamples.html
 
+h3. KMV Tutorial
+* "Empty Sketch":KMVempty.html
+* "First Estimator":KMVfirstEst.html
+* "Better Estimator":KMVbetterEst.html
+* "Rejection Rules":KMVrejection.html
+* "Update V(kth) Rule":KMVupdateVkth.html
+
+h3. Sketch Theory
+* <a href="ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)<a>
+* <a href="SketchEquations.pdf">Sketch Equations (PDF)</a>
+* "Confidence Intervals Notes":ConfidenceIntervals.html
+* "Merging Algorithm Notes":MergingAlgorithm.html
+
+h2. Other Information
+* "Who Uses":whoUses.html
+<!-- * "Endorsements":endorsements.html -->
+* "License":/LICENSE.html

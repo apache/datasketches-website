@@ -1,7 +1,6 @@
 ---
 layout: doc_page
 ---
-[Prev](SketchElements.html)<br>
 [Next](KMVfirstEst.html)
 
 #The KMV Empty Sketch
@@ -20,5 +19,4 @@ On the right we have a cache that maintains an ordered list of the hash values r
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}KMV1.png" alt="KMV1" />
 
-[Prev](SketchElements.html)<br>
 [Next](KMVfirstEst.html)

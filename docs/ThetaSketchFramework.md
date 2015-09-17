@@ -3,6 +3,10 @@ layout: doc_page
 ---
 
 #Theta Sketch Framework
+Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum Value</i> (KMV) 
+sketches in that all KMV sketches are a form of Theta Sketch, but not all Theta Sketches are KMV.
+See <a href="KMVempty.html">KMV Tutorial</a> for a brief tutorial on KMV Sketches.
+
 The <a href="ThetaSketchFramework.pdf">Theta Sketch Framework</a> (TSF) is a mathematical framework 
 defined in a multi-stream setting that enables set expressions over these streams and encompasses many
 different sketching algorithms. A rudimentary introduction to the mathematics of the simpler sketch algorithms is developed in <a href="SketchEquations.pdf">Sketch Equations</a>.
