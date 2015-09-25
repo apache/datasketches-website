@@ -4,7 +4,9 @@ layout: doc_page
 
 ##Accuracy Plots 
 
-When a sketch is constructed with code similar to:  
+###Accuracy of the QuickSelect Sketch Family
+
+A QuickSelect Sketch, which is the default sketch family, can be constructed with code similar to:  
 
 <div class="highlight"><pre><code class="language-text" data-lang="text">int k = 4096;
 UpdateSketch sketch = UpdateSketch.builder().build(k);
@@ -15,14 +17,16 @@ for (int i=0; i&lt;u; i++) {
   sketch.update(i);
 }
 
-// After all the unique values have been fed to the sketch, the estimate of <i>u</i> is obtained from the sketch
+// After all the unique values have been fed to the sketch, 
+//  the estimate of <i>u</i> is obtained from the sketch
 double est = sketch.getEstimate();
 
 // The upper and lower bounds at 1 RSE can be obtained from the sketch:
 double ub = sketch.getUpperBound(1);
 double lb = sketch.getLowerBound(1);
 
-// The rebuild option can be used prior to obtaining the above values or storing the sketch:
+// The optional rebuild option can be used prior to obtaining the above values 
+//  or storing the sketch:
 sketch.rebuild();
 </code></pre></div> 
 
@@ -44,6 +48,12 @@ This means that the plotted x values form an exponential series of the form <i>2
   * An imaginary line drawn vertically from each x-axis point represents the range of error values that result from the Trial Set.  However, not all of the error values from all the trials are plotted. Instead, for each Trial Set, the result error values are sorted and then selected quantiles are chosen and then only those y-axis values are plotted. 
   * Connecting the plotted points with the same quantiles form the lines of the graph
 
+* The plotted lines on these graphs are actually the lines of constant quantiles of the distributions of error measured at each x-axis point on the graph.  
+* These pitchfork graphs are just two dimensional views of a three-dimensional probability surface that would look something like this: 
+<img src="{{site.docs_img_dir}}ErrorSurface2.png" alt="ErrorSurface2" width="150px" />. The cross-sectional slice of this surface is approximately Gaussian like this graph
+<img src="{{site.docs_img_dir}}400px-StandardNormalCurve.png" alt="400px-StandardNormalCurve" width="200px" />, 
+which has the +/- 1, 2 and 3 standard deviation points on the x-axis marked and the corresponding areas under the curve that represent the associated confidence levels.
+* All the pitchfork graphs in this section were generated using the <i>SketchPerformance.java</i> utility that is located in the the <i>test/ ... /sketches/performance</i> package.
 
 The specifics of the above pitchfork graph:
 
@@ -74,6 +84,14 @@ This would result in the following graph:
 <img class="doc-img-half" src="{{site.docs_img_dir}}QS4KErrorRebuild.png" alt="QS4KErrorRebuild" />
 
 Note that the plus and minus 1 RSE now smoothly moves up to and follows the theoretically computed RSE reference lines and that estimation starts at 4K.  Because of the extra rebuild at the end the full cycle time of the sketch is a little slower and the average accuracy is a little less than without the rebuild.  This is a tradeoff the user can choose to use or not.
+
+Extending this graph to include the quantiles for both +/- 1 RSE and +/- 2 RSE establishes the bounds for the 68% and 95.4% confidence levels respectfully.  Note the rescaling of the y-axis.
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}QS4KErrorRebuild2.png" alt="QS4KErrorRebuild2" />
+
+
+
+###Accuracy of the Alpha Sketch Family
 
 Another major sketch family is the Alpha Sketch.  Its pitchfork graph looks like the following:
 

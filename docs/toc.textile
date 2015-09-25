@@ -26,6 +26,7 @@ h3. Speed
 
 h3. Set Operations
 * "Set Operations":ThetaSketchSetOps.html
+* "SetOp Accuracy":ThetaSketchSetOpsAccuracy.html
 
 h3. Other Capabilities
 * "Grid Adaptors":Adaptors.html
@@ -42,6 +43,7 @@ h3. Code Examples
 * "Code Examples":CodeExamples.html
 
 h3. KMV Tutorial
+* "The Inverse Estimate":InverseEstimate.html
 * "Empty Sketch":KMVempty.html
 * "First Estimator":KMVfirstEst.html
 * "Better Estimator":KMVbetterEst.html
