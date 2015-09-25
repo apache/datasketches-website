@@ -48,27 +48,37 @@ The hash values retained in <i>S<sub>A</sub></i> represent a uniform sampling of
 Even though in the raw data all the values of segment <i>B</i> are in segment <i>A</i>, the probability that all the 4K samples of <i>S<sub>B</sub></i> appear 
 in <i>S<sub>A</sub></i> is extremely unlikely since only one in one-thousand can be randomly chosen.
 
-* <b>The Theta Rule for Set Operations:</b>  The Theta Rule states:
-   * <i>&theta;<sub>result</sub> = min(&theta;<sub>A</sub> , &theta;<sub>B</sub>)</i> = .001.
-   * All entries retained in the result sketch must be less than <i>&theta;<sub>result</sub></i>.
+#####<b>The Theta Rule for Set Operations</b>
+* <i>&theta;<sub>result</sub> = min(&theta;<sub>A</sub> , &theta;<sub>B</sub>)</i>.
+* All entries retained in the result sketch must be less than <i>&theta;<sub>result</sub></i>.
+
+For our example:
+
+* <i>&theta;<sub>result</sub> = min(0.001, 1.0) = .001
 * All the entries from <i>S<sub>A</sub></i> already qualify. 
 * Since all 4K values in <i>S<sub>B</sub></i> are uniformly distributed between 0 and 1.0, only .001 of them or approximately 4 of the bottom values will remain.
 * The resulting intersection sketch will have, on average, only 4 values and a theta of .001.
 
-The mean estimate from the intersection sketch will be 4/.001 = 4K.  This is correct and establishes that the estimation of the intersection size is unbiased.
+The mean estimate from the intersection sketch will be 4/.001 = 4K.  This happens to be correct using this hand-wavy analysis but in general is a random result with a variance. The proof that it the estimate will be unbiased is in the attached <a href="SketchEquations.pdf">Sketch Equations</a>.
 
-The RSE of a sketch with only 4 values is ~ 1/sqrt(4) = .5 or 50% error. This is considerably larger than the base accuracy of either <i>S<sub>A</sub></i> or <i>S<sub>B</sub></i>, which is ~ 1.6% as stated above.
+The RSE of a sketch with only 4 values is ~ 1/sqrt(4) = .5 or 50% error. This is considerably larger than the RSE of either <i>S<sub>A</sub></i> or <i>S<sub>B</sub></i>, which is ~ 1.6% as stated above.
 
-A simple way to compute this resulting error of intersection (or difference) is
+The insight to be gained from this example is that it was the theta (sampling rate) of the sketch of the larger population that caused the increase in error. 
+And, for this example, increasing the sketch size of <i>S<sub>A</sub></i> would improve the resulting error.  The general case may be more complex.
 
-<center>RSE<sub><i>intersection</i></sub> = <i>sqrt( (size of Union(A,B) ) / (size of Intersection(A,B) ) ) * (base RSE of Sketch)</i></center>
+More formally, if we define a factor <i>F</i> to be the ratio (see <a href="SketchEquations.pdf">Sketch Equations</a>):
 
-<center> = sqrt(4M/4K) * 1/sqrt(4K) = 31.63 * 0.016 =  0.5 = 50%.</center>
+<center><i>F</i> = (size of Union(A,B) ) / (size of Intersection(A,B).</center>
 
-The intuition here is that it is the theta (sampling rate) of the sketch of the larger population that is causing the increase in error.  
-Increasing the sketch size of <i>S<sub>A</sub></i> would improve the resulting error.
+Then a simple way to compute the resulting RSE of an intersection (or difference) is
+
+<center>RSE<sub><i>intersection</i></sub> = <i>sqrt(F) * (RSE of input Sketches)</i></center>
+
+And in our example:
+
+<center>RSE<sub><i>intersection</i></sub> = sqrt(4M/4K) * 1/sqrt(4K) = 31.63 * 0.016 =  0.5 = 50%.</center>
 
 
 ###Source sketches and target with different <i>Nominal Entries</i> or <i>k</i>
 
-This scenario is even more complex and difficult to predict mathematically, but a conservative estimate would be to use the above equations with the smallest of the participating <i>k</i> values.
+In the general case this scenario is even more complex and difficult to predict mathematically, but a conservative estimate would be to use the above equations substituting <i>k</i> with the smallest of the participating <i>k</i> values.
