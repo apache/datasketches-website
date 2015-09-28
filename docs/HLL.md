@@ -34,3 +34,30 @@ retained hash values, Theta Sketches would be a better choice.
 
 HLL sketches cannot be intermixed or merged in any way with Theta Sketches.
 
+##HLL Accuracy
+
+The accuracy behavior of the HLL sketch with the HIP estimator enabled will be similar to the following graph:
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}Hll4KwHipError.png" alt="Hll4KwHipError" />
+
+This HLL sketch was configured with <i>k</i> = 4096, for direct comparison with the accuracy graphs for the
+theta sketches in [AccuracyPlots](AccuracyPlots.html).  For this graph the error behavior is shown for very 
+small numbers of uniques to illustrate that HLL estimates <i>&le; k</i> are not zero as they are with the theta
+sketches.  The wild swings in the very low range are quantization errors as a function of the test software
+attempting to find, for example, the 2.5 percentile point when the number of actual unique values is very small.
+
+Using the Historic Inverse Probability (HIP) estimator[1], the RSE of this sketch approaches <i>~ 0.836 / sqrt(k)</i>.
+Keep in mind, however that the HLL sketch can be 16 to 32 times smaller in space utilization in a one-off comparison.
+
+##HLL Speed
+
+The update speed behavior of the HLL sketch will be similar to the following graph:
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}Hll4KwHipSpeed.png" alt="Hll4KwHipSpeed" />
+
+Because the HLL sketch algorithm is more complex its update speed is about 2X slower than the theta sketches. 
+Its merge speed is about 2 to 4 times slower than the theta sketches.
+
+
+* [1] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, PODS 2014.
+
