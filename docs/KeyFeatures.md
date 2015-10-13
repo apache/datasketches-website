@@ -29,12 +29,12 @@ layout: doc_page
   * The sketch data structures are "additive" and embarassingly paralelizable and can be merged without losing relative accuracy.
 
 * <b>Adaptors for Grid Computing</b>
-  * Adaptors for <a href="Adaptors.html">Hadoop Pig and Hive[1]</a> are also included that implement the major functionality of the core algorithms.
+  * Adaptors for <a href="Adaptors.html">Hadoop, Druid, Pig, and Hive[1]</a> are also included that implement the major functionality of the core algorithms.
 
 * <b>Easy to Integrate</b>
   * Can be integrated into virtually any Java-base system environment
   * The core library has no dependencies outside of Java.
-  * The Hadoop Pig and Hive adaptor classes, are provided in separate repositories.
+  * The Hadoop, Druid, Pig, and Hive adaptor classes, are provided in separate repositories.
   * Maven deployable.
 
 * <b>Specific Sketch Features</b>

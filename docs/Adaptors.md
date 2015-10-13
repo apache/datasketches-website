@@ -74,3 +74,5 @@ The console output would look something like the following.  The actual result i
 ##Hadoop Hive
 <b>TODO</b>
 
+##Druid
+<b>TODO</b>
