@@ -1,52 +1,47 @@
 ---
-sectionid: overview
 layout: doc_page
 ---
 
-<h3><i>Data Sketches</i> is a Java software library of <a href="SketchOrigins.html">sketch</a> algorithms and related APIs that provide a comprehensive basis for the analysis of sets of unique identifiers in the context of big data.</h3>
+<h3><i>Data Sketches</i> is a Java software library of <a href="https://en.wikipedia.org/wiki/Stochastic"><i>stochastic</i></a> 
+        <a href="https://en.wikipedia.org/wiki/Streaming_algorithm"><i>streaming algorithms</i></a> and related tools.</h3>
 
 <h2>Key Features</h2>
 
-<h3>Solves Computational Challenges Associated with Unique Identifiers and Duplicates</h3>
-  * <b>Estimating cardinality</b> in the context of many duplicates.
-  * Performing <a href="ThetaSketchSetOps.html">set operations</a> (e.g., Union, Intersection, and Difference) on sets of unique identifiers
-  * Obtaining estimates of the <b>distribution of the error</b> of the result
-  * Enables <b>extended analysis</b> of these sets through associations, which could include approximate joins and behavior analysis[1]
+<h3>Common Sketch Properties</h3>
+  * <b>Single-pass, "one-touch"</b> algorithms enable efficient processing in either real-time or batch
+  * Query results are <b>approximate</b> but within well defined error bounds that are user configurable by trading off sketch size with accuracy
+  * Designed for <b>big data</b> These sketch implementations are specifically designed for large-scale processing environments, and are heavily used within Yahoo
+  * <b>Maven deployable</b> and registered with <a href="http://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>
+  * Comprehensive <b>unit tests</b> and testing tools are provided
+  * Extensive documentation with the systems developer in mind
 
-<h3>Multiple sketch algorithms</h3>
-* Theta Sketches that enable Set Operations
-* <a href="HLL.html">HLL</a> sketches for the best accuracy/storage trade-off where only counting and merging are required.
-* Tuple Sketches for aggregating associative behaviors[1].
-
-<h3>Designed for Large-scale Computing Systems</h3>
-* <b>Small Footprint Per Sketch</b>
-  * The operating and storage footprint for both row and column oriented storage are minimized with 
-<a href="ThetaSize.html">compact binary representations</a>, which are much smaller than the raw input stream and with a well defined upper bound of size.
-
-* <b>Speed</b>
-  * These single-pass, "one-touch" algorithms are <a href="UpdateSpeed.html"><i>fast</i></a> to enable real-time processing capability.
-  * Coupled with the compact binary representations, in many cases the need for costly serialization and deserialization has been eliminated.
-  * The sketch data structures are "additive" and embarassingly paralelizable and can be merged without losing relative accuracy.
-
-* <b>Adaptors for Grid Computing</b>
-  * Adaptors for <a href="Adaptors.html">Hadoop, Druid, Pig, and Hive[1]</a> are also included that implement the major functionality of the core algorithms.
-
-* <b>Easy to Integrate</b>
-  * Can be integrated into virtually any Java-base system environment
-  * The core library has no dependencies outside of Java.
-  * The Hadoop, Druid, Pig, and Hive adaptor classes, are provided in separate repositories.
-  * Maven deployable.
-
-* <b>Specific Sketch Features</b>
-  * <b>Hash Seed Handling</b>. Additional protection for managing hash seeds which is particularly important when processing sensitive user identifiers.
-  * <a href="Sampling.html"><b>Sampling</b></a>. Built-in up-front sampling for cases where additional contol is required to limit overall memory consumption when dealing with millions of sketches.
-  * Off-Heap <a href="MemoryPackage.html"><b>Memory Package</b></a>.  Large query systems often require their own heaps outside the JVM in order to better manage garbage collection latencies. The sketches in this package are designed to operate either on-heap or off-heap.
-  * Built-in <b>Upper-Bound and Lower-Bound estimators</b>. You are never in the dark about how good of an estimate the sketch is providing.  All the sketches are able to estimate the upper and lower bounds of the estimate given a confidence level.
-  * User configurable trade-offs of accuracy vs. storage space as well as other performance tuning options.
-  
-* <b>Built-In, General Purpose Functions</b>
-  * General purpose Memory package for managing data off the Java Heap.  This enables systems designers the ability to manage their own large data heaps with dedicated processor threads that would otherwise put undue pressure on the Java heap and its garbage collection.
+<h3>Built-In, General Purpose Functions</h3>
+  * General purpose <a href="MemoryPackage.html">Memory Package</a> for managing data off the Java Heap.  This enables systems designers the ability to manage their own large data heaps with dedicated processor threads that would otherwise put undue pressure on the Java heap and its garbage collection.
   * General purpose implementaion of Austin Appleby's 128-bit MurmurHash3 algorithm, with a number of useful extensions.
+
+<h2>Key Algorithms</h2>
+
+<h3>Count Distinct / Count Unique</h3>
+
+<h4>Solves Computational Challenges Associated with Unique Identifiers</h4>
+  * <b>Estimating cardinality</b> of a stream with many duplicates
+  * Performing <a href="ThetaSketchSetOps.html">set operations</a> (e.g., Union, Intersection, and Difference) on sets of unique identifiers
+  * Estimates of the <b>error bounds</b> of the result can be obtained directly from the result sketch
+  * Two families of Count Unique algorithms:
+    * <a href="ThetaSketchFramework.html">The Theta Sketch Framework</a> algorithms that are tuned for operation on the java heap or off-heap.
+    * <a href="HLL.html">The Hyper-Log Log algorithms<a/> when sketch size is of utmost concern.
+  
+<h3>Quantiles[1]</h3>
+  * Get normal or inverse PDFs or CDFs of the distributions of any numeric value from your raw data in a single pass.
+  * Well defined error bounds on the result.
+  
+<h3>Frequent Items[1]</h3>
+  * Get the most frequent items from a stream of items.
+  
+<h3>Tuple Sketch[1]</h3>
+  * Associative sketches that are useful for performing approximate join operations.
+
+<h3>Designed for <a href="LargeScale.html">Large-scale</a> computing systems</h3>
 
 <h3>Robust, High Quality Implementations.</h3>
 * Extensive test code leveraging <a href="http://testng.org">TestNG</a>.

@@ -4,10 +4,10 @@
 <link rel="stylesheet" href="css/toc.css">
 
 h2. Data Sketches
+* "Key Features":KeyFeatures.html
 * "The Challenge":theChallenge.html
 * "Sketch Origins":SketchOrigins.html
 * "Sketch Elements":SketchElements.html
-* "Key Features":KeyFeatures.html
 
 h2. Theta Sketches
 * "Theta Sketch Framework":ThetaSketchFramework.html
@@ -29,6 +29,7 @@ h3. Set Operations
 * "SetOp Accuracy":ThetaSketchSetOpsAccuracy.html
 
 h3. Other Capabilities
+* "Large Scale":LargeScale.html
 * "Grid Adaptors":Adaptors.html
 * "Memory Package":MemoryPackage.html
 * "<i>p</i>-Sampling":Sampling.html
@@ -50,7 +51,7 @@ h3. KMV Tutorial
 * "Rejection Rules":KMVrejection.html
 * "Update V(kth) Rule":KMVupdateVkth.html
 
-h3. Sketch Theory
+h3. Theta Sketch Theory
 * <a href="ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)<a>
 * <a href="SketchEquations.pdf">Sketch Equations (PDF)</a>
 * "Confidence Intervals Notes":ConfidenceIntervals.html

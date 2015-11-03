@@ -75,4 +75,4 @@ The console output would look something like the following.  The actual result i
 <b>TODO</b>
 
 ##Druid
-<b>TODO</b>
+See <a href="https://github.com/druid-io/druid/pull/1897">Druid Integration of DataSketches</a>
