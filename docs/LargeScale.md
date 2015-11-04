@@ -12,7 +12,7 @@ layout: doc_page
 <h3>Easy to Integrate</h3>
   * Can be integrated into virtually any Java-base system environment
   * The core library has no dependencies outside of Java.
-  * The Hadoop, Druid, Pig, and Hive adaptor classes, are provided in separate repositories.
+  * The Hadoop, Druid, Pig, and Hive <a href="Adaptors.html">adaptors<a/>, are provided in separate repositories.
   * <b>Maven deployable</b> and registered with <a href="http://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>
 
 <h3>Specific Theta Sketch Features for Large Data</h3>

@@ -5,15 +5,11 @@ sectionid: download
 layout: simple_page
 ---
 
-##Current Stable Versions
-
-The current stable release is tagged at version 0.1.1.
-
-The pom, jar, javadoc.jar and sources.jar is available from Maven Central.
-
-### [Maven Central Repository](http://search.maven.org/#search|ga|1|datasketches)
+###Current Stable Version = 0.1.1
 
 
-##Current Snapshot
+The pom, jar, javadoc.jar, sources.jar and test.jar is available from <a href="http://search.maven.org/#search|ga|1|datasketches">The Central Repository</a>.
 
-The current snapshot is 0.1.2-SNAPSHOT, which must be compiled from source directly from the github.com/DataSketches repositories.
+
+###Current Snapshot = 0.1.2-SNAPSHOT
+

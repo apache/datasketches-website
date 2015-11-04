@@ -2,29 +2,18 @@
 layout: doc_page
 ---
 
-#Adaptors for Grid Computing
-
-Easy-to-use adaptors for Grid Computing.
+#Adaptors for Large-Scale Computing
 
 ##Hadoop Pig
-The sketches/pig/theta package provides the following adaptors to the sketches in the sketches/theta package
-
-* <b>DataToSketch</b> provides the means to build a sketch from raw data. Returns a sketch as a byte array.
-* <b>Estimate</b> Returns a double valued estimate from an input sketch.
-* <b>Merge</b> Perform iterative Union Set Operations on a sketch. Returns a sketch as a byte array.
-* <b>Intersect</b> Perform iterative Intersection Set Operations on a sketch. Returns a sketch as a byte array.
-* <b>AexcludeB</b> Perform the A-and-not-B Set Operation on two sketches. Returns a sketch as a byte array.
-* <b>SketchToString</b> Returns a human readable summary of the state of an input sketch.
-* <b>ErrorBounds</b> Returns a double valued estimate and double valued upper and lower bounds based on a 95% confidence levels given the state of an input sketch.
-
+See <a href="http://datasketches.github.io/api/pig/snapshot/apidocs/index.html">API Snapshot for Pig</a>.
 
 This is a code snippet of how to build a sketch using Pig:
 
 <pre>
 REGISTER /.../sketches-pig.jar
 REGISTER /.../sketches-core.jar
-DEFINE dataToSketch com.yahoo.sketches.pig.theta.DataToSketchUDF('4096');
-DEFINE sketchToString com.yahoo.sketches.pig.theta.SketchToStringUDF();
+DEFINE dataToSketch com.yahoo.sketches.pig.theta.DataToSketch('4096');
+DEFINE sketchToString com.yahoo.sketches.pig.theta.SketchToString();
 rawData = LOAD '$INPUT' USING ...pig.Projector('ID1', 'ID2');
 
 groupData = GROUP rawData ALL;
@@ -72,7 +61,7 @@ The console output would look something like the following.  The actual result i
 </pre>
 
 ##Hadoop Hive
-<b>TODO</b>
+See <a href="http://datasketches.github.io/api/hive/snapshot/apidocs/index.html">API Snapshot for Hive</a>.
 
 ##Druid
 See <a href="https://github.com/druid-io/druid/pull/1897">Druid Integration of DataSketches</a>

@@ -30,7 +30,7 @@ h3. Set Operations
 
 h3. Other Capabilities
 * "Large Scale":LargeScale.html
-* "Grid Adaptors":Adaptors.html
+* "Large-scale system Adaptors":Adaptors.html
 * "Memory Package":MemoryPackage.html
 * "<i>p</i>-Sampling":Sampling.html
 
