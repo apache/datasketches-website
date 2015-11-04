@@ -7,7 +7,7 @@ layout: doc_page
 <h3>Speed</h3>
   * These single-pass, "one-touch" algorithms are <a href="UpdateSpeed.html"><i>fast</i></a> to enable real-time processing capability.
   * Coupled with the compact binary representations, in many cases the need for costly serialization and deserialization has been eliminated.
-  * The sketch data structures are "additive" and embarassingly parallelizable and can be merged without losing relative accuracy.
+  * The sketch data structures are "additive" and embarassingly parallelizable and can be merged without losing accuracy.
 
 <h3>Easy to Integrate</h3>
   * Can be integrated into virtually any Java-base system environment

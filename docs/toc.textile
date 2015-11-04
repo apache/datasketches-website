@@ -38,7 +38,6 @@ h2. HLL Sketches
 * "HLL Sketch":HLL.html
 
 h2. Getting Started
-* "Architecture":architecture.html
 
 h3. Code Examples
 * "Code Examples":CodeExamples.html
