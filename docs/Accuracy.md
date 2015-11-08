@@ -13,7 +13,7 @@ probability distribution that is close to the familiar Gaussian, which looks lik
 The sketch estimator algorithm examines the internal state of the sketch and returns an estimate 
 of the mean of the probability distribution that includes the actual value. 
 When the sketch contains more than a hundred or so values, we can assume that the shape is 
-pretty close to Gaussian due to the Central Limit Theorem.  
+pretty close to Gaussian due to the Central Limit Theorem. 
 It is important to understand that the sketch has no idea what the true value is; 
 it only knows the internal state of the sketch. 
 
@@ -28,8 +28,8 @@ where <i>k</i> is the configured size of the sketch.
 
 Dividing the variance by <i>est<sup>2</sup></i> and taking the square root normalizes the error to 
 &lt; <i><span style="white-space: nowrap">1/&radic;<span style="text-decoration:overline;">&nbsp;k - 1&nbsp;</span></span></i>, 
-which is called the <i>Relative Standard Error</i> or RSE.  This corresponds to one s
-tandard deviation stated as a fraction between zero and one, which can be translated to a percent error.
+which is called the <i>Relative Standard Error</i> or RSE.  This corresponds to one standard 
+deviation stated as a fraction between zero and one, which can be translated to a percent error.
 Because <i>k</i> is a constant, the bounds of <i>Relative Error</i> of a sketch is constant. 
 
 The area under the curve of the Standard Normal (Gaussian) Distribution is defined to be 1.0.
