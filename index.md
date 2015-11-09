@@ -77,15 +77,15 @@ id: home
     <div class="row-fluid text-center">
       <div class="col-sm-4 col-sm-offset-2">
         <h3>Get Started</h3>
-        <p><a href="/docs/architecture.html">Architecture</a></p> <!-- add {{site.stable_version}} -->
-        <p><a href="/docs/tutorials.html">Tutorials</a></p> <!-- add {{site.stable_version}} 
-        <p style="color:rgba(177,186,198,0.7)">Latest Stable Release</p> --> <!-- add {{site.stable_version}} -->
+        <p><a href="/docs/Architecture.html">Architecture</a></p> <!-- add {{site.stable_version}} -->
+        <!-- <p><a href="/docs/tutorials.html">Tutorials</a></p>  add {{site.stable_version}} -->
+        <!-- ><p style="color:rgba(177,186,198,0.7)">Latest Stable Release</p> add {{site.stable_version}} -->
       </div>
       <div class="col-sm-4">
         <h3>Learn More</h3>
         <p><a href="/docs/KeyFeatures.html">Key Features</a></p>
-        <p><a href="/docs/theChallenge.html">The Challenge</a></p>
-        <p><a href="/docs/whoUses.html">Who uses DataSketches?</a></p>
+        <p><a href="/docs/TheChallenge.html">The Challenge</a></p>
+        <p><a href="/docs/WhoUses.html">Who uses DataSketches?</a></p>
       </div>
     </div>
   </div>
