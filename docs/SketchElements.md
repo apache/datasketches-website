@@ -1,13 +1,16 @@
 ---
-layout: doc_page
+layout: overview_page
 ---
 
-#Sketch Elements
+##Sketch Elements
 
-Sketches are different from sampling in that they process all the elements of a stream, but only once. 
-Sketches have some form of randomization that forms the basis of their stochastic nature. 
-As an example, the first stage of the unique count sketching process is a transformation that gives the input data stream the property of "white noise". 
-This is normally achieved by coordinated hashing of the input unique keys and then normalizing the result to be a uniform random number between zero and one.
+Sketches are different from traditional sampling techniques in that sketches process all the elements of a stream, touching each element only once,
+and have some form of randomization that forms the basis of their stochastic nature. 
+This "one-touch" property makes sketches ideally suited for real-time data processing.
+
+As an example, the first stage of a <a href="https://en.wikipedia.org/wiki/Count-distinct_problem">count-distinct</a> sketching process is a transformation that gives the input data stream the property of <a href="https://en.wikipedia.org/wiki/White_noise">white noise</a>, or equivalently, a 
+<a href="https://en.wikipedia.org/wiki/Uniform_distribution_%28discrete%29">uniform distribution</a> of values. 
+This is commonly achieved by coordinated hashing of the input unique keys and then normalizing the result to be a uniform random number between zero and one.
 
 The second stage of the sketch is a data structure that follows a set of rules for retaining a small 
 set of the hash values it receives from the transform stage. 

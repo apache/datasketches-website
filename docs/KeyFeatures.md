@@ -1,9 +1,6 @@
 ---
-layout: doc_page
+layout: overview_page
 ---
-
-<h3><i>Data Sketches</i>: A Java software library of <a href="https://en.wikipedia.org/wiki/Stochastic"><i>stochastic</i></a> 
-        <a href="https://en.wikipedia.org/wiki/Streaming_algorithm"><i>streaming algorithms</i></a> and related tools.</h3>
 
 <h2>Key Features</h2>
 

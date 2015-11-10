@@ -3,11 +3,11 @@
 
 <link rel="stylesheet" href="css/toc.css">
 
-h2. Data Sketches
-* "Key Features":KeyFeatures.html
+h2. Overview
 * "The Challenge":TheChallenge.html
 * "Sketch Origins":SketchOrigins.html
 * "Sketch Elements":SketchElements.html
+* "Key Features":KeyFeatures.html
 
 h2. Theta Sketches
 * "Theta Sketch Framework":ThetaSketchFramework.html
