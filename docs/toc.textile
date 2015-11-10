@@ -5,7 +5,7 @@
 
 h2. Data Sketches
 * "Key Features":KeyFeatures.html
-* "The Challenge":theChallenge.html
+* "The Challenge":TheChallenge.html
 * "Sketch Origins":SketchOrigins.html
 * "Sketch Elements":SketchElements.html
 
@@ -38,6 +38,7 @@ h2. HLL Sketches
 * "HLL Sketch":HLL.html
 
 h2. Getting Started
+* "Architecture":Architecture.html
 
 h3. Code Examples
 * "Code Examples":CodeExamples.html
