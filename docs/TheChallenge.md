@@ -4,7 +4,7 @@ layout: doc_page
 ---
 
 #The Challenge
-Internet content, search and media companies like Yahoo, Google, Facebook, etc., collect many tens of billions of event records from the many millions of users to their web sites each day.  These events can be classified by many different dimensions, such as the page visited and user location and profile information.  Each event also contains some unique identifiers associated with the specific device (cell phone, tablet, computer, etc.) and the web browser used.  
+Internet content, search and media companies like Yahoo, Google, Facebook, etc., collect many tens of billions of event records from the many millions of users to their web sites each day.  These events can be classified by many different dimensions, such as the page visited and user location and profile information.  Each event also contains some unique identifiers associated with the user, specific device (cell phone, tablet, or computer) and the web browser used.  
 
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}PeopleCloud.png" alt="PeopleCloud" />
