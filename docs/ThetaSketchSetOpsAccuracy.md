@@ -2,27 +2,27 @@
 layout: doc_page
 ---
 
-#Theta Sketch Set Operations Accuracy
+##Theta Sketch Set Operations Accuracy
 
-##Union Operations
+###Union Operations
 
-###Source sketches and target with the same <i>Nominal Entries</i> or <i>k</i>
+####Source sketches and target with the same <i>Nominal Entries</i> or <i>k</i>
 
 As long as all source sketches and target have been configured with the same <i>Nominial Entries</i> or <i>k</i>, 
 and there has been no other intervening <i>Intersection</i> or <i>AnotB</i> operations, 
 the accuracy of the resulting <i>Union</i> sketch will have the same Relative Standard Error (RSE) as 
 determined by the <i>Nominal Entries</i> or <i>k</i> value.
 
-###Source sketches and target with different <i>Nominal Entries</i> or <i>k</i>
+####Source sketches and target with different <i>Nominal Entries</i> or <i>k</i>
 
 The Relative Standard Error (RSE) of the resulting <i>Union</i> sketch will be that determined by the smallest 
 <i>Nominal Entries</i> or <i>k</i> value.
 
-##Intersection or AnotB Operations
+###Intersection or AnotB Operations
 
 Predicting accuracy with intersections and difference operations is more complex.  
 
-###Source sketches and target with the same <i>Nominal Entries</i> or <i>k</i>
+####Source sketches and target with the same <i>Nominal Entries</i> or <i>k</i>
 
 If the source sketches and target are configured with the same <i>k</i>, the accuracy of the result sketch does 
 have a relatively straightforward mathematical solution and intuition. 
@@ -30,7 +30,7 @@ The resulting accuracy is
 
 <center>RSE = <i>sqrt( est(Union(A,B)) / est(Intersection(A,B)) ) * sqrt( 1/ (k-1) )</i></center>
 
-####Example
+#####Example
 
 The intuition for this can be explained using this simple example of intersection 
 (set difference would behave similarly):
@@ -58,7 +58,7 @@ Even though in the raw data all the values of segment <i>B</i> are in segment <i
 that all the 4K samples of <i>S<sub>B</sub></i> appear <i>S<sub>A</sub></i> is extremely unlikely since 
 only one in one-thousand can be randomly chosen.
 
-#####<b>The Theta Rule for Set Operations</b>
+######<b>The Theta Rule for Set Operations</b>
 * <i>&theta;<sub>result</sub> = min(&theta;<sub>A</sub> , &theta;<sub>B</sub>)</i>.
 * All entries retained in the result sketch must be less than <i>&theta;<sub>result</sub></i>.
 
@@ -97,7 +97,7 @@ And in our example:
 <center>RSE<sub><i>intersection</i></sub> = sqrt(4M/4K) * 1/sqrt(4K) = 31.63 * 0.016 =  0.5 = 50%.</center>
 
 
-###Source sketches and target with different <i>Nominal Entries</i> or <i>k</i>
+####Source sketches and target with different <i>Nominal Entries</i> or <i>k</i>
 
 In the general case this scenario is even more complex and difficult to predict mathematically, but a conservative
 estimate would be to use the above equations substituting <i>k</i> with the smallest of the participating 

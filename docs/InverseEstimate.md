@@ -3,11 +3,11 @@ layout: doc_page
 ---
 [Next](KMVempty.html)
 
-#The Inverse Estimate
+##The Inverse Estimate
 
 One of the basic concepts that is used in these sketches is that of the <i>Inverse Estimate</i>.  Once you become comfortable with it you will acquire a lot of the intuition for how sketches work. 
 
-##The Concert Line, How Long?
+###The Concert Line, How Long?
 
 You have just joined the end of a long line for a concert that you are excited to see. That is you, on the very left.  The line extends a full city block, which in your city is about one-fifth of a mile or roughly 1000 feet.
 You would like to know how many people are ahead of you.

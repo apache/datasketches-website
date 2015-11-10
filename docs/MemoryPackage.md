@@ -2,9 +2,9 @@
 layout: doc_page
 ---
 
-#Memory Package
+##Memory Package
 
-##Introduction
+###Introduction
 The DataSketches library comes with a <i>Memory</i> package that enables sketches and set operations 
 to be constructed outside the Java Heap in native memory, which is referred to as "off-heap". 
 
@@ -30,12 +30,12 @@ software to allow that to happen, since it is normally not allowed in a Java pro
 In order to allocate, read, write, and free off-heap memory the Memory package leverages a restricted, 
 low-level class called "Unsafe" that is used by the Java system code to access and manage its own Java Heap. 
 
-##Architecture
+###Architecture
 The Memory package has 2 interfaces and 4 classes that will be described in this section.
 
-###
+####
 
-##Swim Lanes
+###Swim Lanes
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}SwimLanes.png" alt="SwimLanes" />
 

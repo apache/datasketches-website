@@ -31,3 +31,4 @@ Sketches are typically
 * Highly Parallelizable.  The sketch data structures are "additive" in that they can be merged without losing accuracy.
 * Approximate.  As an example, for unique count sketches the relative error bounds are a function of the configured size of the sketch.
 
+With this background, let's examine some of the <a href="KeyFeatures.html">Key Features</a> of the DataSketches library.

@@ -2,14 +2,14 @@
 layout: doc_page
 ---
 
-#HLL Sketch
+##HLL Sketch
 The hll package contains a very compact implementation of Phillipe Flajolet's
 HLL sketch but with significantly improved error behavior.  If the ONLY use case for sketching is
 counting uniques and merging, the HLL sketch is the highest performing in terms of accuracy for 
 space consumed.  For large counts, this HLL version will be 16 to 32 times smaller for the same 
 accuracy than the Theta Sketches mentioned above.
 
-##Caveats
+###Caveats
 Large data with many dimensions and dimension coordinates are often highly skewed 
 creating a "long-tailed" or power-law distribution of unique values per sketch. 
 In this case a majority of sketches tend to have only a few entries and it is this long tail of
@@ -34,7 +34,7 @@ retained hash values, Theta Sketches would be a better choice.
 
 HLL sketches cannot be intermixed or merged in any way with Theta Sketches.
 
-##HLL Accuracy
+###HLL Accuracy
 
 The accuracy behavior of the HLL sketch with the HIP estimator enabled will be similar to the following graph:
 
@@ -49,7 +49,7 @@ attempting to find, for example, the 2.5 percentile point when the number of act
 Using the Historic Inverse Probability (HIP) estimator[1], the RSE of this sketch approaches <i>~ 0.836 / sqrt(k)</i>.
 Keep in mind, however that the HLL sketch can be 16 to 32 times smaller in space utilization in a one-off comparison.
 
-##HLL Speed
+###HLL Speed
 
 The update speed behavior of the HLL sketch will be similar to the following graph:
 

@@ -4,7 +4,7 @@ layout: doc_page
 [Prev](KMVrejection.html)<br>
 
 
-#The KMV Sketch, Update <i>V(k<sup>th</sup>)</i> Rule
+##The KMV Sketch, Update <i>V(k<sup>th</sup>)</i> Rule
 Our final rules: 
 
 If the cache is presented with a hash value that is less than <i>V(k<sup>th</sup>)</i> and <i>not</i> a duplicate, we insert the new value in order, remove what was the <i>V(k<sup>th</sup>)</i> value and replace it with whatever was next in order, which becomes the new <i>V(k<sup>th</sup>)</i> value.

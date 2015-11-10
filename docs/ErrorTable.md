@@ -4,9 +4,9 @@ layout: doc_page
 ---
 
 
-#Choosing Desired Relative Error
+##Choosing Desired Relative Error
 
-##Quick Select Sketch (Default)
+###Quick Select Sketch (Default)
 
 
 
@@ -32,7 +32,7 @@ Nominal Entries (k) : Formula -> | 1/sqrt(k-1) | 2/sqrt(k-1) | 3/sqrt(k-1)
 524,288 | 0.14% | 0.28% | 0.41%
 1,048,576 | 0.10% | 0.20% | 0.29%
 
-##Alpha Sketch
+###Alpha Sketch
 
 Number of Std Dev | 1 | 2 | 3
 Confidence Interval | 68.27% | 95.45% | 99.73%

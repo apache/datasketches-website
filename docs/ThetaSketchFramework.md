@@ -2,10 +2,10 @@
 layout: doc_page
 ---
 
-#Theta Sketch Framework
-Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum Value</i> (KMV) 
-sketches in that all KMV sketches are a form of Theta Sketch, but not all Theta Sketches are KMV.
-See <a href="KMVempty.html">KMV Tutorial</a> for a brief tutorial on KMV Sketches.
+##Theta Sketch Framework
+Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum Value</i> (KMV)[1][2] 
+sketches in that KMV sketches are a form of Theta Sketch, but not all Theta Sketches are KMV.
+
 
 The <a href="ThetaSketchFramework.pdf">Theta Sketch Framework</a> (TSF) is a mathematical framework 
 defined in a multi-stream setting that enables set expressions over these streams and encompasses many
@@ -32,7 +32,7 @@ Note that in the KMV sketch the value <i>k</i> is overloaded with multiple roles
 
 By unloading some of these roles, we will gain degrees of freedom to do some innovative things. 
 
-Instead of having to track <i>V(k<sup>th</sup>)</i>, which is a member of the list of hash values, we are going to create a separate threshold variable and call it <i>theta (&theta;)</i>. This effectively decouples #3 and #4 above from <i>k</i>. When the sketch is empty <i>&theta;</i> = 1.0.  After the sketch has filled with <i>k</i> minimum values <i>&theta;</i> is still 1.0.  When the next incoming unique value must be inserted into the sketch the <i>(k+1)<sup>th</sup></i> minimum value, is assigned to <i>&theta;</i> and removed from the cache.[1]
+Instead of having to track <i>V(k<sup>th</sup>)</i>, which is a member of the list of hash values, we are going to create a separate threshold variable and call it <i>theta (&theta;)</i>. This effectively decouples #3 and #4 above from <i>k</i>. When the sketch is empty <i>&theta;</i> = 1.0.  After the sketch has filled with <i>k</i> minimum values <i>&theta;</i> is still 1.0.  When the next incoming unique value must be inserted into the sketch the <i>(k+1)<sup>th</sup></i> minimum value, is assigned to <i>&theta;</i> and removed from the cache.[3]
 
 Ultimately, it will be the size of <i>S</i>, <i>|S|</i>, that will determine the stored size of a sketch, which decouples #2 above from the value <i>k</i>.  The <i>Nominal Entries</i> or <i>k</i> is a <i>user specified, configuration parameter</i>, which is used by the software to determine the target accuracy of the sketch and the maximum size of the sketch.
 
@@ -41,6 +41,12 @@ We will discuss the RSE in a later section.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}ThetaSketch1.png" alt="ThetaSketch1" />
 
+[1] Z. Bar-Yossef, T. Jayram, R. Kumar, D. Sivakumar, and L. Trevisan. Counting distinct elements in a data stream. 
+In <i>Randomization and Approximation Techniques in Computer Science</i>, pages 1–10. Springer, 2002.
 
-[1] This is a limited "KMV perspective" on how <i>&theta;</i> gets assigned.  The attached paper <a href="ThetaSketchFramework.pdf">Theta Sketch Framework</a> presents multiple ways that <i>&theta;</i> can be assigned using the <i>Theta Choosing Function (TCF)</i>.  Different sketch algorithms have different TCFs.  
+[2] See <a href="KMVempty.html">KMV Tutorial</a> and 
+<a href="http://research.neustar.biz/2012/07/09/sketch-of-the-day-k-minimum-values/">Sketch of the Day: K-Minimum Values</a> 
+for a brief tutorials on KMV Sketches.
+
+[3] This is a limited "KMV perspective" on how <i>&theta;</i> gets assigned.  The attached paper <a href="ThetaSketchFramework.pdf">Theta Sketch Framework</a> presents multiple ways that <i>&theta;</i> can be assigned using the <i>Theta Choosing Function (TCF)</i>.  Different sketch algorithms have different TCFs.  
 

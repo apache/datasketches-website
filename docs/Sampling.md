@@ -3,6 +3,6 @@ layout: doc_page
 ---
 
 
-#Up-Front Sampling
+##Up-Front Sampling
 
 
