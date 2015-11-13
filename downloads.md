@@ -5,7 +5,7 @@ sectionid: download
 layout: simple_page
 ---
 
-###Current Stable Version = 0.2.0
+###Current Stable Version = 0.2.1
 
 
 The pom, jar, javadoc.jar, sources.jar and test.jar is available from 
