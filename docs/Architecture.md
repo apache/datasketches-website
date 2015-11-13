@@ -1,5 +1,5 @@
 ---
-layout: doc_page
+layout: overview_page
 ---
 
 ##Architecture

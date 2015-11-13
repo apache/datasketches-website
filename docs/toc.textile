@@ -8,6 +8,7 @@ h2. Overview
 * "Sketch Origins":SketchOrigins.html
 * "Sketch Elements":SketchElements.html
 * "Key Features":KeyFeatures.html
+* "Architecture":Architecture.html
 
 h2. Theta Sketches
 * "Theta Sketch Framework":ThetaSketchFramework.html
@@ -38,10 +39,6 @@ h2. HLL Sketches
 * "HLL Sketch":HLL.html
 
 h2. Getting Started
-* "Architecture":Architecture.html
-
-h3. Code Examples
-* "Code Examples":CodeExamples.html
 
 h3. KMV Tutorial
 * "The Inverse Estimate":InverseEstimate.html
@@ -58,6 +55,6 @@ h3. Theta Sketch Theory
 * "Merging Algorithm Notes":MergingAlgorithm.html
 
 h2. Other Information
-* "Who Uses":whoUses.html
+* "Who Uses":WhoUses.html
 <!-- * "Endorsements":endorsements.html -->
 * "License":/LICENSE.html
