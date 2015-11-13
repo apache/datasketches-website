@@ -72,7 +72,8 @@ or approximately 4 of the bottom values will remain.
 
 The mean estimate from the intersection sketch will be 4/.001 = 4K. 
 This happens to be correct using this hand-wavy analysis but in general is a random result with a variance. 
-The proof that the estimate will be unbiased is in the attached <a href="SketchEquations.pdf">Sketch Equations</a>.
+The proof that the estimate will be unbiased is in the attached 
+<a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/SketchEquations.pdf">Sketch Equations</a>.
 
 The RSE of a sketch with only 4 values is ~ 1/sqrt(4) = .5 or 50% error. 
 This is considerably larger than the RSE of either <i>S<sub>A</sub></i> or <i>S<sub>B</sub></i>, 
@@ -84,7 +85,7 @@ And, for this example, increasing the sketch size of <i>S<sub>A</sub></i> would 
 The general case may be more complex.
 
 More formally, if we define a factor <i>F</i> to be the ratio 
-(see <a href="SketchEquations.pdf">Sketch Equations</a>):
+(see <a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/SketchEquations.pdf">Sketch Equations</a>):
 
 <center><i>F</i> = (size of Union(A,B) ) / (size of Intersection(A,B).</center>
 

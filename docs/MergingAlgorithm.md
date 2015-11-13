@@ -6,7 +6,8 @@ layout: doc_page
 There is a fairly simple argument for the correctness of our
 space-limited multiway merging algorithm.
 
-1. Let R be the result of the theta union algorithm as described in the <a href="ThetaSketchFramework.pdf">Theta Sketch Framework</a> paper.  
+1. Let R be the result of the theta union algorithm as described in the 
+<a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/ThetaSketchFramework.pdf">Theta Sketch Framework</a> paper. 
 It is the set of all hashes less than the minimum of the
 thetas of all of the input sketches.  Recall that there is no size
 limit on this "full-size" answer R.

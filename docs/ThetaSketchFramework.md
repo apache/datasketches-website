@@ -7,10 +7,11 @@ Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum 
 sketches in that KMV sketches are a form of Theta Sketch, but not all Theta Sketches are KMV.
 
 
-The <a href="ThetaSketchFramework.pdf">Theta Sketch Framework</a> (TSF) is a mathematical framework 
+The <a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/ThetaSketchFramework.pdf">Theta Sketch Framework</a> (TSF) 
+is a mathematical framework 
 defined in a multi-stream setting that enables set expressions over these streams and encompasses many
 different sketching algorithms. A rudimentary introduction to the mathematics of the simpler sketch algorithms is developed in 
-<a href="SketchEquations.pdf">Sketch Equations</a>.
+<a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/SketchEquations.pdf">Sketch Equations</a>.
 
 The TSF consists of the following components:
 
@@ -48,5 +49,7 @@ In <i>Randomization and Approximation Techniques in Computer Science</i>, pages 
 <a href="http://research.neustar.biz/2012/07/09/sketch-of-the-day-k-minimum-values/">Sketch of the Day: K-Minimum Values</a> 
 for a brief tutorials on KMV Sketches.
 
-[3] This is a limited "KMV perspective" on how <i>&theta;</i> gets assigned.  The attached paper <a href="ThetaSketchFramework.pdf">Theta Sketch Framework</a> presents multiple ways that <i>&theta;</i> can be assigned using the <i>Theta Choosing Function (TCF)</i>.  Different sketch algorithms have different TCFs.  
+[3] This is a limited "KMV perspective" on how <i>&theta;</i> gets assigned.  The attached paper 
+<a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/ThetaSketchFramework.pdf">Theta Sketch Framework</a> 
+presents multiple ways that <i>&theta;</i> can be assigned using the <i>Theta Choosing Function (TCF)</i>.  Different sketch algorithms have different TCFs.  
 
