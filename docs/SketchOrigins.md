@@ -7,7 +7,7 @@ layout: overview_page
 Sketching is a relatively recent development in the theoretical field of 
 <a href="https://en.wikipedia.org/wiki/Streaming_algorithm"><i>Stochastic Streaming Algorithms</i></a>[1], which deals with algorithms that can extract information from a stream of data in a single pass (sometimes called "one-touch" processing) using various randomization techniques. 
 
-Sketching is a synergistic blend of both theoretical mathematics, statistics and computer science, refers to a broad range of algorithms, 
+Sketching is a synergistic blend of theoretical mathematics, statistics and computer science, refers to a broad range of algorithms, 
 and has experienced a great deal of interest and growth since the mid 1990's coinciding with the growth of the Internet and the need to process and analyze 
 <a href="https://en.wikipedia.org/wiki/Big_data">Big Data</a>. The term <i>sketch</i>, with its allusion to an artist's sketch, has become the popular term to describe these algorithms and associated data structures that implement the theory. 
 

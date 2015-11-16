@@ -49,8 +49,8 @@ h3. KMV Tutorial
 * "Update V(kth) Rule":KMVupdateVkth.html
 
 h3. Theta Sketch Theory
-* <a href="ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)<a>
-* <a href="SketchEquations.pdf">Sketch Equations (PDF)</a>
+* <a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)<a>
+* <a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/SketchEquations.pdf">Sketch Equations (PDF)</a>
 * "Confidence Intervals Notes":ConfidenceIntervals.html
 * "Merging Algorithm Notes":MergingAlgorithm.html
 
