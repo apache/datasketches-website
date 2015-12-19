@@ -7,6 +7,6 @@ sectionid: community
 ## Converse with us...
 If you have any questions about usage or code please contact us.
 
-* **User Google Group** [sketches-user@googlegroups.com](https: //groups.google.com/forum/#!forum/sketches-user).
+* **User Google Group** [sketches-user@googlegroups.com](https://groups.google.com/forum/#!forum/sketches-user).
 
 

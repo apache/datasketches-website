@@ -5,10 +5,10 @@ sectionid: download
 layout: simple_page
 ---
 
-###Current Stable Version = 0.2.1
 
 
-The pom, jar, javadoc.jar, sources.jar and test.jar is available from 
-<a href="http://search.maven.org/#search|ga|1|datasketches">The Central Repository</a>.
 
+###Choose the most recent release version from <a href="http://search.maven.org/#search|ga|1|datasketches">The Central Repository</a>.
+
+###Or, clone or fork the current SNAPSHOT directly from the relevant repository.
 
