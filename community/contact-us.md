@@ -7,6 +7,7 @@ sectionid: community
 ## Converse with us...
 If you have any questions about usage or code please contact us.
 
-* **User Google Group** [sketches-user@googlegroups.com](https://groups.google.com/forum/#!forum/sketches-user).
+* **User Google Group** [Google group: sketches-user](https://groups.google.com/forum/#!forum/sketches-user).<br>
+* **Or** <a href="mailto:sketches-user@googlegroups.com">sketches-user@googlegroups.com</a>
 
 
