@@ -4,31 +4,60 @@ layout: doc_page
 
 ##Theta Sketch Set Operations Accuracy
 
-###Union Operations
+###The Theta Rules
+
+All set operations (Union, Intersection, Difference) between two sketches <i>A</i> and <i>B</i> 
+must obey the following two rules:
+
+* <i>&theta;<sub>result</sub> = min( &theta;<sub>A</sub> , &theta;<sub>B</sub> )</i>.
+* All entries retained in the result sketch must be less than <i>&theta;<sub>result</sub></i>.
+
+These rules can be extended to arbitrary set expressions as:
+
+* <i>&theta;<sub>result</sub> = min{ &theta;<sub>i</sub> }</i>.
+* All entries retained in the result sketch must be less than <i>&theta;<sub>result</sub></i>.
+
+###Union Set Expressions
 
 ####Source sketches and target with the same <i>Nominal Entries</i> or <i>k</i>
 
-As long as all source sketches and target have been configured with the same <i>Nominial Entries</i> or <i>k</i>, 
-and there has been no other intervening <i>Intersection</i> or <i>AnotB</i> operations, 
-the accuracy of the resulting <i>Union</i> sketch will have the same Relative Standard Error (RSE) as 
-determined by the <i>Nominal Entries</i> or <i>k</i> value.
+As long as all source sketches and target have been configured with the same <i>Nominial Entries</i> 
+or <i>k</i>, and there has been no other intervening <i>Intersection</i> or <i>AnotB</i> operations, 
+the accuracy of the resulting <i>Union</i> sketch will have the same Relative Standard Error (RSE) 
+as determined by the <i>Nominal Entries</i> or <i>k</i> value. In other words,
+
+* <i>Union Estimate = k/&theta;<sub>result</sub></i>.
+* RSE<i><sub>union</sub> = 1 / sqrt(k - 1)</i>.
+
+This remains true no matter haw many sketches are unioned together.
 
 ####Source sketches and target with different <i>Nominal Entries</i> or <i>k</i>
 
-The Relative Standard Error (RSE) of the resulting <i>Union</i> sketch will be that determined by the smallest 
-<i>Nominal Entries</i> or <i>k</i> value.
+The Relative Standard Error (RSE) of the resulting <i>Union</i> sketch will determined by
+the <i>Theta Rules</i> above. Ultimately, the source sketch with the smallest theta will 
+dominate the overall resulting error of the result. Given two sketches with equal cardinalities and 
+different values of <i>k</i>, the sketch with the smaller value of <i>k</i> will have the smallest
+value of theta and will largely determine the error distribution of the result. 
 
-###Intersection or AnotB Operations
+###Mixed Set Expressions (Union, Intersection, AnotB)
 
-Predicting accuracy with intersections and difference operations is more complex.  
+Conceptually, the Intersection and AnotB functions operate by first performing a Union of all the
+values from both source sketches and then identifying the appropriate proper subset of that 
+Union set creating a result sketch with the Union theta (which is the minimum theta of the source
+sketches) and the qualifying subset of values. 
+
+This means, of course, that depending on the operationa and the data, the result set could have 
+zero, all, or some number in between of the retained values of the Union sketch. 
+Mixed set expressions can produce an error distribution that is larger that of a standard sketch
+of a given <i>Nominal Entries</i> or <i>k</i> and is mathematically described in 
+<a href="http:SketchEquations.html">Sketch Equations / Subsets of Fixed <i>k</i> Sampling</a>. 
 
 ####Source sketches and target with the same <i>Nominal Entries</i> or <i>k</i>
 
-If the source sketches and target are configured with the same <i>k</i>, the accuracy of the result sketch does 
-have a relatively straightforward mathematical solution and intuition. 
-The resulting accuracy is 
+When the source and target sketches have the same value of <i>k</i>, 
+the accuracy of the result sketch has a relatively straightforward mathematical solution and intuition:
 
-<center>RSE = <i>sqrt( est(Union(A,B)) / est(Intersection(A,B)) ) * sqrt( 1/ (k-1) )</i></center>
+<center>RSE = <i>sqrt( est(Union(A,B)) / est(SetOperation(A,B)) ) * sqrt( 1/ (k-1) )</i></center>
 
 #####Example
 
@@ -45,24 +74,20 @@ Assumptions:
 
 Steps:
 
-* Build the Sketches.  Sketch <i>S<sub>A</sub></i> will be fed segment <i>A</i> and Sketch <i>S<sub>B</sub></i> 
+* Build the Sketches. Sketch <i>S<sub>A</sub></i> will be fed segment <i>A</i> and Sketch <i>S<sub>B</sub></i> 
 will be fed segment <i>B</i>.
     * Segment <i>B</i> fits exactly in <i>S<sub>B</sub></i>, so <i>&theta;<sub>B</sub></i> = 4K/4K = 1.0.
     * Sketch <i>S<sub>A</sub></i> will end up with <i>&theta;<sub>A</sub></i> = 4K/4M = .001.
 
 The hash values retained in <i>S<sub>A</sub></i> represent a uniform sampling of all of the unique identifiers 
-in segment <i>A</i> and the resulting value of i>&theta;<sub>A</sub></i> represents the effective sampling rate
+in segment <i>A</i> and the resulting value of <i>&theta;<sub>A</sub></i> represents the effective sampling rate
 required to end up with <i>k</i> samples, which is ~ 4K/4M = .001.
 
 Even though in the raw data all the values of segment <i>B</i> are in segment <i>A</i>, the probability 
 that all the 4K samples of <i>S<sub>B</sub></i> appear <i>S<sub>A</sub></i> is extremely unlikely since 
 only one in one-thousand can be randomly chosen.
 
-######<b>The Theta Rule for Set Operations</b>
-* <i>&theta;<sub>result</sub> = min(&theta;<sub>A</sub> , &theta;<sub>B</sub>)</i>.
-* All entries retained in the result sketch must be less than <i>&theta;<sub>result</sub></i>.
-
-For our example:
+Applying the <i>Theta Rules</i>:
 
 * <i>&theta;<sub>result</sub> = min(0.001, 1.0) = .001
 * All the entries from <i>S<sub>A</sub></i> already qualify. 
@@ -73,7 +98,7 @@ or approximately 4 of the bottom values will remain.
 The mean estimate from the intersection sketch will be 4/.001 = 4K. 
 This happens to be correct using this hand-wavy analysis but in general is a random result with a variance. 
 The proof that the estimate will be unbiased is in the attached 
-<a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/SketchEquations.pdf">Sketch Equations</a>.
+<a href="{{site.docs_pdf_dir}}/SketchEquations.pdf">Sketch Equations</a>.
 
 The RSE of a sketch with only 4 values is ~ 1/sqrt(4) = .5 or 50% error. 
 This is considerably larger than the RSE of either <i>S<sub>A</sub></i> or <i>S<sub>B</sub></i>, 
@@ -85,7 +110,7 @@ And, for this example, increasing the sketch size of <i>S<sub>A</sub></i> would 
 The general case may be more complex.
 
 More formally, if we define a factor <i>F</i> to be the ratio 
-(see <a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/SketchEquations.pdf">Sketch Equations</a>):
+(see <a href="{{site.docs_pdf_dir}}/SketchEquations.pdf">Sketch Equations</a>):
 
 <center><i>F</i> = (size of Union(A,B) ) / (size of Intersection(A,B).</center>
 

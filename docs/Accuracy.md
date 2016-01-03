@@ -18,8 +18,8 @@ It is important to understand that the sketch has no idea what the true value is
 it only knows the internal state of the sketch. 
 
 From the mathematical theory of these sketches 
-(see <a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/SketchEquations.pdf">Sketch Equations</a> and 
-<a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/ThetaSketchFramework.pdf">Theta Sketch Framework</a>) we know:
+(see <a href="{{site.docs_pdf_dir}}/SketchEquations.pdf">Sketch Equations</a> and 
+<a href="{{site.docs_pdf_dir}}/ThetaSketchFramework.pdf">Theta Sketch Framework</a>) we know:
 
 * The estimate is unbiased.  If you were to feed the same data into the sketch using 
 <i>T</i> different hash functions, the average of all <i>T</i> trials will converge on the true answer.

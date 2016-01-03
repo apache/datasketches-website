@@ -88,4 +88,4 @@ layout: doc_page
     by always checking and if necessary growing the interval to cover
     the estimate.
 
-Also see the <a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/ThetaSketchFramework.pdf">Theta Sketch Framework</a> paper.
+Also see the <a href="{{site.docs_pdf_dir}}/ThetaSketchFramework.pdf">Theta Sketch Framework</a> paper.

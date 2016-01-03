@@ -5,7 +5,7 @@ layout: doc_page
 ##Adaptors for Large-Scale Computing
 
 ###Hadoop Pig
-See <a href="http://datasketches.github.io/api/pig/snapshot/apidocs/index.html">API Snapshot for Pig</a>.
+See <a href="{{site.pig_api_snapshot}}">API Snapshot for Pig</a>.
 
 This is a code snippet of how to build a sketch using Pig:
 
@@ -74,9 +74,9 @@ To use Hive UDFs, you should do the following:
 3. Run a query: 
   - `hive> select estimate(dataToSketch(myCol, 16384, 1.0)) from myTable where color = blue;`
   
-See <a href="https://github.com/DataSketches/sketches-hive/blob/master/README.md">README.md</a>.
+See <a href="{{site.hive_readme}}">hive README.md</a>.
 
-See <a href="http://datasketches.github.io/api/hive/snapshot/apidocs/index.html">API Snapshot for Hive</a>.
+See <a href="{{site.hive_api_snapshot}}">API Snapshot for Hive</a>.
 
 ###Druid
-See <a href="https://github.com/druid-io/druid/tree/master/extensions/datasketches">Druid Integration of DataSketches</a>
+See <a href="{{site.druid_datasketches}}">Druid Integration of DataSketches</a>
