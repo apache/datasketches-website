@@ -35,6 +35,11 @@ h3. Other Capabilities
 * "Memory Package":MemoryPackage.html
 * "<i>p</i>-Sampling":Sampling.html
 
+h2. Quantiles Sketches
+* "Overview":QuantilesOverview.html
+* "Basic Accuracy":QuantilesAccuracy.html
+
+
 h2. HLL Sketches
 * "HLL Sketch":HLL.html
 
