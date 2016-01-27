@@ -6,8 +6,8 @@ layout: doc_page
 
 This is a stochastic streaming sketch that enables near-real time analysis of the 
 approximate distribution of real values from a very large stream in a single pass. 
-The analysis is obtained using a getQuantiles(*) function or its inverse functions the 
-Probability Mass Function from getPMF(*) and the Cumulative Distribution Function from getCDF(*).
+The analysis is obtained using a getQuantiles() function or its inverse functions the 
+Probability Mass Function from getPMF() and the Cumulative Distribution Function from getCDF().
 
 Consider a large stream of one million values such as packet sizes coming into a network node.
 The absolute rank of any specific size value is simply its index in the hypothetical sorted 
