@@ -2,9 +2,9 @@
 layout: doc_page
 ---
 
-##Accuracy Plots 
+## Accuracy Plots 
 
-###Accuracy of the QuickSelect Sketch Family
+### Accuracy of the QuickSelect Sketch Family
 
 A QuickSelect Sketch, which is the default sketch family, can be constructed with code similar to:  
 
