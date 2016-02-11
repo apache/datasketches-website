@@ -52,5 +52,37 @@ Table Guide for QuantilesSketch Size in Bytes and Approximate Error:
  4,294,967,295 |   3,752   7,208  13,864  26,664  51,240  98,344 188,456
 </pre>
 
+The following graphs illustrate the ability of the QuantilesSketch to characterize value distributions.
+
+n = 1024 values was generated from Random's nextGaussian().  These values were then sorted and assigned
+their actual normalized ranks from 0 to (n-1)/n.  This array of ranks become the actual ranks array
+and the associated array of Gaussian values become the actual quantiles array.
+
+A QuantilesSketch was created with K = 32 and fed the non-sorted actual quantiles values. 
+After loading the sketch, a getCDF(sorted values array) produces an ordered array of estimated ranks.
+
+These estimated result ranks (red) are then plotted against the actual ranks (black) and plotted in the following 
+graph.  The upper bound error is plotted in blue and the lower bound error is ploted in green.
+
+The error of the estimation from the sketch is called "Epsilon" and is always with respect to the 
+rank axis. It is plotted as a visual metric on the graph to illustrate its size. 
+
+This size of this sketch if stored, would be about 1832 bytes.
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}QuantilesCDF.png" alt="QuantilesCDF" />
+
+A getQuantiles(sorted actual rank array) produces an ordered array of estimated values. 
+Plotting these values against the actual values produces the inverse CDF plot as follows:
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}QuantilesInverseCDF.png" alt="QuantilesInverseCDF" />
+
+Examining the absolute rank error vs the actual rank produces the following graph.  
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}QuantilesCDFAbsRankError.png" alt="QuantilesCDFAbsRankError" />
+
+All of these plots were generated from one set of values, and is not a test of the error bounds. 
+To do that would require repeating this test thousands of times and then plotting the quantiles of the 
+distribution of values for each of the 1024 points of the above graphs.  
+
 
 
