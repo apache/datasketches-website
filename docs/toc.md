@@ -1,4 +1,6 @@
-<link rel="stylesheet" href="css/toc.css">
+---
+---
+<link rel="stylesheet" href="/css/toc.css">
 
 ## Overview
 * [The Challenge](TheChallenge.html)
