@@ -20,10 +20,12 @@ getQuantile(0.95).
 If you have prior knowledge of the approximate range of values, for example, 1 to 1000 bytes,
 you can obtain the PMF from getPMF(100, 500, 900) that will result in an array of 
 4 fractional values such as {.4, .3, .2, .1}, which means that 
-40% of the values were &lt; 100, 
-30% of the values were &ge; 100 and &lt; 500,
-20% of the values were &ge; 500 and &lt; 900, and
-10% of the values were &ge; 900.
+
+    40% of the values were <  100, 
+    30% of the values were >= 100 and < 500,
+    20% of the values were >= 500 and < 900, and
+    10% of the values were >= 900.
+
 A frequency histogram can be obtained by simply multiplying these fractions by getN(), 
 which is the total count of values received. 
 The getCDF(*) works similarly, but produces the cumulative distribution instead.
@@ -52,90 +54,84 @@ sketch.  Here are some brief snippets to get you started.
 
 #### Median and Top Quartile
 
-<div class="highlight"><pre><code class="language-text" data-lang="text"
->QuantilesSketch qs = QuantilesSketch.builder().build(); //default k = 128
-
-for (int i=0; i &lt; 1000000; i++) { //stream length is generally unknown
-  qs.update(i); //load the sketch
-}
-
-double median = qs.getQuantile(0.5);
-double topQuartile = qs.getQuantile(0.75);
-System.out.println("Median = " + median);
-System.out.println("75%ile = " + topQuartile);
-
-/* Output similar to
-Median = 500087.0
-75%ile = 749747.0
-*/
-</code></pre></div>
+    QuantilesSketch qs = QuantilesSketch.builder().build(); //default k = 128
+    
+    for (int i=0; i < 1000000; i++) { //stream length is generally unknown
+      qs.update(i); //load the sketch
+    }
+    
+    double median = qs.getQuantile(0.5);
+    double topQuartile = qs.getQuantile(0.75);
+    System.out.println("Median = " + median);
+    System.out.println("75%ile = " + topQuartile);
+    
+    /* Output similar to
+    Median = 500087.0
+    75%ile = 749747.0
+    */
 
 #### Frequency Histogram
 
-<div class="highlight"><pre><code class="language-text" data-lang="text"
->QuantilesSketch qs = QuantilesSketch.builder().build(); //default k = 128
-
-for (int i=0; i &lt; 1000000; i++) { //stream length is generally unknown
-  qs.update(i); //load the sketch
-}
-
-//create a histogram
-long n = qs.getN();
-double[] splitPoints = {100000, 500000, 900000};
-
-double[] fractionalRanks = qs.getPMF(splitPoints);
-int bins = fractionalRanks.length;
-
-double freq;
-for (int i=0; i &lt; bins-1; i++) {
-  freq = fractionalRanks[i] * n;
-  System.out.println(freq + " &lt; "+splitPoints[i]);
-}
-freq = fractionalRanks[bins-1] * n;
-System.out.println(freq + " &ge; "+ splitPoints[bins-2]);
-
-/* Output similar to
-98304.0 &lt; 100000.0
-401408.0 &lt; 500000.0
-400384.0 &lt; 900000.0
-99904.0 &ge; 900000.0
-*/
-</code></pre></div>
+    QuantilesSketch qs = QuantilesSketch.builder().build(); //default k = 128
+    
+    for (int i=0; i < 1000000; i++) { //stream length is generally unknown
+      qs.update(i); //load the sketch
+    }
+    
+    //create a histogram
+    long n = qs.getN();
+    double[] splitPoints = {100000, 500000, 900000};
+    
+    double[] fractionalRanks = qs.getPMF(splitPoints);
+    int bins = fractionalRanks.length;
+    
+    double freq;
+    for (int i=0; i < bins-1; i++) {
+      freq = fractionalRanks[i] * n;
+      System.out.println(freq + " < "+splitPoints[i]);
+    }
+    freq = fractionalRanks[bins-1] * n;
+    System.out.println(freq + " >= "+ splitPoints[bins-2]);
+    
+    /* Output similar to
+    98304.0  <  100000.0
+    401408.0 <  500000.0
+    400384.0 <  900000.0
+    99904.0  >= 900000.0
+    */
 
 #### Merging
 
-<div class="highlight"><pre><code class="language-text" data-lang="text"
->QuantilesSketch qs1 = QuantilesSketch.builder().build(); //default k = 128
-QuantilesSketch qs2 = QuantilesSketch.builder().build();
-long size = 1000000; //generally unknown
-for (int i=0; i &lt; size; i++) { //update each value into the sketch
-  qs1.update(i);
-  qs2.update(i + 1000000);
-}
-
-Union union = Union.builder.build(); //creates a virgin Union
-union.update(qs1);
-union.update(qs2);
-
-QuantilesSketch qs3 = union.getResult();
-System.out.println(qs3.toString()); //Primarily for debugging
-
-/* Output similar to
-### HeapQuantilesSketch SUMMARY: 
-   K                            : 128
-   N                            : 2,000,000
-   Seed                         : 0
-   BaseBufferCount              : 128
-   CombinedBufferAllocatedCount : 1,920
-   Total Levels                 : 13
-   Valid Levels                 : 6
-   Level Bit Pattern            : 1111010000100
-   Valid Samples                : 896
-   Buffer Storage Bytes         : 15,360
-   Preamble Bytes               : 36
-   Normalized Rank Error        : 1.725%
-   Min Value                    : 0.000
-   Max Value                    : 1,999,999.000
-### END SKETCH SUMMARY
-*/
-</code></pre></div>
+    QuantilesSketch qs1 = QuantilesSketch.builder().build(); //default k = 128
+    QuantilesSketch qs2 = QuantilesSketch.builder().build();
+    long size = 1000000; //generally unknown
+    for (int i=0; i < size; i++) { //update each value into the sketch
+      qs1.update(i);
+      qs2.update(i + 1000000);
+    }
+    
+    Union union = Union.builder.build(); //creates a virgin Union
+    union.update(qs1);
+    union.update(qs2);
+    
+    QuantilesSketch qs3 = union.getResult();
+    System.out.println(qs3.toString()); //Primarily for debugging
+    
+    /* Output similar to
+    ### HeapQuantilesSketch SUMMARY: 
+       K                            : 128
+       N                            : 2,000,000
+       Seed                         : 0
+       BaseBufferCount              : 128
+       CombinedBufferAllocatedCount : 1,920
+       Total Levels                 : 13
+       Valid Levels                 : 6
+       Level Bit Pattern            : 1111010000100
+       Valid Samples                : 896
+       Buffer Storage Bytes         : 15,360
+       Preamble Bytes               : 36
+       Normalized Rank Error        : 1.725%
+       Min Value                    : 0.000
+       Max Value                    : 1,999,999.000
+    ### END SKETCH SUMMARY
+    */

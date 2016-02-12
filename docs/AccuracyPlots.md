@@ -6,33 +6,24 @@ layout: doc_page
 
 ### Accuracy of the QuickSelect Sketch Family
 
-A QuickSelect Sketch, which is the default sketch family, can be constructed with code similar to:  
+A QuickSelect Sketch, which is the default sketch family, can be constructed with code similar to:
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">int k = 4096;
-UpdateSketch sketch = UpdateSketch.builder().build(k);
-
-// The sketch is fed unique values. Here I use a simple loop for testing.
-// u is the number of uniques to be fed to the sketch
-
-long u;
-for (int i=0; i&lt;u; i++) {
-  sketch.update(i);
-}
-
-// After all the unique values have been fed to the sketch, get the estimate of <i>u</i>
-
-double est = sketch.getEstimate();
-
-// An optional rebuild option to reduce the sketch size to <i>k</i> if neccessary 
-
-sketch.rebuild();
-
-// Get the upper and lower bounds. 
-// The parameter is the number is the standard deviations from the estimate.
-
-double ub = sketch.getUpperBound(1);
-double lb = sketch.getLowerBound(1);
-</code></pre></div> 
+    int k = 4096;                        //the accuracy and size are a function of k
+    UpdateSketch sketch = UpdateSketch.builder().build(k);  //build an empty sketch
+    
+    long u = 1000000;                    //The number of uniques fed to the sketch
+    for (int i=0; i<u; i++) {            //A simple loop for illustration
+      sketch.update(i);                  //Update the sketch
+    }
+    
+    double est = sketch.getEstimate();   //get the estimate of u
+    
+    sketch.rebuild(); // An optional rebuild to reduce the sketch size to k if desired 
+    
+    // Get the upper and lower bounds (optional). 
+    
+    double ub = sketch.getUpperBound(1); //+1 standard deviation from the estimate
+    double lb = sketch.getLowerBound(1); //-1 standard deviation from the estimate
 
 The accuracy behavior of this QuickSelect Sketch (the default, with no rebuild) will be similar to the following graph:
 
