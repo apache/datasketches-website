@@ -2,9 +2,9 @@
 layout: doc_page
 ---
 
-##Memory Package
+## Memory Package
 
-###Introduction
+### Introduction
 The DataSketches library comes with a <i>Memory</i> package that using applications can leverage 
 to construct and manage data structures in native memory, which is referred to as "off-heap". 
 For compatibility and ease-of-use the same API can be used to manage data structures that are 
@@ -34,10 +34,10 @@ software to allow that to happen, since it is normally not allowed in a Java pro
 In order to allocate, read, write, and free off-heap memory the Memory package leverages a restricted, 
 low-level class called "Unsafe" that is used by the Java system code to access and manage its own Java Heap. 
 
-###Architecture
+### Architecture
 The Memory package has 2 interfaces and 4 classes that will be described in this section.
 
-####Memory Interface
+#### Memory Interface
 The Memory interface defines <i>get</i> and <i>put</i> methods for all Java primitive and 
 primitive array types to/from a byte offset that is relative to the base address of some 
 object or region of native memory defined by the implementing class.
@@ -48,25 +48,25 @@ streaming I/O and include concepts such as <i>position, limit, mark, flip,</i> a
 this interface specifically bypasses these concepts and instead provides a rich collection of 
 primitive, bit, array and copy methods that access the data directly from a single byte offset. 
 
-####NativeMemory Class
+#### NativeMemory Class
 The NativeMemory class implements the Memory interface and is used to access Java byte arrays, 
 long arrays and ByteBuffers by presenting them as arguments to the constructors of this class.
 
-####AllocMemory Class
+#### AllocMemory Class
 The AllocMemory class is a subclass of NativeMemory and is used to allocate direct, off-heap native memory, which is then 
 accessed by the NativeMemory methods. 
 
-####MemoryRegion Class
+#### MemoryRegion Class
 The MemoryRegion class implements the Memory interface and provides a means of hierarchically partitioning a large block of native memory into 
 smaller regions of memory, each with their own "capacity" and offsets. 
 
-####MemoryUtil Class
+#### MemoryUtil Class
 The MemoryUtil class has useful static utility methods such as Memory to Memory copy.
 
-####MemoryRequest Interface
+#### MemoryRequest Interface
 The MemoryRequest is a callback interface that is accessible from the Memory interface and provides a means for a Memory object to request more memory from the calling class and to free Memory that is no longer needed. 
 
-###Swim Lanes
+### Swim Lanes
 
 The Memory package enables systems with large RAM to allocate Memory "swim lanes" in native memory. 
 Each swim lane could be larger than the largest byte array allocatable from Java, which is limited to 2GB. 

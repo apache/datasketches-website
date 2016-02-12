@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-##Size and Byte Array Structures
+## Size and Byte Array Structures
 
 All the sketches in the <i>theta</i> package share a common byte array data structure and similar 
 strategies for managing use of memory when the sketches are instantiated on the Java heap or 
@@ -10,7 +10,7 @@ when instantiated in off-heap native memory.
 
 The byte array structure has two forms <i>Hash Table</i> and <i>Compact</i>.
 
-###Update Sketch Families -- Hash Table Form
+### Update Sketch Families -- Hash Table Form
 The Hash Table form is similar to how the sketch is instantiated on the Java heap. 
 Hash tables consume more space depending on how full the table is. 
 However, updating the sketch is much faster in this form and is the default for all the Update Sketches.
@@ -46,7 +46,7 @@ hash table array of 8-byte, long data entries.
 This enables the sketch to be quickly reconstructed from the byte array so that updating 
 of the sketch can be continued.
 
-###Compact Sketch Family -- Compact Form
+### Compact Sketch Family -- Compact Form
 Once the updating of a sketch is completed the HT is no longer needed, so the sketch can be 
 stored in a compact form. 
 The size of this compact form is a simple function of the number of retained hash values 
@@ -98,7 +98,7 @@ The Compact Sketch is created four different ways selected by the ordering prefe
   * Update Sketch: <i>compact(true, Memory mem)</i>
   * Set Operation: <i>getResult(true, Memory mem)</i>
 
-####Compact Sketch Sizing
+#### Compact Sketch Sizing
 These tables compute the size of a sketch after it has been converted into Compact Form. 
 The size of a sketch during the build phase is explained above as the sketch starts small and 
 resizes by the configurable <i>Resize Factor</i> up to the in-memory size of <i>2k*8</i> bytes plus
@@ -106,7 +106,7 @@ a few primitives.
 
 Note: a sketch entry = 8 bytes.
 
-#####Quick Select Sketch (Default)
+##### Quick Select Sketch (Default)
 The number of valid entries in the Quick Select Sketch after it enters estimation mode
 statistically varies from <i>k</i> to <i>15k/8</i> with an average of about <i>3k/2</i>. 
 It is a user option to force a rebuild() prior to compacting the sketch in which case the 
@@ -134,7 +134,7 @@ Nominal Entries (k) : Formula -> | 8 | k*8 +24 | k*12 + 24 | k*15 + 24
 524,288 | 8 | 4,194,328 | 6,291,480 | 7,864,344
 1,048,576 | 8 | 8,388,632 | 12,582,936 | 15,728,664
 
-#####Alpha Sketch
+##### Alpha Sketch
 The number of valid entries in the Alpha Sketch after it enters estimation mode 
 is a random variable that has a probability distribution with a mean of <i>k</i>
 and a standard deviation of <i>sqrt(k)</i>. 
@@ -159,7 +159,7 @@ Nominal Entries (k) : Formula -> | 8 | k*8 + 24 | sqrt(k) | (k+4SD)*8 +24
 1,048,576 | 19 | 8,388,632 | 1,024 | 8,421,400
 
 
-###Set Operation Family
+### Set Operation Family
 
 #### Union
 The <i>Union</i> operation has both a Java heap and a direct, off-heap variant. 
@@ -169,7 +169,7 @@ table array of 8-byte, long data entries.
 This enables the Union to be quickly reconstructed from the byte array 
 so that updating of the Union can be continued.
 
-####Intersection
+#### Intersection
 The <i>Intersection</i> operation has both a Java heap and a direct, off-heap variant. 
 When an Intersection operation is converted to a byte array using <i>toByteArray()</i>, 
 the internal structure is a 24-byte preamble followed by a non-contiguous hash 
@@ -177,7 +177,7 @@ table array of 8-byte, long data entries.
 This enables the Intersection to be quickly reconstructed from the byte array 
 so that updating of the Intersection can be continued.
 
-####A not B
+#### A not B
 The <i>A not B</i> operation is asymmetric and stateless. 
 Both the <i>A</i> and <i>B</i> arguments are presented and the difference 
 is computed and returned. 

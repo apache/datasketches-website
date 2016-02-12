@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-##Theta Sketch Set Operations
+## Theta Sketch Set Operations
 
 The Theta Sketch definition enables a uniform and simplified approach to performing the three 
 standard set operations, 

@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-##Up-Front Sampling
+## Up-Front Sampling
 
 The up-front / p-sampling option of the Theta Sketches exists to address the system-level storage allocation challenge when dealing with highly partitioned/fragmented, massive data that inherently has a long-tail distribution across all the fragments. 
 
@@ -25,7 +25,7 @@ This effect is illustrated in the following plot, which was created with p=0.5.
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}pSamplingPitchfork.png" alt="pSamplingPitchfork" />
 
-###The p-Sampling Error Behavior
+### The p-Sampling Error Behavior
 
 At about 8K uniques there is an inflection point where the error changes direction and begins to increase rather than go toward zero as with the normal pitchfork plots. 
 To the right of this inflection point the error behavior is the same as a normal sketch, with p=1.0, which is the default. 
@@ -47,7 +47,7 @@ Although the relative error is large, the absolute error is only +/- 1, which ma
 The green curve represents the theoretical RSE of the sketching process.
 The red "X" markers are the measured RSE of the combined Bernoulli sampling process and the sketch process.  
 
-###Understanding Upper and Lower Bounds Behavior For Small Sketches and p-Sampling 
+### Understanding Upper and Lower Bounds Behavior For Small Sketches and p-Sampling 
 
 For p-sampling sketches with very small number of samples the error distribution is very complex and no longer can be modeled with the Gaussian distribution.
 In order to provide the library user with meaningful getUpperBound() and getLowerBound() values at these very low sample sizes, 
@@ -63,7 +63,7 @@ The graph for the getUpperBound() values is very similar.
 As a result of this modeling, the upper and lower bounds values for these very small sample sizes are intentionally conservative. 
 If these bounds had been modeled assuming a Gaussian, the returned values would be way off.
 
-###Summary
+### Summary
 The option of p-sampling provides the systems engineer and product manager with another "knob-to-turn" in trading off overall system storage and acceptable accuracy for small queries. 
 It is quite likely that for the majority of queries, which tend to be against the larger dimension-combinations, the error is quite acceptable. 
 And the product manager may decide that below some threshold size, the small queries have little business value, thus larger error on those queries may be acceptable.

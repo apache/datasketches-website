@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-##Quantiles Overview
+## Quantiles Overview
 
 This is a stochastic streaming sketch that enables near-real time analysis of the 
 approximate distribution of real values from a very large stream in a single pass. 
@@ -45,12 +45,13 @@ Similarly, there may be directional inconsistencies. For example, the resulting 
 values obtained from getQuantiles(fractions[]) input into the reverse directional query 
 getPMF(splitPoints[]) may not result in the original fractional values.
 
-###Code Snippets
+### Code Snippets
 
 Code examples are best gleaned from the test code that exercises all the various capabilities of the
 sketch.  Here are some brief snippets to get you started.
 
-####Median and Top Quartile
+#### Median and Top Quartile
+
 <div class="highlight"><pre><code class="language-text" data-lang="text"
 >QuantilesSketch qs = QuantilesSketch.builder().build(); //default k = 128
 
@@ -69,7 +70,8 @@ Median = 500087.0
 */
 </code></pre></div>
 
-####Frequency Histogram
+#### Frequency Histogram
+
 <div class="highlight"><pre><code class="language-text" data-lang="text"
 >QuantilesSketch qs = QuantilesSketch.builder().build(); //default k = 128
 
@@ -100,7 +102,8 @@ System.out.println(freq + " &ge; "+ splitPoints[bins-2]);
 */
 </code></pre></div>
 
-####Merging
+#### Merging
+
 <div class="highlight"><pre><code class="language-text" data-lang="text"
 >QuantilesSketch qs1 = QuantilesSketch.builder().build(); //default k = 128
 QuantilesSketch qs2 = QuantilesSketch.builder().build();

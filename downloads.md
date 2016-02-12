@@ -9,7 +9,7 @@ Choose the most recent release version from <a href="http://search.maven.org/#se
 
 Or, clone or fork the current SNAPSHOT directly from the relevant repository.
 
-#Version Numbers
+# Version Numbers
 
 The artifacts downloaded from <a href="http://search.maven.org/#search|ga|1|datasketches">The Central Repository</a> 
 include a version number in the name, as in sketches-core-X.Y.Z.jar. 
@@ -19,7 +19,7 @@ If jars are created using "mvn clean package" at the command line from a cloned 
 the repository, the jars will be named sketches-core-X.Y.Z-SNAPSHOT.jar and will also be 
 in the top section of the pom.xml file.
 
-####Central Repository Jars
+#### Central Repository Jars
 
 These are fully tested, production quality releases, and hopefully as bug-free as humanly possible. 
 However, the code is continuously evolving and improvements in performance, documentation, additions 
@@ -41,7 +41,7 @@ and may not reflect any actual code changes other than a change in the pom.xml t
 dependency.
 
 
-####SNAPSHOT Jars
+#### SNAPSHOT Jars
 If you want the latest and greatest version of the code, it is certainly OK for you to create your 
 own snapshot jars from a clone or fork. 
 The code is automatically tested using the current test suite, but you might catch the code in

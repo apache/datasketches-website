@@ -2,9 +2,9 @@
 layout: doc_page
 ---
 
-##Theta Sketch Set Operations Accuracy
+## Theta Sketch Set Operations Accuracy
 
-###The Theta Rules
+### The Theta Rules
 
 All set operations (Union, Intersection, Difference) between two sketches <i>A</i> and <i>B</i> 
 must obey the following two rules:
@@ -17,9 +17,9 @@ These rules can be extended to arbitrary set expressions as:
 * <i>&theta;<sub>result</sub> = min{ &theta;<sub>i</sub> }</i>.
 * All entries retained in the result sketch must be less than <i>&theta;<sub>result</sub></i>.
 
-###Union Set Expressions
+### Union Set Expressions
 
-####Source sketches and target with the same <i>Nominal Entries</i> or <i>k</i>
+#### Source sketches and target with the same <i>Nominal Entries</i> or <i>k</i>
 
 As long as all source sketches and target have been configured with the same <i>Nominial Entries</i> 
 or <i>k</i>, and there has been no other intervening <i>Intersection</i> or <i>AnotB</i> operations, 
@@ -31,7 +31,7 @@ as determined by the <i>Nominal Entries</i> or <i>k</i> value. In other words,
 
 This remains true no matter haw many sketches are unioned together.
 
-####Source sketches and target with different <i>Nominal Entries</i> or <i>k</i>
+#### Source sketches and target with different <i>Nominal Entries</i> or <i>k</i>
 
 The Relative Standard Error (RSE) of the resulting <i>Union</i> sketch will determined by
 the <i>Theta Rules</i> above. Ultimately, the source sketch with the smallest theta will 
@@ -39,7 +39,7 @@ dominate the overall resulting error of the result. Given two sketches with equa
 different values of <i>k</i>, the sketch with the smaller value of <i>k</i> will have the smallest
 value of theta and will largely determine the error distribution of the result. 
 
-###Mixed Set Expressions (Union, Intersection, AnotB)
+### Mixed Set Expressions (Union, Intersection, AnotB)
 
 Conceptually, the Intersection and AnotB functions operate by first performing a Union of all the
 values from both source sketches and then identifying the appropriate proper subset of that 
@@ -52,14 +52,14 @@ Mixed set expressions can produce an error distribution that is larger that of a
 of a given <i>Nominal Entries</i> or <i>k</i> and is mathematically described in 
 <a href="http:SketchEquations.html">Sketch Equations / Subsets of Fixed <i>k</i> Sampling</a>. 
 
-####Source sketches and target with the same <i>Nominal Entries</i> or <i>k</i>
+#### Source sketches and target with the same <i>Nominal Entries</i> or <i>k</i>
 
 When the source and target sketches have the same value of <i>k</i>, 
 the accuracy of the result sketch has a relatively straightforward mathematical solution and intuition:
 
 <center>RSE = <i>sqrt( est(Union(A,B)) / est(SetOperation(A,B)) ) * sqrt( 1/ (k-1) )</i></center>
 
-#####Example
+##### Example
 
 The intuition for this can be explained using this simple example of intersection 
 (set difference would behave similarly):
@@ -123,7 +123,7 @@ And in our example:
 <center>RSE<sub><i>intersection</i></sub> = sqrt(4M/4K) * 1/sqrt(4K) = 31.63 * 0.016 =  0.5 = 50%.</center>
 
 
-####Source sketches and target with different <i>Nominal Entries</i> or <i>k</i>
+#### Source sketches and target with different <i>Nominal Entries</i> or <i>k</i>
 
 In the general case this scenario is even more complex and difficult to predict mathematically, but a conservative
 estimate would be to use the above equations substituting <i>k</i> with the smallest of the participating 

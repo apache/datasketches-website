@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-##Basic Sketch Accuracy
+## Basic Sketch Accuracy
 
 Sketch accuracy is usually measured in terms of Relative Error (<i>RE = Measured/Truth -1</i>). Sketches 
 are stochastic processes and the estimates produced are random variables that have a 

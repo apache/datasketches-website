@@ -2,7 +2,7 @@
 layout: overview_page
 ---
 
-##Sketch Elements
+## Sketch Elements
 
 Sketches are different from traditional sampling techniques in that sketches process all 
 the elements of a stream, touching each element only once,

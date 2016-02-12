@@ -2,7 +2,7 @@
 layout: overview_page
 ---
 
-##Sketch Origins
+## Sketch Origins
 
 Sketching is a relatively recent development in the theoretical field of 
 <a href="https://en.wikipedia.org/wiki/Streaming_algorithm"><i>Stochastic Streaming Algorithms</i></a>[1], 

@@ -4,7 +4,7 @@ layout: doc_page
 [Prev](KMVfirstEst.html)<br>
 [Next](KMVrejection.html)
 
-##The KMV Sketch, Better Estimator, Size = <i>k</i>
+## The KMV Sketch, Better Estimator, Size = <i>k</i>
 Now lets choose <i>k = 3</i>, which means that we will keep the 3 smallest hash values that the cache has seen.  The fractional distance that these <i>k</i> values consume is simply the value of the k<sup>th</sup> hash value, or <i>V(k<sup>th</sup>)</i>, which in this example is 0.195. This is also known as the <i>k<sup>th</sup> Minimum Value</i> or <i>KMV</i>.  Since these measurements are relative to zero, a sketch constructed like this is also known as a <i>Bottom-k</i> sketch.  (It could well have been a <i>Top-k</i> sketch, but referencing to zero is just simpler.)
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}KMV3.png" alt="KMV3" />

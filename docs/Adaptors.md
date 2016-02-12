@@ -2,9 +2,9 @@
 layout: doc_page
 ---
 
-##Adaptors for Large-Scale Computing
+## Adaptors for Large-Scale Computing
 
-###Hadoop Pig
+### Hadoop Pig
 See <a href="{{site.pig_api_snapshot}}">API Snapshot for Pig</a>.
 
 This is a code snippet of how to build a sketch using Pig:
@@ -60,7 +60,7 @@ The console output would look something like the following.  The actual result i
 ### END SKETCH SUMMARY)
 </pre>
 
-###Hadoop Hive
+### Hadoop Hive
 
 Depends on sketches-core.
 
@@ -78,5 +78,5 @@ See <a href="{{site.hive_readme}}">hive README.md</a>.
 
 See <a href="{{site.hive_api_snapshot}}">API Snapshot for Hive</a>.
 
-###Druid
+### Druid
 See <a href="{{site.druid_datasketches}}">Druid Integration of DataSketches</a>

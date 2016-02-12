@@ -4,7 +4,7 @@ layout: doc_page
 [Prev](InverseEstimate.html)<br>
 [Next](KMVfirstEst.html)
 
-##The KMV Empty Sketch
+## The KMV Empty Sketch
 To explain how a simple sketch works, let us start with the well-known <i>k Minimum Value</i> or <i>KMV</i> sketch in its empty state. 
 
 Our objectives are as follows:

@@ -2,9 +2,9 @@
 layout: doc_page
 ---
 
-##Update Speed
+## Update Speed
 
-###Resize Factor = X1
+### Resize Factor = X1
 The following graph illustrates the update speed of 3 different sketches from the library: the Heap QuickSelect Sketch, the Direct QuickSelect Sketch, and the Heap Alpha Sketch.
 The X-axis is the number of unique values presented to a sketch. The Y-axis is the average time to perform an update.  It is computed as the total time to update X-uniques divided by X-uniques.
 
@@ -20,7 +20,7 @@ In this test setup and performing an "average" over all the test points from 8 t
  * The Heap QuickSelect sketch (blue) is next, also on-heap, averages about 81 million updates per second.
  * The Direct QuickSelect sketch (green) runs off-heap in direct, native memory and averages about 63 million updates per second. 
 
-####How this graph was generated
+#### How this graph was generated
 The goal of this measurement was to measure the limits of how fast these sketches could update data from a continuous data stream not limited by other system overhead, string or array processing. In order to remove random noise from the plots, each point on the graph represents an average of many trials.  For the low end of the graph the number of trials per point is 2^13 or 8K. At the high end at 8 million uniques per trial the number of trials is 2^4 or 16.  
 
 The sketches were configured with the optional <i>ResizingFactor = X1</i>, which means the internal cache was initially configured to be at full size at the start so there would not be any internal resizing of the cache during the test. See the Plot Parameters below. 
@@ -31,7 +31,7 @@ Very few systems would actually be able to feed a single sketch at this rate so 
 The graphs on this page were generated using the SketchPerformance program in the com.yahoo.sketches.theta package as part of the test hierarchy. 
 There is more documentation with the code.
 
-####Plot Parameters
+#### Plot Parameters
 Note: the prefix "lg" is shorthand notation for Log\_base\_2.
 
 Sketch Profile |
@@ -48,7 +48,7 @@ lgMaxTrials  | 13
 lgMaxU       | 23
 PPO          | 16
 
-###Resize Factors = X1, X2 and X8
+### Resize Factors = X1, X2 and X8
 To illustrate how the the optional <i>Resize Factor</i> affects performance refer to the following graph.  All three plots were generated using the Heap QuickSelect Sketch but with different Resize Factors.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}UpdateSpeedWithRF.png" alt="UpdateSpeedWithRF" />
@@ -62,7 +62,7 @@ As one would expect the overall speed of the RF = X2 sketch is slower than the R
 
 The tradeoff here is the classic memory size versus speed.  Suppose you have millions of sketches that need to be allocated and your input data is highly skewed (as is often the case).  Most of the sketches will only have a few entries and only a small fraction of all the sketches will actually go into estimation mode and require a full-sized cache.  The Resize Factor option allows a memory allocation that would be orders of magnitude smaller than would be required if all the sketches had to be allocated at full size.  The default Resize Factor is X8, which is a nice compromise between X1 and X2.
 
-####Plot Parameters
+#### Plot Parameters
 
 Sketch Profile |
 ---------------|------------
@@ -72,7 +72,7 @@ ResizeFactor | X1, X2 or X8
 Direct  | False
 
 
-###Measurement System
+### Measurement System
   Model Name:	MacBook Pro<br>
   Model Identifier:	MacBookPro10,1<br>
   Processor Name:	Intel Core i7<br>

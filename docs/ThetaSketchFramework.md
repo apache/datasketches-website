@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-##Theta Sketch Framework
+## Theta Sketch Framework
 Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum Value</i> (KMV)[1][2] 
 sketches in that KMV sketches are a form of Theta Sketch, but not all Theta Sketches are KMV.
 
