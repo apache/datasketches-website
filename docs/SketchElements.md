@@ -32,10 +32,12 @@ proven error distribution bounds.
 
 Sketches are typically
 
-* Small. They can be orders of magnitude smaller than the raw input data stream and with a 
-well defined upper bound of size that is independent of the size of the input stream.
+* Small in size. They are typically orders of magnitude smaller than the raw input data stream. 
+Sketches implement *sublinear* algorithms that grow in size much slower than that of the size of
+the input stream.  Some skethces have a finite upper-bound in size that is independent of the 
+size of the input stream.
 * Fast. The update times are independent of the size or order of the input stream. 
-These sketches are inherently "Single Pass" or "One Touch".  
+These sketches are inherently "Single Pass" or "One Touch". 
 The sketch only needs to see each item in the stream once.
 * Highly Parallelizable. The sketch data structures are "additive" in that they can 
 be merged without losing accuracy.
