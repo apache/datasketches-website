@@ -10,7 +10,7 @@ The analysis capabilities with the core Theta Sketch technology is quite powerfu
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}TupleStartsWithTheta.png" alt="TupleStartsWithTheta" />
 
-Tuple Sketches are an extension of Theta Sketches that associate a Summary Object with each hash value.  A Summary Object can be anything, but is typically one or more numeric or boolean state values as a members of columns.  This is shown in the next figure.
+Tuple Sketches are an extension of Theta Sketches that associate a Summary Object with each hash value.  A Summary Object can be anything, but is typically one or more numeric or boolean state variables as members of columns. This is shown in the next figure.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}TupleWithAttributes.png" alt="TupleWithAttributes" />
 
