@@ -9,56 +9,42 @@ approximate distribution of real values from a very large stream in a single pas
 The analysis is obtained using a getQuantiles() function or its inverse functions the 
 Probability Mass Function from getPMF() and the Cumulative Distribution Function from getCDF().
 
-Consider the following example of a stream of over 230 million time-spent events, which record the amount of time in milliseconds that a user spends on a page before moving to a different page by taking some action, such as a click. An exact, brute-force approach to computing various quantiles 
-would require sorting all 230 million values. Assign rank values to all 230 million items from 1 to 230 million. The value at rank = 115M is the median or 50th percentile.  The normalized ranks are 
-computed by dividing the rank by the size of the list.  Thus, the normalized ranks are fractions between zero and one.  Quantiles are _values_ corresponding to a normalized rank. Therefore, the median value = quantile(0.5).  The quantile(0.95) represents the value from the stream such that only 5% of all the values are equal to or larger than that value. 
+Consider this real data example of a stream of 230 million time-spent events collected from one our systems for a period of just 30 minutes. Each event records the amount of time in milliseconds that a user spends on a web page before moving to a different web page by taking some action, such as a click. 
+
+An exact, brute-force approach to computing an arbitrary quantile would require creating a sorted list all 230 million values and then choosing an index into this list for the desired quantile. This index is the _absolute rank_ of the values in the sorted list and in this case would vary from zero to 230 million. The value at rank = 115M is the median or 50th percentile;  _normalized Rank_ is computed by dividing the _absolute rank_ by the size of the list and is a fraction between zero and one.  Quantiles are _values_ corresponding to a _normalized rank_. Thus, the median value = quantile(0.5). The quantile(0.95) is the value from the stream at the _absolute rank_ (index) position (0.95) X 230M, which means only 5% of all the values from the stream are equal to or larger than this value. 
 
 The relevant pseudo-code snippets would look something like this:
 
-    QuantilesSketch sketch = QuantilesSketch.builder().build(256); //256 gives < 1% rank error
+    int k = 256; //256 gives < 1% normalized rank error
+    QuantilesSketch sketch = QuantilesSketch.builder().build(k);
+    
     while ( remainingValues == true) { //stream in all the values, one by one
       sketch.update(nextValue());
     }
     
     //Query the sketch with a sorted array of 101 normalized ranks from zero to one: 
     
-    double[] normRanks = {0, .01, .02, ... , .99, 1.0};
+    double[] normRanks = {0, .01, .02, ... , .99, 1.0}; // Percentiles
     double[] values = sketch.getQuantiles(normRanks); //result array of 101 values.
 
 When these values are plotted against the normalized ranks we get something like this:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}TimeSpentQuantiles.png" alt="TimeSpentQuantiles" />
 
-This is very revealing about the distribution of values in the stream.  Just reading from the graph, the median is about 3000 and the 90th percentile is about 30,000 and so on. One can also obtain the min and max values seen by the sketch. From the values of the quantiles query, it is straightforward to compute a set of splitpoints for a histogram plot. As one can see from the quantiles plot, the values range is almost 7 orders-of-magnitude.  I chose 5 points per factor of 10
-and computed 36 equally spaced (on the log axis) splitpoints ranging from 1.0 to 1E7:
+This reveals a great deal about the distribution of values in the stream. Just reading from the graph, the median is about 3000 and the 90th percentile is about 30,000 and so on. One can also query the min and max values seen by the sketch. From the results of the quantiles query, it is straightforward to compute a set of splitpoints for a histogram plot. In this case the values ranged from one to 1.8 million, which is a little over 6 orders-of-magnitude.  
 
-    double[] splitpoints = {1.00, 1.58, ... , 1E7};
+In order to plot such a large dynamic range I used a log X-axis and a plot resolution of 5 points per factor of 10. Then I computed 36 equally spaced (on the log axis) splitpoints with values from 1.0 to 1E7. These 36 splitpoints are then provided to the getPMF() function:
+
+    double[] splitpoints = {1.00, 1.58, ... , 6.3E6, 1E7};
     double[] pmf = sketch.getPMF(splitpoints);
 
-The following histogram is plotted by multiplying all the pmf values by getN(), which is the total number of events seen by the sketch.
+The following histogram is plotted by multiplying all the pmf values by getN(), which is the total number of events seen by the sketch (230M).
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}TimeSpentHistogram.png" alt="TimeSpentHistogram" />
 
-The getCDF(*) works similarly, but produces the cumulative distribution instead.
+The getCDF(...) works similarly, but produces the cumulative distribution instead.
 
-This is an implementation of the Low Discrepancy Mergeable Quantiles Sketch, using double 
-values, described in section 3.2 of the journal version of the paper "Mergeable Summaries" 
-by Agarwal, Cormode, Huang, Phillips, Wei, and Yi. 
-<a href="http://dblp.org/rec/html/journals/tods/AgarwalCHPWY13"></a>
-
-This algorithm is independent of the distribution of values, which can be anywhere in the
-range of the IEEE-754 64-bit doubles. 
-
-This algorithm intentionally inserts randomness into the sampling process for values that
-ultimately get retained in the sketch. The result is that this algorithm is not 
-deterministic. For example, if the same stream is inserted into two different instances of this 
-sketch, the answers obtained from the two sketches may not be be identical.
-
-Similarly, there may be minor directional inconsistencies. For example, the resulting array of 
-values obtained from getQuantiles(fractions[]) input into the reverse directional query 
-getPMF(splitPoints[]) may not result in the original fractional values.
-
-### Code Snippets
+### More Code Snippets
 
 Code examples are best gleaned from the test code that exercises all the various capabilities of the
 sketch.  Here are some brief snippets, simpler than the above graphs, to get you started.
@@ -111,7 +97,7 @@ sketch.  Here are some brief snippets, simpler than the above graphs, to get you
     99904.0  >= 900000.0
     */
 
-#### Merging
+#### Merging Quantile Sketches
 
     QuantilesSketch qs1 = QuantilesSketch.builder().build(); //default k = 128
     QuantilesSketch qs2 = QuantilesSketch.builder().build();
@@ -146,3 +132,20 @@ sketch.  Here are some brief snippets, simpler than the above graphs, to get you
        Max Value                    : 1,999,999.000
     ### END SKETCH SUMMARY
     */
+    
+###Implementation Notes
+
+The quantiles algorithm is an implementation of the Low Discrepancy Mergeable Quantiles Sketch, using double values, described in section 3.2 of the journal version of the paper "Mergeable Summaries" by Agarwal, Cormode, Huang, Phillips, Wei, and Yi. 
+<a href="http://dblp.org/rec/html/journals/tods/AgarwalCHPWY13"></a>
+
+This algorithm is independent of the distribution of values, which can be anywhere in the
+range of the IEEE-754 64-bit doubles. 
+
+This algorithm intentionally inserts randomness into the sampling process for values that
+ultimately get retained in the sketch. The result is that this algorithm is not 
+deterministic. For example, if the same stream is inserted into two different instances of this 
+sketch, the answers obtained from the two sketches may not be be identical.
+
+Similarly, there may be minor directional inconsistencies. For example, the resulting array of 
+values obtained from getQuantiles(fractions[]) input into the reverse directional query 
+getPMF(splitPoints[]) may not result in the original fractional values.
