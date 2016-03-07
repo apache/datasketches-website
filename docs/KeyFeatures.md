@@ -60,7 +60,7 @@ its garbage collection.
     for operation on the java heap or off-heap.
     * <a href="HLL.html">The Hyper-Log Log algorithms<a/> when sketch size is of utmost concern.
   
-<h3>Quantiles[1]</h3>
+<h3>Quantiles</h3>
   * Get normal or inverse PDFs or CDFs of the distributions of any numeric value from your raw data in a 
   single pass.
   * Well defined error bounds on the result.
@@ -68,7 +68,7 @@ its garbage collection.
 <h3>Frequent Items[1]</h3>
   * Get the most frequent items from a stream of items.
   
-<h3>Tuple Sketch[1]</h3>
+<h3>Tuple Sketch</h3>
   * Associative sketches that are useful for performing approximate join operations and 
   extracting other kinds of behavior associated with unique identifiers.
 

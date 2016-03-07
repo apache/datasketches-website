@@ -16,11 +16,12 @@ and adding it to the classpath.
 High-level Structure      | Package Description
 --------------------------|---------------------
 com.yahoo.sketches        | Some common functions
-com.yahoo.sketches.hash   | The MurmurHash3 and adaptors
+com.yahoo.sketches.hash   | The 128-bit MurmurHash3 and adaptors
 com.yahoo.sketches.hll    | HLL sketches
 com.yahoo.sketches.memory | Off-heap Memory management
 com.yahoo.sketches.quantiles | Sketches for quantiles, PMF and CDF functions
 com.yahoo.sketches.theta  | Theta sketches
+com.yahoo.sketches.tuple  | Tuple sketches
 
 
 ### sketches-pig
@@ -32,6 +33,7 @@ High-level Structure      | Package Description
 --------------------------|---------------------
 com.yahoo.sketches.hash   | Pig UDFs for MurmerHash3
 com.yahoo.sketches.theta  | Pig UDFs for Theta sketches
+com.yahoo.sketches.tuple  | Pig UDFs for Tuple sketches
 
 
 ### sketches-hive
@@ -41,7 +43,7 @@ Users of this code are advised to use Maven to bring in all the required depende
 
 High-level Structure      | Package Description
 --------------------------|---------------------
-com.yahoo.sketches.theta  | Hive UDAFs for Theta sketches
+com.yahoo.sketches.theta  | Hive UDF and UDAFs for Theta sketches
 
 ### experimental
 This repository is an experimental staging area for code that will eventually end up in another repository.

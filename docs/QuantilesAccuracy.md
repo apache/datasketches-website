@@ -6,7 +6,7 @@ layout: doc_page
 
 The accuracy of this sketch is a function of the configured value <i>k</i>, which also affects
 the overall size of the sketch. Accuracy of this quantile sketch is always with respect to
-the normalized rank.  A <i>k</i> of 227 produces a normalized, rank error of about 1%. 
+the normalized rank.  A <i>k</i> of 256 produces a normalized, rank error of less than 1%. 
 For example, the median value returned from getQuantile(0.5) will be between the actual values 
 from the hypothetically sorted array of input values at normalized ranks of 0.49 and 0.51, with 
 a confidence of about 99%.

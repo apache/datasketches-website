@@ -5,7 +5,7 @@ layout: overview_page
 ## Sketch Origins
 
 Sketching is a relatively recent development in the theoretical field of 
-<a href="https://en.wikipedia.org/wiki/Streaming_algorithm"><i>Stochastic Streaming Algorithms</i></a>[1], 
+<a href="https://en.wikipedia.org/wiki/Streaming_algorithm"><i>Stochastic Streaming Algorithms</i></a><sup>1</sup>, 
 which deals with algorithms that can extract information from a stream of data in a single pass 
 (sometimes called "one-touch" processing) using various randomization techniques. 
 
@@ -36,7 +36,7 @@ At this point it is useful to describe the
 algorithms used for solving the 
 <a href="https://en.wikipedia.org/wiki/Count-distinct_problem">count-distinct</a> problem.
 
-
-[1] Also known as "Approximate Query Processing", see 
-<a href="http://people.cs.umass.edu/~mcgregor/711S12/sketches1.pdf">Sketch Techniques for Approximate Query Processing</a>
+________
+</a><sup>1</sup><small>Also known as "Approximate Query Processing", see 
+<a href="http://people.cs.umass.edu/~mcgregor/711S12/sketches1.pdf">Sketch Techniques for Approximate Query Processing</a></small>
 
