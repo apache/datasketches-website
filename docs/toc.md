@@ -36,9 +36,11 @@
 * [Set Operations](ThetaSketchSetOps.html)
 * [SetOp Accuracy](ThetaSketchSetOpsAccuracy.html)
 
-### Other Capabilities
+### Large Scale Computing
 * [Large Scale](LargeScale.html)
-* [Large-scale system Adaptors](Adaptors.html)
+* [Theta Sketch Pig UDFs](ThetaPigUDFs.html)
+* [Theta Sketch Hive UDFs](ThetaHiveUDFs.html)
+* [Integration with Druid](DruidIntegration.html)
 * [Memory Package](MemoryPackage.html)
 * [<i>p</i>-Sampling](Sampling.html)
 
@@ -53,6 +55,8 @@
 
 ## Tuple Sketches
 * [Tuple Sketch Overview](TupleOverview.html)
+* [Tuple Sketch Pig UDFs](TuplePigUDFs.html)
+<!-- * [Tuple Sketch Hive UDFs](TupleHiveUDFs.html) -->
 
 ## Quantiles Sketches
 * [Quantiles Overview](QuantilesOverview.html)
