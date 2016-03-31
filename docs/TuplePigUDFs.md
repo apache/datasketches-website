@@ -15,7 +15,6 @@ layout: doc_page
 
 ### tuple.pig script
 
-    register sketches-core-0.4.0.jar;
     register sketches-pig-0.4.0.jar;
     
     DEFINE dataToSketch com.yahoo.sketches.pig.tuple.DataToDoubleSummarySketch('32');
@@ -39,8 +38,10 @@ layout: doc_page
     g = foreach f generate getResult(sketch);
     dump g;
 
-The example input data has 3 fields: id, category and numeric parameter. There are 2 categories 'a' and 'b' with 50 unique IDs in each.
-Most of the IDs in these categories overlap, so that there are 60 unique IDs in total. The numeric parameter has the sum of 500.0 per category, and 1000.0 in total.
+The example input data has 3 fields: id, category and numeric parameter.
+There are 2 categories 'a' and 'b' with 50 unique IDs in each.
+Most of the IDs in these categories overlap, so that there are 60 unique IDs in total.
+The numeric parameter has the sum of 500.0 per category, and 1000.0 in total.
 
 Results:
 From 'dump d':
@@ -52,7 +53,9 @@ From 'dump g' (merged across categories):
 
     ((50.415577215639736,846.0364051499544))
 
-In this example sketches have the smallest possible size of 32 nominal entries. From the first dump one can see that the sketches are still in the exact counting mode. Merging across categories pushed the resulting sketch into the estimation mode. The expected exact result would be (60.0, 1000.0). The estimates seem to be quite far from the expected result. This happened because the sketch was configured with only 32 nominal entries.
+In this example the sketches have a small size of 32 nominal entries. From the first dump one can see that the sketches are still in the exact counting mode.
+Merging across categories pushed the resulting sketch into the estimation mode. The expected exact result would be (60.0, 1000.0).
+The estimates have high relative error because the sketch was configured with only 32 nominal entries.
 
 ### [data.txt](data.txt) (tab separated)
     01	a	10.0
