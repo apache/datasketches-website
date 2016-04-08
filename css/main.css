@@ -54,6 +54,10 @@ li {
   line-height: 1.7em;
 }
 
+.logo {
+    color: #FFF !important;
+}
+
 .text-indent {
    padding-left: 50px;
 }

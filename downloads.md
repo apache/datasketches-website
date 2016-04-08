@@ -9,7 +9,7 @@ Choose the most recent release version from <a href="http://search.maven.org/#se
 
 Or, clone or fork the current SNAPSHOT directly from the relevant repository.
 
-# Version Numbers
+### Version Numbers
 
 The artifacts downloaded from <a href="http://search.maven.org/#search|ga|1|datasketches">The Central Repository</a> 
 include a version number in the name, as in sketches-core-X.Y.Z.jar. 

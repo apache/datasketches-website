@@ -21,6 +21,7 @@ id: home
         <a class="btn btn-lg btn-outline-inverse" href="overview.html"><span class="fa fa-info-circle"></span> Overview</a>
         <a class="btn btn-lg btn-outline-inverse" href="downloads.html"><span class="fa fa-download"></span> Download</a>
         <a class="btn btn-lg btn-outline-inverse" href="https://github.com/datasketches"><span class="fa fa-github"></span> GitHub</a>
+        <a class="btn btn-lg btn-outline-inverse" href="https://groups.google.com/forum/#!forum/sketches-user"><span class="fa fa-comment"></span> Comments</a>
       </p>
     </div>
   </div>
@@ -41,8 +42,8 @@ id: home
       <p class="text-justify"><a href="/docs/SketchOrigins.html">Sketches</a> are <i>fast</i>. 
       The sketch algorithms in this library process data in a single pass and are suitable for 
       both real-time and batch. 
-      Sketches enable processing unique identifiers in an "additive" way that streamlines system's 
-      architecture and enable fast queries of heretofore difficult metrics such as unique user counts.</p>
+      Sketches enable streaming computation of set expression cardinalities, quantiles, frequency estimation and more. 
+      This allows simplification of system's architecture and fast queries of heretofore difficult computational tasks.</p>
     </div>
 
     <div class="col-md-4">
