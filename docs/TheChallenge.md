@@ -20,7 +20,7 @@ There are many situations where is valuable to understand the distribution of va
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}TimeSpentHistogram.png" alt="TimeSpentHistogram" />
 
-## Tuple Sketches: Extending Theta Sketches to Perform Associative Analysis 
+## [Tuple Sketches](TupleOverview.html): Extending Theta Sketches to Perform Associative Analysis 
 It is often not enough to perform stream expressions on sets of unique identifiers, it is very valuable to be able to associate additive data with these identifiers, such as impression counts or clicks.  Tuple Sketches are a recent addition to the library and can be extended with arbitrary "summary" data.  
 
 ________________________
