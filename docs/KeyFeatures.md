@@ -65,13 +65,10 @@ its garbage collection.
   single pass.
   * Well defined error bounds on the result.
   
-<h3>Frequent Items[1]</h3>
+<h3>Frequent Items</h3>
   * Get the most frequent items from a stream of items.
   
 <h3>Tuple Sketch</h3>
   * Associative sketches that are useful for performing approximate join operations and 
   extracting other kinds of behavior associated with unique identifiers.
 
-<br>
-<br>
-<h5>1. Coming soon!</h5>
