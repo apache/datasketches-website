@@ -28,3 +28,4 @@ _site/
 # Other
 *.old
 paper/
+tmp/
