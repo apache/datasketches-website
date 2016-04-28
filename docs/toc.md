@@ -62,6 +62,9 @@
 * [Quantiles Overview](QuantilesOverview.html)
 * [Quantiles Accuracy](QuantilesAccuracy.html)
 
+## Frequent Items Sketches
+* [Frequent Items Overview](FrequentItemsOverview.html)
+
 <!--  Getting Started  -->
 
 
