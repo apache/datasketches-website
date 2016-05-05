@@ -64,6 +64,7 @@
 
 ## Frequent Items Sketches
 * [Frequent Items Overview](FrequentItemsOverview.html)
+* [Frequent Items Error Table](FrequentItemsErrorTable.html)
 
 <!--  Getting Started  -->
 

@@ -1,0 +1,8 @@
+Figures
+
+\begin{figure*}
+\begin{center}
+\includegraphics[width=0.5\linewidth]{name-of.pdf}
+\end{center}
+\caption{Some diagrams for Lemmas \ref{lemma1} and \ref{lemma2}}
+\end{figure*}

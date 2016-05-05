@@ -1,0 +1,17 @@
+%src/setExpressions.tex
+%
+\subsection{Fixed \texorpdfstring{$k$}{k} Sampling}
+The above derivation assumed a fixed $\theta$ sampling where the size of the sample set,$|S|$, is a random variable.
+It is not hard to imagine turning this around so that the resulting size of the sample set is bounded by a constant $k$, and 
+then $\theta$ becomes a variable that must be constantly adjusted by the sketch algorithm as new items arrive so that $k = n\theta$.
+(We haven't discussed how to do that!)
+%
+\begin{align}
+\shortintertext{Equations for the estimate (\ref{b_estimate}) and the RSE (\ref{b_rse}) become}
+\hat{n}             &= \frac{k}{\theta} \\
+\text{RSE}(\hat{n}) &= \sqrt{\frac{1}{k} - \frac{1}{n}} < \frac{1}{\sqrt{k}} \label{k_rse}
+\end{align}
+%
+\subsection{Subsets of Fixed \texorpdfstring{$k$}{k} Sampling}
+Suppose we were to choose, by set operations or other means, a subset, $S_{sub}$ of the $k$ samples in the sketch $(S, \theta)$ to represent a subpopulation of the original $n$. The estimate $\widehat{n_{sub}} = |S_{sub}|/\theta$ and the RSE$(\widehat{n_{sub}}) = 1/\sqrt{|S_{sub}|}$. 
+%

@@ -1,0 +1,120 @@
+%SketchEquations V1
+\documentclass[10pt]{article}
+\usepackage{times} 
+\usepackage[margin=1.0in]{geometry}
+\usepackage{layouts} %for adjusting layouts
+\usepackage{mathtools}
+%\usepackage[leqno]{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xcolor,graphicx}
+\usepackage{url}
+\renewcommand{\UrlFont}{\normalsize}
+\usepackage{verbatim}
+\usepackage{makeidx}
+\usepackage{float}
+
+\usepackage[symbol*,stable]{footmisc}
+\DefineFNsymbolsTM{myfnsymbols}{% def. from footmisc.sty "bringhurst" symbols
+%  \textasteriskcentered *
+  \textdagger    \dagger
+  \textdaggerdbl \ddagger
+  \textsection   \mathsection
+  \textbardbl    \|%
+  \textparagraph \mathparagraph
+}%
+\setfnsymbol{myfnsymbols}
+
+\usepackage{abstract}
+\usepackage[super]{natbib}
+
+%http://texblog.org/2007/11/07/headerfooter-in-latex-with-fancyhdr/
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\fancyhead{}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+%\fancyfoot[L]{Yahoo! Confidential}
+\renewcommand{\headrulewidth}{0.1pt}
+
+% http://en.wikibooks.org/wiki/LaTeX/Hyperlinks
+\usepackage{hyperref}
+\hypersetup{ 
+	colorlinks,
+	urlcolor=blue,
+	citecolor=blue,
+	linkcolor=blue
+}
+
+%http://en.wikibooks.org/wiki/LaTeX/Document_Structure
+\setcounter{tocdepth}{3}
+\font\smalltt=cmtt10
+
+\makeatletter
+	\let\@copyrightspace\relax
+\makeatother
+
+\numberwithin{equation}{section}
+
+\newenvironment{tighterdescription}%
+  {\begin{description}%
+    \setlength{\itemsep}{1pt}%
+    \setlength{\parskip}{1pt}}%
+  {\end{description}}
+
+\newenvironment{tighterenumerate}%
+  {\begin{enumerate}%
+    \setlength{\itemsep}{1pt}%
+    \setlength{\parskip}{1pt}}%
+  {\end{enumerate}}
+
+\newenvironment{tighteritemize}%
+  {\begin{itemize}%
+    \setlength{\itemsep}{1pt}%
+    \setlength{\parskip}{1pt}}%
+  {\end{itemize}}
+  
+\newcommand{\B}{\boldsymbol{\mathrm{B}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\raggedbottom
+\begin{document}
+\title{Sketch Equations}
+\author{Lee Rhodes \\
+Yahoo! Inc., 701 First Ave., Sunnyvale, CA 94089, USA\\
+}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{src/abstract.tex}
+\input{src/introduction.tex}
+\input{src/bernoulliEquations.tex}
+\input{src/subsets.tex}
+\newpage
+\input{src/kmvEquations.tex}
+%\input{src/equationDifferences.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addcontentsline{toc}{chapter}{Bibliography}
+\begin{thebibliography}{99}
+%
+\bibitem{BarYossef}
+Z.~Bar-Yossef, T.~Jayram, R.~Kumar, D.~Sivakumar, and L.~Trevisan. 
+Counting distinct elements in a data stream. 
+{\em Randomization and Approximation Techniques In Computer Science}, 
+pages 1–10. Springer, 2002.
+
+\bibitem{Giroire2009}
+F.~Giroire.
+Order statistics and estimating cardinalities of massive data sets.
+{\em Discrete Applied Mathematics}, 157-2:406--427, 2009.
+%
+\bibitem{Lang-2014}
+Anirban Dasgupta, Kevin Lang, Lee Rhodes, Justin Thaler. A Framework for Estimating Stream Expression Cardinalities,
+\href{http://datasketches.github.io/docs/ThetaSketchFramework.pdf}{Theta Sketch Framework}
+%
+\end{thebibliography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\appendix
+\input{src/evExample.tex}
+\end{document}

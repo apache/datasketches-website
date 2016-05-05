@@ -1,0 +1,33 @@
+Why Intersection has much worse error.
+
+Suppose we use a sketch size of 4K entries.  The native accuracy of that sketch is 1/sqrt(4K) ~ 1.6%.
+
+Suppose we have as inputs two segments of unique users, segment A of 4M, and segment B of 4K. 
+And assume that B is a proper subset of A.
+(Forget duplicates, let's assume we already know all this.)
+
+Sketch SA will be fed segment A and Sketch SB will be fed segment B.
+
+Segment B fits exactly in SB, so  ThetaB = 1.0 = 4K/4K.
+
+In order to maintain its maximum size of 4K entries, Sketch SA will end up with ThetaA = .001 = 4K/4M.
+Thus the uniform random sampling rate of SA is .001. 
+So SA will end up with 4K entries that are a uniform random sample of the 4M users of segment A.
+
+Even though in the raw data all the values of B are in A, the probability of all those 4K values ending up in SA are extremely unlikely
+at a uniform random sampling at a rate of 1/1000.
+
+The Union-Rule tells us how to compute it: We must take the min(ThetaA, ThetaB)= .001, and apply it to all entries from both A and B.  Well, all the values from SA already qualify. Since all 4K values in SB are uniformly distributed between 0 and 1.0, we will likely only be able to accept .001 of them or 4 values.
+
+So the resulting intersection sketch will have, on average, only 4 values and a theta of .001.
+
+The mean estimate from the intersection sketch will be 4/.001 = 4K !  Right on!
+
+The rule for error of a sketch with only 4 values is 1/sqrt(4) = .5 or 50% error. 
+
+So the estimate from the intersection sketch is unbiased, but its error is much larger than the 4K sketches that were the parents.
+
+The other way to compute this is resulting error of intersection (or difference) = sqrt(bigPop/littlePop) * native error of sketch, or
+sqrt(4M/4K) * 1/sqrt(4K) = 0.5 = 50% !
+
+The intuition here is that it is the theta (sampling rate) of the sketch of the larger population that is causing the increase in error.  So, increasing the sketch size of SA would improve the resulting error.

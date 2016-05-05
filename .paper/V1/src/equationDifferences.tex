@@ -1,0 +1,23 @@
+%src/equationDifferences.tex
+%
+\subsection{Equation Differences for Theta Sketch Framework}
+Much of the research literature on KMV sketches defines a cache of size $k$ that holds the $k^{th}$ minimum value ($M_{(k)}$) and $k-1$ hash values less than $M_{(k)}$.  
+The Theta Sketch Framework (TSF), however, is more flexible and different from the standard KMV definition.
+In the TSF, the label $k$ is used as a user configured parameter that defines the maximum RSE for the sketch. 
+Instead of $M_{(k)}$ being a member of the cache array of hash values, 
+TSF sketches have a separate register called $\theta$ and define different Theta Choosing Functions (TCF) algorithms for computing $\theta$ for different sketch families. 
+See \href{http://datasketches.github.io/docs/ThetaSketchFramework.pdf}{Theta Sketch Framework}.
+
+This requires minor changes to the above equations depending on the specific sketch family.
+\begin{equation*}
+\arraycolsep=15pt
+\renewcommand\arraystretch{1.5}
+\begin{array}{llll}
+\text{Equation}                                                 & \text{KMV}            & \text{QuickSelect}   & \text{Alpha} \\
+\text{TCF}(\theta) =                                            & M_{(k)}               & M_{(k+1)}            & \left(\frac{k}{k+1}\right)^i, \quad i=\text{insertions}\\
+\ref{evKMV} \quad E[\theta] =                                   & \frac{k}{n+1}         & \frac{k+1}{n+1}      & \frac{k}{n} \\ 
+\ref{inverseExpectation} \quad E\left[\frac{1}{\theta}\right] = & \frac{n}{k-1}         & \frac{n}{k}          & \frac{n}{k} \\
+\ref{nhat} \quad \hat{n} =                                      & \frac{k-1}{\theta}    & \frac{k}{\theta}     & \frac{k}{\theta} \\
+\ref{rse}  \quad RSE(\hat{n})\leq                               & \frac{1}{\sqrt{k-2}}  & \frac{1}{\sqrt{k-1}} & \frac{1}{\sqrt{2k}} \\
+\end{array}
+\end{equation*}
