@@ -144,7 +144,7 @@ the bottom right.
 
 Observe that the maximum error in the estimate of *any* item was slightly more 
 than 3,000. This is much better than the "worst case error guarantee" for the sketch, 
-which is W*(8/3)*(1/maxMapSize) = (10 million)*(3.5)*(1/2048) = 17,090.
+which is W*(3.5)*(1/maxMapSize) = (10 million)*(3.5)*(1/2048) = 17,090.
 This indicates that on realistic data sets, the sketch is 
 significantly more accurate than the worst case error guarantee suggests. 
 
@@ -172,7 +172,7 @@ getFrequentItems(NO_FALSE_NEGATIVES) only.
 The first figure depicts the error of get getLowerBound(item) for items 1, 2, ..., 16000,
 while the second figure depicts the error of getUpperBound(item) for the same items.
 
-#### High Skew Experiment
+#### Lower Skew Experiment
 
 * Zipfian distribution parameter <i>alpha</i> = 0.7
 * Items generated: W = 10M
