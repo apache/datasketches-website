@@ -4,15 +4,20 @@ title: Frequent Items
 subtitle: Error Threshold Table
 ---
 
-This table is computed a follows:
+This table of thresholds is computed a follows:
 
-* M = Max Map Size.  Always a power of 2.
-* N = Stream Length
-* e = Epsilon = 3.5/M.  A fraction of N.   
-* T = Threshold = (N &lt; 0.75 * M)? 0 : e * T;
+*  <i>M</i> = Max Map Size.  Always a power of 2.
+*  <i>N</i> = Stream Length (the sum of all counts)
+*  <i>e</i> = Epsilon = 3.5/<i>M</i>
+*  <i>T</i> = Threshold = (<i>N</i> &lt; 0.75 * <i>M</i>)? 0 : <i>e * T</i>.
 
-For a given M and N, the sketch is guaranteed to capture all items with frequency greater than T.
-
+* The error in <i>getEstimate(item)</i> is guaranteed to be at most <i>T</i>.
+* The function <i>getFrequentItems(NO_FALSE_NEGATIVES)</i> is guaranteed to return a list of items that 
+contains all items with frequency greater than <i>T</i> (and it might contain some additional 
+items, the <i>False Positives</i>, as well).
+* The function <i>getFrequentItems(NO_FALSE_POSITIVES)</i> is guaranteed return a list of items 
+that contains all items with frequency greater than 2*<i>T</i>, and no items with frequency less 
+than <i>T</i>.
 
 Max Map Size-> |8|16|32|64|128|256|512|1,024|2,048|4,096|8,192|16,384|32,768|65,536|131,072|262,144|524,288|1,048,576
 Epsilon->      |0.4375|0.2188|0.1094|0.0547|0.0273|0.0137|6.84E-03|3.42E-03|1.71E-03|8.54E-04|4.27E-04|2.14E-04|1.07E-04|5.34E-05|2.67E-05|1.34E-05|6.68E-06|3.34E-06
