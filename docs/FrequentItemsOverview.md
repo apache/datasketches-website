@@ -70,6 +70,7 @@ removes any non-positive counters.
 
 If fewer than 0.75 * <i>maxMapSize</i> different items are inserted into the sketch the 
 estimated frequencies returned by the sketch will be exact.
+
 The logic of the frequent items sketch is such that the stored counts and true counts are 
 never too different. 
 More specifically, for any <i>item</i>, the sketch can return an estimate of the 
@@ -78,10 +79,11 @@ true frequency of <i>item</i>, along with upper and lower bounds on the frequenc
 
 For this implementation and for a specific active <i>item</i>, it is guaranteed that
 the true frequency will be between the Upper Bound (UB) and the Lower Bound (LB) computed for that 
-<i>item</i>.  Specifically, <i>(UB- LB) &le; W * epsilon</i>, where <i>W</i> denotes the sum of all item 
-counts, and <i>epsilon = 3.5/M</i>, where <i>M</i> is the <i>maxMapSize</i>.
-This is a worst case guarantee. In practice <i>(UB-LB)</i> is usually much smaller.
-There is an astronomically small probability that the error can exceed the above "worst case".
+<i>item</i>.  Specifically, <i>(UB- LB) &le; W * epsilon</i>, where <i>W</i> denotes the sum of 
+all item counts, and <i>epsilon = 3.5/M</i>, where <i>M</i> is the <i>maxMapSize</i>.
+
+This is a worst case guarantee that applies to arbitrary inputs.<sup>1</sup> 
+For inputs typically seen in practice <i>(UB-LB)</i> is usually much smaller.
 
 The [Frequent Items Error Table](FrequentItemsErrorTable.html) can serve as a guide for selecting an
 appropriate sized sketch for your application.
@@ -209,3 +211,12 @@ than 6,000. This is much better than the "worst case error guarantee" for the sk
 which is W*(3.5)*(1/maxMapSize) = (10 million)*(3.5)*(1/2048) = 17,090.
 This indicates that on realistic data sets, the sketch is 
 significantly more accurate than the worst case error guarantee suggests.
+
+________
+
+<sup>1</sup> For speed we do employ some randomization that introduces a small probability that our
+proof of the worst-case bound might not apply to a given run.  However, we have ensured that 
+this probability is extremely small. For example, if the stream causes one table purge (rebuild), 
+our proof of the worst case bound applies with probability at least 1 - 1E-14.  
+If the stream causes 1E9 purges, our proof applies with probability at least 1 - 1E-5.
+
