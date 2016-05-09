@@ -24,9 +24,9 @@ These sketches provides the following capabilities:
     counts.
     
     If the user needs to serialize and deserialize the resulting sketch for storage or transport, 
-    the user must also extend the <i>ArrayOfItemsSerDe</i> interface. Two examples of extending this 
-    interface are included for <i>Long</i>s and <i>String</i>s: <i>ArrayOfLongsSerDe</i> and 
-    <i>ArrayOfStringsSerDe</i>.
+    the user must also extend the <i>ArrayOfItemsSerDe</i> interface. Two examples of 
+    extending this interface are included for <i>Long</i>s and 
+    <i>String</i>s: <i>ArrayOfLongsSerDe</i> and <i>ArrayOfStringsSerDe</i>.
 
 * FrequentLongsSketch
 
