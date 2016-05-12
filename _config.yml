@@ -1,4 +1,5 @@
 # example: <img class="doc-img-full" src="{{site.docs_img_dir}}PeopleCloud.png" alt="PeopleCloud" />
+docs_dir: '/docs'
 docs_img_dir: '/docs/img/'
 
 docs_pdf_dir: 'https://github.com/DataSketches/DataSketches.github.io/blob/master/docs'
