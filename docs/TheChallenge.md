@@ -25,7 +25,7 @@ It is often not enough to perform stream expressions on sets of unique identifie
 
 ## [Frequent Items Sketches](FrequentItemsOverview.html): Finding the Heavy Hitter Objects from a Stream
 It is very useful to be able to scan a stream of objects, such as song titles, and be able to quickly identify those items that occur most frequently.  The term <i>Heavy Hitter</i> is defined to be an item that occurs more frequently than some fractional share of the overall count of items
-in the stream including duplicates.  Suppose you have a stream of 1M song titles, but in that stream there are only 100K song titles that are unique. If any single title consumes more that 10% of the stream elements it is a Heavy Hitter, and the 10% is a threshold parameter we call epsilon.
+in the stream including duplicates.  Suppose you have a stream of 1M song titles, but in that stream there are only 100K song titles that are unique. If any single title consumes more than 10% of the stream elements it is a Heavy Hitter, and the 10% is a threshold parameter we call epsilon.
 
 The accuracy of a Frequent Items Sketch is proportional to the configured size of the sketch, the larger the sketch, the smaller is the epsilon threshold that can detect Heavy Hitters. 
 
