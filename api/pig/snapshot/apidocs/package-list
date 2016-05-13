@@ -1,3 +1,4 @@
+com.yahoo.sketches.pig.frequencies
 com.yahoo.sketches.pig.hash
 com.yahoo.sketches.pig.theta
 com.yahoo.sketches.pig.tuple
