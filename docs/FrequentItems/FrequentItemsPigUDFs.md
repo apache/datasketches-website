@@ -23,12 +23,16 @@ layout: doc_page
     a = load 'data.txt' as (item:chararray, category);
     b = group a by category;
     c = foreach b generate flatten(group) as (category), flatten(dataToSketch(a.item)) as (sketch);
+    -- Sketches can be stored at this point in binary format to be used later:
+    -- store c into 'intermediate/$date' using BinStorage();
+    -- The next two lines print the results in human readable form for the purpose of this example
     d = foreach c generate category, getResult(sketch);
     dump d;
 
     -- This can be a separate query.
     -- For example, the first part can produce a daily intermediate feed and store it.
     -- This part can load several instances of this daily intermediate feed and merge them
+    -- c = load 'intermediate/$date1,intermediate/$date2' using BinStorage() as (category, sketch); 
     e = group c all;
     f = foreach e generate flatten(mergeSketch(c.sketch)) as (sketch);
     g = foreach f generate getResult(sketch);

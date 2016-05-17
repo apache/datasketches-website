@@ -10,7 +10,7 @@
 * [Architecture]({{site.docs_dir}}/Architecture.html)
 
 ## Theta Sketches
-* [Theta Sketch Framework]({{site.docs_dir}}/ThetaSketchFramework.html)
+* [Theta Sketch Framework]({{site.docs_dir}}/Theta/ThetaSketchFramework.html)
 
 ### KMV Tutorial
 * [The Inverse Estimate]({{site.docs_dir}}/InverseEstimate.html)
@@ -26,20 +26,20 @@
 * [Relative Error Table]({{site.docs_dir}}/ErrorTable.html)
 
 ### Size
-* [Theta Sketch Size]({{site.docs_dir}}/ThetaSize.html)
+* [Theta Sketch Size]({{site.docs_dir}}/Theta/ThetaSize.html)
 
 ### Speed
 * [Update Speed]({{site.docs_dir}}/UpdateSpeed.html)
 * [Merge Speed]({{site.docs_dir}}/MergeSpeed.html)
 
 ### Set Operations
-* [Set Operations]({{site.docs_dir}}/ThetaSketchSetOps.html)
-* [SetOp Accuracy]({{site.docs_dir}}/ThetaSketchSetOpsAccuracy.html)
+* [Set Operations]({{site.docs_dir}}/Theta/ThetaSketchSetOps.html)
+* [SetOp Accuracy]({{site.docs_dir}}/Theta/ThetaSketchSetOpsAccuracy.html)
 
 ### Large Scale Computing
 * [Large Scale]({{site.docs_dir}}/LargeScale.html)
-* [Theta Sketch Pig UDFs]({{site.docs_dir}}/ThetaPigUDFs.html)
-* [Theta Sketch Hive UDFs]({{site.docs_dir}}/ThetaHiveUDFs.html)
+* [Theta Sketch Pig UDFs]({{site.docs_dir}}/Theta/ThetaPigUDFs.html)
+* [Theta Sketch Hive UDFs]({{site.docs_dir}}/Theta/ThetaHiveUDFs.html)
 * [Integration with Druid]({{site.docs_dir}}/DruidIntegration.html)
 * [Memory Package]({{site.docs_dir}}/MemoryPackage.html)
 * [<i>p</i>-Sampling]({{site.docs_dir}}/Sampling.html)
@@ -54,9 +54,9 @@
 * [HLL Sketch](HLL.html)
 
 ## Tuple Sketches
-* [Tuple Sketch Overview]({{site.docs_dir}}/TupleOverview.html)
-* [Tuple Sketch Pig UDFs]({{site.docs_dir}}/TuplePigUDFs.html)
-<!-- * [Tuple Sketch Hive UDFs]({{site.docs_dir}}/TupleHiveUDFs.html) -->
+* [Tuple Sketch Overview]({{site.docs_dir}}/Tuple/TupleOverview.html)
+* [Tuple Sketch Pig UDFs]({{site.docs_dir}}/Tuple/TuplePigUDFs.html)
+<!-- * [Tuple Sketch Hive UDFs]({{site.docs_dir}}/Tuple/TupleHiveUDFs.html) -->
 
 ## Quantiles Sketches
 * [Quantiles Overview]({{site.docs_dir}}/QuantilesOverview.html)
