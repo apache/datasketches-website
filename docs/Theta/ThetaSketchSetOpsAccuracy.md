@@ -50,7 +50,7 @@ This means, of course, that depending on the operationa and the data, the result
 zero, all, or some number in between of the retained values of the Union sketch. 
 Mixed set expressions can produce an error distribution that is larger that of a standard sketch
 of a given <i>Nominal Entries</i> or <i>k</i> and is mathematically described in 
-<a href="http:SketchEquations.html">Sketch Equations / Subsets of Fixed <i>k</i> Sampling</a>. 
+<a href="{{site.docs_pdf_dir}}/SketchEquations.pdf">Sketch Equations / Subsets of Fixed <i>k</i> Sampling</a>. 
 
 #### Source sketches and target with the same <i>Nominal Entries</i> or <i>k</i>
 

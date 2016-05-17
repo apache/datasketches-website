@@ -3,7 +3,7 @@ layout: doc_page
 ---
 
 ## Theta Sketch Framework
-Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum Value</i> (KMV)[1][2] 
+Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum Value</i> (KMV)<sup>1,2</sup> 
 sketches in that KMV sketches are a form of Theta Sketch, but not all Theta Sketches are KMV.
 
 
@@ -24,8 +24,8 @@ This combining function is extended to set <i>Intersections</i> and <i>Differenc
 3. A estimator function that takes as input a <i>Theta Sketch</i> and returns an estimate of the unique 
 hashed stream items presented to all the input sketches.
   
-The TSF enables this sketch library to encompass multiple sketching algorithms including the well known 
-<i>K'th Minimum Value</i> (KMV) sketch with a common API and greatly simplifies implementation of set 
+The TSF enables this sketch library to encompass multiple sketching algorithms including the 
+KMV sketch with a common API and greatly simplifies implementation of set 
 expressions.
 
 Note that in the KMV sketch the value <i>k</i> is overloaded with multiple roles:
@@ -42,7 +42,7 @@ we are going to create a separate threshold variable and call it <i>theta (&thet
 This effectively decouples #3 and #4 above from <i>k</i>. When the sketch is empty <i>&theta;</i> = 1.0. 
 After the sketch has filled with <i>k</i> minimum values <i>&theta;</i> is still 1.0. 
 When the next incoming unique value must be inserted into the sketch the <i>(k+1)<sup>th</sup></i> 
-minimum value, is assigned to <i>&theta;</i> and removed from the cache.[3]
+minimum value, is assigned to <i>&theta;</i> and removed from the cache.<sup>3</sup>
 
 Ultimately, it will be the size of <i>S</i>, <i>|S|</i>, that will determine the stored size of a 
 sketch, which decouples #2 above from the value <i>k</i>. 
@@ -54,10 +54,9 @@ We will discuss the RSE in a later section.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}ThetaSketch1.png" alt="ThetaSketch1" />
 
-[1] Z. Bar-Yossef, T. Jayram, R. Kumar, D. Sivakumar, and L. Trevisan. Counting distinct elements in a data stream. 
-In <i>Randomization and Approximation Techniques in Computer Science</i>, pages 1–10. Springer, 2002.
+[1] Z. Bar-Yossef, T. Jayram, R. Kumar, D. Sivakumar, and L. Trevisan. Counting distinct elements in a data stream. In <i>Randomization and Approximation Techniques in Computer Science</i>, pages 1–10. Springer, 2002.
 
-[2] See <a href="KMVempty.html">KMV Tutorial</a> and 
+[2] See <a href="{{site.docs_dir}}/KMVempty.html">KMV Tutorial</a> and 
 <a href="http://research.neustar.biz/2012/07/09/sketch-of-the-day-k-minimum-values/">Sketch of the Day: K-Minimum Values</a> 
 for a brief tutorials on KMV Sketches.
 

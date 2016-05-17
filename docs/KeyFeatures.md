@@ -52,11 +52,11 @@ its garbage collection.
 
 <h4>Solves Computational Challenges Associated with Unique Identifiers</h4>
   * <b>Estimating cardinality</b> of a stream with many duplicates
-  * Performing <a href="ThetaSketchSetOps.html">set operations</a> (e.g., Union, Intersection, 
+  * Performing <a href="Theta/ThetaSketchSetOps.html">set operations</a> (e.g., Union, Intersection, 
   and Difference) on sets of unique identifiers
   * Estimates of the <b>error bounds</b> of the result can be obtained directly from the result sketch
   * Two families of Count Unique algorithms:
-    * <a href="ThetaSketchFramework.html">The Theta Sketch Framework</a> algorithms that are tuned 
+    * <a href="Theta/ThetaSketchFramework.html">The Theta Sketch Framework</a> algorithms that are tuned 
     for operation on the java heap or off-heap.
     * <a href="HLL.html">The Hyper-Log Log algorithms<a/> when sketch size is of utmost concern.
   
