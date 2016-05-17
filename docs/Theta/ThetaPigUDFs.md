@@ -2,13 +2,13 @@
 layout: doc_page
 ---
 
-## Tuple Sketch Pig UDFs
+## Theta Sketch Pig UDFs
 
 ### Instructions
 
 * get jars
 * save the following script as theta.pig
-* adjust jar versions if necessary
+* adjust jar versions and paths if necessary
 * save the below data into a file called "data.txt"
 * copy data to hdfs: "hdfs dfs -copyFromLocal data.txt"
 * run pig script: "pig theta.pig"
