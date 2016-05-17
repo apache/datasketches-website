@@ -8,7 +8,7 @@ layout: doc_page
 
 * get jars
 * save the following script as frequent_items.pig
-* adjust jar versions if necessary
+* adjust jar versions and paths if necessary
 * save the below data into a file called data.txt
 * copy data to hdfs: "hdfs dfs -copyFromLocal data.txt"
 * run pig script: "pig frequent_items.pig"

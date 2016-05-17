@@ -8,14 +8,14 @@ layout: doc_page
 
 * get jars
 * save the following script as tuple.pig
-* adjust jar versions if necessary
+* adjust jar versions and paths if necessary
 * save the below data into a file called "data.txt"
 * copy data to hdfs: "hdfs dfs -copyFromLocal data.txt"
 * run pig script: "pig tuple.pig"
 
 ### tuple.pig script
 
-    register sketches-pig-0.4.0.jar;
+    register sketches-pig-0.5.1.jar;
     
     DEFINE dataToSketch com.yahoo.sketches.pig.tuple.DataToDoubleSummarySketch('32');
     DEFINE mergeSketch com.yahoo.sketches.pig.tuple.MergeDoubleSummarySketch('32');
@@ -140,46 +140,6 @@ The estimates have high relative error because the sketch was configured with on
     36	b	11.0
     37	b	10.0
     38	b	10.0
-    39	a	8.0
-    40	a	12.0
-    41	a	10.0
-    42	a	10.0
-    43	a	6.0
-    44	a	14.0
-    45	a	5.0
-    46	a	15.0
-    47	a	7.0
-    48	a	13.0
-    49	a	10.0
-    50	a	10.0
-    11	b	9.0
-    12	b	11.0
-    13	b	8.0
-    14	b	12.0
-    15	b	5.0
-    16	b	15.0
-    17	b	7.0
-    18	b	13.0
-    19	b	10.0
-    20	b	10.0
-    21	b	9.0
-    22	b	11.0
-    23	b	7.0
-    24	b	13.0
-    25	b	8.0
-    26	b	12.0
-    27	b	6.0
-    28	b	14.0
-    29	b	10.0
-    30	b	10.0
-    31	b	8.0
-    32	b	12.0
-    33	b	7.0
-    34	b	13.0
-    35	b	9.0
-    36	b	11.0
-    37	b	10.0
-    38	b	10.0
     39	b	8.0
     40	b	12.0
     41	b	9.0
@@ -202,4 +162,3 @@ The estimates have high relative error because the sketch was configured with on
     58	b	10.0
     59	b	8.0
     60	b	12.0
-
