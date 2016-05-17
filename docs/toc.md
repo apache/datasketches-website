@@ -51,7 +51,7 @@
 * [Merging Algorithm Notes]({{site.docs_dir}}/MergingAlgorithm.html)
 
 ## HLL Sketches
-* [HLL Sketch](HLL.html)
+* [HLL Sketch]({{site.docs_dir}}/HLL.html)
 
 ## Tuple Sketches
 * [Tuple Sketch Overview]({{site.docs_dir}}/Tuple/TupleOverview.html)
