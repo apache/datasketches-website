@@ -18,9 +18,9 @@ layout: doc_page
     register sketches-core-0.5.2.jar;
     register sketches-pig-0.5.2.jar;
 
-    DEFINE dataToSketch com.yahoo.sketches.pig.frequencies.DataToFrequentStringsSketch('8');
-    DEFINE mergeSketch com.yahoo.sketches.pig.frequencies.MergeFrequentStringsSketch('8');
-    DEFINE getResult com.yahoo.sketches.pig.frequencies.FrequentStringsSketchToEstimates();
+    define dataToSketch com.yahoo.sketches.pig.frequencies.DataToFrequentStringsSketch('8');
+    define mergeSketch com.yahoo.sketches.pig.frequencies.MergeFrequentStringsSketch('8');
+    define getResult com.yahoo.sketches.pig.frequencies.FrequentStringsSketchToEstimates();
 
     a = load 'data.txt' as (item:chararray, category);
     b = group a by category;
