@@ -14,7 +14,9 @@ layout: doc_page
 * run pig script: "pig frequent_items.pig"
 
 ### frequent_items.pig script
-    register sketches-pig-0.5.1.jar;
+
+    register sketches-core-0.5.2.jar;
+    register sketches-pig-0.5.2.jar;
 
     DEFINE dataToSketch com.yahoo.sketches.pig.frequencies.DataToFrequentStringsSketch('8');
     DEFINE mergeSketch com.yahoo.sketches.pig.frequencies.MergeFrequentStringsSketch('8');

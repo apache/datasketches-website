@@ -15,11 +15,12 @@ layout: doc_page
 
 ### theta.pig script
 
-    register sketches-pig-0.5.1.jar;
+    register sketches-core-0.5.2.jar;
+    register sketches-pig-0.5.2.jar;
 
-    DEFINE dataToSketch com.yahoo.sketches.pig.theta.DataToSketch('32');
-    DEFINE mergeSketch com.yahoo.sketches.pig.theta.Merge('32');
-    DEFINE getResult com.yahoo.sketches.pig.theta.Estimate();
+    define dataToSketch com.yahoo.sketches.pig.theta.DataToSketch('32');
+    define mergeSketch com.yahoo.sketches.pig.theta.Merge('32');
+    define getResult com.yahoo.sketches.pig.theta.Estimate();
 
     a = load 'data.txt' as (id, category);
     b = group a by category;
