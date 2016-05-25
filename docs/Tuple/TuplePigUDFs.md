@@ -15,12 +15,13 @@ layout: doc_page
 
 ### tuple.pig script
 
-    register sketches-pig-0.5.1.jar;
-    
-    DEFINE dataToSketch com.yahoo.sketches.pig.tuple.DataToDoubleSummarySketch('32');
-    DEFINE mergeSketch com.yahoo.sketches.pig.tuple.MergeDoubleSummarySketch('32');
-    DEFINE getResult com.yahoo.sketches.pig.tuple.DoubleSummarySketchToEstimates();
-    
+    register sketches-core-0.5.2.jar;
+    register sketches-pig-0.5.2.jar;
+
+    define dataToSketch com.yahoo.sketches.pig.tuple.DataToDoubleSummarySketch('32');
+    define mergeSketch com.yahoo.sketches.pig.tuple.MergeDoubleSummarySketch('32');
+    define getResult com.yahoo.sketches.pig.tuple.DoubleSummarySketchToEstimates();
+
     a = load 'data.txt' as (id, category, parameter:double);
     b = group a by category;
     c = foreach b {
@@ -32,7 +33,7 @@ layout: doc_page
     -- The next two lines print the results in human readable form for the purpose of this example
     d = foreach c generate category, getResult(sketch);
     dump d;
-    
+
     -- This can be a separate query.
     -- For example, the first part can produce a daily intermediate feed and store it.
     -- This part can load several instances of this daily intermediate feed and merge them
