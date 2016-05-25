@@ -86,7 +86,7 @@ The quantiles for both +/- 1 RSE and +/- 2 RSE establishes the bounds for the 68
 
 ### Accuracy of the Alpha Sketch Family
 
-Another major sketch family is the Alpha Sketch.  Its pitchfork graph looks like the following:
+Another major sketch family is the Alpha Sketch, which leverage the "HIP" estimator.  Its pitchfork graph looks like the following:
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}Alpha4KError.png" alt="Alpha4KError" /> 
 
