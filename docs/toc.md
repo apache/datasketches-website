@@ -59,8 +59,9 @@
 <!-- * [Tuple Sketch Hive UDFs]({{site.docs_dir}}/Tuple/TupleHiveUDFs.html) -->
 
 ## Quantiles Sketches
-* [Quantiles Overview]({{site.docs_dir}}/QuantilesOverview.html)
-* [Quantiles Accuracy]({{site.docs_dir}}/QuantilesAccuracy.html)
+* [Quantiles Overview]({{site.docs_dir}}/Quantiles/QuantilesOverview.html)
+* [Quantiles Accuracy]({{site.docs_dir}}/Quantiles/QuantilesAccuracy.html)
+* [Quantiles Sketch Pig UDFs]({{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html)
 
 ## Frequent Items Sketches
 * [Frequent Items Overview]({{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html)
