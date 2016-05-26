@@ -28,7 +28,7 @@ The sketches were configured with the optional <i>ResizingFactor = X1</i>, which
 It needs to be pointed out that these tests were designed to measure the maximum update speed under ideal conditions so "your mileage may vary"!
 Very few systems would actually be able to feed a single sketch at this rate so these plots represent an upper bound and not realistic update rates in more complex systems environments. Nonetheless, this demonstrates that the sketches would consume very little of an overall system's budget for updating, if there was one, and are quite suitable for real-time streams.
 
-The graphs on this page were generated using the SketchPerformance program in the com.yahoo.sketches.theta package as part of the test hierarchy. 
+The graphs on this page were generated using the SketchPerformance program in the com.yahoo.sketches.performance package of the sketches-misc repository. 
 There is more documentation with the code.
 
 #### Plot Parameters

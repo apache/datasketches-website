@@ -109,8 +109,7 @@ larger population that caused the increase in error.
 And, for this example, increasing the sketch size of <i>S<sub>A</sub></i> would improve the resulting error. 
 The general case may be more complex.
 
-More formally, if we define a factor <i>F</i> to be the ratio 
-(see <a href="{{site.docs_pdf_dir}}/SketchEquations.pdf">Sketch Equations</a>):
+More formally, if we define a factor <i>F</i> to be the ratio:
 
 <center><i>F</i> = (size of Union(A,B) ) / (size of Intersection(A,B).</center>
 

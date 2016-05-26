@@ -78,7 +78,7 @@ The <i>unordered</i> form is more desirable for systems environments where the
 building of the sketches from data occur in real-time and queried in real-time. 
 In this environment there is no need to pay the cost of the sort.
 
-Thus, the choice of <i>ordered</i> or <i>unordered</i> is a trade off between 
+Thus, the choice of <i>ordered</i> or <i>unordered</i> is a tradeoff between 
 real-time sketch build & getEstimate() performance and offline sketch-build 
 and real-time merge performance.
 
@@ -110,7 +110,7 @@ Note: a sketch entry = 8 bytes.
 The number of valid entries in the Quick Select Sketch after it enters estimation mode
 statistically varies from <i>k</i> to <i>15k/8</i> with an average of about <i>3k/2</i>. 
 It is a user option to force a rebuild() prior to compacting the sketch in which case the 
-number of valid entries is always <i>k</i>.
+number of valid entries is never larger than <i>k</i>.
 
 
 &nbsp;  | Empty | After Rebuild() | Estimating Avg | Estimating Max
