@@ -49,6 +49,7 @@
 * [Sketch Equations](https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/SketchEquations.pdf)
 * [Confidence Intervals Notes]({{site.docs_dir}}/ConfidenceIntervals.html)
 * [Merging Algorithm Notes]({{site.docs_dir}}/MergingAlgorithm.html)
+* [Theta References]({{site.docs_dir}}/Theta/ThetaReferences.html)
 
 ## HLL Sketches
 * [HLL Sketch]({{site.docs_dir}}/HLL.html)
@@ -62,11 +63,13 @@
 * [Quantiles Overview]({{site.docs_dir}}/Quantiles/QuantilesOverview.html)
 * [Quantiles Accuracy]({{site.docs_dir}}/Quantiles/QuantilesAccuracy.html)
 * [Quantiles Sketch Pig UDFs]({{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html)
+* [Quantiles References]({{site.docs_dir}}/Quantiles/QuantilesReferences.html)
 
 ## Frequent Items Sketches
 * [Frequent Items Overview]({{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html)
 * [Frequent Items Pig UDFs]({{site.docs_dir}}/FrequentItems/FrequentItemsPigUDFs.html)
 * [Frequent Items Error Table]({{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html)
+* [Frequent Items References]({{site.docs_dir}}/FrequentItems/FrequentItemsReferences.html)
 
 ## Command Line
 * [Creating Command Line Executables]({{site.docs_dir}}/CommandLine/CommandLine.html)
