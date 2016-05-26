@@ -68,6 +68,9 @@
 * [Frequent Items Pig UDFs]({{site.docs_dir}}/FrequentItems/FrequentItemsPigUDFs.html)
 * [Frequent Items Error Table]({{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html)
 
+## Command Line
+* [Creating Command Line Executables]({{site.docs_dir}}/CommandLine/CommandLine.html)
+
 <!--  Getting Started  -->
 
 
