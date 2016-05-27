@@ -114,7 +114,7 @@ for the last line:
 Move this <i>demo</i> file to a local system directory accessible from anywhere in your system, 
 and make it executable.
   
-    cp sketch /usr/local/bin/demo
+    cp demo /usr/local/bin/demo
     chmod +x /usr/local/bin/demo
 
 When run, the output should look something like this:
