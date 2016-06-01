@@ -69,16 +69,16 @@ rank axis. It is plotted as a visual metric on the graph to illustrate its size.
 
 This size of this sketch if stored, would be about 1832 bytes.
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}QuantilesCDF.png" alt="QuantilesCDF" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/QuantilesCDF.png" alt="QuantilesCDF" />
 
 A getQuantiles(sorted actual rank array) produces an ordered array of estimated values. 
 Plotting these values against the actual values produces the inverse CDF plot as follows:
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}QuantilesInverseCDF.png" alt="QuantilesInverseCDF" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/QuantilesInverseCDF.png" alt="QuantilesInverseCDF" />
 
 Examining the absolute rank error vs the actual rank produces the following graph.  
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}QuantilesCDFAbsRankError.png" alt="QuantilesCDFAbsRankError" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/QuantilesCDFAbsRankError.png" alt="QuantilesCDFAbsRankError" />
 
 All of these plots were generated from one set of values, and is not a test of the error bounds. 
 To do that would require repeating this test thousands of times and then plotting the quantiles of the 

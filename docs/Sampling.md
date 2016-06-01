@@ -23,7 +23,7 @@ However, a query against (some small web-app, some small town) may return 0 beca
 It's relative error is now infinity! Sketches with more than 1 sample and less the k samples will have error rates that are in-between, but still can be larger than the native RSE of the basic sketch. 
 This effect is illustrated in the following plot, which was created with p=0.5.
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}pSamplingPitchfork.png" alt="pSamplingPitchfork" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/pSamplingPitchfork.png" alt="pSamplingPitchfork" />
 
 ### The p-Sampling Error Behavior
 
@@ -37,7 +37,7 @@ To the right of the inflection point the error behavior is that of the underlyin
 
 The following log-log plot illustrates these intersecting error behaviors more clearly. 
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}RSE_4K_0p5.png" alt="RSE_4K_0p5" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/RSE_4K_0p5.png" alt="RSE_4K_0p5" />
 
 The RSE (normalized square-root of the variance) of a Bernoulli sampling process, with fixed <i>p</i>, is a straight line on a log-log plot (plotted in blue).
 The y intercept at x=1 is simply <i>(1/p -1)</i> and the log-log slope is -1/2. For p=0.5, the y intercept is 1.0 or 100% relative error. 
@@ -53,7 +53,7 @@ For p-sampling sketches with very small number of samples the error distribution
 In order to provide the library user with meaningful getUpperBound() and getLowerBound() values at these very low sample sizes, 
 the library implements more sophisticated error models as illustrated in the following graph.
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}FractTrialsLB_0p5.png" alt="FractTrialsLB_0p5" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/FractTrialsLB_0p5.png" alt="FractTrialsLB_0p5" />
 
 Each point along the X-axis is the result of 4096 trials. The fraction of those 4096 trials that are less than getLowerBound(1) (Purple) should be less than ~16%.
 The scatter or variance is due to the quantization effects of only 4096 trials. The important thing to note is that for the very low count values, the purple markers 

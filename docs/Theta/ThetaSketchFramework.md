@@ -7,7 +7,7 @@ Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum 
 sketches in that KMV sketches are a form of Theta Sketch, but not all Theta Sketches are KMV.
 
 
-The <a href="{{site.docs_pdf_dir}}/ThetaSketchFramework.pdf">Theta Sketch Framework</a> (TSF) 
+The <a href="{{site.docs_pdf_dir}}/Theta/ThetaSketchFramework.pdf">Theta Sketch Framework</a> (TSF) 
 is a mathematical framework 
 defined in a multi-stream setting that enables set expressions over these streams and encompasses many
 different sketching algorithms. A rudimentary introduction to the mathematics of the simpler sketch algorithms is developed in 
@@ -52,11 +52,11 @@ which is used by the software to determine the target accuracy of the sketch and
 The unbiased estimate simplifies to \|S\|/<i>&theta;</i>, which is just the size of <i>S</i> divided by <i>&theta;</i>. 
 We will discuss the RSE in a later section.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}ThetaSketch1.png" alt="ThetaSketch1" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/ThetaSketch1.png" alt="ThetaSketch1" />
 
 [1] Z. Bar-Yossef, T. Jayram, R. Kumar, D. Sivakumar, and L. Trevisan. Counting distinct elements in a data stream. In <i>Randomization and Approximation Techniques in Computer Science</i>, pages 1–10. Springer, 2002.
 
-[2] See <a href="{{site.docs_dir}}/KMVempty.html">KMV Tutorial</a> and 
+[2] See <a href="{{site.docs_dir}}/Theta/KMVempty.html">KMV Tutorial</a> and 
 <a href="http://research.neustar.biz/2012/07/09/sketch-of-the-day-k-minimum-values/">Sketch of the Day: K-Minimum Values</a> 
 for a brief tutorials on KMV Sketches.
 

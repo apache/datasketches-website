@@ -125,7 +125,7 @@ which allows the threads to work exclusively in their own memory space without i
 from other threads.
 This is illustrated in the following figure.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}SwimLanes.png" alt="SwimLanes" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/SwimLanes.png" alt="SwimLanes" />
 
 Within each swim lane, the controlling application can further "allocate" hierarchical 
 MemoryRegions and assign them to sub-classes or operations operating within that thread. 

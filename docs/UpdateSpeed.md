@@ -13,7 +13,7 @@ The peaks on the QS plots represent successive reqbuilds.  The downward slope on
 The Alpha sketch uses a more advanced hash table update algorithm that defers the first rebuild until after theta has started decreasing.  This is the little spike just to the right of the hump.
 As the number of uniques continue to increase the update speed of the sketch becomes asymptotic to the speed of the hash function itself, which is about 5 nanoseconds.  
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}UpdateSpeed.png" alt="UpdateSpeed" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/UpdateSpeed.png" alt="UpdateSpeed" />
 
  * The Heap Alpha Sketch (red) is the fastest sketch and primarily focused on real-time streaming environments and operates only on the Java heap.
 In this test setup and performing an "average" over all the test points from 8 to 8 million uniques the Alpha sketch update rate averages about 100 million updates per second.
@@ -51,7 +51,7 @@ PPO          | 16
 ### Resize Factors = X1, X2 and X8
 To illustrate how the the optional <i>Resize Factor</i> affects performance refer to the following graph.  All three plots were generated using the Heap QuickSelect Sketch but with different Resize Factors.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}UpdateSpeedWithRF.png" alt="UpdateSpeedWithRF" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/UpdateSpeedWithRF.png" alt="UpdateSpeedWithRF" />
 
 * The blue curve is the same as the blue curve in the graph at the top of this page. 
 It was generated with <i>ResizeFactor = X1</i>, which means the sketch cache was initially created at full size, thus there is no resizing of the cache during the life of the sketch.  (There will be <i>rebuilding</i> but not resizing.)

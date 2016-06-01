@@ -9,7 +9,7 @@ layout: overview_page
   * Query results are <b>approximate</b> but within well defined error bounds that are user 
   configurable by trading off sketch size with accuracy.
   * Designed for <b>Big Data</b>. These sketch implementations are specifically designed for 
-<a href="LargeScale.html">Large-scale</a> computing environments (
+<a href="{{site.docs_dir}}/LargeScale.html">Large-scale</a> computing environments (
 <a href="https://hadoop.apache.org/">Hadoop</a>, 
 <a href="https://pig.apache.org/">Pig</a>, 
 <a href="https://hive.apache.org/">Hive</a>,
@@ -20,7 +20,7 @@ layout: overview_page
   * Extensive documentation with the systems developer in mind.
 
 <h3>Built-In, General Purpose Functions</h3>
-  * General purpose <a href="MemoryPackage.html">Memory Package</a> for managing data off the Java Heap. 
+  * General purpose <a href="{{site.docs_dir}}/MemoryPackage.html">Memory Package</a> for managing data off the Java Heap. 
 This enables systems designers the ability to manage their own large data heaps with 
 dedicated processor threads that would otherwise put undue pressure on the Java heap and 
 its garbage collection.
@@ -30,7 +30,7 @@ its garbage collection.
 <h3>Robust, High Quality Implementations.</h3>
   * Extensive test code leveraging <a href="http://testng.org">TestNG</a>.
   * Benchmarking, speed and accuracy characterization and performance testing code 
-  included in the <i>test</i> package.
+  included in the <a href="https://github.com/DataSketches/sketches-misc">sketches-misc</a>  repository.
   * High Test Code coverage (
 <a href="{{site.core_readme}}">Core</a>,
 <a href="{{site.pig_readme}}">Pig</a>,
@@ -52,13 +52,13 @@ its garbage collection.
 
 <h4>Solves Computational Challenges Associated with Unique Identifiers</h4>
   * <b>Estimating cardinality</b> of a stream with many duplicates
-  * Performing <a href="Theta/ThetaSketchSetOps.html">set operations</a> (e.g., Union, Intersection, 
+  * Performing <a href="{{site.docs_dir}}/Theta/ThetaSketchSetOps.html">set operations</a> (e.g., Union, Intersection, 
   and Difference) on sets of unique identifiers
   * Estimates of the <b>error bounds</b> of the result can be obtained directly from the result sketch
   * Two families of Count Unique algorithms:
-    * <a href="Theta/ThetaSketchFramework.html">The Theta Sketch Framework</a> algorithms that are tuned 
+    * <a href="{{site.docs_dir}}/Theta/ThetaSketchFramework.html">The Theta Sketch Framework</a> algorithms that are tuned 
     for operation on the java heap or off-heap.
-    * <a href="HLL.html">The Hyper-Log Log algorithms<a/> when sketch size is of utmost concern.
+    * <a href="{{site.docs_dir}}/HLL.html">The Hyper-Log Log algorithms<a/> when sketch size is of utmost concern.
   
 <h3>Quantiles</h3>
   * Get normal or inverse PDFs or CDFs of the distributions of any numeric value from your raw data in a 

@@ -16,7 +16,7 @@ since the mid 1990's coinciding with the growth of the Internet and the need to 
 The term <i>sketch</i>, with its allusion to an artist's sketch, has become the popular term to 
 describe these algorithms and associated data structures that implement the theory. 
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}SketchOrigins.png" alt="SketchOrigins" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/SketchOrigins.png" alt="SketchOrigins" />
 
 <a href="https://en.wikipedia.org/wiki/Philippe_Flajolet">Philippe Flajolet</a> 
 is often refered to as the father of sketching with his research in analytic combinatorics and 

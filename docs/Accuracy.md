@@ -8,7 +8,7 @@ Sketch accuracy is usually measured in terms of Relative Error (<i>RE = Measured
 are stochastic processes and the estimates produced are random variables that have a 
 probability distribution that is close to the familiar Gaussian, which looks like the following.
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}Normal2.png" alt="Normal2" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/Normal2.png" alt="Normal2" />
 
 The sketch estimator algorithm examines the internal state of the sketch and returns an estimate 
 of the mean of the probability distribution that includes the actual value. 

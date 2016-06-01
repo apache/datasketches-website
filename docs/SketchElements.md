@@ -28,7 +28,7 @@ examine the sketch data structure and return a result value.
 This result value will be approximate but will have well established and mathematically 
 proven error distribution bounds.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}SketchElements.png" alt="SketchElements" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/SketchElements.png" alt="SketchElements" />
 
 Sketches are typically
 
@@ -45,4 +45,4 @@ be merged without losing accuracy.
 are a function of the configured size of the sketch.
 
 With this background, let's examine some of the 
-<a href="KeyFeatures.html">Key Features</a> of the DataSketches library.
+<a href="{{site.docs_dir}}/KeyFeatures.html">/Key Features</a> of the DataSketches library.

@@ -56,7 +56,7 @@ From 'dump g' (merged across categories):
 
 The expected exact result would be (60.0). The estimate has high relative error because the sketch was configured with only 32 nominal entries.
 
-### [data.txt](data.txt) (tab separated)
+### [data.txt]({{site.docs_dir}}/Theta/data.txt) (tab separated)
     01	a
     02	a
     03	a

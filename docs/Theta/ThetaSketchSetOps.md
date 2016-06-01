@@ -15,7 +15,7 @@ Performing Union and Difference operations are similar.
 The equations for all three set operations are generalized below where the delta symbol, 
 &Delta;, represents one of the three set operations.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}ThetaSetOps.png" alt="ThetaSetOps" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/ThetaSetOps.png" alt="ThetaSetOps" />
 
 The fact that set operations produce sketches as results enables full set expressions, such as<br>
  ((A &#8746; B) &#8745; (C &#8746; D))\\(E &#8746; F).

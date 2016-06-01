@@ -51,7 +51,7 @@ From 'dump g' (merged across categories):
 
     (11.0)
 
-### [data.txt](data.txt) (tab separated)
+### [data.txt]({{site.docs_dir}}/Quantiles/data.txt) (tab separated)
     1	a
     2	a
     3	a

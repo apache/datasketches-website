@@ -83,7 +83,7 @@ all item counts, and <i>epsilon = 3.5/M</i>, where <i>M</i> is the <i>maxMapSize
 This is a worst case guarantee that applies to arbitrary inputs.<sup>1</sup> 
 For inputs typically seen in practice <i>(UB-LB)</i> is usually much smaller.
 
-The [Frequent Items Error Table](FrequentItemsErrorTable.html) can serve as a guide for selecting an
+The [Frequent Items Error Table]({{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html) can serve as a guide for selecting an
 appropriate sized sketch for your application.
 
 ### Background

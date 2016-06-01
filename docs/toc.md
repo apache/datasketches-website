@@ -13,12 +13,12 @@
 * [Theta Sketch Framework]({{site.docs_dir}}/Theta/ThetaSketchFramework.html)
 
 ### KMV Tutorial
-* [The Inverse Estimate]({{site.docs_dir}}/InverseEstimate.html)
-* [Empty Sketch]({{site.docs_dir}}/KMVempty.html)
-* [First Estimator]({{site.docs_dir}}/KMVfirstEst.html)
-* [Better Estimator]({{site.docs_dir}}/KMVbetterEst.html)
-* [Rejection Rules]({{site.docs_dir}}/KMVrejection.html)
-* [Update V(kth) Rule]({{site.docs_dir}}/KMVupdateVkth.html)
+* [The Inverse Estimate]({{site.docs_dir}}/Theta/InverseEstimate.html)
+* [Empty Sketch]({{site.docs_dir}}/Theta/KMVempty.html)
+* [First Estimator]({{site.docs_dir}}/Theta/KMVfirstEst.html)
+* [Better Estimator]({{site.docs_dir}}/Theta/KMVbetterEst.html)
+* [Rejection Rules]({{site.docs_dir}}/Theta/KMVrejection.html)
+* [Update V(kth) Rule]({{site.docs_dir}}/Theta/KMVupdateVkth.html)
 
 ### Accuracy
 * [Basic Accuracy]({{site.docs_dir}}/Accuracy.html)
@@ -45,8 +45,8 @@
 * [<i>p</i>-Sampling]({{site.docs_dir}}/Sampling.html)
 
 ### Theta Sketch Theory
-* [Theta Sketch Framework (PDF)](https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/ThetaSketchFramework.pdf)
-* [Sketch Equations](https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/SketchEquations.pdf)
+* [Theta Sketch Framework (PDF)]({{site.docs_pdf_dir}}/ThetaSketchFramework.pdf)
+* [Sketch Equations]({{site.docs_pdf_dir}}/SketchEquations.pdf)
 * [Confidence Intervals Notes]({{site.docs_dir}}/ConfidenceIntervals.html)
 * [Merging Algorithm Notes]({{site.docs_dir}}/MergingAlgorithm.html)
 * [Theta References]({{site.docs_dir}}/Theta/ThetaReferences.html)
@@ -78,6 +78,6 @@
 
 
 ## Other Information
-* [Who Uses](WhoUses.html)
+* [Who Uses]({{site.docs_dir}}/WhoUses.html)
 <!-- * [Endorsements](endorsements.html) -->
 * [License](/LICENSE.html)

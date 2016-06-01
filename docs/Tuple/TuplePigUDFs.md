@@ -62,7 +62,7 @@ In this example the sketches have a small size of 32 nominal entries. From the f
 Merging across categories pushed the resulting sketch into the estimation mode. The expected exact result would be (60.0, 1000.0).
 The estimates have high relative error because the sketch was configured with only 32 nominal entries.
 
-### [data.txt](data.txt) (tab separated)
+### [data.txt]({{site.docs_dir}}/Tuple/data.txt) (tab separated)
     01	a	10.0
     02	a	10.0
     03	a	9.0
