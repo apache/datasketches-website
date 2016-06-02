@@ -1,5 +1,5 @@
 ---
-layout: overview_page
+layout: doc_page
 ---
 
 <h2>Key Features</h2>

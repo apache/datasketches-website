@@ -1,5 +1,5 @@
 ---
-layout: overview_page
+layout: doc_page
 ---
 
 ## The Challenge: Fast, Approximate Analysis of Big Data<sup>1</sup>
