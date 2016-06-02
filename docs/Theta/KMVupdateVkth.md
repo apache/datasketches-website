@@ -20,7 +20,7 @@ We now have a complete <i>KMV</i> sketch, with some amazing properties:
 * De-duplication is part of the algorithm.
 * If the sketch has retained less than <i>k</i> values, the resulting estimate is exact and is just the count of the values in the cache.  Otherwise, the unbiased estimate of the unique values seen by the sketch is <i>(k-1)/V(k<sup>th</sup>)</i>[1].
 * The <i>Relative Standard Error</i> or <i>RSE</i> of the estimate, for this simple KMV Sketch, is &le; <i>1/sqrt(k-2)</i>[1],
-which is a constant and independent of <i>n</i>, the number of uniques presented to the sketch (See [Accuracy]({{site.docs_dir}}/Accuracy.html)).
+which is a constant and independent of <i>n</i>, the number of uniques presented to the sketch (See [Accuracy]({{site.docs_dir}}/Theta/ThetaAccuracy.html)).
 For large enough values of <i>k</i> the error distribution is roughly Gaussian, which makes preditions of confidence intervals relatively straightforward.
 
 To figure out what value of <i>k</i> is required, you must first determine what level of accuracy is required for your application.  The graph below can serve as a guide.

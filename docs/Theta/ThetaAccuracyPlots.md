@@ -4,7 +4,7 @@ layout: doc_page
 
 ## Accuracy Plots 
 
-### Accuracy of the QuickSelect Sketch Family
+### Accuracy of the Theta: QuickSelect Sketch Family
 
 A QuickSelect Sketch, which is the default sketch family, can be constructed with code similar to:
 
@@ -84,7 +84,7 @@ This is a tradeoff the user can choose to use or not.
 
 The quantiles for both +/- 1 RSE and +/- 2 RSE establishes the bounds for the 68% and 95.4% confidence levels respectfully.
 
-### Accuracy of the Alpha Sketch Family
+### Accuracy of the Theta: Alpha Sketch Family
 
 Another major sketch family is the Alpha Sketch, which leverage the "HIP" estimator.  Its pitchfork graph looks like the following:
 

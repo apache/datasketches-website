@@ -41,7 +41,7 @@ The accuracy behavior of the HLL sketch with the HIP estimator enabled will be s
 <img class="doc-img-half" src="{{site.docs_img_dir}}/Hll4KwHipError.png" alt="Hll4KwHipError" />
 
 This HLL sketch was configured with <i>k</i> = 4096, for direct comparison with the accuracy graphs for the
-theta sketches in [AccuracyPlots]({{site.docs_dir}}/AccuracyPlots.html).  For this graph the error behavior is shown for very 
+theta sketches in [AccuracyPlots]({{site.docs_dir}}/Theta/ThetaAccuracyPlots.html).  For this graph the error behavior is shown for very 
 small numbers of uniques to illustrate that HLL estimates <i>&le; k</i> are not zero as they are with the theta
 sketches.  The wild swings in the very low range are quantization errors as a function of the test software
 attempting to find, for example, the 2.5 percentile point when the number of actual unique values is very small.

@@ -4,7 +4,7 @@ layout: doc_page
 ---
 
 
-## Choosing Desired Relative Error
+## Choosing Desired Relative Error For Theta Sketches
 
 ### Quick Select Sketch (Default)
 

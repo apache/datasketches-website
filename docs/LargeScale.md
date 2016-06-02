@@ -5,25 +5,25 @@ layout: doc_page
 <h2>Designed for Large-scale Computing Systems</h2>
 
 <h3>Speed</h3>
-  * These single-pass, "one-touch" algorithms are <a href="{{site.docs_dir}}/UpdateSpeed.html"><i>fast</i></a> 
+  * These single-pass, "one-touch" algorithms are <a href="{{site.docs_dir}}/Theta/ThetaUpdateSpeed.html"><i>fast</i></a> 
   to enable real-time processing capability.
   * Coupled with the compact binary representations, in many cases the need for costly 
   serialization and deserialization has been eliminated.
-  * The sketch data structures are "additive" and embarassingly parallelizable and can be 
+  * The sketch data structures are "additive" and embarassingly parallelizable. The Theta sketches can be 
   merged without losing accuracy.
 
 <h3>Easy to Integrate</h3>
   * Can be integrated into virtually any Java-base system environment
   * The core library has no dependencies outside of Java.
   * The Hadoop, Druid, Pig, and Hive <a href="{{site.docs_dir}}/Adaptors.html">adaptors<a/>, are provided 
-    in separate repositories.
+    in separate repositories for most of the core sketches.
   * <b>Maven deployable</b> and registered with 
   <a href="http://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>
 
 <h3>Specific Theta Sketch Features for Large Data</h3>
   * <b>Hash Seed Handling</b>. Additional protection for managing hash seeds which is 
   particularly important when processing sensitive user identifiers.
-  * <a href="{{site.docs_dir}}/Sampling.html"><b>Sampling</b></a>. Built-in up-front sampling for cases where additional 
+  * <a href="{{site.docs_dir}}/Theta/ThetaPSampling.html"><b>Sampling</b></a>. Built-in up-front sampling for cases where additional 
   contol is required to limit overall memory consumption when dealing with millions of sketches.
   * Off-Heap <a href="{{site.docs_dir}}/MemoryPackage.html"><b>Memory Package</b></a>. 
   Large query systems often require their own heaps outside the JVM in order to better manage garbage collection latencies. 
@@ -40,6 +40,3 @@ layout: doc_page
   row and column oriented storage are minimized with 
   <a href="{{site.docs_dir}}/Theta/ThetaSize.html">compact binary representations</a>, which are much smaller 
   than the raw input stream and with a well defined upper bound of size.
-  * <b>Adaptors for Grid Computing</b>. Adaptors for 
-  <a href="{{site.docs_dir}}/Adaptors.html">Hadoop, Druid, Pig, and Hive</a> are also included that implement 
-  the major functionality of the core algorithms.

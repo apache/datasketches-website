@@ -2,10 +2,10 @@
 layout: doc_page
 ---
 
-## Basic Sketch Accuracy
+## Basic Theta Sketch Accuracy
 
-Sketch accuracy is usually measured in terms of Relative Error (<i>RE = Measured/Truth -1</i>). Sketches 
-are stochastic processes and the estimates produced are random variables that have a 
+Sketch accuracy is usually measured in terms of Relative Error (<i>RE = Measured/Truth -1</i>).
+Sketches are stochastic processes and the estimates produced are random variables that have a 
 probability distribution that is close to the familiar Gaussian, which looks like the following.
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/Normal2.png" alt="Normal2" />

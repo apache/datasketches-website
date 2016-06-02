@@ -8,12 +8,13 @@ layout: overview_page
   * <b>Single-pass, "one-touch"</b> algorithms enable efficient processing in either real-time or batch.
   * Query results are <b>approximate</b> but within well defined error bounds that are user 
   configurable by trading off sketch size with accuracy.
-  * Designed for <b>Big Data</b>. These sketch implementations are specifically designed for 
-<a href="{{site.docs_dir}}/LargeScale.html">Large-scale</a> computing environments (
+  * Designed for <a href="{{site.docs_dir}}/LargeScale.html">Large-scale</a> computing environments 
+  that must handle <b>Big Data</b>.( e.g., 
 <a href="https://hadoop.apache.org/">Hadoop</a>, 
 <a href="https://pig.apache.org/">Pig</a>, 
 <a href="https://hive.apache.org/">Hive</a>,
-<a href="https://druid.io">Druid</a>), and are heavily used within Yahoo.
+<a href="https://druid.io">Druid</a>), 
+and are heavily used within Yahoo.
   * <b>Maven deployable</b> and registered with 
 <a href="http://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>.
   * Comprehensive <b>unit tests</b> and testing tools are provided.
@@ -58,7 +59,7 @@ its garbage collection.
   * Two families of Count Unique algorithms:
     * <a href="{{site.docs_dir}}/Theta/ThetaSketchFramework.html">The Theta Sketch Framework</a> algorithms that are tuned 
     for operation on the java heap or off-heap.
-    * <a href="{{site.docs_dir}}/HLL.html">The Hyper-Log Log algorithms<a/> when sketch size is of utmost concern.
+    * <a href="{{site.docs_dir}}/HLL/HLL.html">The Hyper-Log Log algorithms<a/> when sketch size is of utmost concern.
   
 <h3>Quantiles</h3>
   * Get normal or inverse PDFs or CDFs of the distributions of any numeric value from your raw data in a 

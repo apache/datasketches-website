@@ -7,6 +7,8 @@
 * [Sketch Origins]({{site.docs_dir}}/SketchOrigins.html)
 * [Sketch Elements]({{site.docs_dir}}/SketchElements.html)
 * [Key Features]({{site.docs_dir}}/KeyFeatures.html)
+  * [Large Scale]({{site.docs_dir}}/LargeScale.html)
+  * [Adaptors]({{site.docs_dir}}/Adaptors.html)
 * [Architecture]({{site.docs_dir}}/Architecture.html)
 
 ## Theta Sketches
@@ -21,38 +23,38 @@
 * [Update V(kth) Rule]({{site.docs_dir}}/Theta/KMVupdateVkth.html)
 
 ### Accuracy
-* [Basic Accuracy]({{site.docs_dir}}/Accuracy.html)
-* [Accuracy Plots]({{site.docs_dir}}/AccuracyPlots.html)
-* [Relative Error Table]({{site.docs_dir}}/ErrorTable.html)
+* [Basic Accuracy]({{site.docs_dir}}/Theta/ThetaAccuracy.html)
+* [Accuracy Plots]({{site.docs_dir}}/Theta/ThetaAccuracyPlots.html)
+* [Relative Error Table]({{site.docs_dir}}/Theta/ThetaErrorTable.html)
 
 ### Size
 * [Theta Sketch Size]({{site.docs_dir}}/Theta/ThetaSize.html)
 
 ### Speed
-* [Update Speed]({{site.docs_dir}}/UpdateSpeed.html)
-* [Merge Speed]({{site.docs_dir}}/MergeSpeed.html)
+* [Update Speed]({{site.docs_dir}}/Theta/ThetaUpdateSpeed.html)
+* [Merge Speed]({{site.docs_dir}}/Theta/ThetaMergeSpeed.html)
 
 ### Set Operations
 * [Set Operations]({{site.docs_dir}}/Theta/ThetaSketchSetOps.html)
 * [SetOp Accuracy]({{site.docs_dir}}/Theta/ThetaSketchSetOpsAccuracy.html)
 
 ### Large Scale Computing
-* [Large Scale]({{site.docs_dir}}/LargeScale.html)
 * [Theta Sketch Pig UDFs]({{site.docs_dir}}/Theta/ThetaPigUDFs.html)
 * [Theta Sketch Hive UDFs]({{site.docs_dir}}/Theta/ThetaHiveUDFs.html)
 * [Integration with Druid]({{site.docs_dir}}/DruidIntegration.html)
 * [Memory Package]({{site.docs_dir}}/MemoryPackage.html)
-* [<i>p</i>-Sampling]({{site.docs_dir}}/Sampling.html)
+* [<i>p</i>-Sampling]({{site.docs_dir}}/Theta/ThetaPSampling.html)
 
 ### Theta Sketch Theory
 * [Theta Sketch Framework (PDF)]({{site.docs_pdf_dir}}/ThetaSketchFramework.pdf)
-* [Sketch Equations]({{site.docs_pdf_dir}}/SketchEquations.pdf)
-* [Confidence Intervals Notes]({{site.docs_dir}}/ConfidenceIntervals.html)
-* [Merging Algorithm Notes]({{site.docs_dir}}/MergingAlgorithm.html)
+* [Sketch Equations (PDF)]({{site.docs_pdf_dir}}/SketchEquations.pdf)
+* [DataSketches (PDF)]({{site.docs_pdf_dir}}/DataSketches.pdf)
+* [Confidence Intervals Notes]({{site.docs_dir}}/Theta/ThetaConfidenceIntervals.html)
+* [Merging Algorithm Notes]({{site.docs_dir}}/Theta/ThetaMergingAlgorithm.html)
 * [Theta References]({{site.docs_dir}}/Theta/ThetaReferences.html)
 
 ## HLL Sketches
-* [HLL Sketch]({{site.docs_dir}}/HLL.html)
+* [HLL Sketch]({{site.docs_dir}}/HLL/HLL.html)
 
 ## Tuple Sketches
 * [Tuple Sketch Overview]({{site.docs_dir}}/Tuple/TupleOverview.html)
