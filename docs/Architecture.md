@@ -34,11 +34,13 @@ Users of this code are advised to use Maven to bring in all the required depende
 This code is versioned and the latest release can be obtained from
 <a href="http://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
 
-High-level Structure      | Package Description
---------------------------|---------------------
-com.yahoo.sketches.hash   | Pig UDFs for MurmerHash3
-com.yahoo.sketches.theta  | Pig UDFs for Theta sketches
-com.yahoo.sketches.tuple  | Pig UDFs for Tuple sketches
+High-level Structure               | Package Description
+-----------------------------------|---------------------
+com.yahoo.sketches.pig.frequencies | Pig UDFs for Frequent Items sketches
+com.yahoo.sketches.pig.hash        | Pig UDFs for MurmerHash3
+com.yahoo.sketches.pig.quantiles   | Pig UDFs for Quantiles sketches
+com.yahoo.sketches.pig.theta       | Pig UDFs for Theta sketches
+com.yahoo.sketches.pig.tuple       | Pig UDFs for Tuple sketches
 
 
 ### sketches-hive
@@ -48,9 +50,9 @@ Users of this code are advised to use Maven to bring in all the required depende
 This code is versioned and the latest release can be obtained from
 <a href="http://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
 
-High-level Structure      | Package Description
---------------------------|---------------------
-com.yahoo.sketches.theta  | Hive UDF and UDAFs for Theta sketches
+High-level Structure           | Package Description
+-------------------------------|---------------------
+com.yahoo.sketches.hive.theta  | Hive UDF and UDAFs for Theta sketches
 
 ### sketches-misc
 Demos, command-line access, characterization testing and other code not related to production 
@@ -62,6 +64,13 @@ and was never intended for production use.
 Nonetheless, some folks have found it useful. If you find it useful, go for it. 
 This code is versioned and the latest release can be obtained from
 <a href="http://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
+    
+High-level Structure               | Package Description
+-----------------------------------|---------------------
+com.yahoo.sketches.benchmark       | Benchmarking code for the HLL sketches
+com.yahoo.sketches.cmd             | Support for Command Line functions
+com.yahoo.sketches.demo            | Simple demo for brute-force vs Theta & HLL sketches
+com.yahoo.sketches.performance     | Speed and Error Characteriation of Theta an HLL sketches
 
 ### experimental
 This repository is an experimental staging area for code that will eventually end up in another 
