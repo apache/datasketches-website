@@ -63,14 +63,14 @@
 
 ## Quantiles Sketches
 * [Quantiles Overview]({{site.docs_dir}}/Quantiles/QuantilesOverview.html)
-* [Quantiles Accuracy]({{site.docs_dir}}/Quantiles/QuantilesAccuracy.html)
+* [Quantiles Accuracy and Size]({{site.docs_dir}}/Quantiles/QuantilesAccuracy.html)
 * [Quantiles Sketch Pig UDFs]({{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html)
 * [Quantiles References]({{site.docs_dir}}/Quantiles/QuantilesReferences.html)
 
 ## Frequent Items Sketches
 * [Frequent Items Overview]({{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html)
 * [Frequent Items Pig UDFs]({{site.docs_dir}}/FrequentItems/FrequentItemsPigUDFs.html)
-* [Frequent Items Error Table]({{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html)
+* [Frequent Items Error Threshold]({{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html)
 * [Frequent Items References]({{site.docs_dir}}/FrequentItems/FrequentItemsReferences.html)
 
 ## Command Line

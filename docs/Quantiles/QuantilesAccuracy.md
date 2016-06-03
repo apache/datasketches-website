@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-## Quantiles Accuracy
+## Quantiles Accuracy and Size
 
 The accuracy of this sketch is a function of the configured value <i>k</i>, which also affects
 the overall size of the sketch. Accuracy of this quantile sketch is always with respect to
