@@ -27,5 +27,5 @@ _site/
 
 # Other
 *.old
-paper/
+.paper/
 tmp/
