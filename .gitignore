@@ -22,7 +22,6 @@ build.xml
 *.iml
 
 # Jekyll
-Gemfile
 Gemfile.lock
 _site/
 
