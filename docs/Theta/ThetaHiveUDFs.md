@@ -6,21 +6,66 @@ layout: doc_page
 
 Depends on sketches-core.
 
-To use Hive UDFs, you should do the following:
+### Building sketches, merging sketches and getting estimates
 
-1. Register the JAR file with Hive:
-  * hive> add jar sketches-hive-0.3.0-incDeps.jar
-2. Register UDF functions with Hive:
-  * hive> create temporary function estimate as &#39;com.yahoo.sketches.hive.theta.EstimateSketchUDF&#39;;
-  * hive> create temporary function data_sketch as &#39;com.yahoo.sketches.hive.theta.DataToSketchUDAF&#39;;
-  * hive> create temporary function merge_sketch as &#39;com.yahoo.sketches.hive.theta.MergeSketchUDAF&#39;;
-3. Run a query: 
-  * hive> select estimate(data_sketch(myCol, 16384, 1.0)) from myTable where color = blue;
-  * hive> select estimate(merge_sketch(unbase64(ActiveUsersSketchByHour),4096)) from myTable;
+    add jar sketches-hive-0.3.1-SNAPSHOT-with-shaded-core.jar;
+    create temporary function data2sketch as 'com.yahoo.sketches.hive.theta.DataToSketchUDAF';
+    create temporary function merge as 'com.yahoo.sketches.hive.theta.MergeSketchUDAF';
+    create temporary function estimate as 'com.yahoo.sketches.hive.theta.EstimateSketchUDF';
 
-Note: ActiveUsersSketchByHour is a Base64(sketch.toByteArray()).
-  
-See <a href="{{site.hive_readme}}">hive README.md</a>.
+    use <your-db-name-here>;
 
-See <a href="{{site.hive_api_snapshot}}">API Snapshot for Hive</a>.
+    create temporary table theta_input (id int, category char(1));
+    insert into table theta_input values
+      (1, 'a'), (2, 'a'), (3, 'a'), (4, 'a'), (5, 'a'), (6, 'a'), (7, 'a'), (8, 'a'), (9, 'a'), (10, 'a'),
+      (6, 'b'), (7, 'b'), (8, 'b'), (9, 'b'), (10, 'b'), (11, 'b'), (12, 'b'), (13, 'b'), (14, 'b'), (15, 'b');
 
+    create temporary table sketch_intermediate (category char(1), sketch binary);
+    insert into sketch_intermediate select category, data2sketch(id) from theta_input group by category;
+
+    select category, estimate(sketch) from sketch_intermediate;
+
+    select estimate(merge(sketch)) from sketch_intermediate group by null;
+
+Results:
+
+From 'select category, estimate(sketch) from sketch_intermediate;':
+
+    a	10.0
+    b	10.0
+
+From 'select estimate(merge(sketch)) from sketch_intermediate group by null;':
+
+    15.0
+
+### Set operations
+
+    add jar sketches-hive-0.3.1-SNAPSHOT-with-shaded-core.jar;
+    create temporary function data2sketch as 'com.yahoo.sketches.hive.theta.DataToSketchUDAF';
+    create temporary function estimate as 'com.yahoo.sketches.hive.theta.EstimateSketchUDF';
+    create temporary function union as 'com.yahoo.sketches.hive.theta.UnionSketchUDF';
+    create temporary function intersect as 'com.yahoo.sketches.hive.theta.IntersectSketchUDF';
+    create temporary function anotb as 'com.yahoo.sketches.hive.theta.ExcludeSketchUDF';
+
+    use <your-db-nasme-here>;
+
+    create temporary table sketch_input (id1 int, id2 int);
+    insert into table sketch_input values
+      (1, 2), (2, 4), (3, 6), (4, 8), (5, 10), (6, 12), (7, 14), (8, 16), (9, 18), (10, 20);
+
+    create temporary table sketch_intermediate (sketch1 binary, sketch2 binary);
+
+    insert into sketch_intermediate select data2sketch(id1), data2sketch(id2) from sketch_input group by null;
+
+    select
+      estimate(sketch1),
+      estimate(sketch2),
+      estimate(union(sketch1, sketch2)),
+      estimate((intersect(sketch1, sketch2))),
+      estimate(anotb(sketch1, sketch2)),
+      estimate(anotb(sketch2, sketch1))
+    from sketch_intermediate;
+
+Result:
+
+    10.0	10.0	15.0	5.0	5.0	5.0
