@@ -13,7 +13,7 @@ layout: doc_page
 * copy data to hdfs: "hdfs dfs -copyFromLocal data.txt"
 * run pig script: "pig theta.pig"
 
-### theta.pig script
+### theta.pig script: building sketches, merging sketches and getting estimates
 
     register sketches-core-0.5.2.jar;
     register sketches-pig-0.5.2.jar;
@@ -40,6 +40,8 @@ layout: doc_page
     g = foreach f generate getResult(sketch);
     dump g;
 
+### [data.txt]({{site.docs_dir}}/Theta/data.txt) (tab separated)
+
 The example input data has 2 fields: id and category.
 There are 2 categories 'a' and 'b' with 50 unique IDs in each.
 Most of the IDs in these categories overlap, so that there are 60 unique IDs in total.
@@ -56,144 +58,40 @@ From 'dump g' (merged across categories):
 
 The expected exact result would be (60.0). The estimate has high relative error because the sketch was configured with only 32 nominal entries.
 
-### [data.txt]({{site.docs_dir}}/Theta/data.txt) (tab separated)
-    01	a
-    02	a
-    03	a
-    04	a
-    05	a
-    06	a
-    07	a
-    08	a
-    09	a
-    10	a
-    11	a
-    12	a
-    13	a
-    14	a
-    15	a
-    16	a
-    17	a
-    18	a
-    19	a
-    20	a
-    21	a
-    22	a
-    23	a
-    24	a
-    25	a
-    26	a
-    27	a
-    28	a
-    29	a
-    30	a
-    31	a
-    32	a
-    33	a
-    34	a
-    35	a
-    36	a
-    37	a
-    38	a
-    39	a
-    40	a
-    41	a
-    42	a
-    43	a
-    44	a
-    45	a
-    46	a
-    47	a
-    48	a
-    49	a
-    50	a
-    11	b
-    12	b
-    13	b
-    14	b
-    15	b
-    16	b
-    17	b
-    18	b
-    19	b
-    20	b
-    21	b
-    22	b
-    23	b
-    24	b
-    25	b
-    26	b
-    27	b
-    28	b
-    29	b
-    30	b
-    31	b
-    32	b
-    33	b
-    34	b
-    35	b
-    36	b
-    37	b
-    38	b
-    39	a
-    40	a
-    41	a
-    42	a
-    43	a
-    44	a
-    45	a
-    46	a
-    47	a
-    48	a
-    49	a
-    50	a
-    11	b
-    12	b
-    13	b
-    14	b
-    15	b
-    16	b
-    17	b
-    18	b
-    19	b
-    20	b
-    21	b
-    22	b
-    23	b
-    24	b
-    25	b
-    26	b
-    27	b
-    28	b
-    29	b
-    30	b
-    31	b
-    32	b
-    33	b
-    34	b
-    35	b
-    36	b
-    37	b
-    38	b
-    39	b
-    40	b
-    41	b
-    42	b
-    43	b
-    44	b
-    45	b
-    46	b
-    47	b
-    48	b
-    49	b
-    50	b
-    51	b
-    52	b
-    53	b
-    54	b
-    55	b
-    56	b
-    57	b
-    58	b
-    59	b
-    60	b
+### theta_setops.pig script: set operations on sketches
+
+    register sketches-core-0.5.2.jar;
+    register sketches-pig.jar;
+
+    define dataToSketch com.yahoo.sketches.pig.theta.DataToSketch('32');
+    define merge com.yahoo.sketches.pig.theta.Merge();
+    define intersect com.yahoo.sketches.pig.theta.Intersect();
+    define anotb com.yahoo.sketches.pig.theta.AexcludeB();
+    define estimate com.yahoo.sketches.pig.theta.Estimate();
+
+    a = load 'setops_data.txt' as (id1, id2);
+    b = group a all;
+    c = foreach b generate
+      flatten(dataToSketch(a.id1)) as (sketch1),
+      flatten(dataToSketch(a.id2)) as (sketch2);
+    d = foreach c generate
+      sketch1, -- pass sketches through to have all estimates in one place 
+      sketch2,
+      flatten(merge(TOBAG(sketch1, sketch2))) as (a_union_b),
+      flatten(intersect(TOBAG(sketch1, sketch2))) as (a_intersect_b),
+      flatten(anotb(sketch1, sketch2)) as (a_not_b),
+      flatten(anotb(sketch2, sketch1)) as (b_not_a);
+    e = foreach d generate
+      estimate(sketch1),
+      estimate(sketch2),
+      estimate(a_union_b),
+      estimate(a_intersect_b),
+      estimate(a_not_b),
+      estimate(b_not_a);
+    dump e;
+
+### [setops_data.txt]({{site.docs_dir}}/Theta/setops_data.txt) (tab separated)
+
+Result:
+
+    (10.0,12.0,18.0,4.0,6.0,8.0)
