@@ -65,6 +65,9 @@
 * [Quantiles Overview]({{site.docs_dir}}/Quantiles/QuantilesOverview.html)
 * [Quantiles Accuracy and Size]({{site.docs_dir}}/Quantiles/QuantilesAccuracy.html)
 * [Quantiles Sketch Pig UDFs]({{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html)
+
+### Quantiles Sketch Theory
+* [Optimal Quantile Approximation in Streams]({{site.docs_pdf_dir}}/Quantiles_KLL.pdf)
 * [Quantiles References]({{site.docs_dir}}/Quantiles/QuantilesReferences.html)
 
 ## Frequent Items Sketches
