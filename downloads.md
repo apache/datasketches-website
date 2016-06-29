@@ -48,55 +48,7 @@ The code is automatically tested using the current test suite, but you might cat
 transition to a new future release. Caveat Emptor.
 
 ### Version History
-(To be filled out as I have time :) )
+Moved to github tags.
 
-* 0.5.0
-  * Core
-    * Introduction of the Frequent Items family of sketches
-    * JDK7 support has been removed.  JDK8 is now required.
-    * Numerous updates to Javadocs, code docs, and a few minor API changes.
-  * Hive
-    * Hive jar will not include a shaded core
-  * Pig
-    * Pig jar will not include a shaded core
-* 0.4.1
-  * Core
-  * Hive
-  * Pig
-* 0.4.0 Introduction of the Tuple Sketch family of sketches
-  * Core
-  * Hive
-  * Pig
-* 0.3.2
-  * Core
-  * Hive
-  * Pig
-* 0.3.1
-  * Core
-  * Hive
-  * Pig
-* 0.3.0
-  * Core
-  * Hive
-  * Pig
-* 0.2.2
-  * Core
-  * Hive
-  * Pig
-* 0.2.1
-  * Core
-  * Hive
-  * Pig
-* 0.2.0
-  * Core
-  * Hive
-  * Pig
-* 0.1.1
-  * Core
-  * Hive
-  * Pig
-* 0.1.0 Original Open Source version
-  * Core
-  * Hive
-  * Pig
+
  
