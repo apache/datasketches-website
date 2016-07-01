@@ -2,12 +2,19 @@
 layout: doc_page
 ---
 
-## Quantiles Sketch Overview
+# Quantiles Sketch Overview
 
 This is a stochastic streaming sketch that enables near-real time analysis of the 
-approximate distribution of real values from a very large stream in a single pass. 
+approximate distribution of comparable values from a very large stream in a single pass. 
 The analysis is obtained using a getQuantiles() function or its inverse functions the 
 Probability Mass Function from getPMF() and the Cumulative Distribution Function from getCDF().
+
+### Section links:
+* [Section 1](#Section 1) Sketches-Core Numeric Quantiles
+* [Section 2](#Section 2) Sketches-Core Extending Generic Quantiles Classes
+* [Section 3](#Section 3) Implementation Notes
+
+## <a name="Section 1"></a>Sketches-Core Numeric Quantiles
 
 Consider this real data example of a stream of 230 million time-spent events collected from one our systems for a period of just 30 minutes. Each event records the amount of time in milliseconds that a user spends on a web page before moving to a different web page by taking some action, such as a click. 
 
@@ -18,7 +25,7 @@ The relevant pseudo-code snippets would look something like this:
     int k = 256; //256 gives < 1% normalized rank error
     QuantilesSketch sketch = QuantilesSketch.builder().build(k);
     
-    while ( remainingValues == true) { //stream in all the values, one by one
+    while ( remainingValuesExist ) { //stream in all the values, one by one
       sketch.update(nextValue());
     }
     
@@ -144,8 +151,74 @@ sketch.  Here are some brief snippets, simpler than the above graphs, to get you
        Max Value                    : 1,999,999.000
     ### END SKETCH SUMMARY
     */
+
+
+## <a name="Section 2"></a>Sketches-Core Extending Generic Quantiles Classes
+
+Any item type that is comparable, or for which you can create a Comparator, can also be analyzed by extending the abstract generic classes for that particular item.
+
+Suppose you have a massive number of comparable MyItems that you wish to partition in to 10 equal parts for more efficient downstream processing. 
+The task is to figure out how to equally partition your data.
+
+First you build a comparator for MyItem:
+
+    public class MyComparator implements java.util.Comparator<MyItem> {
+        @Override
+        public int compare(MyItem item1, MyItem item2) {
+            //compute equivalent to ...
+            return (item1 < item2)? -1 : (item1 > item2)? 1 : 0;
+        }
+    }
+
+In distributed or multi-JVM environments you will also need to extend the ArrayOfItemsSerDe base class.
+Serialization and deserialization is required to move sketch images across JVMs.
+The methods in this class are called by the sketch toByteArray() and skech constructor as necessary. 
+
+    import com.yahoo.sketches.ArrayOfItemsSerDe;
+    import com.yahoo.sketches.memory.Memory;
     
-###Implementation Notes
+    public class ArrayOfMyItemsSerDe extends ArrayOfItemsSerDe<MyItem> {
+      
+      @Override
+      public byte[] serializeToByteArray(MyItem[] items) {
+        byte[] byteArr = // hopefully fast and efficient :)
+        return byteArr;
+      }
+      
+      @Override
+      public MyItem[] deserializeFromMemory(Memory mem, int numItems) {
+         //Memory is similar to ByteBuffer, but much more flexible
+         // see com.yahoo.sketches.memory
+         MyItem[] myItemArr = new MyItem[numItems];
+         for ( int i = 0; i < numItems; i++ ) {
+           //extract each item from mem. See com.yahoo.sketches.ArrayOfStringsSerDe example.
+           MyItem item = //...
+           myItemArr[i] = item;
+         }
+         return myItemArr;
+      }
+    }
+
+You are ready to feed all of MyItems into the sketch:
+
+    import com.yahoo.sketches.quantiles.ItemsSketch;
+    
+    ItemsSketch<MyItem> sketch = ItemsSketch.getInstance(128, new MyComparator());
+    while ( remainingItemsExist ) {
+        sketch.update( nextItem() );
+    }
+
+Then obtain the split point values that equally partition the data into 10 partitions.
+
+    double[] rankFractions = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
+    MyItem[] itemSplitPoints = sketch.getQuantiles(rankFractions);
+
+
+Using a simple binary search you can now split your data into the 10 partitions. 
+
+
+
+## <a name="Section 3"></a>Implementation Notes
 
 The quantiles algorithm is an implementation of the Low Discrepancy Mergeable Quantiles Sketch, using double values, described in section 3.2 of the journal version of the paper "Mergeable Summaries" by Agarwal, Cormode, Huang, Phillips, Wei, and Yi. 
 <a href="http://dblp.org/rec/html/journals/tods/AgarwalCHPWY13"></a>
