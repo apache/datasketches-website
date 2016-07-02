@@ -8,9 +8,11 @@ Depends on sketches-core.
 
 ### Building sketches, merging sketches and getting estimates
 
-    add jar sketches-hive-0.3.1-SNAPSHOT-with-shaded-core.jar;
+    add jar sketches-core-0.6.0.jar;
+    add jar sketches-hive-0.6.0.jar;
+
     create temporary function data2sketch as 'com.yahoo.sketches.hive.theta.DataToSketchUDAF';
-    create temporary function merge as 'com.yahoo.sketches.hive.theta.MergeSketchUDAF';
+    create temporary function union as 'com.yahoo.sketches.hive.theta.UnionSketchUDAF';
     create temporary function estimate as 'com.yahoo.sketches.hive.theta.EstimateSketchUDF';
 
     use <your-db-name-here>;
@@ -25,22 +27,20 @@ Depends on sketches-core.
 
     select category, estimate(sketch) from sketch_intermediate;
 
-    select estimate(merge(sketch)) from sketch_intermediate group by null;
-
-Results:
-
-From 'select category, estimate(sketch) from sketch_intermediate;':
-
+    Output:
     a	10.0
     b	10.0
 
-From 'select estimate(merge(sketch)) from sketch_intermediate group by null;':
+    select estimate(union(sketch)) from sketch_intermediate group by null;
 
+    Output:
     15.0
 
 ### Set operations
 
-    add jar sketches-hive-0.3.1-SNAPSHOT-with-shaded-core.jar;
+    add jar sketches-core-0.6.0.jar;
+    add jar sketches-hive-0.6.0.jar;
+
     create temporary function data2sketch as 'com.yahoo.sketches.hive.theta.DataToSketchUDAF';
     create temporary function estimate as 'com.yahoo.sketches.hive.theta.EstimateSketchUDF';
     create temporary function union as 'com.yahoo.sketches.hive.theta.UnionSketchUDF';
@@ -66,6 +66,5 @@ From 'select estimate(merge(sketch)) from sketch_intermediate group by null;':
       estimate(anotb(sketch2, sketch1))
     from sketch_intermediate;
 
-Result:
-
+    Output:
     10.0	10.0	15.0	5.0	5.0	5.0
