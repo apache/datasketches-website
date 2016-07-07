@@ -31,7 +31,7 @@ Depends on sketches-core.
     a	10.0
     b	10.0
 
-    select estimate(union(sketch)) from sketch_intermediate group by null;
+    select estimate(union(sketch)) from sketch_intermediate;
 
     Output:
     15.0
@@ -55,7 +55,7 @@ Depends on sketches-core.
 
     create temporary table sketch_intermediate (sketch1 binary, sketch2 binary);
 
-    insert into sketch_intermediate select data2sketch(id1), data2sketch(id2) from sketch_input group by null;
+    insert into sketch_intermediate select data2sketch(id1), data2sketch(id2) from sketch_input;
 
     select
       estimate(sketch1),
