@@ -37,6 +37,6 @@ algorithms used for solving the
 <a href="https://en.wikipedia.org/wiki/Count-distinct_problem">count-distinct</a> problem.
 
 ________
-</a><sup>1</sup><small>Also known as "Approximate Query Processing", see 
+<sup>1</sup><small>Also known as "Approximate Query Processing", see 
 <a href="http://people.cs.umass.edu/~mcgregor/711S12/sketches1.pdf">Sketch Techniques for Approximate Query Processing</a></small>
 
