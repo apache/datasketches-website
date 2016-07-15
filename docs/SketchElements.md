@@ -34,7 +34,7 @@ Sketches are typically
 
 * Small in size. They are typically orders of magnitude smaller than the raw input data stream. 
 Sketches implement *sublinear* algorithms that grow in size much slower than that of the size of
-the input stream.  Some skethces have a finite upper-bound in size that is independent of the 
+the input stream.  Some sketches have a finite upper-bound in size that is independent of the 
 size of the input stream.
 * Fast. The update times are independent of the size or order of the input stream. 
 These sketches are inherently "Single Pass" or "One Touch". 
@@ -45,4 +45,4 @@ be merged without losing accuracy.
 are a function of the configured size of the sketch.
 
 With this background, let's examine some of the 
-<a href="{{site.docs_dir}}/KeyFeatures.html">/Key Features</a> of the DataSketches library.
+<a href="{{site.docs_dir}}/KeyFeatures.html">Key Features</a> of the DataSketches library.
