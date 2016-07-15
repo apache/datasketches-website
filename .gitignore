@@ -12,18 +12,28 @@ bin/
 
 #Test output
 test-output/
+.clover/
+local/
+reports/
+.pmd
 
 # Build artifacts
 target/
 out/
 build/
+jarsIn/
+*.jar
 build.xml
 .idea
 *.iml
+*.properties
+*.releaseBackup
 
 # Jekyll
 Gemfile.lock
 _site/
+_*
+_*/
 
 # Other
 *.old

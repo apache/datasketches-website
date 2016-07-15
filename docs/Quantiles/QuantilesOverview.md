@@ -172,7 +172,7 @@ First you build a comparator for MyItem:
 
 In distributed or multi-JVM environments you will also need to extend the ArrayOfItemsSerDe base class.
 Serialization and deserialization is required to move sketch images across JVMs.
-The methods in this class are called by the sketch toByteArray() and skech constructor as necessary. 
+The methods in this class are called by the sketch toByteArray() and sketch constructor as necessary. 
 
     import com.yahoo.sketches.ArrayOfItemsSerDe;
     import com.yahoo.sketches.memory.Memory;
