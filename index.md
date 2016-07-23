@@ -4,7 +4,7 @@ title: Data Sketches
 layout: html_page
 id: home
 ---
-
+<!-- Start index.md -->
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/header.css">
 
@@ -19,7 +19,7 @@ id: home
         <a href="https://en.wikipedia.org/wiki/Streaming_algorithm" style="color: #EDE379"><i>streaming algorithms</i></a></p>
       <p>
         <a class="btn btn-lg btn-outline-inverse" href="overview.html"><span class="fa fa-info-circle"></span> Overview</a>
-        <a class="btn btn-lg btn-outline-inverse" href="downloads.html"><span class="fa fa-download"></span> Download</a>
+        <a class="btn btn-lg btn-outline-inverse" href="/docs/downloads.html"><span class="fa fa-download"></span> Download</a>
         <a class="btn btn-lg btn-outline-inverse" href="https://github.com/datasketches"><span class="fa fa-github"></span> GitHub</a>
         <a class="btn btn-lg btn-outline-inverse" href="https://groups.google.com/forum/#!forum/sketches-user"><span class="fa fa-comment"></span> Comments</a>
       </p>
@@ -30,7 +30,14 @@ id: home
 
 <div class="container">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2 text-center">
+    <div> <!--class="col-md-8 col-md-offset-2 text-center" -->
+<p class="text-justify">In the analysis of big data there are often problem queries that don’t scale because they require huge compute resources and time to generate exact results. Examples include <i>count distinct</i>, quantiles, most frequent items, joins, matrix computations, and graph analysis.</p>
+
+<p class="text-justify">If approximate results are acceptable, there is a class of specialized algorithms, called streaming algorithms, or <a href="/docs/SketchOrigins.html">sketches</a> that can produce results orders-of magnitude faster and with mathematically proven error bounds. For interactive queries there may not be other viable alternatives, and in the case of real-time analysis, sketches are the only known solution.</p>
+
+<p class="text-justify">For any system that needs to extract useful information from big data these sketches are a required toolkit that should be tightly integrated into their analysis capabilities. This technology has helped Yahoo successfully reduce data processing times from days to hours or minutes on a number of its internal platforms.</p>
+
+<p class="text-justify">This site is dedicated to providing key sketch algorithms of production quality. Contributions are welcome from those in the big data community interested in further development of this science and art.</p>
     </div>
   </div>
   <div class="row text-center main-marketing">
@@ -51,11 +58,10 @@ id: home
         <span class="fa fa-database fa-4x"></span>
         <h2>Big Data</h2>
       </a>
-      <p class="text-justify">This library has been specifically designed for Big Data systems: 
-      Hadoop, Druid, and Hive sketch adaptors, 
-      a Memory package for managing large off-heap memory data structures, 
-      additional protection of sensitive user identifiers by special handling of hash seeds, 
-      additional reduction of memory consumption with a front-end sampling, and compact binary storage.</p>
+      <p class="text-justify">This library has been specifically designed for big data systems. 
+      Included are adaptors for Hadoop Pig and Hive, which also can be used as examples for other systems, 
+      and many other capabilities typically required in big data analysis systems. 
+      For example, a Memory package for managing large off-heap memory data structures.</p>
     </div>
 
     <div class="col-md-4">
@@ -91,3 +97,4 @@ id: home
     </div>
   </div>
 </div>
+<!-- End index.md -->

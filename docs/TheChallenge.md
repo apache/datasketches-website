@@ -3,7 +3,13 @@ layout: doc_page
 ---
 
 ## The Challenge: Fast, Approximate Analysis of Big Data<sup>1</sup>
-In the analysis of big data<sup>2</sup> there are often problem queries that don’t scale because they require huge compute resources to generate exact results, or don’t parallelize well. Examples include <i>count distinct</i><sup>3</sup>, quantiles, most frequent items, joins, matrix computations, and graph analysis. Algorithms that can produce “good enough” approximate answers for these problem queries are a required toolkit for modern analysis systems that need to process massive amounts of data quickly. For interactive queries there may not be other viable alternatives, and in the case of real-time streams, these specialized algorithms, appropriately called streaming algorithms, or [sketches]({{site.docs_dir}}/SketchOrigins.html), are the only known solution. This technology has helped Yahoo successfully reduce data processing times from days to hours or minutes on a number of its internal platforms. This section provides a short introduction to some of the capabilities of this library, 
+In the analysis of big data<sup>2</sup> there are often problem queries that don’t scale because they require huge compute resources and time to generate exact results. Examples include <i>count distinct</i><sup>3</sup>, quantiles, most frequent items, joins, matrix computations, and graph analysis. 
+
+If approximate results are acceptable, there is a class of specialized algorithms, called streaming algorithms, or [sketches]({{site.docs_dir}}/SketchOrigins.html) that can produce results orders-of magnitude faster and with mathematically proven error bounds. For interactive queries there may not be other viable alternatives, and in the case of real-time analysis, sketches are the only known solution. 
+
+For any system that needs to extract useful information from big data these sketches are a required toolkit that should be tightly integrated into their analysis capabilities. This technology has helped Yahoo successfully reduce data processing times from days to hours or minutes on a number of its internal platforms. 
+
+This section provides a short introduction to some of the capabilities of this library, 
 
 ## [Theta Sketches]({{site.docs_dir}}/Theta/ThetaSketchFramework.html): Estimating Stream Expression Cardinalities
 Internet content, search and media companies like Yahoo, Google, Facebook, etc., collect many tens of billions of event records from the many millions of users to their web sites each day.  These events can be classified by many different dimensions, such as the page visited and user location and profile information.  Each event also contains some unique identifiers associated with the user, specific device (cell phone, tablet, or computer) and the web browser used.  
