@@ -14,7 +14,7 @@ id: home
     <div class="col-md-8 col-md-offset-2 text-center">
       <span class="ds-bootlogo"></span>
       <p class="lead" style="font-size: 28px; margin-bottom: 10px">Sketches Library from <span class="y-bootlogo"></span></p>
-      <p class="lead" style="font-size: 16px; line-height: 0.5; margin-bottom: 15px">A Java software library of 
+      <p class="lead" style="font-size: 16px; line-height: 1.0; margin-bottom: 15px">A Java software library of 
         <a href="https://en.wikipedia.org/wiki/Stochastic" style="color: #EDE379"><i>stochastic</i></a> 
         <a href="https://en.wikipedia.org/wiki/Streaming_algorithm" style="color: #EDE379"><i>streaming algorithms</i></a></p>
       <p>
