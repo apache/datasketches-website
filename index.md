@@ -30,14 +30,14 @@ id: home
 
 <div class="container">
   <div class="row">
-    <div> <!--class="col-md-8 col-md-offset-2 text-center" -->
-<p class="text-justify">In the analysis of big data there are often problem queries that don’t scale because they require huge compute resources and time to generate exact results. Examples include <i>count distinct</i>, quantiles, most frequent items, joins, matrix computations, and graph analysis.</p>
+    <div class="text-justify" style="font-size: 20px; padding-left: 25px; padding-right: 25px">
+<p>In the analysis of big data there are often problem queries that don’t scale because they require huge compute resources and time to generate exact results. Examples include <i>count distinct</i>, quantiles, most frequent items, joins, matrix computations, and graph analysis.</p>
 
-<p class="text-justify">If approximate results are acceptable, there is a class of specialized algorithms, called streaming algorithms, or <a href="/docs/SketchOrigins.html">sketches</a> that can produce results orders-of magnitude faster and with mathematically proven error bounds. For interactive queries there may not be other viable alternatives, and in the case of real-time analysis, sketches are the only known solution.</p>
+<p>If approximate results are acceptable, there is a class of specialized algorithms, called streaming algorithms, or <a href="/docs/SketchOrigins.html">sketches</a> that can produce results orders-of magnitude faster and with mathematically proven error bounds. For interactive queries there may not be other viable alternatives, and in the case of real-time analysis, sketches are the only known solution.</p>
 
-<p class="text-justify">For any system that needs to extract useful information from big data these sketches are a required toolkit that should be tightly integrated into their analysis capabilities. This technology has helped Yahoo successfully reduce data processing times from days to hours or minutes on a number of its internal platforms.</p>
+<p>For any system that needs to extract useful information from big data these sketches are a required toolkit that should be tightly integrated into their analysis capabilities. This technology has helped Yahoo successfully reduce data processing times from days to hours or minutes on a number of its internal platforms.</p>
 
-<p class="text-justify">This site is dedicated to providing key sketch algorithms of production quality. Contributions are welcome from those in the big data community interested in further development of this science and art.</p>
+<p>This site is dedicated to providing key sketch algorithms of production quality. Contributions are welcome from those in the big data community interested in further development of this science and art.</p>
     </div>
   </div>
   <div class="row text-center main-marketing">
