@@ -4,6 +4,7 @@
 
 ## Overview
 * [The Challenge]({{site.docs_dir}}/TheChallenge.html)
+* [The Major Sketch Families]({{site.docs_dir}}/MajorSketchFamilies.html)
 * [Sketch Origins]({{site.docs_dir}}/SketchOrigins.html)
 * [Sketch Elements]({{site.docs_dir}}/SketchElements.html)
 * [Key Features]({{site.docs_dir}}/KeyFeatures.html)

@@ -3,44 +3,114 @@ layout: doc_page
 ---
 
 ## The Challenge: Fast, Approximate Analysis of Big Data<sup>1</sup>
-In the analysis of big data<sup>2</sup> there are often problem queries that don’t scale because they require huge compute resources and time to generate exact results. Examples include <i>count distinct</i><sup>3</sup>, quantiles, most frequent items, joins, matrix computations, and graph analysis. 
+Suppose you have a new Internet company that sells Mobile Apps and Music.  Your internal reporting system collects log data from two main sources: your web servers and your Financial Transactions System that records purchases and handles credit cards and authentication.  The data logs from these two systems might look something like this:
 
-If approximate results are acceptable, there is a class of specialized algorithms, called streaming algorithms, or [sketches]({{site.docs_dir}}/SketchOrigins.html) that can produce results orders-of magnitude faster and with mathematically proven error bounds. For interactive queries there may not be other viable alternatives, and in the case of real-time analysis, sketches are the only known solution. 
+<img class="doc-img-full" src="{{site.docs_img_dir}}/TwoDataSources.png" alt="TwoDataSources" />
 
-For any system that needs to extract useful information from big data these sketches are a required toolkit that should be tightly integrated into their analysis capabilities. This technology has helped Yahoo successfully reduce data processing times from days to hours or minutes on a number of its internal platforms. 
+The web server logs contain information such as a time-stamp, a user identifier (obfuscated, of course), the site visited, a time-spent metric, and a number of items viewed metric. 
+The financial logs contain information such as a time-stamp, a user identifier, the site visited, the purchased item and revenue received for the item.
 
-This section provides a short introduction to some of the capabilities of this library, 
+From these two simple sets of data there are many queries that we would like to make, and among those, some very natural queries might include the following:
 
-## [Theta Sketches]({{site.docs_dir}}/Theta/ThetaSketchFramework.html): Estimating Stream Expression Cardinalities
-Internet content, search and media companies like Yahoo, Google, Facebook, etc., collect many tens of billions of event records from the many millions of users to their web sites each day.  These events can be classified by many different dimensions, such as the page visited and user location and profile information.  Each event also contains some unique identifiers associated with the user, specific device (cell phone, tablet, or computer) and the web browser used.  
+### Unique User (or <i>Count Distinct</i><sup>2</sup>) Queries
+* Unique users viewing the Apps site over some time range.
+* Unique users that visited both the Apps site and the Music site over some time range.
+* Unique users that visited the Apps site and NOT the Music site over some time range.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/PeopleCloud.png" alt="PeopleCloud" />
+### Quantile & Histogram Queries
+* The median and 95%ile Time Spent seconds over some chosen dimensions.
+* A frequency histogram of Time Spent ...
 
-These same unique identifiers will appear on every page that the user visits.  In order to measure the number of unique identifiers on a page or across a number of different pages, it is necessary to discount the identifier duplicates.  Obtaining an exact answer to a _COUNT DISTINCT_ query with massive data is a difficult computational challenge. It is even more challenging if it is necessary to compute arbitrary expressions across sets of unique identifiers. For example, if set _S_ is the set of user identifiers visiting the Sports page and set _F_ is the set of user identifiers visiting the Finance page, the intersection expression _S &#8745; F_ represents the user identifiers that visited both Sports and Finance.
+### Most Frequent Queries
+* The most frequently purchased Song Titles
 
-Computing cardinalities with massive data requires lots of computer resources and time.
-However, if an approximate answer to these problems is acceptable, [Theta Sketches]({{site.docs_dir}}/Theta/ThetaSketchFramework.html) can provide reasonable estimates, in a single pass, orders of magnitude faster, even fast enough for analysis in near-real time.
+### Join Queries
+* For all users that purchased Apps, what is the average number of Items viewed ... 
 
-## [Quantiles Sketches]({{site.docs_dir}}/Quantiles/QuantilesOverview.html): Estimating Distributions from a Stream of Values
-There are many situations where is valuable to understand the distribution of values in a stream. For example, from a stream of web-page time-spent values, it would be useful to know arbitrary quantiles of the distribution, such as the 25th percentile value, the median value and the 75th percentile value. The [Quantiles Sketches]({{site.docs_dir}}/Quantiles/QuantilesOverview.html) solve this problem and enable the inverse functions such as the Probability Mass Function (PMF) and the Cumulative Distribution Function (CDF) as well. It is relatively easy to produce frequency histograms such as the following diagram, which was produced from a stream of over 230 million time spent events. The space consumed by the sketch was about 43KB.
+This all sounds pretty "ho-hum". 
+However, and fortunately for you, your company has become wildly successful and both the web logs and financial transactions log consist of billions of records per day.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/TimeSpentHistogram.png" alt="TimeSpentHistogram" />
+If you have any experience with answering these types of queries with massive data sets it should give you pause.
+And, if you are already attempting to answer similar queries with your massive data, you might wonder why answering these queries requires so many resources and takes hours, or sometimes days to compute.
 
-## [Tuple Sketches]({{site.docs_dir}}/Tuple/TupleOverview.html): Extending Theta Sketches to Perform Associative Analysis 
-It is often not enough to perform stream expressions on sets of unique identifiers, it is very valuable to be able to associate additive data with these identifiers, such as impression counts or clicks.  Tuple Sketches are a recent addition to the library and can be extended with arbitrary "summary" data.  
+Computer Scientists have known about these types of queries for a long time, but not much attention was paid to the impact of these queries until the Internet exploded and Big Data reared its ugly head.
 
-## [Frequent Items Sketches]({{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html): Finding the Heavy Hitter Objects from a Stream
-It is very useful to be able to scan a stream of objects, such as song titles, and be able to quickly identify those items that occur most frequently.  The term <i>Heavy Hitter</i> is defined to be an item that occurs more frequently than some fractional share of the overall count of items
-in the stream including duplicates.  Suppose you have a stream of 1M song titles, but in that stream there are only 100K song titles that are unique. If any single title consumes more than 10% of the stream elements it is a Heavy Hitter, and the 10% is a threshold parameter we call epsilon.
+It has been proved (and can be intuited, with a little thought) that in order to compute the Distinct Count and Frequent Items queries exactly requires the query process to keep copies of every unique value encountered; and to compute the Multiple Quantiles query, the query process must keep copies of every value encountered, and at the time of a query, must sort them all!
 
-The accuracy of a Frequent Items Sketch is proportional to the configured size of the sketch, the larger the sketch, the smaller is the epsilon threshold that can detect Heavy Hitters. 
+This is staggering.
+In order to count the exact number of unique visitors to a web site that has a billion users per day, requires the query process to keep on hand a billion records of all the unique visitors it has ever seen.
+Unique identifier counts are not additive either, so no amount of parallelism with help you.
+You cannot add the number of identifiers from the apps data site to the number of identifiers from the music site because of identifiers that appear on both sites, i.e., the duplicates.
+
+The exact quantiles query is even worse.  Not only does it need to keep a copy of every item seen, it needs to sort them to boot!
+
+## If An Approximate Answer is Acceptable ...
+
+Here is a very fundamental business question: “Do you really need 10+ digits of accuracy in the answers to your queries? 
+This leads to the fundamental premise of this entire branch of Computer Science:
+
+__If an approximate answer is acceptable, then it is possible that there exists algorithms that allow you to answer these queries orders-of-magnitude faster.__
+
+This, of course, assumes that you care about query responsiveness and speed; that you care about resource utilization; and if you need to accept some approximation, that you care about knowing something about the accuracy that you end up with.
+
+[Sketches]({{site.docs_dir}}/SketchOrigins.html), the informal name for these algorithms, offer an excellent solution to these types of queries, and in some cases may be the only solution.
+
+Instead of requiring to keep such enormous data on-hand, sketches have small data structures that are usually kilobytes in size, orders-of-magnitude smaller than required by the exact solutions. 
+Sketches are also streaming algorithms, in that they only need to see each incoming item only once.
+
+## System Architecture for Sketch Processing of Big Data 
+
+### Big Win #1: Size of the Query Process
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/BigWin1SmallQuerySpace.png" alt="BigWin1SmallQuerySpace" />
+
+The first big win is the size of the query process on the right has been reduced many orders-of-magnitude.
+Unfortunately, the process is still slow (altough it was faster than before), because the single query process must sequentially scan through all the raw data on the left, which is huge.
+
+### Big Win #2: Sketch Mergeability Enables Parallel Processing
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/BigWin2Mergeability.png" alt="BigWin2Mergeability" />
+
+The second big win is that the sketch data structures are "Mergeable", which enables parallel processing. 
+The input data can be partitioned into many fragments. 
+At query time each partion is processed with its own sketch.
+Once all the sketches have completed their scan of their associated data,
+the merging (or unioning) of the sketches is very fast. 
+This provides another speed performance boost.
+But there is a catch.
+Typical user data is highly skewed and is unlikely to be evenly divided across the partitions.
+The overall speed of the processing is now determined by the most heavily loaded partition.
+
+### Big Wins #3 & 4: Query Speed, Architecture Simplicity
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/BigWins3_4QuerySpeedArchitecture.png" alt="BigWins3_4QuerySpeedArchitecture" />
+
+If we do the sketching of each of the partitions at the same time we do the partitioning we create an intermediate "hyper-cube" or "data-mart" architecture where each row becomes a summary row for that partition.
+The intermediate staging no longer has any raw data. It only consists of a single row for each dimension combination.
+And the metric columns for that row contain the aggregation of whatever other additive metrics you require, plus a column that contains the binary image of a sketch.
+At query time, the only thing the query process needs to do is select the appropriate rows needed for the query and merge the sketches from those rows. 
+We have measured the merge speed of the Theta sketches in the range of 10 to 20 million sketches per second in a large system with real data. This is the Big Win #3.
+
+Placing the sketch, along with other metrics into a data-mart architecture vastly simplifies the architecture, which is the Big Win #4.
+
+### Big Wins #5 & 6: Real Time, Late Data Updates
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/BigWins5_6RealTimeLateData.png" alt="BigWins5_6RealTimeLateData" />
+
+Processing the continuous real-time stream from the edge web servers is possible with Storm that splits the stream into multiple parallel streams based on the dimensions. These can be ingested into Druid in real-time and sent directly to sketches organized by time and dimention combination. In our Flury system the time resolution is 1 minute. The reporting web servers query these 1 minute sketches on 15 second intervals. This Real-time, Big Win #5, is simply not feasible without sketches.  In addition, these sketches can be correctly updated with late data, which happens frequently with mobile traffic.  This becomes the Big Win #6.
+
+### Big Win #7: Resource Utilization and Cost
+
+It has been our experience at Yahoo, that a good implementation of these large analysis systems using sketches reduces the overall cost of the system considerably. It is difficult to quote exact numbers as your mileage will vary as it is system and data dependent.
+
+
 
 
 
 ________________________
-<sup>1</sup><small>See also: <https://yahooeng.tumblr.com/post/135390948446/data-sketches>, 17 Dec 2015.</small>
 
-<sup>2</sup><small>The term "big data" is a popular term for truly massive data, and is somewhat ambiguous. For our usage here, it implies data (either in streams or stored) that is so massive that traditional analysis methods do not scale.</small>
 
-<sup>3</sup><small><i>count distinct</i> is the formal term, borrowed from SQL that has an operator by that name, for the counting of just the distinct (or unique) items of a set ignoring all duplicates. For our usage here, it is reads more smoothly to just refer to distinct count or unique count.</small>
+<sup>1</sup><small>The term "big data" is a popular term for truly massive data, and is somewhat ambiguous. For our usage here, it implies data (either in streams or stored) that is so massive that traditional analysis methods do not scale.</small>
+
+<sup>2</sup><small><i>count distinct</i> is the formal term, borrowed from SQL that has an operator by that name, for the counting of just the distinct (or unique) items of a set ignoring all duplicates. For our usage here, it is reads more smoothly to just refer to distinct count or unique count.</small>
 
