@@ -73,7 +73,7 @@ Unfortunately, the process is still slow (altough it was faster than before), be
 
 The second big win is that the sketch data structures are "Mergeable", which enables parallel processing. 
 The input data can be partitioned into many fragments. 
-At query time each partion is processed with its own sketch.
+At query time each partition is processed with its own sketch.
 Once all the sketches have completed their scan of their associated data,
 the merging (or unioning) of the sketches is very fast. 
 This provides another speed performance boost.
@@ -97,7 +97,7 @@ Placing the sketch, along with other metrics into a data-mart architecture vastl
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/BigWins5_6RealTimeLateData.png" alt="BigWins5_6RealTimeLateData" />
 
-Processing the continuous real-time stream from the edge web servers is possible with Storm that splits the stream into multiple parallel streams based on the dimensions. These can be ingested into Druid in real-time and sent directly to sketches organized by time and dimention combination. In our Flury system the time resolution is 1 minute. The reporting web servers query these 1 minute sketches on 15 second intervals. This Real-time, Big Win #5, is simply not feasible without sketches.  In addition, these sketches can be correctly updated with late data, which happens frequently with mobile traffic.  This becomes the Big Win #6.
+Processing the continuous real-time stream from the edge web servers is possible with Storm that splits the stream into multiple parallel streams based on the dimensions. These can be ingested into Druid in real-time and sent directly to sketches organized by time and dimension combination. In our Flurry system the time resolution is 1 minute. The reporting web servers query these 1 minute sketches on 15 second intervals. This Real-time, Big Win #5, is simply not feasible without sketches.  In addition, these sketches can be correctly updated with late data, which happens frequently with mobile traffic.  This becomes the Big Win #6.
 
 ### Big Win #7: Resource Utilization and Cost
 
