@@ -24,9 +24,6 @@ From these two simple sets of data there are many queries that we would like to 
 ### Most Frequent Queries
 * The most frequently purchased Song Titles
 
-### Join Queries
-* For all users that purchased Apps, what is the average number of Items viewed ... 
-
 This all sounds pretty "ho-hum". 
 However, and fortunately for you, your company has become wildly successful and both the web logs and financial transactions log consist of billions of records per day.
 
@@ -35,7 +32,7 @@ And, if you are already attempting to answer similar queries with your massive d
 
 Computer Scientists have known about these types of queries for a long time, but not much attention was paid to the impact of these queries until the Internet exploded and Big Data reared its ugly head.
 
-It has been proved (and can be intuited, with a little thought) that in order to compute the Distinct Count and Frequent Items queries exactly requires the query process to keep copies of every unique value encountered; and to compute the Multiple Quantiles query, the query process must keep copies of every value encountered, and at the time of a query, must sort them all!
+It has been proved (and can be intuited, with some thought) that in order to compute these queries exactly, assuming nothing about the input stream and, for the quantiles case, without any restrictions on the number of quantiles requested, requires the query process to keep copies of every unique value encountered.
 
 This is staggering.
 In order to count the exact number of unique visitors to a web site that has a billion users per day, requires the query process to keep on hand a billion records of all the unique visitors it has ever seen.
