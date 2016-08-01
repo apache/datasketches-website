@@ -6,6 +6,8 @@ layout: doc_page
 
 <h3>Common Sketch Properties</h3>
   * <b>Single-pass, "one-touch"</b> algorithms enable efficient processing in either real-time or batch.
+  * <b>Mergeable</b> algorithms enable parallel processing, which is critical for large systems.
+  * <b>Space Sub-linear</b> algorithm not only start small but grow very slowly or not at all as the size of the input stream grows.
   * Query results are <b>approximate</b> but within well defined error bounds that are user 
   configurable by trading off sketch size with accuracy.
   * Designed for <a href="{{site.docs_dir}}/LargeScale.html">Large-scale</a> computing environments 
