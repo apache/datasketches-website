@@ -3,11 +3,10 @@ layout: doc_page
 ---
 ## Who is using DataSketches?
 
-DataSketches are used by the following companies:
+<img src="{{site.docs_img_dir}}/whoUses/Yahoo!.png" alt="Yahoo!" width="200px" />
 
-### Yahoo
+<img src="{{site.docs_img_dir}}/whoUses/druid_2x_black_big.png" alt="druid_2x_black_big" width="200px" />
 
-Yahoo has been using this sketch library since 2013 in very large systems.
+<img src="{{site.docs_img_dir}}/whoUses/SpliceMachine.png" alt="SpliceMachine" width="200px" />
 
-### Druid
-Druid has tightly integrated this sketch library into their system.
+
