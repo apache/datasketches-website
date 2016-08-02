@@ -30,7 +30,8 @@ id: home
 
 <div class="container">
   <div class="row">
-    <div class="text-justify" style="font-size: 20px; padding-left: 25px; padding-right: 25px">
+    <div class="text-justify" style="font-size: 18px; padding-left: 25px; padding-right: 25px">
+<p><b>The Business Challenge:</b> Analyzing Big Data Quickly.</p>
 <p>In the analysis of big data there are often problem queries that don’t scale because they require huge compute resources and time to generate exact results. Examples include <i>count distinct</i>, quantiles, most frequent items, joins, matrix computations, and graph analysis.</p>
 
 <p>If approximate results are acceptable, there is a class of specialized algorithms, called streaming algorithms, or <a href="/docs/SketchOrigins.html">sketches</a> that can produce results orders-of magnitude faster and with mathematically proven error bounds. For interactive queries there may not be other viable alternatives, and in the case of real-time analysis, sketches are the only known solution.</p>
