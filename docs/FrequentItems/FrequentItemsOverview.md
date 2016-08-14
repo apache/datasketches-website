@@ -64,7 +64,7 @@ created. If the number of tracked counters reaches the maximum capacity of the h
 the sketch decrements all of the counters (by an approximately computed median), and 
 removes any non-positive counters.
 
-### Accuracy
+### Accuracy Guarantees
 
 If fewer than 0.75 * <i>maxMapSize</i> different items are inserted into the sketch the 
 estimated frequencies returned by the sketch will be exact.
@@ -85,6 +85,46 @@ For inputs typically seen in practice <i>(UB-LB)</i> is usually much smaller.
 
 The [Frequent Items Error Table]({{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html) can serve as a guide for selecting an
 appropriate sized sketch for your application.
+
+### Returned Results, Error Type and Confusion Matrix
+
+The following figure was created with synthetic data in order to illustrate the two different Error Types and how they affect the returned results. 
+The black vertical lines with end-caps represent the items with their frequencies retained by the sketch. 
+The upper end-caps represents the upper bound frequencies of each item and the lower end-caps represent the lower bound frequencies of each item. 
+The sketch estimate for each item will be between those values inclusively. 
+
+The green vertical bar on the right represents the error computed from the above error table.  It is an <i>a priori</i> error (or <i>pre-error</i>) in that it is computed before any data has been presented to the sketch.
+
+The red vertical bar just to its left represents the <i>a posteriori</i> error (or <i>post-error</i>) returned by the sketch after all the data has been presented to the sketch and is often less than the pre-error. Note that the post-error is the same size as the error bounds on all the retained items in the sketch.
+
+The post-error is used as a threshold by the sketch in determining which items, out of all the retained items, can be legitimately returned by the sketch. 
+
+* The four items on the far right, whose lower bounds are greater than the post-error, are returned when the Error Type is set to "No False Positives".
+* The Seven items on the far right, whose upper bounds are greater than the post-error, are returned when the Error Type is set to "No False Negatives". 
+* All of the remaining items, whose upper bounds are less than the post-error are never returned.
+
+In terms of order, only the first item on the far right can be safely be classified as the "most frequent" of all Items presented to the sketch. Because the upper and lower bounds of the next two items overlap, the next two to the left tie for second place. The next three to the left of those would tie for forth place, and so on.
+
+<b>Figure: Returned Results and Error Type</b>
+<img class="doc-img-full" src="{{site.docs_img_dir}}/fi/FreqItemsError3.png" alt="FreqItemsError3.png" />
+
+These results can also be described using the classical "Confusion Matrix" as shown in the figure below.
+
+#### No False Positives (upper table)
+
+The items returned are represented by the blue "True Positive" box. 
+However, there is the possiblity that items, whose true frequency was above the post-error, might be excluded. 
+This are the "False Negatives" reprented by the red box and is classified as a "Type II Error". 
+No False Positives (Type I Error) are included. 
+All True Negatives are excluded and there is no Type II Error.
+
+#### No False Negatives (lower table)
+
+For this Error Type, all the times returned by "No False Positives" are returned in addition to items classified as "False Positives", or Type I Error. 
+All "True Negatives" are properly excluded. 
+
+<b>Figure: Error Type and Confusion Matrix</b>
+<img class="doc-img-full" src="{{site.docs_img_dir}}/fi/FI_ConfusionMatrix.png" alt="FI_ConfusionMatrix.png" />
 
 ### Background
 
