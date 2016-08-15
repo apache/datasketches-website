@@ -5,7 +5,7 @@ layout: doc_page
 
 ## The Inverse Estimate
 
-One of the basic concepts that is used in these sketches is that of the <i>Inverse Estimate</i>.  Once you become comfortable with it you will acquire a lot of the intuition for how sketches work. 
+One of the basic concepts that is used in Theta Sketches is that of the <i>Inverse Estimate</i>.  Once you become comfortable with it you will acquire a lot of the intuition for how sketches work. 
 
 ### The Concert Line, How Long?
 
