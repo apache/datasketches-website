@@ -82,13 +82,14 @@ The overall speed of the processing is now determined by the most heavily loaded
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/BigWins3_4QuerySpeedArchitecture.png" alt="BigWins3_4QuerySpeedArchitecture" />
 
-If we do the sketching of each of the partitions at the same time we do the partitioning we create an intermediate "hyper-cube" or "data-mart" architecture where each row becomes a summary row for that partition.
+The placement of the query in this diagram illustrates Big Win #3. The primary difference between this diagram and the previous one is where in the data flow the query is performed and how much work the query process has to do. The Big Win #2 is an improvement over #1, but still requires the query process to process raw data in partitions, which still can be huge. 
+
+However, if we do the sketching of each of the partitions at the same time we do the partitioning we create an intermediate "hyper-cube" or "data-mart" architecture where each row becomes a summary row for that partition. 
 The intermediate staging no longer has any raw data. It only consists of a single row for each dimension combination.
 And the metric columns for that row contain the aggregation of whatever other additive metrics you require, plus a column that contains the binary image of a sketch.
-At query time, the only thing the query process needs to do is select the appropriate rows needed for the query and merge the sketches from those rows. 
-We have measured the merge speed of the Theta sketches in the range of 10 to 20 million sketches per second in a large system with real data. This is the Big Win #3.
+At query time, the only thing the query process needs to do is select the appropriate rows needed for the query and merge the sketches from those rows. We have measured the merge speed of the Theta sketches in the range of 10 to 20 million sketches per second in a large system with real data. This is the Big Win #3.
 
-Placing the sketch, along with other metrics into a data-mart architecture vastly simplifies the architecture, which is the Big Win #4.
+Placing the sketch, along with other metrics into a data-mart architecture vastly simplifies the design of the system, which is the Big Win #4.
 
 ### Big Wins #5 & 6: Real Time, Late Data Updates
 

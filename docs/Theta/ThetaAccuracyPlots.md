@@ -84,6 +84,21 @@ This is a tradeoff the user can choose to use or not.
 
 The quantiles for both +/- 1 RSE and +/- 2 RSE establishes the bounds for the 68% and 95.4% confidence levels respectfully.
 
+#### Accuracy of Set Intersections & Differences
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/64KSketchVsIEerror.png" alt="64KSketchVsIEerror.png" />
+
+The above diagram was created using two Theta Sketches, <i>A</i> and <i>B</i>, with nominal entries size of 64K. The number of unique items presented to the two sketches was quite large, but the ratio of the number of uniques presented to the two sketches varies along the X-axis in a special way.
+
+The X-axis is the inverse Jaccard ratio, where the Jaccard is defined as the intersection divided by the union of two sets. 
+Thus, the X-axis is defined as <i>1/J(A,B)</i> = <i>(A</i>&#8746;<i>B)</i>/<i>(A</i>&#8745;<i>B)</i>.
+
+Given any two sets, <i>A</i> and <i>B</i>, the intersection can be defined from the set theoretic <i>Include/Exclude</i> formula 
+<i>(A</i>&#8745;<i>B)</i> = <i>A</i> + <i>B</i> - <i>(A</i>&#8746;<i>B)</i>.  Unfortunately, for stochastic processes, each of these terms have random error components that always add.  The upper line and orange points represent the resulting error of an intersection using the Include/Exclude formula. The lower black line and purple "X" points represent the resulting error from an intersection using the Theta sketch set operations, which can be orders-of-magnitude better than the naive application of the Include/Exclude relation.  
+
+Set intersections and differences can have considerably more relative error than a base Theta sketch fed directly with data. Be cautious about situations where the result of an intersection (or difference) is orders-of-magnitude smaller than the union of the two arguments.  Always query the getUpperBound() and getLowerBound() methods as these funtions are specifically designed to give you conservative estimates of the possible range of values where the true answer lies.
+
+
 ### Accuracy of the Theta: Alpha Sketch Family
 
 Another major sketch family is the Alpha Sketch, which leverage the "HIP" estimator.  Its pitchfork graph looks like the following:

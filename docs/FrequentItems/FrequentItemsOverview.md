@@ -86,9 +86,12 @@ For inputs typically seen in practice <i>(UB-LB)</i> is usually much smaller.
 The [Frequent Items Error Table]({{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html) can serve as a guide for selecting an
 appropriate sized sketch for your application.
 
-### Returned Results, Error Type and Confusion Matrix
+### Returned Results
 
-The following figure was created with synthetic data in order to illustrate the two different Error Types and how they affect the returned results. 
+<b>Figure: Returned Results, Error Type and Error Bounds</b>
+<img class="doc-img-full" src="{{site.docs_img_dir}}/fi/FreqItemsError3.png" alt="FreqItemsError3.png" />
+
+The above figure was created with synthetic data in order to illustrate a hypothetical set of returned results with their Error Bounds and how these Error Bounds interact with the two different Error Types chosen at query time. 
 The black vertical lines with end-caps represent the items with their frequencies retained by the sketch. 
 The upper end-caps represents the upper bound frequencies of each item and the lower end-caps represent the lower bound frequencies of each item. 
 The sketch estimate for each item will be between those values inclusively. 
@@ -105,10 +108,12 @@ The post-error is used as a threshold by the sketch in determining which items, 
 
 In terms of order, only the first item on the far right can be safely be classified as the "most frequent" of all Items presented to the sketch. Because the upper and lower bounds of the next two items overlap, the next two to the left tie for second place. The next three to the left of those would tie for forth place, and so on.
 
-<b>Figure: Returned Results and Error Type</b>
-<img class="doc-img-full" src="{{site.docs_img_dir}}/fi/FreqItemsError3.png" alt="FreqItemsError3.png" />
+### Error Type and Confusion Matrix
 
-These results can also be described using the classical "Confusion Matrix" as shown in the figure below.
+These results can also be described using the classical "Confusion Matrix" as shown in the next figure.
+
+<b>Figure: Error Type and Confusion Matrix</b>
+<img class="doc-img-full" src="{{site.docs_img_dir}}/fi/FI_ConfusionMatrix.png" alt="FI_ConfusionMatrix.png" />
 
 #### No False Positives (upper table)
 
@@ -122,9 +127,6 @@ All True Negatives are excluded and there is no Type II Error.
 
 For this Error Type, all the times returned by "No False Positives" are returned in addition to items classified as "False Positives", or Type I Error. 
 All "True Negatives" are properly excluded. 
-
-<b>Figure: Error Type and Confusion Matrix</b>
-<img class="doc-img-full" src="{{site.docs_img_dir}}/fi/FI_ConfusionMatrix.png" alt="FI_ConfusionMatrix.png" />
 
 ### Background
 
