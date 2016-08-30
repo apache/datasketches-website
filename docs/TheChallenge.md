@@ -21,7 +21,7 @@ From these two simple sets of data there are many queries that we would like to 
 * The median and 95%ile Time Spent seconds over some chosen dimensions.
 * A frequency histogram of Time Spent ...
 
-### Most Frequent Queries
+### Most Frequent Items Queries
 * The most frequently purchased Song Titles
 
 This all sounds pretty "ho-hum". 
