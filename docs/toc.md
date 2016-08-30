@@ -23,10 +23,14 @@
 * [Rejection Rules]({{site.docs_dir}}/Theta/KMVrejection.html)
 * [Update V(kth) Rule]({{site.docs_dir}}/Theta/KMVupdateVkth.html)
 
+### Set Operations
+* [Set Operations]({{site.docs_dir}}/Theta/ThetaSketchSetOps.html)
+
 ### Accuracy
 * [Basic Accuracy]({{site.docs_dir}}/Theta/ThetaAccuracy.html)
 * [Accuracy Plots]({{site.docs_dir}}/Theta/ThetaAccuracyPlots.html)
 * [Relative Error Table]({{site.docs_dir}}/Theta/ThetaErrorTable.html)
+* [SetOp Accuracy]({{site.docs_dir}}/Theta/ThetaSketchSetOpsAccuracy.html)
 
 ### Size
 * [Theta Sketch Size]({{site.docs_dir}}/Theta/ThetaSize.html)
@@ -34,10 +38,6 @@
 ### Speed
 * [Update Speed]({{site.docs_dir}}/Theta/ThetaUpdateSpeed.html)
 * [Merge Speed]({{site.docs_dir}}/Theta/ThetaMergeSpeed.html)
-
-### Set Operations
-* [Set Operations]({{site.docs_dir}}/Theta/ThetaSketchSetOps.html)
-* [SetOp Accuracy]({{site.docs_dir}}/Theta/ThetaSketchSetOpsAccuracy.html)
 
 ### Large Scale Computing
 * [Theta Sketch Pig UDFs]({{site.docs_dir}}/Theta/ThetaPigUDFs.html)
