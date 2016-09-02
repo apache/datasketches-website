@@ -60,7 +60,7 @@
 ## Tuple Sketches
 * [Tuple Sketch Overview]({{site.docs_dir}}/Tuple/TupleOverview.html)
 * [Tuple Sketch Pig UDFs]({{site.docs_dir}}/Tuple/TuplePigUDFs.html)
-<!-- * [Tuple Sketch Hive UDFs]({{site.docs_dir}}/Tuple/TupleHiveUDFs.html) -->
+* [Tuple Sketch Hive UDFs]({{site.docs_dir}}/Tuple/TupleHiveUDFs.html)
 
 ## Quantiles Sketches
 * [Quantiles Overview]({{site.docs_dir}}/Quantiles/QuantilesOverview.html)
