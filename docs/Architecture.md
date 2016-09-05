@@ -12,7 +12,7 @@ repositories.
 This repository has no external dependencies outside of Java and TestNG, which is used only for 
 unit tests. 
 This code is versioned and the latest release can be obtained from
-<a href="http://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
+<a href="https://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
 
 
 High-level Package Structure   | Description
@@ -32,7 +32,7 @@ This repository contains Pig User Defined Functions (UDF) for use within Hadoop 
 This code has dependencies on sketches-core as well as Hadoop and Pig. 
 Users of this code are advised to use Maven to bring in all the required dependencies.
 This code is versioned and the latest release can be obtained from
-<a href="http://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
+<a href="https://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
 
 High-level Structure               | Package Description
 -----------------------------------|---------------------
@@ -48,7 +48,7 @@ This repository contains Hive UDFs and UDAFs for use within Hadoop grid enviornm
 This code has dependencies on sketches-core as well as Hadoop and Hive. 
 Users of this code are advised to use Maven to bring in all the required dependencies.
 This code is versioned and the latest release can be obtained from
-<a href="http://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
+<a href="https://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
 
 High-level Structure           | Package Description
 -------------------------------|---------------------
@@ -63,7 +63,7 @@ the performance characterization plots were obtained. This code has few unit tes
 and was never intended for production use. 
 Nonetheless, some folks have found it useful. If you find it useful, go for it. 
 This code is versioned and the latest release can be obtained from
-<a href="http://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
+<a href="https://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
     
 High-level Structure               | Package Description
 -----------------------------------|---------------------
@@ -75,11 +75,11 @@ com.yahoo.sketches.performance     | Speed and Error Characteriation of Theta an
 ### experimental
 This repository is an experimental staging area for code that will eventually end up in another 
 repository. This code is not versioned and not registered with 
-<a href="http://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
+<a href="https://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
 
 ### DataSketches.github.io
 This is the DataSketches.github.io web site, and is constantly being updated with new material 
 and to be current with the latest releases of the registered repositories.
 This site is not versioned and not registered with 
-<a href="http://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>. 
+<a href="https://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>. 
   

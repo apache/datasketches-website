@@ -18,7 +18,7 @@ layout: doc_page
   * The Hadoop, Druid, Pig, and Hive <a href="{{site.docs_dir}}/Adaptors.html">adaptors<a/>, are provided 
     in separate repositories for most of the core sketches.
   * <b>Maven deployable</b> and registered with 
-  <a href="http://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>
+  <a href="https://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>
 
 <h3>Specific Theta Sketch Features for Large Data</h3>
   * <b>Hash Seed Handling</b>. Additional protection for managing hash seeds which is 

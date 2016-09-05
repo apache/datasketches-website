@@ -4,13 +4,13 @@ layout: doc_page
 
 ## Downloads
 
-Choose the most recent release version from <a href="http://search.maven.org/#search|ga|1|datasketches">The Central Repository</a>.
+Choose the most recent release version from <a href="https://search.maven.org/#search|ga|1|datasketches">The Central Repository</a>.
 
 Or, clone or fork the current SNAPSHOT directly from the relevant repository.
 
 ### Version Numbers
 
-The artifacts downloaded from <a href="http://search.maven.org/#search|ga|1|datasketches">The Central Repository</a> 
+The artifacts downloaded from <a href="https://search.maven.org/#search|ga|1|datasketches">The Central Repository</a> 
 include a version number in the name, as in sketches-core-X.Y.Z.jar. 
 This same number is also in the top section of the pom.xml file.
 

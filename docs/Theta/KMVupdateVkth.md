@@ -35,7 +35,7 @@ Note that the sketch algorithms implemented in the DataSketches library are more
 
 
 [1] For those interested in the mathematical proofs, 
-<a href="http://www-sop.inria.fr/members/Frederic.Giroire/publis/Gi05.pdf">Giroire</a>
+<a href="https://www-sop.inria.fr/members/Frederic.Giroire/publis/Gi05.pdf">Giroire</a>
 has a straightforward and easy-to-follow development.
 
 

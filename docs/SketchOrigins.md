@@ -22,13 +22,13 @@ describe these algorithms and associated data structures that implement the theo
 is often refered to as the father of sketching with his research in analytic combinatorics and 
 analysis of algorithms. 
 His 1985 paper 
-<a href="http://db.cs.berkeley.edu/cs286/papers/flajoletmartin-jcss1985.pdf">
+<a href="http://db.cs.berkeley.edu/cs286/papers/flajoletmartin-jcss1985.pdf"> <!-- does not work with https -->
 Probabilistic counting Algorithms for Data Base Applications</a> 
 co-authored with G. Nigel Martin is one of the earliest papers that outlines the sketching concepts. 
 The recent book, 
-<a href="http://db.cs.berkeley.edu/cs286/papers/synopses-fntdb2012.pdf">
+<a href="http://db.cs.berkeley.edu/cs286/papers/synopses-fntdb2012.pdf"> <!-- does not work with https -->
 Synopses for Massive Data: Samples, Histograms, Wavelets, Sketches</a> by 
-<a href="http://www2.warwick.ac.uk/fac/sci/dcs/people/graham_cormode/">Graham Cormode</a>, et al, 
+<a href="https://www2.warwick.ac.uk/fac/sci/dcs/people/graham_cormode/">Graham Cormode</a>, et al, 
 is an excellent review of this field.
 
 At this point it is useful to describe the 
@@ -38,5 +38,5 @@ algorithms used for solving the
 
 ________
 <sup>1</sup><small>Also known as "Approximate Query Processing", see 
-<a href="http://people.cs.umass.edu/~mcgregor/711S12/sketches1.pdf">Sketch Techniques for Approximate Query Processing</a></small>
+<a href="https://people.cs.umass.edu/~mcgregor/711S12/sketches1.pdf">Sketch Techniques for Approximate Query Processing</a></small>
 

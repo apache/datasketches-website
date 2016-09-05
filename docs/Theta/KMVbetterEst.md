@@ -18,7 +18,7 @@ This is much closer to 10, but with such a small sample size we were also lucky.
 Note that with our new estimator based on the <i>k</i> minimum values in the cache we don't have to keep any hash values larger than <i>V(k<sup>th</sup>)</i>.  And, since <i>k</i> is a constant our cache will have a fixed upper bound size independent of how many hash values it has seen.
 
 [1] For those interested in the mathematical proofs, 
-<a href="http://www-sop.inria.fr/members/Frederic.Giroire/publis/Gi05.pdf">Giroire</a>
+<a href="https://www-sop.inria.fr/members/Frederic.Giroire/publis/Gi05.pdf">Giroire</a>
 has a straightforward and easy-to-follow development.
 
 [Prev]({{site.docs_dir}}/Theta/KMVfirstEst.html)<br>

@@ -18,7 +18,7 @@ layout: doc_page
 <a href="https://druid.io">Druid</a>), 
 and are heavily used within Yahoo.
   * <b>Maven deployable</b> and registered with 
-<a href="http://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>.
+<a href="https://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>.
   * Comprehensive <b>unit tests</b> and testing tools are provided.
   * Extensive documentation with the systems developer in mind.
 
@@ -31,7 +31,7 @@ its garbage collection.
   with a number of useful extensions.
 
 <h3>Robust, High Quality Implementations.</h3>
-  * Extensive test code leveraging <a href="http://testng.org">TestNG</a>.
+  * Extensive test code leveraging <a href="https://testng.org">TestNG</a>.
   * Benchmarking, speed and accuracy characterization and performance testing code 
   included in the <a href="https://github.com/DataSketches/sketches-misc">sketches-misc</a>  repository.
   * High Test Code coverage (
@@ -41,7 +41,7 @@ its garbage collection.
 <a href="https://eclemma.org/JaCoCo">JaCoCo</a> and published by 
 <a href="https://coveralls.io">Coveralls</a>.
 * Comprehensive Javadocs that satisfy 
-<a href="http://www.oracle.com/technetwork/java/index.html">Java JDK8</a> standards.
+<a href="https://www.oracle.com/technetwork/java/index.html">Java JDK8</a> standards.
 * Suitable for production environments.
 
 <h3>Opportunities to Extend</h3>
