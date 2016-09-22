@@ -54,27 +54,27 @@ Table Guide for Quantiles DoublesSketch Size in Bytes and Approximate Error:
 
 The following graphs illustrate the ability of the Quantiles DoublesSketch to characterize value distributions.
 
-n = 1024 values were generated from Random's nextGaussian(). These values were then sorted and assigned
-their actual normalized ranks from 0 to (n-1)/n. This array of ranks became the actual ranks array
-and the associated array of Gaussian values became the actual quantiles array.
+* 1024 (n) values (trueUnsortedValues) were generated from Random's nextGaussian(). These values were then sorted (trueSortedValues) and assigned
+their true normalized ranks (trueRanks) from 0 to (n-1)/n. 
 
-A DoublesSketch was created with K = 32 and fed the non-sorted actual quantiles values.
-After loading the sketch, a getCDF(sorted values array) produces an ordered array of estimated ranks. These estimated result ranks (red)
-are then plotted against the actual ranks (black). The upper bound error is plotted in blue and the lower bound error is plotted in green.
+* A DoublesSketch (sketch) was then created with K = 32 and updated with the trueUnsortedValues.
 
-The error of the estimation from the sketch is called "Epsilon" and is always with respect to the 
-rank axis. It is plotted as a visual metric on the graph to illustrate its size. 
+* sketch.getCDF(trueSortedValues) produced an ordered array of estimated ranks (estimatedRanks) . The estimatedRanks (red)
+were then plotted against the trueRanks (black). The upper bound error was plotted in blue and the lower bound error was plotted in green.
 
-This size of this sketch, if stored, would be about 1832 bytes.
+* The error of the estimation from the sketch is called "Epsilon" and is always with respect to the 
+rank axis. It was plotted as a visual bar on the graph to illustrate its size. 
+
+* The size of this sketch, if stored, would be about 1832 bytes.
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/QuantilesCDF.png" alt="QuantilesCDF" />
 
-A getQuantiles(sorted actual rank array) produces an ordered array of estimated values. 
-Plotting these values against the actual values produces the inverse CDF plot as follows:
+* A getQuantiles(trueRanks) produced an ordered array estimatedSortedValues, which correspond to the trueRanks. 
+Plotting the estimatedSortedValues against the trueSortedValues produces the inverse CDF plot as follows:
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/QuantilesInverseCDF.png" alt="QuantilesInverseCDF" />
 
-Examining the absolute rank error vs the actual rank produces the following graph.  
+The absolute rank error vs the trueRanks produced the following graph.  
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/QuantilesCDFAbsRankError.png" alt="QuantilesCDFAbsRankError" />
 
