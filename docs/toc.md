@@ -65,6 +65,7 @@
 ## Quantiles Sketches
 * [Quantiles Overview]({{site.docs_dir}}/Quantiles/QuantilesOverview.html)
 * [Quantiles Accuracy and Size]({{site.docs_dir}}/Quantiles/QuantilesAccuracy.html)
+* [Quantiles Sketch Java Example]({{site.docs_dir}}/Quantiles/QuantilesJavaExample.html)
 * [Quantiles Sketch Pig UDFs]({{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html)
 * [Quantiles Sketch Hive UDFs]({{site.docs_dir}}/Quantiles/QuantilesHiveUDFs.html)
 
