@@ -75,6 +75,7 @@
 
 ## Frequent Items Sketches
 * [Frequent Items Overview]({{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html)
+* [Frequent Items Java Example]({{site.docs_dir}}/FrequentItems/FrequentItemsJavaExample.html)
 * [Frequent Items Pig UDFs]({{site.docs_dir}}/FrequentItems/FrequentItemsPigUDFs.html)
 * [Frequent Items Hive UDFs]({{site.docs_dir}}/FrequentItems/FrequentItemsHiveUDFs.html)
 * [Frequent Items Error Table]({{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html)
