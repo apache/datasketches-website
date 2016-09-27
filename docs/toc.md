@@ -14,6 +14,7 @@
 
 ## Theta Sketches
 * [Theta Sketch Framework]({{site.docs_dir}}/Theta/ThetaSketchFramework.html)
+* [Theta Sketch Java Example]({{site.docs_dir}}/Theta/ThetaJavaExample.html)
 
 ### KMV Tutorial
 * [The Inverse Estimate]({{site.docs_dir}}/Theta/InverseEstimate.html)
