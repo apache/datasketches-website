@@ -12,7 +12,6 @@ layout: doc_page
     import java.util.Arrays;
     import java.util.Random;
 
-    import com.yahoo.memory.Memory;
     import com.yahoo.memory.NativeMemory;
 
     import com.yahoo.sketches.quantiles.DoublesSketch;
