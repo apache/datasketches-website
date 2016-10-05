@@ -60,6 +60,7 @@
 
 # Tuple Sketches
 * [Tuple Sketch Overview]({{site.docs_dir}}/Tuple/TupleOverview.html)
+* [Tuple Sketch Java Example]({{site.docs_dir}}/Tuple/TupleJavaExample.html)
 * [Tuple Sketch Pig UDFs]({{site.docs_dir}}/Tuple/TuplePigUDFs.html)
 * [Tuple Sketch Hive UDFs]({{site.docs_dir}}/Tuple/TupleHiveUDFs.html)
 
