@@ -12,6 +12,42 @@
   * [Adaptors]({{site.docs_dir}}/Adaptors.html)
 * [Architecture]({{site.docs_dir}}/Architecture.html)
 
+# Section Links
+* [Frequent Items Sketches](#frequent-items-sketches)
+* [HLL Sketches](#hll-sketches)
+* [Quantiles Sketches](#quantiles-sketches)
+* [Sampling Sketches](#sampling-sketches)
+* [Theta Sketches](#theta-sketches)
+* [Tuple Sketches](#tuple-sketches)
+
+* [Other Information](#other-information)
+<!--  Getting Started  -->
+
+# Frequent Items Sketches
+* [Frequent Items Overview]({{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html)
+* [Frequent Items Java Example]({{site.docs_dir}}/FrequentItems/FrequentItemsJavaExample.html)
+* [Frequent Items Pig UDFs]({{site.docs_dir}}/FrequentItems/FrequentItemsPigUDFs.html)
+* [Frequent Items Hive UDFs]({{site.docs_dir}}/FrequentItems/FrequentItemsHiveUDFs.html)
+* [Frequent Items Error Table]({{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html)
+* [Frequent Items References]({{site.docs_dir}}/FrequentItems/FrequentItemsReferences.html)
+
+# HLL Sketches
+* [HLL Sketch]({{site.docs_dir}}/HLL/HLL.html)
+
+# Quantiles Sketches
+* [Quantiles Overview]({{site.docs_dir}}/Quantiles/QuantilesOverview.html)
+* [Quantiles Accuracy and Size]({{site.docs_dir}}/Quantiles/QuantilesAccuracy.html)
+* [Quantiles Sketch Java Example]({{site.docs_dir}}/Quantiles/QuantilesJavaExample.html)
+* [Quantiles Sketch Pig UDFs]({{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html)
+* [Quantiles Sketch Hive UDFs]({{site.docs_dir}}/Quantiles/QuantilesHiveUDFs.html)
+
+### Quantiles Sketch Theory
+* [Optimal Quantile Approximation in Streams]({{site.docs_pdf_dir}}/Quantiles_KLL.pdf)
+* [Quantiles References]({{site.docs_dir}}/Quantiles/QuantilesReferences.html)
+
+# Sampling Sketches
+* [Reservoir Sampling]({{site.docs_dir}}/Sampling/ReservoirSampling.html)
+
 # Theta Sketches
 * [Theta Sketch Framework]({{site.docs_dir}}/Theta/ThetaSketchFramework.html)
 * [Theta Sketch Java Example]({{site.docs_dir}}/Theta/ThetaJavaExample.html)
@@ -55,41 +91,14 @@
 * [Merging Algorithm Notes]({{site.docs_dir}}/Theta/ThetaMergingAlgorithm.html)
 * [Theta References]({{site.docs_dir}}/Theta/ThetaReferences.html)
 
-# HLL Sketches
-* [HLL Sketch]({{site.docs_dir}}/HLL/HLL.html)
-
 # Tuple Sketches
 * [Tuple Sketch Overview]({{site.docs_dir}}/Tuple/TupleOverview.html)
 * [Tuple Sketch Java Example]({{site.docs_dir}}/Tuple/TupleJavaExample.html)
 * [Tuple Sketch Pig UDFs]({{site.docs_dir}}/Tuple/TuplePigUDFs.html)
 * [Tuple Sketch Hive UDFs]({{site.docs_dir}}/Tuple/TupleHiveUDFs.html)
 
-# Quantiles Sketches
-* [Quantiles Overview]({{site.docs_dir}}/Quantiles/QuantilesOverview.html)
-* [Quantiles Accuracy and Size]({{site.docs_dir}}/Quantiles/QuantilesAccuracy.html)
-* [Quantiles Sketch Java Example]({{site.docs_dir}}/Quantiles/QuantilesJavaExample.html)
-* [Quantiles Sketch Pig UDFs]({{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html)
-* [Quantiles Sketch Hive UDFs]({{site.docs_dir}}/Quantiles/QuantilesHiveUDFs.html)
-
-### Quantiles Sketch Theory
-* [Optimal Quantile Approximation in Streams]({{site.docs_pdf_dir}}/Quantiles_KLL.pdf)
-* [Quantiles References]({{site.docs_dir}}/Quantiles/QuantilesReferences.html)
-
-# Frequent Items Sketches
-* [Frequent Items Overview]({{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html)
-* [Frequent Items Java Example]({{site.docs_dir}}/FrequentItems/FrequentItemsJavaExample.html)
-* [Frequent Items Pig UDFs]({{site.docs_dir}}/FrequentItems/FrequentItemsPigUDFs.html)
-* [Frequent Items Hive UDFs]({{site.docs_dir}}/FrequentItems/FrequentItemsHiveUDFs.html)
-* [Frequent Items Error Table]({{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html)
-* [Frequent Items References]({{site.docs_dir}}/FrequentItems/FrequentItemsReferences.html)
-
-# Command Line
-* [Creating Command Line Executables]({{site.docs_dir}}/CommandLine/CommandLine.html)
-
-<!--  Getting Started  -->
-
-
 # Other Information
+* [Creating Command Line Executables]({{site.docs_dir}}/CommandLine/CommandLine.html)
 * [Who Uses]({{site.docs_dir}}/WhoUses.html)
-<!-- * [Endorsements](endorsements.html) -->
 * [License](/LICENSE.html)
+<!-- * [Endorsements](endorsements.html) -->
