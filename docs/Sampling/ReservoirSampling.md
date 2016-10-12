@@ -16,8 +16,8 @@ The Sketches Library provides 2 forms of reservoir sampling sketches:
     
     If the user needs to serialize and deserialize the resulting sketch for storage or transport, 
     the user must also extend the <tt>ArrayOfItemsSerDe</tt> interface. Three examples of 
-    extending this interface are included for <tt>Long</tt>s,
-    <tt>String</tt>s, and <tt>Number</tt>s: <tt>ArrayOfLongsSerDe</tt>, <tt>ArrayOfStringsSerDe</tt>,
+    extending this interface are included for <tt>Long</tt>,
+    <tt>String</tt>, and <tt>Number</tt>: <tt>ArrayOfLongsSerDe</tt>, <tt>ArrayOfStringsSerDe</tt>,
     and <tt>ArrayOfNumbersSerDe</tt>.
 
 * ReservoirLongsSketch
