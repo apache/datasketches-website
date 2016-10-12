@@ -36,7 +36,7 @@ It has been proved (and can be intuited, with some thought) that in order to com
 
 This is staggering.
 In order to count the exact number of unique visitors to a web site that has a billion users per day, requires the query process to keep on hand a billion records of all the unique visitors it has ever seen.
-Unique identifier counts are not additive either, so no amount of parallelism with help you.
+Unique identifier counts are not additive either, so no amount of parallelism will help you.
 You cannot add the number of identifiers from the apps data site to the number of identifiers from the music site because of identifiers that appear on both sites, i.e., the duplicates.
 
 The exact quantiles query is even worse.  Not only does it need to keep a copy of every item seen, it needs to sort them to boot!
