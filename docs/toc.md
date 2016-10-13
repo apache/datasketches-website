@@ -11,6 +11,7 @@
   * [Large Scale]({{site.docs_dir}}/LargeScale.html)
   * [Adaptors]({{site.docs_dir}}/Adaptors.html)
 * [Architecture]({{site.docs_dir}}/Architecture.html)
+* [Overview Slide Deck]({{site.docs_pdf_dir}}/DataSketches_deck_13Oct2016.pdf)
 
 # Section Links
 * [Frequent Items Sketches](#frequent-items-sketches)
