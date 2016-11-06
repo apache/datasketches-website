@@ -9,7 +9,7 @@ This table of thresholds is computed a follows:
 *  <i>M</i> = Max Map Size.  Always a power of 2.
 *  <i>N</i> = Stream Length (the sum of all counts)
 *  <i>e</i> = Epsilon = 3.5/<i>M</i>
-*  <i>T</i> = Threshold = (<i>N</i> &lt; 0.75 * <i>M</i>)? 0 : <i>e * T</i>.
+*  <i>T</i> = Threshold = (<i>N</i> &lt; 0.75 * <i>M</i>)? 0 : <i>e * M</i>.
 
 * The error in <i>getEstimate(item)</i> is guaranteed to be at most <i>T</i>.
 * The function <i>getFrequentItems(NO_FALSE_NEGATIVES)</i> is guaranteed to return a list of items that 
