@@ -38,8 +38,9 @@ When these values are plotted against the normalized ranks we get something like
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/TimeSpentQuantiles.png" alt="TimeSpentQuantiles" />
 
-This reveals a great deal about the distribution of values in the stream. Just reading from the graph, the median is about 3000 and the 90th percentile is about 30,000 and so on. One can also query the min and max values seen by the sketch. From the results of the quantiles query, it is straightforward to compute a set of splitpoints for a histogram plot. In this case the values ranged from one to 1.8 million, which is a little over 6 orders-of-magnitude.  
+This reveals a great deal about the distribution of values in the stream. Just reading from the graph, the median is about 3000 and the 90th percentile is about 30,000 and so on. One can also query the min and max values seen by the sketch. By observing the results of the quantiles query, it is not too difficult to create a set of splitpoints for a histogram plot. 
 
+In this case the values ranged from one to 1.8 million, which is a little over 6 orders-of-magnitude. 
 In order to plot such a large dynamic range I used a log X-axis and a plot resolution of 
 5 points per factor of 10. Then I computed 36 equally spaced (on the log axis) splitpoints 
 with values from 1.0 to 1E7. These 36 splitpoints are then provided to the getPMF() function:
