@@ -17,14 +17,15 @@ This code is versioned and the latest release can be obtained from
 
 High-level Package Structure   | Description
 -------------------------------|---------------------
-com.yahoo.sketches             | Some common functions
-com.yahoo.sketches.frequencies | Frequent Item Sketches
+com.yahoo.sketches             | Some common functions and utilities
+com.yahoo.sketches.frequencies | Frequent Item Sketches, for both longs and generics
 com.yahoo.sketches.hash        | The 128-bit MurmurHash3 and adaptors
-com.yahoo.sketches.hll         | HLL sketches
+com.yahoo.sketches.hll         | HLL sketches, and HLL Map sketches
 com.yahoo.sketches.memory      | Off-heap Memory management
-com.yahoo.sketches.quantiles   | Sketches for quantiles, PMF and CDF functions
+com.yahoo.sketches.quantiles   | Sketches for quantiles, PMF and CDF functions, both doubles and generics
+com.yahoo.sketches.sampling    | Reservoir sampling with generices 
 com.yahoo.sketches.theta       | Theta sketches
-com.yahoo.sketches.tuple       | Tuple sketches
+com.yahoo.sketches.tuple       | Tuple sketches for both primitives and generics
 
 
 ### sketches-pig
@@ -37,7 +38,7 @@ This code is versioned and the latest release can be obtained from
 High-level Structure               | Package Description
 -----------------------------------|---------------------
 com.yahoo.sketches.pig.frequencies | Pig UDFs for Frequent Items sketches
-com.yahoo.sketches.pig.hash        | Pig UDFs for MurmerHash3
+com.yahoo.sketches.pig.hash        | Pig UDF for MurmerHash3
 com.yahoo.sketches.pig.quantiles   | Pig UDFs for Quantiles sketches
 com.yahoo.sketches.pig.theta       | Pig UDFs for Theta sketches
 com.yahoo.sketches.pig.tuple       | Pig UDFs for Tuple sketches
@@ -50,9 +51,12 @@ Users of this code are advised to use Maven to bring in all the required depende
 This code is versioned and the latest release can be obtained from
 <a href="https://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
 
-High-level Structure           | Package Description
--------------------------------|---------------------
-com.yahoo.sketches.hive.theta  | Hive UDF and UDAFs for Theta sketches
+High-level Structure                 | Package Description
+-------------------------------------|---------------------
+com.yahoo.sketches.hive.frequencies  | Hive UDF and UDAFs for Frequent Items sketches
+com.yahoo.sketches.hive.quantiles    | Hive UDF and UDAFs for Quantiles sketches
+com.yahoo.sketches.hive.theta        | Hive UDF and UDAFs for Theta sketches
+com.yahoo.sketches.hive.tuple        | Hive UDF and UDAFs for Tuple sketches
 
 ### sketches-misc
 Demos, command-line access, characterization testing and other code not related to production 
@@ -70,7 +74,9 @@ High-level Structure               | Package Description
 com.yahoo.sketches.benchmark       | Benchmarking code for the HLL sketches
 com.yahoo.sketches.cmd             | Support for Command Line functions
 com.yahoo.sketches.demo            | Simple demo for brute-force vs Theta & HLL sketches
+com.yahoo.sketches.hll             | Error Characterization and Command-line functions for experimenting with CountUniqueMap
 com.yahoo.sketches.performance     | Speed and Error Characteriation of Theta an HLL sketches
+com.yahoo.sketches.sampling        | Benchmarks and Entropy testing
 
 ### experimental
 This repository is an experimental staging area for code that will eventually end up in another 
