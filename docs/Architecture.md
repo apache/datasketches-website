@@ -7,25 +7,28 @@ layout: doc_page
 The DataSketches Library is organized into the following repositories:
 
 ### sketches-core
-This repository has the core sketching classes and related functions that are used by the other 
-repositories. 
-This repository has no external dependencies outside of Java and TestNG, which is used only for 
-unit tests. 
+This repository has two modules released with separate jars: the core sketching classes, and the Memory package.  
+These two modules are leveraged by all he other repositories. 
+This repository has no external dependencies outside of Java and TestNG for unit tests. 
 This code is versioned and the latest release can be obtained from
 <a href="https://search.maven.org/#search|ga|1|datasketches">Maven Central<a/>.
 
+<b>High-level Package Structure</b>
 
-High-level Package Structure   | Description
+Sketches-core Module           | Description
 -------------------------------|---------------------
-com.yahoo.sketches             | Some common functions and utilities
+com.yahoo.sketches             | Common functions and utilities
 com.yahoo.sketches.frequencies | Frequent Item Sketches, for both longs and generics
 com.yahoo.sketches.hash        | The 128-bit MurmurHash3 and adaptors
 com.yahoo.sketches.hll         | HLL sketches, and HLL Map sketches
-com.yahoo.sketches.memory      | Off-heap Memory management
 com.yahoo.sketches.quantiles   | Sketches for quantiles, PMF and CDF functions, both doubles and generics
-com.yahoo.sketches.sampling    | Reservoir sampling with generices 
+com.yahoo.sketches.sampling    | Reservoir sampling with generics 
 com.yahoo.sketches.theta       | Theta sketches
 com.yahoo.sketches.tuple       | Tuple sketches for both primitives and generics
+
+Memory Module                  | Description
+-------------------------------|---------------------
+com.yahoo.memory               | Low level Memory data-structure management primarily for off-heap. 
 
 
 ### sketches-pig
