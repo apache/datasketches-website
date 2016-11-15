@@ -34,6 +34,7 @@
 
 # HLL Sketches
 * [HLL Sketch]({{site.docs_dir}}/HLL/HLL.html)
+* [HLL Map Sketch]({{site.docs_dir}}/HLL/HllMap.html)
 
 # Quantiles Sketches
 * [Quantiles Overview]({{site.docs_dir}}/Quantiles/QuantilesOverview.html)
