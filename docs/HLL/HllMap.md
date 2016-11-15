@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-## HLL Count Unique Map Sketch
+## HLL Unique Count Map Sketch
 This is a real-time, key-value HLL mapping sketch that tracks approximate unique counts of
 identifiers (the values) associated with each key. An example might be tracking the number of
 unique user identifiers associated with each IP address. This map has been specifically designed
@@ -16,12 +16,12 @@ one identifier, 99% of the keys would have less than 20 identifiers, 99.9% would
 
 The space consumed by this map is quite sensitive to the actual distribution of identifiers
 per key, so you should characterize and or experiment with your typical input streams.
-Nonetheless, our experiments on live streams of over 100M keys required space less than 2GB.
+Nonetheless, our experiments on live streams of about 100M keys required space less than 1.3GB.
 
 Given such highly-skewed distributions, using this map is far more efficient space-wise than
 the alternative of dedicating an HLL sketch per key. Based on our use cases, after
 subtracting the space required for key storage, the average bytes per key required for unique
-count estimation ({@link  #getAverageSketchMemoryPerKey()}) is about 10.
+count estimation (see method getAverageSketchMemoryPerKey()) is about 10.
 
 Internally, this map is implemented as a hierarchy of internal hash maps with progressively
 increasing storage allocated for unique count estimation. As a key acquires more identifiers it
@@ -59,7 +59,7 @@ for the web site. Please refer to the javadocs for those classes for more inform
 
 ### Accuracy
 
-The accuracy behavior of the CountUniqueMap sketch will be similar to the following graph:
+The accuracy behavior of the UniqueCountMap sketch will be similar to the following graph:
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/hll/RSE_UniqueCountMap.png" alt="RSE_UniqueCountMap.png" />
 
