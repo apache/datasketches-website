@@ -4,7 +4,7 @@ layout: doc_page
 
 ## Frequent Items Sketches Overview
 
-These sketches provides the following capabilities:
+These sketches provide the following capabilities:
 <ul>
 <li>Estimate the frequency of an item.</li>
 <li>Return upper and lower bounds of any item, such that the true frequency is always between the upper and lower bounds.</li>
