@@ -49,6 +49,7 @@
 
 # Sampling Sketches
 * [Reservoir Sampling]({{site.docs_dir}}/Sampling/ReservoirSampling.html)
+* [Reservoir Sampling Java Exampel]({{site.docs_dir}}/Sampling/ReservoirSamplingJava.html)
 
 # Theta Sketches
 * [Theta Sketch Framework]({{site.docs_dir}}/Theta/ThetaSketchFramework.html)
