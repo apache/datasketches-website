@@ -42,13 +42,15 @@ layout: doc_page
       byte[] bytes1 = new byte[in1.available()];
       in1.read(bytes1);
       in1.close();
-      ReservoirItemsSketch<Long> sketch1 = ReservoirItemsSketch.getInstance(new NativeMemory(bytes1), new ArrayOfLongsSerDe());
+      ReservoirItemsSketch<Long> sketch1 = ReservoirItemsSketch.getInstance(new NativeMemory(bytes1), 
+                                                                            new ArrayOfLongsSerDe());
 
       FileInputStream in2 = new FileInputStream(new File("Reservoir2.bin"));
       byte[] bytes2 = new byte[in2.available()];
       in2.read(bytes2);
       in2.close();
-      ReservoirItemsSketch<Long> sketch2 = ReservoirItemsSketch.getInstance(new NativeMemory(bytes2), new ArrayOfLongsSerDe());
+      ReservoirItemsSketch<Long> sketch2 = ReservoirItemsSketch.getInstance(new NativeMemory(bytes2),
+                                                                            new ArrayOfLongsSerDe());
 
       int k = sketch1.getK();
       ReservoirItemsUnion<Long> union = ReservoirItemsUnion.getInstance(k);
