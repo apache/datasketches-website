@@ -66,3 +66,25 @@ layout: doc_page
           System.out.println(i + ": " + samples[i]);
       }
     }
+
+Output:
+
+    ### ReservoirItemsSketch SUMMARY:
+       k            : 8192
+       n            : 200000
+       Current size : 8192
+       Resize factor: X8
+    ### END SKETCH SUMMARY
+    
+    First 10 results in union:
+    0: 6843
+    1: 1
+    2: 18592
+    3: 13470
+    4: 24367
+    5: 12686
+    6: 73476
+    7: 15003
+    8: 68131
+    9: 18649
+    
