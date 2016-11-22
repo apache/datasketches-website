@@ -8,12 +8,13 @@ Reservoir sampling provides a way to construct a uniform random sample of size <
 
 The Sketches Library provides 2 forms of reservoir sampling sketches:
 * ReservoirItemsSketch&lt;T&gt;
+
     This sketch provides a random sample of items of type &lt;T&gt; from the item stream. Every
     item in the stream will have an equal probability of being included in the output reservoir.
     If processing the entire data set with a single instance of this class, all permutations of the
     input elements will be equally likely; if unioning multiplereservoirs, the guarantee is only
     that each element is equally likely to be selected.
-    
+
     If the user needs to serialize and deserialize the resulting sketch for storage or transport, 
     the user must also extend the <tt>ArrayOfItemsSerDe</tt> interface. Three examples of 
     extending this interface are included for <tt>Long</tt>,
@@ -21,6 +22,7 @@ The Sketches Library provides 2 forms of reservoir sampling sketches:
     and <tt>ArrayOfNumbersSerDe</tt>.
 
 * ReservoirLongsSketch
+
     This provides a custom implementation for items of type <tt>long</tt>. Performance is nearly identical
     to that of the items sketch, but there is no need to provide an <tt>ArrayOfItemsSerDe</tt>.
     
