@@ -1,2 +1,4 @@
+com.yahoo.sketches.hive.frequencies
 com.yahoo.sketches.hive.quantiles
 com.yahoo.sketches.hive.theta
+com.yahoo.sketches.hive.tuple
