@@ -12,7 +12,7 @@ If the cache is presented with a hash value that is less than <i>V(k<sup>th</sup
 If the cache has been presented with less than <i>k</i> values,
 the estimate equals the current count of values in the cache. This is also known as <i>Exact Mode</i> (as opposed to <i>Estimation Mode</i>).
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/KMV5.png" alt="KMV5" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/theta/KMV5.png" alt="KMV5" />
 
 We now have a complete <i>KMV</i> sketch, with some amazing properties:
 
@@ -25,7 +25,7 @@ For large enough values of <i>k</i> the error distribution is roughly Gaussian, 
 
 To figure out what value of <i>k</i> is required, you must first determine what level of accuracy is required for your application.  The graph below can serve as a guide.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/RSEvsK.png" alt="RSEvsK" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/theta/RSEvsK.png" alt="RSEvsK" />
 
 The RSE corresponds to +/- one Standard Deviation of the Gaussian distribution, which is equivalent to a confidence of 68%.  To obtain the Relative Error (RE, no longer "Standard") at 95% confidence and the same value of <i>k</i> you multiply the RSE value by two.  For example, reading from the chart, choosing <i>k</i> = 4096 corresponds to an RSE of +/- 1.6% with 68% confidence.  That same size sketch will have a Relative Error of +/- 3.2% with 95% confidence.
 

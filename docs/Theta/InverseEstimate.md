@@ -12,7 +12,7 @@ One of the basic concepts that is used in Theta Sketches is that of the <i>Inver
 You have just joined the end of a long line for a concert that you are excited to see. That is you, on the very left.  The line extends a full city block, which in your city is about one-fifth of a mile or roughly 1000 feet.
 You would like to know how many people are ahead of you.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/ConcertLine1.png" alt="ConcertLine1" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/theta/ConcertLine1.png" alt="ConcertLine1" />
 
 The thought process in your head goes something like this for your first estimate:
 
@@ -31,7 +31,7 @@ This is a rather poor estimate as it has only a sample size of one, you!
 
 Looking at the people just ahead you realize that not everyone is spaced the same distance apart.  Couples tend to stand much closer together, and then there are those "dreamers" that are not paying attention and leave big gaps ahead of them.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/ConcertLine2.png" alt="ConcertLine2" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/theta/ConcertLine2.png" alt="ConcertLine2" />
 
 A much better estimate could be obtained by averaging the spacing for more than just one person. 
 You can see 10 evenly spaced cracks in the sidewalk ahead, spaced at 3 feet apart, and count 11 people standing in that distance of 30 feet. 

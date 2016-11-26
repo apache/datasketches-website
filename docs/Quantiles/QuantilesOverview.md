@@ -36,7 +36,7 @@ The relevant pseudo-code snippets would look something like this:
 
 When these values are plotted against the normalized ranks we get something like this:
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/TimeSpentQuantiles.png" alt="TimeSpentQuantiles" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/TimeSpentQuantiles.png" alt="TimeSpentQuantiles" />
 
 This reveals a great deal about the distribution of values in the stream. Just reading from the graph, the median is about 3000 and the 90th percentile is about 30,000 and so on. One can also query the min and max values seen by the sketch. By observing the results of the quantiles query, it is not too difficult to create a set of splitpoints for a histogram plot. 
 
@@ -52,7 +52,7 @@ The following histogram is plotted by multiplying all the pmf values by getN(),
 which is the total number of events seen by the sketch (230M). 
 The getCDF(...) works similarly, but produces the cumulative distribution instead.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/TimeSpentHistogram.png" alt="TimeSpentHistogram" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/TimeSpentHistogram.png" alt="TimeSpentHistogram" />
 
 Now for some fun! For those of you that recognize the shape of this distribution as 
 looking remarkably similar to the Normal (Gaussian) Distribution, you are close, but no cigar! 
@@ -62,7 +62,7 @@ and the actual data distribution in blue as before.
 They are remarkably close within about 2 standard deviations on the log axis, but the tails are 
 way off.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/TimeSpentLognormal.png" alt="TimeSpentLognormal" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/TimeSpentLognormal.png" alt="TimeSpentLognormal" />
 
 ### More Code Snippets
 

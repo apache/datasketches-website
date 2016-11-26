@@ -6,7 +6,7 @@ layout: doc_page
 ## System Merge Speed
 The following graph illustrates the speed of merging millions of sketches in a large system environment.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/MergeSpeed.png" alt="MergeSpeed" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/theta/MergeSpeed.png" alt="MergeSpeed" />
 
 ### How this graph was generated
 

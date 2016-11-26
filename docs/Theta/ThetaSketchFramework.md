@@ -52,7 +52,7 @@ which is used by the software to determine the target accuracy of the sketch and
 The unbiased estimate simplifies to \|S\|/<i>&theta;</i>, which is just the size of <i>S</i> divided by <i>&theta;</i>. 
 We will discuss the RSE in a later section.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/ThetaSketch1.png" alt="ThetaSketch1" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/theta/ThetaSketch1.png" alt="ThetaSketch1" />
 
 [1] Z. Bar-Yossef, T. Jayram, R. Kumar, D. Sivakumar, and L. Trevisan. Counting distinct elements in a data stream. In <i>Randomization and Approximation Techniques in Computer Science</i>, pages 1–10. Springer, 2002.
 

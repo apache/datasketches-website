@@ -27,7 +27,7 @@ A QuickSelect Sketch, which is the default sketch family, can be constructed wit
 
 The accuracy behavior of this QuickSelect Sketch (the default, with no rebuild) will be similar to the following graph:
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}/QS4KError.png" alt="QS4KError" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/theta/QS4KError.png" alt="QS4KError" />
 
 This type of graph is called a "pitchfork", which is used throughout this documentation to characterize the accuracy of the various sketches.
 
@@ -47,8 +47,8 @@ This means that the plotted x values form an exponential series of the form <i>2
 
 * The plotted lines on these graphs are actually the lines of constant quantiles of the distributions of error measured at each x-axis point on the graph.  
 * These pitchfork graphs are just two dimensional views of a three-dimensional probability surface that would look something like this: 
-<img src="{{site.docs_img_dir}}/ErrorSurface2.png" alt="ErrorSurface2" width="150px" />. The cross-sectional slice of this surface is approximately Gaussian like this graph
-<img src="{{site.docs_img_dir}}/400px-StandardNormalCurve.png" alt="400px-StandardNormalCurve" width="200px" />, 
+<img src="{{site.docs_img_dir}}/theta/ErrorSurface2.png" alt="ErrorSurface2" width="150px" />. The cross-sectional slice of this surface is approximately Gaussian like this graph
+<img src="{{site.docs_img_dir}}/theta/400px-StandardNormalCurve.png" alt="400px-StandardNormalCurve" width="200px" />, 
 which has the +/- 1, 2 and 3 standard deviation points on the x-axis marked and the corresponding areas under the curve that represent the associated confidence levels.
 * All the pitchfork graphs in this section were generated using the <i>SketchPerformance.java</i> utility that is located in the the <i>sketches-misc</i> repository.
 
@@ -77,7 +77,7 @@ assigns this value to theta, discards all values above theta, and rebuilds the h
 If the user does not want the sketch ever to exceed <i>k</i> values, then there is an optional rebuild method (see code snippet above) that can be used.
 This would result in the following graph:
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}/QS4KErrorRebuild.png" alt="QS4KErrorRebuild" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/theta/QS4KErrorRebuild.png" alt="QS4KErrorRebuild" />
 
 Because of the extra rebuild at the end the full cycle time of the sketch is a little slower and the average accuracy is a little less than without the rebuild. 
 This is a tradeoff the user can choose to use or not.
@@ -86,7 +86,7 @@ The quantiles for both +/- 1 RSE and +/- 2 RSE establishes the bounds for the 68
 
 #### Accuracy of Set Intersections & Differences
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/64KSketchVsIEerror.png" alt="64KSketchVsIEerror.png" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/theta/64KSketchVsIEerror.png" alt="64KSketchVsIEerror.png" />
 
 The above diagram was created using two Theta Sketches, <i>A</i> and <i>B</i>, with nominal entries size of 64K. The number of unique items presented to the two sketches was quite large, but the ratio of the number of uniques presented to the two sketches varies along the X-axis in a special way.
 
@@ -103,7 +103,7 @@ Set intersections and differences can have considerably more relative error than
 
 Another major sketch family is the Alpha Sketch, which leverage the "HIP" estimator.  Its pitchfork graph looks like the following:
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}/Alpha4KError.png" alt="Alpha4KError" /> 
+<img class="doc-img-half" src="{{site.docs_img_dir}}/theta/Alpha4KError.png" alt="Alpha4KError" /> 
 
 This sketch was also configured with a size of 4K entries, otherwise the defaults.
 The wavy lines have the same interpretation as the wavy lines for the QuickSelect Sketch above.

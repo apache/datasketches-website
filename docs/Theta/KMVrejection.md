@@ -9,7 +9,7 @@ Not needing to store hash values greater than <i>V(k<sup>th</sup>)</i> means we 
 
 Additionally, we can reject any incoming hash values that are duplicates of any of the hash values we already have in our <i>KMV</i> list.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/KMV4.png" alt="KMV4" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/theta/KMV4.png" alt="KMV4" />
 
 [Prev]({{site.docs_dir}}/Theta/KMVbetterEst.html)<br>
 [Next]({{site.docs_dir}}/Theta/KMVupdateVkth.html)
