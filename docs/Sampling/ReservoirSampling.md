@@ -39,15 +39,15 @@ items in the reservoir.
 
 ### Updating the sketch with new items
 
-Reservoir sampling does not maintain a hash list of items or associate additional metadata with them. As a
-result, each item presented to the sketch is handled independently. As a result, the reservoir may have
-duplicate items if the input stream contained duplicates.
+Reservoir sampling does not maintain a hash list of items or associate additional metadata with them;
+each item presented to the sketch is handled independently. Consequently, the reservoir may have
+duplicate items if the input stream contains duplicates.
 
 
 ### Unioning Reservoirs
 
 As mentioned above, using a single reservoir to process a data stream ensures that the resulting reservoir contains all elements with equal probability, but that all permutations of the input are also equally probable (subject to the limits of the random number generator). That additional guarantee over permutations no longer applies to reservoir unions.
 
-To union two reservoirs, we first compute a weight for the items in each reservoir based on both the reservoir size and the total number of items that have been presented to the reservoir. Because the items are themselves unweighted, the weight reflects the relatieve weight of each reservoir and affects the probability of taking items from each.
+To union two reservoirs, we first compute a weight for the items in each reservoir based on both the reservoir size and the total number of items that have been presented to the reservoir. Because the items are themselves unweighted, the weight reflects the relative weight of each reservoir and affects the probability of taking items from each.
 
 A union object is initiailzed with a <tt>maxUnionCapacity</tt>. Unlike the reservoir size, which can only grow until saturating at its capacity, the actual number of items stored in a union can both grow and shrink, depending on the sizes and weights of the input sketches. The only guarantee is that the union result will not grow beyond <tt>maxUnionCapacity</tt>
