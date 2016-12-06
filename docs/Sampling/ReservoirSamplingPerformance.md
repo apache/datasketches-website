@@ -47,7 +47,7 @@ We tested the two Pig UDFs using the same methodology: Generate input data, inst
 Lacking a dedicated Hadoop cluster for proper experimental control, tests were run directly in Java on a local (and rather aged) box.
 The relative performance was consistent across various values of `k` so we present `k = 2048` as a representative example.
 
---ADD PICTURE!--
+![Graph comparing Sketches to DataFu for k=2048]({{site.docs_img_dir}}/sampling/compare_datafu.k2048.png)
 
 Because the data is input as a Pig `DataBag`, the UDF knows the input data size when starting processing. If the total input size is
 less than the maximum reservoir size, the entire input data can be returned, which requires handling only a pointer to the DataBag,
