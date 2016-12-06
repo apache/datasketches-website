@@ -64,4 +64,4 @@ that of the Sketches library.
 
 ### Code Location
 
-All testing code for these results are available in the [sketches-misc](https://github.com/DataSketches/sketches-misc) repository.
+All testing code for these results is available in the [sketches-misc](https://github.com/DataSketches/sketches-misc) repository.
