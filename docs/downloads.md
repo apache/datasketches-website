@@ -37,7 +37,10 @@ compatibility may not be guaranteed.
 For the repositories that depend on core, such as <i>sketches-hive</i>, 
 the version number may be incremented just to be in sync with the core repository, 
 and may not reflect any actual code changes other than a change in the pom.xml to reflect the new 
-dependency.
+dependency. If you just want to run Hive and don't require access to the <i>sketches-core</i> it is
+recommended that you download the "with-shaded-core.jar", which includes the Hive jar as well as 
+shaded versions of the core jar and memory jar. The shading avoids conflicts with other possible versions
+of core and memory that you might have in your system.
 
 
 #### SNAPSHOT Jars
