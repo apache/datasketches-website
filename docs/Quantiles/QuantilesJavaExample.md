@@ -34,7 +34,7 @@ layout: doc_page
         sketch2.update(rand.nextGaussian() + 1); // shift the mean for the second sketch
       }
       FileOutputStream out2 = new FileOutputStream(new File("QuantilesDoublesSketch2.bin"));
-      out2.write(sketch1.toByteArray());
+      out2.write(sketch2.toByteArray());
       out2.close();
     }
 
