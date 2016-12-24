@@ -16,7 +16,7 @@ one identifier, 99% of the keys would have less than 20 identifiers, 99.9% would
 
 The space consumed by this map is quite sensitive to the actual distribution of identifiers
 per key, so you should characterize and or experiment with your typical input streams.
-Nonetheless, our experiments on live streams of about 100M keys required space less than 1.3GB.
+Nonetheless, our experiments on live streams of about 100M keys required space less than 1.4GB.
 
 Given such highly-skewed distributions, using this map is far more efficient space-wise than
 the alternative of dedicating an HLL sketch per key. Based on our use cases, after
