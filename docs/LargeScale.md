@@ -25,7 +25,7 @@ layout: doc_page
   particularly important when processing sensitive user identifiers.
   * <a href="{{site.docs_dir}}/Theta/ThetaPSampling.html"><b>Sampling</b></a>. Built-in up-front sampling for cases where additional 
   contol is required to limit overall memory consumption when dealing with millions of sketches.
-  * Off-Heap <a href="{{site.docs_dir}}/MemoryPackage.html"><b>Memory Package</b></a>. 
+  * Off-Heap <a href="{{site.docs_dir}}/Memory/MemoryPackage.html"><b>Memory Package</b></a>. 
   Large query systems often require their own heaps outside the JVM in order to better manage garbage collection latencies. 
   The sketches in this package are designed to operate either on-heap or off-heap.
   * Built-in <b>Upper-Bound and Lower-Bound estimators</b>. 

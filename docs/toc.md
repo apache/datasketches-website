@@ -16,6 +16,7 @@
 # Section Links
 * [Frequent Items Sketches](#frequent-items-sketches)
 * [HLL Sketches](#hll-sketches)
+* [Memory Package](#memory-paxkage)
 * [Quantiles Sketches](#quantiles-sketches)
 * [Sampling Sketches](#sampling-sketches)
 * [Theta Sketches](#theta-sketches)
@@ -35,6 +36,9 @@
 # HLL Sketches
 * [HLL Sketch]({{site.docs_dir}}/HLL/HLL.html)
 * [HLL Map Sketch]({{site.docs_dir}}/HLL/HllMap.html)
+
+# Memory Package
+* [Memory Package]({{site.docs_dir}}/Memory/MemoryPackage.html)
 
 # Quantiles Sketches
 * [Quantiles Overview]({{site.docs_dir}}/Quantiles/QuantilesOverview.html)
@@ -84,7 +88,7 @@
 * [Theta Sketch Pig UDFs]({{site.docs_dir}}/Theta/ThetaPigUDFs.html)
 * [Theta Sketch Hive UDFs]({{site.docs_dir}}/Theta/ThetaHiveUDFs.html)
 * [Integration with Druid]({{site.docs_dir}}/DruidIntegration.html)
-* [Memory Package]({{site.docs_dir}}/MemoryPackage.html)
+* [Memory Package]({{site.docs_dir}}/Memory/MemoryPackage.html)
 * [<i>p</i>-Sampling]({{site.docs_dir}}/Theta/ThetaPSampling.html)
 
 ### Theta Sketch Theory

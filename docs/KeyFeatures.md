@@ -23,7 +23,7 @@ and are heavily used within Yahoo.
   * Extensive documentation with the systems developer in mind.
 
 <h3>Built-In, General Purpose Functions</h3>
-  * General purpose <a href="{{site.docs_dir}}/MemoryPackage.html">Memory Package</a> for managing data off the Java Heap. 
+  * General purpose <a href="{{site.docs_dir}}/Memory/MemoryPackage.html">Memory Package</a> for managing data off the Java Heap. 
 This enables systems designers the ability to manage their own large data heaps with 
 dedicated processor threads that would otherwise put undue pressure on the Java heap and 
 its garbage collection.
