@@ -16,7 +16,7 @@
 # Section Links
 * [Frequent Items Sketches](#frequent-items-sketches)
 * [HLL Sketches](#hll-sketches)
-* [Memory Package](#memory-paxkage)
+* [Memory Package](#memory-package)
 * [Quantiles Sketches](#quantiles-sketches)
 * [Sampling Sketches](#sampling-sketches)
 * [Theta Sketches](#theta-sketches)
@@ -59,6 +59,7 @@
 # Theta Sketches
 * [Theta Sketch Framework]({{site.docs_dir}}/Theta/ThetaSketchFramework.html)
 * [Theta Sketch Java Example]({{site.docs_dir}}/Theta/ThetaJavaExample.html)
+* [Theta Sketch Spark Example]({{site.docs_dir}}/Theta/ThetaSparkExample.html)
 
 ### KMV Tutorial
 * [The Inverse Estimate]({{site.docs_dir}}/Theta/InverseEstimate.html)
