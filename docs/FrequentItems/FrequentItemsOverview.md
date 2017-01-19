@@ -5,14 +5,14 @@ layout: doc_page
 ## Frequent Items Sketches Overview
 
 These sketches provide the following capabilities:
-<ul>
-<li>Estimate the frequency of an item.</li>
-<li>Return upper and lower bounds of any item, such that the true frequency is always between the upper and lower bounds.</li>
-<li>Return a global maximum error that holds for all items in the stream.</li>
-<li>Return an array of frequent items that qualify either a NO_FALSE_POSITIVES or a NO_FALSE_NEGATIVES error type.</li>
-<li>Merge itself with another sketch object created from the same class.</li>
-<li>Serialize/Deserialize to/from a byte array.</li>
-</ul>
+
+* Estimate the frequency of an item.
+* Return upper and lower bounds of any item, such that the true frequency is always between the upper and lower bounds.
+* Return a global maximum error that holds for all items in the stream.
+* Return an array of frequent items that qualify either a NO_FALSE_POSITIVES or a NO_FALSE_NEGATIVES error type.
+* Merge itself with another sketch object created from the same class.
+* Serialize/Deserialize to/from a byte array.
+
 
 ### Two Implementations
 
