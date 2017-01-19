@@ -15,7 +15,8 @@ layout: doc_page
 <a href="https://hadoop.apache.org/">Hadoop</a>, 
 <a href="https://pig.apache.org/">Pig</a>, 
 <a href="https://hive.apache.org/">Hive</a>,
-<a href="https://druid.io">Druid</a>), 
+<a href="https://druid.io">Druid</a>,
+<a href="https://spark.apache.org">Spark</a>), 
 and are heavily used within Yahoo.
   * <b>Maven deployable</b> and registered with 
 <a href="https://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>.
