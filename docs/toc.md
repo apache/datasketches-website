@@ -8,7 +8,7 @@
 * [Sketch Origins]({{site.docs_dir}}/SketchOrigins.html)
 * [Sketch Elements]({{site.docs_dir}}/SketchElements.html)
 * [Key Features]({{site.docs_dir}}/KeyFeatures.html)
-  * [Large Scale]({{site.docs_dir}}/LargeScale.html)
+  * [Large Scale]({{site.docs_dir}}/LargeScale.md)
   * [Adaptors]({{site.docs_dir}}/Adaptors.html)
 * [Architecture]({{site.docs_dir}}/Architecture.html)
 * [Overview Slide Deck]({{site.docs_pdf_dir}}/DataSketches_deck_13Oct2016.pdf)
