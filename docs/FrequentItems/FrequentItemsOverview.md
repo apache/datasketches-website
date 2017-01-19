@@ -17,9 +17,7 @@ These sketches provide the following capabilities:
 * Merge itself with another sketch object created from the same class.
 
 * Serialize/Deserialize to/from a byte array.
-<p>
-<h3>Two Implementations</h3>    
-</p>
+
 
 ### Two Implementations
 
