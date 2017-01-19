@@ -5,13 +5,16 @@ layout: doc_page
 ## Designed for Large-scale Computing Systems
 
 ### Minimal Dependencies
+
   * Can be integrated into virtually any Java-base system environment.
   * The core library (including Memory) has no dependencies outside of the Java JVM at runtime.
 
 ### Maven Deployable
+
   * Registered with <a href="https://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>
 
 ### Speed
+
   * These single-pass, "one-touch" algorithms are <a href="{{site.docs_dir}}/Theta/ThetaUpdateSpeed.html"><i>fast</i></a> 
   to enable real-time processing capability.
   * Coupled with the compact binary representations, in many cases the need for costly 
@@ -20,12 +23,14 @@ layout: doc_page
   merged without losing accuracy.
 
 ### Integration for Hive, Pig, Druid and Spark
+
   * <a href="https://github.com/DataSketches/sketches-hive/tree/master/src/main/java/com/yahoo/sketches/hive">Hadoop / Hive Adaptors</a>.
   * <a href="https://github.com/DataSketches/sketches-pig/tree/master/src/main/java/com/yahoo/sketches/pig">Hadoop / Pig Adaptors</a>.
   * <a href="https://github.com/druid-io/druid/tree/master/extensions-core/datasketches/src/main/java/io/druid/query/aggregation/datasketches">Druid Adaptors</a>
   * <a href="{{site.docs_dir}}/Theta/ThetaSparkExample.html">Spark Examples</a> 
 
 ### Specific Theta Sketch Features for Large Data
+
   * <b>Hash Seed Handling</b>. Additional protection for managing hash seeds which is 
   particularly important when processing sensitive user identifiers.
   * <a href="{{site.docs_dir}}/Theta/ThetaPSampling.html"><b>Sampling</b></a>. Built-in up-front sampling for cases where additional 
