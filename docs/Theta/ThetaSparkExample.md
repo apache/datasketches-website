@@ -4,7 +4,7 @@ layout: doc_page
 
 ## Example of using ThetaSketch in Spark
 
-The key idea with respect to performance here is to arrange a two-phase process. In the first phase all input is partitioned by Spark and sent to executors. One sketch is created per partition (or per dimensional combination in that partition) and updated with all the input without serializing the sketch until the end of the phase. In the second phase the sketches from the first phase are merged. Therefore serialization is happening only between the phases to transfer the results of the first phase to the executors performing the second phase. In the code examples below we convert the UpdateSketches to CompactSketches during serialization, which results in transferring less data, and also serves as proof that no serialization is done during the first phase since the deserialized sketches cannot be updated, but only merged.
+The key idea with respect to performance here is to arrange a two-phase process. In the first phase all input is partitioned by Spark and sent to executors. One sketch is created per partition (or per dimensional combination in that partition) and updated with all the input without serializing the sketch until the end of the phase. In the second phase the sketches from the first phase are merged. Therefore serialization would happen only between the phases to transfer the results of the first phase to the executors performing the second phase. In the code examples below we convert UpdateSketches to CompactSketches during serialization, which results in transferring less data, and also serves as a proof that no serialization is done during the first phase since the deserialized sketches cannot be updated, but only merged.
 
 Building one sketch using old Spark API:
 
@@ -50,7 +50,7 @@ Building one sketch using old Spark API:
       }
     }
 
-Wrapper to make TetaSketch serializable:
+Wrapper to make ThetaSketch serializable:
 
     import java.io.ObjectInputStream;
     import java.io.ObjectOutputStream;
@@ -120,78 +120,6 @@ Wrapper to make TetaSketch serializable:
     }
 
 
-Building multiple sketches (one sketch per key or dimension):
-
-    import org.apache.spark.SparkContext;
-    import org.apache.spark.SparkConf;
-    import org.apache.spark.api.java.JavaSparkContext;
-    import org.apache.spark.api.java.JavaRDD;
-    import org.apache.spark.api.java.JavaPairRDD;
-    import org.apache.spark.api.java.function.Function2;
-    import org.apache.spark.api.java.function.PairFlatMapFunction;
-
-    import com.yahoo.sketches.theta.PairwiseSetOperations;
-    import com.yahoo.sketches.theta.CompactSketch;
-    import com.yahoo.sketches.theta.UpdateSketch;
-
-    import java.util.List;
-    import java.util.ArrayList;
-    import java.util.Iterator;
-    import scala.Tuple2;
-
-    public class AggregateByKey {
-
-      public static void main(final String[] args) {
-        final SparkConf conf = new SparkConf();
-        final JavaSparkContext context = new JavaSparkContext(conf);
-
-        final JavaRDD<String> lines = context.textFile("agg-by-key-input.txt"); // format: key\tvalue
-        final JavaPairRDD<String, String> pairs = lines.mapPartitionsToPair(new PairFlatMapFunction<Iterator<String>, String, String>() {
-          public Iterator<Tuple2<String, String>> call(final Iterator<String> input) {
-            final List<Tuple2<String, String>> list = new ArrayList();
-            while (input.hasNext()) {
-              final String line = input.next();
-              final String[] tokens = line.split("\t");
-              list.add(new Tuple2(tokens[0], tokens[1]));
-            }
-            return list.iterator();
-          }
-        });
-
-        final JavaPairRDD<String, ThetaSketchJavaSerializable> sketches = pairs.aggregateByKey(
-          new ThetaSketchJavaSerializable(),
-          new SeqFunc(),
-          new CombFunc()
-        );
-        final Iterator<Tuple2<String, ThetaSketchJavaSerializable>> it = sketches.toLocalIterator();
-        while (it.hasNext()) {
-          final Tuple2<String, ThetaSketchJavaSerializable> pair = it.next();
-          System.out.println("Pair: (" + pair._1 + ", " + pair._2.getEstimate() + ")");
-        }
-      }
-
-      static class SeqFunc implements Function2<ThetaSketchJavaSerializable, String, ThetaSketchJavaSerializable> {
-        public ThetaSketchJavaSerializable call(final ThetaSketchJavaSerializable sketch, final String value) {
-          sketch.update(value);
-          return sketch;
-        }
-      }
-
-      static class CombFunc implements Function2<ThetaSketchJavaSerializable, ThetaSketchJavaSerializable, ThetaSketchJavaSerializable> {
-        static final ThetaSketchJavaSerializable emptySketchWrapped = new ThetaSketchJavaSerializable(UpdateSketch.builder().build().compact());
-
-        public ThetaSketchJavaSerializable call(final ThetaSketchJavaSerializable sketch1, final ThetaSketchJavaSerializable sketch2) {
-          if (sketch1.getSketch() == null && sketch2.getSketch() == null) return emptySketchWrapped;
-          if (sketch1.getSketch() == null) return sketch2;
-          if (sketch2.getSketch() == null) return sketch1;
-          final CompactSketch compactSketch1 = sketch1.getCompactSketch();
-          final CompactSketch compactSketch2 = sketch2.getCompactSketch();
-          return new ThetaSketchJavaSerializable(PairwiseSetOperations.union(compactSketch1, compactSketch2));
-        }
-      }
-
-    }
-
 Building one sketch using new Spark 2.x API and reading input from a Hive table:
 
     import org.apache.spark.sql.SparkSession;
@@ -250,4 +178,169 @@ Building one sketch using new Spark 2.x API and reading input from a Hive table:
         System.out.println("Unique count: " + String.format("%,f", sketch.getEstimate()));
         spark.stop();
       }
+    }
+
+
+Building multiple sketches (one sketch per key or dimension):
+
+    import org.apache.spark.SparkContext;
+    import org.apache.spark.SparkConf;
+    import org.apache.spark.api.java.JavaSparkContext;
+    import org.apache.spark.api.java.JavaRDD;
+    import org.apache.spark.api.java.JavaPairRDD;
+    import org.apache.spark.api.java.function.Function2;
+    import org.apache.spark.api.java.function.PairFlatMapFunction;
+
+    import com.yahoo.sketches.theta.PairwiseSetOperations;
+    import com.yahoo.sketches.theta.CompactSketch;
+    import com.yahoo.sketches.theta.UpdateSketch;
+
+    import java.util.List;
+    import java.util.ArrayList;
+    import java.util.Map;
+    import java.util.HashMap;
+    import java.util.Iterator;
+    import scala.Tuple2;
+
+    public class MapPartitionsToPairReduceByKey {
+
+      static final ThetaSketchJavaSerializable emptySketchWrapped = new ThetaSketchJavaSerializable(UpdateSketch.builder().build().compact());
+
+      public static void main(final String[] args) {
+        final SparkConf conf = new SparkConf();
+        final JavaSparkContext context = new JavaSparkContext(conf);
+
+        final JavaRDD<String> lines = context.textFile("agg-by-key-input.txt"); // format: key\tvalue
+
+        final JavaPairRDD<String, ThetaSketchJavaSerializable> mappedSketches = lines.mapPartitionsToPair(
+          new PairFlatMapFunction<Iterator<String>, String, ThetaSketchJavaSerializable>() {
+            @Override
+            public Iterator<Tuple2<String, ThetaSketchJavaSerializable>> call(final Iterator<String> input) {
+              // This map might be too big if there are too many keys in the input data
+              // One possible solution is to set a threshold on the number of entries
+              // and flush the HashMap once the threshold is reached (not shown here).
+              final Map<String, ThetaSketchJavaSerializable> map = new HashMap();
+              while (input.hasNext()) {
+                final String line = input.next();
+                final String[] tokens = line.split("\t");
+                ThetaSketchJavaSerializable sketch = map.get(tokens[0]);
+                if (sketch == null) {
+                  sketch = new ThetaSketchJavaSerializable();
+                  map.put(tokens[0], sketch);
+                }
+                sketch.update(tokens[1]);
+              }
+
+              final List<Tuple2<String, ThetaSketchJavaSerializable>> list = new ArrayList();
+              for (final Map.Entry<String, ThetaSketchJavaSerializable> entry: map.entrySet()) {
+                list.add(new Tuple2(entry.getKey(), entry.getValue()));
+              }
+              return list.iterator();
+            }
+          }
+        );
+
+        final JavaPairRDD<String, ThetaSketchJavaSerializable> sketches = mappedSketches.reduceByKey(
+          new Function2<ThetaSketchJavaSerializable, ThetaSketchJavaSerializable, ThetaSketchJavaSerializable>() {
+            @Override
+            public ThetaSketchJavaSerializable call(final ThetaSketchJavaSerializable sketch1, final ThetaSketchJavaSerializable sketch2) {
+              if (sketch1.getSketch() == null && sketch2.getSketch() == null) return emptySketchWrapped;
+              if (sketch1.getSketch() == null) return sketch2;
+              if (sketch2.getSketch() == null) return sketch1;
+              final CompactSketch compactSketch1 = sketch1.getCompactSketch();
+              final CompactSketch compactSketch2 = sketch2.getCompactSketch();
+              return new ThetaSketchJavaSerializable(PairwiseSetOperations.union(compactSketch1, compactSketch2));
+            }
+          }, 1 // number of output partitions
+        );
+
+        final Iterator<Tuple2<String, ThetaSketchJavaSerializable>> it = sketches.toLocalIterator();
+        while (it.hasNext()) {
+          final Tuple2<String, ThetaSketchJavaSerializable> pair = it.next();
+          System.out.println("Pair: (" + pair._1 + ", " + pair._2.getEstimate() + ")");
+        }
+      }
+
+    }
+
+Building multiple sketches using SparkSession and reading input from a Hive table:
+
+    import org.apache.spark.sql.SparkSession;
+    import org.apache.spark.sql.Dataset;
+    import org.apache.spark.sql.Row;
+    import org.apache.spark.api.java.JavaPairRDD;
+    import org.apache.spark.api.java.function.PairFlatMapFunction;
+    import org.apache.spark.api.java.function.Function2;
+
+    import com.yahoo.sketches.theta.PairwiseSetOperations;
+    import com.yahoo.sketches.theta.UpdateSketch;
+    import com.yahoo.sketches.theta.CompactSketch;
+
+    import scala.Tuple2;
+
+    import java.util.List;
+    import java.util.ArrayList;
+    import java.util.Iterator;
+
+    public class AggregateByKey2 {
+
+      public static void main(String[] args) {
+        SparkSession spark = SparkSession
+          .builder()
+          .appName("AggregateByKey2")
+          .enableHiveSupport()
+          .getOrCreate();
+
+        Dataset<Row> data = spark.sql("select country, userid from my_data where userid is not null");
+        final JavaPairRDD<String, String> pairs = data.javaRDD().mapPartitionsToPair(
+          new PairFlatMapFunction<Iterator<Row>, String, String>() {
+            @Override
+            public Iterator<Tuple2<String, String>> call(final Iterator<Row> input) {
+              final List<Tuple2<String, String>> list = new ArrayList();
+              while (input.hasNext()) {
+                final Row row = input.next();
+                list.add(new Tuple2<String, String>((String) row.get(0), (String) row.get(1)));
+              }
+              return list.iterator();
+            }
+          }
+        );
+
+        final JavaPairRDD<String, ThetaSketchJavaSerializable> sketches = pairs.aggregateByKey(
+          new ThetaSketchJavaSerializable(),
+          1, // number of partitions
+          new Add(),
+          new Combine()
+        );
+        
+        final Iterator<Tuple2<String, ThetaSketchJavaSerializable>> it = sketches.toLocalIterator();
+        while (it.hasNext()) {
+          final Tuple2<String, ThetaSketchJavaSerializable> pair = it.next();
+          System.out.println("Pair: (" + pair._1 + ", " + pair._2.getEstimate() + ")");
+        }
+        
+        spark.stop();
+      }
+
+      static class Add implements Function2<ThetaSketchJavaSerializable, String, ThetaSketchJavaSerializable> {
+        @Override
+        public ThetaSketchJavaSerializable call(final ThetaSketchJavaSerializable sketch, final String value) throws Exception {
+          sketch.update(value);
+          return sketch;
+        }
+      }
+
+      static class Combine implements Function2<ThetaSketchJavaSerializable, ThetaSketchJavaSerializable, ThetaSketchJavaSerializable> {
+        static final ThetaSketchJavaSerializable emptySketchWrapped = new ThetaSketchJavaSerializable(UpdateSketch.builder().build().compact());
+
+        public ThetaSketchJavaSerializable call(final ThetaSketchJavaSerializable sketch1, final ThetaSketchJavaSerializable sketch2) throws Exception {
+          if (sketch1.getSketch() == null && sketch2.getSketch() == null) return emptySketchWrapped;
+          if (sketch1.getSketch() == null) return sketch2;
+          if (sketch2.getSketch() == null) return sketch1;
+          final CompactSketch compactSketch1 = sketch1.getCompactSketch();
+          final CompactSketch compactSketch2 = sketch2.getCompactSketch();
+          return new ThetaSketchJavaSerializable(PairwiseSetOperations.union(compactSketch1, compactSketch2));
+        }
+      }
+
     }
