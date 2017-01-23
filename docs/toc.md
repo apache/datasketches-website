@@ -1,4 +1,5 @@
 ---
+layout: toc_page
 ---
 <link rel="stylesheet" href="/css/toc.css">
 
