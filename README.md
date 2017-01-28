@@ -1,6 +1,6 @@
 
 
-## Website repository for DataSketches
+## Repository for DataSketches website
 
 ## [Documentation](https://datasketches.github.io)
 
