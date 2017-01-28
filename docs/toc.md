@@ -77,6 +77,7 @@ layout: toc_page
 * [Accuracy Plots]({{site.docs_dir}}/Theta/ThetaAccuracyPlots.html)
 * [Relative Error Table]({{site.docs_dir}}/Theta/ThetaErrorTable.html)
 * [SetOp Accuracy]({{site.docs_dir}}/Theta/ThetaSketchSetOpsAccuracy.html)
+* [Unions With Different k]({{site.docs_dir}}/Theta/AccuracyOfDifferentKUnions.html)
 
 ### Size
 * [Theta Sketch Size]({{site.docs_dir}}/Theta/ThetaSize.html)
