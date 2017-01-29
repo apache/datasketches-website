@@ -12,6 +12,6 @@ This is in contrast to the HLL algorithm, where unioning is only possible with t
 In this case the <i>RSE<sub>U</sub></i> = <i>min(RSE<sub>i</sub>)</i>.
 
 <p>
-When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
+When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
 $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
 </p>
