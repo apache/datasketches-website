@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-<h2>Unioning Sketches with Different values of \(k\)</h2>
+## Unioning Sketches with Different values of `\(k\)`
 
 <p>One of the benefits of the Theta Sketch algorithms is that they support the union of sketches that have been created with different values of \(k\) or <i>Nominal Entries</i>. More specifically, it is possible to create a Union operation with a \(k_U\) and then update the union with sketches created with different \(k_i\) that can be either larger or smaller than \(k_U\).</p>
 
