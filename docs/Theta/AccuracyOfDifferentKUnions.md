@@ -11,4 +11,7 @@ One of the benefits of the Theta Sketch algorithms is that they support the unio
 This is in contrast to the HLL algorithm, where unioning is only possible with the same <i>k</i> or with values that are powers-of-2 smaller. 
 In this case the <i>RSE<sub>U</sub></i> = <i>min(RSE<sub>i</sub>)</i>.
 
-
+<p>
+When \(a \ne 0\), there are two solutions to \(\color{black}{ax^2 + bx + c = 0}\) and they are
+$$\color{black}{x = {-b \pm \sqrt{b^2-4ac} \over 2a}}.$$
+</p>
