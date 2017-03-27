@@ -64,7 +64,7 @@ layout: toc_page
 </div>
 </div>
 
-<h2 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_sampline">Sampling Sketches</a></h2>
+<h2 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling Sketches</a></h2>
 <div class="collapse" id="collapse_sampling">
   <li><a href="{{site.docs_dir}}/Sampling/ReservoirSampling.html">Reservoir Sampling</a></li>
   <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
