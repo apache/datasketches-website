@@ -4,3 +4,12 @@
    padding-left: 15px;
 }
 
+/* icon when showing collapsible content */
+.menu:after {
+   content: "\25BE";
+}
+
+/* icon when collapsible content hidden */
+.menu.collapsed:after {
+   content: "\25B8";
+}
