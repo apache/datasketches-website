@@ -38,6 +38,8 @@ Depends on sketches-core.
 
 ### Set operations
 
+Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter. The same is true about IntersectSketchUDF and IntersectSketchUDAF.
+
     add jar sketches-core-0.6.0.jar;
     add jar sketches-hive-0.6.0.jar;
 
