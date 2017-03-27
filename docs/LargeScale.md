@@ -28,7 +28,8 @@ layout: doc_page
   
 * <a href="https://github.com/DataSketches/sketches-pig/tree/master/src/main/java/com/yahoo/sketches/pig">Hadoop / Pig Adaptors</a>.
   
-* <a href="https://github.com/druid-io/druid/tree/master/extensions-core/datasketches/src/main/java/io/druid/query/aggregation/datasketches">Druid Adaptors</a>
+* <a href="https://github.com/druid-io/druid/tree/master/extensions-core/datasketches/src/main/java/io/druid/query/aggregation/datasketches">Druid Adaptors</a>.
+  * For documentation navigate to <i>druid.io/docs/latest/development/extensions-core/datasketches-aggregators.html</i>
   
 * <a href="{{site.docs_dir}}/Theta/ThetaSparkExample.html">Spark Examples</a> 
 

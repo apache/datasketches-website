@@ -122,6 +122,7 @@ layout: toc_page
 * [Accuracy Plots]({{site.docs_dir}}/Theta/ThetaAccuracyPlots.html)
 * [Relative Error Table]({{site.docs_dir}}/Theta/ThetaErrorTable.html)
 * [SetOp Accuracy]({{site.docs_dir}}/Theta/ThetaSketchSetOpsAccuracy.html)
+* [Unions With Different k]({{site.docs_dir}}/Theta/AccuracyOfDifferentKUnions.html)
 </div>
 
 <h3 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_size">Size</a></h3>
