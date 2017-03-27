@@ -15,7 +15,7 @@ layout: toc_page
   <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck_13Oct2016.pdf">Overview Slide Deck</a></li>
 </div>
 
-<h2 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_sections">Section Links</a></h2>
+<h2 id="sections"><a data-toggle="collapse" class="menu collapsed" href="#collapse_sections">Section Links</a></h2>
 <div class="collapse" id="collapse_sections">
   <li><a href="#frequent-items-sketches">Frequent Items Sketches</a></li>
   <li><a href="#hll-sketches">HLL Sketches</a></li>
@@ -27,7 +27,7 @@ layout: toc_page
   <li><a href="#other-information">Other Information</a></li>
 </div>
 
-<h2 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent">Frequent Items Sketches</a></h2>
+<h2 id="frequent-items-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent">Frequent Items Sketches</a></h2>
 <div class="collapse" id="collapse_frequent">
   <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html">Frequent Items Overview</a></li>
   <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
@@ -38,18 +38,18 @@ layout: toc_page
 </div>
 
 
-<h2 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_hll">HLL Sketches</a></h2>
+<h2 id="hll-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_hll">HLL Sketches</a></h2>
 <div class="collapse" id="collapse_hll">
   <li><a href="{{site.docs_dir}}/HLL/HLL.html">HLL Sketch</a></li>
   <li><a href="{{site.docs_dir}}/HLL/HllMap.html">HLL Map Sketch</a></li>
 </div>
 
-<h2 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_memory">Memory</a></h2>
+<h2 id="memory-package"><a data-toggle="collapse" class="menu collapsed" href="#collapse_memory">Memory</a></h2>
 <div class="collapse" id="collapse_memory">
   <li><a href="{{site.docs_dir}}/Memory/MemoryPackage.html">Memory Package</a></li>
 </div>
 
-<h2 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles">Quantiles Sketches</a></h2>
+<h2 id="quantiles-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles">Quantiles Sketches</a></h2>
 <div class="collapse" id="collapse_quantiles">
   <li><a href="{{site.docs_dir}}/Quantiles/QuantilesOverview.html">Quantiles Overview</a></li>
   <li><a href="{{site.docs_dir}}/Quantiles/QuantilesAccuracy.html">Quantiles Accuracy and Size</a></li>
@@ -57,27 +57,27 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
   <li><a href="{{site.docs_dir}}/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
 
-<h3 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_quantilesTheory">Quantiles Sketch Theory</a></h3>
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_quantilesTheory">Quantiles Sketch Theory</a></h3>
 <div class="collapse" id="collapse_quantilesTheory">
   <li><a href="{{site.docs_pdf_dir}}/Quantiles_KLL.pdf">Optimal Quantile Approximation in Streams</a></li>
   <li><a href="{{site.docs_dir}}/Quantiles/QuantilesReferences.html">Quantiles References</a></li>
 </div>
 </div>
 
-<h2 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling Sketches</a></h2>
+<h2 id="sampling-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling Sketches</a></h2>
 <div class="collapse" id="collapse_sampling">
   <li><a href="{{site.docs_dir}}/Sampling/ReservoirSampling.html">Reservoir Sampling</a></li>
   <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
   <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
 </div>
 
-<h2 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_theta">Theta Sketches</a></h2>
+<h2 id="theta-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_theta">Theta Sketches</a></h2>
 <div class="collapse" id="collapse_theta">
   <li><a href="{{site.docs_dir}}/Theta/ThetaSketchFramework.html">Theta Sketch Framework</a></li>
   <li><a href="{{site.docs_dir}}/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
   <li><a href="{{site.docs_dir}}/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
 
-<h3 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_kmv">KMV Tutorial</a></h3>
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_kmv">KMV Tutorial</a></h3>
 <div class="collapse" id="collapse_kmv">
   <li><a href="{{site.docs_dir}}/Theta/InverseEstimate.html">The Inverse Estimate</a></li>
   <li><a href="{{site.docs_dir}}/Theta/KMVempty.html">Empty Sketch</a></li>
@@ -87,12 +87,12 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/Theta/KMVupdateVkth.html">Update V(kth) Rule</a></li>
 </div>
 
-<h3 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_set">Set Operations</a></h3>
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_set">Set Operations</a></h3>
 <div class="collapse" id="collapse_set">
   <li><a href="{{site.docs_dir}}/Theta/ThetaSketchSetOps.html">Set Operations</a></li>
 </div>
 
-<h3 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_accuracy">Accuracy</a></h3>
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_accuracy">Accuracy</a></h3>
 <div class="collapse" id="collapse_accuracy">
   <li><a href="{{site.docs_dir}}/Theta/ThetaAccuracy.html">Basic Accuracy</a></li>
   <li><a href="{{site.docs_dir}}/Theta/ThetaAccuracyPlots.html">Accuracy Plots</a></li>
@@ -101,18 +101,18 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/Theta/AccuracyOfDifferentKUnions.html">Unions With Different k</a></li>
 </div>
 
-<h3 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_size">Size</a></h3>
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_size">Size</a></h3>
 <div class="collapse" id="collapse_size">
   <li><a href="{{site.docs_dir}}/Theta/ThetaSize.html">Theta Sketch Size</a></li>
 </div>
 
-<h3 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_speed">Speed</a></h3>
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_speed">Speed</a></h3>
 <div class="collapse" id="collapse_speed">
   <li><a href="{{site.docs_dir}}/Theta/ThetaUpdateSpeed.html">Update Speed</a></li>
   <li><a href="{{site.docs_dir}}/Theta/ThetaMergeSpeed.html">Merge Speed</a></li>
 </div>
 
-<h3 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_scale">Large Scale Computing</a></h3>
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_scale">Large Scale Computing</a></h3>
 <div class="collapse" id="collapse_scale">
   <li><a href="{{site.docs_dir}}/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
   <li><a href="{{site.docs_dir}}/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
@@ -121,7 +121,7 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/Theta/ThetaPSampling.html"><i>p</i>-Sampling</a></li>
 </div>
 
-<h3 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_thetaTheory">Theta Sketch Theory</a></h3>
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_thetaTheory">Theta Sketch Theory</a></h3>
 <div class="collapse" id="collapse_thetaTheory">
   <li><a href="{{site.docs_pdf_dir}}/ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)</a></li>
   <li><a href="{{site.docs_pdf_dir}}/SketchEquations.pdf">Sketch Equations (PDF)</a></li>
@@ -132,7 +132,7 @@ layout: toc_page
 </div>
 </div>
 
-<h2 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple">Tuple Sketches</a></h2>
+<h2 id="tuple-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple">Tuple Sketches</a></h2>
 <div class="collapse" id="collapse_tuple">
   <li><a href="{{site.docs_dir}}/Tuple/TupleOverview.html">Tuple Sketch Overview</a></li>
   <li><a href="{{site.docs_dir}}/Tuple/TupleJavaExample.html">Tuple Sketch Java Example</a></li>
@@ -140,7 +140,7 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/Tuple/TupleHiveUDFs.html">Tuple Sketch Hive UDFs</a></li>
 </div>
 
-<h2 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_other">Other Information</a></h2>
+<h2 id="other-information"><a data-toggle="collapse" class="menu collapsed" href="#collapse_other">Other Information</a></h2>
 <div class="collapse" id="collapse_other">
   <li><a href="{{site.docs_dir}}/CommandLine/CommandLine.html">Creating Command Line Executables</a></li>
   <li><a href="{{site.docs_dir}}/WhoUses.html">Who Uses</a></li>
