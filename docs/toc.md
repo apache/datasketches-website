@@ -15,18 +15,6 @@ layout: toc_page
   <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck_13Oct2016.pdf">Overview Slide Deck</a></li>
 </div>
 
-<h2 id="sections"><a data-toggle="collapse" class="menu collapsed" href="#collapse_sections">Section Links</a></h2>
-<div class="collapse" id="collapse_sections">
-  <li><a href="#frequent-items-sketches">Frequent Items Sketches</a></li>
-  <li><a href="#hll-sketches">HLL Sketches</a></li>
-  <li><a href="#memory-package">Memory Package</a></li>
-  <li><a href="#quantiles-sketches">Quantiles Sketches</a></li>
-  <li><a href="#sampling-sketches">Sampling Sketches</a></li>
-  <li><a href="#theta-sketches">Theta Sketches</a></li>
-  <li><a href="#tuple-sketches">Tuple Sketches</a></li>
-  <li><a href="#other-information">Other Information</a></li>
-</div>
-
 <h2 id="frequent-items-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent">Frequent Items Sketches</a></h2>
 <div class="collapse" id="collapse_frequent">
   <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html">Frequent Items Overview</a></li>
