@@ -10,13 +10,15 @@ The analysis capabilities with the core Theta Sketch technology is quite powerfu
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/tuple/TupleStartsWithTheta.png" alt="TupleStartsWithTheta" />
 
-Tuple Sketches are an extension of Theta Sketches that associate a Summary Object with each hash value.  A Summary Object can be anything, but is typically one or more numeric or boolean state variables as members of columns. This is shown in the next figure.
+Tuple Sketches associate a Summary Object with each hash value.  A Summary Object can be anything, but is typically one or more numeric or boolean state variables as members of columns. This is shown in the next figure.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/tuple/TupleWithAttributes.png" alt="TupleWithAttributes" />
 
-Tuple Sketches are ideal for sumarizing attributes such as impressions or clicks. When the sketch is complete, the sum of all the counts in any particular column divided by theta of the sketch is an unbiased estimate of that attribute from which the sketch was collected from.
+Tuple Sketches are ideal for sumarizing attributes such as impressions or clicks. When the sketch is complete, the sum of all the counts in any particular column divided by theta of the sketch is an unbiased estimate of the sum of that attribute of the population from which the summary rows of sketch were drawn.  
 
-Summary Objects are class extensions of the generic base classes in the library. It is up to the developer of the extension how the summary fields are defined and how they should behave during updates or during set operations.
+Summary Objects are class extensions of the generic base classes in the library. It is up to the developer of the extension how the summary fields are defined and how they should be combined during updates or during set operations. 
+
+Because the distribution of the atribute values is not known, it is not possible to provide meaningful error bounds on the projections of the attribute mean or variance onto the raw population. 
 
 Keep in mind that all of these operations are stream-based.  The raw data from which these sketches are built only needs to be touched once.
 
