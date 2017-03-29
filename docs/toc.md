@@ -3,112 +3,135 @@ layout: toc_page
 ---
 <link rel="stylesheet" href="/css/toc.css">
 
-# Overview
-* [The Challenge]({{site.docs_dir}}/TheChallenge.html)
-* [The Major Sketch Families]({{site.docs_dir}}/MajorSketchFamilies.html)
-* [Sketch Origins]({{site.docs_dir}}/SketchOrigins.html)
-* [Sketch Elements]({{site.docs_dir}}/SketchElements.html)
-* [Key Features]({{site.docs_dir}}/KeyFeatures.html)
-* [Large Scale Computing]({{site.docs_dir}}/LargeScale.html)
-* [Architecture]({{site.docs_dir}}/Architecture.html)
-* [Overview Slide Deck]({{site.docs_pdf_dir}}/DataSketches_deck_13Oct2016.pdf)
+<h2 id="overview"><a data-toggle="collapse" class="menu collapsed" href="#collapse_overview">Overview</a></h2>
+<div class="collapse" id="collapse_overview">
+  <li><a href="{{site.docs_dir}}/TheChallenge.html">The Challenge</a></li>
+  <li><a href="{{site.docs_dir}}/MajorSketchFamilies.html">The Major Sketch Families</a></li>
+  <li><a href="{{site.docs_dir}}/SketchOrigins.html">Sketch Origins</a></li>
+  <li><a href="{{site.docs_dir}}/SketchElements.html">Sketch Elements</a></li>
+  <li><a href="{{site.docs_dir}}/KeyFeatures.html">Key Features</a></li>
+  <li><a href="{{site.docs_dir}}/LargeScale.html">Large Scale Computing</a></li>
+  <li><a href="{{site.docs_dir}}/Architecture.html">Architecture</a></li>
+  <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck_13Oct2016.pdf">Overview Slide Deck</a></li>
+</div>
 
-# Section Links
-* [Frequent Items Sketches](#frequent-items-sketches)
-* [HLL Sketches](#hll-sketches)
-* [Memory Package](#memory-package)
-* [Quantiles Sketches](#quantiles-sketches)
-* [Sampling Sketches](#sampling-sketches)
-* [Theta Sketches](#theta-sketches)
-* [Tuple Sketches](#tuple-sketches)
+<h2 id="frequent-items-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent">Frequent Items Sketches</a></h2>
+<div class="collapse" id="collapse_frequent">
+  <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html">Frequent Items Overview</a></li>
+  <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
+  <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
+  <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
+  <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html">Frequent Items Error Table</a></li>
+  <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsReferences.html">Frequent Items References</a></li>
+</div>
 
-* [Other Information](#other-information)
-<!--  Getting Started  -->
 
-# Frequent Items Sketches
-* [Frequent Items Overview]({{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html)
-* [Frequent Items Java Example]({{site.docs_dir}}/FrequentItems/FrequentItemsJavaExample.html)
-* [Frequent Items Pig UDFs]({{site.docs_dir}}/FrequentItems/FrequentItemsPigUDFs.html)
-* [Frequent Items Hive UDFs]({{site.docs_dir}}/FrequentItems/FrequentItemsHiveUDFs.html)
-* [Frequent Items Error Table]({{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html)
-* [Frequent Items References]({{site.docs_dir}}/FrequentItems/FrequentItemsReferences.html)
+<h2 id="hll-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_hll">HLL Sketches</a></h2>
+<div class="collapse" id="collapse_hll">
+  <li><a href="{{site.docs_dir}}/HLL/HLL.html">HLL Sketch</a></li>
+  <li><a href="{{site.docs_dir}}/HLL/HllMap.html">HLL Map Sketch</a></li>
+</div>
 
-# HLL Sketches
-* [HLL Sketch]({{site.docs_dir}}/HLL/HLL.html)
-* [HLL Map Sketch]({{site.docs_dir}}/HLL/HllMap.html)
+<h2 id="memory-package"><a data-toggle="collapse" class="menu collapsed" href="#collapse_memory">Memory</a></h2>
+<div class="collapse" id="collapse_memory">
+  <li><a href="{{site.docs_dir}}/Memory/MemoryPackage.html">Memory Package</a></li>
+</div>
 
-# Memory Package
-* [Memory Package]({{site.docs_dir}}/Memory/MemoryPackage.html)
+<h2 id="quantiles-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles">Quantiles Sketches</a></h2>
+<div class="collapse" id="collapse_quantiles">
+  <li><a href="{{site.docs_dir}}/Quantiles/QuantilesOverview.html">Quantiles Overview</a></li>
+  <li><a href="{{site.docs_dir}}/Quantiles/QuantilesAccuracy.html">Quantiles Accuracy and Size</a></li>
+  <li><a href="{{site.docs_dir}}/Quantiles/QuantilesJavaExample.html">Quantiles Sketch Java Example</a></li>
+  <li><a href="{{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
+  <li><a href="{{site.docs_dir}}/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
 
-# Quantiles Sketches
-* [Quantiles Overview]({{site.docs_dir}}/Quantiles/QuantilesOverview.html)
-* [Quantiles Accuracy and Size]({{site.docs_dir}}/Quantiles/QuantilesAccuracy.html)
-* [Quantiles Sketch Java Example]({{site.docs_dir}}/Quantiles/QuantilesJavaExample.html)
-* [Quantiles Sketch Pig UDFs]({{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html)
-* [Quantiles Sketch Hive UDFs]({{site.docs_dir}}/Quantiles/QuantilesHiveUDFs.html)
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_quantilesTheory">Quantiles Sketch Theory</a></h3>
+<div class="collapse" id="collapse_quantilesTheory">
+  <li><a href="{{site.docs_pdf_dir}}/Quantiles_KLL.pdf">Optimal Quantile Approximation in Streams</a></li>
+  <li><a href="{{site.docs_dir}}/Quantiles/QuantilesReferences.html">Quantiles References</a></li>
+</div>
+</div>
 
-### Quantiles Sketch Theory
-* [Optimal Quantile Approximation in Streams]({{site.docs_pdf_dir}}/Quantiles_KLL.pdf)
-* [Quantiles References]({{site.docs_dir}}/Quantiles/QuantilesReferences.html)
+<h2 id="sampling-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling Sketches</a></h2>
+<div class="collapse" id="collapse_sampling">
+  <li><a href="{{site.docs_dir}}/Sampling/ReservoirSampling.html">Reservoir Sampling</a></li>
+  <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
+  <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
+</div>
 
-# Sampling Sketches
-* [Reservoir Sampling]({{site.docs_dir}}/Sampling/ReservoirSampling.html)
-* [Reservoir Sampling Performance]({{site.docs_dir}}/Sampling/ReservoirSamplingPerformance.html)
-* [Reservoir Sampling Java Example]({{site.docs_dir}}/Sampling/ReservoirSamplingJava.html)
+<h2 id="theta-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_theta">Theta Sketches</a></h2>
+<div class="collapse" id="collapse_theta">
+  <li><a href="{{site.docs_dir}}/Theta/ThetaSketchFramework.html">Theta Sketch Framework</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
 
-# Theta Sketches
-* [Theta Sketch Framework]({{site.docs_dir}}/Theta/ThetaSketchFramework.html)
-* [Theta Sketch Java Example]({{site.docs_dir}}/Theta/ThetaJavaExample.html)
-* [Theta Sketch Spark Example]({{site.docs_dir}}/Theta/ThetaSparkExample.html)
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_kmv">KMV Tutorial</a></h3>
+<div class="collapse" id="collapse_kmv">
+  <li><a href="{{site.docs_dir}}/Theta/InverseEstimate.html">The Inverse Estimate</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/KMVempty.html">Empty Sketch</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/KMVfirstEst.html">First Estimator</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/KMVbetterEst.html">Better Estimator</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/KMVrejection.html">Rejection Rules</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/KMVupdateVkth.html">Update V(kth) Rule</a></li>
+</div>
 
-### KMV Tutorial
-* [The Inverse Estimate]({{site.docs_dir}}/Theta/InverseEstimate.html)
-* [Empty Sketch]({{site.docs_dir}}/Theta/KMVempty.html)
-* [First Estimator]({{site.docs_dir}}/Theta/KMVfirstEst.html)
-* [Better Estimator]({{site.docs_dir}}/Theta/KMVbetterEst.html)
-* [Rejection Rules]({{site.docs_dir}}/Theta/KMVrejection.html)
-* [Update V(kth) Rule]({{site.docs_dir}}/Theta/KMVupdateVkth.html)
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_set">Set Operations</a></h3>
+<div class="collapse" id="collapse_set">
+  <li><a href="{{site.docs_dir}}/Theta/ThetaSketchSetOps.html">Set Operations</a></li>
+</div>
 
-### Set Operations
-* [Set Operations]({{site.docs_dir}}/Theta/ThetaSketchSetOps.html)
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_accuracy">Accuracy</a></h3>
+<div class="collapse" id="collapse_accuracy">
+  <li><a href="{{site.docs_dir}}/Theta/ThetaAccuracy.html">Basic Accuracy</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/ThetaAccuracyPlots.html">Accuracy Plots</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/ThetaErrorTable.html">Relative Error Table</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/ThetaSketchSetOpsAccuracy.html">SetOp Accuracy</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/AccuracyOfDifferentKUnions.html">Unions With Different k</a></li>
+</div>
 
-### Accuracy
-* [Basic Accuracy]({{site.docs_dir}}/Theta/ThetaAccuracy.html)
-* [Accuracy Plots]({{site.docs_dir}}/Theta/ThetaAccuracyPlots.html)
-* [Relative Error Table]({{site.docs_dir}}/Theta/ThetaErrorTable.html)
-* [SetOp Accuracy]({{site.docs_dir}}/Theta/ThetaSketchSetOpsAccuracy.html)
-* [Unions With Different k]({{site.docs_dir}}/Theta/AccuracyOfDifferentKUnions.html)
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_size">Size</a></h3>
+<div class="collapse" id="collapse_size">
+  <li><a href="{{site.docs_dir}}/Theta/ThetaSize.html">Theta Sketch Size</a></li>
+</div>
 
-### Size
-* [Theta Sketch Size]({{site.docs_dir}}/Theta/ThetaSize.html)
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_speed">Speed</a></h3>
+<div class="collapse" id="collapse_speed">
+  <li><a href="{{site.docs_dir}}/Theta/ThetaUpdateSpeed.html">Update Speed</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/ThetaMergeSpeed.html">Merge Speed</a></li>
+</div>
 
-### Speed
-* [Update Speed]({{site.docs_dir}}/Theta/ThetaUpdateSpeed.html)
-* [Merge Speed]({{site.docs_dir}}/Theta/ThetaMergeSpeed.html)
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_scale">Large Scale Computing</a></h3>
+<div class="collapse" id="collapse_scale">
+  <li><a href="{{site.docs_dir}}/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
+  <li><a href="{{site.docs_dir}}/DruidIntegration.html">Integration with Druid</a></li>
+  <li><a href="{{site.docs_dir}}/Memory/MemoryPackage.html">Memory Package</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/ThetaPSampling.html"><i>p</i>-Sampling</a></li>
+</div>
 
-### Large Scale Computing
-* [Theta Sketch Pig UDFs]({{site.docs_dir}}/Theta/ThetaPigUDFs.html)
-* [Theta Sketch Hive UDFs]({{site.docs_dir}}/Theta/ThetaHiveUDFs.html)
-* [Integration with Druid]({{site.docs_dir}}/DruidIntegration.html)
-* [Memory Package]({{site.docs_dir}}/Memory/MemoryPackage.html)
-* [<i>p</i>-Sampling]({{site.docs_dir}}/Theta/ThetaPSampling.html)
+<h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_thetaTheory">Theta Sketch Theory</a></h3>
+<div class="collapse" id="collapse_thetaTheory">
+  <li><a href="{{site.docs_pdf_dir}}/ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)</a></li>
+  <li><a href="{{site.docs_pdf_dir}}/SketchEquations.pdf">Sketch Equations (PDF)</a></li>
+  <li><a href="{{site.docs_pdf_dir}}/DataSketches.pdf">DataSketches (PDF)</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/ThetaConfidenceIntervals.html">Confidence Intervals Notes</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/ThetaMergingAlgorithm.html">Merging Algorithm Notes</a></li>
+  <li><a href="{{site.docs_dir}}/Theta/ThetaReferences.html">Theta References</a></li>
+</div>
+</div>
 
-### Theta Sketch Theory
-* [Theta Sketch Framework (PDF)]({{site.docs_pdf_dir}}/ThetaSketchFramework.pdf)
-* [Sketch Equations (PDF)]({{site.docs_pdf_dir}}/SketchEquations.pdf)
-* [DataSketches (PDF)]({{site.docs_pdf_dir}}/DataSketches.pdf)
-* [Confidence Intervals Notes]({{site.docs_dir}}/Theta/ThetaConfidenceIntervals.html)
-* [Merging Algorithm Notes]({{site.docs_dir}}/Theta/ThetaMergingAlgorithm.html)
-* [Theta References]({{site.docs_dir}}/Theta/ThetaReferences.html)
+<h2 id="tuple-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple">Tuple Sketches</a></h2>
+<div class="collapse" id="collapse_tuple">
+  <li><a href="{{site.docs_dir}}/Tuple/TupleOverview.html">Tuple Sketch Overview</a></li>
+  <li><a href="{{site.docs_dir}}/Tuple/TupleJavaExample.html">Tuple Sketch Java Example</a></li>
+  <li><a href="{{site.docs_dir}}/Tuple/TuplePigUDFs.html">Tuple Sketch Pig UDFs</a></li>
+  <li><a href="{{site.docs_dir}}/Tuple/TupleHiveUDFs.html">Tuple Sketch Hive UDFs</a></li>
+</div>
 
-# Tuple Sketches
-* [Tuple Sketch Overview]({{site.docs_dir}}/Tuple/TupleOverview.html)
-* [Tuple Sketch Java Example]({{site.docs_dir}}/Tuple/TupleJavaExample.html)
-* [Tuple Sketch Pig UDFs]({{site.docs_dir}}/Tuple/TuplePigUDFs.html)
-* [Tuple Sketch Hive UDFs]({{site.docs_dir}}/Tuple/TupleHiveUDFs.html)
-
-# Other Information
-* [Creating Command Line Executables]({{site.docs_dir}}/CommandLine/CommandLine.html)
-* [Who Uses]({{site.docs_dir}}/WhoUses.html)
-* [License](/LICENSE.html)
+<h2 id="other-information"><a data-toggle="collapse" class="menu collapsed" href="#collapse_other">Other Information</a></h2>
+<div class="collapse" id="collapse_other">
+  <li><a href="{{site.docs_dir}}/CommandLine/CommandLine.html">Creating Command Line Executables</a></li>
+  <li><a href="{{site.docs_dir}}/WhoUses.html">Who Uses</a></li>
+  <li><a href="/LICENSE.html">License</a></li>
 <!-- * [Endorsements](endorsements.html) -->
+</div>
