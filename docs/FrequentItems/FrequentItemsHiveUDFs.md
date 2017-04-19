@@ -28,7 +28,7 @@ layout: doc_page
 
     select get_items(sketch, 'NO_FALSE_POSITIVES') from frequent_items_intermediate where category='c1';
 
-    Output:
+    Output (item, frequency estimate, lower bound, upper bound):
     a	7	7	7
     d	2	2	2
     c	1	1	1
