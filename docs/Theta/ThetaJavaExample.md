@@ -6,12 +6,12 @@ layout: doc_page
 
     // simplified file operations and no error handling for clarity
 
-    import java.io.File;
     import java.io.FileInputStream;
     import java.io.FileOutputStream;
 
-    import com.yahoo.memory.NativeMemory;
+    import com.yahoo.memory.Memory;
     import com.yahoo.sketches.theta.Sketch;
+    import com.yahoo.sketches.theta.Sketches;
     import com.yahoo.sketches.theta.UpdateSketch;
     import com.yahoo.sketches.theta.Union;
     import com.yahoo.sketches.theta.Intersection;
@@ -23,7 +23,7 @@ layout: doc_page
       // 100000 unique keys
       UpdateSketch sketch1 = UpdateSketch.builder().build();
       for (int key = 0; key < 100000; key++) sketch1.update(key);
-      FileOutputStream out1 = new FileOutputStream(new File("ThetaSketch1.bin"));
+      FileOutputStream out1 = new FileOutputStream("ThetaSketch1.bin");
       out1.write(sketch1.compact().toByteArray());
       out1.close();
 
@@ -31,24 +31,24 @@ layout: doc_page
       // the first 50000 unique keys overlap with sketch1
       UpdateSketch sketch2 = UpdateSketch.builder().build();
       for (int key = 50000; key < 150000; key++) sketch2.update(key);
-      FileOutputStream out2 = new FileOutputStream(new File("ThetaSketch2.bin"));
+      FileOutputStream out2 = new FileOutputStream("ThetaSketch2.bin");
       out2.write(sketch2.compact().toByteArray());
       out2.close();
     }
 
     // this section deserializes the sketches, produces union and intersection and prints the results
     {
-      FileInputStream in1 = new FileInputStream(new File("ThetaSketch1.bin"));
+      FileInputStream in1 = new FileInputStream("ThetaSketch1.bin");
       byte[] bytes1 = new byte[in1.available()];
       in1.read(bytes1);
       in1.close();
-      Sketch sketch1 = Sketches.wrapSketch(new NativeMemory(bytes1));
+      Sketch sketch1 = Sketches.wrapSketch(Memory.wrap(bytes1));
 
-      FileInputStream in2 = new FileInputStream(new File("ThetaSketch2.bin"));
+      FileInputStream in2 = new FileInputStream("ThetaSketch2.bin");
       byte[] bytes2 = new byte[in2.available()];
       in2.read(bytes2);
       in2.close();
-      Sketch sketch2 = Sketches.wrapSketch(new NativeMemory(bytes2));
+      Sketch sketch2 = Sketches.wrapSketch(Memory.wrap(bytes2));
 
       Union union = SetOperation.builder().buildUnion();
       union.update(sketch1);
