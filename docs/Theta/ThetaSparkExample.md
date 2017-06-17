@@ -62,7 +62,7 @@ Wrapper to make ThetaSketch serializable:
     import com.yahoo.sketches.theta.CompactSketch;
     import com.yahoo.sketches.theta.Sketches;
 
-    import com.yahoo.memory.NativeMemory;
+    import com.yahoo.memory.Memory;
 
     public class ThetaSketchJavaSerializable implements Serializable {
 
@@ -114,7 +114,7 @@ Wrapper to make ThetaSketch serializable:
         if (length == 0) return;
         final byte[] serializedSketchBytes = new byte[length];
         in.readFully(serializedSketchBytes);
-        sketch = Sketches.wrapSketch(new NativeMemory(serializedSketchBytes));
+        sketch = Sketches.wrapSketch(Memory.wrap(serializedSketchBytes));
       }
 
     }
