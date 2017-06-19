@@ -26,7 +26,7 @@ The Sketches Library's VarOpt implementation is designed around generic objects:
 ### Space Usage
 
 The reservoir is initialized with a parameter <tt>k</tt> indicating the maximum number of items 
-that can be stored in the reservoir. In contrast to many other sketches in this library, the size does
+that can be stored in the reservoir. In contrast to some other sketches in this library, the size does
 not need to be a power of 2.
 
 When serialized, these sketches use 16 bytes of header data in addition to the serialized size of the
@@ -42,7 +42,7 @@ duplicate items if the input stream contains duplicates.
 
 ### More on VarOpt Sampling
 
-The basic VarOpt algorithm was first presented by [Cohen et al. -- cite/link]. We have extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.
+The basic VarOpt algorithm was first presented by [Cohen et al., Variance Optimal Sampling Based Estimation of Subset Sums][1]. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.
 
 The underlying goal of VarOpt sampling is to provide the best possible estimate of subset sums of items in the sample. As an example, we might select a sample o size <tt>k</tt> from the ~3200 counties (a political administrative region below the level of a state) in the United States, using the county population as the weight. We could then apply a predicate to our sample -- for instance, counties in the state of California -- and sum the resulting weights. That sum is our estimate of the total population of the state. The weights used when computing subset sums will, in general, be adjusted values rather than the original input weights.
 
@@ -59,3 +59,5 @@ From this brief description, we can already identify several interesting propert
 When extracting items from a sketch, the heavy items retain their original weights. For the light items, we return a uniform adjusted weight. Although somehwat counter-intuitive because a very light input item receives the same weight as one just barely too light to qualify for the heavy region, this adjusted weight is important for providing a variance-optimal subset sum estimate.
 
 When using VarOpt with uniform input weights, for instance giving all items a weight of 1.0, the sketch will perform standard reservoir sampling. Similarly, if operating over an infinite stream of items with finite weights, there will also be no heavy items and the sketch will return a standard weighted sample of items.
+
+[1]: E. Cohen, N. G. Guffield, H. Kapla, C. Lund, M. Thorup, <em>Efficient Stream Sampling for Variance-Optimal Estimation of Subset Sums</em>, SIAM J. Comput. 40(5): 1402-1431, 2011.
