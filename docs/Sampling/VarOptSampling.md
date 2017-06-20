@@ -42,7 +42,7 @@ duplicate items if the input stream contains duplicates.
 
 ### More on VarOpt Sampling
 
-The basic VarOpt algorithm was first presented by [Cohen et al., Variance Optimal Sampling Based Estimation of Subset Sums][1]. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.
+The basic VarOpt algorithm was first presented by Cohen et al[1]. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.
 
 The underlying goal of VarOpt sampling is to provide the best possible estimate of subset sums of items in the sample. As an example, we might select a sample o size <tt>k</tt> from the ~3200 counties (a political administrative region below the level of a state) in the United States, using the county population as the weight. We could then apply a predicate to our sample -- for instance, counties in the state of California -- and sum the resulting weights. That sum is our estimate of the total population of the state. The weights used when computing subset sums will, in general, be adjusted values rather than the original input weights.
 
