@@ -31,6 +31,7 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/HLL/HLL.html">HLL Sketch</a></li>
   <li><a href="{{site.docs_dir}}/HLL/HllMap.html">HLL Map Sketch</a></li>
   <li><a href="{{site.docs_dir}}/HLL/HllJavaExample.html">HLL Sketch Java Example</a></li>
+  <li><a href="{{site.docs_dir}}/HLL/HllHiveUDFs.html">HLL Sketch Hive UDFs</a></li>
 </div>
 
 <h2 id="memory-package"><a data-toggle="collapse" class="menu collapsed" href="#collapse_memory">Memory</a></h2>
