@@ -19,9 +19,9 @@ layout: doc_page
     register sketches-pig-0.10.0.jar;
 
     -- very small sketch just for the purpose of this tiny example
-    DEFINE VarOpt com.yahoo.sketches.pig.sampling.DataToVarOptSketch('4', '0');
+    DEFINE DataToSketch com.yahoo.sketches.pig.sampling.DataToVarOptSketch('4', '0');
     DEFINE VarOptUnion com.yahoo.sketches.pig.sampling.VarOptUnion('4');
-    DEFINE GetSamples com.yahoo.sketches.pig.sampling.GetVarOptSamples();
+    DEFINE GetVarOptSamples com.yahoo.sketches.pig.sampling.GetVarOptSamples();
 
     raw_data = LOAD 'data.txt' USING PigStorage('\t') AS
         (weight: double, id: chararray);
@@ -30,19 +30,19 @@ layout: doc_page
     bytes = FOREACH
         (GROUP raw_data ALL)
     GENERATE
-        VarOpt(raw_data) AS sketch0,
-        VarOpt(raw_data) AS sketch1
+        DataToSketch(raw_data) AS sketch0,
+        DataToSketch(raw_data) AS sketch1
         ;
 
     sketchBag = FOREACH
         bytes
     GENERATE
-        FLATTEN(TOBAG(sketch0,
-                      sketch1)) AS sketches
+        TOBAG(sketch0,
+              sketch1)) AS sketches
         ;
 
     unioned = FOREACH
-        (GROUP sketchBag ALL)
+        sketchBag
     GENERATE
         VarOptUnion(sketchBag.sketches) AS binSketch
         ;
@@ -50,7 +50,7 @@ layout: doc_page
     result = FOREACH
         unioned
     GENERATE
-        FLATTEN(com.yahoo.sketches.pig.sampling.GetVarOptSamples(binSketch)) AS (vo_weight, record:(id, weight))
+        FLATTEN(GetVarOptSamples(binSketch)) AS (vo_weight, record:(id, weight))
         ;
 
     DUMP result;
