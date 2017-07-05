@@ -13,7 +13,7 @@ The Sketches Library's VarOpt implementation is designed around generic objects:
 * VarOptItemsSketch&lt;T&gt;
 
     This sketch provides a random sample of items of type &lt;T&gt; from the stream of weighted items.
-    An item's inclusion probability will be roughly proportional to its weight, with some
+    An item's inclusion probability will usually be proportional to its weight, with some
     important technical caveats to ensure the optimal variance property.
 
     If the user needs to serialize and deserialize the resulting sketch for storage or transport, 
@@ -29,8 +29,8 @@ The reservoir is initialized with a parameter <tt>k</tt> indicating the maximum 
 that can be stored in the reservoir. In contrast to some other sketches in this library, the size does
 not need to be a power of 2.
 
-When serialized, these sketches use 16 bytes of header data in addition to the serialized size of the
-items in the sketch.
+When serialized, these sketches use 32 bytes of header data in addition to the serialized size of the
+items in the sketch. VarOpt unions may require some extra metadata beyond the regular header.
 
 
 ### Updating the sketch with new items
@@ -46,7 +46,8 @@ The basic VarOpt algorithm was first presented by Cohen et al[1]. We have modifi
 
 The underlying goal of VarOpt sampling is to provide the best possible estimate of subset sums of items in the sample. As an example, we might select a sample o size <tt>k</tt> from the ~3200 counties (a political administrative region below the level of a state) in the United States, using the county population as the weight. We could then apply a predicate to our sample -- for instance, counties in the state of California -- and sum the resulting weights. That sum is our estimate of the total population of the state. The weights used when computing subset sums will, in general, be adjusted values rather than the original input weights.
 
-Unlike standard reservoir sampling, where each sample is considered independently, VarOpt attempts to minimize the total variance in the sample by selecting samples in a way such that they may be <em>negatively</em> correlated. This produces better estimates for subset sums, but does mean that our random sample is not necessarily uniform.
+Unlike standard reservoir sampling, where each sample is considered independently, VarOpt attempts to minimize the total variance in the sample by selecting samples in a way such that they may be <em>negatively</em> correlated. This produces better estimates for subset sums, but does mean that our random sample is not necessarily uniform and that an item's inclusion probability is not a simple function of the item weight.
+
 
 #### VarOpt Intuition
 

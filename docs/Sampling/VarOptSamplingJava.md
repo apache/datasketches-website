@@ -11,7 +11,7 @@ sources including http://shakespeare.mit.edu/, were converted to
 
     perl -lane 's/^\s+//; s/[;\.,!?:\x27\[\]&]//g; s/--//g; s/\s+/\n/g; print lc if length > 0' input.txt | sort | uniq -c | awk '{print $1 "\t" $2}' > output.txt
 
-These were then used in the following example, slightly modified to remove error handling for clarity.
+These were then used in the following example, slightly modified to remove error handling for clarity. Serialization and deserialization are completely parallel to the Reservoir Sampling sketch, and example code for that may be found in thoes Java examples.
 
 
     import java.io.BufferedReader;
@@ -19,7 +19,6 @@ These were then used in the following example, slightly modified to remove error
     import java.io.FileInputStream;
     import java.io.FileOutputStream;
     import java.io.FileReader;
-    import java.io.IOException;
 
     import com.yahoo.memory.Memory;
     import com.yahoo.sketches.ArrayOfLongsSerDe;
