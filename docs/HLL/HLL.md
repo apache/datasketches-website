@@ -70,8 +70,8 @@ Accuracy is measured in terms of Relative Standard Error (RSE), which is one Sta
 This graph has 16 plot points per octave on the X-axis, and each plot point is the average of 4096 trials (LgT=12). 
 The sketches were configured for K = 4096 (LgK=12). The Theta-Alpha sketch was chosen because its accuracy plot is simpler. 
 
-The very low error of the HLL curve (red) below the transistion point at about 384 is the result of our new Coupon Estimator, 
-which as an RSE of about 50 ppm.  The transition point is a function of the LgK parameter of the sketch.
+The error of the HLL curve (red) below the transistion point at about 384 is very small.  
+The transition point is a function of the LgK parameter of the sketch.
 The low range error of the Theta sketches is always zero below their transition point.
 
 ### HLL Speed Comparisons
