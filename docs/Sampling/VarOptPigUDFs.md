@@ -24,43 +24,44 @@ layout: doc_page
     DEFINE GetSamples com.yahoo.sketches.pig.sampling.GetVarOptSamples();
 
     raw_data = LOAD 'data.txt' USING PigStorage('\t') AS
-	(weight: double, id: chararray);
+        (weight: double, id: chararray);
 
     -- make a few independent sketches from the input data
     bytes = FOREACH
-	(GROUP raw_data ALL)
+        (GROUP raw_data ALL)
     GENERATE
-	VarOpt(raw_data) AS sketch0,
-	VarOpt(raw_data) AS sketch1
-	;
+        VarOpt(raw_data) AS sketch0,
+        VarOpt(raw_data) AS sketch1
+        ;
 
     sketchBag = FOREACH
-	bytes
+        bytes
     GENERATE
-	FLATTEN(TOBAG(sketch0,
-	      sketch1)) AS sketches
-	;
+        FLATTEN(TOBAG(sketch0,
+                      sketch1)) AS sketches
+        ;
 
     unioned = FOREACH
-	(GROUP sketchBag ALL)
+        (GROUP sketchBag ALL)
     GENERATE
-	VarOptUnion(sketchBag.sketches) AS binSketch
-	;
+        VarOptUnion(sketchBag.sketches) AS binSketch
+        ;
 
     result = FOREACH
-	unioned
+        unioned
     GENERATE
-	FLATTEN(com.yahoo.sketches.pig.sampling.GetVarOptSamples(binSketch)) AS (vo_weight, record:(id, weight))
-	;
+        FLATTEN(com.yahoo.sketches.pig.sampling.GetVarOptSamples(binSketch)) AS (vo_weight, record:(id, weight))
+        ;
 
     DUMP result;
     DESCRIBE result;
 
 The test data has 2 fields: weight and id. The first step of the query creates several varopt sketches from the input data. We merge the sketches into a bag in the next step, followed by unioning the set of independent sketches. Finally, the last step gets the final set of results.
-`
+
 Results:
 
 From 'DUMP result':
+
     (30.0,(30.0,heavy))
     (30.0,(30.0,heavy))
     (28.0,(4.0,d))
@@ -69,6 +70,7 @@ From 'DUMP result':
 By running this script repeatedly, we can obesrve that the heavy items will always be included, but that the remaining 2 items will differ across runs. We can also see that the varopt weight represents an adjusetd weight, although by keeping the entire input tuple the original weight value is also stored.
 
 From 'DESCRIBE result':
+
     result: {vo_weight: double,record: (id: bytearray,weight: bytearray)}
 
 ### [data.txt]({{site.docs_dir}}/Sampling/data.txt) (tab separated)
