@@ -6,7 +6,7 @@ layout: doc_page
 
 This example was run using word counts from Shakespeare plays, namely
 Romeo and Juliet and Hamlet. The scripts, available from various
-sources including [http://shakespeare.mit.edu/]m were converted to
+sources including http://shakespeare.mit.edu/, were converted to
 (word, count) files with the following perl command:
 
     perl -lane 's/^\s+//; s/[;\.,!?:\x27\[\]&]//g; s/--//g; s/\s+/\n/g; print lc if length > 0' input.txt | sort | uniq -c | awk '{print $1 "\t" $2}' > output.txt
