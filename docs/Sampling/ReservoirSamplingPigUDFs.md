@@ -57,9 +57,9 @@ Results:
 
 From 'DUMP result':
 
-    (24,4,{(30.0,heavy),(7.0,g),(6.0,f),(5.0,e)})
+    (24,4,{(30.0,h),(7.0,g),(6.0,f),(5.0,e)})
 
-Running this script many, we will see each element appear with nearly equal probability.
+Running this script many, we will see each element appear with equal probability.
 
 From 'DESCRIBE result':
 
@@ -73,4 +73,4 @@ From 'DESCRIBE result':
     5.0	e
     6.0	f
     7.0	g
-    30.0	heavy
+    30.0	h

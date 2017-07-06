@@ -62,12 +62,17 @@ Results:
 
 From 'DUMP result':
 
-    (30.0,(30.0,heavy))
-    (30.0,(30.0,heavy))
+    (30.0,(30.0,h))
+    (30.0,(30.0,h))
     (28.0,(4.0,d))
     (28.0,(7.0,g))
 
-By running this script repeatedly, we can obesrve that the heavy items will always be included, but that the remaining 2 items will differ across runs. We can also see that the varopt weight represents an adjusetd weight, although by keeping the entire input tuple the original weight value is also stored.
+By running this script repeatedly, we can obesrve that the heavy items
+(h) will always be included, but that the remaining 2 items will
+differ across runs, appearing in proportion to their weights. We can
+also see that the output varopt weight on the non-heavy samples
+represents an adjusetd weight, although by keeping the entire input
+tuple the original weight value is also stored.
 
 From 'DESCRIBE result':
 
@@ -81,4 +86,4 @@ From 'DESCRIBE result':
     5.0	e
     6.0	f
     7.0	g
-    30.0	heavy
+    30.0	h
