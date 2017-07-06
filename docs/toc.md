@@ -59,6 +59,10 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/Sampling/ReservoirSampling.html">Reservoir Sampling</a></li>
   <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
   <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
+  <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingPigUDFs.html">Reservoir Sampling Pig UDFs</a></li>
+  <li><a href="{{site.docs_dir}}/Sampling/VarOptSampling.html">VarOpt Sampling</a></li>
+  <li><a href="{{site.docs_dir}}/Sampling/VarOptSamplingJava.html">VarOpt Sampling Java Example</a></li>
+  <li><a href="{{site.docs_dir}}/Sampling/VarOptPigUDFs.html">VarOpt Sampling Pig UDFs</a></li>
 </div>
 
 <h2 id="theta-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_theta">Theta Sketches</a></h2>
