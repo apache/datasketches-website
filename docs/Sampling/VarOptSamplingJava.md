@@ -7,11 +7,11 @@ layout: doc_page
 This example was run using word counts from Shakespeare plays, namely
 Romeo and Juliet and Hamlet. The scripts, available from various
 sources including http://shakespeare.mit.edu/, were converted to
-(word, count) files with the following perl command:
+(word, count) files with the following Perl command:
 
     perl -lane 's/^\s+//; s/[;\.,!?:\x27\[\]&]//g; s/--//g; s/\s+/\n/g; print lc if length > 0' input.txt | sort | uniq -c | awk '{print $1 "\t" $2}' > output.txt
 
-These were then used in the following example, slightly modified to remove error handling for clarity. Serialization and deserialization are completely parallel to the Reservoir Sampling sketch, and example code for that may be found in thoes Java examples.
+These were then used in the following example, slightly modified to remove error handling for clarity. Serialization and deserialization are completely parallel to the Reservoir Sampling sketch, and example code for that may be found in those Java examples.
 
 
     import java.io.BufferedReader;

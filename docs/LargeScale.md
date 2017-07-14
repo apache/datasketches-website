@@ -20,7 +20,7 @@ layout: doc_page
   
 * Coupled with the compact binary representations, in many cases the need for costly serialization and deserialization has been eliminated.
   
-* The sketch data structures are "additive" and embarassingly parallelizable. The Theta sketches can be merged without losing accuracy.
+* The sketch data structures are "additive" and embarrassingly parallelizable. The Theta sketches can be merged without losing accuracy.
 
 ### Integration for Hive, Pig, Druid and Spark
 

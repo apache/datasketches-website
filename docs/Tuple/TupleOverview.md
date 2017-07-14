@@ -14,14 +14,14 @@ Tuple Sketches associate a Summary Object with each hash value.  A Summary Objec
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/tuple/TupleWithAttributes.png" alt="TupleWithAttributes" />
 
-Tuple Sketches are ideal for sumarizing attributes such as impressions or clicks. When the sketch is complete, the sum of all the counts in any particular column divided by theta of the sketch is an unbiased estimate of the sum of that attribute of the population from which the summary rows of sketch were drawn.  
+Tuple Sketches are ideal for summarizing attributes such as impressions or clicks. When the sketch is complete, the sum of all the counts in any particular column divided by theta of the sketch is an unbiased estimate of the sum of that attribute of the population from which the summary rows of sketch were drawn.  
 
 Summary Objects are class extensions of the generic base classes in the library. It is up to the developer of the extension how the summary fields are defined and how they should be combined during updates or during set operations. 
 
-Because the distribution of the atribute values is not known, it is not possible to provide meaningful error bounds on the projections of the attribute mean or variance onto the raw population. 
+Because the distribution of the attribute values is not known, it is not possible to provide meaningful error bounds on the projections of the attribute mean or variance onto the raw population. 
 
 Keep in mind that all of these operations are stream-based.  The raw data from which these sketches are built only needs to be touched once.
 
-The Tuple Sketches also provide sufficient methods so that user could develop a wrapper class that could faciliate approximate joins or other common database operations.  This concept is illustrated in this next diagram.
+The Tuple Sketches also provide sufficient methods so that user could develop a wrapper class that could facilitate approximate joins or other common database operations.  This concept is illustrated in this next diagram.
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/tuple/TupleJoins.png" alt="TupleJoins" />

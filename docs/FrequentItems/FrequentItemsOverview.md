@@ -123,8 +123,8 @@ These results can also be described using the classical "Confusion Matrix" as sh
 #### No False Positives (upper table)
 
 The items returned are represented by the blue "True Positive" box. 
-However, there is the possiblity that items, whose true frequency was above the post-error, might be excluded. 
-This are the "False Negatives" reprented by the red box and is classified as a "Type II Error". 
+However, there is the possibility that items, whose true frequency was above the post-error, might be excluded. 
+These are the "False Negatives" represented by the red box and is classified as a "Type II Error". 
 No False Positives (Type I Error) are included. 
 All True Negatives are excluded and there is no Type II Error.
 
