@@ -4,6 +4,8 @@ layout: doc_page
 
 ## Memory Package
 
+Note: this applies to the memory package prior to version 0.10.0
+
 ### Introduction
 The DataSketches sketches-core repository consists of two sub-modules: <i>sketches</i> and <i>memory</i> 
 each of which have their own POM and are released as separate sets of jars prefixed as <i>sketches-core</i>
@@ -22,7 +24,7 @@ of RAM and 24 or more CPUs, each of which can manage two threads.
 Most of that memory is usually dedicated to selected partitions of the raw data, 
 which can be orders of magnitude larger. 
 How the system designers select the partitions of the data to be in RAM over time is quite complex 
-and varies considerably based on the specific objectives of the systems platorm. 
+and varies considerably based on the specific objectives of the systems platform. 
 
 It is in these very large data environments that managing how the data gets copied into RAM and 
 when it is considered obsolete and can be written 
@@ -39,7 +41,7 @@ utilizing off-heap memory becomes a requirement.
 
 Java does not permit normal java processes direct access to off-heap memory. Nonetheless, 
 in order to improve performance, many internal Java classes leverage a low-level, restricted
-class (unfortunately) called "Unsafe", which does exactly that. The methods of Unafe
+class (unfortunately) called "Unsafe", which does exactly that. The methods of Unsafe
 are native methods that are initially compiled into C++ code.  The JIT compiler
 replaces this C++ code with assembly language instructions called "intrinsics", which
 are often just a single CPU instruction.
@@ -114,7 +116,7 @@ Whoever owns the reference to the returned NativeMemory instance __owns__ the me
 Casting to the Memory interface allows the owner to pass a Memory object to a downstream class to read and write, 
 but the downstream class cannot free the allocated block of native memory, only the owning class can do this.
 
-It is often a good idea to do your prototyping using backing arrays instad of off-heap native memory and to have asserts enabled via the JVM for testing (most testing environments do this automatically). 
+It is often a good idea to do your prototyping using backing arrays instead of off-heap native memory and to have asserts enabled via the JVM for testing (most testing environments do this automatically). 
 If asserts are enabled bounds checking will be performed saving you much grief.  
 Segment faults are nasty and hard to debug.
 
@@ -129,7 +131,7 @@ smaller Memory regions, each with their own "capacity" and offsets.
     //hand off region1 and region2 to other classes that use Memory
     mem.freeMemory();
 
-Now region1 and region2 can be passed to different classes where thier view of memory is only the
+Now region1 and region2 can be passed to different classes where their view of memory is only the
 region they were handed.
 
 The MemoryRegionR is a read-only version of MemoryRegion.

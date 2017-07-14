@@ -39,14 +39,14 @@ In order to count the exact number of unique visitors to a web site that has a b
 Unique identifier counts are not additive either, so no amount of parallelism will help you.
 You cannot add the number of identifiers from the apps data site to the number of identifiers from the music site because of identifiers that appear on both sites, i.e., the duplicates.
 
-The exact quantiles query is even worse.  Not only does it need to keep a copy of every item seen, it needs to sort them to boot!
+The exact quantiles query is even worse. Not only does it need to keep a copy of every item seen, it needs to sort them to boot!
 
 ## If An Approximate Answer is Acceptable ...
 
 Here is a very fundamental business question: “Do you really need 10+ digits of accuracy in the answers to your queries? 
 This leads to the fundamental premise of this entire branch of Computer Science:
 
-__If an approximate answer is acceptable, then it is possible that there exists algorithms that allow you to answer these queries orders-of-magnitude faster.__
+__If an approximate answer is acceptable, then it is possible that there are algorithms that allow you to answer these queries orders-of-magnitude faster.__
 
 This, of course, assumes that you care about query responsiveness and speed; that you care about resource utilization; and if you need to accept some approximation, that you care about knowing something about the accuracy that you end up with.
 
@@ -62,7 +62,7 @@ Sketches are also streaming algorithms, in that they only need to see each incom
 <img class="doc-img-full" src="{{site.docs_img_dir}}/BigWin1SmallQuerySpace.png" alt="BigWin1SmallQuerySpace" />
 
 The first big win is the size of the query process on the right has been reduced many orders-of-magnitude.
-Unfortunately, the process is still slow (altough it was faster than before), because the single query process must sequentially scan through all the raw data on the left, which is huge.
+Unfortunately, the process is still slow (although it was faster than before), because the single query process must sequentially scan through all the raw data on the left, which is huge.
 
 ### Big Win #2: Sketch Mergeability Enables Parallel Processing
 

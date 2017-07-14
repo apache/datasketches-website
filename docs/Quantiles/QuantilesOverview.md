@@ -23,7 +23,7 @@ An exact, brute-force approach to computing an arbitrary quantile would require 
 The relevant pseudo-code snippets would look something like this:
 
     int k = 256; //256 gives < 1% normalized rank error
-    QuantilesSketch sketch = QuantilesSketch.builder().build(k);
+    UpdateDoublesSketch sketch = DoublesSketch.builder().setK(k).build();
     
     while ( remainingValuesExist ) { //stream in all the values, one by one
       sketch.update(nextValue());
@@ -38,12 +38,12 @@ When these values are plotted against the normalized ranks we get something like
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/TimeSpentQuantiles.png" alt="TimeSpentQuantiles" />
 
-This reveals a great deal about the distribution of values in the stream. Just reading from the graph, the median is about 3000 and the 90th percentile is about 30,000 and so on. One can also query the min and max values seen by the sketch. By observing the results of the quantiles query, it is not too difficult to create a set of splitpoints for a histogram plot. 
+This reveals a great deal about the distribution of values in the stream. Just reading from the graph, the median is about 3000 and the 90th percentile is about 30,000 and so on. One can also query the min and max values seen by the sketch. By observing the results of the quantiles query, it is not too difficult to create a set of split points for a histogram plot. 
 
 In this case the values ranged from one to 1.8 million, which is a little over 6 orders-of-magnitude. 
 In order to plot such a large dynamic range I used a log X-axis and a plot resolution of 
-5 points per factor of 10. Then I computed 36 equally spaced (on the log axis) splitpoints 
-with values from 1.0 to 1E7. These 36 splitpoints are then provided to the getPMF() function:
+5 points per factor of 10. Then I computed 36 equally spaced (on the log axis) split points 
+with values from 1.0 to 1E7. These 36 split points are then provided to the getPMF() function:
 
     double[] splitpoints = {1.00, 1.58, ... , 6.3E6, 1E7};
     double[] pmf = sketch.getPMF(splitpoints);
@@ -71,7 +71,7 @@ sketch.  Here are some brief snippets, simpler than the above graphs, to get you
 
 #### Median and Top Quartile
 
-    QuantilesSketch qs = QuantilesSketch.builder().build(); //default k = 128
+    UpdateDoublesSketch qs = DoublesSketch.builder().build(); //default k = 128
     
     for (int i=0; i < 1000000; i++) { //stream length is generally unknown
       qs.update(i); //load the sketch
@@ -89,7 +89,7 @@ sketch.  Here are some brief snippets, simpler than the above graphs, to get you
 
 #### Simple Frequency Histogram
 
-    QuantilesSketch qs = QuantilesSketch.builder().build(); //default k = 128
+    UpdateDoublesSketch qs = DoublesSketch.builder().build(); //default k = 128
     
     for (int i=0; i < 1000000; i++) { //stream length is generally unknown
       qs.update(i); //load the sketch
@@ -119,8 +119,8 @@ sketch.  Here are some brief snippets, simpler than the above graphs, to get you
 
 #### Merging Quantile Sketches
 
-    QuantilesSketch qs1 = QuantilesSketch.builder().build(); //default k = 128
-    QuantilesSketch qs2 = QuantilesSketch.builder().build();
+    UpdateDoublesSketch qs1 = DoublesSketch.builder().build(); //default k = 128
+    UpdateDoublesSketch qs2 = DoublesSketch.builder().build();
     long size = 1000000; //generally unknown
     for (int i=0; i < size; i++) { //update each value into the sketch
       qs1.update(i);
@@ -131,7 +131,7 @@ sketch.  Here are some brief snippets, simpler than the above graphs, to get you
     union.update(qs1);
     union.update(qs2);
     
-    QuantilesSketch qs3 = union.getResult();
+    DoublesSketch qs3 = union.getResult();
     System.out.println(qs3.toString()); //Primarily for debugging
     
     /* Output similar to

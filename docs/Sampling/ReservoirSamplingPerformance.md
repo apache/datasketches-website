@@ -7,7 +7,7 @@ layout: doc_page
 ### Update Speed
 
 The following table shows the update performance of a reservoir sketch. We look at 4 average per-item update times:
-The first <tt>k</tt> items when initally filling the reservoir, the next <tt>k</tt> items when the probability of
+The first <tt>k</tt> items when initially filling the reservoir, the next <tt>k</tt> items when the probability of
 accepting a new item is > 0.5, any remaining items where the acceptance probability is < 0.5, and the overall average.
 
 Filling|p(accept)>=0.5|p(accept)<0.5|Overall
@@ -51,15 +51,15 @@ The relative performance was consistent across various values of <tt>k</tt> so w
 
 Because the data is input as a Pig <tt>DataBag</tt>, the UDF knows the input data size when starting processing. If the total input size is
 less than the maximum reservoir size, the entire input data can be returned, which requires handling only a pointer to the DataBag,
-which is a constant time independent of the size of the bag. As a result, the time per update decreaes with increasing data size until
+which is a constant time independent of the size of the bag. As a result, the time per update decreases with increasing data size until
 the total input data reaches <tt>k</tt>. While DataFu returns only the input bag, the Sketches library returns a <tt>Tuple</tt> of (n, k, samples)
 to allow for future unioning; the need to allocate a new container explains the time difference between the systems in this time range.
 
 When we must sample data, the Sketches library outperforms DataFu. DataFu's underlying data is stored as a priority queue, which
 allows for compact code at the expect of more expensive updates. The performance difference is largest when <tt>n</tt> is only slightly
 larger than <tt>k</tt>, which corresponds to the region in which new items are frequently accepted into the reservoir. With a heap-based
-implementation, each accepted item incurs an udpate cost of log(k). As the nubmer of items grows, the cost of processing each
-data element becomes relatively larger and dominates the total cost, which is why DataFu's performacne starts to asymptote towards
+implementation, each accepted item incurs an update cost of log(k). As the number of items grows, the cost of processing each
+data element becomes relatively larger and dominates the total cost, which is why DataFu's performance starts to asymptote towards
 that of the Sketches library.
 
 ### Code Location
