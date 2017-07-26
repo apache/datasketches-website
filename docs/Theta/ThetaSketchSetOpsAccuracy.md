@@ -29,7 +29,7 @@ as determined by the <i>Nominal Entries</i> or <i>k</i> value. In other words,
 * <i>Union Estimate = k/&theta;<sub>result</sub></i>.
 * RSE<i><sub>union</sub> = 1 / sqrt(k - 1)</i>.
 
-This remains true no matter haw many sketches are unioned together.
+This remains true no matter how many sketches are unioned together.
 
 #### Source sketches and target with different <i>Nominal Entries</i> or <i>k</i>
 
@@ -46,7 +46,7 @@ values from both source sketches and then identifying the appropriate proper sub
 Union set creating a result sketch with the Union theta (which is the minimum theta of the source
 sketches) and the qualifying subset of values. 
 
-This means, of course, that depending on the operationa and the data, the result set could have 
+This means, of course, that depending on the operations and the data, the result set could have 
 zero, all, or some number in between of the retained values of the Union sketch. 
 Mixed set expressions can produce an error distribution that is larger that of a standard sketch
 of a given <i>Nominal Entries</i> or <i>k</i> and is mathematically described in 
@@ -84,8 +84,8 @@ in segment <i>A</i> and the resulting value of <i>&theta;<sub>A</sub></i> repres
 required to end up with <i>k</i> samples, which is ~ 4K/4M = .001.
 
 Even though in the raw data all the values of segment <i>B</i> are in segment <i>A</i>, the probability 
-that all the 4K samples of <i>S<sub>B</sub></i> appear <i>S<sub>A</sub></i> is extremely unlikely since 
-only one in one-thousand can be randomly chosen.
+that all the 4K samples of <i>S<sub>B</sub></i> appear <i>S<sub>A</sub></i> is extremely low since 
+only one in one thousand can be randomly chosen.
 
 Applying the <i>Theta Rules</i>:
 
