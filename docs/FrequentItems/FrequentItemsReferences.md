@@ -4,6 +4,7 @@ layout: doc_page
 
 ## Selected References on Frequent Items Sketches
 
+* Daniel Anderson, Pryce Bevan, Kevin Lang, Edo Liberty, Lee Rhodes, Justin Thaler. A High-Performance Algorithm for Identifying Frequent Items in Data Streams. https://arxiv.org/abs/1705.07001
 * Misra, J., Gries, D. Finding repeated elements. Sci. Comput. Programming 2 (1982), 143–152
 * Noga Alon, Yossi Matias, and Mario Szegedy. The space complexity of approximating the frequency moments. Journal of Computer and System Sciences, 58(1):137–147, 1999.
 * Finding Frequent Items in Data Streams Moses Charikar, Kevin Chen, Martin Farach-Colton

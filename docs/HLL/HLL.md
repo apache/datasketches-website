@@ -60,19 +60,30 @@ Which produces a console output something like this:
       HipAccum       : 990116.6007366662
 
 
-### HLL Accuracy Comparisons
+### HLL Accuracy
 
-The accuracy behavior of any one of the HLL sketches compared to the Theta-Alpha sketch will be similar to the following graph:
+The pitch-fork accuracy plot for any of the HLL sketch types (HLL\_4, HLL\_6, or HLL\_8) are identical because the different sketch types are isomorphic to each other. 
+The following plot was generated with <i>LgK</i> = 14 using 2<sup>20</sup> trials.
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}/hll/RSEcomparisons.png" alt="RSEcomparisons.png" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/hll/HllHipLgK14LgT20_Quantiles.png" alt="HllHipLgK14LgT20_Quantiles.png" />
 
-Accuracy is measured in terms of Relative Standard Error (RSE), which is one Standard Deviation of the error variance about the true cardinality.
-This graph has 16 plot points per octave on the X-axis, and each plot point is the average of 4096 trials (LgT=12). 
-The sketches were configured for K = 4096 (LgK=12). The Theta-Alpha sketch was chosen because its accuracy plot is simpler. 
+The <i>Factor = 0.8326</i> is directly relatable to the Flajolet alpha factor of 1.04. 
+As a result, this plot demonstrates that this implementation of the HLL sketch
+will be about 20% = (0.8326/1.04 -1) more accurate than a conventional HLL sketch using Flajolet's estimators (or derived estimators). 
+This is partially due to the use of the HIP estimator[1] for range above the transition point, which occurs at about 1500 on the graph.  
+Below this transition point the accuracy is near zero (an RSE of about 50 ppm), which is far better than any known implementation of HLL. 
+This is due to a newly developed theory and estimator developed by Kevin Lang[2].
 
-The error of the HLL curve (red) below the transistion point at about 384 is very small.  
-The transition point is a function of the LgK parameter of the sketch.
-The low range error of the Theta sketches is always zero below their transition point.
+The base Relative Standard Error (RSE) for this sketch (at LgK = 14) is 0.0065 = 0.8326 / 2<sup>7</sup>. 
+The horizontal gridlines are configured to be +/- multiples of the base RSE.
+The different color curves correspond to the quantiles of the Gaussian distribution at +/- 1, 2, and 3 standard deviations.
+Therefore, the area between the orange and the green curves represent +/- 1 SD, which corresponds to a confidence level of 68.3%.
+The area between the red and the blue curves represent +/- 2 SD, which corresponds to a confidence level of 95.4%.
+The area between the brown and the purple curves represent +/- 3 SD, which correspons to a confidence level of 99.7%.
+
+The reader of this chart can easily see that this size HLL sketch will have error "bounds" of +/- 1.3% with 95.4% confidence.
+These "bounds" can also be derived directly from the sketch itself by calling the <i>getUpperBound(numStdDev)</i> 
+and <i>getLowerBound(numStdDev)</i> methods.
 
 ### HLL Speed Comparisons
 
@@ -111,4 +122,4 @@ or difference operations with reasonable accuracy.
 HLL sketches cannot be intermixed or merged in any way with Theta Sketches.
 
 * [1] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, PODS 2014.
-
+* [2] Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https//arxiv.org/abs/1708.06839
