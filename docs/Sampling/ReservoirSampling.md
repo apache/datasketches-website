@@ -31,7 +31,7 @@ The Sketches Library provides 2 forms of reservoir sampling sketches:
 ### Space Usage
 
 The reservoir is initialized with a <tt>reservoirCapacity</tt> indicating the maximum number of items 
-that can be stored in the reservoir. In contrast to many other sketches in this library, the size does
+that can be stored in the reservoir. In contrast to some other sketches in this library, the size does
 not need to be a power of 2.
 
 When serialized, these sketches use 16 bytes of header data in addition to the serialized size of the

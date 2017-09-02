@@ -13,7 +13,7 @@ accuracy than the Theta Sketches mentioned above.
 
 A new HLL sketch is created with a simple constructor:
 
-    int lgK = 12; //This is log-base2 of k, so k = 4096.  lgK can be from 7 to 21
+    int lgK = 12; //This is log-base2 of k, so k = 4096. lgK can be from 4 to 21
     HllSketch sketch = new HllSketch(lgK); //TgtHllType.HLL_4 is the default
     //OR
     HllSketch sketch = new HllSketch(lgK, TgtHllType.HLL_6);
@@ -26,7 +26,7 @@ The HLL\_4, HLL\_6 and HLL\_8 represent different levels of compression of the f
 where the 4, 6 and 8 refer to the number of bits each bucket of the HLL array is compressed down to.
 The HLL\_4 is the most compressed but generally slightly slower than the other two, especially during union operations.
 
-All three types share the same API.  Updating the HllSketch is very simple:
+All three types share the same API. Updating the HllSketch is very simple:
 
     long n = 1000000;
     for (int i = 0; i < n; i++) {
@@ -104,7 +104,7 @@ The serialization sizes of the HLL sketches compared to the Theta-Alpha sketch w
 
 Both the HLL sketches and the Theta sketches have a similar growth strategy below their respective transition points. 
 The HLL sketches grow in increments of 4 bytes, and the Theta sketches grow in increments of 8 bytes. 
-Thus, below the HLL transistion point the Theta sketch is 2X larger than the HLL sketch.  
+Thus, below the HLL transition point the Theta sketch is 2X larger than the HLL sketch.  
 Above the transition point the HLL\_4 sketch has a 16X size advantage over the Theta sketch.
 
 ### Caveats

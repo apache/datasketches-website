@@ -4,7 +4,7 @@ layout: doc_page
 
 ## HLL sketch Hive UDFs
 
-This functionality appeared in sketches-hive-0.10.1. Depends on sketches-core-0.10.1 and memory-0.10.2.
+This functionality appeared in sketches-hive-0.10.1. Depends on sketches-core-0.10.0 and memory-0.10.2.
 
 ### Building sketches, computing unions and getting estimates
 
