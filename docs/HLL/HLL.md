@@ -65,12 +65,12 @@ Which produces a console output something like this:
 The pitch-fork accuracy plot for any of the HLL sketch types (HLL\_4, HLL\_6, or HLL\_8) are identical because the different sketch types are isomorphic to each other. 
 The following plot was generated with <i>LgK</i> = 14 using 2<sup>20</sup> trials.
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}/hll/HllHipLgK14LgT20_Quantiles.png" alt="HllHipLgK14LgT20_Quantiles.png" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllHipLgK14LgT20_Quantiles.png" alt="HllHipLgK14LgT20_Quantiles.png" />
 
 The <i>Factor = 0.8326</i> is directly relatable to the Flajolet alpha factor of 1.04. 
 As a result, this plot demonstrates that this implementation of the HLL sketch
 will be about 20% = (0.8326/1.04 -1) more accurate than a conventional HLL sketch using Flajolet's estimators (or derived estimators). 
-This is partially due to the use of the HIP estimator[1] for range above the transition point, which occurs at about 1500 on the graph.  
+This is partially due to the use of the HIP estimator[1] for range above the transition point, which occurs at about 1500 on the graph. 
 Below this transition point the accuracy is near zero (an RSE of about 50 ppm), which is far better than any known implementation of HLL. 
 This is due to a newly developed theory and estimator developed by Kevin Lang[2].
 
@@ -122,4 +122,4 @@ or difference operations with reasonable accuracy.
 HLL sketches cannot be intermixed or merged in any way with Theta Sketches.
 
 * [1] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, PODS 2014.
-* [2] Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https//arxiv.org/abs/1708.06839
+* [2] Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https://arxiv.org/abs/1708.06839
