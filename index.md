@@ -22,7 +22,7 @@ id: home
         <a class="btn btn-lg btn-outline-inverse" href="/docs/downloads.html"><span class="fa fa-download"></span> Download</a>
         <a class="btn btn-lg btn-outline-inverse" href="https://github.com/datasketches"><span class="fa fa-github"></span> GitHub</a>
         <a class="btn btn-lg btn-outline-inverse" href="/docs/Research.html"><span class="fa fa-paper-plane"></span> Research</a>
-        <a class="btn btn-lg btn-outline-inverse" href="https://groups.google.com/forum/#!forum/sketches-user"><span class="fa fa-comment"></span> Comments</a>
+        <a class="btn btn-lg btn-outline-inverse" href="https://groups.google.com/forum/#!forum/sketches-user"><span class="fa fa-comment"></span> Forum</a>
       </p>
     </div>
   </div>

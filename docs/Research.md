@@ -71,7 +71,58 @@ In many applications, data eventually grows stale or out of date, and queries sh
 
 This solution suffices in some applications, but for other applications the chunks must be more fine grained (e.g., when detecting anomalies or phenomena that last for seconds or minutes rather than hours). In these settings, a naive approach based on mergeable summaries becomes prohibitively expensive in terms of both memory usage and latency. For such settings, the ideal solution is a streaming algorithm that au- tomatically “forgets” data when it becomes stale. This setting has been studied in the literature on sliding window streaming algorithms. There has been working studying sliding window algorithms for frequent items (e.g. [GDD+03]), unique counts (e.g. [GT02]), and quantiles (e.g. [AM04]). Just as work on the Data Sketches library has led to significant recent progress in developing efficient algorithms for each of these problems in the standard (non-sliding window) streaming setting, the we are confident that related ideas will lead to similar progress in the sliding window setting as well.
 
-References
+****
 
-...
+## References
+
+[ABL+17]
+DanielAnderson,PryceBevan,KevinJ.Lang,EdoLiberty,LeeRhodes,andJustinThaler. A high-performance algorithm for identifying frequent items in data streams. In *Internet Measurement Conference (To Appear)*, 2017. Preliminary version available at <http://arxiv>. org/abs/1705.07001.
+
+[AM04]
+Arvind Arasu and Gurmeet Singh Manku. Approximate counts and quantiles over sliding win- dows. In *Proceedings of PODS*, pages 286–296. ACM, 2004.
+
+[CCM10]
+Amit Chakrabarti, Graham Cormode, and Andrew McGregor. A near-optimal algorithm for estimating the entropy of a stream. *ACM Trans. Algorithms*, 6(3):51:1–51:21, 2010.
+
+[CEM+15]
+Michael B Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu. Di- mensionality reduction for k-means clustering and low rank approximation. In *Proceedings of STOC*, pages 163–172, 2015.
+
+[DLRT16]
+Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *Proceedings of ICDT*, pages 6:1–6:17, 2016.
+
+[FFGM07]
+PhilippeFlajolet,E ́ricFusy,OlivierGandouet,andFre ́de ́ricMeunier. Hyperloglog:theanalysis of a near-optimal cardinality estimation algorithm. In *Analysis of Algorithms*, pages 137–156, 2007.
+
+[GDD+03]
+Lukasz Golab, David DeHaan, Erik D Demaine, Alejandro Lopez-Ortiz, and J Ian Munro. Identifying frequent items in sliding windows over on-line packet streams. In *Proceedings of IMC*, pages 173–178. ACM, 2003.
+
+[GT02]
+Phillip B. Gibbons and Srikanta Tirthapura. Distributed streams algorithms for sliding windows. In *Proceedings of SPAA*, pages 63–72, New York, NY, USA, 2002. ACM.
+
+[KLL16]
+Zohar S. Karnin, Kevin J. Lang, and Edo Liberty. Optimal quantile approximation in streams. In *Proceedings of FOCS*, pages 71–78, 2016.
+
+[Lan17]
+Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. *arXiv preprint arXiv:1708.06839*, 2017.
+
+[Lib13]
+Edo Liberty. Simple and deterministic matrix sketching. In *Proceedings of KDD*, pages 581– 588. ACM, 2013.
+
+[LMTU16]
+Edo Liberty, Michael Mitzenmacher, Justin Thaler, and Jonathan Ullman. Space lower bounds for itemset frequency sketches. In *Proceedings of PODS*, pages 441–454, 2016.
+
+[McG14]
+Andrew McGregor. Graph stream algorithms: a survey. *ACM SIGMOD Record, 43(1):9–20*, 2014.
+
+[MST12]
+Michael Mitzenmacher, Thomas Steinke, and Justin Thaler. Hierarchical heavy hitters with the space saving algorithm. In *Proceedings of ALENEX*, pages 160–174, 2012.
+
+[RLS+ 15]
+Lee Rhodes, Kevin Lang, Alexander Saydakov, Justin Thaler, Edo Liberty, and Jon Malkin. DataSketches: A Java software library for streaming data algorithms. Apache License, Version 2.0, 2015. <https://datasketches.github.io>.
+
+[Tha07]
+Justin Thaler. REU project website: A near-optimal algorithm for computing the entropy of a stream, 2007. <http://reu.dimacs.rutgers.edu/ ̃jthaler/>.
+
+[VSGB05]
+Shobha Venkataraman, Dawn Xiaodong Song, Phillip B. Gibbons, and Avrim Blum. New streaming algorithms for fast detection of superspreaders. In *Proceedings of NDSS*, 2005.
 
