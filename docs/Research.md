@@ -37,9 +37,9 @@ There are major opportunities to incorporate algorithms for new and richer types
 
 ## Improved Algorithms for Unique Counting
 
-In a recent pre-print that grew out of work on the Data Sketches library [Lan17], Kevin Lang describes several streaming algorithms for estimating the number of distinct elements in a data stream. The al- gorithms have a better space/accuracy tradeoff than the previous state of the art algorithm, Hyperloglog (HLL) [FFGM07], which has been considered the gold standard in practical performance for this problem for nearly a decade. Specifically, Lang’s algorithms use up to 20% less space than the entropy of the HLL sketch, and hence 20% space than any possible implementation of HLL.
+In a recent pre-print that grew out of work on the Data Sketches library [Lan17], Kevin Lang describes several streaming algorithms for estimating the number of distinct elements in a data stream. The algorithms have a better space/accuracy tradeoff than the previous state of the art algorithm, Hyperloglog (HLL) [FFGM07], which has been considered the gold standard in practical performance for this problem for nearly a decade. Specifically, for a given accuracy level, Lang’s algorithms use up to 20% less space than the *entropy* of the HLL sketch, and hence 20% less space than *any possible* implementation of HLL.
 
-Regarding runtime, Lang’s pre-print shows that some of his algorithms have comparable speed to straightforward implementations of HLL, but are somewhat slower than heavily optimized HLL imple- mentations. Significant research remains to optimize the speed of the new algorithms, determine which variant algorithm performs best on real data and is most suitable for a production environment, and finally to produce a production-quality implementation of this algorithm.
+Regarding runtime, Lang’s pre-print shows that some of his algorithms have comparable speed to straightforward implementations of HLL, but are somewhat slower than heavily optimized HLL implementations. Significant research remains to optimize the speed of the new algorithms, determine which variant algorithm performs best on real data and is most suitable for a production environment, and finally to produce a production-quality implementation of this algorithm.
 
 ## Algorithms For Anomaly Detection
 
