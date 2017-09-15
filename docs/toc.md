@@ -12,7 +12,7 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/KeyFeatures.html">Key Features</a></li>
   <li><a href="{{site.docs_dir}}/LargeScale.html">Large Scale Computing</a></li>
   <li><a href="{{site.docs_dir}}/Architecture.html">Architecture</a></li>
-  <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck_13Oct2016.pdf">Overview Slide Deck</a></li>
+  <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck_Sep2017.pdf">Overview Slide Deck</a></li>
 </div>
 
 <h2 id="frequent-items-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent">Frequent Items Sketches</a></h2>
