@@ -19,11 +19,11 @@ A final important application of mergeable summaries is to power conservation in
 ### The Data Sketches Open Source Library
 
 This library has been designed from the beginning to be high-performance and production-quality suitable for integration into large data processing systems that must deal with massive data.
-The library is written in pure Java, and contains state of the art algorithms for a variety of basic query classes, including identifying frequent items, unique count queries, computing quantiles and histograms, and sampling. It will soon contain algorithms for matrix analytic tasks such as PCA as well. 
+The library is written in Java, and contains state of the art algorithms for a variety of basic query classes, including identifying frequent items, unique count queries, computing quantiles and histograms, and sampling. It will soon contain algorithms for matrix analytic tasks such as PCA as well. 
 All algorithms in the library produce mergeable summaries, 
 and come with formal guarantees on the accuracy of the answers returned.
 
-Currently, the core contributors to the library are Lee Rhodes, Kevin Lang, Jon Malkin, and Alex Saydakov (all at Yahoo/Oath), Justin Thaler (Professor at Georgetown University, and Edo Liberty (Principal Scientist at Amazon Web Services and manager of the Algorithms group at Amazon AI).
+Currently, the core contributors to the library are Lee Rhodes, Kevin Lang, Jon Malkin, and Alex Saydakov (all at Yahoo/Oath), Justin Thaler (Assistant Professor at Georgetown University, Department of Computer Science), and Edo Liberty (Principal Scientist at Amazon Web Services and manager of the Algorithms group at Amazon AI).
 
 The library has been adapted throughout industry and government. For example, at Yahoo, where it was conceived and created, the library is widely used internally to reduce processing time from days to seconds for many tasks. At SpliceMachine, it is used for database query planning and optimization. It is also deeply embedded into a low-latency open source data store called Druid, as well as an open source graph database called Gaffer that is maintained by the British intelligence agency GCHQ.
 
