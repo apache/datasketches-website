@@ -1,4 +1,4 @@
-# DataSketches Directions
+# DataSketches Research Directions
 
 ## Introduction
 
