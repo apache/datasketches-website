@@ -16,6 +16,8 @@ Ideally, streaming algorithms will produce summaries that are mergeable, meaning
 
 A final important application of mergeable summaries is to power conservation in weak peripheral devices. For example, one of the key benefits of the Internet of Things (IoT) is that it enables the monitoring and aggregation of data from IoT devices such as sensors and appliances. Such devices are often power limited, so it is essential to minimize the amount of data that must be sent from each device to the aggregation center. Mergeable summaries enable this: each device can itself compute a summary of its own data, and send only the summary to the aggregation center, which merges all received summaries to obtain a global summary for all devices’ datasets.
 
+Agarwal, et al, discuss different types of mergeable summaries in their Mergeable Summaries paper [AC+13].
+
 ### The Data Sketches Open Source Library
 
 This library has been designed from the beginning to be high-performance and production-quality suitable for integration into large data processing systems that must deal with massive data.
@@ -45,19 +47,19 @@ A common goal when processing massive data streams is to identify anomalous even
 
 The Data Sketches library already contains several algorithms useful for anomaly detection in data streams. One example is the library’s algorithm for answering quantile queries. In the quantiles problem, the stream specifies a list of real numbers, and any stream update in (say) the top or bottom percentile is (by definition) an outlier or anomaly. As mentioned above, the Data Sketches team has resolved the asymptotic space complexity of streaming quantile computation [KLL16], and is currently completing a careful empirical study of various quantile algorithms that have been proposed in the literature. A second algorithm in the library that is useful for anomaly detection is its novel algorithm for identifying frequent items [ABL+17]: any item that makes up an unusually large fraction of the dataset is inherently anomalous.
 
-Moving forward, the Data Sketches team will incorporate algorithms for additional query classes that are useful for anomaly detection. Key targets include entropy computation [CCM10, Tha07], identification of hierarchical heavy hitters [MST12], and identification of superspreaders [VSGB05] (all of which have been intensely studied in the context of detecting anomalies in network flows).
+Moving forward, the Data Sketches team will incorporate algorithms for additional query classes that are useful for anomaly detection. Key targets include entropy computation [CCM10, Tha07], identification of hierarchical heavy hitters [MST12], and identification of superspreaders [VSGB05]  (all of which have been intensely studied in the context of detecting anomalies in network flows).
 
 The best known streaming algorithms for all three problems make black-box use of algorithms for the simpler task of identifying frequent items. Owing to the library’s state of the art algorithm for the latter task, the team is positioned to develop highly efficient solutions for these more complicated problems.
 
-While existing streaming algorithms for identifying hierarchical heavy hitters and superspreaders pro- duce mergeable summaries, the only known practical algorithm for entropy computation [CCM10] does not. A challenging problem that the Data Sketches team will try to solve is the development of a practical mergeable sketching algorithm for entropy computation.
+While existing streaming algorithms for identifying hierarchical heavy hitters and superspreaders produce mergeable summaries, the only known practical algorithm for entropy computation [CCM10] does not. A challenging problem that the Data Sketches team will try to solve is the development of a practical mergeable sketching algorithm for entropy computation.
 
 ## Matrix and Clustering Algorithms
 
-Low-rank approximations to matrices are useful in many unsupervised learning tasks including PCA. Low- rank approximations effectively uncover latent structure in datasets, by identifying the “most informative directions” of a data matrix. They also speed up downstream learning tasks, since these tasks can be run on the low-rank approximation instead of on the original matrix. In [Lib13], Liberty presented a nearly optimal streaming algorithm for approximating a data matrix by a low-rank matrix. The algorithm assumes that the data matrix is streamed row-wise, meaning each stream update atomically specifies a new row of the matrix.
+Low-rank approximations to matrices are useful in many unsupervised learning tasks including PCA. Low-rank approximations effectively uncover latent structure in datasets, by identifying the “most informative directions” of a data matrix. They also speed up downstream learning tasks, since these tasks can be run on the low-rank approximation instead of on the original matrix. In [Lib13], Liberty presented a nearly optimal streaming algorithm for approximating a data matrix by a low-rank matrix. The algorithm assumes that the data matrix is streamed row-wise, meaning each stream update atomically specifies a new row of the matrix.
 
 Computing a low-rank approximation to a matrix can be viewed as identifying “frequent directions” in a stream of vectors, and Liberty’s algorithm can be viewed as a direct generalization of an algorithm for identifying frequent items in a stream of items. Building on the frequent items algorithm described in [ABL+17] and already implemented in the Data Sketches library, the Data Sketches team is nearing completion of a production-quality implementation of Liberty’s algorithm. Once this implementation is complete, ongoing research will identify additional optimizations to further improve the algorithm’s speed and accuracy, and will perform a careful empirical comparison of its performance relative to alternative algorithms in the literature. The Data Sketches team will also work to develop algorithms that can handle more general types of updates to the data matrix (not just row-wise updates).
 
-A related direction that the team will pursue in the immediate future is to develop production-quality implementations of streaming algorithms for k-means clustering. The low-rank matrix approximation and clustering problems are closely related (see, e.g., [CEM+15]), and we are confident that ideas from low- rank matrix approximation will prove useful in developing effective clustering algorithms.
+A related direction that the team will pursue in the immediate future is to develop production-quality implementations of streaming algorithms for k-means clustering. The low-rank matrix approximation and clustering problems are closely related (see, e.g., [CEM+15]), and we are confident that ideas from low-rank matrix approximation will prove useful in developing effective clustering algorithms.
 
 ## Graph Algorithms
 
@@ -69,7 +71,7 @@ Developing production-quality algorithms for graph streams is a key direction th
 
 In many applications, data eventually grows stale or out of date, and queries should accordingly be restricted to relatively recent data. Mergeable summaries enable a simple solution to this problem: break the data into relatively small chunks (with each chunk covering, say, a one-hour time period), sketch each chunk separately, and at query time merge the summaries of only the most recent chunks.
 
-This solution suffices in some applications, but for other applications the chunks must be more fine grained (e.g., when detecting anomalies or phenomena that last for seconds or minutes rather than hours). In these settings, a naive approach based on mergeable summaries becomes prohibitively expensive in terms of both memory usage and latency. For such settings, the ideal solution is a streaming algorithm that au- tomatically “forgets” data when it becomes stale. This setting has been studied in the literature on sliding window streaming algorithms. There has been working studying sliding window algorithms for frequent items (e.g. [GDD+03]), unique counts (e.g. [GT02]), and quantiles (e.g. [AM04]). Just as work on the Data Sketches library has led to significant recent progress in developing efficient algorithms for each of these problems in the standard (non-sliding window) streaming setting, the we are confident that related ideas will lead to similar progress in the sliding window setting as well.
+This solution suffices in some applications, but for other applications the chunks must be more fine grained (e.g., when detecting anomalies or phenomena that last for seconds or minutes rather than hours). In these settings, a naive approach based on mergeable summaries becomes prohibitively expensive in terms of both memory usage and latency. For such settings, the ideal solution is a streaming algorithm that automatically “forgets” data when it becomes stale. This setting has been studied in the literature on sliding window streaming algorithms. There has been working studying sliding window algorithms for frequent items (e.g. [GDD+03]), unique counts (e.g. [GT02]), and quantiles (e.g. [AM04]). Just as work on the Data Sketches library has led to significant recent progress in developing efficient algorithms for each of these problems in the standard (non-sliding window) streaming setting, the we are confident that related ideas will lead to similar progress in the sliding window setting as well.
 
 ****
 
@@ -78,14 +80,17 @@ This solution suffices in some applications, but for other applications the chun
 [ABL+17]
 DanielAnderson,PryceBevan,KevinJ.Lang,EdoLiberty,LeeRhodes,andJustinThaler. A high-performance algorithm for identifying frequent items in data streams. In *Internet Measurement Conference (To Appear)*, 2017. Preliminary version available at <http://arxiv>. org/abs/1705.07001.
 
+[AC+13]
+Pankaj K. Agarwal, Graham Cormode, Zengfeng Huang, Jeff M. Phillips, Zhewei Wei, Ke Yi. Mergeable summaries. *ACM Trans. Database Syst. 38(4): 26:1-26:28*, 2013
+
 [AM04]
-Arvind Arasu and Gurmeet Singh Manku. Approximate counts and quantiles over sliding win- dows. In *Proceedings of PODS*, pages 286–296. ACM, 2004.
+Arvind Arasu and Gurmeet Singh Manku. Approximate counts and quantiles over sliding windows. In *Proceedings of PODS, pages 286–296. ACM*, 2004.
 
 [CCM10]
 Amit Chakrabarti, Graham Cormode, and Andrew McGregor. A near-optimal algorithm for estimating the entropy of a stream. *ACM Trans. Algorithms*, 6(3):51:1–51:21, 2010.
 
 [CEM+15]
-Michael B Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu. Di- mensionality reduction for k-means clustering and low rank approximation. In *Proceedings of STOC*, pages 163–172, 2015.
+Michael B Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu. Dimensionality reduction for k-means clustering and low rank approximation. In *Proceedings of STOC*, pages 163–172, 2015.
 
 [DLRT16]
 Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *Proceedings of ICDT*, pages 6:1–6:17, 2016.
