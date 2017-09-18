@@ -96,7 +96,7 @@ Michael B Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu
 Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *Proceedings of ICDT*, pages 6:1–6:17, 2016.
 
 [FFGM07]
-PhilippeFlajolet,E ́ricFusy,OlivierGandouet,andFre ́de ́ricMeunier. Hyperloglog:theanalysis of a near-optimal cardinality estimation algorithm. In *Analysis of Algorithms*, pages 137–156, 2007.
+Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *Analysis of Algorithms*, pages 137–156, 2007.
 
 [GDD+03]
 Lukasz Golab, David DeHaan, Erik D Demaine, Alejandro Lopez-Ortiz, and J Ian Munro. Identifying frequent items in sliding windows over on-line packet streams. In *Proceedings of IMC*, pages 173–178. ACM, 2003.
