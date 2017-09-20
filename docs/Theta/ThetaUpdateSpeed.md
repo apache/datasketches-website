@@ -28,25 +28,8 @@ The sketches were configured with the optional <i>ResizingFactor = X1</i>, which
 It needs to be pointed out that these tests were designed to measure the maximum update speed under ideal conditions so "your mileage may vary"!
 Very few systems would actually be able to feed a single sketch at this rate so these plots represent an upper bound and not realistic update rates in more complex systems environments. Nonetheless, this demonstrates that the sketches would consume very little of an overall system's budget for updating, if there was one, and are quite suitable for real-time streams.
 
-The graphs on this page were generated using the SketchPerformance program in the com.yahoo.sketches.performance package of the sketches-misc repository. 
+The graphs on this page were generated using the utilities in the com.yahoo.sketches.performance package of the sketches-misc repository.
 There is more documentation with the code.
-
-#### Plot Parameters
-Note: the prefix "lg" is shorthand notation for Log\_base\_2.
-
-Sketch Profile |
----------------|------------
-lgK, (K)  | 12, (4096)
-Family  | ALPHA or QUICKSELECT
-ResizeFactor | X1
-Direct  | True or False
-
-Trials Profile |
----------------|------------
-lgMinTrials  | 4
-lgMaxTrials  | 13
-lgMaxU       | 23
-PPO          | 16
 
 ### Resize Factors = X1, X2 and X8
 To illustrate how the the optional <i>Resize Factor</i> affects performance refer to the following graph.  All three plots were generated using the Heap QuickSelect Sketch but with different Resize Factors.
@@ -61,15 +44,6 @@ It was generated with <i>ResizeFactor = X1</i>, which means the sketch cache was
 As one would expect the overall speed of the RF = X2 sketch is slower than the RF = X1 sketch and the RF = X8 sketch is inbetween due to the amount of time the sketch spends in resizing the cache.
 
 The tradeoff here is the classic memory size versus speed.  Suppose you have millions of sketches that need to be allocated and your input data is highly skewed (as is often the case).  Most of the sketches will only have a few entries and only a small fraction of all the sketches will actually go into estimation mode and require a full-sized cache.  The Resize Factor option allows a memory allocation that would be orders of magnitude smaller than would be required if all the sketches had to be allocated at full size.  The default Resize Factor is X8, which is a nice compromise between X1 and X2.
-
-#### Plot Parameters
-
-Sketch Profile |
----------------|------------
-LgK, (K)  | 12, (4096)
-Family  | QUICKSELECT
-ResizeFactor | X1, X2 or X8
-Direct  | False
 
 
 ### Measurement System

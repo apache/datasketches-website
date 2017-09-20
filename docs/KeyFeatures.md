@@ -33,7 +33,7 @@ its garbage collection.
 
 <h3>Robust, High Quality Implementations.</h3>
   * Extensive test code leveraging <a href="https://testng.org">TestNG</a>.
-  * Benchmarking, speed and accuracy characterization and performance testing code 
+  * Speed and accuracy performance characterization testing code 
   included in the <a href="https://github.com/DataSketches/sketches-misc">sketches-misc</a>  repository.
   * High Test Code coverage (
 <a href="{{site.core_readme}}">Core</a>,

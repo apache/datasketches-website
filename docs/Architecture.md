@@ -21,6 +21,7 @@ com.yahoo.sketches             | Common functions and utilities
 com.yahoo.sketches.frequencies | Frequent Item Sketches, for both longs and generics
 com.yahoo.sketches.hash        | The 128-bit MurmurHash3 and adaptors
 com.yahoo.sketches.hll         | HLL sketches, and HLL Map sketches
+com.yahoo.sketches.hllmap      | The Unique Count Map Sketch
 com.yahoo.sketches.quantiles   | Sketches for quantiles, PMF and CDF functions, both doubles and generics
 com.yahoo.sketches.sampling    | Reservoir sampling with generics 
 com.yahoo.sketches.theta       | Theta sketches
@@ -42,9 +43,11 @@ High-level Structure               | Package Description
 -----------------------------------|---------------------
 com.yahoo.sketches.pig.frequencies | Pig UDFs for Frequent Items sketches
 com.yahoo.sketches.pig.hash        | Pig UDF for MurmerHash3
+com.yahoo.sketches.pig.hll         | Pig UDFs for HLL sketches
 com.yahoo.sketches.pig.quantiles   | Pig UDFs for Quantiles sketches
 com.yahoo.sketches.pig.theta       | Pig UDFs for Theta sketches
 com.yahoo.sketches.pig.tuple       | Pig UDFs for Tuple sketches
+com.yahoo.sketches.pig.sampling        | Pig UDFs for Sampling sketches
 
 
 ### sketches-hive
@@ -57,6 +60,7 @@ This code is versioned and the latest release can be obtained from
 High-level Structure                 | Package Description
 -------------------------------------|---------------------
 com.yahoo.sketches.hive.frequencies  | Hive UDF and UDAFs for Frequent Items sketches
+com.yahoo.sketches.hive.hll          | Hive UDF and UDAFs for HLL sketches
 com.yahoo.sketches.hive.quantiles    | Hive UDF and UDAFs for Quantiles sketches
 com.yahoo.sketches.hive.theta        | Hive UDF and UDAFs for Theta sketches
 com.yahoo.sketches.hive.tuple        | Hive UDF and UDAFs for Tuple sketches
@@ -74,12 +78,12 @@ This code is versioned and the latest release can be obtained from
     
 High-level Structure               | Package Description
 -----------------------------------|---------------------
-com.yahoo.sketches.benchmark       | Benchmarking code for the HLL sketches
-com.yahoo.sketches.cmd             | Support for Command Line functions
-com.yahoo.sketches.demo            | Simple demo for brute-force vs Theta & HLL sketches
-com.yahoo.sketches.hll             | Error Characterization and Command-line functions for experimenting with CountUniqueMap
-com.yahoo.sketches.performance     | Speed and Error Characteriation of Theta an HLL sketches
-com.yahoo.sketches.sampling        | Benchmarks and Entropy testing
+com.yahoo.sketches                 | Utility functions used by the sketches-misc packages
+com.yahoo.sketches.cmd             | Support for Command Line functions **Being Redesigned**
+com.yahoo.sketches.demo            | Simple demo for brute-force vs Theta and HLL sketches **Will be superceded by Command Line functions**
+com.yahoo.sketches.performance     | Speed and Error Characteriation of Theta and HLL sketches **Under development**
+com.yahoo.sketches.quantiles       | Utility for computing & printing space table for Quantiles Sketches
+com.yahoo.sketches.sampling        | Benchmarks and Entropy testing for sampling sketches
 
 ### experimental
 This repository is an experimental staging area for code that will eventually end up in another 
