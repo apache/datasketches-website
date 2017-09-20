@@ -78,7 +78,7 @@ This solution suffices in some applications, but for other applications the chun
 ## References
 
 [ABL+17]
-DanielAnderson,PryceBevan,KevinJ.Lang,EdoLiberty,LeeRhodes,andJustinThaler. A high-performance algorithm for identifying frequent items in data streams. In *Internet Measurement Conference (To Appear)*, 2017. Preliminary version available at <http://arxiv>. org/abs/1705.07001.
+Daniel Anderson, Pryce Bevan,Kevin J. Lang, Edo Liberty, Lee Rhodes, and Justin Thaler. A high-performance algorithm for identifying frequent items in data streams. In *Internet Measurement Conference (To Appear)*, 2017. Preliminary version available at <http://arxiv>. org/abs/1705.07001.
 
 [AC+13]
 Pankaj K. Agarwal, Graham Cormode, Zengfeng Huang, Jeff M. Phillips, Zhewei Wei, Ke Yi. Mergeable summaries. *ACM Trans. Database Syst. 38(4): 26:1-26:28*, 2013
@@ -90,7 +90,7 @@ Arvind Arasu and Gurmeet Singh Manku. Approximate counts and quantiles over slid
 Amit Chakrabarti, Graham Cormode, and Andrew McGregor. A near-optimal algorithm for estimating the entropy of a stream. *ACM Trans. Algorithms*, 6(3):51:1–51:21, 2010.
 
 [CEM+15]
-Michael B Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu. Dimensionality reduction for k-means clustering and low rank approximation. In *Proceedings of STOC*, pages 163–172, 2015.
+Michael B. Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu. Dimensionality reduction for k-means clustering and low rank approximation. In *Proceedings of STOC*, pages 163–172, 2015.
 
 [DLRT16]
 Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *Proceedings of ICDT*, pages 6:1–6:17, 2016.
@@ -99,7 +99,7 @@ Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for 
 Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *Analysis of Algorithms*, pages 137–156, 2007.
 
 [GDD+03]
-Lukasz Golab, David DeHaan, Erik D Demaine, Alejandro Lopez-Ortiz, and J Ian Munro. Identifying frequent items in sliding windows over on-line packet streams. In *Proceedings of IMC*, pages 173–178. ACM, 2003.
+Lukasz Golab, David DeHaan, Erik D. Demaine, Alejandro Lopez-Ortiz, and J. Ian Munro. Identifying frequent items in sliding windows over on-line packet streams. In *Proceedings of IMC*, pages 173–178. ACM, 2003.
 
 [GT02]
 Phillip B. Gibbons and Srikanta Tirthapura. Distributed streams algorithms for sliding windows. In *Proceedings of SPAA*, pages 63–72, New York, NY, USA, 2002. ACM.
