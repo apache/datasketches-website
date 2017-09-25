@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-# HLL Sketch Java Example
+# Hyper Log Log Sketch Java Example
 
     import java.io.FileInputStream;
     import java.io.FileOutputStream;

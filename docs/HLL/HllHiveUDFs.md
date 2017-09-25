@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-## HLL sketch Hive UDFs
+## Hyper Log Log sketch Hive UDFs
 
 This functionality appeared in sketches-hive-0.10.1. Depends on sketches-core-0.10.0 and memory-0.10.2.
 

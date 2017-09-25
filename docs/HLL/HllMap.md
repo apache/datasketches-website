@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-## HLL Unique Count Map Sketch
+## Hyper Log Log Unique Count Map Sketch
 This is a real-time, key-value HLL mapping sketch that tracks approximate unique counts of
 identifiers (the values) associated with each key. An example might be tracking the number of
 unique user identifiers associated with each IP address. This map has been specifically designed

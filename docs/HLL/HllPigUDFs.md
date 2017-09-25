@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-## HLL Sketch Pig UDFs
+## Hyper Log Log Sketch Pig UDFs
 
 This functionality appeared in sketches-pig-0.10.0. Depends on sketches-core-0.10.0 and memory-0.10.2.
 
