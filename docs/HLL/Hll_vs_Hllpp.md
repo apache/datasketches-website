@@ -49,8 +49,7 @@ For example, the area between the orange and the green curves corresponds to +/-
 
 The standard way of measuring the error of cardinality sketches is what we call the *Relative Standard Error* or *RSE*. And specifically, we want to measure the RSE of the Relative Error or *RSE-RE*. The way this is done is to compute the RE of each estimate (of the 65536 estimates from each trial), and then compute standard deviation over all those estimates. Since computing the Standard Deviation is relative to the mean, if the mean is different from zero, due to bias, the RSE would not reflect that and the couputed error could be less than it should be.  Instead of computing the RSE, we compute the *Root Mean Square* of the Relative Error or *RMS-RE*. 
 
-*RSE<sup>2</sup> = &sigma;<sup>2</sup> = 1/n &Sigma;(x<sub>i</sub> - &mu;)<sup>2</sup> =  &Sigma;((x<sub>i</sub>)<sup>2</sup>) - &mu;<sup>2</sup>*.  
-Where *x<sub>i</sub> = RE*.
+*RSE<sup>2</sup> = &sigma;<sup>2</sup> = 1/n &Sigma;(x<sub>i</sub> - &mu;)<sup>2</sup> =  &Sigma;((x<sub>i</sub>)<sup>2</sup>) - &mu;<sup>2</sup>*, where *x<sub>i</sub> = RE<sub>i</sub>*.
 
 *RMS<sup>2</sup> = &Sigma;((x<sub>i</sub>)<sup>2</sup>)*
 
