@@ -121,5 +121,7 @@ or difference operations with reasonable accuracy.
 
 HLL sketches cannot be intermixed or merged in any way with Theta Sketches.
 
+****
+
 * [1] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, PODS 2014.
 * [2] Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https://arxiv.org/abs/1708.06839
