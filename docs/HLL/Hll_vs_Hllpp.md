@@ -31,7 +31,7 @@ The Y-axis is a measure of the error of the sketch. Since these sketches are sto
 
 It is not practical to plot all 2 billion error values on a single chart. What is plotted instead are the quantiles at chosen fractional ranks (FR) of the error distribution at each trial-point. When the quantiles at the same FR are connected by lines they form the contours of the shape of the error distribution.  For example, if *FR = 0.5*, it defines the median of the distribution. In this plot the median is black and hidden behind the mean, which is gray, both of which hug the X-axis at zero.
 
-Six different FR values have been chosen in addition to the median (0.5).  These values correspond to the FR values of a Standard Normal Distribution at +/- 1, 2, and 3 Standard Deviations from the mean. These FR values can be computed from the CDF of the Normal Distribution. For example, the FR for +1 standard deviation, *s*, is *FR = (1 + erf(s/sqrt(s)))/2*, where *s = 1*.  The translation from +/- standard deviations to fractional ranks is as follows:
+Six different FR values have been chosen in addition to the median (0.5).  These values correspond to the FR values of a Standard Normal Distribution at +/- 1, 2, and 3 Standard Deviations from the mean. These FR values can be computed from the CDF of the Normal Distribution as *FR = (1 + erf(s/&radic;2))/2*, where *s = standard deviation*.  The translation from +/- standard deviations to fractional ranks is as follows:
 
 | Std Dev | Fractional Rank |
 |:-------:|:----------------|
