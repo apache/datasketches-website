@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-## Hyper Log Log Sketch
+## HyperLogLog Sketch
 The hll package contains a set of very compact implementations of Phillipe Flajolet's
 HyperLogLog (HLL) sketch but with significantly improved error behavior and excellent speed performance.
 
@@ -60,7 +60,7 @@ Which produces a console output something like this:
       HipAccum       : 990116.6007366662
 
 
-### Hyper Log Log Accuracy
+### HyperLogLog Accuracy
 
 The pitch-fork accuracy plot for any of the HLL sketch types (HLL\_4, HLL\_6, or HLL\_8) are identical because the different sketch types are isomorphic to each other. 
 The following plot was generated with <i>LgK</i> = 14 using 2<sup>20</sup> trials.
@@ -85,7 +85,7 @@ The reader of this chart can easily see that this size HLL sketch will have erro
 These "bounds" can also be derived directly from the sketch itself by calling the <i>getUpperBound(numStdDev)</i> 
 and <i>getLowerBound(numStdDev)</i> methods.
 
-### Hyper Log Log Speed Comparisons
+### HyperLogLog Speed Comparisons
 
 The update speed behavior of the HLL sketches compared to the Theta-Alpha sketch will be similar to the following graph:
 
@@ -96,7 +96,7 @@ The Theta-Alpha sketch is clearly the fastest achieving about 6.5 nanoseconds pe
 All of the HLL types share the same growth strategy below the transition point to the HLL array, which on this graph occurs at about 384 uniques. Above the transition point, the HLL\_8 sketch is the fastest followed by the HLL\_6 an HLL\_4, which are fairly close together.
 
 
-### Hyper Log Log Serialized Size Comparisons
+### HyperLogLog Serialized Size Comparisons
 
 The serialization sizes of the HLL sketches compared to the Theta-Alpha sketch will be similar to the following graph:
 
