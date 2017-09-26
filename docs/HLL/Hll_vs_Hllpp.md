@@ -43,13 +43,16 @@ Six different FR values have been chosen in addition to the median (0.5).  These
 | -2 | 0.022750132 |
 | -3 | 0.001349898 |
 
-Due to the Central Limit Theorm, with sufficiently large values of *n*, the error distribution will approach the Normal Distribution. The resulting quantile curves using the above FR values allows us to associate the error distribution of the sketch with conventional confidence intervals commonly used in statistics. For example, the area between the green and the orange curves corresponds to +/- 1 Standard Deviations or *(0.841 - .158) = 68.3%* confidnece. The area between the blue and the red curves corresponds to +/- 2 Standard Deviations or *(0.977 - 0.023) = 95.4%* confidence. Similarly, the area between the brown and the purple curves corresponds to +/- 3 Standard Deviations or *(0.998 - 0.001) = 99.7%* confidence. This implies that out of the 65,536 trials, about 196 (0.3%) of the estimates will be outside the brown and purple curves. 
+Due to the Central Limit Theorm, with sufficiently large values of *n*, the error distribution will approach the Normal Distribution. The resulting quantile curves using the above FR values allows us to associate the error distribution of the sketch with conventional confidence intervals commonly used in statistics. 
+
+For example, the area between the orange and the green curves corresponds to +/- 1 Standard Deviations or *(0.841 - .158) = 68.3%* confidnece. The area between the red and the blue curves corresponds to +/- 2 Standard Deviations or *(0.977 - 0.023) = 95.4%* confidence. Similarly, the area between the brown and the purple curves corresponds to +/- 3 Standard Deviations or *(0.998 - 0.001) = 99.7%* confidence. This implies that out of the 65,536 trials, about 196 (0.3%) of the estimates will be outside the brown and purple curves. 
 
 The standard way of measuring the error of cardinality sketches is what we call the *Relative Standard Error* or *RSE*. And specifically, we want to measure the RSE of the Relative Error or *RSE-RE*. The way this is done is to compute the RE of each estimate (of the 65536 estimates from each trial), and then compute standard deviation over all those estimates. Since computing the Standard Deviation is relative to the mean, if the mean is different from zero, due to bias, the RSE would not reflect that and the couputed error could be less than it should be.  Instead of computing the RSE, we compute the *Root Mean Square* of the Relative Error or *RMS-RE*. 
 
-*RSE<sup>2</sup> = &sigma;<sup>2</sup> = 1/n &Sigma;(x<sub>i</sub> - &mu;)<sup>2</sup> =  &Sigma;(x<sub>i</sub>)<sup>2</sup> - &mu;<sup>2</sup>*
+*RSE<sup>2</sup> = &sigma;<sup>2</sup> = 1/n &Sigma;(x<sub>i</sub> - &mu;)<sup>2</sup> =  &Sigma;((x<sub>i</sub>)<sup>2</sup>) - &mu;<sup>2</sup>*.  
+Where *x<sub>i</sub> = RE.
 
-*RMS<sup>2</sup> = &Sigma;(x<sub>i</sub>)<sup>2</sup>*
+*RMS<sup>2</sup> = &Sigma;((x<sub>i</sub>)<sup>2</sup>)*
 
 Therefore:
 
