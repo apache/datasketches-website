@@ -113,11 +113,26 @@ And as you can see the 7 quantile contours nicely approach their predicted asymp
 All of this demonstrates that the sketch is behaving as it should and matches the mathematical predictions.
 
 ### The Plots for the HLL++ Sketch
-With the above detailed explanation of the behavior of the DataSketches HLL sketch, let's see how the HLL++ sketch behaves under the same test conditions.
+With the above detailed explanation of the behavior of the DataSketches HLL sketch, let's see how the HLL++ sketch behaves under the same test conditions. Here *LgK = p = 21* and *sp = 25*. 
 
 There is one caveat: Because the HLL++ sketch is so slow, I had to reduce the number of trials from 65K to 16K per trial-point and it still took over 20 hours to produce the following graph:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14.png" alt="HllppK21T14.png" />
+
+Look closely at the Y-axis scale, for this plot the Y-axis ranges from -0.5% to +0.5%.  Compare the scale for first DataSketches HLL plot where the Y-axis ranges from -0.1725 to +0.1725! 
+The gridlines are spaced at an RSE of 717 ppm while the DS-HLL sketch RSE is at 575 ppm. However, something is clearly amiss with the internal HLL estimator which causes the estimates to zoom up exponentially to a hugh peak before finally settling down to the predicted quantile contours.
+
+Looking at the close-up of the warm-up region we observe that the warm-up (or sparse mode) is indeed behaving with a precision of 25 bits.
+Here the predicted *RSE = 0.707 / (&radic;(2<sup>25</sup>)) = 122 ppm*, which is larger than that of the DS-HLL sketch at 49.8 ppm.
+
+The HLL++ documentation claims that *sp* can be set as large as 32.  However any value larger than 25 causes dramatic failure in estimation. 
+The following demonstrates what happens with a much smaller sketch of *LgK = p = 14* and *sp = 26*.
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK14T13SP26.png" alt="HllppK14T13SP26.png" />
+
+The sketch fails when attempting to transition from sparse mode to normal HLL mode at about 3/4 K = 12288 uniques.
+The error dives to - 35% when a sketch of this size as an RSE of 0.8%.
+
 
 
 
@@ -128,7 +143,6 @@ There is one caveat: Because the HLL++ sketch is so slow, I had to reduce the nu
 
 * [1] Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *DMTCS Conference on Analysis of Algorithms*, pages 137–156, 2007.
 * [2] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, *ACM PODS 2014*.
-
 * [3] Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https://arxiv.org/abs/1708.06839
  
 
