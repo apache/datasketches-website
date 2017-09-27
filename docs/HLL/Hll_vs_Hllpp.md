@@ -67,7 +67,7 @@ We will discuss the left-hand part of these curves shortly.
 #### HLL Predicted Error
 The predicted error of the sketch comes from the mathematics initially formulated by Philippe Flajolet[1] where he proves that the expected RSE of the HLL sketch, using Flajolet's HLL estimator is asymptotically:
 
-*RSE<sub>HLL</sub> = F / (&radic;k)*, where *F &asymp; 1.04*
+*RSE<sub>HLL</sub> = F / &radic;k*, where *F &asymp; 1.04*
 
 Any HLL implementation that relies on the Flajolet HLL estimator will not be able to due better than this. For this large sketch of *k = 2<sup>21</sup>, RSE = 717.4 ppm*.
 
@@ -112,7 +112,7 @@ And as you can see the 7 quantile contours nicely approach their predicted asymp
 
 All of this demonstrates that the sketch is behaving as it should and matches the mathematical predictions.
 
-### The Plots for the HLL++ Sketch
+### The Error Plots for the HLL++ Sketch
 With the above detailed explanation of the behavior of the DataSketches HLL sketch, let's see how the HLL++ sketch behaves under the same test conditions. Here *LgK = p = 21* and *sp = 25*. 
 
 There is one caveat: Because the HLL++ sketch is so slow, I had to reduce the number of trials from 65K to 16K per trial-point and it still took over 20 hours to produce the following graph:
@@ -122,12 +122,12 @@ There is one caveat: Because the HLL++ sketch is so slow, I had to reduce the nu
 Look closely at the Y-axis scale, for this plot the Y-axis ranges from -0.5% to +0.5%.  Compare the scale for first DataSketches HLL plot where the Y-axis ranges from -0.1725% to +0.1725%! 
 The gridlines are spaced at an RSE of 717 ppm while the DS-HLL sketch RSE is at 575 ppm. However, something is clearly amiss with the internal HLL estimator which causes the estimates to zoom up exponentially to a hugh peak before finally settling down to the predicted quantile contours.
 
-To make it easier to visually see the differences in error properties we place both sketchs on the same grid spacing and Y-axis range of -0.5% to +0.5% and place them side by side:
+To make it easier to visually see the differences in error properties we place both sketches on the same grid spacing and Y-axis range of -0.5% to +0.5% and place them next to each other:
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}/hll/HllK21T16U24_scale.png" alt="HllK21T16U24_scale.png" />
-<img class="doc-img-half" src="{{site.docs_img_dir}}/hll/HllppK21T14_scale.png" alt="HllppK21T14_scale.png" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllK21T16U24_scale.png" alt="HllK21T16U24_scale.png" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14_scale.png" alt="HllppK21T14_scale.png" />
 
-Looking at the close-up of the warm-up region we observe that the warm-up (or sparse mode) is indeed behaving with a precision of 25 bits.
+Looking at the close-up of the warm-up region of the HLL++ we observe that the warm-up (or sparse mode) is indeed behaving with a precision of 25 bits.
 Here the predicted *RSE = 0.707 / (&radic;(2<sup>25</sup>)) = 122 ppm*, which is 2.2 times larger than that of the DS-HLL sketch at 49.8 ppm.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14_closeup.png" alt="HllppK21T14_closeup.png" />
@@ -141,9 +141,19 @@ The sketch fails when attempting to transition from sparse mode to normal HLL mo
 The error dives to - 35% when a sketch of this size has an RSE of 0.8%. 
 The sketch provides no warning to the user that this is happening!
 
+### The Ultimate Measure of Merit: RSE * sqrt(size)
+As described earlier, *RSE<sub>HLL</sub> = F / &radic;k*. 
+So if at every trial-point along the X-axis, if we multiply the measured RSE times the square-root of the serialized sketch size at that point, we will have a measure of merit of the error efficiency of the sketch given the number of bytes it consumes in space.  For HLL-type sketches this should approach a constant, since once the sketch is in HLL mode the space it consumes is constant and the error will be a constant too. Hopefully, as the sketch grows through its warm-up phases the figure of merit will never be larger than its asymptotic value for large *n*.
 
+This next plot computes this Measure of Merit for both the DataSketches HLL sketch and the HLL++ sketch. The plot following is the same data with the Y-axis plotted on a log scale to reveal the detail at the low end.
 
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllVsHllppMerit.png" alt="HllVsHllppMerit.png" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllVsHllppLogMerit.png" alt="HllVsHllppLogMerit.png" />
 
+You will observe that the DS-HLL sketch is lower (i.e, better) than the HLL++ sketch except for the region that is roughly from 10% of *k* to about *3k/4*, where the the HLL++ sketch is better.
+This is because the designers of the HLL++ sketch chose to do compression of the sparse data array every time a new value is entered into the sketch, which needs to be decompressed when an estimate is requested. But as we will see when we discuss the speed performance of the sketch this choice comes with a very severe cost in speed.  
+
+Above *3k/4*, the HLL++ sketch is not only considerably worse, but it fails the objective of always being less than the asymptotic value.  
 
 
 
