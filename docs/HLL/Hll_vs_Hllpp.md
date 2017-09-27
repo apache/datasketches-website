@@ -119,14 +119,18 @@ There is one caveat: Because the HLL++ sketch is so slow, I had to reduce the nu
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14.png" alt="HllppK21T14.png" />
 
-Look closely at the Y-axis scale, for this plot the Y-axis ranges from -0.5% to +0.5%.  Compare the scale for first DataSketches HLL plot where the Y-axis ranges from -0.1725 to +0.1725! 
+Look closely at the Y-axis scale, for this plot the Y-axis ranges from -0.5% to +0.5%.  Compare the scale for first DataSketches HLL plot where the Y-axis ranges from -0.1725% to +0.1725%! 
 The gridlines are spaced at an RSE of 717 ppm while the DS-HLL sketch RSE is at 575 ppm. However, something is clearly amiss with the internal HLL estimator which causes the estimates to zoom up exponentially to a hugh peak before finally settling down to the predicted quantile contours.
 
+To make it easier to visually see the differences in error properties we place both sketchs on the same grid spacing and Y-axis range of -0.5% to +0.5% and place them side by side:
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllK21T16U24_scale.png" alt="HllK21T16U24_scale.png" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14_scale.png" alt="HllppK21T14_scale.png" />
+
 Looking at the close-up of the warm-up region we observe that the warm-up (or sparse mode) is indeed behaving with a precision of 25 bits.
-Here the predicted *RSE = 0.707 / (&radic;(2<sup>25</sup>)) = 122 ppm*, which is larger than that of the DS-HLL sketch at 49.8 ppm.
+Here the predicted *RSE = 0.707 / (&radic;(2<sup>25</sup>)) = 122 ppm*, which is 2.2 times larger than that of the DS-HLL sketch at 49.8 ppm.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14_closeup.png" alt="HllppK21T14_closeup.png" />
-
 
 The HLL++ documentation claims that *sp* can be set as large as 32.  However any value larger than 25 causes dramatic failure in estimation. 
 The following demonstrates what happens with a much smaller sketch of *LgK = p = 14* and *sp = 26*.
@@ -134,7 +138,8 @@ The following demonstrates what happens with a much smaller sketch of *LgK = p =
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK14T13SP26.png" alt="HllppK14T13SP26.png" />
 
 The sketch fails when attempting to transition from sparse mode to normal HLL mode at about 3/4 K = 12288 uniques.
-The error dives to - 35% when a sketch of this size as an RSE of 0.8%.
+The error dives to - 35% when a sketch of this size has an RSE of 0.8%. 
+The sketch provides no warning to the user that this is happening!
 
 
 
