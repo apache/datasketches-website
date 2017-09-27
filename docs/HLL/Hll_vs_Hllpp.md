@@ -80,7 +80,34 @@ The green curve is approaching the first positive gridline, and the orange curve
 These curves will actually asymptote to these gridlines, but we would have to extend the X-axis out to nearly 100 million uniques to see it.
 Because this would have taken weeks to compute, we won't show this effect here, but we will be able to demonstrate this with much smaller sketches later.
 
-#### Warm-up 
+#### The Measured Error of the Warm-up Region
+Starting from the left, the error appears to be zero until the value 693 where the -3 StdDev curve (Q(.00135)) drops suddenly to about 0.14% and then gradually recovers.
+This is a normal phenomenon caused by quantization error as a result of counting discrete events, and can be explained as follows.
+
+If you were to plot the histogram of the 693 values exactly at this point you would observe 691 values of 693 and 2 values of 692. 
+If there were only one value of 692, its FR would be 1/693 = 0.001443 and is below the FR of 0.00135 so the Q(0.00135) = 693 because there is still one value of 693 below the FR of 0.00135.
+As soon as another estimate of 692 appears, the Q(0.00135) suddenly becomes 692, which is one off of the true value of 693. 
+Thus the error measured at this point becomes *692/693 -1 = -0.001443*, which is what is shown on the graph.
+
+The cause of two estimates being 692 instead of 693, which is an underestimate of one, is due to the Birthday paradox.
+Even though the input values are sufficiently unique (utilizing a 128 bit hash function) the precision of the warm-up cache for this sketch is a little more than 26 bits.
+With this precision, the Birthday Paradox predicts a collision proportional to the square-root of *2<sup>26</sup> = 2<sup>13</sup> = 8192.
+So there is roughly a 50% chance that 1 out of 8K trials will collide.
+Out of 65K trials, there are about 8 chances for a single collisions to occur.  In this case 2 such collisons occured.
+This is a perfectly normal occurance for any stochastic process with a finite precision.
+
+Remember that this occured on the quantile contour representing -3 standard deviations from the mean, which would occur less than 99.865% of the time, so it is rare indeed.
+
+Moving to the right from this first downward spike reveals that this same quantization phenomenon occurs eventually on the the Q(.02275) countour and then later on the Q(.15866) contour. 
+The impact is smaller for these higher contours because the unique counts are significantly higher and the impact of the addition of one more collision is proportionally less.
+
+Continuing to move to the right in the unique count range of about 32K to about 350K we observe that the 7 contours become parallel and smoother.
+To explain what is going on in this region we need to zoom in.
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllK21T16U24_closeup.png" alt="HllK21T16U24_closeup.png" />
+
+ 
+ 
 
 
 
@@ -88,7 +115,7 @@ Because this would have taken weeks to compute, we won't show this effect here, 
 ****
 
 * [1] Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *DMTCS Conference on Analysis of Algorithms*, pages 137–156, 2007.
-* [2] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, *ACM PODS '14*.
+* [2] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, *ACM PODS 2014*.
 
 
  
