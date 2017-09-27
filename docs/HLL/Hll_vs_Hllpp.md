@@ -6,7 +6,7 @@ layout: doc_page
 
 The DataSketches HyperLogLog (HLL) sketch implemented in this library has been highly optimized for speed, accuracy and size. The objective of this paper is to do an objective comparison of the DataSketches HLL versus the popular Clearspring Technologies [HyperLogLogPlus (HLL++)](https://github.com/addthis/stream-lib/blob/master/src/main/java/com/clearspring/analytics/stream/cardinality/HyperLogLogPlus.java) implementation, which is based on the Google paper [HyperLogLog in Practice: Algorithmic Engineering of a State of The Art Cardinality Estimation Algorithm](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40671.pdf).
 
-### Sketch Error
+### HLL Sketch Error
 
 Measuring the error properties of these stochastic algorithms is tricky and requires a great deal of thought into the design of the characterization program that measures it. Getting smooth-looking plots requires many tens of thousands of trials, which even with fast CPUs requires a lot of time. 
 
@@ -27,7 +27,7 @@ This is what we call the *pitch-fork plot*.
 
 The X-axis is *n*, the true number of uniques presented to the sketch. The range of values on this X-axis is from 1 to 2<sup>24</sup>. There are 16 *trial-points* between each power of 2 along the X-axis (except at the very left end of the axis where there are not 16 distinct integers between the powers of 2). At each trial-point, 2<sup>16</sup> = 65536 trials are executed. The number of trials per trial-point is noted in the chart title as *LgT=16*.  Each trial feeds a new HLL sketch configured for 2<sup>21</sup> = 2,097,152* bins. This is noted in the chart title as *LgK=21*. No two trials use the same uniques. (To generate this plot required >10<sup>12</sup> updates and took 9 hours to complete.)
 
-#### Measured Error
+#### HLL Measured Error
 The Y-axis is a measure of the error of the sketch. Since these sketches are stochastic, each trial can produce a different estimate of what the true value of *n* is. If the estimate is larger than *n* it is an overestimate and the resulting relative error, *RE = est/n - 1*, will be positive. If the estimate is an underestimate, the RE will be negative. 
 
 It is not practical to plot all 2 billion error values on a single chart. What is plotted instead are the quantiles at chosen Fractional Ranks (FR) of the error distribution at each trial-point. When the quantiles at the same FR are connected by lines they form the contours of the shape of the error distribution.  For example, if *FR = 0.5*, it defines the median of the distribution. In this plot the median is black and hidden behind the mean, which is gray, both of which hug the X-axis at zero.
@@ -64,7 +64,7 @@ If the mean is indeed zero then *RMS = RSE*.
 
 We will discuss the left-hand part of these curves shortly.
 
-#### Predicted Error
+#### HLL Predicted Error
 The predicted error of the sketch comes from the mathematics initially formulated by Philippe Flajolet[1] where he proves that the expected RSE of the HLL sketch, using Flajolet's HLL estimator is asymptotically:
 
 *RSE<sub>HLL</sub> = F / (&radic;k)*, where *F &asymp; 1.04*
@@ -80,7 +80,7 @@ The green curve is approaching the first positive gridline, and the orange curve
 These curves will actually asymptote to these gridlines, but we would have to extend the X-axis out to nearly 100 million uniques to see it.
 Because this would have taken weeks to compute, we won't show this effect here, but we will be able to demonstrate this with much smaller sketches later.
 
-#### The Measured Error of the Warm-up Region
+#### The Measured Error of the HLL Warm-up Region
 Starting from the left, the error appears to be zero until the value 693 where the -3 StdDev curve (Q(.00135)) drops suddenly to about 0.14% and then gradually recovers.
 This is a normal phenomenon caused by quantization error as a result of counting discrete events, and can be explained as follows.
 
@@ -106,8 +106,20 @@ To explain what is going on in this region we need to zoom in.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllK21T16U24_closeup.png" alt="HllK21T16U24_closeup.png" />
 
- 
- 
+For this zoomed in plot each gridline is again multiples of the RMS-RE (or RSE-RE), but here the factor *F = 0.408* due to discoveries of new classes of estimators[3].
+With the precision of 2<sup>26</sup>, the predicted RSE is *0.408 / 2<sup>13</sup> = 49.8 ppm* or about 50 ppm.
+And as you can see the 7 quantile contours nicely approach their predicted asymptotes.
+
+All of this demonstrates that the sketch is behaving as it should and matches the mathematical predictions.
+
+### The Plots for the HLL++ Sketch
+With the above detailed explanation of the behavior of the DataSketches HLL sketch, let's see how the HLL++ sketch behaves under the same test conditions.
+
+There is one caveat: Because the HLL++ sketch is so slow, I had to reduce the number of trials from 65K to 16K per trial-point and it still took over 20 hours to produce the following graph:
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14.png" alt="HllppK21T14.png" />
+
+
 
 
 
@@ -117,7 +129,7 @@ To explain what is going on in this region we need to zoom in.
 * [1] Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *DMTCS Conference on Analysis of Algorithms*, pages 137–156, 2007.
 * [2] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, *ACM PODS 2014*.
 
-
+* [3] Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https://arxiv.org/abs/1708.06839
  
 
 
