@@ -124,8 +124,8 @@ The gridlines are spaced at an RSE of 717 ppm while the DS-HLL sketch RSE is at 
 
 To make it easier to visually see the differences in error properties we place both sketchs on the same grid spacing and Y-axis range of -0.5% to +0.5% and place them side by side:
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllK21T16U24_scale.png" alt="HllK21T16U24_scale.png" />
-<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14_scale.png" alt="HllppK21T14_scale.png" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/hll/HllK21T16U24_scale.png" alt="HllK21T16U24_scale.png" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/hll/HllppK21T14_scale.png" alt="HllppK21T14_scale.png" />
 
 Looking at the close-up of the warm-up region we observe that the warm-up (or sparse mode) is indeed behaving with a precision of 25 bits.
 Here the predicted *RSE = 0.707 / (&radic;(2<sup>25</sup>)) = 122 ppm*, which is 2.2 times larger than that of the DS-HLL sketch at 49.8 ppm.
