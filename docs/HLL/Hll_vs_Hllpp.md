@@ -125,7 +125,7 @@ The gridlines are spaced at an RSE of 717 ppm while the DS-HLL sketch RSE is at 
 Looking at the close-up of the warm-up region we observe that the warm-up (or sparse mode) is indeed behaving with a precision of 25 bits.
 Here the predicted *RSE = 0.707 / (&radic;(2<sup>25</sup>)) = 122 ppm*, which is larger than that of the DS-HLL sketch at 49.8 ppm.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14_closeup.png.png" alt="HllppK21T14_closeup.png.png" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14_closeup.png" alt="HllppK21T14_closeup.png" />
 
 
 The HLL++ documentation claims that *sp* can be set as large as 32.  However any value larger than 25 causes dramatic failure in estimation. 
