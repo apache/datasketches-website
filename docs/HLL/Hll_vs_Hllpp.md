@@ -8,7 +8,7 @@ The DataSketches HyperLogLog (DS-HLL) sketch implemented in this library has bee
 ## DataSketches HLL vs. HLL++ Error Behavior
 
 ### High-Level Summary
-The DS-HLL sketch has better error properties than the HLL++ sketch.  This can be easily seed from the following side-by-side comparison:
+The DS-HLL sketch has better error properties than the HLL++ sketch.  This can be easily seen from the following side-by-side comparison:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllVsHllppAcc.png" alt="/hll/HllVsHllppAcc.png" />
 
@@ -130,7 +130,7 @@ There is one caveat: Because the HLL++ sketch is so slow, I had to reduce the nu
 Look closely at the Y-axis scale, for this plot the Y-axis ranges from -0.5% to +0.5%.  Compare the scale for first DS-HLL plot where the Y-axis ranges from -0.1725% to +0.1725%! 
 The gridlines are spaced at an RSE of 717 ppm while the DS-HLL sketch RSE is at 575 ppm. However, something is clearly amiss with the HLL++ internal estimator which causes the estimates to zoom up exponentially to a high peak before finally settling down to the predicted quantile contours.
 
-Looking at the close-up of the warm-up region of the HLL++ we observe that the warm-up (or sparse mode) is indeed behaving with a precision of 25 bits.
+The plot below is the close-up of the warm-up region of the HLL++.  The warm-up (or sparse mode) is indeed behaving with a precision of 25 bits.
 Here the predicted *RSE = 0.707 / &radic;2<sup>25</sup> = 122 ppm*, which is 2.2 times larger than that of the DS-HLL sketch at 49.8 ppm.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14_closeup.png" alt="HllppK21T14_closeup.png" />
