@@ -12,6 +12,8 @@ The DS-HLL sketch has better error properties than the HLL++ sketch.  This can b
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllVsHllppAcc.png" alt="/hll/HllVsHllppAcc.png" />
 
+If the image is too small to read, right-click on the image and open it in a separate window.
+
 The colored curves represent different quantile contours of the measured error distribution. The orange and green curves are the contours at the quantiles corresponding to +/- one standard deviation from the mean error, and which define the 68% confidence bounds. The red and blue curves are the contours at +/- 2 standard deviations and define the 95.4% confidence bounds. The brown and purple curves are the contours at +/- 3 standard deviations and define the 99.7% confidence bounds. The mean (gray) and median (black) overlap each other and hug the axis close to zero. 
 
 ### DataSketches HLL Sketch Error
@@ -146,7 +148,7 @@ The sketch provides no warning to the user that this is happening!
 
 ### The Ultimate Measure of Merit: Error for a Given Size
 As described earlier, *RSE<sub>HLL</sub> = F / &radic;k*. 
-If at every trial-point along the X-axis we multiply the measured RSE by the square-root of the serialized sketch size, we will have a measure of merit of the error efficiency of the sketch given the number of bytes the sketch consumes. For HLL-type sketches and large *n* this value should be asymptotic to a constant. In HLL mode the space it consumes is constant and the error will be a constant as well. Ideally, as the sketch grows through its warm-up phases the Measure of Merit will never be larger than its asymptotic value for large *n*.
+If at every trial-point along the X-axis we multiply the measured RSE by the square-root of the serialized sketch size, we will have a measure of merit of the error efficiency of the sketch. For HLL-type sketches and large *n* this value should be asymptotic to a constant. In HLL mode the space it consumes is constant and the error will be a constant as well. Ideally, as the sketch grows through its warm-up phases the Measure of Merit will never be larger than its asymptotic value for large *n*.
 
 This next plot computes this Measure of Merit for both the DS-HLL sketch and the HLL++ sketch. 
 
