@@ -2,21 +2,29 @@
 layout: doc_page
 ---
 
+# DataSketches HLL vs HLL++
+The DataSketches HyperLogLog (DS-HLL) sketch implemented in this library has been highly optimized for speed, accuracy and size. The goal of this paper is to do an objective comparison of the DataSketches HyperLogLog versus the popular Clearspring Technologies [HyperLogLogPlus (HLL++)](https://github.com/addthis/stream-lib/blob/master/src/main/java/com/clearspring/analytics/stream/cardinality/HyperLogLogPlus.java) implementation, which is based on the Google paper [HyperLogLog in Practice: Algorithmic Engineering of a State of The Art Cardinality Estimation Algorithm](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40671.pdf).
+
 ## DataSketches HLL vs. HLL++ Error Behavior
 
-The DataSketches HyperLogLog (HLL) sketch implemented in this library has been highly optimized for speed, accuracy and size. The objective of this paper is to do an objective comparison of the DataSketches HLL versus the popular Clearspring Technologies [HyperLogLogPlus (HLL++)](https://github.com/addthis/stream-lib/blob/master/src/main/java/com/clearspring/analytics/stream/cardinality/HyperLogLogPlus.java) implementation, which is based on the Google paper [HyperLogLog in Practice: Algorithmic Engineering of a State of The Art Cardinality Estimation Algorithm](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40671.pdf).
+### High-Level Summary
+The DS-HLL sketch has better error properties than the HLL++ sketch.  This can be easily seed from the following side-by-side comparison:
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllVsHllppAcc.png" alt="/hll/HllVsHllppAcc.png" />
+
+The colored curves represent different quantile contours of the measured error distribution. The orange and green curves are the contours at the quantiles corresponding to +/- one standard deviation from the mean error, and which define the 68% confidence bounds. The red and blue curves are the contours at +/- 2 standard deviations and define the 95.4% confidence bounds. The brown and purple curves are the contours at +/- 3 standard deviations and define the 99.7% confidence bounds. The mean (gray) and median (black) overlap each other and hug the axis close to zero. 
 
 ### DataSketches HLL Sketch Error
 
 Measuring the error properties of these stochastic algorithms is tricky and requires a great deal of thought into the design of the characterization program that measures it. Getting smooth-looking plots requires many tens of thousands of trials, which even with fast CPUs requires a lot of time. 
 
-For accuracy purposes, the DS-HLL sketch is configured with one parameter, *Log_2(K)* which we abreviate as *LgK*. This defines the number of bins of the final HyperLogLog stage, and defines the "bounds" on the accuracy of the sketch as well as its ultimate size. Thus, specifying a *LgK = 12*, means that the final HyperLogLog stage of the sketch will have *k = 2<sup>12</sup> = 4096* bins. A sketch with *LgK = 21* will ultimately have *k =2,097,152* or 2MiBins, which is a very large sketch.
+For accuracy purposes, the DS-HLL sketch is configured with one parameter, *Log_2(K)* which we abreviate as *LgK*. This defines the number of bins of the final HyperLogLog stage, and defines the bounds[1] on the accuracy of the sketch as well as its ultimate size. Thus, specifying a *LgK = 12*, means that the final HyperLogLog stage of the sketch will have *k = 2<sup>12</sup> = 4096* bins. A sketch with *LgK = 21* will ultimately have *k =2,097,152* or 2MiBins, which is a very large sketch.
 
 Simlarly, the HLL++ sketch has a parameter *p*, which acts the same as *LgK*. 
 
-The whole point of these HyperLogLog sketches is to achieve small error per bit of storage space for all values of *n*, where *n* is the number of uniques presented to the sketch. For this reason it would be wasteful to allocate the full HLL-Array of bins when the sketch has been presented with only a few values. So typical implementations of these sketches have a warm-up (also called *sparse*) phase, where the early counts are cached and encoded. When the number of cached sparse values reaches a certain size (depending on the implementation), these values are flushed to a full HLL-Array. The HLL-Array is effectively fixed in size thereafter no matter how large *n* gets. This warm-up or sparse mode operation allows the sketch to maintain a low error / stored-bit ratio for all values of *n*. 
+The whole point of these HyperLogLog sketches is to achieve small error per bit of storage space for all values of *n*, where *n* is the number of uniques presented to the sketch. For this reason it would be wasteful to allocate the full HLL-Array of bins when the sketch has been presented with only a few values. So typical implementations of these sketches have a *warm-up* (also called *sparse*) mode, where the early counts are encoded and cached. When the cached sparse values reach a certain size (depending on the implementation), these values are flushed to a full HLL-Array. The HLL-Array is effectively fixed in size thereafter no matter how large *n* gets. This warm-up (or sparse) mode of operation allows the sketch to maintain a low error / stored-bit ratio for all values of *n*. 
 
-Both the DS-HLL and the HLL++ sketches have a "warm-up" or "sparse" mode. This mode is automatic for the DS-HLL sketch, but the HLL++ sketch requires a second configuration parameter *sp*.  This is a number with similar properties to *p*. It is an exponent of 2 and it determines the error properties of the sparse mode stage.  The documentation states that *sp* can be zero, in which case the sparse mode is disabled, or *p <= sp <= 32*. 
+Both the DS-HLL and the HLL++ sketches have a warm-up or "sparse" mode. This mode is automatic for the DS-HLL sketch, but the HLL++ sketch requires a second configuration parameter *sp*.  This is a number with similar properties to *p*. It is an exponent of 2 and it determines the error properties of the sparse mode stage.  The documentation states that *sp* can be zero, in which case the sparse mode is disabled, or *p <= sp <= 32*. 
 This will become more clear when we see some of the plots.
 
 Let's start with our first plot of the accuracy of DS-HLL sketch configured with *LgK = 21*.  We choose this very large sketch so that the behavior of the sparse mode and the final HyperLogLog stage becomes quite clear.
@@ -25,7 +33,7 @@ Let's start with our first plot of the accuracy of DS-HLL sketch configured with
 
 This is what we call the *pitch-fork plot*. 
 
-The X-axis is *n*, the true number of uniques presented to the sketch. The range of values on this X-axis is from 1 to 2<sup>24</sup>. There are 16 *trial-points* between each power of 2 along the X-axis (except at the very left end of the axis where there are not 16 distinct integers between the powers of 2). At each trial-point, 2<sup>16</sup> = 65536 trials are executed. The number of trials per trial-point is noted in the chart title as *LgT=16*.  Each trial feeds a new DS-HLL sketch configured for 2<sup>21</sup> = 2,097,152* bins. This is noted in the chart title as *LgK=21*. No two trials use the same uniques. (To generate this plot required >10<sup>12</sup> updates and took 9 hours to complete.)
+The X-axis is *n*, the true number of uniques presented to the sketch. The range of values on this X-axis is from 1 to 2<sup>24</sup>. There are 16 *trial-points* between each power of 2 along the X-axis (except at the very left end of the axis where there are not 16 distinct integers between the powers of 2). At each trial-point, 2<sup>16</sup> = 65536 trials are executed. The number of trials per trial-point is noted in the chart title as *LgT=16*.  Each trial feeds a new DS-HLL sketch configured for 2<sup>21</sup> = 2,097,152 bins. This is noted in the chart title as *LgK=21*. No two trials use the same uniques. (To generate this plot required >10<sup>12</sup> updates and took 9 hours to complete.)
 
 #### DS-HLL Measured Error
 The Y-axis is a measure of the error of the sketch. Since these sketches are stochastic, each trial can produce a different estimate of what the true value of *n* is. If the estimate is larger than *n* it is an overestimate and the resulting relative error, *RE = est/n - 1*, will be positive. If the estimate is an underestimate, the RE will be negative. 
@@ -65,13 +73,13 @@ If the mean is indeed zero then *RMS = RSE*.
 We will discuss the left-hand part of these curves shortly.
 
 #### DS-HLL Predicted Error
-The predicted error of the sketch comes from the mathematics initially formulated by Philippe Flajolet[1] where he proves that the expected RSE of an HLL sketch, using Flajolet's HLL estimator is asymptotically:
+The predicted error of the sketch comes from the mathematics initially formulated by Philippe Flajolet[2] where he proves that the expected RSE of an HLL sketch, using Flajolet's HLL estimator is asymptotically:
 
 *RSE<sub>HLL</sub> = F / &radic;k*, where *F &asymp; 1.04*
 
-Any HLL implementation that relies on the Flajolet HLL estimator will not be able to due better than this. For this large sketch of *k = 2<sup>21</sup>, RSE = 717.4 ppm*.
+Any HLL implementation that relies on the Flajolet HLL estimator will not be able to do better than this. For this large sketch of *k = 2<sup>21</sup>, RSE = 717.4 ppm*.
 
-However, the DS-HLL sketch uses a more recent estimator called the *Historical Inverse Probability[2]* or *HIP* estimator, which has a factor *F = 0.8326*.
+However, the DS-HLL sketch uses a more recent estimator called the *Historical Inverse Probability[3]* or *HIP* estimator, which has a factor *F = 0.8326*.
 So the expected asymptotic *RSE = 575 ppm*, which is a 20% improvement in error. 
 
 The gridlines in this plot are at set to be multiples of the predicted RSE of the sketch.
@@ -89,7 +97,7 @@ If there were only one value of 692, its FR would be 1/693 = 0.001443 and is bel
 As soon as another estimate of 692 appears, the Q(0.00135) suddenly becomes 692, which is one off of the true value of 693. 
 Thus the error measured at this point becomes *692/693 -1 = -0.001443*, which is what is shown on the graph.
 
-The cause of two estimates being 692 instead of 693, which is an underestimate of one, is due to the Birthday paradox.
+The cause of two estimates being 692 instead of 693, which is an underestimate of one, is due to collisons, which can be explained by the *Birthday Paradox*.
 Even though the input values are sufficiently unique (utilizing a 128 bit hash function) the precision of the warm-up cache for this sketch is a little more than 26 bits.
 With this precision, the Birthday Paradox predicts a collision proportional to the square-root of *2<sup>26</sup> = 2<sup>13</sup> = 8192.
 So there is roughly a 50% chance that 1 out of 8K trials will collide.
@@ -106,7 +114,7 @@ To explain what is going on in this region we need to zoom in.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllK21T16U24_closeup.png" alt="HllK21T16U24_closeup.png" />
 
-For this zoomed in plot each gridline is again multiples of the RMS-RE (or RSE-RE), but here the factor *F = 0.408* due to discoveries of new classes of estimators[3].
+For this zoomed in plot each gridline is again multiples of the RMS-RE (or RSE-RE), but here the factor *F = 0.408* due to discoveries of new classes of estimators[4].
 With the precision of 2<sup>26</sup>, the predicted RSE is *0.408 / 2<sup>13</sup> = 49.8 ppm* or about 50 ppm.
 And as you can see the 7 quantile contours nicely approach their predicted asymptotes.
 
@@ -122,11 +130,6 @@ There is one caveat: Because the HLL++ sketch is so slow, I had to reduce the nu
 Look closely at the Y-axis scale, for this plot the Y-axis ranges from -0.5% to +0.5%.  Compare the scale for first DS-HLL plot where the Y-axis ranges from -0.1725% to +0.1725%! 
 The gridlines are spaced at an RSE of 717 ppm while the DS-HLL sketch RSE is at 575 ppm. However, something is clearly amiss with the HLL++ internal estimator which causes the estimates to zoom up exponentially to a high peak before finally settling down to the predicted quantile contours.
 
-To make it easier to visually see the differences in error properties we place both sketches on the same grid spacing and Y-axis range of -0.5% to +0.5% and place them next to each other:
-
-<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllK21T16U24_scale.png" alt="HllK21T16U24_scale.png" />
-<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14_scale.png" alt="HllppK21T14_scale.png" />
-
 Looking at the close-up of the warm-up region of the HLL++ we observe that the warm-up (or sparse mode) is indeed behaving with a precision of 25 bits.
 Here the predicted *RSE = 0.707 / &radic;2<sup>25</sup> = 122 ppm*, which is 2.2 times larger than that of the DS-HLL sketch at 49.8 ppm.
 
@@ -141,19 +144,18 @@ The sketch fails when attempting to transition from sparse mode to normal HLL mo
 The error dives to - 35% when a sketch of this size should have an RSE of 0.8%. 
 The sketch provides no warning to the user that this is happening!
 
-### The Ultimate Measure of Merit: RSE * sqrt(size)
+### The Ultimate Measure of Merit: Error for a Given Size
 As described earlier, *RSE<sub>HLL</sub> = F / &radic;k*. 
-So if at every trial-point along the X-axis, if we multiply the measured RSE times the square-root of the serialized sketch size at that point, we will have a measure of merit of the error efficiency of the sketch given the number of bytes it consumes in space.  For HLL-type sketches this should approach a constant, since once the sketch is in HLL mode the space it consumes is constant and the error will be a constant too. Ideally, as the sketch grows through its warm-up phases the figure of merit will never be larger than its asymptotic value for large *n*.
+If at every trial-point along the X-axis we multiply the measured RSE by the square-root of the serialized sketch size, we will have a measure of merit of the error efficiency of the sketch given the number of bytes the sketch consumes. For HLL-type sketches and large *n* this value should be asymptotic to a constant. In HLL mode the space it consumes is constant and the error will be a constant as well. Ideally, as the sketch grows through its warm-up phases the Measure of Merit will never be larger than its asymptotic value for large *n*.
 
-This next plot computes this Measure of Merit for both the DS=HLL sketch and the HLL++ sketch. The plot following is the same data with the Y-axis plotted on a log scale to reveal the detail at the low end.
+This next plot computes this Measure of Merit for both the DS-HLL sketch and the HLL++ sketch. 
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllVsHllppMerit.png" alt="HllVsHllppMerit.png" />
-<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllVsHllppLogMerit.png" alt="HllVsHllppLogMerit.png" />
 
-You will observe that the DS-HLL sketch is lower (i.e, better) than the HLL++ sketch except for the region that is roughly from 10% of *k* to about *3k/4*, where the the HLL++ sketch is better.
-This is because the designers of the HLL++ sketch chose to do compression of the sparse data array every time a new value is entered into the sketch, which needs to be decompressed when an estimate is requested. But as we will see when we discuss the speed performance of the sketch this choice comes with a very severe cost in speed.
+Observe that the DS-HLL sketch is lower (i.e, better merit score) than the HLL++ sketch except for the region that is roughly from 10% of *k* to about *3k/4*, where the the HLL++ sketch is better.
+This is because the designers of the HLL++ sketch chose to do compression of the sparse data array every time a new value is entered into the sketch, which needs to be decompressed when an estimate is requested. The advantage of compression is that it allows the switch from sparse to normal HLL mode to be deferred to a larger fraction of *k*. But this decision comes with a severe penalty in the speed performance of the sketch. Opting out of using sparse mode will achieve higher speed performance, but at the cost of much poorer error performance at the low end and thus poor Measure of Merit.
 
-Above *3k/4*, the HLL++ sketch is not only considerably worse, but it fails the objective of always being less than the asymptotic value.  
+Above *3k/4*, the HLL++ sketch is not only considerably worse, but it fails the objective of always being less than the asymptotic value. 
 
 ## Speed
 
@@ -161,9 +163,10 @@ Above *3k/4*, the HLL++ sketch is not only considerably worse, but it fails the 
 
 ****
 
-* [1] Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *DMTCS Conference on Analysis of Algorithms*, pages 137–156, 2007.
-* [2] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, *ACM PODS 2014*.
-* [3] Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https://arxiv.org/abs/1708.06839
+* [1] The word "bounds" is used to define a quantile contour of the empirical error distribution. A symetrical pair of these bounds then can be used to define a confidence interval.
+* [2] Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *DMTCS Conference on Analysis of Algorithms*, pages 137–156, 2007.
+* [3] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, *ACM PODS 2014*.
+* [4] Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https://arxiv.org/abs/1708.06839
  
 
 
