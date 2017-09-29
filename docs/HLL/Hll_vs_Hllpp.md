@@ -160,7 +160,7 @@ The sketch provides no warning to the user that this is happening!
 
 ### A *Measure of Merit*: Error for a Given Size
 As described earlier, *RSE<sub>HLL</sub> = F / &radic;k*. 
-If at every trial-point along the X-axis we multiply the measured RSE by the square-root of the serialized sketch size, we will have a *Measure of Merit* of the error efficiency of the sketch. For HLL-type sketches and large *n* this value should be asymptotic to a constant. In HLL-Array mode the space the sketch consumes is constant and the error will be a constant as well. Ideally, as the sketch grows as a function of *n*, the Measure of Merit in sparse mode and in HLL-Array mode will never be larger than its asymptotic value for large *n*.
+If at every trial-point along the X-axis we multiply the measured RSE by the square-root of the serialized sketch size, we will have a *Measure of Merit* of the error efficiency of the sketch. For HLL-type sketches and large *n* this value should be asymptotic to a constant. In HLL-Array mode the space the sketch consumes is constant and the relative error will be a constant as well. Ideally, as the sketch grows as a function of *n*, the Measure of Merit in sparse mode and in HLL-Array mode will never be larger than its asymptotic value for large *n*.
 
 This next plot computes this Measure of Merit for both the *HllSketch* sketch and the *HyperLogLogPlus* sketch. 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllVsHllppMerit.png" alt="HllVsHllppMerit.png" />
