@@ -184,7 +184,7 @@ Note the Y-axis scale is 250 nanoseconds.
 The top black curve is the update speed performance of the *HyperLogLogPlus* sketch, which asymptotes at about 105 nanoseconds. 
 The lower curves are the update speed performance of the *HllSketch*, of which the HLL_8 and HLL_4 types asymptote to 10.5 nanoseconds. 
 This can be seen from a plot of just the *HllSketch* speed performance curves.
-Nothe the Y-axis scale is now 50 nanoseconds.
+Note the the Y-axis scale is now 50 nanoseconds.
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/upspeed/HllUpdateSpeed.png" alt="HllUpdateSpeed.png" />
 
 The *HyperLogLogPlus* sketch is 2 full orders-of-magnitude slower than the *HllSketch*.
