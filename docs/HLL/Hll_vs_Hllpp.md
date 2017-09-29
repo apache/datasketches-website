@@ -21,11 +21,11 @@ The colored curves represent different quantile contours of the empirical error 
 ### Introduction to Detailed Accuracy Measurements
 Measuring the error properties of these stochastic algorithms is tricky and requires a great deal of thought into the design of the program that measures it. Getting smooth-looking plots requires many tens of thousands of trials, which even with fast CPUs requires a lot of time.  The code used to produce the data for the plots in this paper can be found at <https://github.com/DataSketches/sketches-misc/tree/master/src/main/java/com/yahoo/sketches/performance>
 
-For accuracy purposes, the *HllSketch* sketch is configured with one parameter, *Log_2(K)* which we abreviate as *LgK*. This defines the number of bins of the final HyperLogLog-Array (HLL-Array)\[6\] mode, and defines the bounds[7] on the accuracy of the sketch as well as its ultimate size. Thus, specifying a *LgK = 12*, means that the final HyperLogLog mode of the sketch will have *k = 2<sup>12</sup> = 4096* bins. A sketch with *LgK = 21* will ultimately have *k =2,097,152* bins, which is a very large sketch.
+For accuracy purposes, the *HllSketch* sketch is configured with one parameter, *Log_2(K)* which we abbreviate as *LgK*. This defines the number of bins of the final HyperLogLog-Array (HLL-Array)\[6\] mode, and defines the bounds[7] on the accuracy of the sketch as well as its ultimate size. Thus, specifying a *LgK = 12*, means that the final HyperLogLog mode of the sketch will have *k = 2<sup>12</sup> = 4096* bins. A sketch with *LgK = 21* will ultimately have *k =2,097,152* bins, which is a very large sketch.
 
-Simlarly, the *HyperLogLogPlus* sketch has a parameter *p*, which acts the same as *LgK*.
+Similarly, the *HyperLogLogPlus* sketch has a parameter *p*, which acts the same as *LgK*.
 
-An important property of a well-implemented HyperLogLog sketch is the error per bit of storage space for all values of *n*, where *n* is the number of uniques presented to the sketch. It would be wasteful to allocate the full HLL-Array of bins when the sketch has been presented with only a few values. As a result, typical implementations of these sketches have a *sparse* mode, where the early counts are encoded and cached. When the number of cached sparse values reaches a certain threshold (depending on the implementation), the sparce representations are flushed to the full HLL-Array. After this transition all new arriving input values are directly offered to the HLL-Array. The HLL-Array is effectively fixed in size thereafter no matter how large *n* gets. Thus, the sparse mode of operation allows the sketch to maintain a low error per stored-bit ratio for all values of *n*. We will compute this Measure of Merit for both sketches.
+An important property of a well-implemented HyperLogLog sketch is the error per bit of storage space for all values of *n*, where *n* is the number of uniques presented to the sketch. It would be wasteful to allocate the full HLL-Array of bins when the sketch has been presented with only a few values. As a result, typical implementations of these sketches have a *sparse* mode, where the early counts are encoded and cached. When the number of cached sparse values reaches a certain threshold (depending on the implementation), the sparse representations are flushed to the full HLL-Array. After this transition all new arriving input values are directly offered to the HLL-Array. The HLL-Array is effectively fixed in size thereafter no matter how large *n* gets. Thus, the sparse mode of operation allows the sketch to maintain a low error per stored-bit ratio for all values of *n*. We will compute this Measure of Merit for both sketches.
 
 Both the *HllSketch* and the *HyperLogLogPlus* sketches have a sparse mode. The sparse mode is automatic for the *HllSketch* sketch, but the *HyperLogLogPlus* sketch requires a second configuration parameter *sp*.  This is a number with similar properties to *p*. It is an exponent of 2 and it determines the error properties of the sparse mode.  The documentation states that *sp* can be zero, in which case the sparse mode is disabled, otherwise, *p <= sp <= 32*. 
 This will become more clear when we see some of the plots.
@@ -58,7 +58,7 @@ The translation from +/- *s* to fractional ranks is as follows:
 | -2 | 0.022750132 |
 | -3 | 0.001349898 |
 
-With sufficiently large values of *n*, the error distribution will approach the Normal Distribution due to the Central Limit Theorm. The resulting quantile curves using the above FR values allows us to associate the error distribution of the sketch with conventional confidence intervals commonly used in statistics. 
+With sufficiently large values of *n*, the error distribution will approach the Normal Distribution due to the Central Limit Theorem. The resulting quantile curves using the above FR values allows us to associate the error distribution of the sketch with conventional confidence intervals commonly used in statistics. 
 
 For example, the area between the orange and the green curves corresponds to +/- 1 Standard Deviations or (0.841 - .158) = 68.3% confidence. The area between the red and the blue curves corresponds to +/- 2 Standard Deviations or (0.977 - 0.023) = 95.4% confidence. Similarly, the area between the brown and the purple curves corresponds to +/- 3 Standard Deviations or (0.998 - 0.001) = 99.7% confidence. This implies that out of 65,536 trials, about 196 (0.3%) of the estimates will be outside the brown and purple curves.
 
@@ -114,16 +114,16 @@ If there were only one value of 692, its FR would be 1/693 = 0.001443 and is bel
 As soon as another estimate of 692 appears, the Q(0.00135) suddenly becomes 692, which is one off of the true value of 693. 
 Thus, the error measured at this point becomes *692/693 -1 = -0.001443*, which is what is shown on the graph.
 
-The cause of two estimates being 692 instead of 693, which is an underestimate of one, is due to collisons, which can be explained by the *Birthday Paradox*.
+The cause of two estimates being 692 instead of 693, which is an underestimate of one, is due to collisions, which can be explained by the *Birthday Paradox*.
 Even though the input values are sufficiently unique (utilizing a 128 bit hash function) the precision of the sparse cache for this sketch is a little more than 26 bits.
-With this precision, the Birthday Paradox predicts a collision proportional to the square-root of *2<sup>26</sup> = 2<sup>13</sup> = 8192.
+With this precision, the Birthday Paradox predicts a collision proportional to the square-root of 2<sup>26</sup> = 2<sup>13</sup> = 8192.
 This means that there is roughly a 50% chance that 1 out of 8K trials will collide.
-Out of 65K trials, there are about 8 chances for a single collisions to occur.  In this case 2 such collisons occured.
-This is a perfectly normal occurance for any stochastic counting process with a finite precision.
+Out of 65K trials, there are about 8 chances for a single collisions to occur.  In this case 2 such collisions occurred.
+This is a perfectly normal occurrence for any stochastic counting process with a finite precision.
 
-Remember that this occured on the quantile contour representing -3 standard deviations from the mean, which would occur less than 99.865% of the time, so it is rare indeed.
+Remember that this occurred on the quantile contour representing -3 standard deviations from the mean, which would occur less than 99.865% of the time, so it is rare indeed.
 
-Moving to the right from this first downward spike reveals that this same quantization phenomenon occurs eventually on the the Q(.02275) countour and then later on the Q(.15866) contour. 
+Moving to the right from this first downward spike reveals that this same quantization phenomenon occurs eventually on the the Q(.02275) contour and then later on the Q(.15866) contour. 
 The impact is smaller for these higher contours because the unique counts are significantly higher and the impact of the addition of one more collision is proportionally less.
 
 Continuing to move to the right in the unique count range of about 32K to about 350K we observe that the 7 contours become parallel and smoother.
@@ -147,7 +147,7 @@ The gridlines are spaced at an RSE of 717 ppm while the *HllSketch* sketch RSE a
 
 The plot below is the close-up of the sparse region of the *HyperLogLogPlus*.  The sparse mode is indeed behaving with a precision of 25 bits, specified by *sp*.
 Here the predicted *RSE = 0.707 / &radic;2<sup>25</sup> = 122 ppm*, which is 2.2 times larger than that of the *HllSketch* sketch at 49.8 ppm. 
-The factor *0.707 = 1/&radic;2 comes from the use of the "bitmap" estimator[10].
+The factor *0.707 = 1/&radic;2* comes from the use of the "bitmap" estimator[10].
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14_closeup.png" alt="HllppK21T14_closeup.png" />
 
 The *HyperLogLogPlus* documentation claims that *sp* can be set as large as 32.  However any value larger than 25 causes dramatic failure in estimation. 
@@ -224,7 +224,7 @@ Depending on the chosen configuration, the *HllSketch* can be from one to almost
 * [4] [Google: HyperLogLog in Practice: Algorithmic Engineering of a State of The Art Cardinality Estimation Algorithm](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40671.pdf)
 * [5] The Root-Mean-Square of the Relative Error (RMS-RE) is sensitive to bias of the mean if there is any. However, if the bias is zero RMS-RE will produce the same results as the theoretical Relative Standard Error (RSE) of the stochastic process.
 * [6] In this context "HLL-Array" refers to the stochastic process defined by Flajolet[8], where log-2(K) bits of the incoming hash select a bin in an array of size K, and the number of leading zeros plus one of the remaining hash bits define the value stored in the array. Both sketches described in this paper also implement a *sparse* mode process for low-valued counts that is distinct from the HLL-Array process.
-* [7] The word "bounds" is used to define a quantile contour of the empirical error distribution. A symetrical pair of these bounds about the median then can be used to define a confidence interval.
+* [7] The word "bounds" is used to define a quantile contour of the empirical error distribution. A symmetrical pair of these bounds about the median then can be used to define a confidence interval.
 * [8] Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *DMTCS Conference on Analysis of Algorithms*, pages 137–156, 2007.
 * [9] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, *ACM PODS 2014*.
 * [10] Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. <https://arxiv.org/abs/1708.06839>. References to the "bitmap" estimator can be found in Appendix C.
