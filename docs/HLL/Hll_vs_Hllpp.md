@@ -106,22 +106,10 @@ Because this would have taken weeks to compute, we won't show this effect here. 
 (To generate this plot required >10<sup>12</sup> updates and took 9 hours to complete.)
 
 #### The Measured Error of the *HllSketch* Sparse Region
-Starting from the left, the error appears to be zero until the value 693 where the -3 StdDev curve (Q(.00135)) drops suddenly to about 0.14% and then gradually recovers.
-This is a normal phenomenon caused by quantization error as a result of counting discrete events, and can be explained as follows.
+Starting from the left, the error appears to be zero until the value 693 where the -3 StdDev curve (Q(.00135)) drops suddenly to about 0.14% and then gradually recovers. This is a normal phenomenon caused by quantization error as a result of counting discrete events, and can be explained as follows.
 
-If you were to plot the histogram of the 693 values exactly at this point you would observe 691 values of 693 and 2 values of 692. 
-If there were only one value of 692, its FR would be 1/693 = 0.001443 and is below the FR of 0.00135 so the Q(0.00135) = 693 because there is still one value of 693 below the FR of 0.00135.
-As soon as another estimate of 692 appears, the Q(0.00135) suddenly becomes 692, which is one off of the true value of 693. 
-Thus, the error measured at this point becomes *692/693 -1 = -0.001443*, which is what is shown on the graph.
-
-The cause of two estimates being 692 instead of 693, which is an underestimate of one, is due to collisions, which can be explained by the *Birthday Paradox*.
-Even though the input values are sufficiently unique (utilizing a 128 bit hash function) the precision of the sparse cache for this sketch is a little more than 26 bits.
-With this precision, the Birthday Paradox predicts a collision proportional to the square-root of 2<sup>26</sup> = 2<sup>13</sup> = 8192.
-This means that there is roughly a 50% chance that 1 out of 8K trials will collide.
-Out of 65K trials, there are about 8 chances for a single collisions to occur.  In this case 2 such collisions occurred.
-This is a perfectly normal occurrence for any stochastic counting process with a finite precision.
-
-Remember that this occurred on the quantile contour representing -3 standard deviations from the mean, which would occur less than 0.135% of the time, so it is rare indeed.
+At the trial-point 693 there are exactly 693 unique values presented to a single sketch and then its cardinality estimate is retrieved.
+This is repeated for every trial for 65,536 trials. The input values presented to the sketch are all unique, however, the internal representation of these input values has a finite precision of about 26 bits. The probability of two different input values producing the same 26-bit value, thus a collision, is determined by the Birthday Paradox, which in this case would predict a collision roughly once in *&radic;(2<sup>26</sup>) = 8192 uniques. When this occurs, the sparse mode of the sketch rejects the input unique value as a duplicate when it actually is not. Thus, the sketch undercounts by one. Without collisions all the 65,536 values would be the correct value of 693. When collisions occur, some small fraction of these values become 692. When more than 0.135% of the total trials have have experienced one or more collisions, the quantile value at the Q(0.00135) contour will suddently jump from 693 to 692. This difference of one out of 693 is 0.144% which is the error value at that point. This is a perfectly normal occurrence for any stochastic counting process with a finite precision.
 
 Moving to the right from this first downward spike reveals that this same quantization phenomenon occurs eventually on the the Q(.02275) contour and then later on the Q(.15866) contour. 
 The impact is smaller for these higher contours because the unique counts are significantly higher and the impact of the addition of one more collision is proportionally less.
