@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-# HllSketch vs HyperLogLogPlus
+# *HllSketch* vs *HyperLogLogPlus* Sketch
 The DataSketches HyperLogLog *HllSketch*\[1\]\[2\] implemented in this library has been highly optimized for speed, accuracy and size. The goal of this paper is to do an objective comparison of the *HllSketch* versus the popular Clearspring Technologies' *HyperLogLogPlus*\[3\] implementation, which is based on Google's HyperLogLog++ paper[4]. These tests were performed on the *HllSketch* release version 0.10.1, and on the *HyperLogLogPlus* version 2.9.5.
 
 ## *HllSketch* vs. *HyperLogLogPlus* Error Behavior
@@ -10,7 +10,6 @@ The DataSketches HyperLogLog *HllSketch*\[1\]\[2\] implemented in this library h
 ### High-Level Error Summary
 The *HllSketch* sketch has superior error properties compared to the *HyperLogLogPlus* sketch.  This can be easily seen from the following side-by-side comparison. The *HllSketch* error curves are on the left. 
 The *HyperLogLogPlus* error curves are on the right.
-
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllVsHllppAcc.png" alt="/hll/HllVsHllppAcc.png" />
 
 If the image is too small to read, right-click on the image and open it in a separate window.
@@ -91,9 +90,8 @@ This means that from the theory, a sketch of this size using Flajolet's estimato
 
 Any HLL sketch implementation that relies on the Flajolet HLL estimator will not be able to do better than this.
 
-### *HllSketch* Sketch Measured Error
+### *HllSketch* Measured Error
 With the discussion of how these plots are generated, the plot of the accuracy of *HllSketch* sketch is as follows:
-
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllK21T16U24.png" alt="HllK21T16U24.png" />
 
 For the right-hand portion of the plot where the sketch is in HLL-Array mode, instead of the Flajolet estimator, the *HllSketch* uses the newer *Historical Inverse Probability* (HIP)
@@ -130,7 +128,6 @@ The impact is smaller for these higher contours because the unique counts are si
 
 Continuing to move to the right in the unique count range of about 32K to about 350K we observe that the 7 contours become parallel and smoother.
 To explain what is going on in this region we need to zoom in.
-
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllK21T16U24_closeup.png" alt="HllK21T16U24_closeup.png" />
 
 For this zoomed in plot each gridline is again multiples of the RMS-RE (or RSE-RE), but here the factor *F = 0.408* due to discoveries of new classes of estimators[10].
@@ -143,7 +140,6 @@ All of this demonstrates that the sketch is behaving as it should and matches th
 Let's see how the *HyperLogLogPlus* sketch behaves under the same test conditions. Here *LgK = p = 21* and *sp = 25*. 
 
 There is one caveat: Because the *HyperLogLogPlus* sketch is so slow, We had to reduce the number of trials from 65K to 16K per trial-point and it still took over 20 hours to produce the following graph:
-
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14.png" alt="HllppK21T14.png" />
 
 Look closely at the Y-axis scale, for this plot the Y-axis ranges from -0.5% to +0.5%.  Compare the scale for the *HllSketch* plot where the Y-axis ranges from -0.1725% to +0.1725%! 
@@ -152,12 +148,10 @@ The gridlines are spaced at an RSE of 717 ppm while the *HllSketch* sketch RSE a
 The plot below is the close-up of the sparse region of the *HyperLogLogPlus*.  The sparse mode is indeed behaving with a precision of 25 bits, specified by *sp*.
 Here the predicted *RSE = 0.707 / &radic;2<sup>25</sup> = 122 ppm*, which is 2.2 times larger than that of the *HllSketch* sketch at 49.8 ppm. 
 The factor *0.707 = 1/&radic;2 comes from the use of the "bitmap" estimator[10].
-
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK21T14_closeup.png" alt="HllppK21T14_closeup.png" />
 
 The *HyperLogLogPlus* documentation claims that *sp* can be set as large as 32.  However any value larger than 25 causes dramatic failure in estimation. 
 The following demonstrates what happens with a much smaller sketch of *LgK = p = 14* and *sp = 26*.
-
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllppK14T13SP26.png" alt="HllppK14T13SP26.png" />
 
 The sketch fails when attempting to transition from sparse mode to normal HLL mode at about 3/4 K = 12288 uniques.
@@ -169,7 +163,6 @@ As described earlier, *RSE<sub>HLL</sub> = F / &radic;k*.
 If at every trial-point along the X-axis we multiply the measured RSE by the square-root of the serialized sketch size, we will have a *Measure of Merit* of the error efficiency of the sketch. For HLL-type sketches and large *n* this value should be asymptotic to a constant. In HLL-Array mode the space the sketch consumes is constant and the error will be a constant as well. Ideally, as the sketch grows as a function of *n*, the Measure of Merit in sparse mode and in HLL-Array mode will never be larger than its asymptotic value for large *n*.
 
 This next plot computes this Measure of Merit for both the *HllSketch* sketch and the *HyperLogLogPlus* sketch. 
-
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllVsHllppMerit.png" alt="HllVsHllppMerit.png" />
 
 Observe that the *HllSketch* sketch is lower (i.e, better merit score) than the *HyperLogLogPlus* sketch except for the region that is roughly from 10% of *k* to about *3k/4*, where the the *HyperLogLogPlus* sketch is better.
@@ -184,14 +177,14 @@ Fortunately, the Update Speed performance is much easier to explain and show.
 
 For these tests, at each trial point the sketch under test is presented with the number of uniques at that trial-point and the total time for the trial is measured, then divided by the number of uniques. This produces a measure of the time required per update.  Also, we use a more moderate sized sketch of *LgK = p = 12* that is more typical of what might be used in practice.  The *HllSketch* has 3 different types (HLL_4, HLL_6, and HLL_8) representing the respective sizes of the HLL-Array bins in bits. The speed behavior of all three of theses types is very similar.
 
-This first plot compares the resulting update speed:
-
+This first plot compares the resulting update speed.
+Note the Y-axis scale is 250 nanoseconds.
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/upspeed/HllVsHllpUpdateSpeed.png" alt="HllVsHllpUpdateSpeed.png" />
 
 The top black curve is the update speed performance of the *HyperLogLogPlus* sketch, which asymptotes at about 105 nanoseconds. 
 The lower curves are the update speed performance of the *HllSketch*, of which the HLL_8 and HLL_4 types asymptote to 10.5 nanoseconds. 
-This can be seen from a plot of just the *HllSketch* speed performance curves:
-
+This can be seen from a plot of just the *HllSketch* speed performance curves.
+Nothe the Y-axis scale is now 50 nanoseconds.
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/upspeed/HllUpdateSpeed.png" alt="HllUpdateSpeed.png" />
 
 The *HyperLogLogPlus* sketch is 2 full orders-of-magnitude slower than the *HllSketch*.
@@ -199,31 +192,27 @@ The *HyperLogLogPlus* sketch is 2 full orders-of-magnitude slower than the *HllS
 ## *HllSketch* vs. *HyperLogLogPlus* Serialize /Deserialize Speed Behavior
 The serialization and deserialization (ser-de) speed of the *HyperLogLogPlus* sketch is shown in the following plot. 
 Note that the Y-axis scale is 100,000 nanoseconds.
- 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/serde/HllpSerDeP12SP25T14.png" alt="HllpSerDeP12SP25T14.png" />
 
-This next plot is the ser-de speed of the *HllSketch* in HLL_4 mode. 
+This next plot is the ser-de speed of the *HllSketch* in compact HLL_4 mode. 
 Note that the Y-axis scale is now 10,000 nanoseconds.
-
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/serde/Hll4SerDeK12T14.png" alt="Hll4SerDeK12T14.png" />
 
-However, the *HllSketch* provides multiple options for serialization and deserialization. 
-The following ser-de is performed in Updatable form which is much faster (compact = false) and requires a little more space.
+The *HllSketch* provides multiple options for serialization and deserialization. 
+The following ser-de is performed in Updatable form (Compact = false) which is much faster and requires a little more space.
 Note that the Y-axis scale is now 1,000 nanoseconds. 
-
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/serde/Hll8SerDeK12T16CompactF.png" alt="Hll8SerDeK12T16CompactF.png" />
 
 In addition the *HllSketch* can operate fully *off-heap*. 
 In this mode, there is effectively no serialization, since the sketch can be updated off-heap.
 The "deserialization", when required, is just a wrapper class that just contains a pointer to the off-heap data structure.
 This deserialization is quite fast as shown in this next plot.
-Note that the Y-axis scale is now 100 nanoseconds.
-
+Note that the Y-axis scale is now 100 nanoseconds. Some of the peaks in these plots are due to GC pauses by the JVM.
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/serde/Hll8SerDeK12T16CompactFWrapT.png" alt="Hll8SerDeK12T16CompactFWrapT.png" />
 
 Presenting the various *HllSketch* deserialization modes along with the *HyperLogLogPlus* sketch deserialization produces the following plot.
-
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/serde/HllVsHllpSummary.png" alt="HllVsHllpSummary.png" />
+
 Depending on the chosen configuration, the *HllSketch* can be from one to almost three orders-of-magnitude faster than the *HyperLogLogPlus* sketch.
 
 
