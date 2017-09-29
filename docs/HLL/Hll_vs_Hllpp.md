@@ -121,7 +121,7 @@ This means that there is roughly a 50% chance that 1 out of 8K trials will colli
 Out of 65K trials, there are about 8 chances for a single collisions to occur.  In this case 2 such collisions occurred.
 This is a perfectly normal occurrence for any stochastic counting process with a finite precision.
 
-Remember that this occurred on the quantile contour representing -3 standard deviations from the mean, which would occur less than 99.865% of the time, so it is rare indeed.
+Remember that this occurred on the quantile contour representing -3 standard deviations from the mean, which would occur less than 0.135% of the time, so it is rare indeed.
 
 Moving to the right from this first downward spike reveals that this same quantization phenomenon occurs eventually on the the Q(.02275) contour and then later on the Q(.15866) contour. 
 The impact is smaller for these higher contours because the unique counts are significantly higher and the impact of the addition of one more collision is proportionally less.
