@@ -175,7 +175,7 @@ Above *3k/4*, the *HyperLogLogPlus* sketch is not only considerably worse, but i
 ## *HllSketch* vs. *HyperLogLogPlus* Update Speed Behavior
 Fortunately, the Update Speed performance is much easier to explain and show.
 
-For these tests, at each trial point the sketch under test is presented with the number of uniques at that trial-point and the total time for the trial is measured, then divided by the number of uniques. This produces a measure of the time required per update.  Also, we use a more moderate sized sketch of *LgK = p = 12* that is more typical of what might be used in practice.  The *HllSketch* has 3 different types (HLL_4, HLL_6, and HLL_8) representing the respective sizes of the HLL-Array bins in bits. The speed behavior of all three of theses types is very similar.
+For these tests, at each trial point the sketch under test is presented with the number of uniques at that trial-point and the total time for the trial is measured, then divided by the number of uniques. This produces a measure of the time required per update.  Also, we use a more moderate sized sketch of *LgK = p = 12* that is more typical of what might be used in practice.  The *HllSketch* has 3 different types (HLL_4, HLL_6, and HLL_8) representing the respective sizes of the HLL-Array bins in bits. The speed behavior of all three of these types is very similar.
 
 This first plot compares the resulting update speed.
 Note the Y-axis scale is 250 nanoseconds.
@@ -183,11 +183,11 @@ Note the Y-axis scale is 250 nanoseconds.
 
 The top black curve is the update speed performance of the *HyperLogLogPlus* sketch, which asymptotes at about 105 nanoseconds. 
 The lower curves are the update speed performance of the *HllSketch*, of which the HLL_8 and HLL_4 types asymptote to 10.5 nanoseconds. 
-This can be seen from a plot of just the *HllSketch* speed performance curves.
+
+This can be seen from a plot of just the *HllSketch* speed performance curves below.
 Note the the Y-axis scale is now 50 nanoseconds.
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/upspeed/HllUpdateSpeed.png" alt="HllUpdateSpeed.png" />
-
-The *HyperLogLogPlus* sketch is 2 full orders-of-magnitude slower than the *HllSketch*.
+The *HllSketch* is 2 orders-of-magnitude faster than the *HyperLogLogPlus* sketch.
 
 ## *HllSketch* vs. *HyperLogLogPlus* Serialize /Deserialize Speed Behavior
 The serialization and deserialization (ser-de) speed of the *HyperLogLogPlus* sketch is shown in the following plot. 
@@ -205,7 +205,7 @@ Note that the Y-axis scale is now 1,000 nanoseconds.
 
 In addition the *HllSketch* can operate fully *off-heap*. 
 In this mode, there is effectively no serialization, since the sketch can be updated off-heap.
-The "deserialization", when required, is just a wrapper class that just contains a pointer to the off-heap data structure.
+The "deserialization", when required, is just a wrapper class that contains a pointer to the off-heap data structure.
 This deserialization is quite fast as shown in this next plot.
 Note that the Y-axis scale is now 100 nanoseconds. Some of the peaks in these plots are due to GC pauses by the JVM.
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/serde/Hll8SerDeK12T16CompactFWrapT.png" alt="Hll8SerDeK12T16CompactFWrapT.png" />
