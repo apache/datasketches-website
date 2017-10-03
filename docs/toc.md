@@ -15,6 +15,8 @@ layout: toc_page
   <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck_Sep2017.pdf">Overview Slide Deck</a></li>
 </div>
 
+<h2 id="research"><a href="{{site.docs_dir}}/Research.html">Research</a></h2>
+
 <h2 id="frequent-items-sketches"><a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent">Frequent Items Sketches</a></h2>
 <div class="collapse" id="collapse_frequent">
   <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html">Frequent Items Overview</a></li>
