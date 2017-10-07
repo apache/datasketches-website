@@ -1,3 +1,7 @@
+---
+layout: doc_page
+---
+
 # DataSketches Research Directions
 
 ## Introduction
