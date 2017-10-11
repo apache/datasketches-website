@@ -40,7 +40,7 @@ Since these sketches are stochastic, each trial will produce a probabilistic est
 
 It is not practical to plot billions of RE values on a single chart. What we plot instead are the quantiles at chosen Fractional Ranks (FR) of the error distribution at each trial-point. When the quantiles at the same FR are connected by lines they form contours of the error distribution. For example, *FR = 0.5* defines the median of the distribution. In these plots the median is black and mostly hidden behind the mean, which is gray, both of which hug the X-axis close to zero.
 
-At each X-axis trial-point the specified number of trials are executed. For each trial the number of uniques defined by the trial-point are *offered* (or *updated*) to the sketch under test. At the end of each trial the cardinality estimate is retrieved from the sketch and stored. At the end of the set of trails at the trial-point the statistics of the distribution of estimated cardinality values are computed.
+At each X-axis trial-point the specified number of trials are executed. For each trial the number of uniques defined by the trial-point are *offered* (or *updated*) to the sketch under test. At the end of each trial the cardinality estimate is retrieved from the sketch and stored. At the end of the set of trials at the trial-point the statistics of the distribution of estimated cardinality values are computed.
 
 From the cardinality estimate data of each trial-point, six different FR values have been chosen in addition to the median (0.5). These values correspond to the FR values of a Standard Normal Distribution at +/- 1, 2, and 3 Standard Deviations from the mean. These FR values can be computed from the CDF of the Normal Distribution as 
 
