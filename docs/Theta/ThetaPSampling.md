@@ -2,7 +2,7 @@
 layout: doc_page
 ---
 
-## Up-Front Sampling
+## Up-Front / p Sampling 
 
 The up-front / p-sampling option of the Theta Sketches exists to address the system-level storage allocation challenge when dealing with highly partitioned/fragmented, massive data that inherently has a long-tail distribution across all the fragments. 
 
