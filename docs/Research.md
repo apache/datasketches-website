@@ -82,7 +82,7 @@ This solution suffices in some applications, but for other applications the chun
 ## References
 
 [ABL+17]
-Daniel Anderson, Pryce Bevan, Kevin J. Lang, Edo Liberty, Lee Rhodes, and Justin Thaler. A high-performance algorithm for identifying frequent items in data streams. In *ACM IMC 2017 (To Appear)*, 2017. Preliminary version available at <http://arxiv.org/abs/1705.07001>.
+Daniel Anderson, Pryce Bevan, Kevin J. Lang, Edo Liberty, Lee Rhodes, and Justin Thaler. A high-performance algorithm for identifying frequent items in data streams. In *ACM IMC 2017 (To Appear)*, 2017. Preliminary version available at <https://arxiv.org/abs/1705.07001>.
 
 [AC+13]
 Pankaj K. Agarwal, Graham Cormode, Zengfeng Huang, Jeff M. Phillips, Zhewei Wei, Ke Yi. Mergeable summaries. *ACM Trans. Database Syst.* 38(4): 26:1-26:28, 2013
@@ -112,7 +112,7 @@ Phillip B. Gibbons and Srikanta Tirthapura. Distributed streams algorithms for s
 Zohar S. Karnin, Kevin J. Lang, and Edo Liberty. Optimal quantile approximation in streams. In *IEEE FOCS Proceedings '16*, pages 71–78, 2016.
 
 [Lan17]
-Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. *arXiv preprint arXiv:1708.06839*, 2017.
+Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. *arXiv preprint* <https://arxiv.org/abs/1708.06839>, 2017.
 
 [Lib13]
 Edo Liberty. Simple and deterministic matrix sketching. In *ACM KDD Proceedings '13*, pages 581– 588, 2013.
@@ -130,7 +130,7 @@ Michael Mitzenmacher, Thomas Steinke, and Justin Thaler. Hierarchical heavy hitt
 Lee Rhodes, Kevin Lang, Alexander Saydakov, Justin Thaler, Edo Liberty, and Jon Malkin. DataSketches: A Java software library for streaming data algorithms. Apache License, Version 2.0, 2015. <https://datasketches.github.io>.
 
 [Tha07]
-Justin Thaler. REU project website: A near-optimal algorithm for computing the entropy of a stream, 2007. <http://reu.dimacs.rutgers.edu/~jthaler/>.
+Justin Thaler. REU project website: A near-optimal algorithm for computing the entropy of a stream, 2007. <https://reu.dimacs.rutgers.edu/~jthaler/>.
 
 [VSGB05]
 Shobha Venkataraman, Dawn Xiaodong Song, Phillip B. Gibbons, and Avrim Blum. New streaming algorithms for fast detection of superspreaders. In *Internet Society NDSS Proceedings*, 2005.
