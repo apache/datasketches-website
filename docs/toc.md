@@ -12,7 +12,8 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/KeyFeatures.html">Key Features</a></li>
   <li><a href="{{site.docs_dir}}/LargeScale.html">Large Scale Computing</a></li>
   <li><a href="{{site.docs_dir}}/Architecture.html">Architecture</a></li>
-  <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck_Sep2017.pdf">Overview Slide Deck</a></li>
+  <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck_Sep2017.pdf">Overview Slide Deck 18Sep17</a></li>
+  <li><a href="{{site.docs_pdf_dir}}/DataSketches_ATI_1Nov2017.pdf">ATI Slide Deck 1Nov17</a></li>
 </div>
 
 <h2 id="research"><a href="{{site.docs_dir}}/Research.html">Research</a></h2>
