@@ -17,7 +17,7 @@ id: home
       <p class="lead" style="font-size: 16px; line-height: 1.0; margin-bottom: 15px">A Java software library of 
         <a href="https://en.wikipedia.org/wiki/Stochastic" style="color: #EDE379"><i>stochastic</i></a> 
         <a href="https://en.wikipedia.org/wiki/Streaming_algorithm" style="color: #EDE379"><i>streaming algorithms</i></a></p>
-      <p class="lead" style="font-size: 16px; line-height: 1.0; margin-bottom: 15px"><i>Excellence in theoretically informed algorithm engineering.</i></p> 
+      <!--<p class="lead" style="font-size: 16px; line-height: 1.0; margin-bottom: 15px"><i>"Excellence in theoretically informed algorithm engineering" -- Graham Cormode</i></p> -->
       <p>
         <a class="btn btn-lg btn-outline-inverse" href="overview.html"><span class="fa fa-info-circle"></span> Overview</a>
         <a class="btn btn-lg btn-outline-inverse" href="/docs/downloads.html"><span class="fa fa-download"></span> Download</a>
