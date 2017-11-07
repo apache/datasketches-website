@@ -1,9 +1,10 @@
 .ds-masthead {
   /* border-top: 1px solid #3b3b50; */
   border-top: 1px solid rgba(44,238,251, .7);
+  border-bottom: 1px solid rgba(44,238,251, .7);
   border-image: radial-gradient(#2ceefb, #2ceefb 10%, #1c1c26) 100% 1;
   border-width: 1px 0 0 0;
-  padding: 0 0 0px;
+  padding: 0 0 0;
   /* color: #fff; */
   color: #c3c3c5;
   background-color: #400090; /* was: 1C1C26 */
