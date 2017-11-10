@@ -4,10 +4,10 @@ layout: doc_page
 
 ## Tuple Sketch Hive UDFs
 
-    add jar sketches-core.jar;
-    add jar sketches-hive.jar;
+    add jar sketches-hive-0.10.5-with-shaded-core.jar;
+
     create temporary function data2sketch as 'com.yahoo.sketches.hive.tuple.DataToArrayOfDoublesSketchUDAF';
-    create temporary function union as 'com.yahoo.sketches.hive.tuple.UnionArrayOfDoublesSketchUDAF';
+    create temporary function unionSketches as 'com.yahoo.sketches.hive.tuple.UnionArrayOfDoublesSketchUDAF';
     create temporary function estimate as 'com.yahoo.sketches.hive.tuple.ArrayOfDoublesSketchToEstimatesUDF';
 
     use <your-db-name-here>;
@@ -28,7 +28,7 @@ layout: doc_page
     b	[10.0,10.0]
 
     -- union across categories and get estimates
-    select estimate(union(sketch)) from sketch_intermediate;
+    select estimate(unionSketches(sketch)) from sketch_intermediate;
 
     Output:
     [15.0,20.0]

@@ -8,11 +8,10 @@ Depends on sketches-core.
 
 ### Building sketches, merging sketches and getting estimates
 
-    add jar sketches-core-0.6.0.jar;
-    add jar sketches-hive-0.6.0.jar;
+    add jar sketches-hive-0.10.5-with-shaded-core.jar;
 
     create temporary function data2sketch as 'com.yahoo.sketches.hive.theta.DataToSketchUDAF';
-    create temporary function union as 'com.yahoo.sketches.hive.theta.UnionSketchUDAF';
+    create temporary function unionSketches as 'com.yahoo.sketches.hive.theta.UnionSketchUDAF';
     create temporary function estimate as 'com.yahoo.sketches.hive.theta.EstimateSketchUDF';
 
     use <your-db-name-here>;
@@ -31,7 +30,7 @@ Depends on sketches-core.
     a	10.0
     b	10.0
 
-    select estimate(union(sketch)) from sketch_intermediate;
+    select estimate(unionSketches(sketch)) from sketch_intermediate;
 
     Output:
     15.0
@@ -40,12 +39,11 @@ Depends on sketches-core.
 
 Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter. The same is true about IntersectSketchUDF and IntersectSketchUDAF.
 
-    add jar sketches-core-0.6.0.jar;
-    add jar sketches-hive-0.6.0.jar;
+    add jar sketches-hive-0.10.4-with-shaded-core.jar;
 
     create temporary function data2sketch as 'com.yahoo.sketches.hive.theta.DataToSketchUDAF';
     create temporary function estimate as 'com.yahoo.sketches.hive.theta.EstimateSketchUDF';
-    create temporary function union as 'com.yahoo.sketches.hive.theta.UnionSketchUDF';
+    create temporary function union2 as 'com.yahoo.sketches.hive.theta.UnionSketchUDF';
     create temporary function intersect as 'com.yahoo.sketches.hive.theta.IntersectSketchUDF';
     create temporary function anotb as 'com.yahoo.sketches.hive.theta.ExcludeSketchUDF';
 
@@ -62,7 +60,7 @@ Notice the difference between UnionUDF in this example, which takes two sketches
     select
       estimate(sketch1),
       estimate(sketch2),
-      estimate(union(sketch1, sketch2)),
+      estimate(union2(sketch1, sketch2)),
       estimate((intersect(sketch1, sketch2))),
       estimate(anotb(sketch1, sketch2)),
       estimate(anotb(sketch2, sketch1))

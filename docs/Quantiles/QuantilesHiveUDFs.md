@@ -6,11 +6,10 @@ layout: doc_page
 
 ### DoublesSketch example
 
-    add jar sketches-core-0.6.0.jar;
-    add jar sketches-hive-0.6.0.jar;
+    add jar sketches-hive-0.10.5-with-shaded-core.jar;
     
     create temporary function data2sketch as 'com.yahoo.sketches.hive.quantiles.DataToDoublesSketchUDAF';
-    create temporary function union as 'com.yahoo.sketches.hive.quantiles.UnionDoublesSketchUDAF';
+    create temporary function unionSketches as 'com.yahoo.sketches.hive.quantiles.UnionDoublesSketchUDAF';
     create temporary function getQuantile as 'com.yahoo.sketches.hive.quantiles.GetQuantileFromDoublesSketchUDF';
     create temporary function getQuantiles as 'com.yahoo.sketches.hive.quantiles.GetQuantilesFromDoublesSketchUDF';
 
@@ -32,21 +31,21 @@ layout: doc_page
     b	16.0
 
     -- union across categories and get median
-    select getQuantile(union(sketch), 0.5) from quantiles_intermediate;
+    select getQuantile(unionSketches(sketch), 0.5) from quantiles_intermediate;
 
     Output:
     11.0
 
     -- if you want several quantiles it is more efficient to use this function
     -- quantile of 0.0 is min value, 0.5 is median, and 1.0 is max value
-    select getQuantiles(union(sketch), 0.0, 0.5, 1.0) from quantiles_intermediate;
+    select getQuantiles(unionSketches(sketch), 0.0, 0.5, 1.0) from quantiles_intermediate;
 
     Output:
     [1.0,11.0,20.0]
 
     -- alternative way to get quantiles by specifying a number of evenly spaced fractions
     -- this is equivalent to giving fractions of 0.0, 0.5 and 1.0
-    select getQuantiles(union(sketch), 3) from quantiles_intermediate;
+    select getQuantiles(unionSketches(sketch), 3) from quantiles_intermediate;
 
     Output:
     [1.0,11.0,20.0]
