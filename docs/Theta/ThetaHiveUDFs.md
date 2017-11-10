@@ -39,7 +39,7 @@ Depends on sketches-core.
 
 Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter. The same is true about IntersectSketchUDF and IntersectSketchUDAF.
 
-    add jar sketches-hive-0.10.4-with-shaded-core.jar;
+    add jar sketches-hive-0.10.5-with-shaded-core.jar;
 
     create temporary function data2sketch as 'com.yahoo.sketches.hive.theta.DataToSketchUDAF';
     create temporary function estimate as 'com.yahoo.sketches.hive.theta.EstimateSketchUDF';
