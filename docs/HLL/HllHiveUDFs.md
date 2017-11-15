@@ -8,10 +8,10 @@ This functionality appeared in sketches-hive-0.10.1. Depends on sketches-core-0.
 
 ### Building sketches, computing unions and getting estimates
 
-    add jar sketches-hive-0.10.1-with-shaded-core.jar;
+    add jar sketches-hive-0.10.5-with-shaded-core.jar;
 
     create temporary function data2sketch as 'com.yahoo.sketches.hive.hll.DataToSketchUDAF';
-    create temporary function union as 'com.yahoo.sketches.hive.hll.UnionSketchUDAF';
+    create temporary function unionSketches as 'com.yahoo.sketches.hive.hll.UnionSketchUDAF';
     create temporary function estimate as 'com.yahoo.sketches.hive.hll.SketchToEstimateUDF';
 
     use <your-db-name-here>;
@@ -34,7 +34,7 @@ This functionality appeared in sketches-hive-0.10.1. Depends on sketches-core-0.
     b	10.000000223517425
 
     -- union sketches across categories and get overall unique count estimate
-    select estimate(union(sketch)) from sketch_intermediate;
+    select estimate(unionSketches(sketch)) from sketch_intermediate;
 
     Output:
     15.000000521540663
@@ -43,11 +43,11 @@ This functionality appeared in sketches-hive-0.10.1. Depends on sketches-core-0.
 
 Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter.
 
-    add jar sketches-hive-0.10.1-with-shaded-core.jar;
+    add jar sketches-hive-0.10.5-with-shaded-core.jar;
 
     create temporary function data2sketch as 'com.yahoo.sketches.hive.hll.DataToSketchUDAF';
     create temporary function estimate as 'com.yahoo.sketches.hive.hll.SketchToEstimateUDF';
-    create temporary function union as 'com.yahoo.sketches.hive.hll.UnionSketchUDF';
+    create temporary function unionTwoSketches as 'com.yahoo.sketches.hive.hll.UnionSketchUDF';
 
     use <your-db-name-here>;
 
@@ -60,7 +60,7 @@ Notice the difference between UnionUDF in this example, which takes two sketches
     insert into sketch_intermediate select data2sketch(id1), data2sketch(id2) from sketch_input;
 
     -- get estimates from sketches and union
-    select estimate(sketch1), estimate(sketch2), estimate(union(sketch1, sketch2)) from sketch_intermediate;
+    select estimate(sketch1), estimate(sketch2), estimate(unionTwoSketches(sketch1, sketch2)) from sketch_intermediate;
 
     Output:
     10.000000223517425	10.000000223517425	15.000000521540663
