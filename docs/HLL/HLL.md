@@ -85,6 +85,8 @@ The reader of this chart can easily see that this size HLL sketch will have erro
 These "bounds" can also be derived directly from the sketch itself by calling the <i>getUpperBound(numStdDev)</i> 
 and <i>getLowerBound(numStdDev)</i> methods.
 
+
+
 ### HyperLogLog Speed Comparisons
 
 The update speed behavior of the HLL sketches compared to the Theta-Alpha sketch will be similar to the following graph:
@@ -109,10 +111,10 @@ Above the transition point the HLL\_4 sketch has a 16X size advantage over the T
 
 ### Caveats
 Large data with many dimensions and dimension coordinates are often highly skewed 
-creating a "long-tailed" or power-law distribution of unique values per sketch.  
+creating a "long-tailed" or power-law distribution of unique values per sketch. 
 This can create millions of sketches where a vast majority of the sketches will have only a few entries.
 It is this long tail of the distribution of sketch sizes that can dominate the overall storage cost for all of the sketches. 
-In this scenario, the size advantage of the HLL can be significantly reduced down to a factor of two compared to Theta sketches. 
+In this scenario, the size advantage of the HLL can be significantly reduced down to a factor of 2 to 4 compared to Theta sketches. 
 This behavior is strictly a function of the distribution of the input data so it is advisable to understand 
 and measure this phenomenon with your own data.
 
