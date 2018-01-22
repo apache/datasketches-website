@@ -79,8 +79,6 @@ The absolute rank error vs the trueRanks produced the following graph.
 <img class="doc-img-half" src="{{site.docs_img_dir}}/quantiles/QuantilesCDFAbsRankError.png" alt="QuantilesCDFAbsRankError" />
 
 All of these plots were generated from one set of values, and is not a test of the error bounds. 
-To do that would require repeating this test thousands of times and then plotting the quantiles of the 
-distribution of values for each of the 1024 points of the above graphs.
 
 The following plot illustrates the maximum observed normalized rank error of DoublesSketch with k=128 in 1000 trials at each stream length. The code to reproduce this measurement is available in the DataSketches/characterization repository.
 
