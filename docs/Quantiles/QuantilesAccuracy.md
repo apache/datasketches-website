@@ -82,4 +82,4 @@ All of these plots were generated from one set of values, and is not a test of t
 
 The following plot illustrates the maximum observed normalized rank error of DoublesSketch with k=128 in 1000 trials at each stream length. The code to reproduce this measurement is available in the DataSketches/characterization repository.
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}/quantiles/qds-7-compact-accuracy-1k-20180110.png" alt="QuantilesRankError" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/qds-7-compact-accuracy-1k-20180110.png" alt="QuantilesRankError" />
