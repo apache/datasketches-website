@@ -11,6 +11,11 @@ For example, the median value returned from getQuantile(0.5) will be between the
 from the hypothetically sorted array of input values at normalized ranks of 0.49 and 0.51, with 
 a confidence of about 99%.
 
+The approximate error (epsilon) values listed in the second row of the header in the table below can be computed using the function
+<i>double DoubleSketch.getNormalizedRankError(int k)</i>.  The values in this table match very closely with empirical measurements 
+up to k = 1024 at the 99% confidence level.  Beyond k = 1024, the estimated error is somewhat speculative, but should be reasonable guidance.
+These error values simultaneously apply to all half-open intervals (-Infinity, Q] and closed intervals [Q1, Q2].
+
 <pre>
 Table Guide for Quantiles DoublesSketch Size in Bytes and Approximate Error:
           K => |        16        32        64       128       256       512     1,024     2,048     4,096     8,192    16,384    32,768
@@ -80,6 +85,7 @@ The absolute rank error vs the trueRanks produced the following graph.
 
 All of these plots were generated from one set of values, and is not a test of the error bounds. 
 
-The following plot illustrates the maximum observed normalized rank error of DoublesSketch with k=128 in 1000 trials at each stream length. The code to reproduce this measurement is available in the DataSketches/characterization repository.
+The following plot illustrates the maximum observed normalized rank error of DoublesSketch with k=128 in 1000 trials at each stream length. The code to reproduce this measurement is available in the  [DataSketches/characterization](https://github.com/DataSketches/characterization/tree/master/src/main/java/com/yahoo/sketches/characterization/quantilesDataSketches/characterization) repository.  Note that these measurements are not directly comparable to the values in the table above as this graph plots the actual maximum of 1000 
+trials for only the half-open intervals (-Infinity, Q], which is relevant to simple queries such as <i>getRank(double value)</i>.
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/quantiles/qds-7-compact-accuracy-1k-20180110.png" alt="QuantilesRankError" />
