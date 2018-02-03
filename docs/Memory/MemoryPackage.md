@@ -4,32 +4,29 @@ layout: doc_page
 
 ## Memory Package
 
-Note: this applies to the memory package prior to version 0.10.0
+Note: this applies to the memory package after version 0.10.0
 
 ### Introduction
-The DataSketches sketches-core repository consists of two sub-modules: <i>sketches</i> and <i>memory</i> 
-each of which have their own POM and are released as separate sets of jars prefixed as <i>sketches-core</i>
-and <i>memory</i>. The <i>sketches-core-X.Y.Z.jar</i> contains the Java <i>com.yahoo.sketches</i> package,
-and the <i>memory-X.Y.Z.jar</i> contains the Java <i>com.yahoo.memory</i> package. 
+The DataSketches memory package has its own repository and is released with its own jars in Maven Central. 
 To avoid confusion in the documentation the capitalized <i>Memory</i> refers to the code in the 
 Java <i>com.yahoo.memory</i> package, and the uncapitalized <i>memory</i> refers to computer memory in general.
 
-The <i>Memory</i> package allows the construction and primitive read-write capabilities of data structures in native computer memory, 
+The <i>Memory</i> package allows primitive read-write capabilities of data structures in native computer memory, 
 which is also referred to as "off-java-heap" or just "off-heap". 
 For compatibility and ease-of-use the <i>Memory</i> API can also be used to manage data structures that are 
-contained in Java on-heap arrays or ByteBuffers.
+contained in Java on-heap primitive arrays, memory mapped files, or ByteBuffers.
 
 The hardware systems used in big data environments can be quite large approaching a terabyte 
 of RAM and 24 or more CPUs, each of which can manage two threads.
-Most of that memory is usually dedicated to selected partitions of the raw data, 
-which can be orders of magnitude larger. 
+Most of that memory is usually dedicated to selected partitions of data, 
+which can even be orders of magnitude larger. 
 How the system designers select the partitions of the data to be in RAM over time is quite complex 
 and varies considerably based on the specific objectives of the systems platform. 
 
 It is in these very large data environments that managing how the data gets copied into RAM and 
 when it is considered obsolete and can be written 
-over by newer or different partitions of data is a significant portion of the systems design. 
-Having the JVM manage these large chunks of memory would result in large garbage collection 
+over by newer or different partitions of data is an important aspect of the systems design. 
+Having the JVM manage these large chunks of memory is often problematic and often results in large garbage collection 
 pauses and poor real-time performance. 
 As a result, it is often the case that the system designers need to manage these large chunks of 
 memory directly.  
@@ -50,122 +47,140 @@ The <i>Memory</i> package is essentially an extension of Unsafe and wraps most o
 primitive get and put methods and a few specialized methods into a convenient API 
 organized around an allocated block of native memory.
 
-Using the <i>Memory</i> package cannot be taken on lightly, as the systems programmer must now take on the 
-responsibility of allocating and freeing off-heap memory very similar to what C and C++ 
-programming environments require. 
+Using the <i>Memory</i> package cannot be taken lightly, as the systems developer must now be 
+aware of the importance of memory allocation and deallocation and make sure these resources 
+are managed properly. 
 
 ### Architecture
-The Memory package has 2 interfaces and a number of classes that will be described in this section.
+The Memory package has 4 key public abstract classes, which behave as "interfaces" 
+and a number of other classes that will be described in this section.
 
-#### Memory Interface
-The Memory interface defines <i>get</i> and <i>put</i> methods for all Java primitive and 
-primitive array types to/from a byte offset that is relative to the base address of some 
-object or region of native memory defined by the implementing class.
-The methods of this interface leverage the capabilities of the sun.misc.Unsafe class.
+#### Resourses
+The Memory package defines 4 <i>Resources</i> that at their most basic level can be viewed as an array of bytes.
+  * Primitive on-heap arrays: byte[], char[], etc.
+  * ByteBuffers
+  * Off-heap memory. Also called "native" or "direct" memory.
+  * Memory-mapped files
 
-In contrast to the <i>java.nio.ByteBuffer</i> classes, which were designed for native 
-streaming I/O and include concepts such as <i>position, limit, mark, flip,</i> and <i>rewind</i>, 
-this interface specifically bypasses these concepts and instead provides a rich collection of 
-primitive, bit, array and copy methods that access the data directly from a single byte offset. 
 
-#### NativeMemory and NativeMemoryR Classes
-The NativeMemory class implements the Memory interface and is used to access pre-allocated 
-Java byte arrays, long arrays and ByteBuffers by presenting them as arguments to the 
-constructors of this class.
+#### APIs
+The Memory package defines 4 APIs for accessing the above resources.
+  * Memory - Read-only access using byte offsets from the start of the resource.
+  * WritableMemory - Read/write access using byte offsets from the start of the resource.
+  * Buffer - Read-only access using user setable byte position values: <i>start</i>, <i>position</i>, and <i>end</i>.
+  * WritableBuffer - Read-write access using user setable byte position values: <i>start</i>, <i>position</i>, and <i>end</i>.
 
-    byte[] backingArray = new byte[16];
-    Memory mem = new NativeMemory(backingArray);
+All 4 of these APIs provide a rich collection of static "factory" methods for mapping a resource to an implementation of the API.
 
-This allows the use of the Memory interface to access the backing array, similar to a C UNION, 
-as just a bunch of bytes, __independent of data type__ and interpretation depends on 
-__processor endianness!__. This isn't allowed in Java! So be careful! For example:
+#### Examples for Accessing Primitive On-heap Array Resources
+Mapping a primitive array resource to the Memory API:
 
-    mem.clear(); //sets the backing array to all zeros
-    mem.putByte(1, (byte) 1);
-    int v = mem.getInt(0);
+    byte[] array = new byte[] {1, 0, 0, 0, 2, 0, 0, 0};
+    Memory mem = Memory.wrap(array);
+    assert mem.getInt(0) == 1;
+    assert mem.getInt(4) == 2;
+
+This illustrates that the underlying structure of the resource is bytes but we can read it as
+ints, longs, char, or whatever. This is similar to a C UNION, which allows multiple data types
+to access the underlying bytes.
+The interpretation does depends on __processor endianness!__. 
+This isn't allowed in Java! So be careful! For example:
+
+    byte[] arr = new byte[16]
+    WritableMemory wmem = WritableMemory.wrap(arr);
+    wmem.putByte(1, (byte) 1);
+    int v = wmem.getInt(0);
     assert ( v == 256 );
     
-    backingArray[9] = 3;
+    arr[9] = 3; //you can also access the backing array directly
     long v2 = mem.getLong(8);
     assert ( v2 == 768L);
 
-This allows tightly packing different data types into a data structure similar to a C _struct_.
-However, you have to keep careful track of your own structure and the appropriate byte offsets.
+You have to keep careful track of your own structure and the appropriate byte offsets.
 
-The NativeMemory and MemoryRegion classes have a useful toHexString(...) method to assist you in debugging your Memory objects.
+All of the APIs provide a useful toHexString(...) method to assist you in viewing the data in your resources.
 
-The NativeMemoryR is a read-only version of NativeMemory.
+#### Examples for Accessing ByteBuffers
+Mapping a ByteBuffer resource to the WritableMemory API.  
+Here we write the WritableBuffer and read from both the ByteBuffer and the WritableBuffer.
 
-#### MemoryMappedFile Class
-The MemoryMappedFile class extends NativeMemory and is used to memory map files (including those &gt; 2GB) off heap. 
-It is the responsibility of the calling class to free the memory.
+  @Test
+  public void simpleBBTest() {
+    int n = 1024; //longs
+    byte[] arr = new byte[n * 8];
+    ByteBuffer bb = ByteBuffer.wrap(arr);
+    bb.order(ByteOrder.nativeOrder());
 
-#### AllocMemory Class
-The AllocMemory class extends MemoryMappedFile and is used to allocate direct, 
-off-heap native memory, which is then accessed by the Memory interface methods. 
-The AllocMemory class returns an instance of NativeMemory that "points" to a 
-specific block of native memory with a specific size or capacity in bytes. 
-Any memory allocated this way __must be properly freed using freeMemory()!__
+    WritableBuffer wbuf = WritableBuffer.wrap(bb);
+    for (int i = 0; i < n; i++) { //write to wbuf
+      wbuf.putLong(i);
+    }
+    wbuf.resetPosition();
+    for (int i = 0; i < n; i++) { //read from wbuf
+      long v = wbuf.getLong();
+      assertEquals(v, i);
+    }
+    for (int i = 0; i < n; i++) { //read from BB
+      long v = bb.getLong();
+      assertEquals(v, i);
+    }
+  }
 
-    NativeMemory mem = new AllocMemory(<#bytes>);
-    //do whatever, then when done...
-    mem.freeMemory();
+#### Examples for Accessing Off-Heap Resources  
+Direct allocation of off-heap resources requires that the resource be closed when finished.
+This is accomplished using a _WritableDirectHandle_ that implements the Java _AutoClosable_ interface. 
+Note that this example leverages the try-with-resources statement to properly close the resource.
 
-Note that the freeMemory() method is __not part of the Memory interface__.
-Whoever owns the reference to the returned NativeMemory instance __owns__ the memory allocation and is responsible for freeing it. 
-Casting to the Memory interface allows the owner to pass a Memory object to a downstream class to read and write, 
-but the downstream class cannot free the allocated block of native memory, only the owning class can do this.
+  @Test
+  public void simpleAllocateDirect() {
+    int longs = 32;
+    try (WritableDirectHandle wh = WritableMemory.allocateDirect(longs << 3)) {
+      WritableMemory wMem1 = wh.get();
+      for (int i = 0; i<longs; i++) {
+        wMem1.putLong(i << 3, i);
+        assertEquals(wMem1.getLong(i << 3), i);
+      }
+    }
+  }
 
-It is often a good idea to do your prototyping using backing arrays instead of off-heap native memory and to have asserts enabled via the JVM for testing (most testing environments do this automatically). 
-If asserts are enabled bounds checking will be performed saving you much grief.  
-Segment faults are nasty and hard to debug.
+Note that these direct allocations can be larger than 2GB.
 
-#### MemoryRegion and MemoryRegionR Classes
-The MemoryRegion class implements the Memory interface and provides a means of 
-hierarchically partitioning a large Memory allocation, into 
-smaller Memory regions, each with their own "capacity" and offsets. 
+#### Examples for Memory Mapped File Resources
+Memory-mapped files are resources that also must be closed when finished.
+This is accomplished using a _MapHandle_ that implements the Java _AutoClosable_ interface.
+In the src/test/resources directory of the memory-X.Y.Z-test-sources.jar there is a file called GettysburgAddress.txt.
+Note that this example leverages the try-with-resources statement to properly close the resource.
+To print out Lincoln's Gettysburg Address:
 
-    NativeMemory mem = new AllocMemory(1024);
-    MemoryRegion region1 = new MemoryRegion(mem, 0, 512);
-    MemoryRegion region2 = new MemoryRegion(mem, 512, 512);
-    //hand off region1 and region2 to other classes that use Memory
-    mem.freeMemory();
+  @Test
+  public void simpleMap() throws Exception {
+    File file = new File(getClass().getClassLoader().getResource("GettysburgAddress.txt").getFile());
+    try (MapHandle h = Memory.map(file)) {
+      Memory mem = h.get();
+      byte[] bytes = new byte[(int)mem.getCapacity()];
+      mem.getByteArray(0, bytes, 0, bytes.length);
+      String text = new String(bytes);
+      System.out.println(text);
+    }
+  }
 
-Now region1 and region2 can be passed to different classes where their view of memory is only the
-region they were handed.
-
-The MemoryRegionR is a read-only version of MemoryRegion.
-
-#### MemoryUtil Class
-The MemoryUtil class has useful static utility methods such as Memory to Memory copy.
-
-#### MemoryRequest Interface
-The MemoryRequest is a callback interface that is accessible from the Memory interface and provides a means for a Memory object to request more memory from the calling class and to free Memory that is no longer needed. 
-
-Once you start using native (off-heap) memory, you are responsible for managing your own memory 
-allocation and disposal. The MemoryRequest interface is a simplistic mechanism for allowing a process that has been handed a chunk of memory to request from the MemoryManager (which you have to write!) a new allocation of memory. Refer to the <i>theta</i> package for examples of
-how to do this.
-
-### Swim Lanes
-
-The Memory package enables systems with large RAM to allocate Memory "swim lanes" in native memory. 
-Each swim lane could be larger than the largest byte array allocatable from Java, 
-which is limited to 2GB. 
-From within Java each swim lane can be allocated to a single dedicated thread, 
-which allows the threads to work exclusively in their own memory space without interference 
-from other threads.
-This is illustrated in the following figure.
-
-<img class="doc-img-full" src="{{site.docs_img_dir}}/SwimLanes.png" alt="SwimLanes" />
-
-Within each swim lane, the controlling application can further "allocate" hierarchical 
-MemoryRegions and assign them to sub-classes or operations operating within that thread. 
-
-The MemoryUtil class has a Memory-to-Memory copy utility that enables copying across the swim lanes, 
-however, such an operation must be performed inside synchronization barriers to avoid any concurrency conflicts.
-These synchronization barriers must be provided by the using application.
+Note that this allows read / write access to files larger than 2GB.
 
 
+#### Regions and WritableRegions
+Similar to the _ByteBuffer slice()_, one can create a region or writable region, 
+which is a view into the same underlying resource. 
 
-
+  @Test
+  public void checkRORegions() {
+    int n = 16;
+    int n2 = n / 2;
+    long[] arr = new long[n];
+    for (int i = 0; i < n; i++) { arr[i] = i; }
+    Memory mem = Memory.wrap(arr);
+    Memory reg = mem.region(n2 * 8, n2 * 8);
+    for (int i = 0; i < n2; i++) {
+      assertEquals(reg.getLong(i * 8), i + n2);
+    }
+  }
 
