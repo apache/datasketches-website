@@ -72,16 +72,14 @@ The Memory package defines 4 APIs for accessing the above resources.
   * WritableBuffer - Read-write access using user setable byte position values: <i>start</i>, <i>position</i>, and <i>end</i>.
 
 #### Mapping a Resource to an API
-There are two different ways to map a resource to an API
-  * Use of static methods of the API.  For example: 
-  
-    //map an array of 1024 bytes to the WritableMemory API
+There are two different ways to map a resource to an API. The first uses static methods:
+
+    //use static methods to map an array of 1024 bytes to the WritableMemory API
     WritableMemory wmem = WritableMemory.allocate(1024);
-    
-    //map a ByteBuffer to the WritableMemory API
+    //Or, map a ByteBuffer to the WritableMemory API
     WritableMemory wmem2 = WritableMemory.allocate(byteBuffer);
     
-  * For AutoClosable resources, special classes called "Handles" are used to manage the AutoClosable properties. See examples below.
+For AutoClosable resources, special classes called "Handles" are used to manage the AutoClosable properties. See examples below.
 
 
 #### Examples for Accessing Primitive On-heap Array Resources
