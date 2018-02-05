@@ -74,26 +74,31 @@ The Memory package defines 4 APIs for accessing the above resources.
 #### Mapping a Resource to an API
 There are two different ways to map a resource to an API. The first uses static methods:
 
+```java
     //use static methods to map an array of 1024 bytes to the WritableMemory API
     WritableMemory wmem = WritableMemory.allocate(1024);
     //Or, map a ByteBuffer to the WritableMemory API
     WritableMemory wmem2 = WritableMemory.allocate(byteBuffer);
-    
+```
+
 For AutoClosable resources, special classes called "Handles" are used to manage the AutoClosable properties. See examples below.
 
 
 #### Examples for Accessing Primitive On-heap Array Resources
 Mapping a primitive array resource to the Memory API:
 
+```java
     byte[] array = new byte[] {1, 0, 0, 0, 2, 0, 0, 0};
     Memory mem = Memory.wrap(array);
     assert mem.getInt(0) == 1;
     assert mem.getInt(4) == 2;
+```
 
 This illustrates that the underlying structure of the resource is bytes but we can read it as
 ints, longs, char, or whatever. This is similar to a C UNION, which allows multiple data types
 to access the underlying bytes. This isn't allowed in Java! So be careful! For example:
 
+```java
     byte[] arr = new byte[16]
     WritableMemory wmem = WritableMemory.wrap(arr);
     wmem.putByte(1, (byte) 1);
@@ -103,6 +108,7 @@ to access the underlying bytes. This isn't allowed in Java! So be careful! For e
     arr[9] = 3; //you can also access the backing array directly
     long v2 = mem.getLong(8);
     assert ( v2 == 768L);
+```
 
 You have to keep careful track of your own structure and the appropriate byte offsets.
 
@@ -116,6 +122,7 @@ All of the APIs provide a useful toHexString(...) method to assist you in viewin
 Mapping a ByteBuffer resource to the WritableMemory API.  
 Here we write the WritableBuffer and read from both the ByteBuffer and the WritableBuffer.
 
+```java
     @Test
     public void simpleBBTest() {
       int n = 1024; //longs
@@ -137,12 +144,14 @@ Here we write the WritableBuffer and read from both the ByteBuffer and the Writa
         assertEquals(v, i);
       }
     }
+```
 
 #### Examples for Accessing Off-Heap Resources  
 Direct allocation of off-heap resources requires that the resource be closed when finished.
 This is accomplished using a _WritableDirectHandle_ that implements the Java _AutoClosable_ interface. 
 Note that this example leverages the try-with-resources statement to properly close the resource.
 
+```java
     @Test
     public void simpleAllocateDirect() {
       int longs = 32;
@@ -154,6 +163,7 @@ Note that this example leverages the try-with-resources statement to properly cl
         }
       }
     }
+```
 
 Note that these direct allocations can be larger than 2GB.
 
@@ -164,6 +174,7 @@ In the src/test/resources directory of the memory-X.Y.Z-test-sources.jar there i
 Note that this example leverages the try-with-resources statement to properly close the resource.
 To print out Lincoln's Gettysburg Address:
 
+```java
     @Test
     public void simpleMap() throws Exception {
       File file = new File(getClass().getClassLoader().getResource("GettysburgAddress.txt").getFile());
@@ -175,6 +186,7 @@ To print out Lincoln's Gettysburg Address:
         System.out.println(text);
       }
     }
+```
 
 The following test does the following:
 
@@ -221,6 +233,7 @@ The following test does the following:
 Similar to the _ByteBuffer slice()_, one can create a region or writable region, 
 which is a view into the same underlying resource. 
 
+```java
     @Test
     public void checkRORegions() {
       int n = 16;
@@ -233,4 +246,4 @@ which is a view into the same underlying resource.
         assertEquals(reg.getLong(i * 8), i + n2);
       }
     }
-
+```
