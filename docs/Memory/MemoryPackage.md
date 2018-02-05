@@ -116,44 +116,44 @@ All of the APIs provide a useful toHexString(...) method to assist you in viewin
 Mapping a ByteBuffer resource to the WritableMemory API.  
 Here we write the WritableBuffer and read from both the ByteBuffer and the WritableBuffer.
 
-  @Test
-  public void simpleBBTest() {
-    int n = 1024; //longs
-    byte[] arr = new byte[n * 8];
-    ByteBuffer bb = ByteBuffer.wrap(arr);
-    bb.order(ByteOrder.nativeOrder());
-
-    WritableBuffer wbuf = WritableBuffer.wrap(bb);
-    for (int i = 0; i < n; i++) { //write to wbuf
-      wbuf.putLong(i);
+    @Test
+    public void simpleBBTest() {
+      int n = 1024; //longs
+      byte[] arr = new byte[n * 8];
+      ByteBuffer bb = ByteBuffer.wrap(arr);
+      bb.order(ByteOrder.nativeOrder());
+      
+      WritableBuffer wbuf = WritableBuffer.wrap(bb);
+      for (int i = 0; i < n; i++) { //write to wbuf
+        wbuf.putLong(i);
+      }
+      wbuf.resetPosition();
+      for (int i = 0; i < n; i++) { //read from wbuf
+        long v = wbuf.getLong();
+        assertEquals(v, i);
+      }
+      for (int i = 0; i < n; i++) { //read from BB
+        long v = bb.getLong();
+        assertEquals(v, i);
+      }
     }
-    wbuf.resetPosition();
-    for (int i = 0; i < n; i++) { //read from wbuf
-      long v = wbuf.getLong();
-      assertEquals(v, i);
-    }
-    for (int i = 0; i < n; i++) { //read from BB
-      long v = bb.getLong();
-      assertEquals(v, i);
-    }
-  }
 
 #### Examples for Accessing Off-Heap Resources  
 Direct allocation of off-heap resources requires that the resource be closed when finished.
 This is accomplished using a _WritableDirectHandle_ that implements the Java _AutoClosable_ interface. 
 Note that this example leverages the try-with-resources statement to properly close the resource.
 
-  @Test
-  public void simpleAllocateDirect() {
-    int longs = 32;
-    try (WritableDirectHandle wh = WritableMemory.allocateDirect(longs << 3)) {
-      WritableMemory wMem1 = wh.get();
-      for (int i = 0; i<longs; i++) {
-        wMem1.putLong(i << 3, i);
-        assertEquals(wMem1.getLong(i << 3), i);
+    @Test
+    public void simpleAllocateDirect() {
+      int longs = 32;
+      try (WritableDirectHandle wh = WritableMemory.allocateDirect(longs << 3)) {
+        WritableMemory wMem1 = wh.get();
+        for (int i = 0; i<longs; i++) {
+          wMem1.putLong(i << 3, i);
+          assertEquals(wMem1.getLong(i << 3), i);
+        }
       }
     }
-  }
 
 Note that these direct allocations can be larger than 2GB.
 
@@ -164,17 +164,17 @@ In the src/test/resources directory of the memory-X.Y.Z-test-sources.jar there i
 Note that this example leverages the try-with-resources statement to properly close the resource.
 To print out Lincoln's Gettysburg Address:
 
-  @Test
-  public void simpleMap() throws Exception {
-    File file = new File(getClass().getClassLoader().getResource("GettysburgAddress.txt").getFile());
-    try (MapHandle h = Memory.map(file)) {
-      Memory mem = h.get();
-      byte[] bytes = new byte[(int)mem.getCapacity()];
-      mem.getByteArray(0, bytes, 0, bytes.length);
-      String text = new String(bytes);
-      System.out.println(text);
+    @Test
+    public void simpleMap() throws Exception {
+      File file = new File(getClass().getClassLoader().getResource("GettysburgAddress.txt").getFile());
+      try (MapHandle h = Memory.map(file)) {
+        Memory mem = h.get();
+        byte[] bytes = new byte[(int)mem.getCapacity()];
+        mem.getByteArray(0, bytes, 0, bytes.length);
+        String text = new String(bytes);
+        System.out.println(text);
+      }
     }
-  }
 
 Note that this allows read / write access to files larger than 2GB.
 
@@ -183,16 +183,16 @@ Note that this allows read / write access to files larger than 2GB.
 Similar to the _ByteBuffer slice()_, one can create a region or writable region, 
 which is a view into the same underlying resource. 
 
-  @Test
-  public void checkRORegions() {
-    int n = 16;
-    int n2 = n / 2;
-    long[] arr = new long[n];
-    for (int i = 0; i < n; i++) { arr[i] = i; }
-    Memory mem = Memory.wrap(arr);
-    Memory reg = mem.region(n2 * 8, n2 * 8);
-    for (int i = 0; i < n2; i++) {
-      assertEquals(reg.getLong(i * 8), i + n2);
+    @Test
+    public void checkRORegions() {
+      int n = 16;
+      int n2 = n / 2;
+      long[] arr = new long[n];
+      for (int i = 0; i < n; i++) { arr[i] = i; }
+      Memory mem = Memory.wrap(arr);
+      Memory reg = mem.region(n2 * 8, n2 * 8);
+      for (int i = 0; i < n2; i++) {
+        assertEquals(reg.getLong(i * 8), i + n2);
+      }
     }
-  }
 
