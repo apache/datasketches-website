@@ -52,13 +52,14 @@ aware of the importance of memory allocation and deallocation and make sure thes
 are managed properly. 
 
 ### Architecture
-The Memory package has 4 key public abstract classes, which behave as "interfaces" 
-and a number of other classes that will be described in this section.
+The Memory package consists of two major groups of classes.
+  * Classes that provide access to a <i>resource</i>, which is a linear collection of consecutive bytes. 
+  * Classes that define an API for reading and writing to a resource using primitives and primitive arrays.
 
 #### Resourses
-The Memory package defines 4 <i>Resources</i> that at their most basic level can be viewed as an array of bytes.
+The Memory package defines 4 <i>Resources</i> that at their most basic level can be viewed as a linear collection of consecutive bytes.
   * Primitive on-heap arrays: byte[], char[], etc.
-  * ByteBuffers
+  * Java _ByteBuffer_s
   * Off-heap memory. Also called "native" or "direct" memory.
   * Memory-mapped files
 
@@ -70,7 +71,18 @@ The Memory package defines 4 APIs for accessing the above resources.
   * Buffer - Read-only access using user setable byte position values: <i>start</i>, <i>position</i>, and <i>end</i>.
   * WritableBuffer - Read-write access using user setable byte position values: <i>start</i>, <i>position</i>, and <i>end</i>.
 
-All 4 of these APIs provide a rich collection of static "factory" methods for mapping a resource to an implementation of the API.
+#### Mapping a Resource to an API
+There are two different ways to map a resource to an API
+  * Use of static methods of the API.  For example: 
+  
+    //map an array of 1024 bytes to the WritableMemory API
+    WritableMemory wmem = WritableMemory.allocate(1024);
+    
+    //map a ByteBuffer to the WritableMemory API
+    WritableMemory wmem2 = WritableMemory.allocate(byteBuffer);
+    
+  * For AutoClosable resources, special classes called "Handles" are used to manage the AutoClosable properties. See examples below.
+
 
 #### Examples for Accessing Primitive On-heap Array Resources
 Mapping a primitive array resource to the Memory API:
@@ -82,9 +94,7 @@ Mapping a primitive array resource to the Memory API:
 
 This illustrates that the underlying structure of the resource is bytes but we can read it as
 ints, longs, char, or whatever. This is similar to a C UNION, which allows multiple data types
-to access the underlying bytes.
-The interpretation does depends on __processor endianness!__. 
-This isn't allowed in Java! So be careful! For example:
+to access the underlying bytes. This isn't allowed in Java! So be careful! For example:
 
     byte[] arr = new byte[16]
     WritableMemory wmem = WritableMemory.wrap(arr);
@@ -97,6 +107,10 @@ This isn't allowed in Java! So be careful! For example:
     assert ( v2 == 768L);
 
 You have to keep careful track of your own structure and the appropriate byte offsets.
+
+Reading and writing multibyte primitives requires an assumption about byte ordering or endianness. 
+The default endianness is _ByteOrder.nativeOrder()__, which for most CPUs is _ByteOrder.LITTLE_ENDIAN_.
+Additional APIs are being developed to enable reading and writing in non-native endianness.
 
 All of the APIs provide a useful toHexString(...) method to assist you in viewing the data in your resources.
 
