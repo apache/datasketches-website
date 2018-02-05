@@ -176,8 +176,46 @@ To print out Lincoln's Gettysburg Address:
       }
     }
 
-Note that this allows read / write access to files larger than 2GB.
+The following test does the following:
 
+1. Creates a off-heap WritableMemory and preloads it with 4GB of consecutive longs as a candidate source.
+2. Creates an empty file, and maps it to a memory-mapped space also of 4GB as the destination.
+3. Copies the source to the destination in a single operation. No extra copies required.
+
+```java
+    @Test
+    public void copyOffHeapToMemoryMappedFile() throws Exception {
+      long bytes = 1L << 32; //4GB
+      long longs = bytes >>> 3;
+  
+      File file = new File("TestFile.bin");
+      if (file.exists()) { file.delete(); }
+      assert file.createNewFile();
+      assert file.setWritable(true, false);
+      assert file.isFile();
+      file.deleteOnExit();  //comment out if you want to examine the file.
+  
+      try (
+          WritableMapHandle dstHandle
+            = WritableMemory.writableMap(file, 0, bytes, ByteOrder.nativeOrder());
+          WritableDirectHandle srcHandle = WritableMemory.allocateDirect(bytes)) {
+  
+        WritableMemory dstMem = dstHandle.get();
+        WritableMemory srcMem = srcHandle.get();
+  
+        for (long i = 0; i < (longs); i++) {
+          srcMem.putLong(i << 3, i); //load source with consecutive longs
+        }
+  
+        srcMem.copyTo(0, dstMem, 0, srcMem.getCapacity()); //off-heap to off-heap copy
+  
+        dstHandle.force(); //push any remaining to the file
+  
+        //check end value
+        assertEquals(dstMem.getLong((longs - 1L) << 3), longs - 1L);
+      }
+    }
+```
 
 #### Regions and WritableRegions
 Similar to the _ByteBuffer slice()_, one can create a region or writable region, 
