@@ -119,7 +119,7 @@ This behavior is strictly a function of the distribution of the input data so it
 and measure this phenomenon with your own data.
 
 The HLL sketch is not recommended if you anticipate the need of performing set intersection 
-or difference operations with reasonable accuracy.
+or difference operations with reasonable accuracy.  Instead, use the Theta sketch family.
 
 HLL sketches cannot be intermixed or merged in any way with Theta Sketches.
 
