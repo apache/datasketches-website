@@ -12,8 +12,8 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/KeyFeatures.html">Key Features</a></li>
   <li><a href="{{site.docs_dir}}/LargeScale.html">Large Scale Computing</a></li>
   <li><a href="{{site.docs_dir}}/Architecture.html">Architecture</a></li>
-  <li><a href="{{site.docs_dir}}/OrderSensitivity.html">Notes on Order Sensitivity</i></li>
-  <li><a href="{{site.docs_dir}}/Concurrency.html">Notes on Concurrency</i></li>
+  <li><a href="{{site.docs_dir}}/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
+  <li><a href="{{site.docs_dir}}/Concurrency.html">Notes on Concurrency</a></li>
   <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck_Sep2017.pdf">Overview Slide Deck 18Sep17</a></li>
   <li><a href="{{site.docs_pdf_dir}}/DataSketches_ATI_1Nov2017.pdf">ATI Slide Deck 1Nov17</a></li>
 </div>
