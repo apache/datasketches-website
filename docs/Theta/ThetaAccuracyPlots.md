@@ -18,7 +18,7 @@ A QuickSelect Sketch, which is the default sketch family, can be constructed wit
     
     double est = sketch.getEstimate();   //get the estimate of u
     
-    sketch.rebuild(); // An optional rebuild to reduce the sketch size to k if desired 
+    sketch.rebuild(); // An optional rebuild to reduce the sketch size to k. This ensures order insensitivity. 
     
     // Get the upper and lower bounds (optional). 
     
