@@ -8,7 +8,7 @@ layout: doc_page
 
 ### Data Streaming
 
-When analyzing massive data sets, generating exact answers to even very basic queries about the data can require huge compute resources (memory and compute time). Examples of such queries include identifying frequent items, unique count queries, quantiles and histogram queries, matrix analysis tasks such as Principle Components Analysis and Latent Semantic Analysis, and more complicated downstream machine learning tasks. This often leads to failure to scale, and precludes real-time analysis of data.
+When analyzing massive data sets, generating exact answers to even very basic queries about the data can require huge compute resources (memory and compute time). Examples of such queries include identifying frequent items, unique count queries, quantiles and histogram queries, matrix analysis tasks such as Principal Component Analysis and Latent Semantic Analysis, and more complicated downstream machine learning tasks. This often leads to failure to scale, and precludes real-time analysis of data.
 
 However, in many settings, approximate answers are acceptable, as long as the approximation error is carefully controlled. For example, if data are noisy, then any answer with less error than the noise that is already inherent in the data is just as useful as an exact algorithm. Even if data are noiseless, many high-level business decisions do not require exact knowledge of the data: knowing up to, say, 1% error how many unique users visited a website in a given time period is typically as effective as an exact answer.
 
