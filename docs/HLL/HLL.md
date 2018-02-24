@@ -76,16 +76,34 @@ This is due to a newly developed theory and estimator developed by Kevin Lang[2]
 
 The base Relative Standard Error (RSE) for this sketch (at LgK = 14) is 0.0065 = 0.8326 / 2<sup>7</sup>. 
 The horizontal gridlines are configured to be +/- multiples of the base RSE.
-The different color curves correspond to the quantiles of the Gaussian distribution at +/- 1, 2, and 3 standard deviations.
+
+The different color curves are contours of the actual error distribution measured at normalized rank values 
+derived from the Gaussian distribution at +/- 1, 2, and 3 standard deviations. (See "The Error Distribution Is Not Gaussian" below.)
+
 Therefore, the area between the orange and the green curves represent +/- 1 SD, which corresponds to a confidence level of 68.3%.
 The area between the red and the blue curves represent +/- 2 SD, which corresponds to a confidence level of 95.4%.
 The area between the brown and the purple curves represent +/- 3 SD, which correspons to a confidence level of 99.7%.
 
 The reader of this chart can easily see that this size HLL sketch will have error "bounds" of +/- 1.3% with 95.4% confidence.
-These "bounds" can also be derived directly from the sketch itself by calling the <i>getUpperBound(numStdDev)</i> 
+The actual value bounds can also be derived directly from the sketch itself by calling the <i>getUpperBound(numStdDev)</i> 
 and <i>getLowerBound(numStdDev)</i> methods.
 
+#### The Error Distribution Is Not Gaussian
 
+The underlying stochastic processes for unique count sketches (both HLL and Theta) do not produce a symmetric Gaussian error distribution at all.  In fact, it is quite complex and more related to the family of multinomial distributions. Nonetheless, the Central Limit Theorem still applies if both K and N are large enough.  If K is small (K <= 4096, lgK<=12), and even if N is large, the distribution becomes quite distorted.  The following plot for a very small-sized HLL sketch is a good example:
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllHipLgK4LgT20LgU20_accuracy.png" alt="HllHipLgK4LgT20LgU20_accuracy.png" />
+
+This graph shows the quantile contours for the HLL sketch where LgK = 4 (K = 16). 
+The normalized rank values (the values inside the parentheses, e.g. Q(.00135)) correspond to the normalized rank values at +/- 1,2 and 3 standard deviations of a Gaussian, which this is obviously not! 
+Nonetheless, choosing these quantile points allows us to also claim that the area between the +/- 1 Standard Deviation contours corresponds to 68% confidence; 
+between the +/- 2 Standard Deviation contours corresponds to 95.4% confidence, and between the +/- 3 Standard Deviation contours corresponds to 99.7% confidence.
+These normalized rank values were chosen because they allow easy comparison with confidence intervals that are commonly used in statistics. 
+
+Returning meaningful bounds for low values of K is empirical and approximate. There are no known closed-form mathematical solutions for these error distributions so we use lookup tables and empirical measurements to produce hopefully meaningful bounds.
+
+It is important to understand that the bounds values returned by calling the <i>getUpperBound(numStdDev)</i> and <i>getLowerBound(numStdDev)</i> methods
+are not hard limits, but attempts to measure meaningful "waist-lines" of distributions that theoretically can reach out to +/- infinity.
 
 ### HyperLogLog Speed Comparisons
 
