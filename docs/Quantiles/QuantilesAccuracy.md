@@ -83,8 +83,8 @@ The absolute rank error vs the trueRanks produced the following graph.
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/quantiles/QuantilesCDFAbsRankError.png" alt="QuantilesCDFAbsRankError" />
 
-All of these plots were generated from one set of values, and is not a test of the error bounds. 
+All of the above plots were generated from one trial, and is not a test of the error bounds. 
 
-The following plot illustrates the 99th percentile of observed normalized rank error of DoublesSketch with k=128 in 1000 trials at each stream length. The code to reproduce this measurement is available in the  [DataSketches/characterization](https://github.com/DataSketches/characterization/tree/master/src/main/java/com/yahoo/sketches/characterization/quantiles) repository. Note that these measurements are not directly comparable to the values in the table above as this graph plots the error for only the half-open intervals (-Infinity, Q], which is relevant to simple queries such as <i>getRank(value)</i>.
+The following plot illustrates the 99th percentile of observed maximum normalized rank error of DoublesSketch with k=128 in 1000 trials at each stream length. The code to reproduce this measurement is available in the  [DataSketches/characterization](https://github.com/DataSketches/characterization/tree/master/src/main/java/com/yahoo/sketches/characterization/quantiles) repository. Note that these measurements are not directly comparable to the values in the table above as this graph plots the error for only the half-open intervals (-Infinity, Q], which is relevant to simple queries such as <i>getRank(value)</i>.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/qds-7-compact-accuracy-1k-20180110.png" alt="QuantilesRankError" />
