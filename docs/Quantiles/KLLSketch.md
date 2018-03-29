@@ -26,7 +26,7 @@ float median = sketch.getQuantile(0.5);
 double rankOf1000 = sketch.getRank(1000);
 ```
 
-###Differences of KllFloatsSketch from DoublesSketch
+### Differences of KllFloatsSketch from DoublesSketch
 
 * Smaller size for the same accuracy
 * Slightly faster to update
