@@ -5,7 +5,7 @@ layout: doc_page
 ## KLL sketch
 
 Implementation of a very compact quantiles sketch with lazy compaction scheme and nearly optimal accuracy per bit.
-See <a href=https://arxiv.org/abs/1603.05346v2>this paper</a>.
+See <a href="https://arxiv.org/abs/1603.05346v2">this paper</a>.
 The name KLL is composed of the initial letters of the last names of the authors.
 
 The usage of KllFloatsSketch is very similar to DoublesSketch. Because the key feature of this sketch is compactness, it was implemented with float values instead of double values.
