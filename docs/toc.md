@@ -53,6 +53,7 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/Quantiles/QuantilesJavaExample.html">Quantiles Sketch Java Example</a></li>
   <li><a href="{{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
   <li><a href="{{site.docs_dir}}/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
+  <li><a href="{{site.docs_dir}}/Quantiles/KLLSketch.html">New KLL sketch and comparison with DoublesSketch</a></li>
 
 <h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_quantilesTheory">Quantiles Sketch Theory</a></h3>
 <div class="collapse" id="collapse_quantilesTheory">
