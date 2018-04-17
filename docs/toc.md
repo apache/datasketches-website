@@ -14,8 +14,8 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/Architecture.html">Architecture</a></li>
   <li><a href="{{site.docs_dir}}/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
   <li><a href="{{site.docs_dir}}/Concurrency.html">Notes on Concurrency</a></li>
-  <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck_Sep2017.pdf">Overview Slide Deck 18Sep17</a></li>
-  <li><a href="{{site.docs_pdf_dir}}/DataSketches_ATI_1Nov2017.pdf">ATI Slide Deck 1Nov17</a></li>
+  <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck_17Apr2018_full.pdf">Overview Slide Deck 17Apr18</a></li>
+
 </div>
 
 <h2 id="research"><a href="{{site.docs_dir}}/Research.html">Research</a></h2>
