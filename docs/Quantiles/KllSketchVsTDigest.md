@@ -43,7 +43,7 @@ The input for the following size measurements was generated using uniform random
 
 The error &epsilon; of the KLL sketch is specified as a fraction of the normalized rank of the hypothetical sorted stream of values presented to the sketch.
 
-Suppose the sketch is queried using getRank() method to obtain the esimated rank <i>r<sub>est</sub></i> of a value presented to the sketch. If the true rank of this value is <i>r<sub>true</sub></i>, the estimated rank must be within the specified rank error &epsilon; of the true rank with 99% probability: | <i>r<sub>est</sub></i> - <i>r<sub>true</sub></i> | < &epsilon;
+Suppose the sketch is queried using getRank() method to obtain the esimated rank <i>r<sub>est</sub></i> of a value presented to the sketch. If the true rank of this value is <i>r<sub>true</sub></i>, the estimated rank must be within the specified rank error &epsilon; of the true rank with 99% probability: &#124; <i>r<sub>est</sub></i> - <i>r<sub>true</sub></i> &#124; < &epsilon;
 
 KLL sketch has methods to obtain normalized rank error for both single-sided (rank) and double-sided (PMF) queries. The provided rank error is the best fit to 99th percentile of empirically measured maximum error in thousands of trials.
 
