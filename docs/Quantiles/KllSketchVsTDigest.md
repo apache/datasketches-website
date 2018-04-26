@@ -21,7 +21,7 @@ Consider the stream of <i>n</i> values presented to the sketch. The rank of a va
 
 KLL sketch uses the <i>min rule</i>. If one value is added to the sketch (even repeatedly), its rank is 0.
 
-It is not clear what rule t-digest uses. There is a descrepancy between the definition of rank in Javadoc and the implementation. The definition reads (above cdf(x) method in TDigest.java): "returns the fraction of all points added which are <= x". This would be the <i>max rule</i>. However, there is a helping method in tests that implements the <i>mid rule</i>. Moreover, experiments with steams with the same repeated value show that the <i>min rule</i> might explain the results better (see the plot below), but not exactly. For completeness the comparioson was done using all tree rules for t-digest.
+It is not clear what rule t-digest uses. There is a descrepancy between the definition of rank in Javadoc and the implementation. The definition reads (above cdf(x) method in TDigest.java): "returns the fraction of all points added which are <= x". This would be the <i>max rule</i>. However, there is a helping method in tests that implements the <i>mid rule</i>. Moreover, experiments with streams of the same repeated value show that the <i>min rule</i> might explain the results better (see the plot below), but not exactly. For completeness the comparioson was done using all tree rules for t-digest.
 
 This plot is to validate the basic assumptions about the sketches. The same repeated value was used as the input. The expected rank error is 0%.
 
