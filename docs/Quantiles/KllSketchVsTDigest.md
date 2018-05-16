@@ -16,7 +16,7 @@ The goal of this article is to do an objective comparison of the KLL quantiles s
 Consider the stream of <i>n</i> values presented to the sketch. The rank of a value would be its index in the sorted version of the input stream. If we divide the rank by <i>n</i>, it becomes the normalized rank, which is between 0 and 1. Suppose a particular value <i>x</i> is repeated several times. There is a range of ranks in the hypothetical sorted stream that might be assigned to <i>x</i>:
 
 * <i>min rule</i>: mass of the distribution of values less than <i>x</i>
-* <i>max rule</i>: mass of the distribution of values less then or equal to <i>x</i>
+* <i>max rule</i>: mass of the distribution of values less than or equal to <i>x</i>
 * <i>mid rule</i>: half way between the <i>min rule</i> and the <i>max rule</i>
 
 KLL sketch uses the <i>min rule</i>. If one value is added to the sketch (even repeatedly), its rank is 0.
@@ -43,17 +43,18 @@ The input for the following size measurements was generated using uniform random
 
 The error &epsilon; of the KLL sketch is specified as a fraction of the normalized rank of the hypothetical sorted stream of values presented to the sketch.
 
-Suppose the sketch is queried using getRank() method to obtain the esimated rank <i>r<sub>est</sub></i> of a value presented to the sketch. If the true rank of this value is <i>r<sub>true</sub></i>, the estimated rank must be within the specified rank error &epsilon; of the true rank with 99% probability: | <i>r<sub>est</sub></i> - <i>r<sub>true</sub></i> | < &epsilon;
+Suppose the sketch is queried using getRank() method to obtain the esimated rank <i>r<sub>est</sub></i> of a value presented to the sketch. If the true rank of this value is <i>r<sub>true</sub></i>, the estimated rank must be within the specified rank error &epsilon; of the true rank with 99% probability:
+&#124;&nbsp;<i>r<sub>est</sub></i>&nbsp;-&nbsp;<i>r<sub>true</sub></i>&nbsp;&#124;&nbsp;<&nbsp;&epsilon;
 
-KLL sketch has methods to obtain normalized rank error for both single-sided (rank) and double-sided (PMF) queries. The privided rank error is the best fit to 99th percentile of empirically measured maximum error in thousands of trials.
+KLL sketch has methods to obtain normalized rank error for both single-sided (rank) and double-sided (PMF) queries. The provided rank error is the best fit to 99th percentile of empirically measured maximum error in thousands of trials.
 
-Note that KLL sketch does not make any assumptions about the distribution of the values. In principle the values do not even have to be numeric. The only requirement is the "less than" relation in the value space. The implementation under test is specialized for values of type float, but the algorithm does not take into account any "distance" in the value space. Therefore there are no error guarantees in terms of values, only the bounds: lower and upper bound values such that the true quantile should be found somewhere between them with 99% probability.
+Note that KLL sketch does not make any assumptions about the distribution of values. In principle the values do not even have to be numeric. The only requirement is the "less than" relation in the value space. The implementation under test is specialized for values of type float, but the algorithm does not take into account any "distance" in the value space. Therefore there are no error guarantees in terms of values, only the bounds are provided: lower and upper bound values such that the true quantile should be found somewhere between them with 99% probability.
 
 ### Specification of error of t-digest
 
 The error of the t-digest is specified, similarly to KLL sketch, as a fraction of the normalized rank.
 
-The t-digest algorithm is taking into account the distance between values, but doesn't provide any accuracy guarantees in the value space.
+The t-digest algorithm is taking into account the distance between values, but does not provide any accuracy guarantees in the value space.
 
 The implementation of t-digest (as of this writing) doesn't have any methods to obtain rank error or error bounds.
 

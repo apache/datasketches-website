@@ -39,6 +39,7 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/HLL/HllPigUDFs.html">HLL Sketch Pig UDFs</a></li>
   <li><a href="{{site.docs_dir}}/HLL/HllHiveUDFs.html">HLL Sketch Hive UDFs</a></li>
   <li><a href="{{site.docs_dir}}/HLL/HllMap.html">HLL Map Sketch</a></li>
+  <li><a href="{{site.docs_dir}}/HLL/HllSketchVsDruidHyperLogLogCollector.html">HLL Sketch vs Druid HyperLogLogCollector</a></li>
 </div>
 
 <h2 id="memory-package"><a data-toggle="collapse" class="menu collapsed" href="#collapse_memory">Memory</a></h2>
@@ -54,7 +55,7 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
   <li><a href="{{site.docs_dir}}/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
   <li><a href="{{site.docs_dir}}/Quantiles/KLLSketch.html">New KLL sketch and comparison with DoublesSketch</a></li>
-  <li><a href="{{site.docs_dir}}/Quantiles/KLLSketchVsTDigest.html">KLL sketch vs t-digest</a></li>
+  <li><a href="{{site.docs_dir}}/Quantiles/KllSketchVsTDigest.html">KLL sketch vs t-digest</a></li>
 
 <h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_quantilesTheory">Quantiles Sketch Theory</a></h3>
 <div class="collapse" id="collapse_quantilesTheory">
