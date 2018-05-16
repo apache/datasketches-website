@@ -14,7 +14,7 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/Architecture.html">Architecture</a></li>
   <li><a href="{{site.docs_dir}}/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
   <li><a href="{{site.docs_dir}}/Concurrency.html">Notes on Concurrency</a></li>
-  <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck_17Apr2018_full.pdf">Overview Slide Deck 17Apr18</a></li>
+  <li><a href="{{site.docs_pdf_dir}}/DataSketches_deck.pdf">Overview Slide Deck</a></li>
 
 </div>
 
