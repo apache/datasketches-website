@@ -37,11 +37,13 @@ distinct keys per sketch = 32768
 number of sketches = 8192
 number of trials = 100
 
+Datasketches HLL:
 True count: 2.68435456E8
 Mean estimate: 2.682570869364015E8
 Mean Relative Error: 0.017548665411422536
 Total Job Time: 0:07:33.375
 
+Druid HLL:
 True count: 2.68435456E8
 Mean estimate: 2.259574435603495E8
 Mean Relative Error: 0.1582429276393743
