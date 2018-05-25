@@ -33,21 +33,21 @@ In practice, the implementation of the HLL sketch in this library uses HIP (Hist
 
 The following is an empirical measurement of relative error after merging:
 
-distinct keys per sketch = 32768
-number of sketches = 8192
-number of trials = 100
-
-Datasketches HLL:
-True count: 2.68435456E8
-Mean estimate: 2.682570869364015E8
-Mean Relative Error: 0.017548665411422536
-Total Job Time: 0:07:33.375
-
-Druid HLL:
-True count: 2.68435456E8
-Mean estimate: 2.259574435603495E8
-Mean Relative Error: 0.1582429276393743
-Total Job Time: 0:37:10.089
+	distinct keys per sketch = 32768
+	number of sketches = 8192
+	number of trials = 100
+	
+	Datasketches HLL:
+	True count: 2.68435456E8
+	Mean estimate: 2.682570869364015E8
+	Mean Relative Error: 0.017548665411422536
+	Total Job Time: 0:07:33.375
+	
+	Druid HLL:
+	True count: 2.68435456E8
+	Mean estimate: 2.259574435603495E8
+	Mean Relative Error: 0.1582429276393743
+	Total Job Time: 0:37:10.089
 
 Theoretical standard error for 11-bit HLL (K=2048) is about 2.3%. The HLL sketch form this library performed well within expectations showing about 1.75% relative error on average. The Druid HLL sketch showed about 15.8% relative error, which is significantly worse than expected. Notice that it took about 5 times longer to run the same process using Druid HLL sketch.
 
