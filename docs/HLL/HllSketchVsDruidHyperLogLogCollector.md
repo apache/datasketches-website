@@ -8,12 +8,12 @@ The goal of this article is to compare the HLL sketch implemented in this librar
 
 ## Versions
 
-* KLL sketch form <a href="https://github.com/DataSketches/sketches-core/releases/tag/sketches-core-0.11.1">sketches-core-0.11.1</a> (April 20, 2018)
+* HLL sketch form <a href="https://github.com/DataSketches/sketches-core/releases/tag/sketches-core-0.11.1">sketches-core-0.11.1</a> (April 20, 2018)
 * Druid HyperLogLogCollector from <a href="https://github.com/druid-io/druid/releases/tag/druid-0.12.0">druid-0.12.0</a> (March 8, 2018)
 
 ## Size
 
-The starting point in this comparison was a choice of parameter <i>k=2048</i> for HLL sketch in such a way that it would approximately match the size of Druid HyperLogLogCollector, which has no parameters available to the user. It is quite difficult to measure the size of a Java object in memory, therefore the serialized size was used as the best available measure of size, which is also important for many practical applications in large systems.
+The starting point in this comparison was a choice of parameter <i>K=2048</i> for HLL sketch in such a way that it would approximately match the size of Druid HyperLogLogCollector, which has no parameters available to the user. It is quite difficult to measure the size of a Java object in memory, therefore the serialized size was used as the best available measure of size, which is also important for many practical applications in large systems.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/hll/hll-sketch-vs-druid-size.png" alt="HLL2048 vs Druid HLLC serialized size plot" />
 
@@ -33,7 +33,7 @@ It was proved in <a href="http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.
 
 The following is an empirical demonstration that the library's implementation of HLL exhibits the required behavior after merging, but Druid's implementation of HLL does not. The latter's measured standard error is about 7 times larger than HLL's theoretical guarantee. This is mostly due to bias; on average, Druid is undercounting by about 16 percent on this example.
 
-	True count: 2.68435456E8
+	true count: 2.68435456E8
 	distinct keys per sketch = 32768
 	number of sketches = 8192
 	number of trials = 100
@@ -51,7 +51,7 @@ The following is an empirical demonstration that the library's implementation of
 Also, Druid's implementation was much slower.
 
 Technical Note: the library's HLL sketches are more complicated than the standard HLL algorithm. In certain special cases where better-than-HLL accuracy is possible, the library employs other estimators, and even other stochastic processes and data structures. When those special cases no longer apply, the library falls back to
-the standard HLL algorithm. As a result, when viewed as black boxes, HLL sketches can exhibit a small penalty for merging, and therefore don't satisfy a strict definition of fully mergeable. However the library is always at least as accurate as standard HLL sketches, which <b>are</b> fully mergeable.
+the standard HLL algorithm. As a result, when viewed as black boxes, the library's HLL sketches can exhibit a small penalty for merging, and therefore don't satisfy a strict definition of fully mergeable. However the library is always at least as accurate as standard HLL sketches, which <b>are</b> fully mergeable.
 
 ## Source code
 
