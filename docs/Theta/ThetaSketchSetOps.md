@@ -26,15 +26,15 @@ The AnotB operation, however, is asymmetric (i.e., sketch order sensitive) and n
 For example:
 
     int k = 4096;
-    UpdateSketch skA = Sketches.updateSketchBuilder().build(k);
-    UpdateSketch skB = Sketches.updateSketchBuilder().build(k);
-    UpdateSketch skC = Sketches.updateSketchBuilder().build(k);
+    UpdateSketch skA = Sketches.updateSketchBuilder().setNominalEntries(k).build();
+    UpdateSketch skB = Sketches.updateSketchBuilder().setNominalEntries(k).build();
+    UpdateSketch skC = Sketches.updateSketchBuilder().setNominalEntries(k).build();
     
     for (int i=1;  i<=10; i++) { skA.update(i); }
     for (int i=1;  i<=20; i++) { skB.update(i); }
     for (int i=6;  i<=15; i++) { skC.update(i); } //overlapping set
     
-    Union union = Sketches.setOperationBuilder().buildUnion(k);
+    Union union = Sketches.setOperationBuilder().setNominalEntries(k).buildUnion();
     union.update(skA);
     union.update(skB);
     // ... continue to iterate on the input sketches to union
@@ -44,7 +44,7 @@ For example:
     
     //Intersection is similar
     
-    Intersection inter = Sketches.setOperationBuilder().buildIntersection(k);
+    Intersection inter = Sketches.setOperationBuilder().setNominalEntries(k).buildIntersection();
     inter.update(unionSk);
     inter.update(skC);
     // ... continue to iterate on the input sketches to intersect
@@ -54,7 +54,7 @@ For example:
     
     //The AnotB operation is a little different as it is stateless and not iterative:
     
-    AnotB aNotB = Sketches.setOperationBuilder().buildANotB(k);
+    AnotB aNotB = Sketches.setOperationBuilder().setNominalEntries(k).buildANotB();
     aNotB.update(skA, skC);
     
     CompactSketch not = aNotB.getResult();
