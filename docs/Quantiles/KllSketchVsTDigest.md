@@ -17,11 +17,11 @@ Consider the stream of <i>n</i> values presented to the sketch. The rank of a va
 
 * <i>min rule</i>: mass of the distribution of values less than <i>x</i>
 * <i>max rule</i>: mass of the distribution of values less than or equal to <i>x</i>
-* <i>mid rule</i>: half way between the <i>min rule</i> and the <i>max rule</i>
+* <i>mid rule</i>: halfway between the <i>min rule</i> and the <i>max rule</i>
 
 KLL sketch uses the <i>min rule</i>. If one value is added to the sketch (even repeatedly), its rank is 0.
 
-It is not clear what rule t-digest uses. There is a descrepancy between the definition of rank in Javadoc and the implementation. The definition reads (above cdf(x) method in TDigest.java): "returns the fraction of all points added which are <= x". This would be the <i>max rule</i>. However, there is a helping method in tests that implements the <i>mid rule</i>. Moreover, experiments with streams of the same repeated value show that the <i>min rule</i> might explain the results better (see the plot below), but not exactly. For completeness the comparioson was done using all tree rules for t-digest.
+It is not clear what rule t-digest uses. There is a discrepancy between the definition of rank in Javadoc and the implementation. The definition reads (above cdf(x) method in TDigest.java): "returns the fraction of all points added which are <= x". This would be the <i>max rule</i>. However, there is a helping method in tests that implements the <i>mid rule</i>. Moreover, experiments with streams of the same repeated value show that the <i>min rule</i> might explain the results better (see the plot below), but not exactly. For completeness the comparison was done using all tree rules for t-digest.
 
 This plot is to validate the basic assumptions about the sketches. The same repeated value was used as the input. The expected rank error is 0%.
 
@@ -29,7 +29,7 @@ This plot is to validate the basic assumptions about the sketches. The same repe
 
 ## Size
 
-The starting point in this comparison is a choice of parameters for KLL sketch and t-digest in such a way that they have approximately the same size. It is quite difficult to measure the size of a Java object in memory, therefore the serialized size was used as the best available measure of size, which is also important for many practical applications in large systems. There are two ways to serialize t-digest: asBytes() and asSmallBytes(). It was found that t-digest with compression=100 (recommended in the documentation) approximately matches the size of KLL with the default parameter K=200 if the asBytes() method is used, and compression=200 approximately matches KLL if serialized using asSmallBytes() method. For completenes the comparison was done at both levels of compression.
+The starting point in this comparison is a choice of parameters for KLL sketch and t-digest in such a way that they have approximately the same size. It is quite difficult to measure the size of a Java object in memory, therefore the serialized size was used as the best available measure of size, which is also important for many practical applications in large systems. There are two ways to serialize t-digest: asBytes() and asSmallBytes(). It was found that t-digest with compression=100 (recommended in the documentation) approximately matches the size of KLL with the default parameter K=200 if the asBytes() method is used, and compression=200 approximately matches KLL if serialized using asSmallBytes() method. For completeness the comparison was done at both levels of compression.
 
 The input for the following size measurements was generated using uniform random values from 0 to 1 (Random.nextFloat() for KLL sketch and Random.nextDouble() for t-digest)
 
@@ -43,7 +43,7 @@ The input for the following size measurements was generated using uniform random
 
 The error &epsilon; of the KLL sketch is specified as a fraction of the normalized rank of the hypothetical sorted stream of values presented to the sketch.
 
-Suppose the sketch is queried using getRank() method to obtain the esimated rank <i>r<sub>est</sub></i> of a value presented to the sketch. If the true rank of this value is <i>r<sub>true</sub></i>, the estimated rank must be within the specified rank error &epsilon; of the true rank with 99% probability:
+Suppose the sketch is queried using getRank() method to obtain the estimated rank <i>r<sub>est</sub></i> of a value presented to the sketch. If the true rank of this value is <i>r<sub>true</sub></i>, the estimated rank must be within the specified rank error &epsilon; of the true rank with 99% probability:
 &#124;&nbsp;<i>r<sub>est</sub></i>&nbsp;-&nbsp;<i>r<sub>true</sub></i>&nbsp;&#124;&nbsp;<&nbsp;&epsilon;
 
 KLL sketch has methods to obtain normalized rank error for both single-sided (rank) and double-sided (PMF) queries. The provided rank error is the best fit to 99th percentile of empirically measured maximum error in thousands of trials.
@@ -62,7 +62,7 @@ The implementation of t-digest (as of this writing) doesn't have any methods to 
 
 #### Input
 
-* Unioform distribution between 0 and 1 (Random.nextFloat() for KLL sketch and Random.nextDouble() for t-digest)
+* Uniform distribution between 0 and 1 (Random.nextFloat() for KLL sketch and Random.nextDouble() for t-digest)
 * Gaussian distribution with mean 0 and standard deviation 1 (Random.nextGaussian())
 * Growing blocks of repeated values (starts with 1 and 0.001 probability of incrementing, after every increment the probability is decreased by the factor of 0.98)
 
