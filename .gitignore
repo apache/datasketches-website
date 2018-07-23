@@ -32,8 +32,7 @@ build.xml
 # Jekyll
 Gemfile.lock
 _site/
-_*
-_*/
+vendor/
 
 # Other
 *.old
