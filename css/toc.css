@@ -13,3 +13,23 @@
 .menu.collapsed:after {
    content: "\25B8";
 }
+
+div#toc {
+    margin-top: 40px;
+}
+#toc p a {
+   font-size: 20px;
+}
+#toc .collapse p a,#toc .collapsing p a {
+    font-size: 14px;
+    font-weight: bold
+}
+
+#toc .highlight {
+    background-color: #2576CC;
+    color: white;
+}
+
+#toc .collapse, #toc .collapsing {
+    margin-left: 20px;
+}
