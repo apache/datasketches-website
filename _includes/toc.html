@@ -339,74 +339,66 @@
   </div>
 </div>
 <script>
-  //(function () {
-  var scrollTracker = function () {
-    window.addEventListener('scroll', function () {
-      document.getElementById('toc').style.position = 'absolute';
-      document.getElementById('toc').style.top = window.pageYOffset + 'px';
-    });
-  };
+  (function () {
 
-  var findLineItem = function (path) {
-    return document.querySelector(`[href="${path}"]`);
-  };
+    var findLineItem = function (path) {
+      return document.querySelector(`[href="${path}"]`);
+    };
 
-  var highlighLineItem = function (element) {
-    element.classList.add('highlight');
-  };
+    var highlighLineItem = function (element) {
+      element.classList.add('highlight');
+    };
 
-  var checkHasClass = function (element, className) {
-    return element.className.split(' ').find(function (item) { return item === className || '' })
-  }
-
-  var findAllCollapseParents = function (element) {
-    var collapseMenus = [];
-    var elementPointer = element;
-    while (elementPointer !== document.body) {
-      if (checkHasClass(elementPointer, 'collapse')) {
-        collapseMenus.push(elementPointer);
-      }
-      elementPointer = elementPointer.parentElement
+    var checkHasClass = function (element, className) {
+      return element.className.split(' ').find(function (item) { return item === className || '' })
     }
-    return collapseMenus
-  };
 
-  var findMatchingCollapseMenu = function (collapseItem) {
-    return document.querySelector(`[href="#${collapseItem.id}"]`);
-  };
-
-  var findAllParentMenus = function (element) {
-    var parentMenus = []
-    var elementPointer = element;
-    while (elementPointer !== document.body) {
-      if (elementPointer.className.split(' ').indexOf('menu') > -1) {
-        parentMenus.push(elementPointer);
+    var findAllCollapseParents = function (element) {
+      var collapseMenus = [];
+      var elementPointer = element;
+      while (elementPointer !== document.body) {
+        if (checkHasClass(elementPointer, 'collapse')) {
+          collapseMenus.push(elementPointer);
+        }
+        elementPointer = elementPointer.parentElement
       }
-      elementPointer = elementPointer.parentElement;
+      return collapseMenus
+    };
+
+    var findMatchingCollapseMenu = function (collapseItem) {
+      return document.querySelector(`[href="#${collapseItem.id}"]`);
+    };
+
+    var findAllParentMenus = function (element) {
+      var parentMenus = []
+      var elementPointer = element;
+      while (elementPointer !== document.body) {
+        if (elementPointer.className.split(' ').indexOf('menu') > -1) {
+          parentMenus.push(elementPointer);
+        }
+        elementPointer = elementPointer.parentElement;
+      }
+      return parentMenus;
     }
-    return parentMenus;
-  }
 
-  var openMenuItem = function (element) {
-    element.click();
-  };
+    var openMenuItem = function (element) {
+      element.click();
+    };
 
-  var openAllFromList = function (elementList) {
-    elementList.forEach(function (element) {
-      console.log(element)
-      openMenuItem(findMatchingCollapseMenu(element))
-    });
-  };
+    var openAllFromList = function (elementList) {
+      elementList.forEach(function (element) {
+        console.log(element)
+        openMenuItem(findMatchingCollapseMenu(element))
+      });
+    };
 
-  var highlightAndOpenMenu = function () {
-    var currentLineItem = findLineItem(document.location.pathname);
-    highlighLineItem(currentLineItem)
-    openAllFromList(findAllCollapseParents(currentLineItem));
-  };
+    var highlightAndOpenMenu = function () {
+      var currentLineItem = findLineItem(document.location.pathname);
+      highlighLineItem(currentLineItem)
+      openAllFromList(findAllCollapseParents(currentLineItem));
+    };
 
-  scrollTracker();
-  $(highlightAndOpenMenu)
+    $(highlightAndOpenMenu);
 
-  //}());
-  //document.querySelector(`[href="${document.location.pathname}"]`).click()
+  }());
 </script>
