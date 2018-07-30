@@ -82,7 +82,7 @@ This solution suffices in some applications, but for other applications the chun
 ## References
 
 [ABL+17]
-Daniel Anderson, Pryce Bevan, Kevin J. Lang, Edo Liberty, Lee Rhodes, and Justin Thaler. A high-performance algorithm for identifying frequent items in data streams. In *ACM IMC 2017 (To Appear)*, 2017. Preliminary version available at <https://arxiv.org/abs/1705.07001>.
+Daniel Anderson, Pryce Bevan, Kevin J. Lang, Edo Liberty, Lee Rhodes, and Justin Thaler. A high-performance algorithm for identifying frequent items in data streams. In *ACM IMC 2017 (To Appear)*, 2017. [Preliminary paper](https://arxiv.org/abs/1705.07001).
 
 [AC+13]
 Pankaj K. Agarwal, Graham Cormode, Zengfeng Huang, Jeff M. Phillips, Zhewei Wei, Ke Yi. Mergeable summaries. *ACM Trans. Database Syst.* 38(4): 26:1-26:28, 2013
@@ -97,7 +97,7 @@ Amit Chakrabarti, Graham Cormode, and Andrew McGregor. A near-optimal algorithm 
 Michael B. Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu. Dimensionality reduction for k-means clustering and low rank approximation. In *ACM STOC Proceedings '15*, pages 163–172, 2015.
 
 [DLRT16]
-Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *ACM ICDT Proceedings '16 *, pages 6:1–6:17, 2016.
+Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings '16 *, pages 6:1–6:17, 2016. [Talk Slides](https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/icdt-talk.pdf).
 
 [FFGM07]
 Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *DMTCS Conference on Analysis of Algorithms*, pages 137–156, 2007.
