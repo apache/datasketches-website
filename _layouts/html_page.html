@@ -2,16 +2,12 @@
 <!-- Start _layouts/html_page.html-->
 <html lang="en">
 
-<head>	
-{% include site_head.html %}
+<head>
+    {% include site_head.html %}
 </head>
 
-<body>	
-{% include page_header.html %}
-
-{{ content }}
-
-{% include page_footer.html %}
+<body>
+    {% include page_header.html %} {{ content }} {% include page_footer.html %}
 </body>
 
 </html>
