@@ -10,7 +10,7 @@ To explain how a simple sketch works, let us start with the well-known <i>k Mini
 Our objectives are as follows:
 
 * Estimate the number of unique identifiers in the entire Big Data in a single pass through all the data.
-* Retain no more then <i>k</i> values in the sketch at any one time.
+* Retain no more than <i>k</i> values in the sketch at any one time.
 
 In the diagram on the left we have a source of data that could be stored data or a live stream of data.  We can imagine that this data consists of many millions of events or rows of data, where each event could consist of many columns of information about the events:  dimensional information, various counters or metrics, and identifiers that uniquely identify a device or user that was the source of the event. There are possibly millions of different identifiers and the same identifiers can appear many times throughout the data. For our purposes here, we will only focus on the identifiers.    
 
