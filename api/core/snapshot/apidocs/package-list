@@ -1,4 +1,5 @@
 com.yahoo.sketches
+com.yahoo.sketches.cpc
 com.yahoo.sketches.frequencies
 com.yahoo.sketches.hash
 com.yahoo.sketches.hll
