@@ -6,7 +6,7 @@ layout: doc_page
 
 ### Instructions
 
-* get jars
+* get jars from maven.org (search for datasketches)
 * save the following script as quantiles.pig
 * adjust jar versions and paths if necessary
 * save the below data into a file called "data.txt"
@@ -15,8 +15,9 @@ layout: doc_page
 
 ### quantiles.pig script
 
-    register sketches-core-0.7.0.jar;
-    register sketches-pig-0.7.0.jar;
+    register memory-0.11.0.jar;
+    register sketches-core-0.11.1.jar;
+    register sketches-pig-0.11.0.jar;
 
     define dataToSketch com.yahoo.sketches.pig.quantiles.DataToDoublesSketch();
     define unionSketch com.yahoo.sketches.pig.quantiles.UnionDoublesSketch();
