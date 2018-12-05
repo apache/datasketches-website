@@ -37,7 +37,7 @@ Beyond its utility in deployed systems, the process of developing of developing 
 
 In particular, work on the Data Sketches library has led to novel algorithms achieving state of the art practical performance for identifying frequent items in data streams [ABL+17], and mergeable summaries for unique count queries [DLRT16]. On the theoretical side, work on the library has led to the resolution of the space complexity of streaming approximation algorithms for quantile queries, which was a longstanding open question [KLL16], as well as for the problem of identifying frequent *itemsets* [LMTU16].
 
-There are major opportunities to incorporate algorithms for new and richer types of queries into the library, as well as to improve the efficiency of the algorithms that are already implemented.
+The cutting edge of scientific inquiry is to build more powerful algorithms and, at the same time, to devise new theorems and proofs that certify that these algorithms work well enough to draw robust conclusions.  This library is dedicated to that quest. By working in the open source community we are confident that there are major opportunities to incorporate algorithms for new and richer types of queries into the library, as well as to improve the efficiency of the algorithms that are already implemented.
 
 ## Improved Algorithms for Unique Counting
 
