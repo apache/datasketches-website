@@ -33,22 +33,34 @@ It was proved in <a href="http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.
 
 The following is an empirical demonstration that the library's implementation of HLL exhibits the required behavior after merging, but Druid's implementation of HLL does not. The latter's measured standard error is about 7 times larger than HLL's theoretical guarantee. This is mostly due to bias; on average, Druid is undercounting by about 16 percent on this example.
 
-	true count: 2.68435456E8
-	distinct keys per sketch = 32768
-	number of sketches = 8192
-	number of trials = 100
+The test consisted of 100 trials of merging 8192 sketches into a single sketch.  Each of the input sketches had been updated with 32768 unique values. The error is computed 
+
+	Sketch Size: lgK = 11, k = 2048
+  True count: 2.68435456E8
+	Distinct keys per sketch = 32768
+	Number of sketches = 8192
+	Number of trials = 100
+  RSE Specification for this size sketch = 1.03896 / SQRT(2^11) = 0.023 = +/- 2.3% at 68% confidence.
 	
-	The library's implementation:
-	Mean estimate: 2.6826835125572532E8
-	Relative Standard Error: 0.021226565654784535 (less than 0.023)
+	The DataSketches library HLL implementation:
+	Mean estimate: 2.6826835125572532E8 (0.06 percent low, essentially no bias!)
+	Normalized RMS Error: 0.021226565654784535 (better than the RSE Specification)
 	Total Job Time        : 0:07:33.241
 	
-	Druid's implementation:
+	The Druid HLL implementation:
 	Mean estimate: 2.2560974267493743E8 (16 percent low)
-	Relative Standard Error: 0.16058739888244847 (7 times 0.023)
+	Normalized RMS Error: 0.16058739888244847 (7 times the RSE Specification)
 	Total Job Time        : 0:36:43.451
 
-Also, Druid's implementation was much slower.
+Also, Druid's implementation was much slower. 
+
+The above comparisons can be visualized in the following charts:
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}/hll/DruidRSEComparison.png" alt="HLL2048 vs Druid HLLC Merge error" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/hll/DruidBuildMergeTimeComparison.png" alt="HLL2048 vs Druid Merge Time" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/hll/DruidHllBiasComparison.png" alt="HLL2048 vs Druid Bias" />
+
+
 
 Technical Note: the library's HLL sketches are more complicated than the standard HLL algorithm. In certain special cases where better-than-HLL accuracy is possible, the library employs other estimators, and even other stochastic processes and data structures. When those special cases no longer apply, the library falls back to
 the standard HLL algorithm. As a result, when viewed as black boxes, the library's HLL sketches can exhibit a small penalty for merging, and therefore don't satisfy a strict definition of fully mergeable. However the library is always at least as accurate as standard HLL sketches, which <b>are</b> fully mergeable.
