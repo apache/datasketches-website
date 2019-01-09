@@ -68,3 +68,7 @@ the standard HLL algorithm. As a result, when viewed as black boxes, the library
 ## Source code
 
 The code to reproduce these measurements is available in the <a href="https://github.com/DataSketches/characterization/tree/druid-hyperloglogcollector">Datasketches/characterization repository</a>
+
+## HLL sketch Druid module
+
+The <a href="http://druid.io/docs/latest/development/extensions-core/datasketches-hll.html">Hll sketch module</a> for Druid is available as a part of the <a href="http://druid.io/docs/latest/development/extensions-core/datasketches-extension.html">DataSketches extension</a>.
