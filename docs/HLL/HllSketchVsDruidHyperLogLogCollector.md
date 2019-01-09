@@ -62,7 +62,7 @@ The above comparisons can be visualized in the following charts:
 
 
 Technical Note: the library's HLL sketches are more complicated than the standard HLL algorithm. In certain special cases where better-than-HLL accuracy is possible, the library employs other estimators, and even other stochastic processes and data structures. When those special cases no longer apply, the library falls back to the standard HLL estimator algorithm. 
-One of these special cases is that for a simple streaming sketch that is not involved in merge operations we can take advantage of a more advanced estimator algorithm with improved error properties.
+One of these special cases is for a simple streaming sketch that is not involved in merge operations we can take advantage of a more advanced estimator algorithm with improved error properties.
 When comparing the error of a merged sketch to the error of a non-merged sketch, the library's HLL sketches will have a slightly larger error after merging. This is the direct result of this fall-back mechanism. 
 This slightly larger error is still within the RSE Specification of error defined as 1.03896 / SQRT(k).
 
