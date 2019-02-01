@@ -38,3 +38,4 @@ vendor/
 *.old
 .paper/
 tmp/
+/local/
