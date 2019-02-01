@@ -24,7 +24,7 @@ by Yael Ben-Haim and Elad Tom-Tov of the IBM Haifa Research Lab. However, it sho
 
 Unfortunately, a lot of the data that we tend to analyze is highly skewed so these caveats don't bode well for this study.  Nonetheless, we thought it would be useful to test it anyway.
 
-## The Input Data = StreamA
+## The Input Data
 All we know about this stream is that it consists of consecutive strings of numeric values separated by a line-feed. Stored as a file, its size is about 2GB.
 
 
