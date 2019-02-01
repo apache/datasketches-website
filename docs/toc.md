@@ -56,12 +56,12 @@ layout: toc_page
   <li><a href="{{site.docs_dir}}/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
   <li><a href="{{site.docs_dir}}/Quantiles/KLLSketch.html">New KLL sketch and comparison with DoublesSketch</a></li>
   <li><a href="{{site.docs_dir}}/Quantiles/KllSketchVsTDigest.html">KLL sketch vs t-digest</a></li>
-  <li><a href="{{site.docs_dir}}/Quantiles/KllSketchVsTDigest.html">KLL sketch vs t-digest</a></li>
+  <li><a href="{{site.docs_dir}}/Quantiles/DruidApproxHistogramStudy.html">Druid Approximate Histogram Study</a></li>
 
 <h3><a data-toggle="collapse" class="menu collapsed" href="#collapse_quantilesTheory">Quantiles Sketch Theory</a></h3>
 <div class="collapse" id="collapse_quantilesTheory">
   <li><a href="{{site.docs_pdf_dir}}/Quantiles_KLL.pdf">Optimal Quantile Approximation in Streams</a></li>
-  <li><a href="{{site.docs_dir}}/Quantiles/DruidApproxHistogramStudy.html">Druid Approximate Histogram Study</a></li>
+  <li><a href="{{site.docs_dir}}/Quantiles/QuantilesReferences.html">Quantiles References</a></li>
 </div>
 </div>
 
