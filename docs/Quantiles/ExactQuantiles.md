@@ -45,6 +45,8 @@ This is a very important plot as it tells us a great deal about our data:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/StreamA_ExactCDF.png" alt="StreamA Exact CDF" />
 
+The reason that the left part of the curve stops at about (0.13, 3) is because slightly less than 13% of the values in the data are zeros, and we can't plot zeros on the logarithmic Y axis; thus the apparent gap.
+
 ## Examine The CDF To Determine Split-Points 
 This is an important step and determines the quality and value of our PMF or Histogram plot. 
 By examining the above CDF we can choose the aspects of the data that we are interested in by selecting appropriate split-point values, which are the boundaries of the bins of the PMF.
@@ -55,13 +57,15 @@ Based on the min and max values from the CDF, we generated this series mathemati
 
 ## 4th Scan
 We scan the array and save the *natural ranks* (indices) at the chosen split-point values. 
-The difference between adjacent *natural ranks*is the mass (the number of items) between the respective splitpoints.
+The difference between adjacent *natural ranks* is the mass (the number of items) between the respective splitpoints.
 We can plot the Histogram with the split-point values on the X-axis and the differences between the respective *natural ranks* on the Y-axis.
 If we plotted the differences between the respective *normalized ranks* on the Y-axis we would have the PMF.
 
 ### The <i>StreamA</i> Exact Histogram
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/StreamA_ExactHistogram.png" alt="StreamA Exact Histogram" />
+
+On this plot you will observe the big spike on the left. This represents the mass of all the zero values in the data. This is a bar-chart plot, so the X-axis labels are whatever we assign to them. Because all the bars are the same width, it gives the apperance that the x-Axis is a logarithmic axis ... but the plotting software does not know that.  Normally, one cannot plot a zero on a logarithmic axis, but here we can get away with it. :)
 
 ## Source
 You can study the code that implements the above process and generated the above plots.
