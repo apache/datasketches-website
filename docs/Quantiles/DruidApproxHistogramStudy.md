@@ -46,7 +46,7 @@ This whole process is executed by the Exact Analysis profiler (bottom of page).
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DruidAH_StreamA_CDF.png" alt="Druid Approx Hist CDF of ranks to quantiles" />  
 
-The green dots in the above plot represents the Gold Standard cumulative distribution (CDF) of ranks to quantile values. The black circles in the upper right corner of the plot represent the values returned from the *getQuantiles(float[])* function. 
+The green dots in the above plot represents the Gold Standard cumulative distribution (CDF) of ranks to quantile values. The black circles in the upper right corner of the plot represent the values returned from the Approximate Histogram *getQuantiles(float[])* function. 
 
 The plot reveals a dramatic failure of the Approximate Histogram. Below rank = 0.89, the returned array had all zeros.
 
