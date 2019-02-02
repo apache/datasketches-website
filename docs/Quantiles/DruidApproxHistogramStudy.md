@@ -27,19 +27,10 @@ Unfortunately, a lot of the data that we tend to analyze is highly skewed so the
 ## The Input Data
 The data file used for this evaluation, *streamA.txt*, is real data extracted from one of our back-end servers.  It represents one hour of time-spent data. The data in this file has a smooth and well-behaved value distribution and has a wide dynamic range.  It is a text file and consists of consecutive strings of numeric values separated by a line-feeds. Its size is about 2GB.
 
-## Creating the "Gold Standard" of <i>Truth</i> 
-In order to measure the accuracy of the Approximate Histogram, we performed an exact, brute-force analysis of *streamA.txt*.
+## Creating the Exact CDF and Histograms For Comparison
+In order to measure the accuracy of the Approximate Histogram, we need an exact, brute-force analysis of *streamA.txt*. 
 
-* 1st scan; We scan the file to determine the number of items, <i>n</i> in the file and to determine the type of numerics in the data (they are all integers). 
-* Then we created a temporary primitive integer array of size <i>n</i>.
-* 2nd scan: extract the values from the file and load into the integer array.
-* The array is sorted.
-* 3rd scan; extract 101 quantile values at the ranks: (0, .01, .02, ... .99, 1.00).
-* This allows us to plot the rank to quantile cumulative distribution. And from this we choose appropriate splitpoints values that would produce a good-looking PMF plot. This turned out to be a exponential power series. This requires some judgement but could be automated. We did not bother to do this. 
-* 4th scan: extract the ranks at the chosen split-point values. Denormalize each rank by multiplying by <i>n</i>.  The difference in the denormalized ranks is the mass between the respective splitpoints.
-* This allows us to plot the PMF.
-
-This whole process is executed by the Exact Analysis profiler (bottom of page).
+The process for creating these comparison standards can be found [here]({{site.docs_dir}}/Quantiles/ExactQuantiles.html).
 
 
 ## The Results
@@ -54,7 +45,7 @@ The next plot is the Histogram generated from the values returned by the *Histog
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DruidAH_StreamA_PMF1.png" alt="Druid Approx Hist PMF of values to counts" />
 
-Compared to the true histogram (green bars) the histogram produced by the AH algorithm is highly distorted. Note that the green spike at the low end is caused by zeros in the raw data, which is a common occurrence in a lot of data we collect.  To make the distortion easier to visualize the same data are plotted using lines instead of bars in the following:
+Compared to the true histogram (green bars) the histogram produced by the AH algorithm is highly distorted. Note that the green spike at the low end is caused by zeros in the raw data, which is a common occurrence in a lot of data we collect.  To make the distortion easier to visualize the same data are plotted using lines instead of bars as in the following:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DruidAH_StreamA_PMF2.png" alt="Druid Approx Hist PMF of values to counts" />
 
@@ -67,9 +58,7 @@ The following are used to create the plots above.
 
 * [Approximate Histogram profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/com/yahoo/sketches/characterization/quantiles/DruidAppHistStreamAProfile.java)
 * [AH profiler config](https://github.com/DataSketches/characterization/blob/master/src/main/resources/quantiles/DruidAHStreamAJob.conf)
-* [Exact analysis profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/com/yahoo/sketches/characterization/quantiles/ExactStreamAProfile.java)
-* [Exact analysis config](https://github.com/DataSketches/characterization/blob/master/src/main/resources/quantiles/ExactStreamAJob.conf)
-* [Data file](https://github.com/DataSketches/characterization/blob/master/streamA.txt.zip) This is stored using git-lfs.
+* [StreamA Data file](https://github.com/DataSketches/characterization/blob/master/streamA.txt.zip) This is stored using git-lfs.
 
 Run the above profilers as a java application and supply the config file as the single argument. The program will check if the data file has been unzipped, and if not it will unzip it for you. 
 

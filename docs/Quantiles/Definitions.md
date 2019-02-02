@@ -39,23 +39,23 @@ This is the rank that would include *v* as if it existed.
 For example: given the following HSS and associated ranks:
 
 ```
-HSS
-   Val  Rank
-  1.00  0.00
-  2.00  0.11
-  3.00  0.22
-  5.00  0.33
-  5.00  0.44
-  5.00  0.56
-  7.00  0.67
-  8.00  0.78
-  9.00  0.89
+Hypothetically Sorted Stream (HSS)
+   Val  Natural Rank  Normalized Rank (divided by n = 9)
+  1.00             0             0.00
+  2.00             1             0.11
+  3.00             2             0.22
+  5.00             3             0.33
+  5.00             4             0.44
+  5.00             5             0.56
+  7.00             6             0.67
+  8.00             7             0.78
+  9.00             8             0.89
 ```
 
-The *getRank(v)* will return the following:
+The *getRank(v)* will return for each of the following:
 
 ```
-getRank()
+getRank(v)
    Val  Rank
   0.00  0.00
   0.50  0.00
@@ -82,10 +82,10 @@ For the *getQuantile(r)* query:
 
 * <i>Strictly less-than quantile rule</i>: return the value associated with the largest rank that is strictly less-than *r*.
 
-This can be observed in the following:
+The *getQuantile(r)* will return for each of the following:
 
 ```
-getQuantile()
+getQuantile(r)
   Rank   Val
   0.00  1.00
   0.10  1.00
@@ -103,17 +103,20 @@ getQuantile()
 ### Accuracy
 Accuracy for quantiles sketches is measured with respect to the *rank* only.  Not the values.  
 
-So a specified accuracy of 1% at the median (rank = 0.50) means that the true value (if you could compute it from the HSS) should be 
+A specified accuracy of 1% at the median (rank = 0.50) means that the true value (if you could extract it from the HSS) should be 
 between *getQuantile(0.49)* and *getQuantile(0.51)*. Note that this is an absolute rank error and not a relative rank error. 
-Measured at the 10th percentile means that the true value (if you could compute it from the HSS) should be 
+Measured at the 10th percentile means that the true value (from the HSS) should be 
 between *getQuantile(0.09)* and *getQuantile(0.11)*. 
 
 ### The Sketch and Data Independence
-A *sketch* is an implementation of a *streaming algorithm*. By definition, a sketch has only one chance to examine each item of the stream.  It is this property that makes a sketch a *streaming* algorithm and useful for real-time analysis of very large streams that may be impractical to actually store. 
+A *sketch* is an implementation of a *streaming algorithm*. By definition, a sketch has only one chance to examine each item of the stream.  
+It is this property that makes a sketch a *streaming* algorithm and useful for real-time analysis of very large streams that may be impractical to actually store. 
 
 We also assume that the sketch knows nothing about the input data stream: its length, the range of the values or how the values are distributed. 
-If the authors of a particular algorithm require the user to know any of the above attributes of the input data stream in order to "tune" the algorithm, the algorithm is not a sketch as it would require multiple passes through the input data in order to produce correct results.
+If the authors of a particular algorithm require the user to know any of the above attributes of the input data stream in order to "tune" the algorithm, 
+the algorithm is not a sketch as it would require multiple passes through the input data in order to produce correct results.
 
-The only thing the sketch user needs to know is how to extract the values from the stream so that they can be fed into the sketch. It is also reasonable that the user knows the *type* of values in the stream: e.g., are they alphanumeric strings, numeric strings, or numeric primitives. These properties may determine the type of sketch to use as well as how to extract the appropriate quantities to feed into the sketch.  
-
+The only thing the user needs to know is how to extract the values from the stream so that they can be fed into the sketch. 
+It is also reasonable that the user knows the *type* of values in the stream: e.g., are they alphanumeric strings, numeric strings, or numeric primitives. 
+These properties may determine the type of sketch to use as well as how to extract the appropriate quantities to feed into the sketch.
 
