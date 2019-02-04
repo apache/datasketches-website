@@ -4,6 +4,11 @@
    padding-left: 15px;
 }
 
+.toc p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 /* Icon when showing collapsible content */
 .menu:after {
    content: "\25BE";
