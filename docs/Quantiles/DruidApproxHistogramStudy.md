@@ -25,7 +25,7 @@ by Yael Ben-Haim and Elad Tom-Tov of the IBM Haifa Research Lab. However, it sho
 Unfortunately, a lot of the data that we tend to analyze is highly skewed so these caveats don't bode well for this study.  Nonetheless, we thought it would be useful to test it anyway.
 
 ## The Input Data
-The data file used for this evaluation, *streamA.txt*, is real data extracted from one of our back-end servers.  It represents one hour of time-spent data. The data in this file has a smooth and well-behaved value distribution and has a wide dynamic range.  It is a text file and consists of consecutive strings of numeric values separated by a line-feeds. Its size is about 2GB.
+The data file used for this evaluation, *streamA.txt*, is real data extracted from one of our back-end servers.  It represents one hour of web-site time-spent data measured in milliseconds. The data in this file has a smooth and well-behaved value distribution with a wide dynamic range.  It is a text file and consists of consecutive strings of numeric values separated by a line-feeds. Its size is about 2GB.
 
 ## Creating the Exact CDF and Histograms For Comparison
 In order to measure the accuracy of the Approximate Histogram, we need an exact, brute-force analysis of *streamA.txt*. 
@@ -37,7 +37,7 @@ The process for creating these comparison standards can be found [here]({{site.d
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DruidAH_StreamA_CDF.png" alt="Druid Approx Hist CDF of ranks to quantiles" />  
 
-The green dots in the above plot represents the Gold Standard cumulative distribution (CDF) of ranks to quantile values. The black circles in the upper right corner of the plot represent the values returned from the Approximate Histogram *getQuantiles(float[])* function. 
+The green dots in the above plot represents the Exact cumulative distribution (CDF) of ranks to quantile values. The black circles in the upper right corner of the plot represent the values returned from the Approximate Histogram *getQuantiles(float[])* function. 
 
 The plot reveals a dramatic failure of the Approximate Histogram. Below rank = 0.89, the returned array had all zeros.
 

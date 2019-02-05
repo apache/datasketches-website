@@ -31,7 +31,7 @@ The *normalized rank* is just the *natural rank* divided by *n*.
 We choose, somewhat arbitrarily, to select the percentile ranks in order to understand what kind of distribution we are dealing with.
 We scan the array and save the 101 quantile values corresponding to this linear series of ranks: (0, .01, .02, ... .99, 1.00).
 
-## Plot The CDF
+## Plot The <i>StreamA</i> CDF
 This allows us to plot the rank to quantile cumulative distribution or CDF. 
 This is normally plotted with ranks (0 to 1.0) on the X-axis and the 101 quantile values on the Y-axis.
 This is a very important plot as it tells us a great deal about our data:
@@ -41,7 +41,7 @@ This is a very important plot as it tells us a great deal about our data:
   * Do the values span multiple orders-of-magnitude.
   * Are there any apparent gaps or jumps in the values?
 
-### The <i>StreamA</i> Exact CDF
+### The Exact CDF
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/StreamA_ExactCDF.png" alt="StreamA Exact CDF" />
 
@@ -58,10 +58,12 @@ Based on the min and max values from the CDF, we generated this series mathemati
 ## 4th Scan
 We scan the array and save the *natural ranks* (indices) at the chosen split-point values. 
 The difference between adjacent *natural ranks* is the mass (the number of items) between the respective splitpoints.
+
+## Plot The <i>StreamA</i> Histogram
 We can plot the Histogram with the split-point values on the X-axis and the differences between the respective *natural ranks* on the Y-axis.
 If we plotted the differences between the respective *normalized ranks* on the Y-axis we would have the PMF.
 
-### The <i>StreamA</i> Exact Histogram
+### The Exact Histogram
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/StreamA_ExactHistogram.png" alt="StreamA Exact Histogram" />
 
