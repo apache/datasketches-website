@@ -30,7 +30,7 @@ The process for creating these comparison standards can be found [here]({{site.d
 
 ### K = 256, Size = 21408 bytes
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DSQSketchK256_StreamA_CDF.png" alt="DataSketches Quantiles Sketch StreamA CDF of ranks to quantiles" />  
+<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DSQsketchK256_StreamA_CDF.png" alt="DataSketches Quantiles Sketch StreamA CDF of ranks to quantiles" />  
 
 The green dots in the above plot represents the Exact cumulative distribution (CDF) of ranks to quantile values. The red circles represent the values returned from the DS Quantiles Sketch *getQuantiles(double[])* function. 
 
@@ -47,7 +47,7 @@ The histogram produced by the DS Quantiles sketch very closely matches the Exact
 
 The CDF plot:
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DSQSketchK32_StreamA_CDF.png" alt="DataSketches Quantiles Sketch StreamA CDF of ranks to quantiles" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DSQsketchK32_StreamA_CDF.png" alt="DataSketches Quantiles Sketch StreamA CDF of ranks to quantiles" />
 
 The Histogram plot:
 
