@@ -33,8 +33,9 @@ In order to measure the accuracy of the Approximate Histogram, we need an exact,
 
 The process for creating these comparison standards can be found [here]({{site.docs_dir}}/Quantiles/ExactQuantiles.html).
 
-
 ## The Results
+
+### K = 15, Size = 141 bytes,  <i>a priori</i> Accuracy = Unknown
 
 The CDF plot:
 

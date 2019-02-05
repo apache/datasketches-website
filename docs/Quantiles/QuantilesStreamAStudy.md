@@ -28,7 +28,7 @@ The process for creating these comparison standards can be found [here]({{site.d
 
 ## The Results
 
-### K = 256, Size = 21408 bytes
+### K = 256, Size = 21408 bytes, <i>a priori</i> Accuracy = +/- 0.717%
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DSQsketchK256_StreamA_CDF.png" alt="DataSketches Quantiles Sketch StreamA CDF of ranks to quantiles" />  
 
@@ -43,7 +43,7 @@ The Green bars represent the Exact Distribution, and the Orange bars represent t
 
 The histogram produced by the DS Quantiles sketch very closely matches the Exact Histogram. 
 
-### K = 32, Size = 3232 bytes
+### K = 32, Size = 3232 bytes, <i>a priori</i> Accuracy = +/- 5.4%
 
 The CDF plot:
 
