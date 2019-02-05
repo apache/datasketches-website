@@ -52,8 +52,8 @@ Users would be well-advised to not use this tool for serious analysis.
 ## The Evaluation Source
 The following are used to create the plots above.
 
-* [Approximate Histogram profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/com/yahoo/sketches/characterization/quantiles/MSketchStreamAProfile.java)
-* [AH profiler config](https://github.com/DataSketches/characterization/blob/master/src/main/resources/quantiles/MSketchStreamAJob.conf)
+* [Moments Sketch profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/com/yahoo/sketches/characterization/quantiles/MSketchStreamAProfile.java)
+* [MSketch profiler config](https://github.com/DataSketches/characterization/blob/master/src/main/resources/quantiles/MSketchStreamAJob.conf)
 * [StreamA Data file](https://github.com/DataSketches/characterization/blob/master/streamA.txt.zip) This is stored using git-lfs.
 
 Run the above profilers as a java application and supply the config file as the single argument. The program will check if the data file has been unzipped, and if not it will unzip it for you. 
