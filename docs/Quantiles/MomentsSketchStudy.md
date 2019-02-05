@@ -23,7 +23,7 @@ by Edward Gan, Jialin Ding, Kai Sheng Tai, Vatsal Sharan, Peter Bailis of Stanfo
 * "The moments sketch runs into numeric stability issues past <i>k</i> &ge; 15 on some datasets." Page 9, Section 6.2.2
 * "The moments sketch ... is most useful in datasets without strong discretization ...  The maximum entropy principle is less accurate when there are clusters of discrete values in a dataset." Page 2, Section 1.
 
-Unfortunately, real data can be quite ugly as it can be highly skewed and with lots of zeros, nulls, and sometimes negative values. 
+Unfortunately, real data can be quite ugly as it can be highly skewed and with lots of zeros, nulls, gaps, and sometimes negative values. 
 
 ## The Input Data
 The data file used for this evaluation, *streamA.txt*, is real data extracted from one of our back-end servers.  It represents one hour of web-site time-spent data measured in milliseconds. The data in this file has a smooth and well-behaved value distribution with a wide dynamic range.  It is a text file and consists of consecutive strings of numeric values separated by a line-feeds. Its size is about 2GB.
