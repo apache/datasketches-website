@@ -10,7 +10,7 @@ Please get familiar with the [Definitions]({{site.docs_dir}}/Quantiles/Definitio
 
 ## Versions
 
-* Moments Sketch code as of <a href="https://github.com/apache/incubator-druid/pull/6581">apache/incubator-druid Pull Request 6851 Feb 4, 2019</a>
+* Moments Sketch Solver<a href="https://search.maven.org/classic/#artifactdetails%7Ccom.github.stanford-futuredata.momentsketch%7Cmomentsketch-solver%7C0.1.1%7Cjar">version 0.1.1</a>
 
 
 ## The Paper
@@ -29,7 +29,7 @@ Unfortunately, real data can be quite ugly as it can be highly skewed and with l
 The data file used for this evaluation, *streamA.txt*, is real data extracted from one of our back-end servers.  It represents one hour of web-site time-spent data measured in milliseconds. The data in this file has a smooth and well-behaved value distribution with a wide dynamic range.  It is a text file and consists of consecutive strings of numeric values separated by a line-feeds. Its size is about 2GB.
 
 ## Creating the Exact CDF and Histograms For Comparison
-In order to measure the accuracy of the Approximate Histogram, we need an exact, brute-force analysis of *streamA.txt*. 
+In order to measure the accuracy of the Moments Sketch, we need an exact, brute-force analysis of *streamA.txt*. 
 
 The process for creating these comparison standards can be found [here]({{site.docs_dir}}/Quantiles/ExactQuantiles.html).
 
