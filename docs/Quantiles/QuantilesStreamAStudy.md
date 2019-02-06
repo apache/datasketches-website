@@ -28,30 +28,38 @@ The process for creating these comparison standards can be found [here]({{site.d
 
 ## The Results
 
+The DataSketches Quantiles Sketch provides a very straightforward tradeoff between sketch size and accuracy as the next two examples show.
+
 ### K = 256, Size = 21408 bytes, <i>a priori</i> Accuracy = +/- 0.717%
+
+The CDF plot:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DSQsketchK256_StreamA_CDF.png" alt="DataSketches Quantiles Sketch StreamA CDF of ranks to quantiles" />  
 
 The green dots in the above plot represents the Exact cumulative distribution (CDF) of ranks to quantile values. The red circles represent the values returned from the DS Quantiles Sketch *getQuantiles(double[])* function. 
 
-The plot reveals a very tight fit to the exact quantiles over the full range. The thin black and blue lines just to the left and right of the plotted points represent the lower-bound and upper-bound error derived from the sketch's *getLowerBound()* and *getUpperBound()* functions. The normalized rank error specification for this sketch which was created with *k = 256* is +/- 0.717%.
+The plot reveals a very tight fit to the exact quantiles over the full range. The thin black and blue lines just to the left and right of the plotted points represent the lower-bound and upper-bound error derived from the sketch's *getLowerBound()* and *getUpperBound()* functions.
 
-The next plot is the Histogram generated from the values returned by the *getPMF(double[])* function. Each of the returned values is multiplied by *getN()* to produce the respecive mass of each bin.  
-The Green bars represent the Exact Distribution, and the Orange bars represent the results obtained from the DS Quantiles sketch.
+The Histogram plot:
+
+The next plot is the Histogram generated from the values returned by the *getPMF(double[])* function. Each of the returned values is multiplied by *getN()* to produce the respecive mass of each bin. The Green bars represent the Exact Distribution, and the Orange bars represent the results obtained from the DS Quantiles sketch. You can see that they match pretty well.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DSQsketchK256_StreamA_PMF.png" alt="DataSketches Quantiles Histogrm vs Exact" />
 
-The histogram produced by the DS Quantiles sketch very closely matches the Exact Histogram. 
 
 ### K = 32, Size = 3232 bytes, <i>a priori</i> Accuracy = +/- 5.4%
 
 The CDF plot:
+
+Note the wider interval between the upper and lower bounds curves:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DSQsketchK32_StreamA_CDF.png" alt="DataSketches Quantiles Sketch StreamA CDF of ranks to quantiles" />
 
 The Histogram plot:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DSQsketchK32_StreamA_PMF.png" alt="DataSketches Quantiles Histogrm vs Exact" />
+
+A little noiser but still tracks the exact shape pretty well:
 
 ## The Evaluation Source
 The following are used to create the plots above.
@@ -63,7 +71,3 @@ The following are used to create the plots above.
 
 Run the above profilers as a java application and supply the config file as the single argument. The program will check if the data file has been unzipped, and if not it will unzip it for you. 
 
-
-
-
- 
