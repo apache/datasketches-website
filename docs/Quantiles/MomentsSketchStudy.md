@@ -10,7 +10,7 @@ Please get familiar with the [Definitions]({{site.docs_dir}}/Quantiles/Definitio
 
 ## Versions
 
-* Moments Sketch Solver<a href="https://search.maven.org/classic/#artifactdetails%7Ccom.github.stanford-futuredata.momentsketch%7Cmomentsketch-solver%7C0.1.1%7Cjar">version 0.1.1</a>
+* Moments Sketch Solver <a href="https://search.maven.org/classic/#artifactdetails%7Ccom.github.stanford-futuredata.momentsketch%7Cmomentsketch-solver%7C0.1.1%7Cjar">version 0.1.1</a>
 
 
 ## The Paper
