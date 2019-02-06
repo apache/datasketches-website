@@ -41,7 +41,7 @@ The CDF plot:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/MSketch_StreamA_CDF.png" alt="MSketch CDF of ranks to quantiles" />  
 
-The green dots in the above plot represents the Exact cumulative distribution (CDF) of ranks to quantile values. The black circles in the upper right corner of the plot represent the values returned from the Approximate Histogram *getQuantiles(float[])* function. 
+The green dots in the above plot represents the Exact cumulative distribution (CDF) of ranks to quantile values. The blue dots represent the values returned from the MomentSketchWrapper *getQuantiles(double[])* function. 
 
 The plot reveals that the MSketch has improperly shifted the entire distribution by about 12% to the left creating a fixed rank error of at about 12% over the entire range. This is likely due to the zeros that naturally occur in this data. This failure is silent as MSketch does not provide any warning that this kind of distortion might be occurring.  
 
