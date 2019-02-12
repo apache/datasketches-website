@@ -1,6 +1,6 @@
 ---
 published: true
-title: Data Sketches
+title: DataSketches
 layout: html_page
 id: home
 ---
