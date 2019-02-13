@@ -109,14 +109,10 @@ Measured at the 10th percentile means that the true value (from the HSS) should 
 between *getQuantile(0.09)* and *getQuantile(0.11)*. 
 
 ### The Sketch and Data Independence
-A *sketch* is an implementation of a *streaming algorithm*. By definition, a sketch has only one chance to examine each item of the stream.  
-It is this property that makes a sketch a *streaming* algorithm and useful for real-time analysis of very large streams that may be impractical to actually store. 
+A *sketch* is an implementation of a *streaming algorithm*. By definition, a sketch has only one chance to examine each item of the stream.  It is this property that makes a sketch a *streaming* algorithm and useful for real-time analysis of very large streams that may be impractical to actually store. 
 
-We also assume that the sketch knows nothing about the input data stream: its length, the range of the values or how the values are distributed. 
-If the authors of a particular algorithm require the user to know any of the above attributes of the input data stream in order to "tune" the algorithm, 
-the algorithm is not a sketch as it would require multiple passes through the input data in order to produce correct results.
+We also assume that the sketch knows nothing about the input data stream: its length, the range of the values or how the values are distributed. If the authors of a particular algorithm require the user to know any of the above attributes of the input data stream in order to "tune" the algorithm, the algorithm is not a sketch as it would require multiple passes through the input data in order to produce correct results.
 
 The only thing the user needs to know is how to extract the values from the stream so that they can be fed into the sketch. 
-It is also reasonable that the user knows the *type* of values in the stream: e.g., are they alphanumeric strings, numeric strings, or numeric primitives. 
-These properties may determine the type of sketch to use as well as how to extract the appropriate quantities to feed into the sketch.
+It is also reasonable that the user knows the *type* of values in the stream: e.g., are they alphanumeric strings, numeric strings, or numeric primitives. These properties may determine the type of sketch to use as well as how to extract the appropriate quantities to feed into the sketch.
 
