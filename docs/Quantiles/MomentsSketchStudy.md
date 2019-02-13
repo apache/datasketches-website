@@ -8,6 +8,8 @@ The goal of this article is to compare the accuracy performance of the Moments S
 
 Please get familiar with the [Definitions]({{site.docs_dir}}/Quantiles/Definitions.html) for quantiles.
 
+Compare this study with the DataSketches [Quantiles StreamA Study](https://datasketches.github.io/docs/Quantiles/QuantilesStreamAStudy.html) with the same input data.
+
 ## Versions
 
 * Moments Sketch Solver <a href="https://search.maven.org/classic/#artifactdetails%7Ccom.github.stanford-futuredata.momentsketch%7Cmomentsketch-solver%7C0.1.1%7Cjar">version 0.1.1</a>

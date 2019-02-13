@@ -8,6 +8,8 @@ The goal of this article is to compare the accuracy performance of the Druid bui
 
 Please get familiar with the [Definitions]({{site.docs_dir}}/Quantiles/Definitions.html) for quantiles.
 
+Compare this study with the DataSketches [Quantiles StreamA Study](https://datasketches.github.io/docs/Quantiles/QuantilesStreamAStudy.html) with the same input data. 
+
 ## Versions
 
 * Druid <a href="https://github.com/apache/incubator-druid/blob/master/extensions-core/histogram/src/main/java/org/apache/druid/query/aggregation/histogram/ApproximateHistogram.java">ApproximateHistogram.java Nov 6, 2018</a>
