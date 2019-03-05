@@ -128,4 +128,4 @@ This is a list of the configuration parameters for the builder:
 
 
 
-[1] TBD, arXiv/PODC
+[1] Arik Rinberg, Alexander Spiegelman, Edward Bortnikov, Eshcar Hillel, Idit Keidar, Hadar Serviansky, *Fast Concurrent Data Sketches*, https://arxiv.org/abs/1902.10995
