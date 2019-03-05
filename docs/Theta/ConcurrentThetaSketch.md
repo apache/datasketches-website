@@ -40,7 +40,6 @@ This is a list of the configuration parameters for the builder:
 
 ## Code Example for Building a Concurrent Theta Sketch
 
-    import static com.yahoo.sketches.Util.DEFAULT_UPDATE_SEED;
     import com.yahoo.memory.WritableDirectHandle;
     import com.yahoo.memory.WritableMemory;
     import com.yahoo.sketches.theta.Sketch;
@@ -67,13 +66,14 @@ This is a list of the configuration parameters for the builder:
         //configures builder for both local and shared
         void buildConcSketch() {
             bldr = new UpdateSketchBuilder();
-            bldr.setNumPoolThreads(poolThreads);
-            bldr.setLogNominalEntries(sharedLgK);
-            bldr.setLocalLogNominalEntries(localLgK);
-            bldr.setSeed(DEFAULT_UPDATE_SEED);
-            bldr.setPropagateOrderedCompact(ordered);
-            bldr.setMaxConcurrencyError(maxConcurrencyError);
-            bldr.setbMaxNumLocalThreads(maxNumWriterThreads);
+
+            // All configuration parameters are optional
+            bldr.setLogNominalEntries(sharedLgK);     // default 12 (K=4096)
+            bldr.setLocalLogNominalEntries(localLgK); // default 4 (B=16)
+            bldr.setNumPoolThreads(poolThreads);      // default 3
+            bldr.setPropagateOrderedCompact(ordered); // default true
+            bldr.setMaxConcurrencyError(maxConcurrencyError);   // default 0
+            bldr.setbMaxNumLocalThreads(maxNumWriterThreads);   // default 1
             
             // build shared sketch first
             final int maxSharedUpdateBytes = Sketch.getMaxUpdateSketchBytes(1 << sharedLgK);    
@@ -87,6 +87,8 @@ This is a list of the configuration parameters for the builder:
         }
         
         void mainApplicationMethod() {
+            // init attributes, e.g, with properties file
+            ...
             buildConcSketch();
             writer = new WriterThread(bldr, sharedSketch);
             
