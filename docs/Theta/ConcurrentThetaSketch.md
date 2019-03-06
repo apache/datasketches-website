@@ -26,75 +26,106 @@ A _background propagation thread_ continuously merges full local sketches into t
 Both the local sketch and the shared sketch are descendants of UpdateSketch and therefore support its API.
 However, it is important that the shared sketch is only used to get the estimate, while updates only go through the local sketches.
 The shared sketch can be allocated either off-heap or on-heap, while the local sketch is always allocated on-heap.
-The user can also manipulate the size of propagation threads pool, and whether the propagated data is sorted prion to propagation.
+
+Like other Theta sketches, `UpdateSketchBuilder` is used to build the shared and local sketches. 
+It is imperative that the shared sketch is built first. 
+Then, at the context of an application thread(/s) that feeds the data a local sketch is created and connected to the shared sketch.
+This is a list of the configuration parameters for the builder:
+1. Buffer size of shared sketch
+2. Buffer size of local sketches
+3. Size of the threads pool to handle propagation of all sketches
+4. Flag to indicate if the propagated data is to be sorted prior to propagation
+5. Max concurrency error; the point the sketch flips from exact to estimate mode is derived from this parameter
+6. Max number of local threads to be used
 
 ## Code Example for Building a Concurrent Theta Sketch
 
-    import static com.yahoo.sketches.Util.DEFAULT_UPDATE_SEED;
     import com.yahoo.memory.WritableDirectHandle;
     import com.yahoo.memory.WritableMemory;
     import com.yahoo.sketches.theta.Sketch;
     import com.yahoo.sketches.theta.UpdateSketch;
     import com.yahoo.sketches.theta.UpdateSketchBuilder;
 
-    // Context of application code
-    private UpdateSketchBuilder bldr;
-    private UpdateSketch sharedSketch;
+    class ApplicationWithsketches {
+    
+        private UpdateSketchBuilder bldr;
+        private UpdateSketch sharedSketch;
+        private Thread writer;
 
-    // Configuration parameters 
-    sharedLgK = Integer.parseInt(prop.mustGet("LgK"));
-    localLgK = Integer.parseInt(prop.mustGet("CONCURRENT_THETA_localLgK"));
-    ordered = Boolean.parseBoolean(prop.mustGet("CONCURRENT_THETA_ordered"));
-    offHeap = Boolean.parseBoolean(prop.mustGet("CONCURRENT_THETA_offHeap"));
-    poolThreads = Integer.parseInt(prop.mustGet("CONCURRENT_THETA_poolThreads"));
+        private int sharedLgK;
+        private int localLgK;
+        private boolean ordered;
+        private boolean offHeap;
+        private int poolThreads;
+        private double maxConcurrencyError;
+        private int maxNumWriterThreads;
+        private WritableDirectHandle wdh;
+        private WritableMemory wmem;
+
     
-    // configure builder for both local and shared
-    {
-        final UpdateSketchBuilder bldr = new UpdateSketchBuilder();
-        bldr.setNumPoolThreads(poolThreads);
-        bldr.setLogNominalEntries(sharedLgK);
-        bldr.setLocalLogNominalEntries(localLgK);
-        bldr.setSeed(DEFAULT_UPDATE_SEED);
-        bldr.setPropagateOrderedCompact(ordered);
-    }
-    
-    
-    // build shared sketch first
-    {
-        final int maxSharedUpdateBytes = Sketch.getMaxUpdateSketchBytes(1 << sharedLgK);    
-        if (offHeap) {
-          wdh = WritableMemory.allocateDirect(maxSharedUpdateBytes);
-          wmem = wdh.get();
-        } else {
-          wmem = null; //WritableMemory.allocate(maxSharedUpdateBytes);
+        //configures builder for both local and shared
+        void buildConcSketch() {
+            bldr = new UpdateSketchBuilder();
+
+            // All configuration parameters are optional
+            bldr.setLogNominalEntries(sharedLgK);     // default 12 (K=4096)
+            bldr.setLocalLogNominalEntries(localLgK); // default 4 (B=16)
+            bldr.setNumPoolThreads(poolThreads);      // default 3
+            bldr.setPropagateOrderedCompact(ordered); // default true
+            bldr.setMaxConcurrencyError(maxConcurrencyError);   // default 0
+            bldr.setbMaxNumLocalThreads(maxNumWriterThreads);   // default 1
+            
+            // build shared sketch first
+            final int maxSharedUpdateBytes = Sketch.getMaxUpdateSketchBytes(1 << sharedLgK);    
+            if (offHeap) {
+              wdh = WritableMemory.allocateDirect(maxSharedUpdateBytes);
+              wmem = wdh.get();
+            } else {
+              wmem = null; //WritableMemory.allocate(maxSharedUpdateBytes);
+            }
+            sharedSketch = bldr.buildShared(wmem);
         }
-        sharedSketch = bldr.buildShared(wmem);
+        
+        void mainApplicationMethod() {
+            // init attributes, e.g, with properties file
+            ...
+            buildConcSketch();
+            writer = new WriterThread(bldr, sharedSketch);
+            
+            while(#some_application_condition) {
+                // get estimate through shared sketch
+                doSomethingWithEstimate(sharedSketch.getEstimate());
+                try {
+                    Thread.sleep(100);
+                } catch (final InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
+        
+    // Context of writer thread 
+    class WriterThread extends Thread {
     
-    // Context of writer thread e.g.,
-    // class WriterThread extends Thread
+        private UpdateSketch local;
     
-    private UpdateSketch local;
-    
-    // build local sketches from bldr and reference to shared sketch
-    {
-        local = bldr.buildLocal(sharedSketch);
+        // build local sketches from bldr and reference to shared sketch
+        public WriterThread(final UpdateSketchBuilder bldr, final UpdateSketch shared) {
+            local = bldr.buildLocal(shared);
+            //init input stream, such as a queue, or a communication buffer, etc.
+        }
+        
+        // updtae concurrent sketch through local sketch - no need for locks or any other synchronization
+        public void run() {
+            while(true) {
+                if(#input_stream_is_not_empty) {
+                long data = getDataFromInputStream();
+                local.update(data);
+            }
+        }
     }
-    
-    // updtae concurrent sketch through local sketch - no need for locks or any other synchronization
-    {
-        local.update(data);
-    }
-    
-    // Context of reader thread e.g.,
-    // class ReaderThread extends Thread
-    
-    // get estimate through reference to shared sketch
-    {
-        doSomethingWithEstimate(sharedSketch.getEstimate());
-    }
+        
 
 
 
-
-[1] TBD, arXiv/PODC
+[1] Arik Rinberg, Alexander Spiegelman, Edward Bortnikov, Eshcar Hillel, Idit Keidar, Hadar Serviansky, *Fast Concurrent Data Sketches*, https://arxiv.org/abs/1902.10995
