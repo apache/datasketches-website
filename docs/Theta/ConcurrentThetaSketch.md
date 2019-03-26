@@ -73,7 +73,7 @@ This is a list of the configuration parameters for the builder:
             bldr.setNumPoolThreads(poolThreads);      // default 3
             bldr.setPropagateOrderedCompact(ordered); // default true
             bldr.setMaxConcurrencyError(maxConcurrencyError);   // default 0
-            bldr.setbMaxNumLocalThreads(maxNumWriterThreads);   // default 1
+            bldr.setMaxNumLocalThreads(maxNumWriterThreads);   // default 1
             
             // build shared sketch first
             final int maxSharedUpdateBytes = Sketch.getMaxUpdateSketchBytes(1 << sharedLgK);    
@@ -126,6 +126,65 @@ This is a list of the configuration parameters for the builder:
     }
         
 
+## Serializing a Concurrent Sketch
+A concurrent sketch is not a single unit of computation. It is composed of the shared sketch and the local buffers. 
+Only the shared sketch supports serialization as it captures the most up-to-date content of the sketch.
+In the current implementation, deserializing a shred sketch yields an `UpdateSketch`.
+Therefore when de-serializing a concurrent sketch both the shared sketch and the local buffers need to be re-created again. 
 
+## Code Example for Serializing and Deserializing a Concurrent Theta Sketch
 
+    import com.yahoo.memory.WritableMemory;
+    import com.yahoo.sketches.theta.Sketch;
+    import com.yahoo.sketches.theta.UpdateSketch;
+    import com.yahoo.sketches.theta.UpdateSketchBuilder;
+
+    public class serDeTest {
+        
+        private UpdateSketchBuilder bldr;
+        private UpdateSketch sharedSketch;
+        private WritableMemory wmem;
+        
+        void serDeConcurrentQuickSelectSketch() {
+            int k = 512;
+            
+            // build shared sketch and local buffer as in the example above
+            bldr = new UpdateSketchBuilder();
+            ...
+            sharedSketch = bldr.buildShared(wmem);
+            UpdateSketch local = bldr.buildLocal(sharedSketch);
+            
+            int i=0;
+            // update sketch through local buffer
+            for (; i<10000; i++) {
+              local.update(i);
+            }
+            
+            // serialize shared
+            byte[]  serArr = shared.toByteArray();
+            Memory srcMem = Memory.wrap(serArr);
+            Sketch recovered = Sketches.heapifyUpdateSketch(srcMem);
+
+            //reconstruct to Native/Direct
+            final int bytes = Sketch.getMaxUpdateSketchBytes(k);
+            wmem = WritableMemory.allocate(bytes);
+            shared = bldr.buildSharedFromSketch((UpdateSketch)recovered, wmem);
+            UpdateSketch local2 = bldr.buildLocal(shared);
+            
+            // check estimate ~10K
+            System.out.println("Estimate="+sharedSketch.getEstimate();
+            
+            // continue updating through new local buffer
+            for (; i<20000; i++) {
+              local2.update(i);
+            }            
+
+            // check estimate ~20K
+            System.out.println("Estimate2="+sharedSketch.getEstimate();
+        }
+    
+    }
+    
+    
+    
 [1] Arik Rinberg, Alexander Spiegelman, Edward Bortnikov, Eshcar Hillel, Idit Keidar, Hadar Serviansky, *Fast Concurrent Data Sketches*, https://arxiv.org/abs/1902.10995
