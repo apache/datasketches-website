@@ -98,6 +98,18 @@ Given any two sets, <i>A</i> and <i>B</i>, the intersection can be defined from 
 
 Set intersections and differences can have considerably more relative error than a base Theta sketch fed directly with data. Be cautious about situations where the result of an intersection (or difference) is orders-of-magnitude smaller than the union of the two arguments.  Always query the getUpperBound() and getLowerBound() methods as these funtions are specifically designed to give you conservative estimates of the possible range of values where the true answer lies.
 
+Theta sketches retain only a small sample of the input streams that that they see. When you perform an intersection it reduces that small sample to an even smaller set, possibly zero! And as you might guess, extracting useful information about your input streams with zero samples is rather difficult:
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/theta/We_do_sketches.png" alt="We_do_sketches.png" />
+
+Successive intersections will quickly reduce your number of samples available to estimate from and thus will dramatically increase the error. Also attempting to intersect one sketch from a large cardinality set with another sketch from a very small cardinality set will also increase your error (see the graph above).
+
+<b>So what can you do?</b>
+
+* Organize your intersections (and AnotB ops) to be performed as the very last step. For example,
+instead of <i>AU(B^C)</i> use <i>(AUB)^(AUC)</i>. This keeps the internal sample set as large as possible until the very end.
+* If you know which streams have large cardinality, use large sketches for these sketches. Internally we use sketches of 2^20 for our large cardinality streams (there is generally only a few of them) and then 2^14 for everything else.
+* Always query the resulting sketch from a set expression to obtain the upper and lower bounds. This will tell you right away what your error confidence interval is.
 
 ### Accuracy of the Theta: Alpha Sketch Family
 

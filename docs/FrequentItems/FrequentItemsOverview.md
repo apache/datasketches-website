@@ -21,7 +21,7 @@ These sketches provide the following capabilities:
 
 ### Two Implementations
 
-* FrequentItemsSketch&lt;T&gt;
+* ItemsSketch&lt;T&gt;
 
     This sketch is useful for tracking approximate frequencies of items of type <i>&lt;T&gt;</i> 
     with optional associated counts (<i>&lt;T&gt;</i> item, <i>long</i> count) that are members of
@@ -33,11 +33,11 @@ These sketches provide the following capabilities:
     extending this interface are included for <i>Long</i>s and 
     <i>String</i>s: <i>ArrayOfLongsSerDe</i> and <i>ArrayOfStringsSerDe</i>.
 
-* FrequentLongsSketch
+* LongsSketch
 
     This is a custom implementation based on items of type <i>long</i>. This will perform faster and
     will have a smaller serialization footprint than the generic equivalent 
-    <i>FrequentItemsSketch&lt;Long&gt;</i>. 
+    <i>ItemsSketch&lt;Long&gt;</i>. 
 
 ### Space Usage
 
