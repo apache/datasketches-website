@@ -21,16 +21,30 @@
     <a href="{{site.docs_dir}}/Research.html">Research</a>
   </p>
 
-  <p id="frequent-items-sketches">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent">Frequent Items Sketches</a>
+  <p id="frequency-sketches">
+  <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequency">Frequency Sketches</a>
   </p>
-  <div class="collapse" id="collapse_frequent">
-    <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsOverview.html">Frequent Items Overview</a></li>
-    <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
-    <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
-    <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
-    <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsErrorTable.html">Frequent Items Error Table</a></li>
-    <li><a href="{{site.docs_dir}}/FrequentItems/FrequentItemsReferences.html">Frequent Items References</a></li>
+  <div class="collapse" id="collapse_frequency">
+      <li><a href="{{site.docs_dir}}/Frequency/FrequencySketchesOverview.html">Frequency Sketches Overview</a></li>
+      
+      <p id="frequent-item-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_item">Frequent Item Sketches</a>
+      </p>
+      <div class="collapse" id="collapse_frequent_item">
+          <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsOverview.html">Frequent Items Overview</a></li>
+          <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
+          <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
+          <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
+          <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsErrorTable.html">Frequent Items Error Table</a></li>
+          <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsReferences.html">Frequent Items References</a></li>
+      </div>
+      
+      <p id="frequent-distinct-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_distinct">Frequent Distinct Sketches</a>
+      </p>
+      <div class="collapse" id="collapse_frequent_distinct">
+          <li><a href="{{site.docs_dir}}/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
+      </div>
   </div>
 
   <p id="hll-sketches">
@@ -104,6 +118,7 @@
     <li><a href="{{site.docs_dir}}/Theta/ConcurrentThetaSketch.html">Concurrent Theta Sketch</a></li>
     <li><a href="{{site.docs_dir}}/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
     <li><a href="{{site.docs_dir}}/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
+
     <p>
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_kmv">KMV Tutorial</a>
     </p>
