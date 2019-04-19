@@ -14,10 +14,8 @@ that are being downloaded from your store.
 This is a perfect use-case for the frequencies/ItemsSketch, which is a Generic class that can be configured to
 count the number of occurrences of any arbitrary item. In this case our song-titles are strings. For example, 
 
-<pre>
-  ItemsSketch<String> sketch = new ItemsSketch<String>();
-  while (remainingItems) { sketch.update("songTitle"); }
-</pre>
+    ItemsSketch<String> sketch = new ItemsSketch<String>();
+    while (remainingItems) { sketch.update("songTitle"); }
 
 This configures the sketch to track and count frequent occurrences of Strings. And in this case you would update the sketch
 with the title of each song as it appears in the stream. Note that in this case we assume that each occurrence of a song
@@ -28,10 +26,8 @@ Now suppose your song titles are sold at different prices and you wish to identi
 revenue. In this case each item can carry a different "weight" which is the price. We can use the same sketch as before, but
 we update it using a "weight".
 
-<pre>
-  ItemsSketch<String> sketch = new ItemsSketch<String>();
-  while (remainingItems) { sketch.update("songTitle", priceCents); }
-</pre>
+    ItemsSketch<String> sketch = new ItemsSketch<String>();
+    while (remainingItems) { sketch.update("songTitle", priceCents); }
 
 The sketch only accepts integral values for the weight, so we just multiply the price by 100 to make the weight integer cents
 instead of fractional dollars.  
