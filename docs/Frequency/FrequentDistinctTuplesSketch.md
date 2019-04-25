@@ -138,3 +138,44 @@ When the Group is printed as a string, it will output seven columns as follows:
 * __RSE__: The estimated RSE of this group based on the properties of this group and the internal properties of this sketch.
 
 * __PriKey__: The string identifying this group. 
+
+### Error Behavior
+
+Note: the code for the following study can be found in the characterization repository 
+[here](https://github.com/DataSketches/characterization/tree/master/src/main/java/com/yahoo/sketches/characterization/fdt) and the configuration file can be found [here](https://github.com/DataSketches/characterization/tree/master/src/main/resources/fdt).
+
+In order to study the error behavior of this sketch a power-law distribution with a slope of -1 was created. The head of the distribution was a single item with a cardinality of 16384, and the tail of the distribution was 16384 items each with a cardinality of one. All the points inbetween were items that have multiplicities and cardinalities that would fall on a straight line plotted on a Log-X, Log-Y graph. This generated an input stream of about 850K (Key, value) pairs, which was input into the sketch and is considered one trial.  The sketch was constructed with a target
+threshold of 1% and a target RSE of 5%. 
+
+Twenty such trials were run and the error distribution quantiles of the results were computed and is shown in the following graph.
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}/fdt/FdtGroupErrorQuantiles.png" alt="FdtGroupErrorQuantiles.png" />
+
+The X-axis is the true cardinality. Of the nearly 24K groups captured by the sketch of the 
+input stream of over 100K groups this graph is a view of the top 500, which is more than enough to demonstrate the error behavior.
+
+The Y-axis is the relative error. 
+
+The blue dots represent the error of a single group from the top 500 groups. Not all of the top 500 groups are shown on the graph as number of them had true cardinalities of less than 256. Also many of the dots represent multiple groups since groups with the same Count and the same true cardinality will result in the same exact computed error, thus plotted at the same exact point.
+
+The red line is the contour of the quantile(0.84) points of the error distribution at each point along the X-axis. This quantile contour would be equivalent to the +1 standard deviation from the mean of a Gaussian distribution. But since these are quantile measurements of the actual error distribution there is no assuption whatsoever that the error distribution is Gaussian.  It is just a convenient reference contour. Similarly the black line is the contour of the quantile(0.159), which corresponds to the -1 standard deviation from the mean. Between these two contours would represent 68% of the distribution (or 68% confidence), which is equivalent to saying within +/- 1 standard deviation of the mean (if it were Gaussian).  The green line is the contour of the medians (quantile(0.5).
+
+The following table is the list of the top 10 results from just one of the trials. The Group class was extended to include more columns at the end which were useful for this study. (This was easy to do and does not require any special access.)
+
+    Count         Est          UB          LB      Thresh         RSE      PriKey   xG      yU         Err
+     1338    16511.86    16957.05    16078.18    0.019521    0.026962   1,1,16384    1   16384    0.007804
+      666     8218.91     8536.72     7912.67    0.009717    0.038668    2,1,8192    2    8192    0.003285
+      660     8144.87     8461.30     7840.01    0.009629    0.038850    2,2,8192    2    8192   -0.005754
+      475     5861.83     6132.21     5603.08    0.006930    0.046124    3,1,5461    3    5461    0.073400
+      450     5553.32     5816.82     5301.44    0.006565    0.047449    3,2,5461    3    5461    0.016905
+      400     4936.28     5185.44     4698.76    0.005836    0.050475    3,3,5461    3    5461   -0.096085
+      355     4380.95     4616.42     4157.14    0.005179    0.053748    4,2,4096    4    4096    0.069568
+      344     4245.20     4477.19     4024.87    0.005019    0.054648    4,1,4096    4    4096    0.036426
+      321     3961.37     4185.90     3748.50    0.004683    0.056681    4,3,4096    4    4096   -0.032870
+      306     3776.26     3995.79     3568.40    0.004464    0.058134    5,5,3277    5    3277    0.152351
+
+
+The blue dot on the very left represents the single item with the largest cardinality. As you can see from the table, it's estimation error is quite small (about 0.78%). At this point the +/- 1 S.D. contours are at about +3.4% and -2.5% and the median is about 0.78%
+
+As you follow the graph to the right you are observing the error distribution as the cardinalities get smaller.  Smaller groups have fewer samples from the sketch thus their estimation error will, of course, grow larger.  What this graph demonstrates is the the error properties are well behaved and what one would expect from this sketch.
+
