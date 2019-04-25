@@ -101,22 +101,36 @@ Assume the incoming data is a stream of {IP address, User ID} pairs:
 We are done populating the sketch, now we post process the data in the sketch:
 
     int[] priKeyIndices = new int[] {0}; //identifies the IP address as the primary key
-    PostProcessor postP = sketch.getPostProcessor();
-    List<Group> list = sketch.getResult()
+    int numStdDev = 2; //for 95% confidence intervals
+    int limit = 20; //list only the top 20 groups
+    char sep = '|'; //the separator charactor for the group dimensions as strings
+    List<Group> list = sketch.getResult(priKeyIndices, limit, numStdDev, sep);
+    System.out.println(Group.getHeader())
     Iterator<Group> itr = list.iterator()
     while (itr.hasNext()) {
       System.out.println(itr.next())
     }
 
-If we want the converse relation we assign the UserID as the primary key:
+If we want the converse relation we assign the UserID as the primary key. Note that we do not have to repopulate the sketch!
 
     int[] priKeyIndices = new int[] {1}; //identifies the User ID as the primary key
-    PostProcessor postP = sketch.getPostProcessor();
-    List<Group> list = sketch.getResult()
-    Iterator<Group> itr = list.iterator()
-    while (itr.hasNext()) {
-      System.out.println(itr.next())
-    }
+    ...
 
-Note that we did not have to repopulate the sketch!
+### Understanding the Group output columns
 
+when the Group is printed as a string, it will output seven columns as follows:
+
+1. Count: This is the number of retained occurrences in the sketch that belong to this group.
+
+2. Est: This is the sketch's estimate of the distinct cardinality of this group based on the Count and the sketche's internal state of Theta.
+
+3. UB: The Upper Bound of the confidence interval based on the given numStdDev.
+
+4. LB: The Lower Bound of the confidence interval based on the given numStdDev.
+
+5. Fraction
+6. : The fractional proportion of the cardinality of the entire sketch that this group represents.
+
+7. RSE: The estimated RSE of this group based on the properties of this group and the internal properties of this sketch.
+
+8. PriKey: The string identifying this group. 
