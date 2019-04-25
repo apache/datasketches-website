@@ -12,13 +12,15 @@ dimensions.
 
 ### Definitions
 
-* Equal Distribution Threshold
+* __Equal Distribution Threshold__
+
 Suppose we have a stream of 160 items where the stream consists of four item types: A, B, C, and D.
 If the distribution of occurances was shared equally across the four items each would
 occur exactly 40 times or 25% of the total distribution of 160 items. Thus the equally distributed
 (or fair share) <i>threshold</i> would be 25% or as a fraction 0.25. 
 
-* Most Frequent
+* __Most Frequent__
+
 We define <i>Most Frequent</i> items as those that consume more than the fair share threshold of the
 total occurances (also called the <i>weight</i>) of the entire stream. 
 
@@ -38,7 +40,8 @@ If all items occured with a frequency of 40, we could not declare
 any item as most frequent. Requesting a list of the "Top 4" items could be a list of the 4 items in any random
 order, or a list of zero items, depending on policy.
 
-* Relative Standard Error or RSE
+* __Relative Standard Error or RSE__
+
 When a stream becomes too large with too many different item types to efficiently process exacty we must turn 
 to statistical methods to estimate the most frequent items. The returned list of "most frequent items" will
 have an associated "estimated frequency" that has an error component that is a random variable. 
@@ -46,11 +49,13 @@ The RSE is a measure of the width of the error distribution of this component an
 Standard Deviation is computed. It is relative to the estimated frequency in that the standard
 width of the error distribution can be computed as <i>estimate * (1 + RSE)</i> and <i>estimate * (1 - RSE)</i>.
 
-* Primary Key
+* __Primary Key__
+
 We define a specific combination of the <i>M</i> primary dimensions as a <i>Primary Key</i>
 and all combinations of the <i>M</i> primary dimensions as the set of <i>Primary Keys</i>.
 
-* Group
+* __Group__
+
 We define the set of all combinations of <i>N-M</i> non-primary dimensions associated with a
 single primary key as a <i>Group</i>.
 
@@ -118,19 +123,18 @@ If we want the converse relation we assign the UserID as the primary key. Note t
 
 ### Understanding the Group output columns
 
-when the Group is printed as a string, it will output seven columns as follows:
+When the Group is printed as a string, it will output seven columns as follows:
 
-1. Count: This is the number of retained occurrences in the sketch that belong to this group.
+* __Count__: This is the number of retained occurrences in the sketch that belong to this group.
 
-2. Est: This is the sketch's estimate of the distinct cardinality of this group based on the Count and the sketche's internal state of Theta.
+* __Est__ This is the sketch's estimate of the distinct cardinality of this group based on the Count and the sketche's internal state of Theta.
 
-3. UB: The Upper Bound of the confidence interval based on the given numStdDev.
+* __UB__: The Upper Bound of the confidence interval based on the given numStdDev.
 
-4. LB: The Lower Bound of the confidence interval based on the given numStdDev.
+* __LB__: The Lower Bound of the confidence interval based on the given numStdDev.
 
-5. Fraction
-6. : The fractional proportion of the cardinality of the entire sketch that this group represents.
+* __Fraction__: The fractional proportion of the cardinality of the entire sketch that this group represents.
 
-7. RSE: The estimated RSE of this group based on the properties of this group and the internal properties of this sketch.
+* __RSE__: The estimated RSE of this group based on the properties of this group and the internal properties of this sketch.
 
-8. PriKey: The string identifying this group. 
+* __PriKey__: The string identifying this group. 
