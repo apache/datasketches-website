@@ -5,7 +5,7 @@ layout: doc_page
 ## Frequent Distinct Tuples Sketch
 
 ### The Task
-Suppose our data is a stream of pairs {IP addres, User ID} and we want to identify the IP addresses that
+Suppose our data is a stream of pairs {IP address, User ID} and we want to identify the IP addresses that
 have the most distinct User IDs.  Or conversely, we would like to identify the User IDs that have the 
 most distinct IP addresses.
 This is a common challenge in the analysis of big data and the FDT sketch helps solve this problem using
