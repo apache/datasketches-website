@@ -5,10 +5,16 @@ layout: doc_page
 ## Frequent Distinct Tuples Sketch
 
 ### The Task
-Given a multiset of tuples with <i>N</i> dimensions <i>{d1,d2, d3, ..., dN}</i>, and a primary subset of
-dimensions <i>M &lt; N</i>, the task is to identify the combinations of <i>M</i> subset dimensions
-that have the <i>most frequent</i> number of distinct combinations of the <i>N - M</i> non-primary
-dimensions.
+Suppose our data is a stream of pairs {IP addres, User ID} and we want to identify the IP addresses that
+have the most distinct User IDs.  Or conversely, we would like to identify the User IDs that have the 
+most distinct IP addresses.
+This is a common challenge in the analysis of big data and the FDT sketch helps solve this problem using
+probabilistic techniques.
+
+More generally, given a multiset of tuples with <i>N</i> dimensions <i>{d1,d2, d3, ..., dN}</i>, 
+and a primary subset of dimensions <i>M &lt; N</i>, our task is to identify the combinations of 
+<i>M</i> subset dimensions that have the <i>most frequent</i> number of distinct combinations 
+of the <i>N - M</i> non-primary dimensions.
 
 ### Definitions
 
@@ -79,21 +85,21 @@ In this implementation the input tuples presented to the sketch are string array
 
 ### Using the FdtSketch
 
-As a simple concrete example, let's assume <i>N = 2</i> and let <i>d1 := IP address</i>, and
-<i>d2 := User ID</i>.
+Let's leverate the challenge at the beginning to crete a concrete example. 
+Let's assume <i>N = 2</i> and let <i>d1 := IP address</i>, and <i>d2 := User ID</i>.
 
-Let's choose <i>{d1}</i> as the Primary Keys, then the sketch will allow us to identify the
+If we choose <i>{d1}</i> as the Primary Keys, then the sketch will allow us to identify the
 <i>IP addresses</i> that have the largest populations of distinct <i>User IDs</i>. 
 
 Conversely, if we choose <i>{d2}</i> as the Primary Keys, the sketch will allow us to identify the
 <i>User IDs</i> with the largest populations of distinct <i>IP addresses</i>.
 
-Let's set the threshold to 0.1 (10%) and the RSE to 0.05 (5%). This is telling the sketch to size itself 
-such that items with distinct frequency counts greater than 10% of the total distinct population will be 
+Let's set the threshold to 0.01 (1%) and the RSE to 0.05 (5%). This is telling the sketch to size itself 
+such that items with distinct frequency counts greater than 1% of the total distinct population will be 
 detectable and have a distinct frequency estimation error of less than or equal to 5% with 86% confidence.
 
     //Construct the sketch
-    FdtSketch sketch = new FdtSketch(0.1, 0.05);
+    FdtSketch sketch = new FdtSketch(0.01, 0.05);
 
 Assume the incoming data is a stream of {IP address, User ID} pairs:
 
@@ -158,7 +164,7 @@ The Y-axis is the relative error.
 
 The blue dots represent the error of a single group from the top 500 groups. Not all of the top 500 groups are shown on the graph as number of them had true cardinalities of less than 256. Also many of the dots represent multiple groups since groups with the same Count and the same true cardinality will result in the same exact computed error, thus plotted at the same exact point.
 
-The red line is the contour of the quantile(0.84) points of the error distribution at each point along the X-axis. This quantile contour would be equivalent to the +1 standard deviation from the mean of a Gaussian distribution. But since these are quantile measurements of the actual error distribution there is no assuption whatsoever that the error distribution is Gaussian.  It is just a convenient reference contour. Similarly the black line is the contour of the quantile(0.159), which corresponds to the -1 standard deviation from the mean. Between these two contours would represent 68% of the distribution (or 68% confidence), which is equivalent to saying within +/- 1 standard deviation of the mean (if it were Gaussian).  The green line is the contour of the medians (quantile(0.5).
+The red line is the contour of the quantile(0.84) points of the error distribution at each point along the X-axis. This quantile contour would be equivalent to the +1 standard deviation from the mean of a Gaussian distribution. But since these are quantile measurements of the actual error distribution there is no assuption whatsoever that the error distribution is Gaussian.  It is just a convenient reference contour. Similarly the black line is the contour of the quantile(0.159), which corresponds to the -1 standard deviation from the mean. Between these two contours would represent 68% of the distribution (or 68% confidence), which is equivalent to saying within +/- 1 standard deviation of the mean (if it were Gaussian).  The green line is the contour of the medians (quantile(0.5)).
 
 The following table is the list of the top 10 results from just one of the trials. The Group class was extended to include more columns at the end which were useful for this study. (This was easy to do and does not require any special access.)
 
