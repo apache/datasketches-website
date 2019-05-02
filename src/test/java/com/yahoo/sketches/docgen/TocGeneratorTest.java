@@ -16,9 +16,9 @@ public class TocGeneratorTest {
 
   @Test
   public void testTocGenerator() {
-    final String jsonSrcFile = "src/main/resources/docgen/toc.json";
+    final String jsonSrcFile = "local/toc2.json";
     final String htmlScriptFile = "src/main/resources/docgen/tocScript.html";
-    final String tgtTocFile = "src/main/resources/docgen/toc.html";
+    final String tgtTocFile = "local/toc2.html";
     TocGenerator tocgen = new TocGenerator(jsonSrcFile, htmlScriptFile, tgtTocFile);
     tocgen.readJson();
   }
