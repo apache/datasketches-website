@@ -39,3 +39,4 @@ vendor/
 .paper/
 tmp/
 /local/
+/src/main/resources/docgen/toc.html
