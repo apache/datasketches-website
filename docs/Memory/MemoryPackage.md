@@ -7,14 +7,14 @@ layout: doc_page
 Note: this applies to the memory package after version 0.10.0
 
 ### Introduction
-The DataSketches memory package has its own repository and is released with its own jars in Maven Central. 
-To avoid confusion in the documentation the capitalized <i>Memory</i> refers to the code in the 
-Java <i>com.yahoo.memory</i> package, and the uncapitalized <i>memory</i> refers to computer memory in general.
+The _DataSketches_ memory package has its own repository and is released with its own jars in _Maven Central_. 
+To avoid confusion in the documentation the capitalized _Memory_ refers to the code in the 
+Java _com.yahoo.memory_ package, and the uncapitalized _memory_ refers to computer memory in general.
 
-The <i>Memory</i> package allows primitive read-write capabilities of data structures in native computer memory, 
+The _Memory_ package allows primitive read-write capabilities of data structures in native computer memory, 
 which is also referred to as "off-java-heap" or just "off-heap". 
-For compatibility and ease-of-use the <i>Memory</i> API can also be used to manage data structures that are 
-contained in Java on-heap primitive arrays, memory mapped files, or ByteBuffers.
+For compatibility and ease-of-use the _Memory_ API can also be used to manage data structures that are 
+contained in Java on-heap primitive arrays, memory mapped files, or _ByteBuffers_.
 
 The hardware systems used in big data environments can be quite large approaching a terabyte 
 of RAM and 24 or more CPUs, each of which can manage two threads.
@@ -26,7 +26,7 @@ and varies considerably based on the specific objectives of the systems platform
 It is in these very large data environments that managing how the data gets copied into RAM and 
 when it is considered obsolete and can be written 
 over by newer or different partitions of data is an important aspect of the systems design. 
-Having the JVM manage these large chunks of memory is often problematic and often results in large garbage collection 
+Having the JVM manage these large chunks of memory is often problematic as it can result in large garbage collection 
 pauses and poor real-time performance. 
 As a result, it is often the case that the system designers need to manage these large chunks of 
 memory directly.  
@@ -38,65 +38,66 @@ utilizing off-heap memory becomes a requirement.
 
 Java does not permit normal java processes direct access to off-heap memory. Nonetheless, 
 in order to improve performance, many internal Java classes leverage a low-level, restricted
-class (unfortunately) called "Unsafe", which does exactly that. The methods of Unsafe
+class called (unfortunately) "_Unsafe_", which does exactly that. The methods of _Unsafe_
 are native methods that are initially compiled into C++ code.  The JIT compiler
 replaces this C++ code with assembly language instructions called "intrinsics", which
-are often just a single CPU instruction.
+can be just a single CPU instruction.
 
-The <i>Memory</i> package is essentially an extension of Unsafe and wraps most of the 
+The _Memory_ package is essentially an extension of _Unsafe_ and wraps most of the 
 primitive get and put methods and a few specialized methods into a convenient API 
 organized around an allocated block of native memory.
 
-Using the <i>Memory</i> package cannot be taken lightly, as the systems developer must now be 
+Using the _Memory_ package cannot be taken lightly, as the systems developer must now be 
 aware of the importance of memory allocation and deallocation and make sure these resources 
 are managed properly. 
 
 ### Architecture
 The Memory package consists of two major groups of classes.
-  * Classes that provide access to a <i>resource</i>, which is a linear collection of consecutive bytes. 
+
+  * Classes that provide access to a _resource_, which is a linear collection of consecutive bytes. 
   * Classes that define an API for reading and writing to a resource using primitives and primitive arrays.
 
 #### Resourses
-The Memory package defines 4 <i>Resources</i> that at their most basic level can be viewed as a linear collection of consecutive bytes.
-  * Primitive on-heap arrays: byte[], char[], etc.
-  * Java _ByteBuffer_s
+The _Memory_ package defines 4 _Resources_ that at their most basic level can be viewed as a collection of consecutive bytes.
+
+  * Primitive on-heap arrays: _boolean[], byte[], char[], short[], int[], long[], float[], double[]_.
+  * Java _ByteBuffers_
   * Off-heap memory. Also called "native" or "direct" memory.
   * Memory-mapped files
 
 
 #### APIs
-The Memory package defines 4 APIs for accessing the above resources.
-  * Memory - Read-only access using byte offsets from the start of the resource.
-  * WritableMemory - Read/write access using byte offsets from the start of the resource.
-  * Buffer - Read-only access using user setable byte position values: <i>start</i>, <i>position</i>, and <i>end</i>.
-  * WritableBuffer - Read-write access using user setable byte position values: <i>start</i>, <i>position</i>, and <i>end</i>.
+The _Memory_ package defines 4 APIs for accessing the above resources.
 
-#### Mapping a Resource to an API
-There are two different ways to map a resource to an API. The first uses static methods:
+  * _Memory_ - Read-only access using byte offsets from the start of the resource.
+  * _WritableMemory_ - Read/write access using byte offsets from the start of the resource.
+  * _Buffer_ - Read-only access using user setable byte position values: _start_, _position_, and _end_.
+  * _WritableBuffer_ - Read-write access using user setable byte position values: _start_, _position_, and _end_.
 
-```java
-    //use static methods to map an array of 1024 bytes to the WritableMemory API
-    WritableMemory wmem = WritableMemory.allocate(1024);
-    //Or, map a ByteBuffer to the WritableMemory API
-    WritableMemory wmem2 = WritableMemory.allocate(byteBuffer);
-```
+### Mapping a Resource to an API
+There are two different ways to map a resource to an API. The first uses methods for allocating on-heap arrays
+or heap or direct _ByteBuffers_.
 
-For AutoClosable resources, special classes called "Handles" are used to manage the AutoClosable properties. See examples below.
-
+The second way to map a resource to an API is for _AutoCloseable_ resources, such as off-heap memory and memory-mapped files. 
+Special classes called "_Handles_" are used to manage the _AutoCloseable_ properties.
 
 #### Examples for Accessing Primitive On-heap Array Resources
-Mapping a primitive array resource to the Memory API:
-
 ```java
+    //use static methods to map a new array of 1024 bytes to the WritableMemory API
+    WritableMemory wmem = WritableMemory.allocate(1024);
+    
+    //Or by wrapping an existing primitive array:
     byte[] array = new byte[] {1, 0, 0, 0, 2, 0, 0, 0};
     Memory mem = Memory.wrap(array);
     assert mem.getInt(0) == 1;
     assert mem.getInt(4) == 2;
 ```
 
-This illustrates that the underlying structure of the resource is bytes but we can read it as
-ints, longs, char, or whatever. This is similar to a C UNION, which allows multiple data types
-to access the underlying bytes. This isn't allowed in Java! So be careful! For example:
+
+The following illustrates that the underlying structure of the resource is _bytes_ but we can read it as
+_ints, longs, char_, or whatever. This is similar to a C _UNION_, which allows multiple data types
+to access the underlying bytes. This isn't allowed in Java! 
+So you have to keep careful track of your own structure and the appropriate byte offsets. For example:
 
 ```java
     byte[] arr = new byte[16]
@@ -110,17 +111,16 @@ to access the underlying bytes. This isn't allowed in Java! So be careful! For e
     assert ( v2 == 768L);
 ```
 
-You have to keep careful track of your own structure and the appropriate byte offsets.
 
-Reading and writing multibyte primitives requires an assumption about byte ordering or endianness. 
-The default endianness is _ByteOrder.nativeOrder()__, which for most CPUs is _ByteOrder.LITTLE_ENDIAN_.
-Additional APIs are being developed to enable reading and writing in non-native endianness.
+Reading and writing multibyte primitives requires an assumption about byte ordering or _endianness_. 
+The default endianness is _ByteOrder.nativeOrder()_, which for most CPUs is _ByteOrder.LITTLE\_ENDIAN_.
+Additional APIs are also available for reading and writing in non-native endianness.
 
-All of the APIs provide a useful toHexString(...) method to assist you in viewing the data in your resources.
+All of the APIs provide a useful _toHexString(...)_ method to assist you in viewing the data in your resources.
 
 #### Examples for Accessing ByteBuffers
-Mapping a ByteBuffer resource to the WritableMemory API.  
-Here we write the WritableBuffer and read from both the ByteBuffer and the WritableBuffer.
+Mapping a _ByteBuffer_ resource to the _WritableMemory_ API.  
+Here we write the _WritableBuffer_ and read from both the _ByteBuffer_ and the _WritableBuffer_.
 
 ```java
     @Test
@@ -146,9 +146,16 @@ Here we write the WritableBuffer and read from both the ByteBuffer and the Writa
     }
 ```
 
-#### Examples for Accessing Off-Heap Resources  
+#### Accessing _AutoCloseable_ Resources
+
+The following diagram illustrates the relationships between the _Map_ and _Handle_ hierarchies. 
+The _Map_ interfaces are not public, nonetheless this should help understand their function.
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}/memory/MapAndHandleHierarchy.png" alt="MapAndHandleHierarchy.png" />
+
+##### Accessing Off-Heap Resources  
 Direct allocation of off-heap resources requires that the resource be closed when finished.
-This is accomplished using a _WritableDirectHandle_ that implements the Java _AutoClosable_ interface. 
+This is accomplished using a _WritableDirectHandle_ that implements the Java _AutoCloseable_ interface. 
 Note that this example leverages the try-with-resources statement to properly close the resource.
 
 ```java
@@ -167,11 +174,11 @@ Note that this example leverages the try-with-resources statement to properly cl
 
 Note that these direct allocations can be larger than 2GB.
 
-#### Examples for Memory Mapped File Resources
+##### Memory Mapped File Resources
 Memory-mapped files are resources that also must be closed when finished.
 This is accomplished using a _MapHandle_ that implements the Java _AutoClosable_ interface.
-In the src/test/resources directory of the memory-X.Y.Z-test-sources.jar there is a file called GettysburgAddress.txt.
-Note that this example leverages the try-with-resources statement to properly close the resource.
+In the src/test/resources directory of the memory-X.Y.Z-test-sources.jar there is a file called _GettysburgAddress.txt_.
+Note that this example leverages the _try-with-resources_ statement to properly close the resource.
 To print out Lincoln's Gettysburg Address:
 
 ```java
@@ -190,7 +197,7 @@ To print out Lincoln's Gettysburg Address:
 
 The following test does the following:
 
-1. Creates a off-heap WritableMemory and preloads it with 4GB of consecutive longs as a candidate source.
+1. Creates a off-heap _WritableMemory_ and preloads it with 4GB of consecutive longs as a candidate source.
 2. Creates an empty file, and maps it to a memory-mapped space also of 4GB as the destination.
 3. Copies the source to the destination in a single operation. No extra copies required.
 
@@ -229,7 +236,7 @@ The following test does the following:
     }
 ```
 
-#### Regions and WritableRegions
+### Regions and WritableRegions
 Similar to the _ByteBuffer slice()_, one can create a region or writable region, 
 which is a view into the same underlying resource. 
 
