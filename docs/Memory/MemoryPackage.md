@@ -151,7 +151,7 @@ Here we write the _WritableBuffer_ and read from both the _ByteBuffer_ and the _
 The following diagram illustrates the relationships between the _Map_ and _Handle_ hierarchies. 
 The _Map_ interfaces are not public, nonetheless this should help understand their function.
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}/memory/MapAndHandleHierarchy.png" alt="MapAndHandleHierarchy.png" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/memory/MapAndHandleHierarchy.png" alt="MapAndHandleHierarchy.png" />
 
 ##### Accessing Off-Heap Resources  
 Direct allocation of off-heap resources requires that the resource be closed when finished.
