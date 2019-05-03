@@ -21,7 +21,105 @@
       ]
     },
     
-    { "class":"Dropdown", "desc" : "Frequency Sketches", "array":
+    { "class":"Dropdown", "desc" : "Distinct Counting", "array": 
+      [
+
+        { "class":"Dropdown", "desc" : "HyperLogLog Sketches", "array":
+          [
+            {"class":"Doc",  "desc" : "HLL Sketch",                               "dir" : "HLL", "file": "HLL" },
+            {"class":"Doc",  "desc" : "HLL vs HLL++",                             "dir" : "HLL", "file": "Hll_vs_Hllpp" },
+            {"class":"Doc",  "desc" : "HLL Sketch Java Example",                  "dir" : "HLL", "file": "HllJavaExample" },
+            {"class":"Doc",  "desc" : "HLL Sketch Pig UDFs",                      "dir" : "HLL", "file": "HllPigUDFs" },
+            {"class":"Doc",  "desc" : "HLL Sketch Hive UDFs",                     "dir" : "HLL", "file": "HllHiveUDFs" },
+            {"class":"Doc",  "desc" : "HLL Map Sketch",                           "dir" : "HLL", "file": "HllMap" },
+            {"class":"Doc",  "desc" : "HLL Sketch vs Druid HyperLogLogCollector", "dir" : "HLL", "file": "HllSketchVsDruidHyperLogLogCollector" }
+          ]
+        },
+        
+        { "class":"Dropdown", "desc" : "Theta Sketches", "array":
+          [
+            {"class":"Doc",  "desc" : "Theta Sketch Framework",           "dir" : "Theta", "file": "ThetaSketchFramework" },
+            {"class":"Doc",  "desc" : "Concurrent Theta Sketch",          "dir" : "Theta", "file": "ConcurrentThetaSketch" },
+            {"class":"Doc",  "desc" : "Theta Sketch Java Example",        "dir" : "Theta", "file": "ThetaJavaExample" },
+            {"class":"Doc",  "desc" : "Theta Sketch Spark Example",       "dir" : "Theta", "file": "ThetaSparkExample" },
+        
+            { "class":"Dropdown", "desc" : "KMV Tutorial", "array":
+              [
+                {"class":"Doc",  "desc" : "The Inverse Estimate",           "dir" : "Theta", "file": "InverseEstimate" },
+                {"class":"Doc",  "desc" : "Empty Sketch",                   "dir" : "Theta", "file": "KMVempty" },
+                {"class":"Doc",  "desc" : "First Estimator",                "dir" : "Theta", "file": "KMVfirstEst" },
+                {"class":"Doc",  "desc" : "Better Estimator",               "dir" : "Theta", "file": "KMVbetterEst" },
+                {"class":"Doc",  "desc" : "Rejection Rules",                "dir" : "Theta", "file": "KMVrejection" },
+                {"class":"Doc",  "desc" : "Update V(kth) Rule",             "dir" : "Theta", "file": "KMVupdateVkth" },
+              ]
+            },
+        
+            { "class":"Dropdown", "desc" : "Set Operations", "array":
+              [
+                {"class":"Doc",  "desc" : "Set Operations",                 "dir" : "Theta", "file": "ThetaSketchSetOps" },
+              ]
+            },
+        
+            { "class":"Dropdown", "desc" : "Accuracy", "array":
+              [
+                {"class":"Doc",  "desc" : "Basic Accuracy",                 "dir" : "Theta", "file": "ThetaAccuracy" },
+                {"class":"Doc",  "desc" : "Accuracy Plots",                 "dir" : "Theta", "file": "ThetaAccuracyPlots" },
+                {"class":"Doc",  "desc" : "Relative Error Table",           "dir" : "Theta", "file": "ThetaErrorTable" },
+                {"class":"Doc",  "desc" : "SetOp Accuracy",                 "dir" : "Theta", "file": "ThetaSketchSetOpsAccuracy" },
+                {"class":"Doc",  "desc" : "Unions With Different k",        "dir" : "Theta", "file": "AccuracyOfDifferentKUnions" },
+              ]
+            },
+        
+            { "class":"Dropdown", "desc" : "Size", "array":
+              [
+                {"class":"Doc",  "desc" : "Theta Sketch Size",                 "dir" : "Theta", "file": "ThetaSize" },
+              ]
+            },
+        
+            { "class":"Dropdown", "desc" : "Speed", "array":
+              [
+                {"class":"Doc",  "desc" : "Update Speed",                      "dir" : "Theta", "file": "ThetaUpdateSpeed" },
+                {"class":"Doc",  "desc" : "Merge Speed",                       "dir" : "Theta", "file": "ThetaMergeSpeed" },
+              ]
+            },
+        
+            { "class":"Dropdown", "desc" : "Large Scale Computing", "array":
+              [
+                {"class":"Doc",  "desc" : "Theta Sketch Pig UDFs",             "dir" : "Theta",  "file": "ThetaPigUDFs" },
+                {"class":"Doc",  "desc" : "Theta Sketch Hive UDFs",            "dir" : "Theta",  "file": "ThetaHiveUDFs" },
+                {"class":"Doc",  "desc" : "Integration with Druid",            "dir" : "",       "file": "DruidIntegration" },
+                {"class":"Doc",  "desc" : "Memory Package",                    "dir" : "Memory", "file": "MemoryPackage" },
+                {"class":"Doc",  "desc" : "<i>p</i>-Sampling",                 "dir" : "Theta",  "file": "ThetaPSampling" },
+              ]
+            },
+        
+            { "class":"Dropdown", "desc" : "Theta Sketch Theory", "array":
+              [
+                {"class":"Doc",  "desc" : "Theta Sketch Framework (PDF)",      "dir" : "",      "file": "ThetaSketchFramework", "pdf":"true" },
+                {"class":"Doc",  "desc" : "Sketch Equations (PDF)",            "dir" : "",      "file": "SketchEquations",      "pdf":"true" },
+                {"class":"Doc",  "desc" : "DataSketches (PDF)",                "dir" : "",      "file": "DataSketches",         "pdf":"true" },
+                {"class":"Doc",  "desc" : "Confidence Intervals Notes",        "dir" : "Theta", "file": "ThetaConfidenceIntervals" },
+                {"class":"Doc",  "desc" : "Merging Algorithm Notes",           "dir" : "Theta", "file": "ThetaMergingAlgorithm" },
+                {"class":"Doc",  "desc" : "Theta References",                  "dir" : "Theta", "file": "ThetaReferences" },
+              ]
+            }
+          ]
+        },
+        
+        { "class":"Dropdown", "desc" : "Tuple Sketches", "array":
+          [
+            {"class":"Doc",  "desc" : "Tuple Sketch Overview",        "dir" : "Tuple", "file": "TupleOverview" },
+            {"class":"Doc",  "desc" : "Tuple Sketch Java Example",    "dir" : "Tuple", "file": "TupleJavaExample" },
+            {"class":"Doc",  "desc" : "Tuple Sketch Pig UDFs",        "dir" : "Tuple", "file": "TuplePigUDFs" },
+            {"class":"Doc",  "desc" : "Tuple Sketch Hive UDFs",       "dir" : "Tuple", "file": "TupleHiveUDFs" },
+          ]
+        },
+        
+      ]
+    },
+    
+    
+    { "class":"Dropdown", "desc" : "Most Frequent", "array":
       [
         {"class":"Doc",  "desc" : "Frequency Sketches Overview",  "dir" : "Frequency", "file": "FrequencySketchesOverview" },
         
@@ -44,26 +142,7 @@
       ]
     },
     
-    { "class":"Dropdown", "desc" : "HyperLogLog Sketches", "array":
-      [
-        {"class":"Doc",  "desc" : "HLL Sketch",                               "dir" : "HLL", "file": "HLL" },
-        {"class":"Doc",  "desc" : "HLL vs HLL++",                             "dir" : "HLL", "file": "Hll_vs_Hllpp" },
-        {"class":"Doc",  "desc" : "HLL Sketch Java Example",                  "dir" : "HLL", "file": "HllJavaExample" },
-        {"class":"Doc",  "desc" : "HLL Sketch Pig UDFs",                      "dir" : "HLL", "file": "HllPigUDFs" },
-        {"class":"Doc",  "desc" : "HLL Sketch Hive UDFs",                     "dir" : "HLL", "file": "HllHiveUDFs" },
-        {"class":"Doc",  "desc" : "HLL Map Sketch",                           "dir" : "HLL", "file": "HllMap" },
-        {"class":"Doc",  "desc" : "HLL Sketch vs Druid HyperLogLogCollector", "dir" : "HLL", "file": "HllSketchVsDruidHyperLogLogCollector" }
-      ]
-    },
-    
-    { "class":"Dropdown", "desc" : "Memory", "array":
-      [
-        {"class":"Doc",  "desc" : "Memory Package",                           "dir" : "Memory", "file": "MemoryPackage" },
-        {"class":"Doc",  "desc" : "Memory Package Performance",               "dir" : "Memory", "file": "MemoryPerformance" }
-      ]
-    },
-    
-    { "class":"Dropdown", "desc" : "Quantiles Sketches", "array":
+    { "class":"Dropdown", "desc" : "Quantiles & Histograms", "array":
       [
         {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "Quantiles", "file": "QuantilesOverview" },
         {"class":"Doc",  "desc" : "Quantiles Accuracy and Size",              "dir" : "Quantiles", "file": "QuantilesAccuracy" },
@@ -90,7 +169,7 @@
       ]
     },
     
-    { "class":"Dropdown", "desc" : "Sampling Sketches", "array":
+    { "class":"Dropdown", "desc" : "Sampling", "array":
       [
         {"class":"Doc",  "desc" : "Reservoir Sampling",               "dir" : "Sampling", "file": "ReservoirSampling" },
         {"class":"Doc",  "desc" : "Reservoir Sampling Performance",   "dir" : "Sampling", "file": "ReservoirSamplingPerformance" },
@@ -102,92 +181,25 @@
       ]
     },
     
-    { "class":"Dropdown", "desc" : "Theta Sketches", "array":
+    { "class":"Dropdown", "desc" : "Memory Package", "array":
       [
-        {"class":"Doc",  "desc" : "Theta Sketch Framework",           "dir" : "Theta", "file": "ThetaSketchFramework" },
-        {"class":"Doc",  "desc" : "Concurrent Theta Sketch",          "dir" : "Theta", "file": "ConcurrentThetaSketch" },
-        {"class":"Doc",  "desc" : "Theta Sketch Java Example",        "dir" : "Theta", "file": "ThetaJavaExample" },
-        {"class":"Doc",  "desc" : "Theta Sketch Spark Example",       "dir" : "Theta", "file": "ThetaSparkExample" },
-        
-        { "class":"Dropdown", "desc" : "KMV Tutorial", "array":
-          [
-            {"class":"Doc",  "desc" : "The Inverse Estimate",           "dir" : "Theta", "file": "InverseEstimate" },
-            {"class":"Doc",  "desc" : "Empty Sketch",                   "dir" : "Theta", "file": "KMVempty" },
-            {"class":"Doc",  "desc" : "First Estimator",                "dir" : "Theta", "file": "KMVfirstEst" },
-            {"class":"Doc",  "desc" : "Better Estimator",               "dir" : "Theta", "file": "KMVbetterEst" },
-            {"class":"Doc",  "desc" : "Rejection Rules",                "dir" : "Theta", "file": "KMVrejection" },
-            {"class":"Doc",  "desc" : "Update V(kth) Rule",             "dir" : "Theta", "file": "KMVupdateVkth" },
-          ]
-        },
-        
-        { "class":"Dropdown", "desc" : "Set Operations", "array":
-          [
-            {"class":"Doc",  "desc" : "Set Operations",                 "dir" : "Theta", "file": "ThetaSketchSetOps" },
-          ]
-        },
-        
-        { "class":"Dropdown", "desc" : "Accuracy", "array":
-          [
-            {"class":"Doc",  "desc" : "Basic Accuracy",                 "dir" : "Theta", "file": "ThetaAccuracy" },
-            {"class":"Doc",  "desc" : "Accuracy Plots",                 "dir" : "Theta", "file": "ThetaAccuracyPlots" },
-            {"class":"Doc",  "desc" : "Relative Error Table",           "dir" : "Theta", "file": "ThetaErrorTable" },
-            {"class":"Doc",  "desc" : "SetOp Accuracy",                 "dir" : "Theta", "file": "ThetaSketchSetOpsAccuracy" },
-            {"class":"Doc",  "desc" : "Unions With Different k",        "dir" : "Theta", "file": "AccuracyOfDifferentKUnions" },
-          ]
-        },
-        
-        { "class":"Dropdown", "desc" : "Size", "array":
-          [
-            {"class":"Doc",  "desc" : "Theta Sketch Size",                 "dir" : "Theta", "file": "ThetaSize" },
-          ]
-        },
-        
-        { "class":"Dropdown", "desc" : "Speed", "array":
-          [
-            {"class":"Doc",  "desc" : "Update Speed",                      "dir" : "Theta", "file": "ThetaUpdateSpeed" },
-            {"class":"Doc",  "desc" : "Merge Speed",                       "dir" : "Theta", "file": "ThetaMergeSpeed" },
-          ]
-        },
-        
-        { "class":"Dropdown", "desc" : "Large Scale Computing", "array":
-          [
-            {"class":"Doc",  "desc" : "Theta Sketch Pig UDFs",             "dir" : "Theta",  "file": "ThetaPigUDFs" },
-            {"class":"Doc",  "desc" : "Theta Sketch Hive UDFs",            "dir" : "Theta",  "file": "ThetaHiveUDFs" },
-            {"class":"Doc",  "desc" : "Integration with Druid",            "dir" : "",       "file": "DruidIntegration" },
-            {"class":"Doc",  "desc" : "Memory Package",                    "dir" : "Memory", "file": "MemoryPackage" },
-            {"class":"Doc",  "desc" : "<i>p</i>-Sampling",                 "dir" : "Theta",  "file": "ThetaPSampling" },
-          ]
-        },
-        
-        { "class":"Dropdown", "desc" : "Theta Sketch Theory", "array":
-          [
-            {"class":"Doc",  "desc" : "Theta Sketch Framework (PDF)",      "dir" : "",      "file": "ThetaSketchFramework", "pdf":"true" },
-            {"class":"Doc",  "desc" : "Sketch Equations (PDF)",            "dir" : "",      "file": "SketchEquations",      "pdf":"true" },
-            {"class":"Doc",  "desc" : "DataSketches (PDF)",                "dir" : "",      "file": "DataSketches",         "pdf":"true" },
-            {"class":"Doc",  "desc" : "Confidence Intervals Notes",        "dir" : "Theta", "file": "ThetaConfidenceIntervals" },
-            {"class":"Doc",  "desc" : "Merging Algorithm Notes",           "dir" : "Theta", "file": "ThetaMergingAlgorithm" },
-            {"class":"Doc",  "desc" : "Theta References",                  "dir" : "Theta", "file": "ThetaReferences" },
-          ]
-        }
-      ]
-    },
-
-    { "class":"Dropdown", "desc" : "Tuple Sketches", "array":
-      [
-        {"class":"Doc",  "desc" : "Tuple Sketch Overview",        "dir" : "Tuple", "file": "TupleOverview" },
-        {"class":"Doc",  "desc" : "Tuple Sketch Java Example",    "dir" : "Tuple", "file": "TupleJavaExample" },
-        {"class":"Doc",  "desc" : "Tuple Sketch Pig UDFs",        "dir" : "Tuple", "file": "TuplePigUDFs" },
-        {"class":"Doc",  "desc" : "Tuple Sketch Hive UDFs",       "dir" : "Tuple", "file": "TupleHiveUDFs" },
+        {"class":"Doc",  "desc" : "Memory Package",                           "dir" : "Memory", "file": "MemoryPackage" },
+        {"class":"Doc",  "desc" : "Memory Package Performance",               "dir" : "Memory", "file": "MemoryPerformance" }
       ]
     },
     
-    { "class":"Dropdown", "desc" : "Other Information", "array":
+    { "class":"Dropdown", "desc" : "Command Line", "array":
       [
         {"class":"Doc",  "desc" : "Creating Command Line Executables",  "dir" : "CommandLine", "file": "CommandLine" },
+      ]
+    },
+    
+    { "class":"Dropdown", "desc" : "Who Uses & License", "array":
+      [
         {"class":"Doc",  "desc" : "Who Uses",                           "dir" : "",            "file": "WhoUses" },
         {"class":"Doc",  "desc" : "License",                            "dir" : "ROOT",        "file": "LICENSE" },
       ]
-    }
+    },
 
   ]
 }
