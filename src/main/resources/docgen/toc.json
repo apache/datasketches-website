@@ -142,7 +142,7 @@
       ]
     },
     
-    { "class":"Dropdown", "desc" : "Quantiles &amp; Histograms", "array":
+    { "class":"Dropdown", "desc" : "Quantiles And Histograms", "array":
       [
         {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "Quantiles", "file": "QuantilesOverview" },
         {"class":"Doc",  "desc" : "Quantiles Accuracy and Size",              "dir" : "Quantiles", "file": "QuantilesAccuracy" },
@@ -194,7 +194,7 @@
       ]
     },
     
-    { "class":"Dropdown", "desc" : "Who Uses &amp; License", "array":
+    { "class":"Dropdown", "desc" : "Who Uses And License", "array":
       [
         {"class":"Doc",  "desc" : "Who Uses",                           "dir" : "",            "file": "WhoUses" },
         {"class":"Doc",  "desc" : "License",                            "dir" : "ROOT",        "file": "LICENSE" },
