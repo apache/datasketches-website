@@ -4,18 +4,29 @@ layout: doc_page
 
 ## Memory Package
 
-Note: this applies to the memory package after version 0.10.0
-
 ### Introduction
-The _DataSketches_ memory package has its own repository and is released with its own jars in _Maven Central_. 
-To avoid confusion in the documentation the capitalized _Memory_ refers to the code in the 
-Java _com.yahoo.memory_ package, and the uncapitalized _memory_ refers to computer memory in general.
 
-The _Memory_ package allows primitive read-write capabilities of data structures in native computer memory, 
-which is also referred to as "off-java-heap" or just "off-heap". 
+The primary objective for the _Memory Package_ is to allow high-performance read-write access to Java "off-heap" memory 
+(also referred to as _direct_, or _native_ memory). However, as documented below, this package has a rich set of other
+capabilities as well.
+
+#### Versioning
+The _DataSketches_ memory package has its own repository and is released with its own jars in _Maven Central_ 
+(groupId=com.yahoo.datasketches, artifactId=memory).
+This document applies to the memory package versions 0.10.0 and after. 
+
+#### Naming Conventions
+To avoid confusion in the documentation the capitalized _Memory_ refers to the code in the 
+Java _com.yahoo.memory_ package, and the uncapitalized _memory_ refers to computer memory in general. 
+There is also a class _com.yahoo.memory.Memory_ that should not be confused with the _com.yahoo.memory_ package.
+In the text, sometimes _Memory_ refers to the entire package and sometimes to the specific class, 
+but it should be clear from the context.
+
+
 For compatibility and ease-of-use the _Memory_ API can also be used to manage data structures that are 
 contained in Java on-heap primitive arrays, memory mapped files, or _ByteBuffers_.
 
+#### Driving Rationale: Large Java Systems Require "Off-Heap" Memory
 The hardware systems used in big data environments can be quite large approaching a terabyte 
 of RAM and 24 or more CPUs, each of which can manage two threads.
 Most of that memory is usually dedicated to selected partitions of data, 
@@ -26,59 +37,112 @@ and varies considerably based on the specific objectives of the systems platform
 It is in these very large data environments that managing how the data gets copied into RAM and 
 when it is considered obsolete and can be written 
 over by newer or different partitions of data is an important aspect of the systems design. 
-Having the JVM manage these large chunks of memory is often problematic as it can result in large garbage collection 
-pauses and poor real-time performance. 
+Having the JVM manage these large chunks of memory is often problematic. 
+For example, the Java specification requires that a new allocation of memory be cleared before
+it can be used. When the allocations become large this alone can result in large pauses in a
+running application, especially if the application does not require that the memory be cleared. 
+Repeated allocation and deallocation of large memory blocks can also cause large garbage collection pauses,
+which can have major impact on the performance of real-time systems. 
 As a result, it is often the case that the system designers need to manage these large chunks of 
 memory directly.  
 
 The JVM has a very sophisticated heap management process and works very well for many 
 general purpose programming tasks. 
 However, for very large systems that have critical latency requirements, 
-utilizing off-heap memory becomes a requirement.
+utilizing off-heap memory becomes a requirement. 
 
 Java does not permit normal java processes direct access to off-heap memory. Nonetheless, 
 in order to improve performance, many internal Java classes leverage a low-level, restricted
 class called (unfortunately) "_Unsafe_", which does exactly that. The methods of _Unsafe_
 are native methods that are initially compiled into C++ code.  The JIT compiler
 replaces this C++ code with assembly language instructions called "intrinsics", which
-can be just a single CPU instruction.
+can be just a single CPU instruction. This results in superior runtime performance that is
+very close to what could be achieved if the application was written in C++.
 
 The _Memory_ package is essentially an extension of _Unsafe_ and wraps most of the 
 primitive get and put methods and a few specialized methods into a convenient API 
 organized around an allocated block of native memory.
 
+The only "official" alternative available to systems developers is to use the Java _ByteBuffer_ class 
+that also allows access to off-heap memory.  However, the _ByteBuffer_ API is extremely limited
+and contains serious defects in its design and traps that many users of the _ByteBuffer_ class unwittingly 
+fall into, which results in corrupted data. This _Memory Package_ has been designed to be a 
+replacement for the _ByteBuffer_ class.
+
 Using the _Memory_ package cannot be taken lightly, as the systems developer must now be 
 aware of the importance of memory allocation and deallocation and make sure these resources 
-are managed properly. 
+are managed properly. To the extent possible, this _Memory Package_ has been designed leveraging Java's own
+_AutoCloseable_, and _Cleaner_ and also tracks when allocated memory has been freed and provides safety checks
+against the dreaded "use-after-free" case even in a multi-threaded environment.
 
 ### Architecture
-The Memory package consists of two major groups of classes.
+The Memory package is designed around two major types of entities:
 
-  * Classes that provide access to a _resource_, which is a linear collection of consecutive bytes. 
-  * Classes that define an API for reading and writing to a resource using primitives and primitive arrays.
+  * _Resources_: A _Resource_ is a collection of consecutive bytes. 
+  * _APIs_: An API is a programming interface for reading and writing to a resource.
 
 #### Resourses
-The _Memory_ package defines 4 _Resources_ that at their most basic level can be viewed as a collection of consecutive bytes.
+The _Memory_ package defines 4 _Resources_, which at their most basic level can be viewed as a collection of consecutive bytes.
 
   * Primitive on-heap arrays: _boolean[], byte[], char[], short[], int[], long[], float[], double[]_.
-  * Java _ByteBuffers_
+  * Java _ByteBuffers_.
   * Off-heap memory. Also called "native" or "direct" memory.
-  * Memory-mapped files
+  * Memory-mapped files. 
 
+It should be noted at the outset that the off-heap memory and the memory-mapped file resources require special handling with respect to allocation and deallocation. 
+The _Memory Package_ has been designed to access these resources leveraging the Java _AutoCloseable_ interface and the Java internal _Cleaner_ class, 
+which also provides the JVM with mechanisms for tracking overall use of off-heap memory. 
 
 #### APIs
-The _Memory_ package defines 4 APIs for accessing the above resources.
+The _Memory_ package defines 5 principal APIs for accessing the above resources.
 
-  * _Memory_ - Read-only access using byte offsets from the start of the resource.
-  * _WritableMemory_ - Read/write access using byte offsets from the start of the resource.
-  * _Buffer_ - Read-only access using user setable byte position values: _start_, _position_, and _end_.
-  * _WritableBuffer_ - Read-write access using user setable byte position values: _start_, _position_, and _end_.
+  * _Memory_: Read-only access using byte offsets from the start of the resource.
+  * _WritableMemory_: Read/write access using byte offsets from the start of the resource.
+  * _BaseBuffer_: Positional API that supports _Buffer_ and _WritableBuffer_ using four key positional values:
+  _start_, _position_, _end_, and _capacity_, and a rich set of methods to access them.
+  * _Buffer_: Read-only access using the _BaseBuffer_ positional API.
+  * _WritableBuffer_: Read-write access using the _BaseBuffer_ positional API.
+
+These 5 principal APIs and the four Resources are then multiplexed into 32 API/Resource combinations as follows:
+
+  * Resource: on-heap, _ByteBuffer_, off-heap, memory-mapped files.
+  * Memory versus Buffer APIs
+  * Read-only versus read-write APIs
+  * Little-Endian versus Big-Endian APIs for multibyte primitives
+
+#### Design Goals 
+These are the major design goals for the _Memory Package_.
+
+  * Common API. The APIs should be agnostic to the chosen resource, with only a few minor exceptions. 
+  * Performance is critical. The architecture has been specifically designed to eliminate unnecessary object and interface redirection.
+  This allows the JIT compiler to collapse abstract hierarchies down to a "base class" at runtime, eliminating all call overhead. 
+  This is why the "APIs" are defined using abstract class hierarchies versus using interfaces, which would force the JIT compiler to create 
+  virtual jump tables in the emitted code. This has been proven to provide substantial improvement in runtime performance. 
+  * Eliminate unnecessary copies. This is also a performance goal. All the API access classes are essentially "views" into the underlying resource. 
+  For example: switching from a "Buffer" API to a "Memory" API, or from a writable API to a read-only API, or from a big-endian to a little-endian
+  view of the resource does not involve any copying or movement of the underlying data.
+  * Data type agnostic.  Contrary to the Java specification, the underlying resource can be simultaneously viewed as a collection of bytes, ints, longs, etc, at arbitrary byte offsets. This is similar to the _union_ construct in C. The _ByteBuffer_ already allows this, but its implementation is limited and flawed.
+  * Efficient read-only vs read-write implementation.  To eliminate duplicate code and unnecessary exceptions we have the writable API extend the read-only API. 
+  This means that the read-only API has no writable methods, thus accidental writing from this API is not possible. Given a writable instance, 
+  converting it to a read-only instance is a simple cast at compile time. It also means that a user could intentally down-cast a read-only instance into a writable instance. It has been our experience, however, that this is very rare, and usually only used to obtain an attribute that would otherwise only be obtainable from the writable interface, such as a reference to the underlying array object. For example, this is used internally within our library to eliminate unnecessary data copies during serialization.   
+  * Endianness is immutable and remembered when switching views.  This was an intentional design choice in response to the way the _ByteBuffer_ was designed, 
+  which allows the user to change endianness dynamically. We have found the _ByteBuffer_ implementation to be a major source of data corruption problems that have proven to be nearly impossible to fix. 
+  * Provide both absolute offset addressing and relative positional addressing. The _Memory_ hierarchy provides the absolute offset addressing API and the 
+  _Buffer_ hierarchy provides the relative postional addressing API. These two addressing mechanisms can be switched back and forth without changing the fundamental connection to the
+  underlying resource.
+  * Regional views. Any resource can be subdivided into smaller _regions_. This is similar to the _ByteBuffer.slice()_ capability except it is more flexible.
+  
+
+#### Diagram of the Core Hierarchy
+This includes both package-private classes as well as public classes, but should help the user understand the inner workings of the _Memory Package_.
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/memory/CoreHierarchy.png" alt="CoreHierarchy.png" />
 
 ### Mapping a Resource to an API
-There are two different ways to map a resource to an API. The first uses methods for allocating on-heap arrays
-or heap or direct _ByteBuffers_.
+There are two different ways to map a resource to an API. 
 
-The second way to map a resource to an API is for _AutoCloseable_ resources, such as off-heap memory and memory-mapped files. 
+  * The first uses methods for allocating on-heap arrays or heap or direct _ByteBuffers_.
+  * The second way to map a resource to an API is for _AutoCloseable_ resources, such as off-heap memory and memory-mapped files. 
 Special classes called "_Handles_" are used to manage the _AutoCloseable_ properties.
 
 #### Examples for Accessing Primitive On-heap Array Resources
