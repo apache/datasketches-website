@@ -113,24 +113,24 @@ These 5 principal APIs and the four Resources are then multiplexed into 32 API/R
 #### Design Goals 
 These are the major design goals for the _Memory Package_.
 
-  * Common API. The APIs should be agnostic to the chosen resource, with only a few minor exceptions. 
-  * Performance is critical. The architecture has been specifically designed to eliminate unnecessary object and interface redirection.
+  * __Common API__. The APIs should be agnostic to the chosen resource, with only a few minor exceptions. 
+  * __Performance is critical__. The architecture has been specifically designed to eliminate unnecessary object and interface redirection.
   This allows the JIT compiler to collapse abstract hierarchies down to a "base class" at runtime, eliminating all call overhead. 
   This is why the "APIs" are defined using abstract class hierarchies versus using interfaces, which would force the JIT compiler to create 
   virtual jump tables in the emitted code. This has been proven to provide substantial improvement in runtime performance. 
-  * Eliminate unnecessary copies. This is also a performance goal. All the API access classes are essentially "views" into the underlying resource. 
+  * __Eliminate unnecessary copies__. This is also a performance goal. All the API access classes are essentially "views" into the underlying resource. 
   For example: switching from a "Buffer" API to a "Memory" API, or from a writable API to a read-only API, or from a big-endian to a little-endian
   view of the resource does not involve any copying or movement of the underlying data.
-  * Data type agnostic.  Contrary to the Java specification, the underlying resource can be simultaneously viewed as a collection of bytes, ints, longs, etc, at arbitrary byte offsets. This is similar to the _union_ construct in C. The _ByteBuffer_ already allows this, but its implementation is limited and flawed.
-  * Efficient read-only vs read-write implementation.  To eliminate duplicate code and unnecessary exceptions we have the writable API extend the read-only API. 
+  * __Data type agnostic__.  Contrary to the Java specification, the underlying resource can be simultaneously viewed as a collection of bytes, ints, longs, etc, at arbitrary byte offsets. This is similar to the _union_ construct in C. The _ByteBuffer_ already allows this, but its implementation is limited and flawed.
+  * __Efficient read-only vs read-write implementation__.  To eliminate duplicate code and unnecessary exceptions we have the writable API extend the read-only API. 
   This means that the read-only API has no writable methods, thus accidental writing from this API is not possible. Given a writable instance, 
   converting it to a read-only instance is a simple cast at compile time. It also means that a user could intentally down-cast a read-only instance into a writable instance. It has been our experience, however, that this is very rare, and usually only used to obtain an attribute that would otherwise only be obtainable from the writable interface, such as a reference to the underlying array object. For example, this is used internally within our library to eliminate unnecessary data copies during serialization.   
-  * Endianness is immutable and remembered when switching views.  This was an intentional design choice in response to the way the _ByteBuffer_ was designed, 
+  * __Endianness is immutable and remembered when switching views__.  This was an intentional design choice in response to the way the _ByteBuffer_ was designed, 
   which allows the user to change endianness dynamically. We have found the _ByteBuffer_ implementation to be a major source of data corruption problems that have proven to be nearly impossible to fix. 
-  * Provide both absolute offset addressing and relative positional addressing. The _Memory_ hierarchy provides the absolute offset addressing API and the 
+  * __Provide both absolute offset addressing and relative positional addressing__. The _Memory_ hierarchy provides the absolute offset addressing API and the 
   _Buffer_ hierarchy provides the relative postional addressing API. These two addressing mechanisms can be switched back and forth without changing the fundamental connection to the
   underlying resource.
-  * Regional views. Any resource can be subdivided into smaller _regions_. This is similar to the _ByteBuffer.slice()_ capability except it is more flexible.
+  * __Regional views__. Any resource can be subdivided into smaller _regions_. This is similar to the _ByteBuffer.slice()_ capability except it is more flexible.
   
 
 #### Diagram of the Core Hierarchy
