@@ -36,14 +36,16 @@ The relevant pseudo-code snippets would look something like this:
 
 When these values are plotted against the normalized ranks we get something like this:
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/TimeSpentQuantiles.png" alt="TimeSpentQuantiles" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/DSQsketchK256_StreamA_CDF.png" alt="DSQsketchK256_StreamA_CDF.png" />
 
-This reveals a great deal about the distribution of values in the stream. Just reading from the graph, the median is about 3000 and the 90th percentile is about 30,000 and so on. One can also query the min and max values seen by the sketch. By observing the results of the quantiles query, it is not too difficult to create a set of split points for a histogram plot. 
+In this plot the green dots are the quantiles computed exactly and the red circles are the
+results from the quantiles sketch. The two curves on either side of these points represent
+the upper and lower bounds returned from the sketch. 
 
-In this case the values ranged from one to 1.8 million, which is a little over 6 orders-of-magnitude. 
-In order to plot such a large dynamic range I used a log X-axis and a plot resolution of 
-5 points per factor of 10. Then I computed 36 equally spaced (on the log axis) split points 
-with values from 1.0 to 1E7. These 36 split points are then provided to the getPMF() function:
+This reveals a great deal about the distribution of values in the stream. Just reading from the graph, the median is about 2000 milliseconds and the 90th percentile is about 25,000 and so on. One can also query the min and max values seen by the sketch. By observing the results of the quantiles query, it is not too difficult to create a set of split points for a histogram plot. 
+
+In this case the values ranged from one to 1.8 million, which is a little over 6 orders-of-magnitude. (There are zero values in the raw data, which often happens, but they can be ignored in 
+this analysis.) In order to plot such a large dynamic range I used a log X-axis and a plot resolution of 5 points per factor of 10. Then I computed 36 equally spaced (on the log axis) split points with values from 1.0 to 1E7. These 36 split points are then provided to the getPMF() function:
 
     double[] splitpoints = {1.00, 1.58, ... , 6.3E6, 1E7};
     double[] pmf = sketch.getPMF(splitpoints);
