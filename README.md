@@ -21,7 +21,7 @@ After 8 years of development and 5 years as in Open Source, we have begun the im
   * [New Website Source](https://github.com/apache/datasketches)
 
 * Java
-  * [memory]()
+  * [memory](https://github.com/DataSketches/memory)
   * [sketches-core](https://github.com/DataSketches/sketches-core)
   * [sketches-hive](https://github.com/DataSketches/sketches-hive)
   * [sketches-pig](https://github.com/DataSketches/sketches-pig)
