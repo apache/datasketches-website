@@ -4,15 +4,15 @@ DataSketches is an open source, high-performance library of stochastic streaming
 
 After 8 years of development and 5 years as in Open Source, we have begun the important migration from a stand-alone GitHub site to being a member of the Apache Software Foundation community.  While we undergo this migration, we beg your patience. 
 
-* Please continue to use DataSketches.GitHub.io for all overview documentation and access to online-javadocs for the time being.
+* Please continue to use [DataSketches.GitHub.io](http://datasketches.github.io) for all overview documentation and access to online-javadocs for the time being.
 
 * Please continue to use our [Google-groups forum](https://groups.google.com/forum/#!forum/sketches-user) or the GitHub-issues on the specific repositories to bring issues or questions to our attention. 
 
-* Please continue to use the Maven Central GroupID = "com.yahoo.datasketches" to locate current and past release Jars until we have formal releases under Apache. 
+* Please continue to use the [Maven Central GroupID = "com.yahoo.datasketches"](https://search.maven.org/classic/#search%7Cga%7C1%7Cg%3A%20com.yahoo.datasketches) to locate current and past release Jars until we have formal releases under Apache. 
 
-* The http://datasketches.apache.org website is a placeholder until we have migrated our current community website from http://DataSketches.GitHub.io. For  detailed project information, please continue to visit http://DataSketches.GitHub.io.
+* The [datasketches.apache.org](http://datasketches.apache.org) website is a placeholder until we have migrated our current community website from [DataSketches.GitHub.io](http://DataSketches.GitHub.io). For  detailed project information, please continue to visit [DataSketches.GitHub.io](http://DataSketches.GitHub.io).
 
-* As the repositories under GitHub.io/DataSketches migrate they will disapear from the the http://GitHub.com/DataSketches organization page. Please refer to this list be directed to the proper locations.
+* As the repositories under GitHub.io/DataSketches migrate they will disapear from the the GitHub.com/DataSketches organization page. Please refer to this list be directed to the proper locations.
 
 * Web Sites
   * [Original Website](http://DataSketches.GitHub.io)
