@@ -10,13 +10,13 @@ After 8 years of development and 5 years as in Open Source, we have begun the im
 
 * Please continue to use the [Maven Central GroupID = "com.yahoo.datasketches"](https://search.maven.org/classic/#search%7Cga%7C1%7Cg%3A%20com.yahoo.datasketches) to locate current and past release Jars until we have formal releases under Apache. 
 
-* The [datasketches.apache.org](http://datasketches.apache.org) website is a placeholder until we have migrated our current community website from [DataSketches.GitHub.io](http://DataSketches.GitHub.io). For  detailed project information, please continue to visit [DataSketches.GitHub.io](http://DataSketches.GitHub.io).
+* The [datasketches.apache.org](http://datasketches.apache.org) website will be a placeholder until we have migrated our current community website from [DataSketches.GitHub.io](http://DataSketches.GitHub.io). For  detailed project information, please continue to visit [DataSketches.GitHub.io](http://DataSketches.GitHub.io).
 
 * As the repositories under GitHub.io/DataSketches migrate they will disapear from the the GitHub.com/DataSketches organization page. Please refer to this list be directed to the proper locations.
 
 * Web Sites
   * [Original Website](http://DataSketches.GitHub.io)
-  * [New Website](http://datasketches.apache.org)
+  * [New Website](http://datasketches.apache.org) (not yet active)
   * [Original Website Source](https://github.com/DataSketches/DataSketches.github.io)
   * [New Website Source](https://github.com/apache/incubator-datasketches)
 
