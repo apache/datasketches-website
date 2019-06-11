@@ -1,3 +1,7 @@
+---
+layout: doc_page
+---
+
 # DataSketches is now Apache DataSketches (incubating). 
 
 DataSketches is an open source, high-performance library of stochastic streaming algorithms commonly called "sketches" in the data sciences. Sketches are small, stateful programs that process massive data as a stream and can provide approximate answers, with mathematical guarantees, to computationally difficult queries orders-of-magnitude faster than traditional, exact methods.
