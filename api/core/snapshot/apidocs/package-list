@@ -1,5 +1,6 @@
 com.yahoo.sketches
 com.yahoo.sketches.cpc
+com.yahoo.sketches.fdt
 com.yahoo.sketches.frequencies
 com.yahoo.sketches.hash
 com.yahoo.sketches.hll
@@ -9,3 +10,5 @@ com.yahoo.sketches.quantiles
 com.yahoo.sketches.sampling
 com.yahoo.sketches.theta
 com.yahoo.sketches.tuple
+com.yahoo.sketches.tuple.adouble
+com.yahoo.sketches.tuple.strings
