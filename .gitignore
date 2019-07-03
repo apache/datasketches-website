@@ -1,0 +1,13 @@
+# Jekyll
+_site
+.sass-cache
+.jekyll-metadata
+about.md
+Gemfile
+Gemfile.lock
+_posts/
+
+# Eclipse
+.project
+
+# yml files
