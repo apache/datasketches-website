@@ -30,7 +30,6 @@ build.xml
 *.releaseBackup
 
 # Jekyll
-Gemfile.lock
 _site/
 vendor/
 
@@ -39,4 +38,4 @@ vendor/
 .paper/
 tmp/
 /local/
-/src/main/resources/docgen/toc.html
+
