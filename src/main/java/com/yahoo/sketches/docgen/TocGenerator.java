@@ -27,7 +27,7 @@ public class TocGenerator {
   private String htmlScriptFile;
 
   /**
-   *
+   * Run this from the TocGeneratorTest class in the test branch.
    * @param jsonSrcFile The JSON source file
    * @param htmlScriptFile The javascript source file
    * @param tgtTocFile the target toc.html file
