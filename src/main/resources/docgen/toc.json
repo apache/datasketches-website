@@ -14,14 +14,14 @@
         {"class":"Doc",  "desc" : "Overview Slide Deck",          "dir" : "", "file": "DataSketches_deck", "pdf":"true" }
       ]
     },
-    
+
     { "class":"Dropdown", "desc" : "Research", "array":
       [
         {"class":"Doc",  "desc" : "Research",                     "dir" : "", "file": "Research" }
       ]
     },
-    
-    { "class":"Dropdown", "desc" : "Distinct Counting", "array": 
+
+    { "class":"Dropdown", "desc" : "Distinct Counting", "array":
       [
 
         { "class":"Dropdown", "desc" : "HyperLogLog Sketches", "array":
@@ -35,14 +35,14 @@
             {"class":"Doc",  "desc" : "HLL Sketch vs Druid HyperLogLogCollector", "dir" : "HLL", "file": "HllSketchVsDruidHyperLogLogCollector" }
           ]
         },
-        
+
         { "class":"Dropdown", "desc" : "Theta Sketches", "array":
           [
             {"class":"Doc",  "desc" : "Theta Sketch Framework",           "dir" : "Theta", "file": "ThetaSketchFramework" },
             {"class":"Doc",  "desc" : "Concurrent Theta Sketch",          "dir" : "Theta", "file": "ConcurrentThetaSketch" },
             {"class":"Doc",  "desc" : "Theta Sketch Java Example",        "dir" : "Theta", "file": "ThetaJavaExample" },
             {"class":"Doc",  "desc" : "Theta Sketch Spark Example",       "dir" : "Theta", "file": "ThetaSparkExample" },
-        
+
             { "class":"Dropdown", "desc" : "KMV Tutorial", "array":
               [
                 {"class":"Doc",  "desc" : "The Inverse Estimate",           "dir" : "Theta", "file": "InverseEstimate" },
@@ -53,13 +53,13 @@
                 {"class":"Doc",  "desc" : "Update V(kth) Rule",             "dir" : "Theta", "file": "KMVupdateVkth" },
               ]
             },
-        
+
             { "class":"Dropdown", "desc" : "Set Operations", "array":
               [
                 {"class":"Doc",  "desc" : "Set Operations",                 "dir" : "Theta", "file": "ThetaSketchSetOps" },
               ]
             },
-        
+
             { "class":"Dropdown", "desc" : "Accuracy", "array":
               [
                 {"class":"Doc",  "desc" : "Basic Accuracy",                 "dir" : "Theta", "file": "ThetaAccuracy" },
@@ -69,30 +69,20 @@
                 {"class":"Doc",  "desc" : "Unions With Different k",        "dir" : "Theta", "file": "AccuracyOfDifferentKUnions" },
               ]
             },
-        
+
             { "class":"Dropdown", "desc" : "Size", "array":
               [
                 {"class":"Doc",  "desc" : "Theta Sketch Size",                 "dir" : "Theta", "file": "ThetaSize" },
               ]
             },
-        
+
             { "class":"Dropdown", "desc" : "Speed", "array":
               [
                 {"class":"Doc",  "desc" : "Update Speed",                      "dir" : "Theta", "file": "ThetaUpdateSpeed" },
                 {"class":"Doc",  "desc" : "Merge Speed",                       "dir" : "Theta", "file": "ThetaMergeSpeed" },
               ]
             },
-        
-            { "class":"Dropdown", "desc" : "Large Scale Computing", "array":
-              [
-                {"class":"Doc",  "desc" : "Theta Sketch Pig UDFs",             "dir" : "Theta",  "file": "ThetaPigUDFs" },
-                {"class":"Doc",  "desc" : "Theta Sketch Hive UDFs",            "dir" : "Theta",  "file": "ThetaHiveUDFs" },
-                {"class":"Doc",  "desc" : "Integration with Druid",            "dir" : "",       "file": "DruidIntegration" },
-                {"class":"Doc",  "desc" : "Memory Package",                    "dir" : "Memory", "file": "MemoryPackage" },
-                {"class":"Doc",  "desc" : "<i>p</i>-Sampling",                 "dir" : "Theta",  "file": "ThetaPSampling" },
-              ]
-            },
-        
+
             { "class":"Dropdown", "desc" : "Theta Sketch Theory", "array":
               [
                 {"class":"Doc",  "desc" : "Theta Sketch Framework (PDF)",      "dir" : "",      "file": "ThetaSketchFramework", "pdf":"true" },
@@ -105,7 +95,7 @@
             }
           ]
         },
-        
+
         { "class":"Dropdown", "desc" : "Tuple Sketches", "array":
           [
             {"class":"Doc",  "desc" : "Tuple Sketch Overview",        "dir" : "Tuple", "file": "TupleOverview" },
@@ -114,15 +104,13 @@
             {"class":"Doc",  "desc" : "Tuple Sketch Hive UDFs",       "dir" : "Tuple", "file": "TupleHiveUDFs" },
           ]
         },
-        
       ]
     },
-    
-    
+
     { "class":"Dropdown", "desc" : "Most Frequent", "array":
       [
         {"class":"Doc",  "desc" : "Frequency Sketches Overview",  "dir" : "Frequency", "file": "FrequencySketchesOverview" },
-        
+
         { "class":"Dropdown", "desc" : "Frequent Item Sketches", "array":
           [
             {"class":"Doc",  "desc" : "Frequent Items Overview",      "dir" : "Frequency", "file": "FrequentItemsOverview" },
@@ -133,15 +121,15 @@
             {"class":"Doc",  "desc" : "Frequent Items References",    "dir" : "Frequency", "file": "FrequentItemsReferences" }
           ]
         },
-      
-        { "class":"Dropdown", "desc" : "Frequent Distinct Sketches", "array": 
+
+        { "class":"Dropdown", "desc" : "Frequent Distinct Sketches", "array":
           [
             {"class":"Doc",  "desc" : "Frequent Distinct Tuples Sketch", "dir" : "Frequency", "file": "FrequentDistinctTuplesSketch" }
           ]
         }
       ]
     },
-    
+
     { "class":"Dropdown", "desc" : "Quantiles And Histograms", "array":
       [
         {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "Quantiles", "file": "QuantilesOverview" },
@@ -149,7 +137,7 @@
         {"class":"Doc",  "desc" : "Quantiles Sketch Java Example",            "dir" : "Quantiles", "file": "QuantilesJavaExample" },
         {"class":"Doc",  "desc" : "Quantiles Sketch Pig UDFs",                "dir" : "Quantiles", "file": "QuantilesPigUDFs" },
         {"class":"Doc",  "desc" : "Quantiles Sketch Hive UDFs",               "dir" : "Quantiles", "file": "QuantilesHiveUDFs" },
-        
+
         { "class":"Dropdown", "desc" : "Quantiles Studies", "array":
           [
             {"class":"Doc",  "desc" : "New KLL sketch and comparison with DoublesSketch", "dir" : "Quantiles", "file": "KLLSketch" },
@@ -159,7 +147,7 @@
             {"class":"Doc",  "desc" : "Quantiles StreamA Study",                          "dir" : "Quantiles", "file": "QuantilesStreamAStudy" }
           ]
         },
-        
+
         { "class":"Dropdown", "desc" : "Quantiles Sketch Theory", "array":
           [
             {"class":"Doc",  "desc" : "Optimal Quantile Approximation in Streams",        "dir" : "", "file": "Quantiles_KLL", "pdf":"true" },
@@ -168,7 +156,7 @@
         }
       ]
     },
-    
+
     { "class":"Dropdown", "desc" : "Sampling", "array":
       [
         {"class":"Doc",  "desc" : "Reservoir Sampling",               "dir" : "Sampling", "file": "ReservoirSampling" },
@@ -180,27 +168,36 @@
         {"class":"Doc",  "desc" : "VarOpt Sampling Pig UDFs",         "dir" : "Sampling", "file": "VarOptPigUDFs" },
       ]
     },
-    
+
+    { "class":"Dropdown", "desc" : "Large Scale Computing", "array":
+      [
+        {"class":"Doc",  "desc" : "Theta Sketch Pig UDFs",             "dir" : "Theta",  "file": "ThetaPigUDFs" },
+        {"class":"Doc",  "desc" : "Theta Sketch Hive UDFs",            "dir" : "Theta",  "file": "ThetaHiveUDFs" },
+        {"class":"Doc",  "desc" : "Integration with Druid",            "dir" : "",       "file": "DruidIntegration" },
+        {"class":"Doc",  "desc" : "Memory Package",                    "dir" : "Memory", "file": "MemoryPackage" },
+        {"class":"Doc",  "desc" : "<i>p</i>-Sampling",                 "dir" : "Theta",  "file": "ThetaPSampling" },
+      ]
+    },
+
     { "class":"Dropdown", "desc" : "Memory Package", "array":
       [
         {"class":"Doc",  "desc" : "Memory Package",                           "dir" : "Memory", "file": "MemoryPackage" },
         {"class":"Doc",  "desc" : "Memory Package Performance",               "dir" : "Memory", "file": "MemoryPerformance" }
       ]
     },
-    
+
     { "class":"Dropdown", "desc" : "Command Line", "array":
       [
         {"class":"Doc",  "desc" : "Creating Command Line Executables",  "dir" : "CommandLine", "file": "CommandLine" },
       ]
     },
-    
+
     { "class":"Dropdown", "desc" : "Who Uses And License", "array":
       [
         {"class":"Doc",  "desc" : "Who Uses",                           "dir" : "",            "file": "WhoUses" },
         {"class":"Doc",  "desc" : "License",                            "dir" : "ROOT",        "file": "LICENSE" },
       ]
     },
-
   ]
 }
 
