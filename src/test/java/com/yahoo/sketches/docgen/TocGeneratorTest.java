@@ -20,6 +20,7 @@ import com.yahoo.sketches.docgen.TocGenerator;
  * </ol>
  * @author Lee Rhodes
  */
+@SuppressWarnings("javadoc")
 public class TocGeneratorTest {
 
   @Test
