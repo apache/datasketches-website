@@ -4,7 +4,7 @@ layout: doc_page
 
 # Concurrent Theta Sketch
 
-Concurrent Theta sketch is a manifestation of a generic approach for parallelizing sketchs while bounding the error such parallelism introduces<sup>1</sup>.
+Concurrent Theta sketch is a manifestation of a generic approach for parallelizing sketches while bounding the error such parallelism introduces<sup>1</sup>.
 
 At its core, a generic concurrent sketch ingests data through multiple sketches that are _local_ to the inserting threads.  
 The data in these local sketches, which are bounded in size, is merged into a single _shared_ sketch by utilizing the sketch _mergability_ property. 

@@ -14,14 +14,29 @@ For example, with 100M keys, over 75% of the keys would have only
 one identifier, 99% of the keys would have less than 20 identifiers, 99.9% would have less than
 200 identifiers, and a very tiny fraction might have identifiers in the thousands.
 
-The space consumed by this map is quite sensitive to the actual distribution of identifiers
+This sketch is quite different from other sketches in the library:
+
+* The unique count estimate is returned with each update.  Most of the other sketches in the library require a separate getEstimate() method.  This sketch has a getEstimate(key) method, which is explained next.
+* All keys that have been seen by the sketch are retained by the sketch.  Thus the number of keys retained (seen) by the sketch is not approximate.  The unique count of the identifiers associated with a particular key can be an approximation.  This means that at any time, the user can request the current estimate of the unique count of identifiers seen by a specifc key by calling the getEstimate(key) method.
+
+Because all keys that have been seen by the sketch are retained, this sketch can grow to be quite large.  The space consumed by this map is quite sensitive to the actual distribution of identifiers
 per key, so you should characterize and or experiment with your typical input streams.
 Nonetheless, our experiments on live streams of about 100M keys required space less than 1.4GB.
 
 Given such highly-skewed distributions, using this map is far more efficient space-wise than
-the alternative of dedicating an HLL sketch per key. Based on our use cases, after
+the alternative of dedicating the library HllSketch per key. Based on our use cases, after
 subtracting the space required for key storage, the average bytes per key required for unique
-count estimation (see method getAverageSketchMemoryPerKey()) is about 10.
+count estimation (see method getAverageSketchMemoryPerKey()) is about 10 bytes.
+
+Assuming that the frequency distribution of your identifiers per key is roughly power-law with a log-log slope of about -1, the total storage required for this sketch can be roughly computed as
+
+```
+Size = (K + S) * T
+    where K = Key size in bytes
+          S = Average HLL Sketch Memory Per Key
+          T = Total number of keys seen by the sketch
+```  
+In our use-case we had a strong power-law distribution of IDs/key where the average HLL sketch memory per key was about 10.  With 100M keys, the space consumed was about 1.4 GB.  Nonetheless, the sketch tracks the memory usage for you and it can be obtained at any time with the getMemoryUsageBytes() method. The sketch also offers a getAverageSketchMemoryPerKey(), which estimates the value _S_ in the above equation.  
 
 Internally, this map is implemented as a hierarchy of internal hash maps with progressively
 increasing storage allocated for unique count estimation. As a key acquires more identifiers it
@@ -42,13 +57,17 @@ reference to the internal map where the key is still active.
 The intermediate maps between the base map and the final HLL map are of two types.
 The first few of these are called traverse maps where the coupons are
 stored as unsorted arrays. After the traverse maps are the coupon hash maps, where the coupons
-are stored in small OASH hash tables.
+are stored in small OASH (Open Address Single Hash) hash tables.
 
 All the intermediate maps support deletes and can dynamically grow and shrink as required by
 the input stream.
 
 The sketch estimator algorithms are unbiased with a Relative Standard Error (RSE)
 of about 2.6% with 68% confidence, or equivalently, about 5.2% with a 95% confidence.
+
+At the time this sketch was designed there was no requirement for merging these sketches, 
+so the merge operation was never implemented.  This sketch was designed to operate on
+a single server for real-time tracking and monitoring.  
 
 ### Accuracy
 
