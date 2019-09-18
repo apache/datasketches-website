@@ -4,8 +4,6 @@ layout: doc_page
 
 ## Frequent Items Sketch Hive UDFs
 
-### DoublesSketch example
-
     add jar sketches-core-0.7.0.jar;
     add jar sketches-hive-0.7.0.jar;
 
