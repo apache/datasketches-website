@@ -39,15 +39,124 @@ In our example our fine-grain interval is a day and the overall interval is 30 d
 
 Since we want to analyze data for 30 days, at the end of Stage 1, we will have 30 sketches representing each of the 30 days of the month.
 
-In this stage we only want to count vists by any one customer once for a single day, even if a customer visits us multiple times during that day.  
+In this stage we only want to count visits by any one customer once for a single day, even if a customer visits us multiple times during that day.  
 
-### Stage 2: Merge across days sketching
+### Stage 2: Merge across days
 Once we have all 30 days sketched with their individual sketches, we now want to merge all 30 sketches together into one final sketch. This time, however, we want to count the number of duplicates that occur for any single ID.  This will give us the number of days that ID appeared across all 30 days.
 
 ## The Tuple Sketch
 Please refer to the [Tuple Overview](https://datasketches.github.io/docs/Tuple/TupleOverview.html) section on this website for a quick review of how the Tuple Sketch works. 
 
-For our example we will use the IntegerSketch in the library which is a Tuple Sketch configured with a Summary field consisting of a single Integer.   
+For our example we will use the [IntegerSketch Package](https://github.com/apache/incubator-datasketches-java/tree/master/src/main/java/org/apache/datasketches/tuple/aninteger) from the library. This package consists of five classes, the _IntegerSketch_ and 4 helper classes, all of which are derived from generic classes of the parent _tuple_ package.  Normally, the user/developer would develop these 5 classes to solve a particular analysis problem. These 5 classes can serve as an example of how to create your own Tuple Sketch solutions and we will use them to solve our customer engagement problem.
+
+### IntegerSketch class
+```java
+public class IntegerSketch extends UpdatableSketch<Integer, IntegerSummary> { ... }
+```
+The IntegerSketch class extends the generic UpdatableSketch specifying two type parameters, an Integer and an IntegerSummary.
+
+The Integer type specifies the data type that will update the IntegerSummary.  The IntegerSummary specifies the structure of the summary field and what rules to use when updating the field with an Integer type.
+
+```java
+ public IntegerSketch(final int lgK, final IntegerSummary.Mode mode) {
+    super(1 << lgK, ResizeFactor.X8.ordinal(), 1.0F, new IntegerSummaryFactory(mode));
+  }
+```
+
+This first constructor takes and integer and a Mode.  The integer _lgK_ is a parameter that impacts the maximum size of the sketch object both in memory and when stored, and specifies what the accuracy of the sketch will be.  The larger the value the larger the sketch and the more accurate it will be. The "lg" in front of the "K" is a shorthand for Log_base2. This parameter must be an integer beweeen 4 and 26, with 12 being a typical value.  With the value 12, there will be up to 2^12 = 4096 possible rows retained by the sketch where each row consists of a key and a summary field.  In theory, the summary field can be anything, but for our example it is just a single integer. 
+
+We will not be using the second constructor.
+
+```java
+  @Override
+  public void update(final String key, final Integer value) {
+    super.update(key, value);
+  }
+
+  @Override
+  public void update(final long key, final Integer value) {
+    super.update(key, value);
+  }
+```
+The IntegerSketch has two update methods, one for String keys and an Integer value and the other for long keys and an Integer value.
+The user system code would call one of these two methods to update the sketch.  In our example, we will call the second update method with an integer value representing a user ID and a value of one for the Integer.  The key will be hashed and passed to the internal sketching algorithm that will determine if the key-value pair should be retained by the sketch or not.  If it is retained, the 2nd parameter will be passed to the IntegerSummary class for handling.   
+
+### IntegerSummary class
+```java
+public class IntegerSummary implements UpdatableSummary<Integer> {
+  private int value_;
+  private final Mode mode_;
+  ...
+```
+The _IntegerSummary_ class is central to understanding how tuple sketches work in general and how we will configure it for our example.
+  
+The IntegerSummary class extends the generic UpdatableSummary specifying one parameter, Integer, the data type that will update this summary. This summary object is very simple. It has one updatable value field of type _int_ and a _final_ Mode field, which tells this summary object the rule to use when updating _value_.
+
+```java
+  /**
+   * The aggregation modes for this Summary
+   */
+  public static enum Mode {
+
+    /**
+     * The aggregation mode is the summation function.
+     * <p>New retained value = previous retained value + incoming value</p>
+     */
+    Sum,
+
+    /**
+     * The aggregation mode is the minimum function.
+     * <p>New retained value = min(previous retained value, incoming value)</p>
+     */
+    Min,
+
+    /**
+     * The aggregation mode is the maximum function.
+     * <p>New retained value = max(previous retained value, incoming value)</p>
+     */
+    Max,
+
+    /**
+     * The aggregation mode is always one.
+     * <p>New retained value = 1</p>
+     */
+    AlwaysOne
+  }
+```
+The _Mode_ enum defines the different rules that can be used when updating the summary.  In this case we have four rules: Sum, Min, Max, and AlwaysOne.  For our example, we will only use Sum and AlwaysOne. There is only one public constructor which specifies the mode that we wish to use.  The _getValue()_ method allows us to extract the value of the summary when the sketching is done.
+
+
+```java
+  @Override
+  public void update(final Integer value) {
+    switch (mode_) {
+    case Sum:
+      value_ += value;
+      break;
+    case Min:
+      if (value < value_) { value_ = value; }
+      break;
+    case Max:
+      if (value > value_) { value_ = value; }
+      break;
+    case AlwaysOne:
+      value_ = 1;
+      break;
+    }
+  }
+```
+This method is called by the sketch algorithms to update the summary with the value provided by the IntegerSketch update method described above. This is the code that implements the aggregation rules specified by the Mode. 
+
+
+### IntegerSummarySetOperations class
+This class allows us to define different updating rules for two different set operations: _Union_ and _Intersection_.  In this context "Union" is synonymous with "merge".  In our example we will only use the Union set operation.
+
+### IntegerSummaryFactory class
+This class is only called by the underlying sketch code when a new key-value pair needs to be retained by the sketch and a new empty Summary needs to be associated with the new key, and the new summary may need to be updated by the incoming value.
+
+### IntegerSummaryDeserializer class
+This class is only called by the underlying sketch code when deserializing a sketch and its summaries from a stored image.  We will not be using this class in our example.
+
 
 
 (To be continued!)
