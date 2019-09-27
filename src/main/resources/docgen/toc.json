@@ -98,10 +98,11 @@
 
         { "class":"Dropdown", "desc" : "Tuple Sketches", "array":
           [
-            {"class":"Doc",  "desc" : "Tuple Sketch Overview",        "dir" : "Tuple", "file": "TupleOverview" },
-            {"class":"Doc",  "desc" : "Tuple Sketch Java Example",    "dir" : "Tuple", "file": "TupleJavaExample" },
-            {"class":"Doc",  "desc" : "Tuple Sketch Pig UDFs",        "dir" : "Tuple", "file": "TuplePigUDFs" },
-            {"class":"Doc",  "desc" : "Tuple Sketch Hive UDFs",       "dir" : "Tuple", "file": "TupleHiveUDFs" },
+            {"class":"Doc",  "desc" : "Tuple Overview",           "dir" : "Tuple", "file": "TupleOverview" },
+            {"class":"Doc",  "desc" : "Tuple Java Example",       "dir" : "Tuple", "file": "TupleJavaExample" },
+            {"class":"Doc",  "desc" : "Tuple Engagement Example", "dir" : "Tuple", "file": "TupleEngagementExample" },
+            {"class":"Doc",  "desc" : "Tuple Pig UDFs",           "dir" : "Tuple", "file": "TuplePigUDFs" },
+            {"class":"Doc",  "desc" : "Tuple Hive UDFs",          "dir" : "Tuple", "file": "TupleHiveUDFs" },
           ]
         },
       ]
