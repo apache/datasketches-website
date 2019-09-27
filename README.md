@@ -24,24 +24,26 @@ After 8 years of development and 5 years as in Open Source, we have begun the im
   * [Original Website Source](https://github.com/DataSketches/DataSketches.github.io)
   * [New Website Source](https://github.com/apache/incubator-datasketches)
 
-* Java
-  * [memory](https://github.com/DataSketches/memory)
-  * [sketches-core](https://github.com/DataSketches/sketches-core)
-  * [sketches-hive](https://github.com/DataSketches/sketches-hive)
-  * [sketches-pig](https://github.com/DataSketches/sketches-pig)
-  * [sketches-vector](https://github.com/DataSketches/sketches-vector)
-  * [sketches-misc](https://github.com/DataSketches/sketches-misc)
-  * [sketches-android](https://github.com/DataSketches/sketches-android)
-  * [characterization](https://github.com/DataSketches/characterization)
-  * [experimental](https://github.com/DataSketches/experimental)
+* Java 
+  * [memory now incubator-datasketches-memory](https://github.com/apache/incubator-datasketches-memory)
+  * [sketches-core now incubator-datasketches-java](https://github.com/apache/incubator-datasketches-java)
+  * [sketches-hive now incubator-datasketches-hive](https://github.com/apache/incubator-datasketches-hive)
+  * [sketches-pig now incubator-datasketches-pig](https://github.com/apache/incubator-datasketches-pig)
+  * [sketches-vector now incubator-datasketches-vector](https://github.com/apache/incubator-datasketches-vector)
+  * [characterization now incubator-datasketches-characterization](https://github.com/apache/incubator-datasketches-characterization)
 
 * C++
-  * [sketches-core-cpp](https://github.com/DataSketches/sketches-core-cpp)
-  * [sketches-postgres](https://github.com/DataSketches/sketches-postgres)
+  * [sketches-core-cpp now incubator-datasketches-cpp](https://github.com/apache/incubator-datasketches-cpp)
+  * [sketches-postgres now incubator-datasketches-postgresql](https://github.com/apache/incubator-datasketches-postgresql)
+
+* Java/C++/Python (the following may be moved to Apache later)
+  * [sketches-misc](https://github.com/DataSketches/sketches-misc)
+  * [sketches-android](https://github.com/DataSketches/sketches-android)
+  * [experimental](https://github.com/DataSketches/experimental)
   * [characterization-cpp](https://github.com/DataSketches/characterization-cpp)
   * [experimental-cpp](https://github.com/DataSketches/experimental-cpp)
 
-* Command Line
+* Command Line (These may move to Apache later or replaced by Python) 
   * [homebrew-sketches-cmd](https://github.com/DataSketches/homebrew-sketches-cmd)
   * [sketches-cmd](https://github.com/DataSketches/sketches-cmd)
   * [homebrew-sketches](https://github.com/DataSketches/homebrew-sketches)
