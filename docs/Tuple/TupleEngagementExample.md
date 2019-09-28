@@ -193,7 +193,7 @@ Note 2: You can run the following _computeEngagementHistogram()_ method as a tes
     assertEquals(numVisits, 897);
   }
 ```
-This little engagement test uses a power-law distribution of number of days visited versus the number of visitors in order to model what actual data might look like.  It is not essential to understand how the data is generated, but if your curious it will be discussed at the end.
+This little engagement test uses a power-law distribution of number of days visited versus the number of visitors in order to model what actual data might look like.  It is not essential to understand how the data is generated, but if you are curious it will be discussed at the end.
 
 In lines 7 - 9, we create a simple array of 30 sketches for the 30 days.  Note that we set the update mode to _AlwaysOne_. (Because this little test does not generate any duplicates in the first stage, the mode _Sum_ would also work.)
 
@@ -241,9 +241,35 @@ In lines 9-10, the result is obtained from the union as a _CompactSketch_ and a 
 
 In lines 14-16, we accumulate the frequencies of occurences of rows with the same count value.
 
-The remainder of the method is just the mechanics of printing out the results to the console.
+The remainder of the method is just the mechanics of printing out the results to the console, which should look like this:
 
+```
+Days Visited,    Visitors
+           1,         102
+           2,          77
+           3,          30
+           4,          15
+           5,          11
+           6,           5
+           7,           4
+           8,           4
+           9,           3
+          10,           3
+          11,           3
+          12,           2
+          14,           2
+          15,           2
+          17,           2
+          19,           2
+          21,           1
+          24,           1
+          27,           1
+          30,           1
+Total Visitors: 271
+Total Visits  : 897
+```
 
+This is the data that is plotted as a histogram at the top of this tutorial.
 
 
 
