@@ -44,10 +44,11 @@ In this stage we only want to count visits by any one customer once for a single
 ### Stage 2: Merge across days
 Once we have all 30 days sketched with their individual sketches, we now want to merge all 30 sketches together into one final sketch. This time, however, we want to count the number of duplicates that occur for any single ID.  This will give us the number of days that ID appeared across all 30 days.
 
-## The Tuple Sketch
-Please refer to the [Tuple Overview](https://datasketches.github.io/docs/Tuple/TupleOverview.html) section on this website for a quick review of how the Tuple Sketch works. 
+## The IntegerSketch and Helper classes
 
-For our example we will use the [IntegerSketch Package](https://github.com/apache/incubator-datasketches-java/tree/master/src/main/java/org/apache/datasketches/tuple/aninteger) from the library. This package consists of five classes, the _IntegerSketch_ and 4 helper classes, all of which are derived from generic classes of the parent _tuple_ package.  Normally, the user/developer would develop these 5 classes to solve a particular analysis problem. These 5 classes can serve as an example of how to create your own Tuple Sketch solutions and we will use them to solve our customer engagement problem.
+For our example we will use the [IntegerSketch Package](https://github.com/apache/incubator-datasketches-java/tree/master/src/main/java/org/apache/datasketches/tuple/aninteger) from the library. This package consists of 5 classes, the _IntegerSketch_ and 4 helper classes, all of which extend generic classes of the parent _tuple_ package.  Normally, the user/developer would develop these 5 classes to solve a particular analysis problem. These 5 classes can serve as an example of how to create your own Tuple Sketch solutions and we will use them to solve our customer engagement problem.
+
+Please refer to the [Tuple Overview](https://datasketches.github.io/docs/Tuple/TupleOverview.html) section on this website for a quick review of how the Tuple Sketch works. 
 
 ### IntegerSketch class
 ```java
@@ -149,13 +150,101 @@ This method is called by the sketch algorithms to update the summary with the va
 
 
 ### IntegerSummarySetOperations class
-This class allows us to define different updating rules for two different set operations: _Union_ and _Intersection_.  In this context "Union" is synonymous with "merge".  In our example we will only use the Union set operation.
+This class allows us to define different updating rules for two different set operations: _Union_ and _Intersection_.  In this context "Union" is synonymous with "merge".  In our example we will only use the Union set operation.  
+
+It is important to note here that this set operations class also uses the mode updating logic of the IntegerSummary class. These updating modes can be different than the mode used when the IntegerSummary is used with the IntegerSketch class.
 
 ### IntegerSummaryFactory class
 This class is only called by the underlying sketch code when a new key-value pair needs to be retained by the sketch and a new empty Summary needs to be associated with the new key, and the new summary may need to be updated by the incoming value.
 
 ### IntegerSummaryDeserializer class
 This class is only called by the underlying sketch code when deserializing a sketch and its summaries from a stored image.  We will not be using this class in our example.
+
+## The [EngagementTest](https://github.com/apache/incubator-datasketches-java/blob/master/src/test/java/org/apache/datasketches/tuple/aninteger/EngagementTest.java) class
+Note 1: the version in the GitHub master is more up-to-date than the version of this class in the 1.1.0-incubating release. This tutorial references the code in master.
+
+Note 2: You can run the following _computeEngagementHistogram()_ method as a test, but in order to see the output you will need to un-comment the printf(...) statement at the very end of the class.
+
+
+```java
+  @Test
+  public void computeEngagementHistogram() {
+    int lgK = 12;
+    int K = 1 << lgK; // = 4096
+    int days = 30;
+    int v = 0;
+    IntegerSketch[] skArr = new IntegerSketch[days];
+    for (int i = 0; i < days; i++) {
+      skArr[i] = new IntegerSketch(lgK, AlwaysOne);
+    }
+    for (int i = 0; i <= days; i++) { //31 generating indices
+      int numIds = numIDs(days, i);
+      int numDays = numDays(days, i);
+      int myV = v++;
+      for (int d = 0; d < numDays; d++) {
+        for (int id = 0; id < numIds; id++) {
+          skArr[d].update(myV + id, 1);
+        }
+      }
+      v += numIds;
+    }
+
+    int numVisits = unionOps(K, Sum, skArr);
+    assertEquals(numVisits, 897);
+  }
+```
+This little engagement test uses a power-law distribution of number of days visited versus the number of visitors in order to model what actual data might look like.  It is not essential to understand how the data is generated, but if your curious it will be discussed at the end.
+
+In lines 7 - 9, we create a simple array of 30 sketches for the 30 days.  Note that we set the update mode to _AlwaysOne_. (Because this little test does not generate any duplicates in the first stage, the mode _Sum_ would also work.)
+
+The triple-nested for-loops update the 30 sketches using a pair of parametric generating functions discussed later. Line 23 passes the array of sketches to the _unionOps(...)_ method, which will output the results.  The returned _numVisits_ is just for testing.
+
+```java
+  private static int unionOps(int K, IntegerSummary.Mode mode, IntegerSketch ... sketches) {
+    IntegerSummarySetOperations setOps = new IntegerSummarySetOperations(mode, mode);
+    Union<IntegerSummary> union = new Union<>(K, setOps);
+    int len = sketches.length;
+
+    for (IntegerSketch isk : sketches) {
+      union.update(isk);
+    }
+    CompactSketch<IntegerSummary> result = union.getResult();
+    SketchIterator<IntegerSummary> itr = result.iterator();
+
+    int[] freqArr = new int[len +1];
+
+    while (itr.next()) {
+      int value = itr.getSummary().getValue();
+      freqArr[value]++;
+    }
+    println("Engagement Histogram:");
+    printf("%12s,%12s\n","Days Visited", "Visitors");
+    int sumVisitors = 0;
+    int sumVisits = 0;
+    for (int i = 0; i < freqArr.length; i++) {
+      int visits = freqArr[i];
+      if (visits == 0) { continue; }
+      sumVisitors += visits;
+      sumVisits += (visits * i);
+      printf("%12d,%12d\n", i, visits);
+    }
+    println("Total Visitors: " + sumVisitors);
+    println("Total Visits  : " + sumVisits);
+    return sumVisits;
+  }
+```
+In the unionOps method line 2 initialize the _IntegerSummarySetOperations_ class with the given mode, which for our example must be _Sum_. Line 3 creates a new Union class initialized with the setOps class.
+
+In lines 6-8 the union is updated with all of the sketches from the array.
+
+In lines 9-10, the result is obtained from the union as a _CompactSketch_ and a _SketchIterator_ is obtained from the result so we can process all the retained rows of the sketch.
+
+In lines 14-16, we accumulate the frequencies of occurences of rows with the same count value.
+
+The remainder of the method is just the mechanics of printing out the results to the console.
+
+
+
 
 
 
