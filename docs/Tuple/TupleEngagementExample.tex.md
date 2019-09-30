@@ -274,15 +274,43 @@ This is the data that is plotted as a histogram at the top of this tutorial.
 ## Generating the Synthetic Data
 This section is for folks interested in how the data for this example was generated.  This is optional reading.
 
-Much of the data we analyze from the Internet has the classical "long-tailed" distribution or a power-law distribution.  When frequencies of occurences of some type is plotted on a log-log axis we tend to get a negatively sloping, mostly-straight line.  There have been numerous books and papers written about this phenomenon, but it is quite real and any analysis tools used to analyze should take this into account.
+Much of the data we analyze from the Internet has the classical "long-tailed" distribution or a power-law distribution.  When frequencies of occurences of some type is plotted on a log-log axis we tend to get a negatively sloping, mostly-straight line.  There have been numerous books and papers written about this phenomenon, but it is quite real and any analysis tools used to analyze big data should take this into account.
 
 For this example, it was useful to generate data that at least had some resemblence to what a user might actually experience with their own data.
 
+To plot a straight line on a graph we use the familiar $y=mx + b$ formula from high school, where $m$ is the slope and $b$ is the y-intercept.  In our example, we want the line to start at the maximum number of days, $d$, and have a negative slope so our equation becomes $y=-mx + d$.
 
+As we noted above, we actually want this to be a straight line on a log-log graph, so each of the variables $y$, $x$ and $d$ are actually log variables.  Now our equation becomes
 
+$$\log y = -m\log x + \log d$$.
 
-(To be continued!)
+To transform this into a pair of parametric equations we perform the following operations. First we multiply through by $d/log(d)$ to isolate $d$ by itself
 
+$$\frac{d\log y}{\log d} = -\frac{dm\log x}{\log d} + d$$
 
+Then we insert our parametric variable $i$, which will vary from zero to $d$:
 
- 
+$$\frac{d\log y}{\log d} = i = -\frac{dm\log x}{\log d} + d$$
+
+solving for both $x$ and $y$ separately on both sides gives
+
+$$y = e^{\frac{i}{d}\log d}$$
+$$x = e^{\frac{d-i}{dm}\log d}$$
+
+These are continuous functions and when plotted we can see our negative sloping plot (here $m = 1$) starting at $y=30$ and ending at $x = 30$. The parametric variable $i$ varies from 0 to 30, inclusively.
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}/tuple/ContinuousLogLog.png" alt="ContinuousLogLog.png" />
+
+This, of course, results in non-integer coordinates, which is not what we want. Descretizing the equations becomes
+
+$$y = round(e^{\frac{i}{d}\log d})$$
+$$x = round(e^{\frac{d-i}{dm}\log d})$$
+
+Produces
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}/tuple/DiscreteLogLog.png" alt="DiscreteLogLog.png" />
+
+Note that these plots are symmetric about the faint 45 degree line.
+
+The points on this graph represent the intermediate data used to generate the final data fed to the sketches.
+
