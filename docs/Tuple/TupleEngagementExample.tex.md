@@ -282,7 +282,7 @@ To plot a straight line on a graph we use the familiar $y=mx + b$ formula from h
 
 As we noted above, we actually want this to be a straight line on a log-log graph, so each of the variables $y$, $x$ and $d$ are actually log variables.  Now our equation becomes
 
-![]($$\log y = -m\log x + \log d$$).
+$![]($\log y = -m\log x + \log d$)$.
 
 To transform this into a pair of parametric equations we perform the following operations. First we multiply through by $d/log(d)$ to isolate $d$ by itself
 
