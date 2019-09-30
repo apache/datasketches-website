@@ -282,7 +282,7 @@ To plot a straight line on a graph we use the familiar <img src="/docs/Tuple/tex
 
 As we noted above, we actually want this to be a straight line on a log-log graph, so each of the variables <img src="/docs/Tuple/tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/>, <img src="/docs/Tuple/tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/> and <img src="/docs/Tuple/tex/2103f85b8b1477f430fc407cad462224.svg?invert_in_darkmode&sanitize=true" align=middle width=8.55596444999999pt height=22.831056599999986pt/> are actually log variables.  Now our equation becomes
 
-![](<p align="center"><img src="/docs/Tuple/tex/ee2e5d9da4d950906fa92096b6429b1c.svg?invert_in_darkmode&sanitize=true" align=middle width=170.48488049999997pt height=14.611878599999999pt/></p>).
+<img src="/docs/Tuple/tex/34819b354c919d9e6062b1bdcdcffab3.svg?invert_in_darkmode&sanitize=true" align=middle width=20.091388349999992pt height=24.65753399999998pt/>\log y = -m\log x + \log d<img src="/docs/Tuple/tex/c0ef67b62c66b541c81467e7b3e3dc2c.svg?invert_in_darkmode&sanitize=true" align=middle width=6.39271709999999pt height=24.65753399999998pt/>.
 
 To transform this into a pair of parametric equations we perform the following operations. First we multiply through by <img src="/docs/Tuple/tex/4cce784506b1a2a25ec2e0fcda57d07b.svg?invert_in_darkmode&sanitize=true" align=middle width=59.74332374999999pt height=24.65753399999998pt/> to isolate <img src="/docs/Tuple/tex/2103f85b8b1477f430fc407cad462224.svg?invert_in_darkmode&sanitize=true" align=middle width=8.55596444999999pt height=22.831056599999986pt/> by itself
 
