@@ -27,26 +27,26 @@ Well, we have a sketching solution for that!
 ## The Input Stream
 The input data we need to create the above histogram can be viewed as a stream of tuples, where each tuple as at least two components, a time-stamp and an unique identifier (ID) that is a proxy for a customer or visitor.  In real systems, the tuples may have many other attributes, but for our purposes here, we only need these two.  The stream of tuples might be a live stream flowing in a network, or data being streamed from storage.  It doesn't matter.  
 
-What is important is that in order for these sketching algorithms to work properly is that a sketch must see all the relevant data for a particular day or domain that that particular sketch is assigned to represent.  Sketches are streaming algorithms, which means that every relevant item from a domain must be fed into the sketch one at a time.  Sketches are mergeable, thus parallelizable, which means the stream can be partitioned into many substreams feeding separate sketches. At any time, the sketches can be merged together into a single sketch to provide a snapshot-in-time analysis of the combined streams.
+In order for a sketch to work properly it must see all relevant data for a particular day, domain or dimensional coordinates that that particular sketch is assigned to represent. Sketches are mergeable, thus parallelizable, which means that the domain can be partitioned into many substreams feeding separate sketches. At the appropriate time the substream sketches can be merged together into a single sketch to provide a snapshot-in-time analysis of the whole domain.
 
-It is critical to emphasize that the input stream must not be pre-sampled (for example, a 10% random sample) as this will seriously impact the accuracy of any estimates derived from the sketches.  The input stream can be pre-filtered to remove robot traffic, for example, which will totally remove that traffic from the analysis.
+It is critical to emphasize that the input stream must not be pre-sampled (for example, a 10% random sample) as this will seriously impact the accuracy of any estimates derived from the sketch.  It is perfectly fine to pre-filter the input stream to remove robot traffic, for example, which will totally remove that traffic from the analysis.
 
 ## Duplicates
 We want our customers to come back and visit us many times, which will create tuples with duplicate IDs in the stream.  This is a good thing, but for this analysis we need to handle duplicate ID's in two different ways that we separate by two different stages of the analysis.
 
 ### Stage 1: Fine-grain interval sketching
-In our example our fine-grain interval is a day and the overall interval is 30 days.  In this stage we want to process all the tuples for one day in a way that ultimately results in a single sketch for that day.  This may mean many sketches operating in parallel to process all the records for one day, but they are ultimately merged down to a single sketch representing all the data for one day.  
+In our example our fine-grain interval is a day and the overall interval is 30 days.  In the first stage we want to process all the tuples for one day in a way that ultimately results in a single sketch for that day.  This may mean many sketches operating in parallel to process all the records for one day, but they are ultimately merged down to a single sketch representing all the data for one day.  
 
-Since we want to analyze data for 30 days, at the end of Stage 1, we will have 30 sketches representing each of the 30 days of the month.
+Since we want to analyze data for 30 days, at the end of Stage 1, we will have 30 sketches representing each of the 30 days.
 
-In this stage we only want to count visits by any one customer once for a single day, even if a customer visits us multiple times during that day.  
+In this first stage we only want to count visits by any one customer __once__ for a single day, even if a customer visits us multiple times during that day. Thus, we want to ignore any duplicate occurrences of the same ID within the same day.
 
-### Stage 2: Merge across days
-Once we have all 30 days sketched with their individual sketches, we now want to merge all 30 sketches together into one final sketch. This time, however, we want to count the number of duplicates that occur for any single ID.  This will give us the number of days that ID appeared across all 30 days.
+### Stage 2: Merge and count across days
+Once we have our 30 day sketches, we merge all 30 sketches together into one final sketch. This time, however, we want to count the number of duplicates that occur for any single ID across different days.  This will give us the number of days that any unique ID appeared across all 30 days.
 
 ## The IntegerSketch and Helper classes
 
-For our example we will use the [IntegerSketch Package](https://github.com/apache/incubator-datasketches-java/tree/master/src/main/java/org/apache/datasketches/tuple/aninteger) from the library. This package consists of 5 classes, the _IntegerSketch_ and 4 helper classes, all of which extend generic classes of the parent _tuple_ package.  Normally, the user/developer would develop these 5 classes to solve a particular analysis problem. These 5 classes can serve as an example of how to create your own Tuple Sketch solutions and we will use them to solve our customer engagement problem.
+For help us code our example we will leverage the [IntegerSketch Package](https://github.com/apache/incubator-datasketches-java/tree/master/src/main/java/org/apache/datasketches/tuple/aninteger) from the library. This package consists of 5 classes, the _IntegerSketch_ and 4 helper classes, all of which extend generic classes of the parent _tuple_ package.  Normally, the user/developer would develop these 5 classes to solve a particular analysis problem. These 5 classes can serve as an example of how to create your own Tuple Sketch solutions and we will use them to solve our customer engagement problem.
 
 Please refer to the [Tuple Overview](https://datasketches.github.io/docs/Tuple/TupleOverview.html) section on this website for a quick review of how the Tuple Sketch works. 
 
@@ -64,7 +64,7 @@ The Integer type specifies the data type that will update the IntegerSummary.  T
   }
 ```
 
-This first constructor takes and integer and a Mode.  The integer _lgK_ is a parameter that impacts the maximum size of the sketch object both in memory and when stored, and specifies what the accuracy of the sketch will be.  The larger the value the larger the sketch and the more accurate it will be. The "lg" in front of the "K" is a shorthand for Log_base2. This parameter must be an integer beweeen 4 and 26, with 12 being a typical value.  With the value 12, there will be up to 2^12 = 4096 possible rows retained by the sketch where each row consists of a key and a summary field.  In theory, the summary field can be anything, but for our example it is just a single integer. 
+This first constructor takes an integer and a Mode.  The integer _lgK_ is a parameter that impacts the maximum size of the sketch object both in memory and when stored, and specifies what the accuracy of the sketch will be.  The larger the value the larger the sketch and the more accurate it will be. The "lg" in front of the "K" is a shorthand for Log_base2. This parameter must be an integer beweeen 4 and 26, with 12 being a typical value.  With the value 12, there will be up to 2^12 = 4096 possible rows retained by the sketch where each row consists of a key and a summary field.  In theory, the summary field can be anything, but for our example it is just a single integer. 
 
 We will not be using the second constructor.
 
@@ -233,13 +233,13 @@ The triple-nested for-loops update the 30 sketches using a pair of parametric ge
     return sumVisits;
   }
 ```
-In the unionOps method line 2 initialize the _IntegerSummarySetOperations_ class with the given mode, which for our example must be _Sum_. Line 3 creates a new Union class initialized with the setOps class.
+In the unionOps method, line 2 initializes the _IntegerSummarySetOperations_ class with the given mode, which for our example must be _Sum_. Line 3 creates a new Union class initialized with the setOps class.
 
 In lines 6-8 the union is updated with all of the sketches from the array.
 
 In lines 9-10, the result is obtained from the union as a _CompactSketch_ and a _SketchIterator_ is obtained from the result so we can process all the retained rows of the sketch.
 
-In lines 14-16, we accumulate the frequencies of occurences of rows with the same count value.
+In lines 12-16, we accumulate the frequencies of occurences of rows with the same count value.
 
 The remainder of the method is just the mechanics of printing out the results to the console, which should look like this:
 
@@ -270,6 +270,13 @@ Total Visits  : 897
 ```
 
 This is the data that is plotted as a histogram at the top of this tutorial.
+
+## Generating the Synthetic Data
+This section is for folks interested in how the data for this example was generated.  This is optional reading.
+
+Much of the data we analyze from the Internet has the classical "long-tailed" distribution or a power-law distribution.  When frequencies of occurences of some type is plotted on a log-log axis we tend to get a negatively sloping, mostly-straight line.  There have been numerous books and papers written about this phenomenon, but it is quite real and any analysis tools used to analyze should take this into account.
+
+For this example, it was useful to generate data that at least had some resemblence to what a user might actually experience with their own data.
 
 
 
