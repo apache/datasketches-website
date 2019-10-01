@@ -278,37 +278,34 @@ Much of the data we analyze from the Internet has the classical "long-tailed" di
 
 For this example, it was useful to generate data that at least had some resemblence to what a user might actually experience with their own data.
 
-To plot a straight line on a graph we use the familiar 
+To plot a straight line on a graph we use the familiar _y = mx + b_ formula from high school, where _m_ is the slope and _b_ is the y-intercept.  In our example, we want the line to start at the maximum number of days, _d_, and have a negative slope so our equation becomes _y = -mx + d_.
 
-<img src="/docs/Tuple/tex/4b83ab92144c8118c40653189ab60df5.svg?invert_in_darkmode&sanitize=true" align=middle width=81.54091274999998pt height=22.831056599999986pt/> 
+As we noted above, we actually want this to be a straight line on a log-log graph, so each of the variables _y_, _x_ and _d_ are actually log variables.  Now our equation becomes
 
-formula from high school, where <img src="/docs/Tuple/tex/0e51a2dede42189d77627c4d742822c3.svg?invert_in_darkmode&sanitize=true" align=middle width=14.433101099999991pt height=14.15524440000002pt/> is the slope and <img src="/docs/Tuple/tex/4bdc8d9bcfb35e1c9bfb51fc69687dfc.svg?invert_in_darkmode&sanitize=true" align=middle width=7.054796099999991pt height=22.831056599999986pt/> is the y-intercept.  In our example, we want the line to start at the maximum number of days, <img src="/docs/Tuple/tex/2103f85b8b1477f430fc407cad462224.svg?invert_in_darkmode&sanitize=true" align=middle width=8.55596444999999pt height=22.831056599999986pt/>, and have a negative slope so our equation becomes <img src="/docs/Tuple/tex/6135f95a4c5190c1fb32a940218b7e49.svg?invert_in_darkmode&sanitize=true" align=middle width=95.82751364999999pt height=22.831056599999986pt/>.
+>_log y = -m log x + log d_.
 
-As we noted above, we actually want this to be a straight line on a log-log graph, so each of the variables <img src="/docs/Tuple/tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/>, <img src="/docs/Tuple/tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/> and <img src="/docs/Tuple/tex/2103f85b8b1477f430fc407cad462224.svg?invert_in_darkmode&sanitize=true" align=middle width=8.55596444999999pt height=22.831056599999986pt/> are actually log variables.  Now our equation becomes
+To transform this into a pair of parametric equations we perform the following operations. First we multiply through by _d log(d)_ to isolate _d_ by itself
 
-<p align="center"><img src="/docs/Tuple/tex/ee2e5d9da4d950906fa92096b6429b1c.svg?invert_in_darkmode&sanitize=true" align=middle width=170.48488049999997pt height=14.611878599999999pt/></p>.
+> _d log y / log d = -d m log x / log d + d_
 
-To transform this into a pair of parametric equations we perform the following operations. First we multiply through by <img src="/docs/Tuple/tex/4cce784506b1a2a25ec2e0fcda57d07b.svg?invert_in_darkmode&sanitize=true" align=middle width=59.74332374999999pt height=24.65753399999998pt/> to isolate <img src="/docs/Tuple/tex/2103f85b8b1477f430fc407cad462224.svg?invert_in_darkmode&sanitize=true" align=middle width=8.55596444999999pt height=22.831056599999986pt/> by itself
+Then we insert our parametric variable _i_, which will vary from zero to _d_:
 
-<p align="center"><img src="/docs/Tuple/tex/e3ddb2192b160548cd8cdd50d78798a5.svg?invert_in_darkmode&sanitize=true" align=middle width=172.2816183pt height=37.0084374pt/></p>
+>_d log y /log d = i = - d m log x / log d + d_
 
-Then we insert our parametric variable <img src="/docs/Tuple/tex/77a3b857d53fb44e33b53e4c8b68351a.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/>, which will vary from zero to <img src="/docs/Tuple/tex/2103f85b8b1477f430fc407cad462224.svg?invert_in_darkmode&sanitize=true" align=middle width=8.55596444999999pt height=22.831056599999986pt/>:
+solving for both _x_ and _y_ separately on both sides gives
 
-<p align="center"><img src="/docs/Tuple/tex/0ae2a195b9e9ba508c93b2d941164738.svg?invert_in_darkmode&sanitize=true" align=middle width=199.86247544999998pt height=37.0084374pt/></p>
+>_y = exp(i/d log d)_
 
-solving for both <img src="/docs/Tuple/tex/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode&sanitize=true" align=middle width=9.39498779999999pt height=14.15524440000002pt/> and <img src="/docs/Tuple/tex/deceeaf6940a8c7a5a02373728002b0f.svg?invert_in_darkmode&sanitize=true" align=middle width=8.649225749999989pt height=14.15524440000002pt/> separately on both sides gives
+>_x = exp((d-i)/(d m) log d)_
 
-<p align="center"><img src="/docs/Tuple/tex/8c6a4860368623a37d240d1a41783b15.svg?invert_in_darkmode&sanitize=true" align=middle width=76.58257364999999pt height=19.8789426pt/></p>
-<p align="center"><img src="/docs/Tuple/tex/6d62acd36363beecb55558641342120e.svg?invert_in_darkmode&sanitize=true" align=middle width=90.61807424999999pt height=17.57997945pt/></p>
-
-These are continuous functions and when plotted we can see our negative sloping plot (here <img src="/docs/Tuple/tex/a08aa3f720eb59983ccb69372a8b620d.svg?invert_in_darkmode&sanitize=true" align=middle width=44.56994024999999pt height=21.18721440000001pt/>) starting at <img src="/docs/Tuple/tex/ab7c502ff4006d6fafd521bbc80ba537.svg?invert_in_darkmode&sanitize=true" align=middle width=47.00525609999998pt height=21.18721440000001pt/> and ending at <img src="/docs/Tuple/tex/53f72531c4ccb08b88a6764fc49b5cf4.svg?invert_in_darkmode&sanitize=true" align=middle width=47.75103794999999pt height=21.18721440000001pt/>. The parametric variable <img src="/docs/Tuple/tex/77a3b857d53fb44e33b53e4c8b68351a.svg?invert_in_darkmode&sanitize=true" align=middle width=5.663225699999989pt height=21.68300969999999pt/> varies from 0 to 30, inclusively.
+These are continuous functions and when plotted we can see our negative sloping plot (here _m = 1_) starting at _y=30_ and ending at _x = 30_. The parametric variable _i_ varies from 0 to 30, inclusively.
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/tuple/ContinuousLogLog.png" alt="ContinuousLogLog.png" />
 
 This, of course, results in non-integer coordinates, which is not what we want. Descretizing the equations becomes
 
-<p align="center"><img src="/docs/Tuple/tex/5f611a59c6f07a05ea5008ffb5f1b62d.svg?invert_in_darkmode&sanitize=true" align=middle width=133.86404295pt height=20.7921813pt/></p>
-<p align="center"><img src="/docs/Tuple/tex/b5c1239bff09265ac536ff7335a16cc0.svg?invert_in_darkmode&sanitize=true" align=middle width=147.8995452pt height=21.68956845pt/></p>
+_y = round(exp(i/d log d))_
+_x = round(exp((d-i)/(d m) log d))_
 
 Produces
 
