@@ -22,7 +22,7 @@ Different businesses will have different overall time periods of interest and di
 
 So how do we do this?  Especially, how can we do this efficiently, quickly, and suitable for near-real-time results?
 
-Well, we have a sketching solution for that!
+Well, we have a sketching app for that!
 
 ## The Input Stream
 The input data we need to create the above histogram can be viewed as a stream of tuples, where each tuple as at least two components, a time-stamp and an unique identifier (ID) that is a proxy for a customer or visitor.  In real systems, the tuples may have many other attributes, but for our purposes here, we only need these two.  The stream of tuples might be a live stream flowing in a network, or data being streamed from storage.  It doesn't matter.  
@@ -282,32 +282,30 @@ To plot a straight line on a graph we use the familiar _y = mx + b_ formula from
 
 As we noted above, we actually want this to be a straight line on a log-log graph, so each of the variables _y_, _x_ and _d_ are actually log variables.  Now our equation becomes
 
->_log y = -m log x + log d_.
+<p style="text-align: center;"><i>log y = -m log x + log d.</i></p>
 
 To transform this into a pair of parametric equations we perform the following operations. First we multiply through by _d log(d)_ to isolate _d_ by itself
 
-> _d log y / log d = -d m log x / log d + d_
+<p style="text-align: center;"><i>d log y / log d = -d m log x / log d + d.</i></p>
 
 Then we insert our parametric variable _i_, which will vary from zero to _d_:
 
->_d log y /log d = i = - d m log x / log d + d_
+<p style="text-align: center;"><i>d log y /log d = i = - d m log x / log d + d.</i></p>
 
-solving for both _x_ and _y_ separately on both sides gives
+Solving for both _x_ and _y_ separately on both sides gives
 
->_y = exp(i/d log d)_
-
->_x = exp((d-i)/(d m) log d)_
+<p style="text-align: center;"><i>y = exp(i/d log d),</i></p>
+<p style="text-align: center;"><i>x = exp((d-i)/(d m) log d).</i></p>
 
 These are continuous functions and when plotted we can see our negative sloping plot (here _m = 1_) starting at _y=30_ and ending at _x = 30_. The parametric variable _i_ varies from 0 to 30, inclusively.
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/tuple/ContinuousLogLog.png" alt="ContinuousLogLog.png" />
 
 This, of course, results in non-integer coordinates, which is not what we want. Descretizing the equations becomes
+<p style="text-align: center;"><i>y = round(exp(i/d log d)),</i></p>
+<p style="text-align: center;"><i>x = round(exp((d-i)/(d m) log d)).</i></p>
 
-_y = round(exp(i/d log d))_
-_x = round(exp((d-i)/(d m) log d))_
-
-Produces
+This produces
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/tuple/DiscreteLogLog.png" alt="DiscreteLogLog.png" />
 
