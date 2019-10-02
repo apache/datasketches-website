@@ -284,15 +284,15 @@ As we noted above, we actually want this to be a straight line on a log-log grap
 
 <p style="text-align: center;"><i>log y = -m log x + log d.</i></p>
 
-To transform this into a pair of parametric equations we perform the following operations. First we multiply through by _d log(d)_ to isolate _d_ by itself
+To transform this into a pair of parametric equations we perform the following operations. First we multiply through by _d / log(d)_ to isolate _d_ by itself on both sides
 
 <p style="text-align: center;"><i>d log y / log d = -d m log x / log d + d.</i></p>
 
-Then we insert our parametric variable _i_, which will vary from zero to _d_:
+Then we insert our parametric variable _i_, which will vary from zero to _d_, in the middle:
 
-<p style="text-align: center;"><i>d log y /log d = i = - d m log x / log d + d.</i></p>
+<p style="text-align: center;"><i>d log y / log d = i = -d m log x / log d + d.</i></p>
 
-Solving for both _x_ and _y_ separately on both sides gives
+Solving for both _x_ and _y_ separately gives
 
 <p style="text-align: center;"><i>y = exp(i/d log d),</i></p>
 <p style="text-align: center;"><i>x = exp((d-i)/(d m) log d).</i></p>
@@ -311,5 +311,5 @@ This produces
 
 Note that these plots are symmetric about the faint 45 degree line.
 
-The points on this graph represent the intermediate data used to generate the final data fed to the sketches.
+The points on this graph represent the parameters for the two inner _for_ loops used to generate the final data fed to the sketches.
 
