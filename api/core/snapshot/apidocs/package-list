@@ -11,4 +11,5 @@ org.apache.datasketches.sampling
 org.apache.datasketches.theta
 org.apache.datasketches.tuple
 org.apache.datasketches.tuple.adouble
+org.apache.datasketches.tuple.aninteger
 org.apache.datasketches.tuple.strings
