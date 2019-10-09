@@ -14,6 +14,8 @@ The *HyperLogLogPlus* error curves are on the right.
 
 If the image is too small to read, right-click on the image and open it in a separate window.
 
+> NOTE: These sketches were configured with _K = 2^21_, which is a VERY large sketch in order to be able to zoom in on the error detail in the low range, which is where most actual usage will occur.
+
 These plots are what we call *pitch-fork* plots. The X-axis is the number of unique counts presented to the sketch. The Y-axis is the Root-Mean-Squared of Relative Error (RMS-RE)\[5\] plotted as +/- percent where values above zero represent an overestimate and values below zero represent an underestimate. 
 
 The colored curves represent different quantile contours of the empirical error distribution. The orange and green curves are the contours corresponding to +/- one standard deviation from the mean error, and which define the 68% confidence bounds. The red and blue curves are the contours at +/- two standard deviations and define the 95.4% confidence bounds. The brown and purple curves are the contours at +/- three standard deviations and define the 99.7% confidence bounds. The mean (gray) and median (black) overlap each other and hug the axis close to zero. 
