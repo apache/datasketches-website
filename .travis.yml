@@ -4,7 +4,7 @@ rvm:
 
 before install:
   - gem update --system
-  - gem install bundler
+  - gem install bundler -v '>=2'
 
 
 script: "bundle exec jekyll build"
