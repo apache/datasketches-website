@@ -6,7 +6,7 @@ before install:
   - gem install bundler -v '2.0.2'
 
 rvm:
-- 2.5.3
+- 2.5
 
 
 script: "bundle exec jekyll build"
