@@ -1,4 +1,10 @@
 language: ruby
+
+before install:
+  - gem update --system
+  - gem install bundler -v '2.0.2'
+
 rvm:
-- 2.1
+- 2.5
+
 script: "bundle exec jekyll build"
