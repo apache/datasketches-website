@@ -1,6 +1,10 @@
-com.yahoo.sketches.pig.frequencies
-com.yahoo.sketches.pig.hash
-com.yahoo.sketches.pig.quantiles
-com.yahoo.sketches.pig.sampling
-com.yahoo.sketches.pig.theta
-com.yahoo.sketches.pig.tuple
+org.apache.datasketches.pig.cpc
+org.apache.datasketches.pig.frequencies
+org.apache.datasketches.pig.hash
+org.apache.datasketches.pig.hll
+org.apache.datasketches.pig.kll
+org.apache.datasketches.pig.quantiles
+org.apache.datasketches.pig.sampling
+org.apache.datasketches.pig.theta
+org.apache.datasketches.pig.tuple
+org.apache.datasketches.sampling
