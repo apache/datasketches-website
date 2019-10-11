@@ -2,19 +2,32 @@
 layout: doc_page
 ---
 
-# DataSketches is now Apache DataSketches (incubating). 
+# Apache DataSketches (incubating)
+## A software library of stochastic streaming algorithms 
 
-DataSketches is an open source, high-performance library of stochastic streaming algorithms commonly called "sketches" in the data sciences. Sketches are small, stateful programs that process massive data as a stream and can provide approximate answers, with mathematical guarantees, to computationally difficult queries orders-of-magnitude faster than traditional, exact methods.
+Apache DataSketches is an open source, high-performance library of stochastic streaming algorithms commonly called "sketches" in the data sciences. Sketches are small, stateful programs that process massive data as a stream and provide approximate answers, with mathematical guarantees, to computationally difficult queries orders-of-magnitude faster than traditional, exact methods.
 
 After 8 years of development and 5 years as in Open Source, we have begun the important migration from a stand-alone GitHub site to being a member of the Apache Software Foundation community.  While we undergo this migration, we beg your patience. 
 
-* Please continue to use [DataSketches.GitHub.io](http://datasketches.github.io) for all overview documentation and access to online-javadocs for the time being.
+* Please continue to use [DataSketches.GitHub.io](http://datasketches.github.io) for all overview documentation and access to online-javadocs for the time being. The [datasketches.apache.org](http://datasketches.apache.org) website will be a placeholder until we have migrated our current community website from [DataSketches.GitHub.io](http://DataSketches.GitHub.io).
 
-* Please continue to use our [Google-groups forum](https://groups.google.com/forum/#!forum/sketches-user) or the GitHub-issues on the specific repositories to bring issues or questions to our attention. 
+* Ways to contact us:
+    * We have two ASF [the-ASF.slack.com](http://the-ASF.slack.com) slack channels:
+        * datasketches -- general user questions
+        * datasketches-dev -- similar to our Apache [dev@datasketches.apache.org](mailto:dev@datasketches.apache.org), except more interactive, but not as easily searchable.
+    * For discussions about problems with any of our sketch repository components (core-java, core-cpp, Hive, Pig, Vector, Android, etc.)
+        * [Google-groups forum](https://groups.google.com/forum/#!forum/sketches-user)
+    * For issues about a specific component, please open issues on the appropriate GitHub repository (listed below). 
+    * If you wish to contribute to our sketch development please contact us on our development email list
+        * [dev@datasketches.apache.org](mailto:dev@datasketches.apache.org) 
 
-* Please continue to use the [Maven Central GroupID = "com.yahoo.datasketches"](https://search.maven.org/classic/#search%7Cga%7C1%7Cg%3A%20com.yahoo.datasketches) to locate current and past release Jars until we have formal releases under Apache. 
+* Finding our code releases:
+    * Apache releases (versions 1.X.X):
+        * Zip source: [dist.apache.org/repos/dist/release/incubator/datasketches/](https://dist.apache.org/repos/dist/release/incubator/datasketches/)
+        * Jar Artifacts (Java only): [repository.apache.org/#nexus-search;quick~datasketches](https://repository.apache.org/#nexus-search;quick~datasketches)
+    * Pre-Apache releases (versions 0.X.X)
+        * Jar Artifacts (Java only): [search.maven.org/classic/#search%7Cga%7C1%7Ccom.yahoo.datasketches](https://search.maven.org/classic/#search%7Cga%7C1%7Ccom.yahoo.datasketches)
 
-* The [datasketches.apache.org](http://datasketches.apache.org) website will be a placeholder until we have migrated our current community website from [DataSketches.GitHub.io](http://DataSketches.GitHub.io). For  detailed project information, please continue to visit [DataSketches.GitHub.io](http://DataSketches.GitHub.io).
 
 * As the repositories under GitHub.io/DataSketches migrate they will disapear from the the GitHub.com/DataSketches organization page. Please refer to this list be directed to the proper locations.
 
