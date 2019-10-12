@@ -20,11 +20,11 @@ This functionality appeared in sketches-pig-0.10.0. Depends on sketches-core-0.1
     register sketches-pig-0.10.0-with-shaded-core.jar;
 
     -- Parameters are optional. Default is 12
-    define dataToSketch com.yahoo.sketches.pig.hll.DataToSketch('10');
-    define unionSketch com.yahoo.sketches.pig.hll.UnionSketch('10');
+    define dataToSketch org.apache.datasketches.pig.hll.DataToSketch('10');
+    define unionSketch org.apache.datasketches.pig.hll.UnionSketch('10');
  
-    define getEstimate com.yahoo.sketches.pig.hll.SketchToEstimate();
-    define printSketch com.yahoo.sketches.pig.hll.SketchToString();
+    define getEstimate org.apache.datasketches.pig.hll.SketchToEstimate();
+    define printSketch org.apache.datasketches.pig.hll.SketchToString();
 
     a = load 'data.txt' as (id, category);
     b = group a by category;
@@ -78,9 +78,9 @@ From 'dump h':
 
     register sketches-pig-0.10.0-with-shaded-core.jar;
 
-    define dataToSketch com.yahoo.sketches.pig.hll.DataToSketch();
-    define unionSketch com.yahoo.sketches.pig.hll.UnionSketch();
-    define estimate com.yahoo.sketches.pig.hll.SketchToEstimate();
+    define dataToSketch org.apache.datasketches.pig.hll.DataToSketch();
+    define unionSketch org.apache.datasketches.pig.hll.UnionSketch();
+    define estimate org.apache.datasketches.pig.hll.SketchToEstimate();
 
     a = load 'setops_data.txt' as (id1, id2);
     b = group a all;

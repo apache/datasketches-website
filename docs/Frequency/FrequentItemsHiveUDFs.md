@@ -7,9 +7,9 @@ layout: doc_page
     add jar sketches-core-0.7.0.jar;
     add jar sketches-hive-0.7.0.jar;
 
-    create temporary function data2sketch as 'com.yahoo.sketches.hive.frequencies.DataToStringsSketchUDAF';
-    create temporary function union as 'com.yahoo.sketches.hive.frequencies.UnionStringsSketchUDAF';
-    create temporary function get_items as 'com.yahoo.sketches.hive.frequencies.GetFrequentItemsFromStringsSketchUDTF';
+    create temporary function data2sketch as 'org.apache.datasketches.hive.frequencies.DataToStringsSketchUDAF';
+    create temporary function union as 'org.apache.datasketches.hive.frequencies.UnionStringsSketchUDAF';
+    create temporary function get_items as 'org.apache.datasketches.hive.frequencies.GetFrequentItemsFromStringsSketchUDTF';
 
     use <your-db-name-here>;
 

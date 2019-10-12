@@ -18,23 +18,23 @@ This code is versioned and the latest release can be obtained from
 
 Sketches-core Packages.        | Package Description
 -------------------------------|---------------------
-com.yahoo.sketches             | Common functions and utilities
-com.yahoo.sketches.cpc         | New Unique Counting Sketch with better accuracy per size than HLL
-com.yahoo.sketches.frequencies | Frequent Item Sketches, for both longs and generics
-com.yahoo.sketches.hash        | The 128-bit MurmurHash3 and adaptors
-com.yahoo.sketches.hll         | Unique counting HLL sketches for both heap and off-heap.
-com.yahoo.sketches.hllmap      | The (HLL) Unique Count Map Sketch
-com.yahoo.sketches.kll         | New quantiles sketch with better accuracy per size than the standard quantiles sketch.
-com.yahoo.sketches.quantiles   | Sketches for quantiles, PMF and CDF functions, both doubles and generics and for heap and off-heap.
-com.yahoo.sketches.sampling    | Weighted and uniform reservoir sampling with generics
-com.yahoo.sketches.theta       | Unique counting Theta Sketches for both heap and off-heap
-com.yahoo.sketches.tuple       | Tuple sketches for both primitives and generics
+org.apache.datasketches             | Common functions and utilities
+org.apache.datasketches.cpc         | New Unique Counting Sketch with better accuracy per size than HLL
+org.apache.datasketches.frequencies | Frequent Item Sketches, for both longs and generics
+org.apache.datasketches.hash        | The 128-bit MurmurHash3 and adaptors
+org.apache.datasketches.hll         | Unique counting HLL sketches for both heap and off-heap.
+org.apache.datasketches.hllmap      | The (HLL) Unique Count Map Sketch
+org.apache.datasketches.kll         | New quantiles sketch with better accuracy per size than the standard quantiles sketch.
+org.apache.datasketches.quantiles   | Sketches for quantiles, PMF and CDF functions, both doubles and generics and for heap and off-heap.
+org.apache.datasketches.sampling    | Weighted and uniform reservoir sampling with generics
+org.apache.datasketches.theta       | Unique counting Theta Sketches for both heap and off-heap
+org.apache.datasketches.tuple       | Tuple sketches for both primitives and generics
 
 ### memory
 
 Memory Packages                | Package Description
 -------------------------------|---------------------
-com.yahoo.memory               | Low level, high-performance Memory data-structure management primarily for off-heap. 
+org.apache.datasketches.memory               | Low level, high-performance Memory data-structure management primarily for off-heap. 
 
 ### sketches-android
 This is a new repository dedicated to sketches designed to be run in a mobile client, such as a cell phone. 
@@ -49,13 +49,13 @@ This code is versioned and the latest release can be obtained from
 
 Sketches-hive Packages               | Package Description
 -------------------------------------|---------------------
-com.yahoo.sketches.hive.cpc          | Hive UDF and UDAFs for CPC sketches
-com.yahoo.sketches.hive.frequencies  | Hive UDF and UDAFs for Frequent Items sketches
-com.yahoo.sketches.hive.hll          | Hive UDF and UDAFs for HLL sketches
-com.yahoo.sketches.hive.kll          | Hive UDF and UDAFs for KLL sketches
-com.yahoo.sketches.hive.quantiles    | Hive UDF and UDAFs for Quantiles sketches
-com.yahoo.sketches.hive.theta        | Hive UDF and UDAFs for Theta sketches
-com.yahoo.sketches.hive.tuple        | Hive UDF and UDAFs for Tuple sketches
+org.apache.datasketches.hive.cpc          | Hive UDF and UDAFs for CPC sketches
+org.apache.datasketches.hive.frequencies  | Hive UDF and UDAFs for Frequent Items sketches
+org.apache.datasketches.hive.hll          | Hive UDF and UDAFs for HLL sketches
+org.apache.datasketches.hive.kll          | Hive UDF and UDAFs for KLL sketches
+org.apache.datasketches.hive.quantiles    | Hive UDF and UDAFs for Quantiles sketches
+org.apache.datasketches.hive.theta        | Hive UDF and UDAFs for Theta sketches
+org.apache.datasketches.hive.tuple        | Hive UDF and UDAFs for Tuple sketches
 
 ### sketches-pig
 This repository contains Pig User Defined Functions (UDF) for use within Hadoop grid environments. 
@@ -66,15 +66,15 @@ This code is versioned and the latest release can be obtained from
 
 Sketches-pig Packages              | Package Description
 -----------------------------------|---------------------
-com.yahoo.sketches.pig.cpc         | Pig UDFs for CPC sketches
-com.yahoo.sketches.pig.frequencies | Pig UDFs for Frequent Items sketches
-com.yahoo.sketches.pig.hash        | Pig UDFs for MurmerHash3
-com.yahoo.sketches.pig.hll         | Pig UDFs for HLL sketches
-com.yahoo.sketches.pig.kll         | Pig UDFs for KLL sketches
-com.yahoo.sketches.pig.quantiles   | Pig UDFs for Quantiles sketches
-com.yahoo.sketches.pig.sampling.   | Pig UDFs for Sampling sketches
-com.yahoo.sketches.pig.theta       | Pig UDFs for Theta sketches
-com.yahoo.sketches.pig.tuple       | Pig UDFs for Tuple sketches
+org.apache.datasketches.pig.cpc         | Pig UDFs for CPC sketches
+org.apache.datasketches.pig.frequencies | Pig UDFs for Frequent Items sketches
+org.apache.datasketches.pig.hash        | Pig UDFs for MurmerHash3
+org.apache.datasketches.pig.hll         | Pig UDFs for HLL sketches
+org.apache.datasketches.pig.kll         | Pig UDFs for KLL sketches
+org.apache.datasketches.pig.quantiles   | Pig UDFs for Quantiles sketches
+org.apache.datasketches.pig.sampling.   | Pig UDFs for Sampling sketches
+org.apache.datasketches.pig.theta       | Pig UDFs for Theta sketches
+org.apache.datasketches.pig.tuple       | Pig UDFs for Tuple sketches
 
 ### sketches-vector
 This is a new repository dedicated to sketches for vector and matrix operations. It is still somewhat experimental.
@@ -86,11 +86,11 @@ Some of these tests can run for hours depending on its configuration.
 
 Characterization Packages                       | Package Description
 ------------------------------------------------|---------------------
-com.yahoo.sketches.characterization             | Common functions and utilities
-com.yahoo.sketches.characterization.hash        | Hash function performance
-com.yahoo.sketches.characterization.memory      | Memory performance
-com.yahoo.sketches.characterization.quantiles.  | Quantiles performance
-com.yahoo.sketches.characterization.uniquecount | Performance of Theta and HLL sketches
+org.apache.datasketches.characterization             | Common functions and utilities
+org.apache.datasketches.characterization.hash        | Hash function performance
+org.apache.datasketches.characterization.memory      | Memory performance
+org.apache.datasketches.characterization.quantiles.  | Quantiles performance
+org.apache.datasketches.characterization.uniquecount | Performance of Theta and HLL sketches
 
 
 ### experimental
@@ -112,11 +112,11 @@ This code is versioned and the latest release can be obtained from
     
 Sketches-misc Packages             | Package Description
 -----------------------------------|---------------------
-com.yahoo.sketches                 | Utility functions used by the sketches-misc packages
-com.yahoo.sketches.cmd             | Support for Command Line functions **Being Redesigned**
-com.yahoo.sketches.demo            | Simple demo for brute-force vs Theta and HLL sketches **Will be superceded by Command Line functions**
-com.yahoo.sketches.quantiles       | Utility for computing & printing space table for Quantiles Sketches (only in the test branch)
-com.yahoo.sketches.sampling        | Benchmarks and Entropy testing for sampling sketches
+org.apache.datasketches                 | Utility functions used by the sketches-misc packages
+org.apache.datasketches.cmd             | Support for Command Line functions **Being Redesigned**
+org.apache.datasketches.demo            | Simple demo for brute-force vs Theta and HLL sketches **Will be superceded by Command Line functions**
+org.apache.datasketches.quantiles       | Utility for computing & printing space table for Quantiles Sketches (only in the test branch)
+org.apache.datasketches.sampling        | Benchmarks and Entropy testing for sampling sketches
 
 
 ## C++ and Python

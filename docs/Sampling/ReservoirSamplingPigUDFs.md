@@ -19,8 +19,8 @@ layout: doc_page
     register sketches-pig-0.10.0.jar;
 
     -- very small sketch just for the purpose of this tiny example
-    DEFINE ReservoirSampling com.yahoo.sketches.pig.sampling.ReservoirSampling('4');
-    DEFINE ReservoirUnion com.yahoo.sketches.pig.sampling.ReesrvoirUnion('4');
+    DEFINE ReservoirSampling org.apache.datasketches.pig.sampling.ReservoirSampling('4');
+    DEFINE ReservoirUnion org.apache.datasketches.pig.sampling.ReesrvoirUnion('4');
 
     raw_data = LOAD 'data.txt' USING PigStorage('\t') AS
         (scale: double, label: chararray);

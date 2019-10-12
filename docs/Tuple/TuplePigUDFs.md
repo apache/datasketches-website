@@ -18,9 +18,9 @@ layout: doc_page
     register sketches-core-0.7.0.jar;
     register sketches-pig-0.7.0.jar;
 
-    define dataToSketch com.yahoo.sketches.pig.tuple.DataToDoubleSummarySketch('32');
-    define unionSketch com.yahoo.sketches.pig.tuple.UnionDoubleSummarySketch('32');
-    define getEstimates com.yahoo.sketches.pig.tuple.DoubleSummarySketchToEstimates();
+    define dataToSketch org.apache.datasketches.pig.tuple.DataToDoubleSummarySketch('32');
+    define unionSketch org.apache.datasketches.pig.tuple.UnionDoubleSummarySketch('32');
+    define getEstimates org.apache.datasketches.pig.tuple.DoubleSummarySketchToEstimates();
 
     a = load 'data.txt' as (id, category, parameter:double);
     b = group a by category;

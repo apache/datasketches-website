@@ -177,8 +177,8 @@ In distributed or multi-JVM environments you will also need to extend the ArrayO
 Serialization and deserialization is required to move sketch images across JVMs.
 The methods in this class are called by the sketch toByteArray() and sketch constructor as necessary. 
 
-    import com.yahoo.sketches.ArrayOfItemsSerDe;
-    import com.yahoo.sketches.memory.Memory;
+    import org.apache.datasketches.ArrayOfItemsSerDe;
+    import org.apache.datasketches.memory.Memory;
     
     public class ArrayOfMyItemsSerDe extends ArrayOfItemsSerDe<MyItem> {
       
@@ -191,10 +191,10 @@ The methods in this class are called by the sketch toByteArray() and sketch cons
       @Override
       public MyItem[] deserializeFromMemory(Memory mem, int numItems) {
          //Memory is similar to ByteBuffer, but much more flexible
-         // see com.yahoo.sketches.memory
+         // see org.apache.datasketches.memory
          MyItem[] myItemArr = new MyItem[numItems];
          for ( int i = 0; i < numItems; i++ ) {
-           //extract each item from mem. See com.yahoo.sketches.ArrayOfStringsSerDe example.
+           //extract each item from mem. See org.apache.datasketches.ArrayOfStringsSerDe example.
            MyItem item = //...
            myItemArr[i] = item;
          }
@@ -204,7 +204,7 @@ The methods in this class are called by the sketch toByteArray() and sketch cons
 
 You are ready to feed all of MyItems into the sketch:
 
-    import com.yahoo.sketches.quantiles.ItemsSketch;
+    import org.apache.datasketches.quantiles.ItemsSketch;
     
     ItemsSketch<MyItem> sketch = ItemsSketch.getInstance(128, new MyComparator());
     while ( remainingItemsExist ) {

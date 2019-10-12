@@ -8,10 +8,10 @@ layout: doc_page
 
     add jar sketches-hive-0.10.5-with-shaded-core.jar;
     
-    create temporary function data2sketch as 'com.yahoo.sketches.hive.quantiles.DataToDoublesSketchUDAF';
-    create temporary function unionSketches as 'com.yahoo.sketches.hive.quantiles.UnionDoublesSketchUDAF';
-    create temporary function getQuantile as 'com.yahoo.sketches.hive.quantiles.GetQuantileFromDoublesSketchUDF';
-    create temporary function getQuantiles as 'com.yahoo.sketches.hive.quantiles.GetQuantilesFromDoublesSketchUDF';
+    create temporary function data2sketch as 'org.apache.datasketches.hive.quantiles.DataToDoublesSketchUDAF';
+    create temporary function unionSketches as 'org.apache.datasketches.hive.quantiles.UnionDoublesSketchUDAF';
+    create temporary function getQuantile as 'org.apache.datasketches.hive.quantiles.GetQuantileFromDoublesSketchUDF';
+    create temporary function getQuantiles as 'org.apache.datasketches.hive.quantiles.GetQuantilesFromDoublesSketchUDF';
 
     use <your-db-name-here>;
     

@@ -12,13 +12,13 @@ capabilities as well.
 
 #### Versioning
 The _DataSketches_ memory package has its own repository and is released with its own jars in _Maven Central_ 
-(groupId=com.yahoo.datasketches, artifactId=memory).
+(groupId=org.apache.datasketches, artifactId=datasketches-memory).
 This document applies to the memory package versions 0.10.0 and after. 
 
 #### Naming Conventions
 To avoid confusion in the documentation the capitalized _Memory_ refers to the code in the 
-Java _com.yahoo.memory_ package, and the uncapitalized _memory_ refers to computer memory in general. 
-There is also a class _com.yahoo.memory.Memory_ that should not be confused with the _com.yahoo.memory_ package.
+Java _org.apache.datasketches.memory_ package, and the uncapitalized _memory_ refers to computer memory in general. 
+There is also a class _org.apache.datasketches.memory.Memory_ that should not be confused with the _org.apache.datasketches.memory_ package.
 In the text, sometimes _Memory_ refers to the entire package and sometimes to the specific class, 
 but it should be clear from the context.
 

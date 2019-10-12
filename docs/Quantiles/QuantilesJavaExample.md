@@ -11,11 +11,11 @@ layout: doc_page
     import java.util.Arrays;
     import java.util.Random;
 
-    import com.yahoo.memory.Memory;
+    import org.apache.datasketches.memory.Memory;
 
-    import com.yahoo.sketches.quantiles.DoublesSketch;
-    import com.yahoo.sketches.quantiles.DoublesUnion;
-    import com.yahoo.sketches.quantiles.UpdateDoublesSketch;
+    import org.apache.datasketches.quantiles.DoublesSketch;
+    import org.apache.datasketches.quantiles.DoublesUnion;
+    import org.apache.datasketches.quantiles.UpdateDoublesSketch;
 
     // this section generates two sketches from random data and serializes them into files
     {

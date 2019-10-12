@@ -6,10 +6,10 @@ layout: doc_page
 
     import java.io.FileInputStream;
     import java.io.FileOutputStream;
-    import com.yahoo.memory.Memory;
-    import com.yahoo.sketches.ArrayOfStringsSerDe;
-    import com.yahoo.sketches.frequencies.ErrorType;
-    import com.yahoo.sketches.frequencies.ItemsSketch;
+    import org.apache.datasketches.memory.Memory;
+    import org.apache.datasketches.ArrayOfStringsSerDe;
+    import org.apache.datasketches.frequencies.ErrorType;
+    import org.apache.datasketches.frequencies.ItemsSketch;
 
     // simplified file operations and no error handling for clarity
 

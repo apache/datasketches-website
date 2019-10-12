@@ -9,13 +9,13 @@ layout: doc_page
     import java.io.FileInputStream;
     import java.io.FileOutputStream;
 
-    import com.yahoo.memory.Memory;
-    import com.yahoo.sketches.theta.Sketch;
-    import com.yahoo.sketches.theta.Sketches;
-    import com.yahoo.sketches.theta.UpdateSketch;
-    import com.yahoo.sketches.theta.Union;
-    import com.yahoo.sketches.theta.Intersection;
-    import com.yahoo.sketches.theta.SetOperation;
+    import org.apache.datasketches.memory.Memory;
+    import org.apache.datasketches.theta.Sketch;
+    import org.apache.datasketches.theta.Sketches;
+    import org.apache.datasketches.theta.UpdateSketch;
+    import org.apache.datasketches.theta.Union;
+    import org.apache.datasketches.theta.Intersection;
+    import org.apache.datasketches.theta.SetOperation;
 
     // this section generates two sketches with some overlap
     // and serializes them into files in compact (not updatable) form

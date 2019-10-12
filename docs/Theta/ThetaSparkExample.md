@@ -14,9 +14,9 @@ Building one sketch using old Spark API:
     import org.apache.spark.api.java.JavaRDD;
     import org.apache.spark.api.java.function.Function2;
 
-    import com.yahoo.sketches.theta.PairwiseSetOperations;
-    import com.yahoo.sketches.theta.CompactSketch;
-    import com.yahoo.sketches.theta.UpdateSketch;
+    import org.apache.datasketches.theta.PairwiseSetOperations;
+    import org.apache.datasketches.theta.CompactSketch;
+    import org.apache.datasketches.theta.UpdateSketch;
 
     public class Aggregate {
 
@@ -57,12 +57,12 @@ Wrapper to make ThetaSketch serializable:
     import java.io.IOException;
     import java.io.Serializable;
 
-    import com.yahoo.sketches.theta.Sketch;
-    import com.yahoo.sketches.theta.UpdateSketch;
-    import com.yahoo.sketches.theta.CompactSketch;
-    import com.yahoo.sketches.theta.Sketches;
+    import org.apache.datasketches.theta.Sketch;
+    import org.apache.datasketches.theta.UpdateSketch;
+    import org.apache.datasketches.theta.CompactSketch;
+    import org.apache.datasketches.theta.Sketches;
 
-    import com.yahoo.memory.Memory;
+    import org.apache.datasketches.memory.Memory;
 
     public class ThetaSketchJavaSerializable implements Serializable {
 
@@ -126,10 +126,10 @@ Building one sketch using new Spark 2.x API and reading input from a Hive table:
     import org.apache.spark.sql.Dataset;
     import org.apache.spark.sql.Row;
 
-    import com.yahoo.sketches.theta.PairwiseSetOperations;
-    import com.yahoo.sketches.theta.Sketch;
-    import com.yahoo.sketches.theta.UpdateSketch;
-    import com.yahoo.sketches.theta.CompactSketch;
+    import org.apache.datasketches.theta.PairwiseSetOperations;
+    import org.apache.datasketches.theta.Sketch;
+    import org.apache.datasketches.theta.UpdateSketch;
+    import org.apache.datasketches.theta.CompactSketch;
 
     import org.apache.spark.api.java.function.MapPartitionsFunction;
     import org.apache.spark.api.java.function.ReduceFunction;
@@ -191,9 +191,9 @@ Building multiple sketches (one sketch per key or dimension):
     import org.apache.spark.api.java.function.Function2;
     import org.apache.spark.api.java.function.PairFlatMapFunction;
 
-    import com.yahoo.sketches.theta.PairwiseSetOperations;
-    import com.yahoo.sketches.theta.CompactSketch;
-    import com.yahoo.sketches.theta.UpdateSketch;
+    import org.apache.datasketches.theta.PairwiseSetOperations;
+    import org.apache.datasketches.theta.CompactSketch;
+    import org.apache.datasketches.theta.UpdateSketch;
 
     import java.util.List;
     import java.util.ArrayList;
@@ -272,9 +272,9 @@ Building multiple sketches using SparkSession and reading input from a Hive tabl
     import org.apache.spark.api.java.function.PairFlatMapFunction;
     import org.apache.spark.api.java.function.Function2;
 
-    import com.yahoo.sketches.theta.PairwiseSetOperations;
-    import com.yahoo.sketches.theta.UpdateSketch;
-    import com.yahoo.sketches.theta.CompactSketch;
+    import org.apache.datasketches.theta.PairwiseSetOperations;
+    import org.apache.datasketches.theta.UpdateSketch;
+    import org.apache.datasketches.theta.CompactSketch;
 
     import scala.Tuple2;
 

@@ -6,10 +6,10 @@ layout: doc_page
 
     import java.io.FileInputStream;
     import java.io.FileOutputStream;
-    import com.yahoo.memory.Memory;
-    import com.yahoo.sketches.hll.HllSketch;
-    import com.yahoo.sketches.hll.TgtHllType;
-    import com.yahoo.sketches.hll.Union;
+    import org.apache.datasketches.memory.Memory;
+    import org.apache.datasketches.hll.HllSketch;
+    import org.apache.datasketches.hll.TgtHllType;
+    import org.apache.datasketches.hll.Union;
 
     // simplified file operations and no error handling for clarity
     public class HllExample {

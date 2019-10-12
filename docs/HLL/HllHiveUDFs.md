@@ -10,9 +10,9 @@ This functionality appeared in sketches-hive-0.10.1. Depends on sketches-core-0.
 
     add jar sketches-hive-0.10.5-with-shaded-core.jar;
 
-    create temporary function data2sketch as 'com.yahoo.sketches.hive.hll.DataToSketchUDAF';
-    create temporary function unionSketches as 'com.yahoo.sketches.hive.hll.UnionSketchUDAF';
-    create temporary function estimate as 'com.yahoo.sketches.hive.hll.SketchToEstimateUDF';
+    create temporary function data2sketch as 'org.apache.datasketches.hive.hll.DataToSketchUDAF';
+    create temporary function unionSketches as 'org.apache.datasketches.hive.hll.UnionSketchUDAF';
+    create temporary function estimate as 'org.apache.datasketches.hive.hll.SketchToEstimateUDF';
 
     use <your-db-name-here>;
 
@@ -45,9 +45,9 @@ Notice the difference between UnionUDF in this example, which takes two sketches
 
     add jar sketches-hive-0.10.5-with-shaded-core.jar;
 
-    create temporary function data2sketch as 'com.yahoo.sketches.hive.hll.DataToSketchUDAF';
-    create temporary function estimate as 'com.yahoo.sketches.hive.hll.SketchToEstimateUDF';
-    create temporary function unionTwoSketches as 'com.yahoo.sketches.hive.hll.UnionSketchUDF';
+    create temporary function data2sketch as 'org.apache.datasketches.hive.hll.DataToSketchUDAF';
+    create temporary function estimate as 'org.apache.datasketches.hive.hll.SketchToEstimateUDF';
+    create temporary function unionTwoSketches as 'org.apache.datasketches.hive.hll.UnionSketchUDF';
 
     use <your-db-name-here>;
 
