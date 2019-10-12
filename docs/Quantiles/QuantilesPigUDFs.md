@@ -19,9 +19,9 @@ layout: doc_page
     register sketches-core-0.11.1.jar;
     register sketches-pig-0.11.0.jar;
 
-    define dataToSketch com.yahoo.sketches.pig.quantiles.DataToDoublesSketch();
-    define unionSketch com.yahoo.sketches.pig.quantiles.UnionDoublesSketch();
-    define getQuantile com.yahoo.sketches.pig.quantiles.GetQuantileFromDoublesSketch();
+    define dataToSketch org.apache.datasketches.pig.quantiles.DataToDoublesSketch();
+    define unionSketch org.apache.datasketches.pig.quantiles.UnionDoublesSketch();
+    define getQuantile org.apache.datasketches.pig.quantiles.GetQuantileFromDoublesSketch();
 
     a = load 'data.txt' as (value:double, category);
     b = group a by category;

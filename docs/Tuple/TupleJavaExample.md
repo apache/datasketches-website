@@ -11,16 +11,16 @@ layout: doc_page
     import java.util.Arrays;
     import java.util.Random;
 
-    import com.yahoo.memory.Memory;
-    import com.yahoo.sketches.tuple.ArrayOfDoublesSetOperationBuilder;
-    import com.yahoo.sketches.tuple.ArrayOfDoublesSketch;
-    import com.yahoo.sketches.tuple.ArrayOfDoublesSketchIterator;
-    import com.yahoo.sketches.tuple.ArrayOfDoublesSketches;
-    import com.yahoo.sketches.tuple.ArrayOfDoublesUnion;
-    import com.yahoo.sketches.tuple.ArrayOfDoublesUpdatableSketch;
-    import com.yahoo.sketches.tuple.ArrayOfDoublesUpdatableSketchBuilder;
-    import com.yahoo.sketches.quantiles.DoublesSketch;
-    import com.yahoo.sketches.quantiles.UpdateDoublesSketch;
+    import org.apache.datasketches.memory.Memory;
+    import org.apache.datasketches.tuple.ArrayOfDoublesSetOperationBuilder;
+    import org.apache.datasketches.tuple.ArrayOfDoublesSketch;
+    import org.apache.datasketches.tuple.ArrayOfDoublesSketchIterator;
+    import org.apache.datasketches.tuple.ArrayOfDoublesSketches;
+    import org.apache.datasketches.tuple.ArrayOfDoublesUnion;
+    import org.apache.datasketches.tuple.ArrayOfDoublesUpdatableSketch;
+    import org.apache.datasketches.tuple.ArrayOfDoublesUpdatableSketchBuilder;
+    import org.apache.datasketches.quantiles.DoublesSketch;
+    import org.apache.datasketches.quantiles.UpdateDoublesSketch;
 
     // this section generates two sketches with some overlap in unique keys
     // and random double values from a normal distribution

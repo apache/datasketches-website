@@ -54,7 +54,7 @@ Users would be well-advised to not use this tool for serious analysis.
 ## The Evaluation Source
 The following are used to create the plots above.
 
-* [Moments Sketch profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/com/yahoo/sketches/characterization/quantiles/MSketchStreamAProfile.java)
+* [Moments Sketch profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/org/apache/datasketches/characterization/quantiles/MSketchStreamAProfile.java)
 * [MSketch profiler config](https://github.com/DataSketches/characterization/blob/master/src/main/resources/quantiles/MSketchStreamAJob.conf)
 * [StreamA Data file](https://github.com/DataSketches/characterization/blob/master/streamA.txt.zip) This is stored using git-lfs.
 

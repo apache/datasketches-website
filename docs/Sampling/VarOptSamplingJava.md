@@ -20,12 +20,12 @@ These were then used in the following example, slightly modified to remove error
     import java.io.FileOutputStream;
     import java.io.FileReader;
 
-    import com.yahoo.memory.Memory;
-    import com.yahoo.sketches.ArrayOfLongsSerDe;
-    import com.yahoo.sketches.sampling.SampleSubsetSummary;
-    import com.yahoo.sketches.sampling.VarOptItemsSamples;
-    import com.yahoo.sketches.sampling.VarOptItemsSketch;
-    import com.yahoo.sketches.sampling.VarOptItemsUnion;
+    import org.apache.datasketches.memory.Memory;
+    import org.apache.datasketches.ArrayOfLongsSerDe;
+    import org.apache.datasketches.sampling.SampleSubsetSummary;
+    import org.apache.datasketches.sampling.VarOptItemsSamples;
+    import org.apache.datasketches.sampling.VarOptItemsSketch;
+    import org.apache.datasketches.sampling.VarOptItemsUnion;
 
     // load (token, count) data from file, build sketch of size k
     private static VarOptItemsSketch<String> loadFile(final String filename,

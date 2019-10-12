@@ -6,9 +6,9 @@ layout: doc_page
 
     add jar sketches-hive-0.10.5-with-shaded-core.jar;
 
-    create temporary function data2sketch as 'com.yahoo.sketches.hive.tuple.DataToArrayOfDoublesSketchUDAF';
-    create temporary function unionSketches as 'com.yahoo.sketches.hive.tuple.UnionArrayOfDoublesSketchUDAF';
-    create temporary function estimate as 'com.yahoo.sketches.hive.tuple.ArrayOfDoublesSketchToEstimatesUDF';
+    create temporary function data2sketch as 'org.apache.datasketches.hive.tuple.DataToArrayOfDoublesSketchUDAF';
+    create temporary function unionSketches as 'org.apache.datasketches.hive.tuple.UnionArrayOfDoublesSketchUDAF';
+    create temporary function estimate as 'org.apache.datasketches.hive.tuple.ArrayOfDoublesSketchToEstimatesUDF';
 
     use <your-db-name-here>;
 

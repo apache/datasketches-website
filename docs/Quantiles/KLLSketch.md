@@ -15,7 +15,7 @@ The default of 200 was chosen to yield approximately the same normalized rank er
 ### Java example
 
 ```
-import com.yahoo.sketches.kll.KllFloatsSketch;
+import org.apache.datasketches.kll.KllFloatsSketch;
 
 KllFloatsSketch sketch = new KllFloatsSketch();
 int n = 1000000;

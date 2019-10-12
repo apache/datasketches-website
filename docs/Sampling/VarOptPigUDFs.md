@@ -19,9 +19,9 @@ layout: doc_page
     register sketches-pig-0.10.0.jar;
 
     -- very small sketch just for the purpose of this tiny example
-    DEFINE DataToSketch com.yahoo.sketches.pig.sampling.DataToVarOptSketch('4', '0');
-    DEFINE VarOptUnion com.yahoo.sketches.pig.sampling.VarOptUnion('4');
-    DEFINE GetVarOptSamples com.yahoo.sketches.pig.sampling.GetVarOptSamples();
+    DEFINE DataToSketch org.apache.datasketches.pig.sampling.DataToVarOptSketch('4', '0');
+    DEFINE VarOptUnion org.apache.datasketches.pig.sampling.VarOptUnion('4');
+    DEFINE GetVarOptSamples org.apache.datasketches.pig.sampling.GetVarOptSamples();
 
     raw_data = LOAD 'data.txt' USING PigStorage('\t') AS
         (weight: double, id: chararray);

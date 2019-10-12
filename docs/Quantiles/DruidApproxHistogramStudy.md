@@ -58,7 +58,7 @@ Users would be well-advised to not use this tool for serious analysis.
 ## The Evaluation Source
 The following are used to create the plots above.
 
-* [Approximate Histogram profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/com/yahoo/sketches/characterization/quantiles/DruidAppHistStreamAProfile.java)
+* [Approximate Histogram profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/org/apache/datasketches/characterization/quantiles/DruidAppHistStreamAProfile.java)
 * [AH profiler config](https://github.com/DataSketches/characterization/blob/master/src/main/resources/quantiles/DruidAHStreamAJob.conf)
 * [StreamA Data file](https://github.com/DataSketches/characterization/blob/master/streamA.txt.zip) This is stored using git-lfs.
 

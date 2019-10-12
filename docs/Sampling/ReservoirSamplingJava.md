@@ -10,10 +10,10 @@ layout: doc_page
     import java.io.FileInputStream;
     import java.io.FileOutputStream;
 
-    import com.yahoo.memory.Memory;
-    import com.yahoo.sketches.ArrayOfLongsSerDe;
-    import com.yahoo.sketches.sampling.ReservoirItemsSketch;
-    import com.yahoo.sketches.sampling.ReservoirItemsUnion;
+    import org.apache.datasketches.memory.Memory;
+    import org.apache.datasketches.ArrayOfLongsSerDe;
+    import org.apache.datasketches.sampling.ReservoirItemsSketch;
+    import org.apache.datasketches.sampling.ReservoirItemsUnion;
 
     // this section generates two sketches with some overlap
     // and serializes them into files in compact (not updatable) form

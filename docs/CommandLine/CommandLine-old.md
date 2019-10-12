@@ -29,7 +29,7 @@ path to your local <i>.m2/repository</i> directory:
     MISCPATH="$M2PATH/com/yahoo/datasketches/sketches-misc/$MISCVER/sketches-misc-$MISCVER.jar"
     CLSPATH="$COREPATH:$MISCPATH"
     
-    java -cp $CLSPATH com.yahoo.sketches.cmd.CommandLine $@
+    java -cp $CLSPATH org.apache.datasketches.cmd.CommandLine $@
 
 Move this <i>sketch</i> file to a local system directory accessible from anywhere in your system, 
 and make it executable.
@@ -109,7 +109,7 @@ previous example.
 Create the <i>demo</i> executable with the same content as the <i>sketch</i> executable except
 for the last line:
 
-    java -cp $CLSPATH com.yahoo.sketches.demo.ExactVsSketchDemo $@
+    java -cp $CLSPATH org.apache.datasketches.demo.ExactVsSketchDemo $@
 
 Move this <i>demo</i> file to a local system directory accessible from anywhere in your system, 
 and make it executable.

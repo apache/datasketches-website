@@ -19,9 +19,9 @@ layout: doc_page
     register sketches-pig-0.7.0.jar;
 
     -- very small sketch just for the purpose of this tiny example
-    define dataToSketch com.yahoo.sketches.pig.frequencies.DataToFrequentStringsSketch('8');
-    define unionSketch com.yahoo.sketches.pig.frequencies.UnionFrequentStringsSketch('8');
-    define getEstimates com.yahoo.sketches.pig.frequencies.FrequentStringsSketchToEstimates();
+    define dataToSketch org.apache.datasketches.pig.frequencies.DataToFrequentStringsSketch('8');
+    define unionSketch org.apache.datasketches.pig.frequencies.UnionFrequentStringsSketch('8');
+    define getEstimates org.apache.datasketches.pig.frequencies.FrequentStringsSketchToEstimates();
 
     a = load 'data.txt' as (item:chararray, category);
     b = group a by category;

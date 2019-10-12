@@ -148,7 +148,7 @@ When the Group is printed as a string, it will output seven columns as follows:
 ### Error Behavior
 
 Note: the code for the following study can be found in the characterization repository 
-[here](https://github.com/DataSketches/characterization/tree/master/src/main/java/com/yahoo/sketches/characterization/fdt) and the configuration file can be found [here](https://github.com/DataSketches/characterization/tree/master/src/main/resources/fdt).
+[here](https://github.com/DataSketches/characterization/tree/master/src/main/java/org/apache/datasketches/characterization/fdt) and the configuration file can be found [here](https://github.com/DataSketches/characterization/tree/master/src/main/resources/fdt).
 
 In order to study the error behavior of this sketch a power-law distribution with a slope of -1 was created. The head of the distribution was a single item with a cardinality of 16384, and the tail of the distribution was 16384 items each with a cardinality of one. All the points inbetween were items that have multiplicities and cardinalities that would fall on a straight line plotted on a Log-X, Log-Y graph. This generated an input stream of about 850K (Key, value) pairs, which was input into the sketch and is considered one trial.  The sketch was constructed with a target
 threshold of 1% and a target RSE of 5%. 

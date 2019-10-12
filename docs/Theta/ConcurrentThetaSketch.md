@@ -40,11 +40,11 @@ This is a list of the configuration parameters for the builder:
 
 ## Code Example for Building a Concurrent Theta Sketch
 
-    import com.yahoo.memory.WritableDirectHandle;
-    import com.yahoo.memory.WritableMemory;
-    import com.yahoo.sketches.theta.Sketch;
-    import com.yahoo.sketches.theta.UpdateSketch;
-    import com.yahoo.sketches.theta.UpdateSketchBuilder;
+    import org.apache.datasketches.memory.WritableDirectHandle;
+    import org.apache.datasketches.memory.WritableMemory;
+    import org.apache.datasketches.theta.Sketch;
+    import org.apache.datasketches.theta.UpdateSketch;
+    import org.apache.datasketches.theta.UpdateSketchBuilder;
 
     class ApplicationWithsketches {
     
@@ -134,10 +134,10 @@ Therefore when de-serializing a concurrent sketch both the shared sketch and the
 
 ## Code Example for Serializing and Deserializing a Concurrent Theta Sketch
 
-    import com.yahoo.memory.WritableMemory;
-    import com.yahoo.sketches.theta.Sketch;
-    import com.yahoo.sketches.theta.UpdateSketch;
-    import com.yahoo.sketches.theta.UpdateSketchBuilder;
+    import org.apache.datasketches.memory.WritableMemory;
+    import org.apache.datasketches.theta.Sketch;
+    import org.apache.datasketches.theta.UpdateSketch;
+    import org.apache.datasketches.theta.UpdateSketchBuilder;
 
     public class serDeTest {
         

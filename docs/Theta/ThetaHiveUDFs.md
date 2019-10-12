@@ -10,9 +10,9 @@ Depends on sketches-core.
 
     add jar sketches-hive-0.10.5-with-shaded-core.jar;
 
-    create temporary function data2sketch as 'com.yahoo.sketches.hive.theta.DataToSketchUDAF';
-    create temporary function unionSketches as 'com.yahoo.sketches.hive.theta.UnionSketchUDAF';
-    create temporary function estimate as 'com.yahoo.sketches.hive.theta.EstimateSketchUDF';
+    create temporary function data2sketch as 'org.apache.datasketches.hive.theta.DataToSketchUDAF';
+    create temporary function unionSketches as 'org.apache.datasketches.hive.theta.UnionSketchUDAF';
+    create temporary function estimate as 'org.apache.datasketches.hive.theta.EstimateSketchUDF';
 
     use <your-db-name-here>;
 
@@ -41,11 +41,11 @@ Notice the difference between UnionUDF in this example, which takes two sketches
 
     add jar sketches-hive-0.10.5-with-shaded-core.jar;
 
-    create temporary function data2sketch as 'com.yahoo.sketches.hive.theta.DataToSketchUDAF';
-    create temporary function estimate as 'com.yahoo.sketches.hive.theta.EstimateSketchUDF';
-    create temporary function union2 as 'com.yahoo.sketches.hive.theta.UnionSketchUDF';
-    create temporary function intersect as 'com.yahoo.sketches.hive.theta.IntersectSketchUDF';
-    create temporary function anotb as 'com.yahoo.sketches.hive.theta.ExcludeSketchUDF';
+    create temporary function data2sketch as 'org.apache.datasketches.hive.theta.DataToSketchUDAF';
+    create temporary function estimate as 'org.apache.datasketches.hive.theta.EstimateSketchUDF';
+    create temporary function union2 as 'org.apache.datasketches.hive.theta.UnionSketchUDF';
+    create temporary function intersect as 'org.apache.datasketches.hive.theta.IntersectSketchUDF';
+    create temporary function anotb as 'org.apache.datasketches.hive.theta.ExcludeSketchUDF';
 
     use <your-db-nasme-here>;
 

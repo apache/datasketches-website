@@ -64,7 +64,7 @@ A little noiser but still tracks the exact shape pretty well:
 ## The Evaluation Source
 The following are used to create the plots above.
 
-* [DSQsketch profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/com/yahoo/sketches/characterization/quantiles/QuantilesStreamAProfile.java)
+* [DSQsketch profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/org/apache/datasketches/characterization/quantiles/QuantilesStreamAProfile.java)
 * [DSQsketch K256 config](https://github.com/DataSketches/characterization/blob/master/src/main/resources/quantiles/QuantilesK256StreamAJob.conf)
 * [DSQsketch K32 config](https://github.com/DataSketches/characterization/blob/master/src/main/resources/quantiles/QuantilesK32StreamAJob.conf)
 * [StreamA Data file](https://github.com/DataSketches/characterization/blob/master/streamA.txt.zip) This is stored using git-lfs.

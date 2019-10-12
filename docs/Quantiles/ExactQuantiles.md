@@ -72,7 +72,7 @@ On this plot you will observe the big spike on the left. This represents the mas
 ## Source
 You can study the code that implements the above process and generated the above plots.
 
-* [Exact analysis profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/com/yahoo/sketches/characterization/quantiles/ExactStreamAProfile.java)
+* [Exact analysis profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/org/apache/datasketches/characterization/quantiles/ExactStreamAProfile.java)
 * [Exact analysis config](https://github.com/DataSketches/characterization/blob/master/src/main/resources/quantiles/ExactStreamAJob.conf)
 * [StreamA Data file](https://github.com/DataSketches/characterization/blob/master/streamA.txt.zip) This is stored using git-lfs.
 

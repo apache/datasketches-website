@@ -18,9 +18,9 @@ layout: doc_page
     register sketches-core-0.5.2.jar;
     register sketches-pig-0.5.2.jar;
 
-    define dataToSketch com.yahoo.sketches.pig.theta.DataToSketch('32');
-    define unionSketch com.yahoo.sketches.pig.theta.Union('32');
-    define getEstimate com.yahoo.sketches.pig.theta.Estimate();
+    define dataToSketch org.apache.datasketches.pig.theta.DataToSketch('32');
+    define unionSketch org.apache.datasketches.pig.theta.Union('32');
+    define getEstimate org.apache.datasketches.pig.theta.Estimate();
 
     a = load 'data.txt' as (id, category);
     b = group a by category;
@@ -63,11 +63,11 @@ The expected exact result would be (60.0). The estimate has high relative error 
     register sketches-core-0.7.0.jar;
     register sketches-pig-0.7.0.jar;
 
-    define dataToSketch com.yahoo.sketches.pig.theta.DataToSketch('32');
-    define unionSketch com.yahoo.sketches.pig.theta.Union();
-    define intersect com.yahoo.sketches.pig.theta.Intersect();
-    define anotb com.yahoo.sketches.pig.theta.AexcludeB();
-    define estimate com.yahoo.sketches.pig.theta.Estimate();
+    define dataToSketch org.apache.datasketches.pig.theta.DataToSketch('32');
+    define unionSketch org.apache.datasketches.pig.theta.Union();
+    define intersect org.apache.datasketches.pig.theta.Intersect();
+    define anotb org.apache.datasketches.pig.theta.AexcludeB();
+    define estimate org.apache.datasketches.pig.theta.Estimate();
 
     a = load 'setops_data.txt' as (id1, id2);
     b = group a all;

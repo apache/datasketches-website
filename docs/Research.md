@@ -29,7 +29,7 @@ The library is written in Java, and contains state of the art algorithms for a v
 All algorithms in the library produce mergeable summaries, 
 and come with formal guarantees on the accuracy of the answers returned.
 
-Currently, the core contributors to the library are Lee Rhodes, Kevin Lang, Jon Malkin, and Alex Saydakov (all at Yahoo/Oath), Justin Thaler (Assistant Professor at Georgetown University, Department of Computer Science), and Edo Liberty (Principal Scientist at Amazon Web Services and manager of the Algorithms group at Amazon AI).
+Currently, the core contributors to the library are Lee Rhodes, Kevin Lang, Jon Malkin, and Alex Saydakov (all at Yahoo/Verizon Media), Justin Thaler (Assistant Professor at Georgetown University, Department of Computer Science), and Edo Liberty (Principal Scientist at Amazon Web Services and manager of the Algorithms group at Amazon AI).
 
 The library has been adapted throughout industry and government. For example, at Yahoo, where it was conceived and created, the library is widely used internally to reduce processing time from days to seconds for many tasks. At SpliceMachine, it is used for database query planning and optimization. It is also deeply embedded into a low-latency open source data store called Druid, as well as an open source graph database called Gaffer that is maintained by the British intelligence agency GCHQ.
 
