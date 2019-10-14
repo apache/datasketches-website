@@ -11,7 +11,7 @@
         {"class":"Doc",  "desc" : "Architecture",                 "dir" : "", "file": "Architecture" },
         {"class":"Doc",  "desc" : "Notes on Order Sensitivity",   "dir" : "", "file": "OrderSensitivity" },
         {"class":"Doc",  "desc" : "Notes on Concurrency",         "dir" : "", "file": "Concurrency" },
-        {"class":"Doc",  "desc" : "Overview Slide Deck",          "dir" : "", "file": "DataSketches_deck", "pdf":"true" }
+        {"class":"Doc",  "desc" : "Overview Slide Deck",          "dir" : "", "file": "DataSketches_deck", "pdf":"true" },
       ]
     },
 
@@ -27,22 +27,39 @@
         { "class":"Dropdown", "desc" : "HyperLogLog Sketches", "array":
           [
             {"class":"Doc",  "desc" : "HLL Sketch",                               "dir" : "HLL", "file": "HLL" },
-            {"class":"Doc",  "desc" : "HLL vs HLL++",                             "dir" : "HLL", "file": "Hll_vs_Hllpp" },
-            {"class":"Doc",  "desc" : "HLL Sketch Java Example",                  "dir" : "HLL", "file": "HllJavaExample" },
-            {"class":"Doc",  "desc" : "HLL Sketch Pig UDFs",                      "dir" : "HLL", "file": "HllPigUDFs" },
-            {"class":"Doc",  "desc" : "HLL Sketch Hive UDFs",                     "dir" : "HLL", "file": "HllHiveUDFs" },
             {"class":"Doc",  "desc" : "HLL Map Sketch",                           "dir" : "HLL", "file": "HllMap" },
-            {"class":"Doc",  "desc" : "HLL Sketch vs Druid HyperLogLogCollector", "dir" : "HLL", "file": "HllSketchVsDruidHyperLogLogCollector" }
+            { "class":"Dropdown", "desc" : "HLL Examples", "array":
+              [
+                {"class":"Doc",  "desc" : "HLL Sketch Java Example",              "dir" : "HLL", "file": "HllJavaExample" },
+                {"class":"Doc",  "desc" : "HLL Sketch Pig UDFs",                  "dir" : "HLL", "file": "HllPigUDFs" },
+                {"class":"Doc",  "desc" : "HLL Sketch Hive UDFs",                 "dir" : "HLL", "file": "HllHiveUDFs" },
+                {"class":"Doc",  "desc" : "Using Sketches in Druid",              "dir" : "",    "file": "DruidIntegration" },
+              ]
+            },
+            { "class":"Dropdown", "desc" : "HLL Studies", "array":
+              [
+                {"class":"Doc",  "desc" : "HLL vs HLL++",                         "dir" : "HLL", "file": "Hll_vs_Hllpp" },
+                {"class":"Doc",  "desc" : "HLL Sketch vs Druid HyperLogLogCollector", "dir" : "HLL", "file": "HllSketchVsDruidHyperLogLogCollector" },
+              ]
+            },
           ]
         },
 
         { "class":"Dropdown", "desc" : "Theta Sketches", "array":
           [
-            {"class":"Doc",  "desc" : "Theta Sketch Framework",           "dir" : "Theta", "file": "ThetaSketchFramework" },
-            {"class":"Doc",  "desc" : "Concurrent Theta Sketch",          "dir" : "Theta", "file": "ConcurrentThetaSketch" },
-            {"class":"Doc",  "desc" : "Theta Sketch Java Example",        "dir" : "Theta", "file": "ThetaJavaExample" },
-            {"class":"Doc",  "desc" : "Theta Sketch Spark Example",       "dir" : "Theta", "file": "ThetaSparkExample" },
-
+            { "class":"Doc",  "desc" : "Theta Sketch Framework",            "dir" : "Theta", "file": "ThetaSketchFramework" },
+            
+            { "class":"Dropdown", "desc" : "Theta Examples", "array":
+              [
+                {"class":"Doc",  "desc" : "Concurrent Theta Sketch",          "dir" : "Theta", "file": "ConcurrentThetaSketch" },
+                {"class":"Doc",  "desc" : "Theta Sketch Java Example",        "dir" : "Theta", "file": "ThetaJavaExample" },
+                {"class":"Doc",  "desc" : "Theta Sketch Spark Example",       "dir" : "Theta", "file": "ThetaSparkExample" },
+                {"class":"Doc",  "desc" : "Theta Sketch Pig UDFs",            "dir" : "Theta", "file": "ThetaPigUDFs" },
+                {"class":"Doc",  "desc" : "Theta Sketch Hive UDFs",           "dir" : "Theta", "file": "ThetaHiveUDFs" },
+                {"class":"Doc",  "desc" : "Using Sketches in Druid",          "dir" : "",      "file": "DruidIntegration" },
+              ]
+            },
+            
             { "class":"Dropdown", "desc" : "KMV Tutorial", "array":
               [
                 {"class":"Doc",  "desc" : "The Inverse Estimate",           "dir" : "Theta", "file": "InverseEstimate" },
@@ -54,9 +71,10 @@
               ]
             },
 
-            { "class":"Dropdown", "desc" : "Set Operations", "array":
+            { "class":"Dropdown", "desc" : "Set Operations and P-sampling", "array":
               [
                 {"class":"Doc",  "desc" : "Set Operations",                 "dir" : "Theta", "file": "ThetaSketchSetOps" },
+                {"class":"Doc",  "desc" : "<i>p</i>-Sampling",              "dir" : "Theta",  "file": "ThetaPSampling" },
               ]
             },
 
@@ -99,10 +117,15 @@
         { "class":"Dropdown", "desc" : "Tuple Sketches", "array":
           [
             {"class":"Doc",  "desc" : "Tuple Overview",           "dir" : "Tuple", "file": "TupleOverview" },
-            {"class":"Doc",  "desc" : "Tuple Java Example",       "dir" : "Tuple", "file": "TupleJavaExample" },
-            {"class":"Doc",  "desc" : "Tuple Engagement Example", "dir" : "Tuple", "file": "TupleEngagementExample" },
-            {"class":"Doc",  "desc" : "Tuple Pig UDFs",           "dir" : "Tuple", "file": "TuplePigUDFs" },
-            {"class":"Doc",  "desc" : "Tuple Hive UDFs",          "dir" : "Tuple", "file": "TupleHiveUDFs" },
+            { "class":"Dropdown", "desc" : "Examples", "array":
+              [
+                {"class":"Doc",  "desc" : "Tuple Java Example",       "dir" : "Tuple", "file": "TupleJavaExample" },
+                {"class":"Doc",  "desc" : "Tuple Engagement Example", "dir" : "Tuple", "file": "TupleEngagementExample" },
+                {"class":"Doc",  "desc" : "Tuple Pig UDFs",           "dir" : "Tuple", "file": "TuplePigUDFs" },
+                {"class":"Doc",  "desc" : "Tuple Hive UDFs",          "dir" : "Tuple", "file": "TupleHiveUDFs" },
+                {"class":"Doc",  "desc" : "Using Sketches in Druid",  "dir" : "",      "file": "DruidIntegration" },
+              ]
+            },
           ]
         },
       ]
@@ -115,17 +138,23 @@
         { "class":"Dropdown", "desc" : "Frequent Item Sketches", "array":
           [
             {"class":"Doc",  "desc" : "Frequent Items Overview",      "dir" : "Frequency", "file": "FrequentItemsOverview" },
-            {"class":"Doc",  "desc" : "Frequent Items Java Example",  "dir" : "Frequency", "file": "FrequentItemsJavaExample" },
-            {"class":"Doc",  "desc" : "Frequent Items Pig UDFs",      "dir" : "Frequency", "file": "FrequentItemsPigUDFs" },
-            {"class":"Doc",  "desc" : "Frequent Items Hive UDFs",     "dir" : "Frequency", "file": "FrequentItemsHiveUDFs" },
             {"class":"Doc",  "desc" : "Frequent Items Error Table",   "dir" : "Frequency", "file": "FrequentItemsErrorTable" },
-            {"class":"Doc",  "desc" : "Frequent Items References",    "dir" : "Frequency", "file": "FrequentItemsReferences" }
+            {"class":"Doc",  "desc" : "Frequent Items References",    "dir" : "Frequency", "file": "FrequentItemsReferences" },
+
+            { "class":"Dropdown", "desc" : "Most Frequent Examples", "array":
+              [
+                {"class":"Doc",  "desc" : "Frequent Items Java Example",  "dir" : "Frequency", "file": "FrequentItemsJavaExample" },
+                {"class":"Doc",  "desc" : "Frequent Items Pig UDFs",      "dir" : "Frequency", "file": "FrequentItemsPigUDFs" },
+                {"class":"Doc",  "desc" : "Frequent Items Hive UDFs",     "dir" : "Frequency", "file": "FrequentItemsHiveUDFs" },
+                {"class":"Doc",  "desc" : "Using Sketches in Druid",              "dir" : "",    "file": "DruidIntegration" },
+              ]
+            },
           ]
         },
 
         { "class":"Dropdown", "desc" : "Frequent Distinct Sketches", "array":
           [
-            {"class":"Doc",  "desc" : "Frequent Distinct Tuples Sketch", "dir" : "Frequency", "file": "FrequentDistinctTuplesSketch" }
+            {"class":"Doc",  "desc" : "Frequent Distinct Tuples Sketch", "dir" : "Frequency", "file": "FrequentDistinctTuplesSketch" },
           ]
         }
       ]
@@ -135,24 +164,28 @@
       [
         {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "Quantiles", "file": "QuantilesOverview" },
         {"class":"Doc",  "desc" : "Quantiles Accuracy and Size",              "dir" : "Quantiles", "file": "QuantilesAccuracy" },
-        {"class":"Doc",  "desc" : "Quantiles Sketch Java Example",            "dir" : "Quantiles", "file": "QuantilesJavaExample" },
-        {"class":"Doc",  "desc" : "Quantiles Sketch Pig UDFs",                "dir" : "Quantiles", "file": "QuantilesPigUDFs" },
-        {"class":"Doc",  "desc" : "Quantiles Sketch Hive UDFs",               "dir" : "Quantiles", "file": "QuantilesHiveUDFs" },
 
+        { "class":"Dropdown", "desc" : "Quantiles Examples", "array":
+          [
+            {"class":"Doc",  "desc" : "Quantiles Sketch Java Example",            "dir" : "Quantiles", "file": "QuantilesJavaExample" },
+            {"class":"Doc",  "desc" : "Quantiles Sketch Pig UDFs",                "dir" : "Quantiles", "file": "QuantilesPigUDFs" },
+            {"class":"Doc",  "desc" : "Quantiles Sketch Hive UDFs",               "dir" : "Quantiles", "file": "QuantilesHiveUDFs" },
+            {"class":"Doc",  "desc" : "Using Sketches in Druid",                  "dir" : "",          "file": "DruidIntegration" },
+          ]
+        },
         { "class":"Dropdown", "desc" : "Quantiles Studies", "array":
           [
             {"class":"Doc",  "desc" : "New KLL sketch and comparison with DoublesSketch", "dir" : "Quantiles", "file": "KLLSketch" },
             {"class":"Doc",  "desc" : "KLL sketch vs t-digest",                           "dir" : "Quantiles", "file": "KllSketchVsTDigest" },
             {"class":"Doc",  "desc" : "Druid Approximate Histogram",                      "dir" : "Quantiles", "file": "DruidApproxHistogramStudy" },
             {"class":"Doc",  "desc" : "Moments Sketch Study",                             "dir" : "Quantiles", "file": "MomentsSketchStudy" },
-            {"class":"Doc",  "desc" : "Quantiles StreamA Study",                          "dir" : "Quantiles", "file": "QuantilesStreamAStudy" }
+            {"class":"Doc",  "desc" : "Quantiles StreamA Study",                          "dir" : "Quantiles", "file": "QuantilesStreamAStudy" },
           ]
         },
-
         { "class":"Dropdown", "desc" : "Quantiles Sketch Theory", "array":
           [
             {"class":"Doc",  "desc" : "Optimal Quantile Approximation in Streams",        "dir" : "", "file": "Quantiles_KLL", "pdf":"true" },
-            {"class":"Doc",  "desc" : "Quantiles References",                             "dir" : "Quantiles", "file": "QuantilesReferences" }
+            {"class":"Doc",  "desc" : "Quantiles References",                             "dir" : "Quantiles", "file": "QuantilesReferences" },
           ]
         }
       ]
@@ -162,28 +195,23 @@
       [
         {"class":"Doc",  "desc" : "Reservoir Sampling",               "dir" : "Sampling", "file": "ReservoirSampling" },
         {"class":"Doc",  "desc" : "Reservoir Sampling Performance",   "dir" : "Sampling", "file": "ReservoirSamplingPerformance" },
-        {"class":"Doc",  "desc" : "Reservoir Sampling Java Example",  "dir" : "Sampling", "file": "ReservoirSamplingJava" },
-        {"class":"Doc",  "desc" : "Reservoir Sampling Pig UDFs",      "dir" : "Sampling", "file": "ReservoirSamplingPigUDFs" },
         {"class":"Doc",  "desc" : "VarOpt Sampling",                  "dir" : "Sampling", "file": "VarOptSampling" },
-        {"class":"Doc",  "desc" : "VarOpt Sampling Java Example",     "dir" : "Sampling", "file": "VarOptSamplingJava" },
-        {"class":"Doc",  "desc" : "VarOpt Sampling Pig UDFs",         "dir" : "Sampling", "file": "VarOptPigUDFs" },
-      ]
-    },
 
-    { "class":"Dropdown", "desc" : "Large Scale Computing", "array":
-      [
-        {"class":"Doc",  "desc" : "Theta Sketch Pig UDFs",             "dir" : "Theta",  "file": "ThetaPigUDFs" },
-        {"class":"Doc",  "desc" : "Theta Sketch Hive UDFs",            "dir" : "Theta",  "file": "ThetaHiveUDFs" },
-        {"class":"Doc",  "desc" : "Integration with Druid",            "dir" : "",       "file": "DruidIntegration" },
-        {"class":"Doc",  "desc" : "Memory Package",                    "dir" : "Memory", "file": "MemoryPackage" },
-        {"class":"Doc",  "desc" : "<i>p</i>-Sampling",                 "dir" : "Theta",  "file": "ThetaPSampling" },
+        { "class":"Dropdown", "desc" : "Sampling Examples", "array":
+          [
+            {"class":"Doc",  "desc" : "Reservoir Sampling Java Example",  "dir" : "Sampling", "file": "ReservoirSamplingJava" },
+            {"class":"Doc",  "desc" : "Reservoir Sampling Pig UDFs",      "dir" : "Sampling", "file": "ReservoirSamplingPigUDFs" },
+            {"class":"Doc",  "desc" : "VarOpt Sampling Java Example",     "dir" : "Sampling", "file": "VarOptSamplingJava" },
+            {"class":"Doc",  "desc" : "VarOpt Sampling Pig UDFs",         "dir" : "Sampling", "file": "VarOptPigUDFs" },
+          ]
+        },
       ]
     },
 
     { "class":"Dropdown", "desc" : "Memory Package", "array":
       [
         {"class":"Doc",  "desc" : "Memory Package",                           "dir" : "Memory", "file": "MemoryPackage" },
-        {"class":"Doc",  "desc" : "Memory Package Performance",               "dir" : "Memory", "file": "MemoryPerformance" }
+        {"class":"Doc",  "desc" : "Memory Package Performance",               "dir" : "Memory", "file": "MemoryPerformance" },
       ]
     },
 

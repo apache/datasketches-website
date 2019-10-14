@@ -35,12 +35,25 @@
     </p>
     <div class="collapse" id="collapse_hyperloglog_sketches">
       <li><a href="{{site.docs_dir}}/HLL/HLL.html">HLL Sketch</a></li>
-      <li><a href="{{site.docs_dir}}/HLL/Hll_vs_Hllpp.html">HLL vs HLL++</a></li>
-      <li><a href="{{site.docs_dir}}/HLL/HllJavaExample.html">HLL Sketch Java Example</a></li>
-      <li><a href="{{site.docs_dir}}/HLL/HllPigUDFs.html">HLL Sketch Pig UDFs</a></li>
-      <li><a href="{{site.docs_dir}}/HLL/HllHiveUDFs.html">HLL Sketch Hive UDFs</a></li>
       <li><a href="{{site.docs_dir}}/HLL/HllMap.html">HLL Map Sketch</a></li>
-      <li><a href="{{site.docs_dir}}/HLL/HllSketchVsDruidHyperLogLogCollector.html">HLL Sketch vs Druid HyperLogLogCollector</a></li>
+
+      <p id="hll-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_examples">HLL Examples</a>
+      </p>
+      <div class="collapse" id="collapse_hll_examples">
+        <li><a href="{{site.docs_dir}}/HLL/HllJavaExample.html">HLL Sketch Java Example</a></li>
+        <li><a href="{{site.docs_dir}}/HLL/HllPigUDFs.html">HLL Sketch Pig UDFs</a></li>
+        <li><a href="{{site.docs_dir}}/HLL/HllHiveUDFs.html">HLL Sketch Hive UDFs</a></li>
+        <li><a href="{{site.docs_dir}}/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+
+      <p id="hll-studies">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_studies">HLL Studies</a>
+      </p>
+      <div class="collapse" id="collapse_hll_studies">
+        <li><a href="{{site.docs_dir}}/HLL/Hll_vs_Hllpp.html">HLL vs HLL++</a></li>
+        <li><a href="{{site.docs_dir}}/HLL/HllSketchVsDruidHyperLogLogCollector.html">HLL Sketch vs Druid HyperLogLogCollector</a></li>
+      </div>
     </div>
 
     <p id="theta-sketches">
@@ -48,9 +61,18 @@
     </p>
     <div class="collapse" id="collapse_theta_sketches">
       <li><a href="{{site.docs_dir}}/Theta/ThetaSketchFramework.html">Theta Sketch Framework</a></li>
-      <li><a href="{{site.docs_dir}}/Theta/ConcurrentThetaSketch.html">Concurrent Theta Sketch</a></li>
-      <li><a href="{{site.docs_dir}}/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
-      <li><a href="{{site.docs_dir}}/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
+
+      <p id="theta-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_examples">Theta Examples</a>
+      </p>
+      <div class="collapse" id="collapse_theta_examples">
+        <li><a href="{{site.docs_dir}}/Theta/ConcurrentThetaSketch.html">Concurrent Theta Sketch</a></li>
+        <li><a href="{{site.docs_dir}}/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
+        <li><a href="{{site.docs_dir}}/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
+        <li><a href="{{site.docs_dir}}/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
+        <li><a href="{{site.docs_dir}}/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
+        <li><a href="{{site.docs_dir}}/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
 
       <p id="kmv-tutorial">
         <a data-toggle="collapse" class="menu collapsed" href="#collapse_kmv_tutorial">KMV Tutorial</a>
@@ -64,11 +86,12 @@
         <li><a href="{{site.docs_dir}}/Theta/KMVupdateVkth.html">Update V(kth) Rule</a></li>
       </div>
 
-      <p id="set-operations">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_set_operations">Set Operations</a>
+      <p id="set-operations-and-p-sampling">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_set_operations_and_p-sampling">Set Operations and P-sampling</a>
       </p>
-      <div class="collapse" id="collapse_set_operations">
+      <div class="collapse" id="collapse_set_operations_and_p-sampling">
         <li><a href="{{site.docs_dir}}/Theta/ThetaSketchSetOps.html">Set Operations</a></li>
+        <li><a href="{{site.docs_dir}}/Theta/ThetaPSampling.html"><i>p</i>-Sampling</a></li>
       </div>
 
       <p id="accuracy">
@@ -115,10 +138,17 @@
     </p>
     <div class="collapse" id="collapse_tuple_sketches">
       <li><a href="{{site.docs_dir}}/Tuple/TupleOverview.html">Tuple Overview</a></li>
-      <li><a href="{{site.docs_dir}}/Tuple/TupleJavaExample.html">Tuple Java Example</a></li>
-      <li><a href="{{site.docs_dir}}/Tuple/TupleEngagementExample.html">Tuple Engagement Example</a></li>
-      <li><a href="{{site.docs_dir}}/Tuple/TuplePigUDFs.html">Tuple Pig UDFs</a></li>
-      <li><a href="{{site.docs_dir}}/Tuple/TupleHiveUDFs.html">Tuple Hive UDFs</a></li>
+
+      <p id="examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_examples">Examples</a>
+      </p>
+      <div class="collapse" id="collapse_examples">
+        <li><a href="{{site.docs_dir}}/Tuple/TupleJavaExample.html">Tuple Java Example</a></li>
+        <li><a href="{{site.docs_dir}}/Tuple/TupleEngagementExample.html">Tuple Engagement Example</a></li>
+        <li><a href="{{site.docs_dir}}/Tuple/TuplePigUDFs.html">Tuple Pig UDFs</a></li>
+        <li><a href="{{site.docs_dir}}/Tuple/TupleHiveUDFs.html">Tuple Hive UDFs</a></li>
+        <li><a href="{{site.docs_dir}}/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
     </div>
   </div>
 
@@ -133,11 +163,18 @@
     </p>
     <div class="collapse" id="collapse_frequent_item_sketches">
       <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsOverview.html">Frequent Items Overview</a></li>
-      <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
-      <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
-      <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
       <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsErrorTable.html">Frequent Items Error Table</a></li>
       <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsReferences.html">Frequent Items References</a></li>
+
+      <p id="most-frequent-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent_examples">Most Frequent Examples</a>
+      </p>
+      <div class="collapse" id="collapse_most_frequent_examples">
+        <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
+        <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
+        <li><a href="{{site.docs_dir}}/Frequency/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
+        <li><a href="{{site.docs_dir}}/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
     </div>
 
     <p id="frequent-distinct-sketches">
@@ -154,9 +191,16 @@
   <div class="collapse" id="collapse_quantiles_and_histograms">
     <li><a href="{{site.docs_dir}}/Quantiles/QuantilesOverview.html">Quantiles Overview</a></li>
     <li><a href="{{site.docs_dir}}/Quantiles/QuantilesAccuracy.html">Quantiles Accuracy and Size</a></li>
-    <li><a href="{{site.docs_dir}}/Quantiles/QuantilesJavaExample.html">Quantiles Sketch Java Example</a></li>
-    <li><a href="{{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
-    <li><a href="{{site.docs_dir}}/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
+
+    <p id="quantiles-examples">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_examples">Quantiles Examples</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_examples">
+      <li><a href="{{site.docs_dir}}/Quantiles/QuantilesJavaExample.html">Quantiles Sketch Java Example</a></li>
+      <li><a href="{{site.docs_dir}}/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
+      <li><a href="{{site.docs_dir}}/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
+      <li><a href="{{site.docs_dir}}/DruidIntegration.html">Using Sketches in Druid</a></li>
+    </div>
 
     <p id="quantiles-studies">
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
@@ -184,22 +228,17 @@
   <div class="collapse" id="collapse_sampling">
     <li><a href="{{site.docs_dir}}/Sampling/ReservoirSampling.html">Reservoir Sampling</a></li>
     <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
-    <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
-    <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingPigUDFs.html">Reservoir Sampling Pig UDFs</a></li>
     <li><a href="{{site.docs_dir}}/Sampling/VarOptSampling.html">VarOpt Sampling</a></li>
-    <li><a href="{{site.docs_dir}}/Sampling/VarOptSamplingJava.html">VarOpt Sampling Java Example</a></li>
-    <li><a href="{{site.docs_dir}}/Sampling/VarOptPigUDFs.html">VarOpt Sampling Pig UDFs</a></li>
-  </div>
 
-  <p id="large-scale-computing">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_large_scale_computing">Large Scale Computing</a>
-  </p>
-  <div class="collapse" id="collapse_large_scale_computing">
-    <li><a href="{{site.docs_dir}}/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
-    <li><a href="{{site.docs_dir}}/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
-    <li><a href="{{site.docs_dir}}/DruidIntegration.html">Integration with Druid</a></li>
-    <li><a href="{{site.docs_dir}}/Memory/MemoryPackage.html">Memory Package</a></li>
-    <li><a href="{{site.docs_dir}}/Theta/ThetaPSampling.html"><i>p</i>-Sampling</a></li>
+    <p id="sampling-examples">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling_examples">Sampling Examples</a>
+    </p>
+    <div class="collapse" id="collapse_sampling_examples">
+      <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
+      <li><a href="{{site.docs_dir}}/Sampling/ReservoirSamplingPigUDFs.html">Reservoir Sampling Pig UDFs</a></li>
+      <li><a href="{{site.docs_dir}}/Sampling/VarOptSamplingJava.html">VarOpt Sampling Java Example</a></li>
+      <li><a href="{{site.docs_dir}}/Sampling/VarOptPigUDFs.html">VarOpt Sampling Pig UDFs</a></li>
+    </div>
   </div>
 
   <p id="memory-package">
