@@ -4,40 +4,50 @@ layout: doc_page
 
 ## Downloads
 
-Choose the most recent release version from <a href="https://search.maven.org/#search|ga|1|datasketches">The Central Repository</a>.
+Choose the most recent release version from 
+[incubator-datasketches-xxx](https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches).
 
 Or, clone or fork the current SNAPSHOT directly from the relevant repository.
 
 ### Version Numbers
+Apache DataSketches uses [semantic versioning](https://semver.org/). Version numbers use the form major.minor.incremental and are incremented as follows:
 
-The artifacts downloaded from <a href="https://search.maven.org/#search|ga|1|datasketches">The Central Repository</a> 
-include a version number in the name, as in sketches-core-X.Y.Z.jar. 
+* __major version__ for incompatible API changes
+* __minor version__ for new functionality added in a backward-compatible manner
+* __incremental version__ for forward-compatible bug fixes
+
+The zip files downloaded from [incubator-datasketches-xxx](https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches)
+include a version number in the name, as in _apache-datasketches-java-1.1.0-incubating-src.zip_. 
 This same number is also in the top section of the pom.xml file.
 
-If jars are created using "mvn clean package" at the command line from a cloned or forked copy of
-the repository, the jars will be named sketches-core-X.Y.Z-SNAPSHOT.jar and will also be 
-in the top section of the pom.xml file.
+If you are developing using Maven and want to use, for example, incubator-datasketches-java, add the following dependencies to your pom.xml file:
 
-#### Central Repository Jars
+```
+<dependency>
+  <groupId>org.apache.datasketches</groupId>
+  <artifactId>datasketches-java</artifactId>
+  <version>1.1.0-incubating</version>
+</dependency>
+```
+
+
+#### Release Philosophy
 
 These are fully tested, production quality releases, and hopefully as bug-free as humanly possible. 
 However, the code is continuously evolving and improvements in performance, documentation, additions 
 to the API, and bug fixes do occur.  When enough of these build up, especially for bug fixes or 
-performance improvements, a new release will be issued to the Central Repository and the <i>Z</i> 
-digit will be incremented.  Generally, an incremented <i>Z</i> digit should be backward API 
-compatible with the previous release. Although this might not be guaranteed for newly introduced
-functionality. 
+performance improvements, a new release will be issued and the <b>minor</b> 
+digit will be incremented.  The <b>incremental</b> digit will only be used for bug fixes as stated above.
 
-When a significant API change occurs that could affect backward compatibility, 
-or major new functionality has been introduced, the <i>Y</i> digit will be incremented.
-
-The <i>X</i> digit is being reserved for major refactorings of the library where backward API 
+As stated above, the <b>major</b> digit is being reserved for major refactorings of the library where backward API 
 compatibility may not be guaranteed. 
 
-For the repositories that depend on core, such as <i>sketches-hive</i>, 
-the version number may be incremented just to be in sync with the core repository, 
+For the repositories that depend on java core, such as <i>incubator-datasketches-hive</i>, 
+the version number may be incremented just to be in sync with the java core repository, 
 and may not reflect any actual code changes other than a change in the pom.xml to reflect the new 
-dependency. If you just want to run Hive and don't require access to the <i>sketches-core</i> it is
+dependency. 
+
+If you just want to run Hive and don't require direct access to the <i>incubator-datasketches-java</i> it is
 recommended that you download the "with-shaded-core.jar", which includes the Hive jar as well as 
 shaded versions of the core jar and memory jar. The shading avoids conflicts with other possible versions
 of core and memory that you might have in your system.
@@ -50,7 +60,7 @@ The code is automatically tested using the current test suite, but you might cat
 transition to a new future release. Caveat Emptor.
 
 ### Version History
-Moved to github tags.
+Please use GitHub revisions history on the respective repositories
 
 
  
