@@ -117,10 +117,11 @@
         { "class":"Dropdown", "desc" : "Tuple Sketches", "array":
           [
             {"class":"Doc",  "desc" : "Tuple Overview",           "dir" : "Tuple", "file": "TupleOverview" },
-            { "class":"Dropdown", "desc" : "Examples", "array":
+            { "class":"Dropdown", "desc" : "Tuple Examples", "array":
               [
                 {"class":"Doc",  "desc" : "Tuple Java Example",       "dir" : "Tuple", "file": "TupleJavaExample" },
                 {"class":"Doc",  "desc" : "Tuple Engagement Example", "dir" : "Tuple", "file": "TupleEngagementExample" },
+                {"class":"Doc",  "desc" : "Frequent Distinct Tuples Sketch", "dir" : "Frequency", "file": "FrequentDistinctTuplesSketch" },
                 {"class":"Doc",  "desc" : "Tuple Pig UDFs",           "dir" : "Tuple", "file": "TuplePigUDFs" },
                 {"class":"Doc",  "desc" : "Tuple Hive UDFs",          "dir" : "Tuple", "file": "TupleHiveUDFs" },
                 {"class":"Doc",  "desc" : "Using Sketches in Druid",  "dir" : "",      "file": "DruidIntegration" },
