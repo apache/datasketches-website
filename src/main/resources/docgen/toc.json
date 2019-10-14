@@ -222,10 +222,9 @@
       ]
     },
 
-    { "class":"Dropdown", "desc" : "Who Uses And License", "array":
+    { "class":"Dropdown", "desc" : "Who Uses", "array":
       [
         {"class":"Doc",  "desc" : "Who Uses",                           "dir" : "",            "file": "WhoUses" },
-        {"class":"Doc",  "desc" : "License",                            "dir" : "ROOT",        "file": "LICENSE" },
       ]
     },
   ]
