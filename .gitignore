@@ -13,3 +13,4 @@ _posts/
 # yml files
 
 /local/
+.DS_Store
