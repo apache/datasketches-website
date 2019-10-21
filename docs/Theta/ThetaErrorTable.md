@@ -11,7 +11,7 @@ Note: Early on, we used the term "Nominal Entries" as an alias for K, because th
 
 
 
-          |#Std Dev:   |1      |2      |3      |
+&nbsp;    |#Std Dev:   |1      |2      |3      |
 :--------:|:----------:|:-----:|:-----:|:-----:|
           |<b>Conf:</b>|<b>68.27%</b>|<b>95.45%</b>|<b>99.73%</b>|
 <b>LgK</b>|<b>K</b>    |<b>1 RSE</b>|<b>2 RSE</b>|<b>3 RSE</b>|
@@ -42,7 +42,7 @@ Note: Early on, we used the term "Nominal Entries" as an alias for K, because th
 ### Alpha Sketch
 Note: These RSE calculations are only valid for an Alpha Sketch prior to any merge (Union) operation.  After a union operation the RSE reverts to the QuickSelect numbers above.
 
-          |#Std Dev:    |1      |2      |3      |
+&nbsp;    |#Std Dev:    |1      |2      |3      |
 :--------:|:----------:|:-----:|:-----:|:-----:|
           |<b>Conf:</b>|<b>68.27%</b>|<b>95.45%</b>|<b>99.73%</b>|
 <b>LgK</b>|<b>K</b>    |<b>1 RSE</b>|<b>2 RSE</b>|<b>3 RSE</b>|
