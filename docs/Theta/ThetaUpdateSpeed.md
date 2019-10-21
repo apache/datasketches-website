@@ -24,15 +24,6 @@ In this test setup and performing an "average" over all the test points from 8 t
      * LgT = 12,3 : The test harness was configured to start with 2^23 trials on the left and logarithmically decrease the trials as the number of uniques increase down to 2^4 trials on the right.
      * RF = X1 : Resize Factor = 1. The sketch was configured to start at maximum possible size in memory. This means there is no need for the sketch to request (allocate) more memory for the life of the sketch. This is the overall fastest configuration at the expense of allocating the maximum memory upfront. Other RF values are discussed below.  This has no impact on space required when serializing the sketch in compact mode.  
 
-#### How this graph was generated
-The goal of this measurement was to measure the limits of how fast these sketches could update data from a continuous data stream not limited by other system overhead, string or array processing. In order to remove random noise from the plots, each point on the graph represents an average of many trials.  For the low end of the graph the number of trials per point is 2^23 or 8M trials per point. At the high end of 8 million uniques per trial the number of trials per point is 2^4 or 16.  
-
-It needs to be pointed out that these tests were designed to measure the maximum update speed under ideal conditions so "your mileage may vary"!
-Very few systems would actually be able to feed a single sketch at this rate so these plots represent an upper bound and not realistic update rates in more complex systems environments. Nonetheless, this demonstrates that the sketches would consume very little of an overall system's budget for updating, if there was one, and are quite suitable for real-time streams.
-
-The graphs on this page were generated using the utilities in the 
-https://github.com/apache/incubator-datasketches-characterization repository.
-There is some more documentation with the code on using these tools if you wish to re-run these characterization tests. 
 
 ### Resize Factors = X1, X2 and X8
 To illustrate how the the optional <i>Resize Factor</i> affects performance refer to the following graph.  All three plots were generated using the Heap QuickSelect Sketch but with different Resize Factors.
@@ -48,9 +39,19 @@ As one would expect the overall speed of the RF = X2 sketch is slower than the R
 
 The tradeoff here is the classic memory size versus speed.  Suppose you have millions of sketches that need to be allocated and your input data is highly skewed (as is often the case).  Most of the sketches will only have a few entries and only a small fraction of all the sketches will actually go into estimation mode and require a full-sized cache.  The Resize Factor option allows a memory allocation that would be orders of magnitude smaller than would be required if all the sketches had to be allocated at full size.  The default Resize Factor is X8, which is a nice compromise for many environments.
 
+### How these graphs were generated
+The goal of these measurements was to measure the limits of how fast these sketches could update data from a continuous data stream not limited by system overhead, string or array processing. In order to remove random noise from the plots, each point on the graph represents an average of many trials.  For the low end of the graph the number of trials per point is 2^23 or 8M trials per point. At the high end of 8 million uniques per trial the number of trials per point is 2^4 or 16.  
+
+It needs to be pointed out that these tests were designed to measure the maximum update speed under ideal conditions so "your mileage may vary"!
+Very few systems would actually be able to feed a single sketch at this rate so these plots represent an upper bound of performance, and not as realistic update rates in more complex systems environments. Nonetheless, this demonstrates that the sketches would consume very little of an overall system's budget for updating, if there was one, and are quite suitable for real-time streams.
+
+The graphs on this page were generated using the utilities in the 
+[Characterization Repository](https://github.com/apache/incubator-datasketches-characterization repository).
+There is some more documentation with the code on using these tools if you wish to re-run these characterization tests yourself.
+
 
 ### Measurement System
-  Model Name:	MacBook Pro<br>
+  Model Name:	Apple MacBook Pro<br>
   Model Identifier:	MacBookPro11,3<br>
   Processor Name:	Intel Core i7<br>
   Processor Speed:	2.5 GHz<br>
