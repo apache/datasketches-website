@@ -27,7 +27,7 @@ import java.util.Iterator;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
+import org.testng.annotations.Test;
 import org.apache.datasketches.Files;
 
 /**
@@ -40,8 +40,30 @@ public class TocGenerator {
   private String jsonScrFile;
   private String htmlScriptFile;
 
+  TocGenerator() {} //needed for TestNG
+
   /**
-   * Run this from the TocGeneratorTest class in the test branch.
+   * To create the Table of Contents for the website:
+   * <ol>
+   *  <li>Edit the JSON source file (refereced below) for the structure you want.</li>
+   *  <li>Execute this test.  The result will be placed in the proper location as part of the web
+   *  source.</li>
+   *  <li>Stage the changes and push the web site source to origin.</li>
+   *  <li>Refresh your browser and confirm that the TOC is correct.
+   * </ol>
+   * @author Lee Rhodes
+   */
+    @Test
+    public static void runTocGenerator() {
+      final String jsonSrcFile = "src/main/resources/docgen/toc.json";
+      final String htmlScriptFile = "src/main/resources/docgen/tocScript.html";
+      final String tgtTocFile = "_includes/toc.html";
+      TocGenerator tocgen = new TocGenerator(jsonSrcFile, htmlScriptFile, tgtTocFile);
+      tocgen.readJson();
+    }
+
+  /**
+   * Execute the runTocGenerator above.
    * @param jsonSrcFile The JSON source file
    * @param htmlScriptFile The javascript source file
    * @param tgtTocFile the target toc.html file
