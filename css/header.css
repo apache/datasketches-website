@@ -53,9 +53,9 @@
 .ds-bootlogo {
   display: block;
   margin: 0 auto;
-  width: 200px;
-  height: 278px;
-  background-size: 200px 278px;
+  width: 150px; /* was 200 */
+  height: 209px; /* was 278 */
+  background-size: 150px 209px; /* was 200px 278px */
   background-repeat: no-repeat;
   background-position: center;
   background-image: url('/img/man_logo_trans_wht_311_432.png');

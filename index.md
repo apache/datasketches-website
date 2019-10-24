@@ -31,8 +31,8 @@ id: home
   <div class="row">
     <div class="col-md-8 col-md-offset-2 text-center">
       <span class="ds-bootlogo"></span>
-      <p class="lead" style="font-size: 32px; margin-bottom: 10px">Apache DataSketches</p>
-      <p class="lead" style="font-size: 16px; line-height: 1.0; margin-bottom: 15px">A software library of 
+      <p class="lead" style="font-size: 40px; margin-bottom: 10px">Apache DataSketches</p>
+      <p class="lead" style="font-size: 20px; line-height: 1.0; margin-bottom: 15px">A software library of 
         <a href="https://en.wikipedia.org/wiki/Stochastic" style="color: #EDE379"><i>stochastic</i></a> 
         <a href="https://en.wikipedia.org/wiki/Streaming_algorithm" style="color: #EDE379"><i>streaming algorithms</i></a></p>
       <!--<p class="lead" style="font-size: 16px; line-height: 1.0; margin-bottom: 15px"><i>"Excellence in theoretically informed algorithm engineering" -- Graham Cormode</i></p> -->
@@ -51,7 +51,7 @@ id: home
 <div class="container">
   <div class="row">
     <div class="text-justify" style="font-size: 18px; padding-left: 25px; padding-right: 25px">
-<h1>NOTE: The DataSketches Library is being moved to <a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/README.md">ASF</a></h1>
+<h2>NOTE: The DataSketches Library is being moved to <a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/README.md">ASF</a></h2>
 <p><b>The Business Challenge:</b> Analyzing Big Data Quickly.</p>
 <p>In the analysis of big data there are often problem queries that don’t scale because they require huge compute resources and time to generate exact results. Examples include <i>count distinct</i>, quantiles, most frequent items, joins, matrix computations, and graph analysis.</p>
 
