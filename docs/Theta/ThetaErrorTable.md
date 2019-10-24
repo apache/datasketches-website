@@ -2,7 +2,24 @@
 sectionid: docs
 layout: doc_page
 ---
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
 
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
 
 ## Choosing Desired Relative Error For Theta Sketches
 Note: Early on, we used the term "Nominal Entries" as an alias for K, because there is only a nominal relationship between the parameter given in the class constructor and the actual number of retained values (and thus its size) of the sketch.  This was an intentional trade-off to improve performance.  Nonetheless, the number of retained entries as well as the current size of the sketch can always be obtained from the sketch itself.  Now we find it more convenient and compact to just use the term "K". 

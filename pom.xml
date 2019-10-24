@@ -282,6 +282,15 @@ under the License.
             <excludes>
               <!-- rat uses .gitignore for excludes by default -->
               <exclude>**/test/resources/**/*.txt</exclude>
+              <!-- UNIQUE FOR THIS JAVA COMPONENT -->
+              <exclude>**/*.txt</exclude>
+              <exclude>**/*.html</exclude>
+              <exclude>**/*.css</exclude>
+              <exclude>**/*.js</exclude>
+              <exclude>**/*.lock</exclude>
+              <exclude>**/*.json</exclude>
+              <exclude>**/package-list</exclude>
+              <!-- END: UNIQUE FOR THIS JAVA COMPONENT -->
               <exclude>LICENSE</exclude>
               <exclude>NOTICE</exclude>
               <exclude>DISCLAIMER-WIP</exclude>
