@@ -69,7 +69,7 @@ Please refer to the [Tuple Overview](https://datasketches.github.io/docs/Tuple/T
 
 ### IntegerSketch class
 ```java
-public class IntegerSketch extends UpdatableSketch<Integer, IntegerSummary> { ... }
+public class IntegerSketch extends UpdatableSketch<Integer, IntegerSummary> {
 ```
 The IntegerSketch class extends the generic UpdatableSketch specifying two type parameters, an Integer and an IntegerSummary.
 
@@ -96,7 +96,7 @@ We will not be using the second constructor.
     super.update(key, value);
   }
 ```
-The IntegerSketch has two update methods, one for String keys and an Integer value and the other for long keys and an Integer value.
+The IntegerSketch has two update methods, one for _String_ keys and an _Integer_ value and the other for _long_ keys and an _Integer_ value.
 The user system code would call one of these two methods to update the sketch.  In our example, we will call the second update method with an integer value representing a user ID and a value of one for the Integer.  The key will be hashed and passed to the internal sketching algorithm that will determine if the key-value pair should be retained by the sketch or not.  If it is retained, the 2nd parameter will be passed to the IntegerSummary class for handling.   
 
 ### IntegerSummary class
@@ -186,15 +186,15 @@ Note 2: You can run the following _computeEngagementHistogram()_ method as a tes
 ```java
   @Test
   public void computeEngagementHistogram() {
-    int lgK = 12;
-    int K = 1 << lgK; // = 4096
+    int lgK = 8; //Using a larger sketch >= 9 will produce exact results for this little example
+    int K = 1 << lgK;
     int days = 30;
     int v = 0;
     IntegerSketch[] skArr = new IntegerSketch[days];
     for (int i = 0; i < days; i++) {
       skArr[i] = new IntegerSketch(lgK, AlwaysOne);
     }
-    for (int i = 0; i <= days; i++) { //31 generating indices
+    for (int i = 0; i <= days; i++) { //31 generating indices for symmetry
       int numIds = numIDs(days, i);
       int numDays = numDays(days, i);
       int myV = v++;
@@ -205,19 +205,17 @@ Note 2: You can run the following _computeEngagementHistogram()_ method as a tes
       }
       v += numIds;
     }
-
-    int numVisits = unionOps(K, Sum, skArr);
-    assertEquals(numVisits, 897);
+    unionOps(K, Sum, skArr);
   }
 ```
 This little engagement test uses a power-law distribution of number of days visited versus the number of visitors in order to model what actual data might look like.  It is not essential to understand how the data is generated, but if you are curious it will be discussed at the end.
 
-In lines 7 - 9, we create a simple array of 30 sketches for the 30 days.  Note that we set the update mode to _AlwaysOne_. (Because this little test does not generate any duplicates in the first stage, the mode _Sum_ would also work.)
+In lines 7 - 10, we create a simple array of 30 sketches for the 30 days.  Note that we set the update mode to _AlwaysOne_. (Because this little test does not generate any duplicates in the first stage, the mode _Sum_ would also work.)
 
-The triple-nested for-loops update the 30 sketches using a pair of parametric generating functions discussed later. Line 23 passes the array of sketches to the _unionOps(...)_ method, which will output the results.  The returned _numVisits_ is just for testing.
+The triple-nested for-loops update the 30 sketches using a pair of parametric generating functions discussed later. Line 22 passes the array of sketches to the _unionOps(...)_ method, which will output the results.
 
 ```java
-  private static int unionOps(int K, IntegerSummary.Mode mode, IntegerSketch ... sketches) {
+  private static void unionOps(int K, IntegerSummary.Mode mode, IntegerSketch ... sketches) {
     IntegerSummarySetOperations setOps = new IntegerSummarySetOperations(mode, mode);
     Union<IntegerSummary> union = new Union<>(K, setOps);
     int len = sketches.length;
@@ -228,62 +226,87 @@ The triple-nested for-loops update the 30 sketches using a pair of parametric ge
     CompactSketch<IntegerSummary> result = union.getResult();
     SketchIterator<IntegerSummary> itr = result.iterator();
 
-    int[] freqArr = new int[len +1];
+    int[] numDaysArr = new int[len + 1]; //zero index is ignored
 
     while (itr.next()) {
-      int value = itr.getSummary().getValue();
-      freqArr[value]++;
+      //For each unique visitor from the result sketch, get the # days visited
+      int numDaysVisited = itr.getSummary().getValue();
+      //increment the number of visitors that visited numDays
+      numDaysArr[numDaysVisited]++; //values range from 1 to 30
     }
-    println("Engagement Histogram:");
-    printf("%12s,%12s\n","Days Visited", "Visitors");
-    int sumVisitors = 0;
+
+    println("\nEngagement Histogram:");
+    println("Number of Unique Visitors by Number of Days Visited");
+    printf("%12s%12s%12s%12s\n","Days Visited", "Estimate", "LB", "UB");
     int sumVisits = 0;
-    for (int i = 0; i < freqArr.length; i++) {
-      int visits = freqArr[i];
-      if (visits == 0) { continue; }
-      sumVisitors += visits;
-      sumVisits += (visits * i);
-      printf("%12d,%12d\n", i, visits);
+    double theta = result.getTheta();
+    for (int i = 0; i < numDaysArr.length; i++) {
+      int visitorsAtDaysVisited = numDaysArr[i];
+      if (visitorsAtDaysVisited == 0) { continue; }
+      sumVisits += visitorsAtDaysVisited * i;
+
+      double estVisitorsAtDaysVisited = visitorsAtDaysVisited / theta;
+      double lbVisitorsAtDaysVisited = result.getLowerBound(numStdDev, visitorsAtDaysVisited);
+      double ubVisitorsAtDaysVisited = result.getUpperBound(numStdDev, visitorsAtDaysVisited);
+
+      printf("%12d%12.0f%12.0f%12.0f\n",
+          i, estVisitorsAtDaysVisited, lbVisitorsAtDaysVisited, ubVisitorsAtDaysVisited);
     }
-    println("Total Visitors: " + sumVisitors);
-    println("Total Visits  : " + sumVisits);
-    return sumVisits;
+
+    //The estimate and bounds of the total number of visitors comes directly from the sketch.
+    double visitors = result.getEstimate();
+    double lbVisitors = result.getLowerBound(numStdDev);
+    double ubVisitors = result.getUpperBound(numStdDev);
+    printf("\n%12s%12s%12s%12s\n","Totals", "Estimate", "LB", "UB");
+    printf("%12s%12.0f%12.0f%12.0f\n", "Visitors", visitors, lbVisitors, ubVisitors);
+
+    //The total number of visits, however, is a scaled metric and takes advantage of the fact that
+    //the retained entries in the sketch is a uniform random sample of all unique visitors, and
+    //the the rest of the unique users will likely behave in the same way.
+    double estVisits = sumVisits / theta;
+    double lbVisits = (estVisits * lbVisitors) / visitors;
+    double ubVisits = (estVisits * ubVisitors) / visitors;
+    printf("%12s%12.0f%12.0f%12.0f\n\n", "Visits", estVisits, lbVisits, ubVisits);
   }
 ```
-In the unionOps method, line 2 initializes the _IntegerSummarySetOperations_ class with the given mode, which for our example must be _Sum_. Line 3 creates a new Union class initialized with the setOps class.
+In the unionOps method, line 2 initializes the _IntegerSummarySetOperations_ class with the given mode, which for stage 2 of our example must be _Sum_. Line 3 creates a new Union class initialized with the setOps class.
 
 In lines 6-8 the union is updated with all of the sketches from the array.
 
 In lines 9-10, the result is obtained from the union as a _CompactSketch_ and a _SketchIterator_ is obtained from the result so we can process all the retained rows of the sketch.
 
-In lines 12-16, we accumulate the frequencies of occurences of rows with the same count value.
+In lines 12-19, we accumulate the frequencies of occurences of rows with the same count value into the _numDaysArr_.
 
-The remainder of the method is just the mechanics of printing out the results to the console, which should look like this:
+The remainder of the method is just the mechanics of printing out the results to the console, and computing the error bounds for each row and for the totals. The output  should look something like this:
 
 ```
-Days Visited,    Visitors
-           1,         102
-           2,          77
-           3,          30
-           4,          15
-           5,          11
-           6,           5
-           7,           4
-           8,           4
-           9,           3
-          10,           3
-          11,           3
-          12,           2
-          14,           2
-          15,           2
-          17,           2
-          19,           2
-          21,           1
-          24,           1
-          27,           1
-          30,           1
-Total Visitors: 271
-Total Visits  : 897
+Engagement Histogram:
+Number of Unique Visitors by Number of Days Visited
+Days Visited    Estimate          LB          UB
+           1          98          92         104
+           2          80          75          86
+           3          32          30          36
+           4          16          15          19
+           5          10           9          13
+           6           5           5           8
+           7           4           4           7
+           8           4           4           7
+           9           3           3           6
+          10           2           2           4
+          11           3           3           6
+          12           2           2           4
+          14           2           2           4
+          15           2           2           4
+          17           2           2           4
+          19           2           2           4
+          21           1           1           3
+          24           1           1           3
+          27           1           1           3
+          30           1           1           3
+
+      Totals    Estimate          LB          UB
+    Visitors         272         263         281
+      Visits         917         886         948
 ```
 
 This is the data that is plotted as a histogram at the top of this tutorial.
