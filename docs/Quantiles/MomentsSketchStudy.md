@@ -25,7 +25,7 @@ The goal of this article is to compare the accuracy performance of the Moments S
 
 Please get familiar with the [Definitions]({{site.docs_dir}}/Quantiles/Definitions.html) for quantiles.
 
-Compare this study with the DataSketches [Quantiles StreamA Study](https://datasketches.github.io/docs/Quantiles/QuantilesStreamAStudy.html) with the same input data.
+Compare this study with the DataSketches [Quantiles StreamA Study](https://datasketches.apache.org/docs/Quantiles/QuantilesStreamAStudy.html) with the same input data.
 
 ## Versions
 
