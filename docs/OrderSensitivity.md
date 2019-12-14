@@ -43,7 +43,7 @@ If you want a Compact Sketch to be order insensitive, you must _rebuild()_, firs
 
 When doing Unions with Theta Sketches, the getResult(...) automatically trims the result back to _K_.
 
-The impact of the rebuild() is that the error will not be as good as the un-trimmed sketch, but you will get your desired order insensitivity. [For example](https://datasketches.github.io/docs/Theta/ThetaAccuracyPlots.html).
+The impact of the rebuild() is that the error will not be as good as the un-trimmed sketch, but you will get your desired order insensitivity. [For example](https://datasketches.apache.org/docs/Theta/ThetaAccuracyPlots.html).
 
 ### HLL Sketches
 
