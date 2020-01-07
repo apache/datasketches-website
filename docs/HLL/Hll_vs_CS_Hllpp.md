@@ -19,7 +19,7 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-# *HllSketch* vs *HyperLogLogPlus* Sketch
+# *HllSketch* vs Clearspring *HLL++* Sketch
 The DataSketches HyperLogLog *HllSketch*\[1\]\[2\] implemented in this library has been highly optimized for speed, accuracy and size. The goal of this paper is to do an objective comparison of the *HllSketch* versus the popular Clearspring Technologies' *HyperLogLogPlus*\[3\] implementation, which is based on Google's HyperLogLog++ paper[4]. These tests were performed on the *HllSketch* release version 0.10.1, and on the *HyperLogLogPlus* version 2.9.5.
 
 ## *HllSketch* vs. *HyperLogLogPlus* Error Behavior

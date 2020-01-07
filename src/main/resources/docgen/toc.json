@@ -38,7 +38,8 @@
             },
             { "class":"Dropdown", "desc" : "HLL Studies", "array":
               [
-                {"class":"Doc",  "desc" : "HLL vs HLL++",                         "dir" : "HLL", "file": "Hll_vs_Hllpp" },
+                {"class":"Doc",  "desc" : "HLL vs Google HLL++",                      "dir" : "HLL", "file": "Hll_vs_G_Hllpp" },
+                {"class":"Doc",  "desc" : "HLL vs Clearspring HLL++",                 "dir" : "HLL", "file": "Hll_vs_CS_Hllpp" },
                 {"class":"Doc",  "desc" : "HLL Sketch vs Druid HyperLogLogCollector", "dir" : "HLL", "file": "HllSketchVsDruidHyperLogLogCollector" },
               ]
             },

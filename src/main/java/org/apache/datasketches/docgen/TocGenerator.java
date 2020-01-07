@@ -45,7 +45,7 @@ public class TocGenerator {
   /**
    * To create the Table of Contents for the website:
    * <ol>
-   *  <li>Edit the JSON source file (refereced below) for the structure you want.</li>
+   *  <li>Edit the JSON source file (referenced below) for the structure you want.</li>
    *  <li>Execute this test.  The result will be placed in the proper location as part of the web
    *  source.</li>
    *  <li>Stage the changes and push the web site source to origin.</li>
