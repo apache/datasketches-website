@@ -27,8 +27,6 @@ Apache DataSketches is an open source, high-performance library of stochastic st
 
 After 8 years of development and 5 years as in Open Source, we have begun the important migration from a stand-alone GitHub site to being a member of the Apache Software Foundation community.  While we undergo this migration, we beg your patience. 
 
-* Please continue to use [DataSketches.GitHub.io](http://datasketches.github.io) for all overview documentation and access to online-javadocs for the time being. The [datasketches.apache.org](http://datasketches.apache.org) website will be a placeholder until we have migrated our current community website from [DataSketches.GitHub.io](http://DataSketches.GitHub.io).
-
 * Ways to contact us:
     * We have two ASF [the-ASF.slack.com](http://the-ASF.slack.com) slack channels:
         * datasketches -- general user questions
@@ -51,9 +49,9 @@ After 8 years of development and 5 years as in Open Source, we have begun the im
 
 * Web Sites
   * [Original Website](http://DataSketches.GitHub.io)
-  * [New Website](http://datasketches.apache.org) (not yet active)
+  * [New Website](https://datasketches.apache.org) 
   * [Original Website Source](https://github.com/DataSketches/DataSketches.github.io)
-  * [New Website Source](https://github.com/apache/incubator-datasketches)
+  * [New Website Source](https://github.com/apache/incubator-datasketches-website)
 
 * Java 
   * [memory now incubator-datasketches-memory](https://github.com/apache/incubator-datasketches-memory)
