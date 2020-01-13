@@ -19,4 +19,7 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-# *HllSketch* vs Google *HLL++* Sketch
+# *HllSketch* vs Google HLL++ *ZetaSketch*
+The DataSketches HyperLogLog *HllSketch*\[1\]\[2\] implemented in this library has been highly optimized for speed, accuracy and size. The goal of this paper is to do an objective comparison of the *HllSketch* versus the Google *ZetaSketch* implementation, which is based on Google's HyperLogLog++ paper[4]. These tests were performed on the *HllSketch* Apache DataSketches-java release version 1.2.0-incubating and on the HLL++ *ZetaSketch* version 0.1.0.
+
+## *HllSketch* vs. *ZetaSketch* Error Behavior

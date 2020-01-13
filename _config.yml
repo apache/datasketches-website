@@ -14,6 +14,20 @@
 # limitations under the License.
 
 # example: <img class="doc-img-full" src="{{site.docs_img_dir}}PeopleCloud.png" alt="PeopleCloud" />
+
+exclude: 
+  - DISCLAIMER-WIP
+  - LICENSE
+  - NOTICE
+  - README.md
+  - tmp/
+  - target/
+  - test-output/
+  - local/
+  - Gemfile
+  - Gemfile.lock
+  - pom.xml
+
 docs_dir: '/docs'
 docs_img_dir: '/docs/img'
 docs_pdf_dir: 'https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf'

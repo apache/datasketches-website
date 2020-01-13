@@ -77,7 +77,7 @@ The translation from +/- *s* to fractional ranks is as follows:
 | -2 | 0.022750132 |
 | -3 | 0.001349898 |
 
-With sufficiently large values of *n*, the error distribution will approach the Normal Distribution due to the Central Limit Theorem. The resulting quantile curves using the above FR values allows us to associate the error distribution of the sketch with conventional confidence intervals commonly used in statistics. 
+With sufficiently large values of *n* and *k*, the error distribution will approach the Normal Distribution due to the Central Limit Theorem. The resulting quantile curves using the above FR values allows us to associate the error distribution of the sketch with conventional confidence intervals commonly used in statistics. 
 
 For example, the area between the orange and the green curves corresponds to +/- 1 Standard Deviations or (0.841 - .158) = 68.3% confidence. The area between the red and the blue curves corresponds to +/- 2 Standard Deviations or (0.977 - 0.023) = 95.4% confidence. Similarly, the area between the brown and the purple curves corresponds to +/- 3 Standard Deviations or (0.998 - 0.001) = 99.7% confidence. This implies that out of 65,536 trials, about 196 (0.3%) of the estimates will be outside the brown and purple curves.
 

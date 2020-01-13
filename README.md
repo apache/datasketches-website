@@ -33,7 +33,7 @@ After 8 years of development and 5 years as in Open Source, we have begun the im
         * datasketches-dev -- similar to our Apache [dev@datasketches.apache.org](mailto:dev@datasketches.apache.org), except more interactive, but not as easily searchable.
     * For discussions about problems with any of our sketch repository components (core-java, core-cpp, Hive, Pig, Vector, Android, etc.)
         * [Google-groups forum](https://groups.google.com/forum/#!forum/sketches-user)
-    * For issues about a specific component, please open issues on the appropriate GitHub repository (listed below). 
+    * For issues about a specific component, please open issues on the appropriate GitHub repository listed below. 
     * If you wish to contribute to our sketch development please contact us on our development email list
         * [dev@datasketches.apache.org](mailto:dev@datasketches.apache.org) 
 
@@ -45,34 +45,41 @@ After 8 years of development and 5 years as in Open Source, we have begun the im
         * Jar Artifacts (Java only): [search.maven.org/classic/#search%7Cga%7C1%7Ccom.yahoo.datasketches](https://search.maven.org/classic/#search%7Cga%7C1%7Ccom.yahoo.datasketches)
 
 
-* As the repositories under GitHub.io/DataSketches migrate they will disapear from the the GitHub.com/DataSketches organization page. Please refer to this list be directed to the proper locations.
+* As the repositories under GitHub.io/DataSketches migrate they will disapear from the the GitHub.com/DataSketches organization page. Please refer to this list be directed to the new locations. 
+  * View all of our Apache DataSketches repositories as a [list](https://github.com/apache?utf8=%E2%9C%93&q=datasketches)
+  * Names in **BOLD** are of the old github.com/datasketches/ organization repositories.
 
-* Web Sites
-  * [Original Website](http://DataSketches.GitHub.io)
-  * [New Website](https://datasketches.apache.org) 
-  * [Original Website Source](https://github.com/DataSketches/DataSketches.github.io)
-  * [New Website Source](https://github.com/apache/incubator-datasketches-website)
+* Web Site and Web Site Source
+  * **datasketches.github.io** moved to [datasketches.apache.org](https://datasketches.apache.org)
+  * **github.com/DataSketches/DataSketches.github.io** moved to [github.com/apache/incubator-datasketches-website](https://github.com/apache/incubator-datasketches-website)
 
-* Java 
-  * [memory now incubator-datasketches-memory](https://github.com/apache/incubator-datasketches-memory)
-  * [sketches-core now incubator-datasketches-java](https://github.com/apache/incubator-datasketches-java)
-  * [sketches-hive now incubator-datasketches-hive](https://github.com/apache/incubator-datasketches-hive)
-  * [sketches-pig now incubator-datasketches-pig](https://github.com/apache/incubator-datasketches-pig)
-  * [sketches-vector now incubator-datasketches-vector](https://github.com/apache/incubator-datasketches-vector)
-  * [characterization now incubator-datasketches-characterization](https://github.com/apache/incubator-datasketches-characterization)
+* Java Core
+  * **sketches-core** moved to [incubator-datasketches-java](https://github.com/apache/incubator-datasketches-java) This is the **core** library that contains all sketch algorithms written in Java.
+  * **memory** moved to [incubator-datasketches-memory](https://github.com/apache/incubator-datasketches-memory) Low-level component used by other java components.
 
-* C++
-  * [sketches-core-cpp now incubator-datasketches-cpp](https://github.com/apache/incubator-datasketches-cpp)
-  * [sketches-postgres now incubator-datasketches-postgresql](https://github.com/apache/incubator-datasketches-postgresql)
+* Java Adaptors
+  * **sketches-hive** moved to [incubator-datasketches-hive](https://github.com/apache/incubator-datasketches-hive) Adapts the Java core to Apache Hive.
+  * **sketches-pig** moved to [incubator-datasketches-pig](https://github.com/apache/incubator-datasketches-pig) Adapts the Java core to Apache Pig.
+  * **sketches-vector** moved to [incubator-datasketches-vector](https://github.com/apache/incubator-datasketches-vector) Experimental sketches for vector and matrix processing.
+  * [Apache Druid adaptors](https://github.com/apache/druid/tree/master/extensions-core/datasketches)
 
-* Java/C++/Python (the following may be moved to Apache later)
+* C++ / Python Core
+  * **sketches-core-cpp** moved to [incubator-datasketches-cpp](https://github.com/apache/incubator-datasketches-cpp) This is the **core** library that contains all major sketch algorithms written in C++ and Python.
+
+* C++ Adaptors
+  * **sketches-postgres** moved to [incubator-datasketches-postgresql](https://github.com/apache/incubator-datasketches-postgresql) Adapts the C++ core to PostgreSQL.
+
+* Java and C++
+  * **characterization** moved to [incubator-datasketches-characterization](https://github.com/apache/incubator-datasketches-characterization) Java and C++ Characterization suites for benchmarking and exhaustive testing.
+
+* Obsolete Components
+  * [sketches-android](https://github.com/DataSketches/sketches-android) An experimental proof-of-concept sketch for the Android cell-phone.
   * [sketches-misc](https://github.com/DataSketches/sketches-misc)
-  * [sketches-android](https://github.com/DataSketches/sketches-android)
   * [experimental](https://github.com/DataSketches/experimental)
   * [characterization-cpp](https://github.com/DataSketches/characterization-cpp)
   * [experimental-cpp](https://github.com/DataSketches/experimental-cpp)
 
-* Command Line (These may move to Apache later or replaced by Python) 
+* Command Line Functions (Mostly obsolete. These may move to Apache later or replaced by Python) 
   * [homebrew-sketches-cmd](https://github.com/DataSketches/homebrew-sketches-cmd)
   * [sketches-cmd](https://github.com/DataSketches/sketches-cmd)
   * [homebrew-sketches](https://github.com/DataSketches/homebrew-sketches)
