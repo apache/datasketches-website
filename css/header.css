@@ -166,12 +166,21 @@ a:hover, a:focus {
    font-weight: 300;
 }
 
-.navbar-inverse .navbar-nav>li>a {
+.navbar-inverse .navbar-nav>li>a,.dropdown-menu>li>a {
   color: rgba(177,186,198,.7);
   transition: color 0.1s ease;
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.15em
+}
+
+.apache-logo {
+  height: 20px;
+  margin-right: 5px;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; // remove the gap so it doesn't close
 }
 
 .nav>li>a {
