@@ -22,6 +22,7 @@ id: home
     specific language governing permissions and limitations
     under the License.
 -->
+<meta http-equiv="refresh" content="0; url=https://datasketches.apache.org/" />
 <!-- Start index.md -->
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/header.css">
