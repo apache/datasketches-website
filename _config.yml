@@ -28,3 +28,6 @@ pig_readme: 'https://github.com/DataSketches/sketches-pig/blob/master/README.md'
 hive_readme: 'https://github.com/DataSketches/sketches-hive/blob/master/README.md'
 
 druid_datasketches: 'https://druid.apache.org/docs/latest/development/extensions-core/datasketches-extension.html'
+
+exclude: [vendor]
+
