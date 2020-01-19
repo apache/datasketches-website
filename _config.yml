@@ -43,5 +43,4 @@ hive_readme: 'https://github.com/DataSketches/sketches-hive/blob/master/README.m
 
 druid_datasketches: 'https://druid.apache.org/docs/latest/development/extensions-core/datasketches-extension.html'
 
-exclude: [vendor]
 
