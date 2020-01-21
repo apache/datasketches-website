@@ -66,6 +66,8 @@ Languages | Java | Y | Y | Y | Y |
  | Binary compatibility across Languages | Y | Y | Y | Y |
 Other Operations and Modes | Jaccard Index | Y |  |  |  |
  | Off-Heap | Y | Y | Y |
+ | Associative Columns |  | Y |  |  |
+ | Generic Extensions  |  | Y |  |  |
  
  ____
- 1. Space Accuracy Merit = b * C^2 = S * RSE^2 (Lower is better)
+ 1. Space Accuracy Merit (Lower is better) = b * C^2 = b * K * RSE^2 
