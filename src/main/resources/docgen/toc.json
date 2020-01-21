@@ -23,7 +23,8 @@
 
     { "class":"Dropdown", "desc" : "Distinct Counting", "array":
       [
-
+        {"class":"Doc",  "desc" : "Capabilities Matrix",             "dir" : "", "file": "DistinctCountCapabilitiesMatrix" },
+        
         { "class":"Dropdown", "desc" : "HyperLogLog Sketches", "array":
           [
             {"class":"Doc",  "desc" : "HLL Sketch",                               "dir" : "HLL", "file": "HLL" },
