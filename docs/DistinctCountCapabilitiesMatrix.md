@@ -54,6 +54,7 @@ Set Operations | Union | Y | Y | Y | Y |
  | Difference | Y | Y |  |  |
  |    Enables full set expressions | Y | Y |  |  |
  | Set Op Result Type | Sketch | Sketch | Sketch | Sketch |
+ | Merge different LgK | Y | Y | Y | Y |
 Serialize Operations | To Byte Array | Y | Y | Y | Y |
  | To ProtoBuf |  |  |  |  |
 Deserialize Operations | Heapify() | Y | Y | Y | Y |
