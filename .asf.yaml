@@ -3,4 +3,4 @@ jekyll:
   target: asf-site
 
 publish:
-  whoami: asf-site 
+  whoami: asf-site
