@@ -1,7 +1,0 @@
-org.apache.datasketches.hive.cpc
-org.apache.datasketches.hive.frequencies
-org.apache.datasketches.hive.hll
-org.apache.datasketches.hive.kll
-org.apache.datasketches.hive.quantiles
-org.apache.datasketches.hive.theta
-org.apache.datasketches.hive.tuple
