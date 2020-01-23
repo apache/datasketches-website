@@ -1,0 +1,10 @@
+org.apache.datasketches.pig.cpc
+org.apache.datasketches.pig.frequencies
+org.apache.datasketches.pig.hash
+org.apache.datasketches.pig.hll
+org.apache.datasketches.pig.kll
+org.apache.datasketches.pig.quantiles
+org.apache.datasketches.pig.sampling
+org.apache.datasketches.pig.theta
+org.apache.datasketches.pig.tuple
+org.apache.datasketches.sampling

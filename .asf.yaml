@@ -1,0 +1,6 @@
+jekyll:
+  whoami: master
+  target: asf-site
+
+publish:
+  whoami: asf-site

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Jekyll
 _site
 .sass-cache
@@ -14,3 +15,46 @@ _posts/
 
 /local/
 .DS_Store
+=======
+# Eclipse project files 
+.classpath
+.project
+.settings/
+.checkstyle
+
+#OSX files
+.DS_Store
+
+# Compiler output, class files
+bin/
+
+#Test output
+test-output/
+.clover/
+local/
+reports/
+.pmd
+
+# Build artifacts
+target/
+out/
+build/
+jarsIn/
+*.jar
+build.xml
+.idea
+*.iml
+*.properties
+*.releaseBackup
+
+# Jekyll
+_site/
+vendor/
+
+# Other
+*.old
+.paper/
+tmp/
+/local/
+
+>>>>>>> branch 'master' of git@github.com:apache/incubator-datasketches-website.git
