@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-# Jekyll
-_site
-.sass-cache
-.jekyll-metadata
-about.md
-Gemfile
-Gemfile.lock
-_posts/
-
-# Eclipse
-.project
-
-# yml files
-
-/local/
-.DS_Store
-=======
 # Eclipse project files 
 .classpath
 .project
@@ -56,5 +38,3 @@ vendor/
 .paper/
 tmp/
 /local/
-
->>>>>>> branch 'master' of git@github.com:apache/incubator-datasketches-website.git
