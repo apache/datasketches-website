@@ -38,3 +38,4 @@ vendor/
 .paper/
 tmp/
 /local/
+.svn/
