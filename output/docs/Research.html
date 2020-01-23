@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<!-- Start _layouts/doc_page.html-->
+<html lang="en">
+
+<head>
+  <!-- Start site_head.html include-->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="datasketches">
+
+<title>DataSketches | </title>
+
+<link rel="shortcut icon" href="/img/favicon.png">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic|Open+Sans:300italic,400italic,600italic,400,300,600'
+  rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/syntax.css">
+<link rel="stylesheet" href="/css/docs.css">
+
+
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- End site_head.html include-->
+
+</head>
+
+<body>
+  <!-- Start page_header.html include -->
+<div class="navbar navbar-inverse navbar-static-top ds-nav">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- navbar-brand: https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css -->
+      <!-- /css/main.css:57:.logo -->
+      <a class="navbar-brand logo" href="/">DataSketches</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/overview.html">
+            <span class="fa fa-info-circle"></span> OVERVIEW</a>
+        </li>
+        <li>
+          <a href="/docs/downloads.html">
+            <span class="fa fa-download"></span> DOWNLOAD</a>
+        </li>
+        <li>
+          <a href="https://github.com/apache?utf8=%E2%9C%93&q=datasketches&type=&language=">
+            <span class="fa fa-github"></span> GITHUB</a>
+        </li>
+        <li>
+          <a href="/docs/Research.html">
+            <span class="fa fa-paper-plane"></span> RESEARCH</a>
+        </li>
+        <li>
+          <a href="https://groups.google.com/forum/#!forum/sketches-user">
+            <span class="fa fa-comment"></span> FORUM</a>
+        </li>
+        <ul class="nav navbar-nav navbar-right ds-nav">
+          <li class="dropdown ds-nav">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="apache-logo" src="https://www.apache.org/foundation/press/kit/feather.svg"/>Apache <span class="caret"></span></a>
+            <ul class="dropdown-menu ds-nav">
+              <li><a href="https://www.apache.org/" target="_blank">Foundation</a></li>
+              <li><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></li>
+              <li><a href="https://www.apache.org/licenses/" target="_blank">License</a></li>
+              <li><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></li>
+              <li><a href="https://www.apache.org/security/" target="_blank">Security</a></li>
+              <li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></li>
+            </ul>
+          </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- End page_header.html include -->
+
+
+  <div class="ds-header">
+    <div class="container">
+      <h4>API Snapshots:
+        <a href="/api/java/snapshot/apidocs/index.html">Java Core</a>,
+        <a href="/api/memory/snapshot/apidocs/index.html">Memory</a>,
+        <a href="/api/pig/snapshot/apidocs/index.html">Pig</a>,
+        <a href="/api/hive/snapshot/apidocs/index.html">Hive</a>,
+      </h4>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="searchbox" style="position:relative">
+          <gcse:searchbox-only></gcse:searchbox-only>
+        </div>
+        <!-- Computer Generated File, Do Not Edit! -->
+<link rel="stylesheet" href="/css/toc.css">
+<div id="toc" class="nav toc hidden-print">
+
+  <p id="overview">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_overview">Overview</a>
+  </p>
+  <div class="collapse" id="collapse_overview">
+    <li><a href="/docs/TheChallenge.html">The Challenge</a></li>
+    <li><a href="/docs/MajorSketchFamilies.html">The Major Sketch Families</a></li>
+    <li><a href="/docs/SketchOrigins.html">Sketch Origins</a></li>
+    <li><a href="/docs/SketchElements.html">Sketch Elements</a></li>
+    <li><a href="/docs/KeyFeatures.html">Key Features</a></li>
+    <li><a href="/docs/LargeScale.html">Large Scale Computing</a></li>
+    <li><a href="/docs/Architecture.html">Architecture</a></li>
+    <li><a href="/docs/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
+    <li><a href="/docs/Concurrency.html">Notes on Concurrency</a></li>
+    <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/DataSketches_deck.pdf">Overview Slide Deck</a></li>
+  </div>
+
+  <p id="research">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_research">Research</a>
+  </p>
+  <div class="collapse" id="collapse_research">
+    <li><a href="/docs/Research.html">Research</a></li>
+  </div>
+
+  <p id="distinct-counting">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_distinct_counting">Distinct Counting</a>
+  </p>
+  <div class="collapse" id="collapse_distinct_counting">
+    <li><a href="/docs/DistinctCountCapabilitiesMatrix.html">Capabilities Matrix</a></li>
+
+    <p id="hyperloglog-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_hyperloglog_sketches">HyperLogLog Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_hyperloglog_sketches">
+      <li><a href="/docs/HLL/HLL.html">HLL Sketch</a></li>
+      <li><a href="/docs/HLL/HllMap.html">HLL Map Sketch</a></li>
+
+      <p id="hll-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_examples">HLL Examples</a>
+      </p>
+      <div class="collapse" id="collapse_hll_examples">
+        <li><a href="/docs/HLL/HllJavaExample.html">HLL Sketch Java Example</a></li>
+        <li><a href="/docs/HLL/HllPigUDFs.html">HLL Sketch Pig UDFs</a></li>
+        <li><a href="/docs/HLL/HllHiveUDFs.html">HLL Sketch Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+
+      <p id="hll-studies">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_studies">HLL Studies</a>
+      </p>
+      <div class="collapse" id="collapse_hll_studies">
+        <li><a href="/docs/HLL/Hll_vs_G_Hllpp.html">HLL vs Google HLL++</a></li>
+        <li><a href="/docs/HLL/Hll_vs_CS_Hllpp.html">HLL vs Clearspring HLL++</a></li>
+        <li><a href="/docs/HLL/HllSketchVsDruidHyperLogLogCollector.html">HLL Sketch vs Druid HyperLogLogCollector</a></li>
+      </div>
+    </div>
+
+    <p id="theta-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketches">Theta Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_theta_sketches">
+      <li><a href="/docs/Theta/ThetaSketchFramework.html">Theta Sketch Framework</a></li>
+
+      <p id="theta-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_examples">Theta Examples</a>
+      </p>
+      <div class="collapse" id="collapse_theta_examples">
+        <li><a href="/docs/Theta/ConcurrentThetaSketch.html">Concurrent Theta Sketch</a></li>
+        <li><a href="/docs/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
+        <li><a href="/docs/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
+        <li><a href="/docs/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
+        <li><a href="/docs/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+
+      <p id="kmv-tutorial">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_kmv_tutorial">KMV Tutorial</a>
+      </p>
+      <div class="collapse" id="collapse_kmv_tutorial">
+        <li><a href="/docs/Theta/InverseEstimate.html">The Inverse Estimate</a></li>
+        <li><a href="/docs/Theta/KMVempty.html">Empty Sketch</a></li>
+        <li><a href="/docs/Theta/KMVfirstEst.html">First Estimator</a></li>
+        <li><a href="/docs/Theta/KMVbetterEst.html">Better Estimator</a></li>
+        <li><a href="/docs/Theta/KMVrejection.html">Rejection Rules</a></li>
+        <li><a href="/docs/Theta/KMVupdateVkth.html">Update V(kth) Rule</a></li>
+      </div>
+
+      <p id="set-operations-and-p-sampling">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_set_operations_and_p-sampling">Set Operations and P-sampling</a>
+      </p>
+      <div class="collapse" id="collapse_set_operations_and_p-sampling">
+        <li><a href="/docs/Theta/ThetaSketchSetOps.html">Set Operations</a></li>
+        <li><a href="/docs/Theta/ThetaPSampling.html"><i>p</i>-Sampling</a></li>
+      </div>
+
+      <p id="accuracy">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_accuracy">Accuracy</a>
+      </p>
+      <div class="collapse" id="collapse_accuracy">
+        <li><a href="/docs/Theta/ThetaAccuracy.html">Basic Accuracy</a></li>
+        <li><a href="/docs/Theta/ThetaAccuracyPlots.html">Accuracy Plots</a></li>
+        <li><a href="/docs/Theta/ThetaErrorTable.html">Relative Error Table</a></li>
+        <li><a href="/docs/Theta/ThetaSketchSetOpsAccuracy.html">SetOp Accuracy</a></li>
+        <li><a href="/docs/Theta/AccuracyOfDifferentKUnions.html">Unions With Different k</a></li>
+      </div>
+
+      <p id="size">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_size">Size</a>
+      </p>
+      <div class="collapse" id="collapse_size">
+        <li><a href="/docs/Theta/ThetaSize.html">Theta Sketch Size</a></li>
+      </div>
+
+      <p id="speed">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_speed">Speed</a>
+      </p>
+      <div class="collapse" id="collapse_speed">
+        <li><a href="/docs/Theta/ThetaUpdateSpeed.html">Update Speed</a></li>
+        <li><a href="/docs/Theta/ThetaMergeSpeed.html">Merge Speed</a></li>
+      </div>
+
+      <p id="theta-sketch-theory">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketch_theory">Theta Sketch Theory</a>
+      </p>
+      <div class="collapse" id="collapse_theta_sketch_theory">
+        <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)</a></li>
+        <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/SketchEquations.pdf">Sketch Equations (PDF)</a></li>
+        <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/DataSketches.pdf">DataSketches (PDF)</a></li>
+        <li><a href="/docs/Theta/ThetaConfidenceIntervals.html">Confidence Intervals Notes</a></li>
+        <li><a href="/docs/Theta/ThetaMergingAlgorithm.html">Merging Algorithm Notes</a></li>
+        <li><a href="/docs/Theta/ThetaReferences.html">Theta References</a></li>
+      </div>
+    </div>
+
+    <p id="tuple-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_sketches">Tuple Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_tuple_sketches">
+      <li><a href="/docs/Tuple/TupleOverview.html">Tuple Overview</a></li>
+
+      <p id="tuple-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_examples">Tuple Examples</a>
+      </p>
+      <div class="collapse" id="collapse_tuple_examples">
+        <li><a href="/docs/Tuple/TupleJavaExample.html">Tuple Java Example</a></li>
+        <li><a href="/docs/Tuple/TupleEngagementExample.html">Tuple Engagement Example</a></li>
+        <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
+        <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Pig UDFs</a></li>
+        <li><a href="/docs/Tuple/TupleHiveUDFs.html">Tuple Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+    </div>
+  </div>
+
+  <p id="most-frequent">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent">Most Frequent</a>
+  </p>
+  <div class="collapse" id="collapse_most_frequent">
+    <li><a href="/docs/Frequency/FrequencySketchesOverview.html">Frequency Sketches Overview</a></li>
+
+    <p id="frequent-item-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_item_sketches">Frequent Item Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_frequent_item_sketches">
+      <li><a href="/docs/Frequency/FrequentItemsOverview.html">Frequent Items Overview</a></li>
+      <li><a href="/docs/Frequency/FrequentItemsErrorTable.html">Frequent Items Error Table</a></li>
+      <li><a href="/docs/Frequency/FrequentItemsReferences.html">Frequent Items References</a></li>
+
+      <p id="most-frequent-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent_examples">Most Frequent Examples</a>
+      </p>
+      <div class="collapse" id="collapse_most_frequent_examples">
+        <li><a href="/docs/Frequency/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
+        <li><a href="/docs/Frequency/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
+        <li><a href="/docs/Frequency/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+    </div>
+
+    <p id="frequent-distinct-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_distinct_sketches">Frequent Distinct Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_frequent_distinct_sketches">
+      <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
+    </div>
+  </div>
+
+  <p id="quantiles-and-histograms">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
+  </p>
+  <div class="collapse" id="collapse_quantiles_and_histograms">
+    <li><a href="/docs/Quantiles/QuantilesOverview.html">Quantiles Overview</a></li>
+    <li><a href="/docs/Quantiles/QuantilesAccuracy.html">Quantiles Accuracy and Size</a></li>
+
+    <p id="quantiles-examples">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_examples">Quantiles Examples</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_examples">
+      <li><a href="/docs/Quantiles/QuantilesJavaExample.html">Quantiles Sketch Java Example</a></li>
+      <li><a href="/docs/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
+      <li><a href="/docs/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
+      <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+    </div>
+
+    <p id="quantiles-studies">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_studies">
+      <li><a href="/docs/Quantiles/KLLSketch.html">New KLL sketch and comparison with DoublesSketch</a></li>
+      <li><a href="/docs/Quantiles/KllSketchVsTDigest.html">KLL sketch vs t-digest</a></li>
+      <li><a href="/docs/Quantiles/DruidApproxHistogramStudy.html">Druid Approximate Histogram</a></li>
+      <li><a href="/docs/Quantiles/MomentsSketchStudy.html">Moments Sketch Study</a></li>
+      <li><a href="/docs/Quantiles/QuantilesStreamAStudy.html">Quantiles StreamA Study</a></li>
+    </div>
+
+    <p id="quantiles-sketch-theory">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_sketch_theory">Quantiles Sketch Theory</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_sketch_theory">
+      <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/Quantiles_KLL.pdf">Optimal Quantile Approximation in Streams</a></li>
+      <li><a href="/docs/Quantiles/QuantilesReferences.html">Quantiles References</a></li>
+    </div>
+  </div>
+
+  <p id="sampling">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling</a>
+  </p>
+  <div class="collapse" id="collapse_sampling">
+    <li><a href="/docs/Sampling/ReservoirSampling.html">Reservoir Sampling</a></li>
+    <li><a href="/docs/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
+    <li><a href="/docs/Sampling/VarOptSampling.html">VarOpt Sampling</a></li>
+
+    <p id="sampling-examples">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling_examples">Sampling Examples</a>
+    </p>
+    <div class="collapse" id="collapse_sampling_examples">
+      <li><a href="/docs/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
+      <li><a href="/docs/Sampling/ReservoirSamplingPigUDFs.html">Reservoir Sampling Pig UDFs</a></li>
+      <li><a href="/docs/Sampling/VarOptSamplingJava.html">VarOpt Sampling Java Example</a></li>
+      <li><a href="/docs/Sampling/VarOptPigUDFs.html">VarOpt Sampling Pig UDFs</a></li>
+    </div>
+  </div>
+
+  <p id="memory-package">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_memory_package">Memory Package</a>
+  </p>
+  <div class="collapse" id="collapse_memory_package">
+    <li><a href="/docs/Memory/MemoryPackage.html">Memory Package</a></li>
+    <li><a href="/docs/Memory/MemoryPerformance.html">Memory Package Performance</a></li>
+  </div>
+
+  <p id="command-line">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_command_line">Command Line</a>
+  </p>
+  <div class="collapse" id="collapse_command_line">
+    <li><a href="/docs/CommandLine/CommandLine.html">Creating Command Line Executables</a></li>
+  </div>
+
+  <p id="who-uses">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_who_uses">Who Uses</a>
+  </p>
+  <div class="collapse" id="collapse_who_uses">
+    <li><a href="/docs/WhoUses.html">Who Uses</a></li>
+  </div>
+</div>
+<script>
+  (function () {
+
+    var findLineItem = function (path) {
+      return document.querySelector(`[href="${path}"]`);
+    };
+
+    var highlighLineItem = function (element) {
+      element.classList.add('highlight');
+    };
+
+    var checkHasClass = function (element, className) {
+      return element.className.split(' ').find(function (item) { return item === className || '' })
+    }
+
+    var findAllCollapseParents = function (element) {
+      var collapseMenus = [];
+      var elementPointer = element;
+      while (elementPointer !== document.body) {
+        if (checkHasClass(elementPointer, 'collapse')) {
+          collapseMenus.push(elementPointer);
+        }
+        elementPointer = elementPointer.parentElement
+      }
+      return collapseMenus
+    };
+
+    var findMatchingCollapseMenu = function (collapseItem) {
+      return document.querySelector(`[href="#${collapseItem.id}"]`);
+    };
+
+    var findAllParentMenus = function (element) {
+      var parentMenus = []
+      var elementPointer = element;
+      while (elementPointer !== document.body) {
+        if (elementPointer.className.split(' ').indexOf('menu') > -1) {
+          parentMenus.push(elementPointer);
+        }
+        elementPointer = elementPointer.parentElement;
+      }
+      return parentMenus;
+    }
+
+    var openMenuItem = function (element) {
+      element.click();
+    };
+
+    var openAllFromList = function (elementList) {
+      elementList.forEach(function (element) {
+        console.log(element)
+        openMenuItem(findMatchingCollapseMenu(element))
+      });
+    };
+
+    var highlightAndOpenMenu = function () {
+      var currentLineItem = findLineItem(document.location.pathname);
+      highlighLineItem(currentLineItem)
+      openAllFromList(findAllCollapseParents(currentLineItem));
+    };
+
+    $(highlightAndOpenMenu);
+
+  }());
+</script>
+
+
+      </div>
+      <div class="col-md-9 doc-content">
+        <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/docs/toc.html">Table of Contents</a>
+        <!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<h1 id="datasketches-research-directions">DataSketches Research Directions</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<h3 id="data-streaming">Data Streaming</h3>
+
+<p>When analyzing massive data sets, generating exact answers to even very basic queries about the data can require huge compute resources (memory and compute time). Examples of such queries include identifying frequent items, unique count queries, quantiles and histogram queries, matrix analysis tasks such as Principal Component Analysis and Latent Semantic Analysis, and more complicated downstream machine learning tasks. This often leads to failure to scale, and precludes real-time analysis of data.</p>
+
+<p>However, in many settings, approximate answers are acceptable, as long as the approximation error is carefully controlled. For example, if data are noisy, then any answer with less error than the noise that is already inherent in the data is just as useful as an exact algorithm. Even if data are noiseless, many high-level business decisions do not require exact knowledge of the data: knowing up to, say, 1% error how many unique users visited a website in a given time period is typically as effective as an exact answer.</p>
+
+<p>When approximate answers are acceptable, systems designers have at their disposal a vast literature on <em>streaming</em> algorithms. These algorithms process a massive dataset in a single pass, and compute very small <em>summaries</em> (also called <em>sketches</em>) of the dataset, from which it is possible to derive accurate (though approximate) answers to queries. Many streaming algorithms use mere kilobytes of space even for datasets that are petabytes in size, and process each datum in constant time, thereby enabling real-time analyses.</p>
+
+<h3 id="mergeable-summaries">Mergeable Summaries</h3>
+
+<p>Ideally, streaming algorithms will produce summaries that are <em>mergeable</em>, meaning that one can process many different streams of data independently, and then the summaries computed from each stream can be quickly combined to obtain an accurate summary of various combinations of the datasets (union, intersection, etc.). Mergeable summaries enable massive datasets to be <em>automatically</em> processed in a fully distributed and parallel manner, by partitioning the data arbitrarily across many machines, summarizing each partition, and seamlessly combining the results. In addition to drastically reducing memory usage, compute time, and latency compared to exact methods, mergeable summaries also greatly simplify system architecture; they allow <em>non-additive</em> queries (such as unique count queries) to be treated as though they are additive, with the “sum” of two sketches being their merge. This means that data can be partitioned into fragments and each fragment sketched separately, with the sketches stored in a simple data-mart architecture and merged at query time.</p>
+
+<p>A final important application of mergeable summaries is to power conservation in weak peripheral devices. For example, one of the key benefits of the Internet of Things (IoT) is that it enables the monitoring and aggregation of data from IoT devices such as sensors and appliances. Such devices are often power limited, so it is essential to minimize the amount of data that must be sent from each device to the aggregation center. Mergeable summaries enable this: each device can itself compute a summary of its own data, and send only the summary to the aggregation center, which merges all received summaries to obtain a global summary for all devices’ datasets.</p>
+
+<p>Agarwal, et al, discuss different types of mergeable summaries in their Mergeable Summaries paper [AC+13].</p>
+
+<h3 id="the-data-sketches-open-source-library">The Data Sketches Open Source Library</h3>
+
+<p>This library has been designed from the beginning to be high-performance and production-quality suitable for integration into large data processing systems that must deal with massive data.
+The library is written in Java, and contains state of the art algorithms for a variety of basic query classes, including identifying frequent items, unique count queries, computing quantiles and histograms, and sampling. It will soon contain algorithms for matrix analytic tasks such as PCA as well. 
+All algorithms in the library produce mergeable summaries, 
+and come with formal guarantees on the accuracy of the answers returned.</p>
+
+<p>Currently, the core contributors to the library are Lee Rhodes, Kevin Lang, Jon Malkin, and Alex Saydakov (all at Yahoo/Verizon Media), Justin Thaler (Assistant Professor at Georgetown University, Department of Computer Science), and Edo Liberty (Principal Scientist at Amazon Web Services and manager of the Algorithms group at Amazon AI).</p>
+
+<p>The library has been adapted throughout industry and government. For example, at Yahoo, where it was conceived and created, the library is widely used internally to reduce processing time from days to seconds for many tasks. At SpliceMachine, it is used for database query planning and optimization. It is also deeply embedded into a low-latency open source data store called Druid, as well as an open source graph database called Gaffer that is maintained by the British intelligence agency GCHQ.</p>
+
+<p>Beyond its utility in deployed systems, the process of developing of developing the Data Sketches library has led to interesting research. This has involved important contributions to both the theory of streaming algorithms as well as addressing issues that are crucial in real-world stream engines but are often ignored in the academic literature. These issues include mergeability, and dealing with <em>weighted</em> stream updates (i.e., data streams where each piece of data comes with an associated importance measure).</p>
+
+<p>In particular, work on the Data Sketches library has led to novel algorithms achieving state of the art practical performance for identifying frequent items in data streams [ABL+17], and mergeable summaries for unique count queries [DLRT16]. On the theoretical side, work on the library has led to the resolution of the space complexity of streaming approximation algorithms for quantile queries, which was a longstanding open question [KLL16], as well as for the problem of identifying frequent <em>itemsets</em> [LMTU16].</p>
+
+<p>The cutting edge of scientific inquiry is to build more powerful algorithms and, at the same time, to devise new theorems and proofs that certify that these algorithms work well enough to draw robust conclusions.  This library is dedicated to that quest. By working in the open source community we are confident that there are major opportunities to incorporate algorithms for new and richer types of queries into the library, as well as to improve the efficiency of the algorithms that are already implemented.</p>
+
+<h2 id="improved-algorithms-for-unique-counting">Improved Algorithms for Unique Counting</h2>
+
+<p>In a recent pre-print that grew out of work on the Data Sketches library [Lan17], Kevin Lang describes several streaming algorithms for estimating the number of distinct elements in a data stream. The algorithms have a better space/accuracy tradeoff than the previous state of the art algorithm, Hyperloglog (HLL) [FFGM07], which has been considered the gold standard in practical performance for this problem for nearly a decade. Specifically, for a given accuracy level, Lang’s algorithms use up to 20% less space than the <em>entropy</em> of the HLL sketch, and hence 20% less space than <em>any possible</em> implementation of HLL.</p>
+
+<p>Regarding runtime, Lang’s pre-print shows that some of his algorithms have comparable speed to straightforward implementations of HLL, but are somewhat slower than heavily optimized HLL implementations. Significant research remains to optimize the speed of the new algorithms, determine which variant algorithm performs best on real data and is most suitable for a production environment, and finally to produce a production-quality implementation of this algorithm.</p>
+
+<h2 id="algorithms-for-anomaly-detection">Algorithms For Anomaly Detection</h2>
+
+<p>A common goal when processing massive data streams is to identify anomalous events or data points. For example, an online advertiser or content provider may try to identify fraud in clickstream data, a network operator may try to quickly identify network intruders or DDoS attacks, or a data analyst may simply try to cleanse outliers from a dataset before running subsequent learning algorithms.</p>
+
+<p>The Data Sketches library already contains several algorithms useful for anomaly detection in data streams. One example is the library’s algorithm for answering quantile queries. In the quantiles problem, the stream specifies a list of real numbers, and any stream update in (say) the top or bottom percentile is (by definition) an outlier or anomaly. As mentioned above, the Data Sketches team has resolved the asymptotic space complexity of streaming quantile computation [KLL16], and is currently completing a careful empirical study of various quantile algorithms that have been proposed in the literature. A second algorithm in the library that is useful for anomaly detection is its novel algorithm for identifying frequent items [ABL+17]: any item that makes up an unusually large fraction of the dataset is inherently anomalous.</p>
+
+<p>Moving forward, the Data Sketches team will incorporate algorithms for additional query classes that are useful for anomaly detection. Key targets include entropy computation [CCM10, Tha07], identification of hierarchical heavy hitters [MST12], and identification of superspreaders [VSGB05]  (all of which have been intensely studied in the context of detecting anomalies in network flows).</p>
+
+<p>The best known streaming algorithms for all three problems make black-box use of algorithms for the simpler task of identifying frequent items. Owing to the library’s state of the art algorithm for the latter task, the team is positioned to develop highly efficient solutions for these more complicated problems.</p>
+
+<p>While existing streaming algorithms for identifying hierarchical heavy hitters and superspreaders produce mergeable summaries, the only known practical algorithm for entropy computation [CCM10] does not. A challenging problem that the Data Sketches team will try to solve is the development of a practical <em>mergeable</em> sketching algorithm for entropy computation.</p>
+
+<h2 id="matrix-and-clustering-algorithms">Matrix and Clustering Algorithms</h2>
+
+<p>Low-rank approximations to matrices are useful in many unsupervised learning tasks including PCA. Low-rank approximations effectively uncover latent structure in datasets, by identifying the “most informative directions” of a data matrix. They also speed up downstream learning tasks, since these tasks can be run on the low-rank approximation instead of on the original matrix. In [Lib13], Liberty presented a nearly optimal streaming algorithm for approximating a data matrix by a low-rank matrix. The algorithm assumes that the data matrix is streamed row-wise, meaning each stream update atomically specifies a new row of the matrix.</p>
+
+<p>Computing a low-rank approximation to a matrix can be viewed as identifying “frequent <em>directions</em>” in a stream of <em>vectors</em>, and Liberty’s algorithm can be viewed as a direct generalization of an algorithm for identifying frequent <em>items</em> in a stream of <em>items</em>. Building on the frequent items algorithm described in [ABL+17, GLP16] and already implemented in the Data Sketches library, the Data Sketches team is nearing completion of a production-quality implementation of Liberty’s algorithm. Once this implementation is complete, ongoing research will identify additional optimizations to further improve the algorithm’s speed and accuracy, and will perform a careful empirical comparison of its performance relative to alternative algorithms in the literature. The Data Sketches team will also work to develop algorithms that can handle more general types of updates to the data matrix (not just row-wise updates).</p>
+
+<p>A related direction that the team will pursue in the immediate future is to develop production-quality implementations of streaming algorithms for <em>k</em>-means clustering. The low-rank matrix approximation and clustering problems are closely related (see, e.g., [CEM+15]), and we are confident that ideas from low-rank matrix approximation will prove useful in developing effective clustering algorithms.</p>
+
+<h2 id="graph-algorithms">Graph Algorithms</h2>
+
+<p>Very large graphs are ubiquitous. They arise in settings as diverse as social network analysis and network flow logs, such as those captured by the Amazon Virtual Private Cloud. There is a rich theoretical literature on streaming algorithms for graph processing (see the survey of McGregor [McG14] for an overview), though there has been comparatively less applied work on such algorithms.</p>
+
+<p>Developing production-quality algorithms for graph streams is a key direction that the Data Sketches team will pursue in the immediate future. One prime target problem is graph sparsification, in which one throws away most of the edges in a dense graph, but does so in a careful way so that the resulting sparse graph inherits many of the same properties as the original dense graph. The sparse graph can be viewed as an approximation to the original dense graph, and it can be used in place of the dense graphs downstream in tasks such as clustering and community detection. When run on the sparse graph, these downstream algorithms will require far less compute power, yet the results on the sparse graph will provably approximate the results on the original dense graph.</p>
+
+<h2 id="sliding-windows">Sliding Windows</h2>
+
+<p>In many applications, data eventually grows stale or out of date, and queries should accordingly be restricted to relatively recent data. Mergeable summaries enable a simple solution to this problem: break the data into relatively small chunks (with each chunk covering, say, a one-hour time period), sketch each chunk separately, and at query time merge the summaries of only the most recent chunks.</p>
+
+<p>This solution suffices in some applications, but for other applications the chunks must be more fine grained (e.g., when detecting anomalies or phenomena that last for seconds or minutes rather than hours). In these settings, a naive approach based on mergeable summaries becomes prohibitively expensive in terms of both memory usage and latency. For such settings, the ideal solution is a streaming algorithm that automatically “forgets” data when it becomes stale. This setting has been studied in the literature on <em>sliding window</em> streaming algorithms. There has been work studying sliding window algorithms for frequent items (e.g. [GDD+03]), unique counts (e.g. [GT02]), and quantiles (e.g. [AM04]). Just as work on the Data Sketches library has led to significant recent progress in developing efficient algorithms for each of these problems in the <em>standard</em> (non-sliding window) streaming setting, we are confident that related ideas will lead to similar progress in the sliding window setting as well.</p>
+
+<hr />
+
+<h2 id="references">References</h2>
+
+<p>[ABL+17]
+Daniel Anderson, Pryce Bevan, Kevin J. Lang, Edo Liberty, Lee Rhodes, and Justin Thaler. A high-performance algorithm for identifying frequent items in data streams. In <em>ACM IMC 2017 (To Appear)</em>, 2017. <a href="https://arxiv.org/abs/1705.07001">Preliminary paper</a>.</p>
+
+<p>[AC+13]
+Pankaj K. Agarwal, Graham Cormode, Zengfeng Huang, Jeff M. Phillips, Zhewei Wei, Ke Yi. Mergeable summaries. <em>ACM Trans. Database Syst.</em> 38(4): 26:1-26:28, 2013</p>
+
+<p>[AM04]
+Arvind Arasu and Gurmeet Singh Manku. Approximate counts and quantiles over sliding windows. In <em>ACM PODS Proceedings ‘04</em>, pages 286–296, 2004.</p>
+
+<p>[CCM10]
+Amit Chakrabarti, Graham Cormode, and Andrew McGregor. A near-optimal algorithm for estimating the entropy of a stream. <em>ACM Trans. Algorithms</em>, 6(3):51:1–51:21, 2010.</p>
+
+<p>[CEM+15]
+Michael B. Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu. Dimensionality reduction for k-means clustering and low rank approximation. In <em>ACM STOC Proceedings ‘15</em>, pages 163–172, 2015.</p>
+
+<p>[DLRT16]
+Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings ‘16 *, pages 6:1–6:17, 2016. <a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/icdt-talk.pdf">Talk Slides</a>.</p>
+
+<p>[FFGM07]
+Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In <em>DMTCS Conference on Analysis of Algorithms</em>, pages 137–156, 2007.</p>
+
+<p>[GDD+03]
+Lukasz Golab, David DeHaan, Erik D. Demaine, Alejandro Lopez-Ortiz, and J. Ian Munro. Identifying frequent items in sliding windows over on-line packet streams. In <em>ACM IMC Proceedings ‘03</em>, pages 173–178, 2003.</p>
+
+<p>[GLP16] Mina Ghashami, Edo Liberty, Jeff M. Phillips. Efficient Frequent Directions Algorithm for Sparse Matrices. In <em>ACM SIGKDD Proceedings ‘16</em>, pages 845-854, 2016</p>
+
+<p>[GT02]
+Phillip B. Gibbons and Srikanta Tirthapura. Distributed streams algorithms for sliding windows. In <em>ACM SPAA Proceedings ‘02</em>, pages 63–72, New York, NY, USA, 2002.</p>
+
+<p>[KLL16]
+Zohar S. Karnin, Kevin J. Lang, and Edo Liberty. Optimal quantile approximation in streams. In <em>IEEE FOCS Proceedings ‘16</em>, pages 71–78, 2016.</p>
+
+<p>[Lan17]
+Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. <em>arXiv preprint</em> <a href="https://arxiv.org/abs/1708.06839">https://arxiv.org/abs/1708.06839</a>, 2017.</p>
+
+<p>[Lib13]
+Edo Liberty. Simple and deterministic matrix sketching. In <em>ACM KDD Proceedings ‘13</em>, pages 581– 588, 2013.</p>
+
+<p>[LMTU16]
+Edo Liberty, Michael Mitzenmacher, Justin Thaler, and Jonathan Ullman. Space lower bounds for itemset frequency sketches. In <em>ACM PODS Proceedings ‘16</em>, pages 441–454, 2016.</p>
+
+<p>[McG14]
+Andrew McGregor. Graph stream algorithms: a survey. <em>ACM SIGMOD Record</em>, 43(1):9–20, 2014.</p>
+
+<p>[MST12]
+Michael Mitzenmacher, Thomas Steinke, and Justin Thaler. Hierarchical heavy hitters with the space saving algorithm. In <em>SIAM ALENEX Proceedings ‘12</em>, pages 160–174, 2012.</p>
+
+<p>[RLS+ 15]
+Lee Rhodes, Kevin Lang, Alexander Saydakov, Justin Thaler, Edo Liberty, and Jon Malkin. DataSketches: A Java software library for streaming data algorithms. Apache License, Version 2.0, 2015. <a href="https://datasketches.github.io">https://datasketches.github.io</a>.</p>
+
+<p>[Tha07]
+Justin Thaler. REU project website: A near-optimal algorithm for computing the entropy of a stream, 2007. <a href="https://reu.dimacs.rutgers.edu/~jthaler/">https://reu.dimacs.rutgers.edu/~jthaler/</a>.</p>
+
+<p>[VSGB05]
+Shobha Venkataraman, Dawn Xiaodong Song, Phillip B. Gibbons, and Avrim Blum. New streaming algorithms for fast detection of superspreaders. In <em>Internet Society NDSS Proceedings</em>, 2005.</p>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Start page_footer.html include -->
+<footer class="ds-footer">
+  <div class="container">
+    <div class="text-center">
+      <p>
+        <div>Copyright © 2019 <a href="https://www.apache.org">Apache Software Foundation</a>, 
+          Licensed under the Apache License, Version 2.0. All Rights Reserved.<br/>
+          Apache DataSketches, Apache, the Apache feather logo, and the Apache DataSketches project logos are trademarks of The Apache Software Foundation.<br/>
+          All other marks mentioned may be trademarks or registered trademarks of their respective owners.<br/>
+          <br/>
+          <b>Disclaimer:</b> Apache DataSketches is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+        </div>
+        
+      </p>
+    </div>
+  </div>
+</footer>
+<!-- End page_footer.html include -->
+
+</body>
+
+</html>
+<!-- End _layouts/doc_page.html-->

@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<!-- Start _layouts/table_page.html-->
+<html lang="en">
+
+<head>
+  <!-- Start site_head.html include-->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="datasketches">
+
+<title>DataSketches | Frequent Items</title>
+
+<link rel="shortcut icon" href="/img/favicon.png">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic|Open+Sans:300italic,400italic,600italic,400,300,600'
+  rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/syntax.css">
+<link rel="stylesheet" href="/css/docs.css">
+
+
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- End site_head.html include-->
+
+</head>
+
+<body>
+  <!-- Start page_header.html include -->
+<div class="navbar navbar-inverse navbar-static-top ds-nav">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- navbar-brand: https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css -->
+      <!-- /css/main.css:57:.logo -->
+      <a class="navbar-brand logo" href="/">DataSketches</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/overview.html">
+            <span class="fa fa-info-circle"></span> OVERVIEW</a>
+        </li>
+        <li>
+          <a href="/docs/downloads.html">
+            <span class="fa fa-download"></span> DOWNLOAD</a>
+        </li>
+        <li>
+          <a href="https://github.com/apache?utf8=%E2%9C%93&q=datasketches&type=&language=">
+            <span class="fa fa-github"></span> GITHUB</a>
+        </li>
+        <li>
+          <a href="/docs/Research.html">
+            <span class="fa fa-paper-plane"></span> RESEARCH</a>
+        </li>
+        <li>
+          <a href="https://groups.google.com/forum/#!forum/sketches-user">
+            <span class="fa fa-comment"></span> FORUM</a>
+        </li>
+        <ul class="nav navbar-nav navbar-right ds-nav">
+          <li class="dropdown ds-nav">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="apache-logo" src="https://www.apache.org/foundation/press/kit/feather.svg"/>Apache <span class="caret"></span></a>
+            <ul class="dropdown-menu ds-nav">
+              <li><a href="https://www.apache.org/" target="_blank">Foundation</a></li>
+              <li><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></li>
+              <li><a href="https://www.apache.org/licenses/" target="_blank">License</a></li>
+              <li><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></li>
+              <li><a href="https://www.apache.org/security/" target="_blank">Security</a></li>
+              <li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></li>
+            </ul>
+          </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- End page_header.html include -->
+
+
+  <div class="ds-header">
+    <div class="container">
+      <h1>Frequent Items</h1>
+      <h3>Error Threshold Table</h3>
+      <h4>API Snapshots:
+        <a href="/api/core/snapshot/apidocs/index.html">Core</a>,
+        <a href="/api/pig/snapshot/apidocs/index.html">Pig</a>,
+        <a href="/api/hive/snapshot/apidocs/index.html">Hive</a>,
+        <a href="/api/misc/snapshot/apidocs/index.html">Misc</a>
+      </h4>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9 doc-content">
+        <p>
+          <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/docs/toc.html">Table of Contents</a>
+          <!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<p>This table of thresholds is computed a follows:</p>
+
+<ul>
+  <li><i>M</i> = Max Map Size.  Always a power of 2.</li>
+  <li><i>N</i> = Stream Length (Total Weights or counts of items)</li>
+  <li><i>e</i> = Epsilon = 3.5/<i>M</i> (minimum detectable frequency)</li>
+  <li>
+    <p><i>T</i> = Threshold = (<i>N</i> &lt; 0.75 * <i>M</i>)? 0 : <i>e * N</i>.</p>
+  </li>
+  <li>The error in <i>getEstimate(item)</i> is guaranteed to be at most <i>T</i>.</li>
+  <li>The function <i>getFrequentItems(NO_FALSE_NEGATIVES)</i> is guaranteed to return a list of items that 
+contains all items with frequency greater than <i>T</i> and might contain some additional 
+items, the <i>False Positives</i>, as well.</li>
+  <li>The function <i>getFrequentItems(NO_FALSE_POSITIVES)</i> is guaranteed return a list of items 
+that contains all items with frequency greater than 2*<i>T</i>, and no items with frequency less 
+than <i>T</i>, but it may exclude some items with frequency greater than 
+<i>T</i> (the <i>False Negatives</i>).</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Max Map Size-&gt;</th>
+      <th>8</th>
+      <th>16</th>
+      <th>32</th>
+      <th>64</th>
+      <th>128</th>
+      <th>256</th>
+      <th>512</th>
+      <th>1,024</th>
+      <th>2,048</th>
+      <th>4,096</th>
+      <th>8,192</th>
+      <th>16,384</th>
+      <th>32,768</th>
+      <th>65,536</th>
+      <th>131,072</th>
+      <th>262,144</th>
+      <th>524,288</th>
+      <th>1,048,576</th>
+    </tr>
+    <tr>
+      <th>Epsilon-&gt;</th>
+      <th>0.4375</th>
+      <th>0.2188</th>
+      <th>0.1094</th>
+      <th>0.0547</th>
+      <th>0.0273</th>
+      <th>0.0137</th>
+      <th>6.84E-03</th>
+      <th>3.42E-03</th>
+      <th>1.71E-03</th>
+      <th>8.54E-04</th>
+      <th>4.27E-04</th>
+      <th>2.14E-04</th>
+      <th>1.07E-04</th>
+      <th>5.34E-05</th>
+      <th>2.67E-05</th>
+      <th>1.34E-05</th>
+      <th>6.68E-06</th>
+      <th>3.34E-06</th>
+    </tr>
+    <tr>
+      <th>Stream Length</th>
+      <th>Threshold-&gt;</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong><strong>__</strong>_</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>100</td>
+      <td>44</td>
+      <td>22</td>
+      <td>11</td>
+      <td>5</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>178</td>
+      <td>78</td>
+      <td>39</td>
+      <td>19</td>
+      <td>10</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>316</td>
+      <td>138</td>
+      <td>69</td>
+      <td>35</td>
+      <td>17</td>
+      <td>9</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>562</td>
+      <td>246</td>
+      <td>123</td>
+      <td>62</td>
+      <td>31</td>
+      <td>15</td>
+      <td>8</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1,000</td>
+      <td>438</td>
+      <td>219</td>
+      <td>109</td>
+      <td>55</td>
+      <td>27</td>
+      <td>14</td>
+      <td>7</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1,778</td>
+      <td>778</td>
+      <td>389</td>
+      <td>194</td>
+      <td>97</td>
+      <td>49</td>
+      <td>24</td>
+      <td>12</td>
+      <td>6</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>3,162</td>
+      <td>1,383</td>
+      <td>692</td>
+      <td>346</td>
+      <td>173</td>
+      <td>86</td>
+      <td>43</td>
+      <td>22</td>
+      <td>11</td>
+      <td>5</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>5,623</td>
+      <td>2,460</td>
+      <td>1,230</td>
+      <td>615</td>
+      <td>308</td>
+      <td>154</td>
+      <td>77</td>
+      <td>38</td>
+      <td>19</td>
+      <td>10</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>10,000</td>
+      <td>4,375</td>
+      <td>2,188</td>
+      <td>1,094</td>
+      <td>547</td>
+      <td>273</td>
+      <td>137</td>
+      <td>68</td>
+      <td>34</td>
+      <td>17</td>
+      <td>9</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>17,783</td>
+      <td>7,780</td>
+      <td>3,890</td>
+      <td>1,945</td>
+      <td>972</td>
+      <td>486</td>
+      <td>243</td>
+      <td>122</td>
+      <td>61</td>
+      <td>30</td>
+      <td>15</td>
+      <td>8</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>31,623</td>
+      <td>13,835</td>
+      <td>6,917</td>
+      <td>3,459</td>
+      <td>1,729</td>
+      <td>865</td>
+      <td>432</td>
+      <td>216</td>
+      <td>108</td>
+      <td>54</td>
+      <td>27</td>
+      <td>14</td>
+      <td>7</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>56,234</td>
+      <td>24,602</td>
+      <td>12,301</td>
+      <td>6,151</td>
+      <td>3,075</td>
+      <td>1,538</td>
+      <td>769</td>
+      <td>384</td>
+      <td>192</td>
+      <td>96</td>
+      <td>48</td>
+      <td>24</td>
+      <td>12</td>
+      <td>6</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>100,000</td>
+      <td>43,750</td>
+      <td>21,875</td>
+      <td>10,938</td>
+      <td>5,469</td>
+      <td>2,734</td>
+      <td>1,367</td>
+      <td>684</td>
+      <td>342</td>
+      <td>171</td>
+      <td>85</td>
+      <td>43</td>
+      <td>21</td>
+      <td>11</td>
+      <td>5</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>177,828</td>
+      <td>77,800</td>
+      <td>38,900</td>
+      <td>19,450</td>
+      <td>9,725</td>
+      <td>4,862</td>
+      <td>2,431</td>
+      <td>1,216</td>
+      <td>608</td>
+      <td>304</td>
+      <td>152</td>
+      <td>76</td>
+      <td>38</td>
+      <td>19</td>
+      <td>9</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>316,228</td>
+      <td>138,350</td>
+      <td>69,175</td>
+      <td>34,587</td>
+      <td>17,294</td>
+      <td>8,647</td>
+      <td>4,323</td>
+      <td>2,162</td>
+      <td>1,081</td>
+      <td>540</td>
+      <td>270</td>
+      <td>135</td>
+      <td>68</td>
+      <td>34</td>
+      <td>17</td>
+      <td>8</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>562,341</td>
+      <td>246,024</td>
+      <td>123,012</td>
+      <td>61,506</td>
+      <td>30,753</td>
+      <td>15,377</td>
+      <td>7,688</td>
+      <td>3,844</td>
+      <td>1,922</td>
+      <td>961</td>
+      <td>481</td>
+      <td>240</td>
+      <td>120</td>
+      <td>60</td>
+      <td>30</td>
+      <td>15</td>
+      <td>8</td>
+      <td>4</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1.0E+06</td>
+      <td>437,500</td>
+      <td>218,750</td>
+      <td>109,375</td>
+      <td>54,688</td>
+      <td>27,344</td>
+      <td>13,672</td>
+      <td>6,836</td>
+      <td>3,418</td>
+      <td>1,709</td>
+      <td>854</td>
+      <td>427</td>
+      <td>214</td>
+      <td>107</td>
+      <td>53</td>
+      <td>27</td>
+      <td>13</td>
+      <td>7</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>1.8E+06</td>
+      <td>777,997</td>
+      <td>388,999</td>
+      <td>194,499</td>
+      <td>97,250</td>
+      <td>48,625</td>
+      <td>24,312</td>
+      <td>12,156</td>
+      <td>6,078</td>
+      <td>3,039</td>
+      <td>1,520</td>
+      <td>760</td>
+      <td>380</td>
+      <td>190</td>
+      <td>95</td>
+      <td>47</td>
+      <td>24</td>
+      <td>12</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>3.2E+06</td>
+      <td>1.38E+06</td>
+      <td>691,748</td>
+      <td>345,874</td>
+      <td>172,937</td>
+      <td>86,469</td>
+      <td>43,234</td>
+      <td>21,617</td>
+      <td>10,809</td>
+      <td>5,404</td>
+      <td>2,702</td>
+      <td>1,351</td>
+      <td>676</td>
+      <td>338</td>
+      <td>169</td>
+      <td>84</td>
+      <td>42</td>
+      <td>21</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>5.6E+06</td>
+      <td>2.46E+06</td>
+      <td>1.23E+06</td>
+      <td>615,061</td>
+      <td>307,530</td>
+      <td>153,765</td>
+      <td>76,883</td>
+      <td>38,441</td>
+      <td>19,221</td>
+      <td>9,610</td>
+      <td>4,805</td>
+      <td>2,403</td>
+      <td>1,201</td>
+      <td>601</td>
+      <td>300</td>
+      <td>150</td>
+      <td>75</td>
+      <td>38</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <td>1.0E+07</td>
+      <td>4.38E+06</td>
+      <td>2.19E+06</td>
+      <td>1.09E+06</td>
+      <td>546,875</td>
+      <td>273,438</td>
+      <td>136,719</td>
+      <td>68,359</td>
+      <td>34,180</td>
+      <td>17,090</td>
+      <td>8,545</td>
+      <td>4,272</td>
+      <td>2,136</td>
+      <td>1,068</td>
+      <td>534</td>
+      <td>267</td>
+      <td>134</td>
+      <td>67</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <td>1.8E+07</td>
+      <td>7.78E+06</td>
+      <td>3.89E+06</td>
+      <td>1.94E+06</td>
+      <td>972,497</td>
+      <td>486,248</td>
+      <td>243,124</td>
+      <td>121,562</td>
+      <td>60,781</td>
+      <td>30,391</td>
+      <td>15,195</td>
+      <td>7,598</td>
+      <td>3,799</td>
+      <td>1,899</td>
+      <td>950</td>
+      <td>475</td>
+      <td>237</td>
+      <td>119</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <td>3.2E+07</td>
+      <td>1.38E+07</td>
+      <td>6.92E+06</td>
+      <td>3.46E+06</td>
+      <td>1.73E+06</td>
+      <td>864,685</td>
+      <td>432,343</td>
+      <td>216,171</td>
+      <td>108,086</td>
+      <td>54,043</td>
+      <td>27,021</td>
+      <td>13,511</td>
+      <td>6,755</td>
+      <td>3,378</td>
+      <td>1,689</td>
+      <td>844</td>
+      <td>422</td>
+      <td>211</td>
+      <td>106</td>
+    </tr>
+    <tr>
+      <td>5.6E+07</td>
+      <td>2.46E+07</td>
+      <td>1.23E+07</td>
+      <td>6.15E+06</td>
+      <td>3.08E+06</td>
+      <td>1.54E+06</td>
+      <td>768,826</td>
+      <td>384,413</td>
+      <td>192,207</td>
+      <td>96,103</td>
+      <td>48,052</td>
+      <td>24,026</td>
+      <td>12,013</td>
+      <td>6,006</td>
+      <td>3,003</td>
+      <td>1,502</td>
+      <td>751</td>
+      <td>375</td>
+      <td>188</td>
+    </tr>
+    <tr>
+      <td>1.0E+08</td>
+      <td>4.38E+07</td>
+      <td>2.19E+07</td>
+      <td>1.09E+07</td>
+      <td>5.47E+06</td>
+      <td>2.73E+06</td>
+      <td>1.37E+06</td>
+      <td>683,594</td>
+      <td>341,797</td>
+      <td>170,898</td>
+      <td>85,449</td>
+      <td>42,725</td>
+      <td>21,362</td>
+      <td>10,681</td>
+      <td>5,341</td>
+      <td>2,670</td>
+      <td>1,335</td>
+      <td>668</td>
+      <td>334</td>
+    </tr>
+    <tr>
+      <td>1.8E+08</td>
+      <td>7.78E+07</td>
+      <td>3.89E+07</td>
+      <td>1.94E+07</td>
+      <td>9.72E+06</td>
+      <td>4.86E+06</td>
+      <td>2.43E+06</td>
+      <td>1.22E+06</td>
+      <td>607,810</td>
+      <td>303,905</td>
+      <td>151,953</td>
+      <td>75,976</td>
+      <td>37,988</td>
+      <td>18,994</td>
+      <td>9,497</td>
+      <td>4,749</td>
+      <td>2,374</td>
+      <td>1,187</td>
+      <td>594</td>
+    </tr>
+    <tr>
+      <td>3.2E+08</td>
+      <td>1.38E+08</td>
+      <td>6.92E+07</td>
+      <td>3.46E+07</td>
+      <td>1.73E+07</td>
+      <td>8.65E+06</td>
+      <td>4.32E+06</td>
+      <td>2.16E+06</td>
+      <td>1.08E+06</td>
+      <td>540,428</td>
+      <td>270,214</td>
+      <td>135,107</td>
+      <td>67,554</td>
+      <td>33,777</td>
+      <td>16,888</td>
+      <td>8,444</td>
+      <td>4,222</td>
+      <td>2,111</td>
+      <td>1,056</td>
+    </tr>
+    <tr>
+      <td>5.6E+08</td>
+      <td>2.46E+08</td>
+      <td>1.23E+08</td>
+      <td>6.15E+07</td>
+      <td>3.08E+07</td>
+      <td>1.54E+07</td>
+      <td>7.69E+06</td>
+      <td>3.84E+06</td>
+      <td>1.92E+06</td>
+      <td>961,033</td>
+      <td>480,516</td>
+      <td>240,258</td>
+      <td>120,129</td>
+      <td>60,065</td>
+      <td>30,032</td>
+      <td>15,016</td>
+      <td>7,508</td>
+      <td>3,754</td>
+      <td>1,877</td>
+    </tr>
+    <tr>
+      <td>1.0E+09</td>
+      <td>4.38E+08</td>
+      <td>2.19E+08</td>
+      <td>1.09E+08</td>
+      <td>5.47E+07</td>
+      <td>2.73E+07</td>
+      <td>1.37E+07</td>
+      <td>6.84E+06</td>
+      <td>3.42E+06</td>
+      <td>1.71E+06</td>
+      <td>854,492</td>
+      <td>427,246</td>
+      <td>213,623</td>
+      <td>106,812</td>
+      <td>53,406</td>
+      <td>26,703</td>
+      <td>13,351</td>
+      <td>6,676</td>
+      <td>3,338</td>
+    </tr>
+    <tr>
+      <td>1.8E+09</td>
+      <td>7.78E+08</td>
+      <td>3.89E+08</td>
+      <td>1.94E+08</td>
+      <td>9.72E+07</td>
+      <td>4.86E+07</td>
+      <td>2.43E+07</td>
+      <td>1.22E+07</td>
+      <td>6.08E+06</td>
+      <td>3.04E+06</td>
+      <td>1.52E+06</td>
+      <td>759,763</td>
+      <td>379,881</td>
+      <td>189,941</td>
+      <td>94,970</td>
+      <td>47,485</td>
+      <td>23,743</td>
+      <td>11,871</td>
+      <td>5,936</td>
+    </tr>
+    <tr>
+      <td>3.2E+09</td>
+      <td>1.38E+09</td>
+      <td>6.92E+08</td>
+      <td>3.46E+08</td>
+      <td>1.73E+08</td>
+      <td>8.65E+07</td>
+      <td>4.32E+07</td>
+      <td>2.16E+07</td>
+      <td>1.08E+07</td>
+      <td>5.40E+06</td>
+      <td>2.70E+06</td>
+      <td>1.35E+06</td>
+      <td>675,535</td>
+      <td>337,768</td>
+      <td>168,884</td>
+      <td>84,442</td>
+      <td>42,221</td>
+      <td>21,110</td>
+      <td>10,555</td>
+    </tr>
+    <tr>
+      <td>5.6E+09</td>
+      <td>2.46E+09</td>
+      <td>1.23E+09</td>
+      <td>6.15E+08</td>
+      <td>3.08E+08</td>
+      <td>1.54E+08</td>
+      <td>7.69E+07</td>
+      <td>3.84E+07</td>
+      <td>1.92E+07</td>
+      <td>9.61E+06</td>
+      <td>4.81E+06</td>
+      <td>2.40E+06</td>
+      <td>1.20E+06</td>
+      <td>600,645</td>
+      <td>300,323</td>
+      <td>150,161</td>
+      <td>75,081</td>
+      <td>37,540</td>
+      <td>18,770</td>
+    </tr>
+    <tr>
+      <td>1.0E+10</td>
+      <td>4.38E+09</td>
+      <td>2.19E+09</td>
+      <td>1.09E+09</td>
+      <td>5.47E+08</td>
+      <td>2.73E+08</td>
+      <td>1.37E+08</td>
+      <td>6.84E+07</td>
+      <td>3.42E+07</td>
+      <td>1.71E+07</td>
+      <td>8.54E+06</td>
+      <td>4.27E+06</td>
+      <td>2.14E+06</td>
+      <td>1.07E+06</td>
+      <td>534,058</td>
+      <td>267,029</td>
+      <td>133,514</td>
+      <td>66,757</td>
+      <td>33,379</td>
+    </tr>
+  </tbody>
+</table>
+
+
+      </div>
+      <!-- 
+        <div class="col-md-3">
+          <div class="searchbox" style="position:relative">
+            <gcse:searchbox-only></gcse:searchbox-only>
+          </div>
+          <div id="toc" class="nav toc hidden-print">
+          </div>
+        </div> -->
+    </div>
+  </div>
+
+  <!-- Start page_footer.html include -->
+<footer class="ds-footer">
+  <div class="container">
+    <div class="text-center">
+      <p>
+        <div>Copyright © 2019 <a href="https://www.apache.org">Apache Software Foundation</a>, 
+          Licensed under the Apache License, Version 2.0. All Rights Reserved.<br/>
+          Apache DataSketches, Apache, the Apache feather logo, and the Apache DataSketches project logos are trademarks of The Apache Software Foundation.<br/>
+          All other marks mentioned may be trademarks or registered trademarks of their respective owners.<br/>
+          <br/>
+          <b>Disclaimer:</b> Apache DataSketches is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+        </div>
+        
+      </p>
+    </div>
+  </div>
+</footer>
+<!-- End page_footer.html include -->
+
+
+  <script>$(function () { $(".toc").load("/docs/toc.html"); });</script>
+</body>
+
+</html>
+<!-- End _layouts/table_page.html-->
