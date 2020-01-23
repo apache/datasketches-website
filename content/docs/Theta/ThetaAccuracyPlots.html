@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<!-- Start _layouts/doc_page.html-->
+<html lang="en">
+
+<head>
+  <!-- Start site_head.html include-->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="datasketches">
+
+<title>DataSketches | </title>
+
+<link rel="shortcut icon" href="/img/favicon.png">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic|Open+Sans:300italic,400italic,600italic,400,300,600'
+  rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/syntax.css">
+<link rel="stylesheet" href="/css/docs.css">
+
+
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- End site_head.html include-->
+
+</head>
+
+<body>
+  <!-- Start page_header.html include -->
+<div class="navbar navbar-inverse navbar-static-top ds-nav">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- navbar-brand: https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css -->
+      <!-- /css/main.css:57:.logo -->
+      <a class="navbar-brand logo" href="/">DataSketches</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/overview.html">
+            <span class="fa fa-info-circle"></span> OVERVIEW</a>
+        </li>
+        <li>
+          <a href="/docs/downloads.html">
+            <span class="fa fa-download"></span> DOWNLOAD</a>
+        </li>
+        <li>
+          <a href="https://github.com/apache?utf8=%E2%9C%93&q=datasketches&type=&language=">
+            <span class="fa fa-github"></span> GITHUB</a>
+        </li>
+        <li>
+          <a href="/docs/Research.html">
+            <span class="fa fa-paper-plane"></span> RESEARCH</a>
+        </li>
+        <li>
+          <a href="https://groups.google.com/forum/#!forum/sketches-user">
+            <span class="fa fa-comment"></span> FORUM</a>
+        </li>
+        <ul class="nav navbar-nav navbar-right ds-nav">
+          <li class="dropdown ds-nav">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="apache-logo" src="https://www.apache.org/foundation/press/kit/feather.svg"/>Apache <span class="caret"></span></a>
+            <ul class="dropdown-menu ds-nav">
+              <li><a href="https://www.apache.org/" target="_blank">Foundation</a></li>
+              <li><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></li>
+              <li><a href="https://www.apache.org/licenses/" target="_blank">License</a></li>
+              <li><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></li>
+              <li><a href="https://www.apache.org/security/" target="_blank">Security</a></li>
+              <li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></li>
+            </ul>
+          </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- End page_header.html include -->
+
+
+  <div class="ds-header">
+    <div class="container">
+      <h4>API Snapshots:
+        <a href="/api/java/snapshot/apidocs/index.html">Java Core</a>,
+        <a href="/api/memory/snapshot/apidocs/index.html">Memory</a>,
+        <a href="/api/pig/snapshot/apidocs/index.html">Pig</a>,
+        <a href="/api/hive/snapshot/apidocs/index.html">Hive</a>,
+      </h4>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="searchbox" style="position:relative">
+          <gcse:searchbox-only></gcse:searchbox-only>
+        </div>
+        <!-- Computer Generated File, Do Not Edit! -->
+<link rel="stylesheet" href="/css/toc.css">
+<div id="toc" class="nav toc hidden-print">
+
+  <p id="overview">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_overview">Overview</a>
+  </p>
+  <div class="collapse" id="collapse_overview">
+    <li><a href="/docs/TheChallenge.html">The Challenge</a></li>
+    <li><a href="/docs/MajorSketchFamilies.html">The Major Sketch Families</a></li>
+    <li><a href="/docs/SketchOrigins.html">Sketch Origins</a></li>
+    <li><a href="/docs/SketchElements.html">Sketch Elements</a></li>
+    <li><a href="/docs/KeyFeatures.html">Key Features</a></li>
+    <li><a href="/docs/LargeScale.html">Large Scale Computing</a></li>
+    <li><a href="/docs/Architecture.html">Architecture</a></li>
+    <li><a href="/docs/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
+    <li><a href="/docs/Concurrency.html">Notes on Concurrency</a></li>
+    <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/DataSketches_deck.pdf">Overview Slide Deck</a></li>
+  </div>
+
+  <p id="research">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_research">Research</a>
+  </p>
+  <div class="collapse" id="collapse_research">
+    <li><a href="/docs/Research.html">Research</a></li>
+  </div>
+
+  <p id="distinct-counting">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_distinct_counting">Distinct Counting</a>
+  </p>
+  <div class="collapse" id="collapse_distinct_counting">
+    <li><a href="/docs/DistinctCountCapabilitiesMatrix.html">Capabilities Matrix</a></li>
+
+    <p id="hyperloglog-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_hyperloglog_sketches">HyperLogLog Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_hyperloglog_sketches">
+      <li><a href="/docs/HLL/HLL.html">HLL Sketch</a></li>
+      <li><a href="/docs/HLL/HllMap.html">HLL Map Sketch</a></li>
+
+      <p id="hll-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_examples">HLL Examples</a>
+      </p>
+      <div class="collapse" id="collapse_hll_examples">
+        <li><a href="/docs/HLL/HllJavaExample.html">HLL Sketch Java Example</a></li>
+        <li><a href="/docs/HLL/HllPigUDFs.html">HLL Sketch Pig UDFs</a></li>
+        <li><a href="/docs/HLL/HllHiveUDFs.html">HLL Sketch Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+
+      <p id="hll-studies">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_studies">HLL Studies</a>
+      </p>
+      <div class="collapse" id="collapse_hll_studies">
+        <li><a href="/docs/HLL/Hll_vs_G_Hllpp.html">HLL vs Google HLL++</a></li>
+        <li><a href="/docs/HLL/Hll_vs_CS_Hllpp.html">HLL vs Clearspring HLL++</a></li>
+        <li><a href="/docs/HLL/HllSketchVsDruidHyperLogLogCollector.html">HLL Sketch vs Druid HyperLogLogCollector</a></li>
+      </div>
+    </div>
+
+    <p id="theta-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketches">Theta Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_theta_sketches">
+      <li><a href="/docs/Theta/ThetaSketchFramework.html">Theta Sketch Framework</a></li>
+
+      <p id="theta-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_examples">Theta Examples</a>
+      </p>
+      <div class="collapse" id="collapse_theta_examples">
+        <li><a href="/docs/Theta/ConcurrentThetaSketch.html">Concurrent Theta Sketch</a></li>
+        <li><a href="/docs/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
+        <li><a href="/docs/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
+        <li><a href="/docs/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
+        <li><a href="/docs/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+
+      <p id="kmv-tutorial">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_kmv_tutorial">KMV Tutorial</a>
+      </p>
+      <div class="collapse" id="collapse_kmv_tutorial">
+        <li><a href="/docs/Theta/InverseEstimate.html">The Inverse Estimate</a></li>
+        <li><a href="/docs/Theta/KMVempty.html">Empty Sketch</a></li>
+        <li><a href="/docs/Theta/KMVfirstEst.html">First Estimator</a></li>
+        <li><a href="/docs/Theta/KMVbetterEst.html">Better Estimator</a></li>
+        <li><a href="/docs/Theta/KMVrejection.html">Rejection Rules</a></li>
+        <li><a href="/docs/Theta/KMVupdateVkth.html">Update V(kth) Rule</a></li>
+      </div>
+
+      <p id="set-operations-and-p-sampling">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_set_operations_and_p-sampling">Set Operations and P-sampling</a>
+      </p>
+      <div class="collapse" id="collapse_set_operations_and_p-sampling">
+        <li><a href="/docs/Theta/ThetaSketchSetOps.html">Set Operations</a></li>
+        <li><a href="/docs/Theta/ThetaPSampling.html"><i>p</i>-Sampling</a></li>
+      </div>
+
+      <p id="accuracy">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_accuracy">Accuracy</a>
+      </p>
+      <div class="collapse" id="collapse_accuracy">
+        <li><a href="/docs/Theta/ThetaAccuracy.html">Basic Accuracy</a></li>
+        <li><a href="/docs/Theta/ThetaAccuracyPlots.html">Accuracy Plots</a></li>
+        <li><a href="/docs/Theta/ThetaErrorTable.html">Relative Error Table</a></li>
+        <li><a href="/docs/Theta/ThetaSketchSetOpsAccuracy.html">SetOp Accuracy</a></li>
+        <li><a href="/docs/Theta/AccuracyOfDifferentKUnions.html">Unions With Different k</a></li>
+      </div>
+
+      <p id="size">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_size">Size</a>
+      </p>
+      <div class="collapse" id="collapse_size">
+        <li><a href="/docs/Theta/ThetaSize.html">Theta Sketch Size</a></li>
+      </div>
+
+      <p id="speed">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_speed">Speed</a>
+      </p>
+      <div class="collapse" id="collapse_speed">
+        <li><a href="/docs/Theta/ThetaUpdateSpeed.html">Update Speed</a></li>
+        <li><a href="/docs/Theta/ThetaMergeSpeed.html">Merge Speed</a></li>
+      </div>
+
+      <p id="theta-sketch-theory">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketch_theory">Theta Sketch Theory</a>
+      </p>
+      <div class="collapse" id="collapse_theta_sketch_theory">
+        <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)</a></li>
+        <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/SketchEquations.pdf">Sketch Equations (PDF)</a></li>
+        <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/DataSketches.pdf">DataSketches (PDF)</a></li>
+        <li><a href="/docs/Theta/ThetaConfidenceIntervals.html">Confidence Intervals Notes</a></li>
+        <li><a href="/docs/Theta/ThetaMergingAlgorithm.html">Merging Algorithm Notes</a></li>
+        <li><a href="/docs/Theta/ThetaReferences.html">Theta References</a></li>
+      </div>
+    </div>
+
+    <p id="tuple-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_sketches">Tuple Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_tuple_sketches">
+      <li><a href="/docs/Tuple/TupleOverview.html">Tuple Overview</a></li>
+
+      <p id="tuple-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_examples">Tuple Examples</a>
+      </p>
+      <div class="collapse" id="collapse_tuple_examples">
+        <li><a href="/docs/Tuple/TupleJavaExample.html">Tuple Java Example</a></li>
+        <li><a href="/docs/Tuple/TupleEngagementExample.html">Tuple Engagement Example</a></li>
+        <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
+        <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Pig UDFs</a></li>
+        <li><a href="/docs/Tuple/TupleHiveUDFs.html">Tuple Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+    </div>
+  </div>
+
+  <p id="most-frequent">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent">Most Frequent</a>
+  </p>
+  <div class="collapse" id="collapse_most_frequent">
+    <li><a href="/docs/Frequency/FrequencySketchesOverview.html">Frequency Sketches Overview</a></li>
+
+    <p id="frequent-item-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_item_sketches">Frequent Item Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_frequent_item_sketches">
+      <li><a href="/docs/Frequency/FrequentItemsOverview.html">Frequent Items Overview</a></li>
+      <li><a href="/docs/Frequency/FrequentItemsErrorTable.html">Frequent Items Error Table</a></li>
+      <li><a href="/docs/Frequency/FrequentItemsReferences.html">Frequent Items References</a></li>
+
+      <p id="most-frequent-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent_examples">Most Frequent Examples</a>
+      </p>
+      <div class="collapse" id="collapse_most_frequent_examples">
+        <li><a href="/docs/Frequency/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
+        <li><a href="/docs/Frequency/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
+        <li><a href="/docs/Frequency/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+    </div>
+
+    <p id="frequent-distinct-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_distinct_sketches">Frequent Distinct Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_frequent_distinct_sketches">
+      <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
+    </div>
+  </div>
+
+  <p id="quantiles-and-histograms">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
+  </p>
+  <div class="collapse" id="collapse_quantiles_and_histograms">
+    <li><a href="/docs/Quantiles/QuantilesOverview.html">Quantiles Overview</a></li>
+    <li><a href="/docs/Quantiles/QuantilesAccuracy.html">Quantiles Accuracy and Size</a></li>
+
+    <p id="quantiles-examples">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_examples">Quantiles Examples</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_examples">
+      <li><a href="/docs/Quantiles/QuantilesJavaExample.html">Quantiles Sketch Java Example</a></li>
+      <li><a href="/docs/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
+      <li><a href="/docs/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
+      <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+    </div>
+
+    <p id="quantiles-studies">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_studies">
+      <li><a href="/docs/Quantiles/KLLSketch.html">New KLL sketch and comparison with DoublesSketch</a></li>
+      <li><a href="/docs/Quantiles/KllSketchVsTDigest.html">KLL sketch vs t-digest</a></li>
+      <li><a href="/docs/Quantiles/DruidApproxHistogramStudy.html">Druid Approximate Histogram</a></li>
+      <li><a href="/docs/Quantiles/MomentsSketchStudy.html">Moments Sketch Study</a></li>
+      <li><a href="/docs/Quantiles/QuantilesStreamAStudy.html">Quantiles StreamA Study</a></li>
+    </div>
+
+    <p id="quantiles-sketch-theory">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_sketch_theory">Quantiles Sketch Theory</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_sketch_theory">
+      <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/Quantiles_KLL.pdf">Optimal Quantile Approximation in Streams</a></li>
+      <li><a href="/docs/Quantiles/QuantilesReferences.html">Quantiles References</a></li>
+    </div>
+  </div>
+
+  <p id="sampling">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling</a>
+  </p>
+  <div class="collapse" id="collapse_sampling">
+    <li><a href="/docs/Sampling/ReservoirSampling.html">Reservoir Sampling</a></li>
+    <li><a href="/docs/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
+    <li><a href="/docs/Sampling/VarOptSampling.html">VarOpt Sampling</a></li>
+
+    <p id="sampling-examples">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling_examples">Sampling Examples</a>
+    </p>
+    <div class="collapse" id="collapse_sampling_examples">
+      <li><a href="/docs/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
+      <li><a href="/docs/Sampling/ReservoirSamplingPigUDFs.html">Reservoir Sampling Pig UDFs</a></li>
+      <li><a href="/docs/Sampling/VarOptSamplingJava.html">VarOpt Sampling Java Example</a></li>
+      <li><a href="/docs/Sampling/VarOptPigUDFs.html">VarOpt Sampling Pig UDFs</a></li>
+    </div>
+  </div>
+
+  <p id="memory-package">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_memory_package">Memory Package</a>
+  </p>
+  <div class="collapse" id="collapse_memory_package">
+    <li><a href="/docs/Memory/MemoryPackage.html">Memory Package</a></li>
+    <li><a href="/docs/Memory/MemoryPerformance.html">Memory Package Performance</a></li>
+  </div>
+
+  <p id="command-line">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_command_line">Command Line</a>
+  </p>
+  <div class="collapse" id="collapse_command_line">
+    <li><a href="/docs/CommandLine/CommandLine.html">Creating Command Line Executables</a></li>
+  </div>
+
+  <p id="who-uses">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_who_uses">Who Uses</a>
+  </p>
+  <div class="collapse" id="collapse_who_uses">
+    <li><a href="/docs/WhoUses.html">Who Uses</a></li>
+  </div>
+</div>
+<script>
+  (function () {
+
+    var findLineItem = function (path) {
+      return document.querySelector(`[href="${path}"]`);
+    };
+
+    var highlighLineItem = function (element) {
+      element.classList.add('highlight');
+    };
+
+    var checkHasClass = function (element, className) {
+      return element.className.split(' ').find(function (item) { return item === className || '' })
+    }
+
+    var findAllCollapseParents = function (element) {
+      var collapseMenus = [];
+      var elementPointer = element;
+      while (elementPointer !== document.body) {
+        if (checkHasClass(elementPointer, 'collapse')) {
+          collapseMenus.push(elementPointer);
+        }
+        elementPointer = elementPointer.parentElement
+      }
+      return collapseMenus
+    };
+
+    var findMatchingCollapseMenu = function (collapseItem) {
+      return document.querySelector(`[href="#${collapseItem.id}"]`);
+    };
+
+    var findAllParentMenus = function (element) {
+      var parentMenus = []
+      var elementPointer = element;
+      while (elementPointer !== document.body) {
+        if (elementPointer.className.split(' ').indexOf('menu') > -1) {
+          parentMenus.push(elementPointer);
+        }
+        elementPointer = elementPointer.parentElement;
+      }
+      return parentMenus;
+    }
+
+    var openMenuItem = function (element) {
+      element.click();
+    };
+
+    var openAllFromList = function (elementList) {
+      elementList.forEach(function (element) {
+        console.log(element)
+        openMenuItem(findMatchingCollapseMenu(element))
+      });
+    };
+
+    var highlightAndOpenMenu = function () {
+      var currentLineItem = findLineItem(document.location.pathname);
+      highlighLineItem(currentLineItem)
+      openAllFromList(findAllCollapseParents(currentLineItem));
+    };
+
+    $(highlightAndOpenMenu);
+
+  }());
+</script>
+
+
+      </div>
+      <div class="col-md-9 doc-content">
+        <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/docs/toc.html">Table of Contents</a>
+        <!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<h2 id="accuracy-plots">Accuracy Plots</h2>
+
+<h3 id="accuracy-of-the-theta-quickselect-sketch-family">Accuracy of the Theta: QuickSelect Sketch Family</h3>
+
+<p>A QuickSelect Sketch, which is the default sketch family, can be constructed with code similar to:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int k = 4096;                        //the accuracy and size are a function of k
+UpdateSketch sketch = UpdateSketch.builder().build(k);  //build an empty sketch
+
+long u = 1000000;                    //The number of uniques fed to the sketch
+for (int i=0; i&lt;u; i++) {            //A simple loop for illustration
+  sketch.update(i);                  //Update the sketch
+}
+
+double est = sketch.getEstimate();   //get the estimate of u
+
+sketch.rebuild(); // An optional rebuild to reduce the sketch size to k. This ensures order insensitivity. 
+
+// Get the upper and lower bounds (optional). 
+
+double ub = sketch.getUpperBound(1); //+1 standard deviation from the estimate
+double lb = sketch.getLowerBound(1); //-1 standard deviation from the estimate
+</code></pre></div></div>
+
+<p>The accuracy behavior of this QuickSelect Sketch (the default, with no rebuild) will be similar to the following graph:</p>
+
+<p><img class="doc-img-half" src="/docs/img/theta/QS4KError.png" alt="QS4KError" /></p>
+
+<p>This type of graph is called a “pitchfork”, which is used throughout this documentation to characterize the accuracy of the various sketches.</p>
+
+<p>Pitchfork graphs have these common characteristics:</p>
+
+<ul>
+  <li>The x-axis is Log(base 2) and represents the number of unique values fed into a sketch.
+    <ul>
+      <li>Points along the x-axis are evenly spaced along the log axis with the same number of Points Per Octave (PPO) for every multiple of 2 along the x-axis.
+This means that the plotted x values form an exponential series of the form <i>2^(gi/PPO)</i>, where <i>gi</i> is the <i>Generating Index</i> for a particular point on the x-axis.</li>
+      <li>A <i>Trial</i> is the estimation result of a single sketch fed <i>x</i> unique values.</li>
+      <li>A <i>Trial Set<i> is the set of results of runing <i>T</i> independent trials at <i>x</i>.</i></i></li>
+    </ul>
+  </li>
+  <li>The y-axis measures the Relative Error (RE) of result estimates returned by the sketches in the trials, where <i>RE = MeasuredValue/TrueValue -1</i> and is plotted as a percent.
+    <ul>
+      <li>An imaginary line drawn vertically from each x-axis point represents the range of error values that result from the Trial Set. 
+However, not all of the error values from all the trials are plotted. 
+Instead, for each Trial Set, the result error values are sorted and then selected quantiles are chosen and then only those y-axis values are plotted.</li>
+      <li>Connecting the plotted points with the same quantiles form the lines of the graph</li>
+    </ul>
+  </li>
+  <li>The plotted lines on these graphs are actually the lines of constant quantiles of the distributions of error measured at each x-axis point on the graph.</li>
+  <li>These pitchfork graphs are just two dimensional views of a three-dimensional probability surface that would look something like this: 
+<img src="/docs/img/theta/ErrorSurface2.png" alt="ErrorSurface2" width="150px" />. The cross-sectional slice of this surface is approximately Gaussian like this graph
+<img src="/docs/img/theta/400px-StandardNormalCurve.png" alt="400px-StandardNormalCurve" width="200px" />, 
+which has the +/- 1, 2 and 3 standard deviation points on the x-axis marked and the corresponding areas under the curve that represent the associated confidence levels.</li>
+  <li>All the pitchfork graphs in this section were generated using the utilities located in the the <i>sketches-misc</i> repository, performance package.</li>
+</ul>
+
+<p>The specifics of the above pitchfork graph:</p>
+
+<ul>
+  <li>The sketch type is the Heap QuickSelect Sketch, which is the default Theta UpdateSketch.</li>
+  <li>The sketch was configured with <i>k = 4096</i>.</li>
+  <li>The x-axis varies from 1024 (2^10) uniques per sketch to 1,048,576 (2^20) uniques per sketch.</li>
+  <li>PPO = 16.</li>
+  <li>Trials, T = 4096.</li>
+  <li>Wavy colored lines:
+    <ul>
+      <li>The black wavy line in the center (at Y = 0%) represents the median of the distribution of error values.  The median sits on top of the mean, which is brown and hard to see. 
+The fact that the mean and median are at zero validates the assertion that the estimates from the sketch are <i>unbiased</i>.</li>
+      <li>The red wavy line is the connected quantiles at +1 <i>Relative Standard Error</i> (RSE), which means ~15.87% of the trial results are above that line.</li>
+      <li>The blue wavy line is the connected quantiles at +2 RSE, which means ~2.3% of the trial results are above that line.</li>
+      <li>The purple wavy line is the connected quantiles at -1 RSE, which means ~15.87% of the trial results are below that line.</li>
+      <li>The green wavy line is the connected quantiles at -2 RSE, which means ~2.3% of the trial results are below that line.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>This particular graph also illustrates some other subtle points about this particular sketch.</p>
+
+<ul>
+  <li>The saw-toothed variation in the overall shaped is due to the fact that the QuickSelect sketch only updates its internal theta when the hash table fills up, which occurs when the hash table reaches <i>15k/8</i> 
+(note that the estimation starts at almost 8K), at which point the sketch uses the QuickSelect algorithm to find the <i>(k + 1)</i><sup>th</sup> order statistic from the cache, 
+assigns this value to theta, discards all values above theta, and rebuilds the hash table.</li>
+  <li>Because the number of valid points nearly reaches <i>2k</i> values means that the Relative Error of the sketch nearly reaches <i>1/sqrt(2k)</i>.</li>
+</ul>
+
+<p>If the user does not want the sketch ever to exceed <i>k</i> values, then there is an optional rebuild method (see code snippet above) that can be used.
+This would result in the following graph:</p>
+
+<p><img class="doc-img-half" src="/docs/img/theta/QS4KErrorRebuild.png" alt="QS4KErrorRebuild" /></p>
+
+<p>Because of the extra rebuild at the end the full cycle time of the sketch is a little slower and the average accuracy is a little less than without the rebuild. 
+This is a tradeoff the user can choose to use or not.</p>
+
+<p>The quantiles for both +/- 1 RSE and +/- 2 RSE establishes the bounds for the 68% and 95.4% confidence levels respectfully.</p>
+
+<h4 id="accuracy-of-set-intersections--differences">Accuracy of Set Intersections &amp; Differences</h4>
+
+<p><img class="doc-img-full" src="/docs/img/theta/64KSketchVsIEerror.png" alt="64KSketchVsIEerror.png" /></p>
+
+<p>The above diagram was created using two Theta Sketches, <i>A</i> and <i>B</i>, with nominal entries size of 64K. The number of unique items presented to the two sketches was quite large, but the ratio of the number of uniques presented to the two sketches varies along the X-axis in a special way.</p>
+
+<p>The X-axis is the inverse Jaccard ratio, where the Jaccard is defined as the intersection divided by the union of two sets. 
+Thus, the X-axis is defined as <i>1/J(A,B)</i> = <i>(A</i>∪<i>B)</i>/<i>(A</i>∩<i>B)</i>.</p>
+
+<p>Given any two sets, <i>A</i> and <i>B</i>, the intersection can be defined from the set theoretic <i>Include/Exclude</i> formula 
+<i>(A</i>∩<i>B)</i> = <i>A</i> + <i>B</i> - <i>(A</i>∪<i>B)</i>.  Unfortunately, for stochastic processes, each of these terms have random error components that always add.  The upper line and orange points represent the resulting error of an intersection using the Include/Exclude formula. The lower black line and purple “X” points represent the resulting error from an intersection using the Theta sketch set operations, which can be orders-of-magnitude better than the naive application of the Include/Exclude relation.</p>
+
+<p>Set intersections and differences can have considerably more relative error than a base Theta sketch fed directly with data. Be cautious about situations where the result of an intersection (or difference) is orders-of-magnitude smaller than the union of the two arguments.  Always query the getUpperBound() and getLowerBound() methods as these funtions are specifically designed to give you conservative estimates of the possible range of values where the true answer lies.</p>
+
+<p>Theta sketches retain only a small sample of the input streams that that they see. When you perform an intersection it reduces that small sample to an even smaller set, possibly zero! And as you might guess, extracting useful information about your input streams with zero samples is rather difficult:</p>
+
+<p><img class="doc-img-full" src="/docs/img/theta/We_do_sketches.png" alt="We_do_sketches.png" /></p>
+
+<p>Successive intersections will quickly reduce your number of samples available to estimate from and thus will dramatically increase the error. Also attempting to intersect one sketch from a large cardinality set with another sketch from a very small cardinality set will also increase your error (see the graph above).</p>
+
+<p><b>So what can you do?</b></p>
+
+<ul>
+  <li>Organize your intersections (and AnotB ops) to be performed as the very last step. For example,
+instead of <i>AU(B^C)</i> use <i>(AUB)^(AUC)</i>. This keeps the internal sample set as large as possible until the very end.</li>
+  <li>If you know which streams have large cardinality, use large sketches for these sketches. Internally we use sketches of 2^20 for our large cardinality streams (there is generally only a few of them) and then 2^14 for everything else.</li>
+  <li>Always query the resulting sketch from a set expression to obtain the upper and lower bounds. This will tell you right away what your error confidence interval is.</li>
+</ul>
+
+<h3 id="accuracy-of-the-theta-alpha-sketch-family">Accuracy of the Theta: Alpha Sketch Family</h3>
+
+<p>Another major sketch family is the Alpha Sketch, which leverage the “HIP” estimator.  Its pitchfork graph looks like the following:</p>
+
+<p><img class="doc-img-half" src="/docs/img/theta/Alpha4KError.png" alt="Alpha4KError" /></p>
+
+<p>This sketch was also configured with a size of 4K entries, otherwise the defaults.
+The wavy lines have the same interpretation as the wavy lines for the QuickSelect Sketch above.
+The short-dashed reference lines are computed at plus and minus <i>1/sqrt(2k)</i>. 
+The Alpha Sketch is about 30% more accurate than the QuickSelect Sketch with rebuild for the same value of <i>k</i>. 
+However, this improved accuracy can only be obtained when getEstimate() is directly called from the Alpha Sketch. 
+After compacting to a Compact Sketch or after any set operation, the accuracy falls back to the standard <i>1/sqrt(k)</i>.</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Start page_footer.html include -->
+<footer class="ds-footer">
+  <div class="container">
+    <div class="text-center">
+      <p>
+        <div>Copyright © 2019 <a href="https://www.apache.org">Apache Software Foundation</a>, 
+          Licensed under the Apache License, Version 2.0. All Rights Reserved.<br/>
+          Apache DataSketches, Apache, the Apache feather logo, and the Apache DataSketches project logos are trademarks of The Apache Software Foundation.<br/>
+          All other marks mentioned may be trademarks or registered trademarks of their respective owners.<br/>
+          <br/>
+          <b>Disclaimer:</b> Apache DataSketches is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+        </div>
+        
+      </p>
+    </div>
+  </div>
+</footer>
+<!-- End page_footer.html include -->
+
+</body>
+
+</html>
+<!-- End _layouts/doc_page.html-->

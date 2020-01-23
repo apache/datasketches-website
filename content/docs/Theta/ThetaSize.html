@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<!-- Start _layouts/doc_page.html-->
+<html lang="en">
+
+<head>
+  <!-- Start site_head.html include-->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="datasketches">
+
+<title>DataSketches | </title>
+
+<link rel="shortcut icon" href="/img/favicon.png">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic|Open+Sans:300italic,400italic,600italic,400,300,600'
+  rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/syntax.css">
+<link rel="stylesheet" href="/css/docs.css">
+
+
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- End site_head.html include-->
+
+</head>
+
+<body>
+  <!-- Start page_header.html include -->
+<div class="navbar navbar-inverse navbar-static-top ds-nav">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- navbar-brand: https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css -->
+      <!-- /css/main.css:57:.logo -->
+      <a class="navbar-brand logo" href="/">DataSketches</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/overview.html">
+            <span class="fa fa-info-circle"></span> OVERVIEW</a>
+        </li>
+        <li>
+          <a href="/docs/downloads.html">
+            <span class="fa fa-download"></span> DOWNLOAD</a>
+        </li>
+        <li>
+          <a href="https://github.com/apache?utf8=%E2%9C%93&q=datasketches&type=&language=">
+            <span class="fa fa-github"></span> GITHUB</a>
+        </li>
+        <li>
+          <a href="/docs/Research.html">
+            <span class="fa fa-paper-plane"></span> RESEARCH</a>
+        </li>
+        <li>
+          <a href="https://groups.google.com/forum/#!forum/sketches-user">
+            <span class="fa fa-comment"></span> FORUM</a>
+        </li>
+        <ul class="nav navbar-nav navbar-right ds-nav">
+          <li class="dropdown ds-nav">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="apache-logo" src="https://www.apache.org/foundation/press/kit/feather.svg"/>Apache <span class="caret"></span></a>
+            <ul class="dropdown-menu ds-nav">
+              <li><a href="https://www.apache.org/" target="_blank">Foundation</a></li>
+              <li><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></li>
+              <li><a href="https://www.apache.org/licenses/" target="_blank">License</a></li>
+              <li><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></li>
+              <li><a href="https://www.apache.org/security/" target="_blank">Security</a></li>
+              <li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></li>
+            </ul>
+          </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- End page_header.html include -->
+
+
+  <div class="ds-header">
+    <div class="container">
+      <h4>API Snapshots:
+        <a href="/api/java/snapshot/apidocs/index.html">Java Core</a>,
+        <a href="/api/memory/snapshot/apidocs/index.html">Memory</a>,
+        <a href="/api/pig/snapshot/apidocs/index.html">Pig</a>,
+        <a href="/api/hive/snapshot/apidocs/index.html">Hive</a>,
+      </h4>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="searchbox" style="position:relative">
+          <gcse:searchbox-only></gcse:searchbox-only>
+        </div>
+        <!-- Computer Generated File, Do Not Edit! -->
+<link rel="stylesheet" href="/css/toc.css">
+<div id="toc" class="nav toc hidden-print">
+
+  <p id="overview">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_overview">Overview</a>
+  </p>
+  <div class="collapse" id="collapse_overview">
+    <li><a href="/docs/TheChallenge.html">The Challenge</a></li>
+    <li><a href="/docs/MajorSketchFamilies.html">The Major Sketch Families</a></li>
+    <li><a href="/docs/SketchOrigins.html">Sketch Origins</a></li>
+    <li><a href="/docs/SketchElements.html">Sketch Elements</a></li>
+    <li><a href="/docs/KeyFeatures.html">Key Features</a></li>
+    <li><a href="/docs/LargeScale.html">Large Scale Computing</a></li>
+    <li><a href="/docs/Architecture.html">Architecture</a></li>
+    <li><a href="/docs/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
+    <li><a href="/docs/Concurrency.html">Notes on Concurrency</a></li>
+    <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/DataSketches_deck.pdf">Overview Slide Deck</a></li>
+  </div>
+
+  <p id="research">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_research">Research</a>
+  </p>
+  <div class="collapse" id="collapse_research">
+    <li><a href="/docs/Research.html">Research</a></li>
+  </div>
+
+  <p id="distinct-counting">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_distinct_counting">Distinct Counting</a>
+  </p>
+  <div class="collapse" id="collapse_distinct_counting">
+    <li><a href="/docs/DistinctCountCapabilitiesMatrix.html">Capabilities Matrix</a></li>
+
+    <p id="hyperloglog-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_hyperloglog_sketches">HyperLogLog Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_hyperloglog_sketches">
+      <li><a href="/docs/HLL/HLL.html">HLL Sketch</a></li>
+      <li><a href="/docs/HLL/HllMap.html">HLL Map Sketch</a></li>
+
+      <p id="hll-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_examples">HLL Examples</a>
+      </p>
+      <div class="collapse" id="collapse_hll_examples">
+        <li><a href="/docs/HLL/HllJavaExample.html">HLL Sketch Java Example</a></li>
+        <li><a href="/docs/HLL/HllPigUDFs.html">HLL Sketch Pig UDFs</a></li>
+        <li><a href="/docs/HLL/HllHiveUDFs.html">HLL Sketch Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+
+      <p id="hll-studies">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_studies">HLL Studies</a>
+      </p>
+      <div class="collapse" id="collapse_hll_studies">
+        <li><a href="/docs/HLL/Hll_vs_G_Hllpp.html">HLL vs Google HLL++</a></li>
+        <li><a href="/docs/HLL/Hll_vs_CS_Hllpp.html">HLL vs Clearspring HLL++</a></li>
+        <li><a href="/docs/HLL/HllSketchVsDruidHyperLogLogCollector.html">HLL Sketch vs Druid HyperLogLogCollector</a></li>
+      </div>
+    </div>
+
+    <p id="theta-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketches">Theta Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_theta_sketches">
+      <li><a href="/docs/Theta/ThetaSketchFramework.html">Theta Sketch Framework</a></li>
+
+      <p id="theta-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_examples">Theta Examples</a>
+      </p>
+      <div class="collapse" id="collapse_theta_examples">
+        <li><a href="/docs/Theta/ConcurrentThetaSketch.html">Concurrent Theta Sketch</a></li>
+        <li><a href="/docs/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
+        <li><a href="/docs/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
+        <li><a href="/docs/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
+        <li><a href="/docs/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+
+      <p id="kmv-tutorial">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_kmv_tutorial">KMV Tutorial</a>
+      </p>
+      <div class="collapse" id="collapse_kmv_tutorial">
+        <li><a href="/docs/Theta/InverseEstimate.html">The Inverse Estimate</a></li>
+        <li><a href="/docs/Theta/KMVempty.html">Empty Sketch</a></li>
+        <li><a href="/docs/Theta/KMVfirstEst.html">First Estimator</a></li>
+        <li><a href="/docs/Theta/KMVbetterEst.html">Better Estimator</a></li>
+        <li><a href="/docs/Theta/KMVrejection.html">Rejection Rules</a></li>
+        <li><a href="/docs/Theta/KMVupdateVkth.html">Update V(kth) Rule</a></li>
+      </div>
+
+      <p id="set-operations-and-p-sampling">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_set_operations_and_p-sampling">Set Operations and P-sampling</a>
+      </p>
+      <div class="collapse" id="collapse_set_operations_and_p-sampling">
+        <li><a href="/docs/Theta/ThetaSketchSetOps.html">Set Operations</a></li>
+        <li><a href="/docs/Theta/ThetaPSampling.html"><i>p</i>-Sampling</a></li>
+      </div>
+
+      <p id="accuracy">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_accuracy">Accuracy</a>
+      </p>
+      <div class="collapse" id="collapse_accuracy">
+        <li><a href="/docs/Theta/ThetaAccuracy.html">Basic Accuracy</a></li>
+        <li><a href="/docs/Theta/ThetaAccuracyPlots.html">Accuracy Plots</a></li>
+        <li><a href="/docs/Theta/ThetaErrorTable.html">Relative Error Table</a></li>
+        <li><a href="/docs/Theta/ThetaSketchSetOpsAccuracy.html">SetOp Accuracy</a></li>
+        <li><a href="/docs/Theta/AccuracyOfDifferentKUnions.html">Unions With Different k</a></li>
+      </div>
+
+      <p id="size">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_size">Size</a>
+      </p>
+      <div class="collapse" id="collapse_size">
+        <li><a href="/docs/Theta/ThetaSize.html">Theta Sketch Size</a></li>
+      </div>
+
+      <p id="speed">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_speed">Speed</a>
+      </p>
+      <div class="collapse" id="collapse_speed">
+        <li><a href="/docs/Theta/ThetaUpdateSpeed.html">Update Speed</a></li>
+        <li><a href="/docs/Theta/ThetaMergeSpeed.html">Merge Speed</a></li>
+      </div>
+
+      <p id="theta-sketch-theory">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketch_theory">Theta Sketch Theory</a>
+      </p>
+      <div class="collapse" id="collapse_theta_sketch_theory">
+        <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)</a></li>
+        <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/SketchEquations.pdf">Sketch Equations (PDF)</a></li>
+        <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/DataSketches.pdf">DataSketches (PDF)</a></li>
+        <li><a href="/docs/Theta/ThetaConfidenceIntervals.html">Confidence Intervals Notes</a></li>
+        <li><a href="/docs/Theta/ThetaMergingAlgorithm.html">Merging Algorithm Notes</a></li>
+        <li><a href="/docs/Theta/ThetaReferences.html">Theta References</a></li>
+      </div>
+    </div>
+
+    <p id="tuple-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_sketches">Tuple Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_tuple_sketches">
+      <li><a href="/docs/Tuple/TupleOverview.html">Tuple Overview</a></li>
+
+      <p id="tuple-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_examples">Tuple Examples</a>
+      </p>
+      <div class="collapse" id="collapse_tuple_examples">
+        <li><a href="/docs/Tuple/TupleJavaExample.html">Tuple Java Example</a></li>
+        <li><a href="/docs/Tuple/TupleEngagementExample.html">Tuple Engagement Example</a></li>
+        <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
+        <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Pig UDFs</a></li>
+        <li><a href="/docs/Tuple/TupleHiveUDFs.html">Tuple Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+    </div>
+  </div>
+
+  <p id="most-frequent">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent">Most Frequent</a>
+  </p>
+  <div class="collapse" id="collapse_most_frequent">
+    <li><a href="/docs/Frequency/FrequencySketchesOverview.html">Frequency Sketches Overview</a></li>
+
+    <p id="frequent-item-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_item_sketches">Frequent Item Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_frequent_item_sketches">
+      <li><a href="/docs/Frequency/FrequentItemsOverview.html">Frequent Items Overview</a></li>
+      <li><a href="/docs/Frequency/FrequentItemsErrorTable.html">Frequent Items Error Table</a></li>
+      <li><a href="/docs/Frequency/FrequentItemsReferences.html">Frequent Items References</a></li>
+
+      <p id="most-frequent-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent_examples">Most Frequent Examples</a>
+      </p>
+      <div class="collapse" id="collapse_most_frequent_examples">
+        <li><a href="/docs/Frequency/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
+        <li><a href="/docs/Frequency/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
+        <li><a href="/docs/Frequency/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+    </div>
+
+    <p id="frequent-distinct-sketches">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_distinct_sketches">Frequent Distinct Sketches</a>
+    </p>
+    <div class="collapse" id="collapse_frequent_distinct_sketches">
+      <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
+    </div>
+  </div>
+
+  <p id="quantiles-and-histograms">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
+  </p>
+  <div class="collapse" id="collapse_quantiles_and_histograms">
+    <li><a href="/docs/Quantiles/QuantilesOverview.html">Quantiles Overview</a></li>
+    <li><a href="/docs/Quantiles/QuantilesAccuracy.html">Quantiles Accuracy and Size</a></li>
+
+    <p id="quantiles-examples">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_examples">Quantiles Examples</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_examples">
+      <li><a href="/docs/Quantiles/QuantilesJavaExample.html">Quantiles Sketch Java Example</a></li>
+      <li><a href="/docs/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
+      <li><a href="/docs/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
+      <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+    </div>
+
+    <p id="quantiles-studies">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_studies">
+      <li><a href="/docs/Quantiles/KLLSketch.html">New KLL sketch and comparison with DoublesSketch</a></li>
+      <li><a href="/docs/Quantiles/KllSketchVsTDigest.html">KLL sketch vs t-digest</a></li>
+      <li><a href="/docs/Quantiles/DruidApproxHistogramStudy.html">Druid Approximate Histogram</a></li>
+      <li><a href="/docs/Quantiles/MomentsSketchStudy.html">Moments Sketch Study</a></li>
+      <li><a href="/docs/Quantiles/QuantilesStreamAStudy.html">Quantiles StreamA Study</a></li>
+    </div>
+
+    <p id="quantiles-sketch-theory">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_sketch_theory">Quantiles Sketch Theory</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_sketch_theory">
+      <li><a href="https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/Quantiles_KLL.pdf">Optimal Quantile Approximation in Streams</a></li>
+      <li><a href="/docs/Quantiles/QuantilesReferences.html">Quantiles References</a></li>
+    </div>
+  </div>
+
+  <p id="sampling">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling</a>
+  </p>
+  <div class="collapse" id="collapse_sampling">
+    <li><a href="/docs/Sampling/ReservoirSampling.html">Reservoir Sampling</a></li>
+    <li><a href="/docs/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
+    <li><a href="/docs/Sampling/VarOptSampling.html">VarOpt Sampling</a></li>
+
+    <p id="sampling-examples">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling_examples">Sampling Examples</a>
+    </p>
+    <div class="collapse" id="collapse_sampling_examples">
+      <li><a href="/docs/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
+      <li><a href="/docs/Sampling/ReservoirSamplingPigUDFs.html">Reservoir Sampling Pig UDFs</a></li>
+      <li><a href="/docs/Sampling/VarOptSamplingJava.html">VarOpt Sampling Java Example</a></li>
+      <li><a href="/docs/Sampling/VarOptPigUDFs.html">VarOpt Sampling Pig UDFs</a></li>
+    </div>
+  </div>
+
+  <p id="memory-package">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_memory_package">Memory Package</a>
+  </p>
+  <div class="collapse" id="collapse_memory_package">
+    <li><a href="/docs/Memory/MemoryPackage.html">Memory Package</a></li>
+    <li><a href="/docs/Memory/MemoryPerformance.html">Memory Package Performance</a></li>
+  </div>
+
+  <p id="command-line">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_command_line">Command Line</a>
+  </p>
+  <div class="collapse" id="collapse_command_line">
+    <li><a href="/docs/CommandLine/CommandLine.html">Creating Command Line Executables</a></li>
+  </div>
+
+  <p id="who-uses">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_who_uses">Who Uses</a>
+  </p>
+  <div class="collapse" id="collapse_who_uses">
+    <li><a href="/docs/WhoUses.html">Who Uses</a></li>
+  </div>
+</div>
+<script>
+  (function () {
+
+    var findLineItem = function (path) {
+      return document.querySelector(`[href="${path}"]`);
+    };
+
+    var highlighLineItem = function (element) {
+      element.classList.add('highlight');
+    };
+
+    var checkHasClass = function (element, className) {
+      return element.className.split(' ').find(function (item) { return item === className || '' })
+    }
+
+    var findAllCollapseParents = function (element) {
+      var collapseMenus = [];
+      var elementPointer = element;
+      while (elementPointer !== document.body) {
+        if (checkHasClass(elementPointer, 'collapse')) {
+          collapseMenus.push(elementPointer);
+        }
+        elementPointer = elementPointer.parentElement
+      }
+      return collapseMenus
+    };
+
+    var findMatchingCollapseMenu = function (collapseItem) {
+      return document.querySelector(`[href="#${collapseItem.id}"]`);
+    };
+
+    var findAllParentMenus = function (element) {
+      var parentMenus = []
+      var elementPointer = element;
+      while (elementPointer !== document.body) {
+        if (elementPointer.className.split(' ').indexOf('menu') > -1) {
+          parentMenus.push(elementPointer);
+        }
+        elementPointer = elementPointer.parentElement;
+      }
+      return parentMenus;
+    }
+
+    var openMenuItem = function (element) {
+      element.click();
+    };
+
+    var openAllFromList = function (elementList) {
+      elementList.forEach(function (element) {
+        console.log(element)
+        openMenuItem(findMatchingCollapseMenu(element))
+      });
+    };
+
+    var highlightAndOpenMenu = function () {
+      var currentLineItem = findLineItem(document.location.pathname);
+      highlighLineItem(currentLineItem)
+      openAllFromList(findAllCollapseParents(currentLineItem));
+    };
+
+    $(highlightAndOpenMenu);
+
+  }());
+</script>
+
+
+      </div>
+      <div class="col-md-9 doc-content">
+        <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/docs/toc.html">Table of Contents</a>
+        <!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<h2 id="size-and-byte-array-structures">Size and Byte Array Structures</h2>
+
+<p>All the sketches in the <i>theta</i> package share a common byte array data structure and similar 
+strategies for managing use of memory when the sketches are instantiated on the Java heap or 
+when instantiated in off-heap native memory.</p>
+
+<p>The byte array structure has two forms <i>Hash Table</i> and <i>Compact</i>.</p>
+
+<h3 id="update-sketch-families--hash-table-form">Update Sketch Families – Hash Table Form</h3>
+<p>The Hash Table form is similar to how the sketch is instantiated on the Java heap. 
+Hash tables consume more space depending on how full the table is. 
+However, updating the sketch is much faster in this form and is the default for all the Update Sketches.</p>
+
+<p>There are two Update Sketch families, <i>QuickSelect</i>, and <i>Alpha</i>. 
+The QuickSelect family has both a Java heap and a direct, off-heap variants while the 
+Alpha sketch is designed only for operation on the Java heap.</p>
+
+<p>The Update Sketches consist of an internal hash table cache and a few other primitives. 
+How the cache is sized and/or resized can be controlled by the user specified 
+<i>ResizeFactor enum</i> that has the values <i>X1, X2, X4</i>, and <i>X8</i> (default). 
+The meaning of these values is as follows:</p>
+
+<ul>
+  <li>X1: A Resize Factor of 1 means the cache will not increase its size. A new sketch will 
+immediately allocate space for twice the given Nominal Entries. 
+For example, if <i>nomEntries is 4096</i> the internal cache will be allocated at 8192 entries. 
+Each entry is 8 bytes.</li>
+  <li>X2: A Resize Factor of 2 means the cache may increase the cache size by factors of 2. 
+A new sketch will initially allocate a very small cache (typically enough for 16 entries), 
+and, when required, will increase the cache size by factors of 2 until the maximum cache 
+size is reached, which is twice the Nominal Entries.</li>
+  <li>X4: A Resize Factor of 4 is similar to X2, except the resizing factor is 4.</li>
+  <li>X8: A Resize Factor of 8 is similar to X2, except the resizing factor is 8. 
+This is the default.</li>
+</ul>
+
+<p>Resizing a cache is costly as a new array needs to be allocated and the hash table rebuilt. 
+Depending on the application, the user can select the Resize Factor to trade-off memory size 
+and overall update speed performance.</p>
+
+<p>When an Update Sketch is converted to a byte array using <i>toByteArray()</i>, 
+the internal structure is a 24-byte preamble followed by a non-contiguous 
+hash table array of 8-byte, long data entries.
+This enables the sketch to be quickly reconstructed from the byte array so that updating 
+of the sketch can be continued.</p>
+
+<h3 id="compact-sketch-family--compact-form">Compact Sketch Family – Compact Form</h3>
+<p>Once the updating of a sketch is completed the HT is no longer needed, so the sketch can be 
+stored in a compact form. 
+The size of this compact form is a simple function of the number of retained hash values 
+(8 bytes) and a small preamble that varies from 8 to 24 bytes depending on the 
+internal state of the sketch.  An empty sketch is represented by only 8 bytes. 
+The upper limit of the size of the sketch varies by the type of sketch but is 
+in the range of <i>8<em>k to 16</em>k</i>. 
+<i>k</i> is the configured size of the sketch in nominal entries, 
+and also determines the accuracy of the sketch.</p>
+
+<p>Compact Sketches optimize memory usage and sketch merge performance, are inherently <i>read only</i> 
+and can only be created from an existing Update Sketch or Set Operation 
+(<i>Union, Intersection, or AnotB</i>) object. 
+The internal structure of Compact Sketches is an 8, 16, or 24 byte preamble followed 
+by a contiguous data array of 8-byte, long data entries. 
+This data array can be either <i>ordered</i> or <i>unordered</i>. 
+This data structure is the same whether the Compact Sketch is instantiated on the 
+Java heap or in off-heap direct memory. 
+An empty Compact Sketch consumes only 8 bytes.</p>
+
+<p>The <i>ordered</i> form is ideal for systems environments where the building of the sketches 
+from data occur in an offline system (like a Hadoop grid), then compacted, ordered and 
+uploaded to a real-time query engine (like Druid) where the compact sketches can be quickly 
+merged to satisfy end-user queries. 
+The ordered form enables <i>early stop</i> enhancements to the merge algorithm 
+that makes the merging extreemly fast (~ 10’s of millions of sketches per second).</p>
+
+<p>The <i>unordered</i> form is more desirable for systems environments where the 
+building of the sketches from data occur in real-time and queried in real-time. 
+In this environment there is no need to pay the cost of the sort.</p>
+
+<p>Thus, the choice of <i>ordered</i> or <i>unordered</i> is a tradeoff between 
+real-time sketch build &amp; getEstimate() performance and offline sketch-build 
+and real-time merge performance.</p>
+
+<p>The Compact Sketch is created four different ways selected by the ordering preference 
+(<i>dstOrdered</i>) and whether the Compact Sketch will reside on-heap or off-heap (<i>dstMemory</i>).</p>
+
+<ul>
+  <li>Unordered, On-heap
+    <ul>
+      <li>Update Sketch: <i>compact(false, null)</i></li>
+      <li>Set Operation: <i>getResult(false, null)</i></li>
+    </ul>
+  </li>
+  <li>Ordered, On-heap
+    <ul>
+      <li>Update Sketch: <i>compact(true, null)</i></li>
+      <li>Set Operation: <i>getResult(true, null)</i></li>
+    </ul>
+  </li>
+  <li>Unordered, Off-heap
+    <ul>
+      <li>Update Sketch: <i>compact(false, Memory mem)</i></li>
+      <li>Set Operation: <i>getResult(false, Memory mem)</i></li>
+    </ul>
+  </li>
+  <li>Ordered, Off-heap
+    <ul>
+      <li>Update Sketch: <i>compact(true, Memory mem)</i></li>
+      <li>Set Operation: <i>getResult(true, Memory mem)</i></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="compact-sketch-sizing">Compact Sketch Sizing</h4>
+<p>These tables compute the size of a sketch after it has been converted into Compact Form. 
+The size of a sketch during the build phase is explained above as the sketch starts small and 
+resizes by the configurable <i>Resize Factor</i> up to the in-memory size of <i>2k*8</i> bytes plus
+a few primitives.</p>
+
+<p>Note: a sketch entry = 8 bytes.</p>
+
+<h5 id="quick-select-sketch-default">Quick Select Sketch (Default)</h5>
+<p>The number of valid entries in the Quick Select Sketch after it enters estimation mode
+statistically varies from <i>k</i> to <i>15k/8</i> with an average of about <i>3k/2</i>. 
+It is a user option to force a rebuild() prior to compacting the sketch in which case the 
+number of valid entries is never larger than <i>k</i>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Empty</th>
+      <th>After Rebuild()</th>
+      <th>Estimating Avg</th>
+      <th>Estimating Max</th>
+    </tr>
+    <tr>
+      <th>Nominal Entries (k) : Formula -&gt;</th>
+      <th>8</th>
+      <th>k*8 +24</th>
+      <th>k*12 + 24</th>
+      <th>k*15 + 24</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>16</td>
+      <td>8</td>
+      <td>152</td>
+      <td>216</td>
+      <td>264</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>8</td>
+      <td>280</td>
+      <td>408</td>
+      <td>504</td>
+    </tr>
+    <tr>
+      <td>64</td>
+      <td>8</td>
+      <td>536</td>
+      <td>792</td>
+      <td>984</td>
+    </tr>
+    <tr>
+      <td>128</td>
+      <td>8</td>
+      <td>1,048</td>
+      <td>1,560</td>
+      <td>1,944</td>
+    </tr>
+    <tr>
+      <td>256</td>
+      <td>8</td>
+      <td>2,072</td>
+      <td>3,096</td>
+      <td>3,864</td>
+    </tr>
+    <tr>
+      <td>512</td>
+      <td>8</td>
+      <td>4,120</td>
+      <td>6,168</td>
+      <td>7,704</td>
+    </tr>
+    <tr>
+      <td>1,024</td>
+      <td>8</td>
+      <td>8,216</td>
+      <td>12,312</td>
+      <td>15,384</td>
+    </tr>
+    <tr>
+      <td>2,048</td>
+      <td>8</td>
+      <td>16,408</td>
+      <td>24,600</td>
+      <td>30,744</td>
+    </tr>
+    <tr>
+      <td>4,096</td>
+      <td>8</td>
+      <td>32,792</td>
+      <td>49,176</td>
+      <td>61,464</td>
+    </tr>
+    <tr>
+      <td>8,192</td>
+      <td>8</td>
+      <td>65,560</td>
+      <td>98,328</td>
+      <td>122,904</td>
+    </tr>
+    <tr>
+      <td>16,384</td>
+      <td>8</td>
+      <td>131,096</td>
+      <td>196,632</td>
+      <td>245,784</td>
+    </tr>
+    <tr>
+      <td>32,768</td>
+      <td>8</td>
+      <td>262,168</td>
+      <td>393,240</td>
+      <td>491,544</td>
+    </tr>
+    <tr>
+      <td>65,536</td>
+      <td>8</td>
+      <td>524,312</td>
+      <td>786,456</td>
+      <td>983,064</td>
+    </tr>
+    <tr>
+      <td>131,072</td>
+      <td>8</td>
+      <td>1,048,600</td>
+      <td>1,572,888</td>
+      <td>1,966,104</td>
+    </tr>
+    <tr>
+      <td>262,144</td>
+      <td>8</td>
+      <td>2,097,176</td>
+      <td>3,145,752</td>
+      <td>3,932,184</td>
+    </tr>
+    <tr>
+      <td>524,288</td>
+      <td>8</td>
+      <td>4,194,328</td>
+      <td>6,291,480</td>
+      <td>7,864,344</td>
+    </tr>
+    <tr>
+      <td>1,048,576</td>
+      <td>8</td>
+      <td>8,388,632</td>
+      <td>12,582,936</td>
+      <td>15,728,664</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="alpha-sketch">Alpha Sketch</h5>
+<p>The number of valid entries in the Alpha Sketch after it enters estimation mode 
+is a random variable that has a probability distribution with a mean of <i>k</i>
+and a standard deviation of <i>sqrt(k)</i>. 
+The last column computes the maximum size with a confidence of 99.997% representing
+plus 4 standard deviations.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Empty</th>
+      <th>Estimating Avg</th>
+      <th>Std Dev</th>
+      <th>Max @ 99.997%</th>
+    </tr>
+    <tr>
+      <th>Nominal Entries (k) : Formula -&gt;</th>
+      <th>8</th>
+      <th>k*8 + 24</th>
+      <th>sqrt(k)</th>
+      <th>(k+4SD)*8 +24</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>512</td>
+      <td>8</td>
+      <td>4,120</td>
+      <td>23</td>
+      <td>4,844</td>
+    </tr>
+    <tr>
+      <td>1,024</td>
+      <td>9</td>
+      <td>8,216</td>
+      <td>32</td>
+      <td>9,240</td>
+    </tr>
+    <tr>
+      <td>2,048</td>
+      <td>10</td>
+      <td>16,408</td>
+      <td>45</td>
+      <td>17,856</td>
+    </tr>
+    <tr>
+      <td>4,096</td>
+      <td>11</td>
+      <td>32,792</td>
+      <td>64</td>
+      <td>34,840</td>
+    </tr>
+    <tr>
+      <td>8,192</td>
+      <td>12</td>
+      <td>65,560</td>
+      <td>91</td>
+      <td>68,456</td>
+    </tr>
+    <tr>
+      <td>16,384</td>
+      <td>13</td>
+      <td>131,096</td>
+      <td>128</td>
+      <td>135,192</td>
+    </tr>
+    <tr>
+      <td>32,768</td>
+      <td>14</td>
+      <td>262,168</td>
+      <td>181</td>
+      <td>267,961</td>
+    </tr>
+    <tr>
+      <td>65,536</td>
+      <td>15</td>
+      <td>524,312</td>
+      <td>256</td>
+      <td>532,504</td>
+    </tr>
+    <tr>
+      <td>131,072</td>
+      <td>16</td>
+      <td>1,048,600</td>
+      <td>362</td>
+      <td>1,060,185</td>
+    </tr>
+    <tr>
+      <td>262,144</td>
+      <td>17</td>
+      <td>2,097,176</td>
+      <td>512</td>
+      <td>2,113,560</td>
+    </tr>
+    <tr>
+      <td>524,288</td>
+      <td>18</td>
+      <td>4,194,328</td>
+      <td>724</td>
+      <td>4,217,498</td>
+    </tr>
+    <tr>
+      <td>1,048,576</td>
+      <td>19</td>
+      <td>8,388,632</td>
+      <td>1,024</td>
+      <td>8,421,400</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="set-operation-family">Set Operation Family</h3>
+
+<h4 id="union">Union</h4>
+<p>The <i>Union</i> operation has both a Java heap and a direct, off-heap variant. 
+When a Union operation is converted to a byte array using <i>toByteArray()</i>, 
+the internal structure is a 32-byte preamble followed by a non-contiguous hash 
+table array of 8-byte, long data entries. 
+This enables the Union to be quickly reconstructed from the byte array 
+so that updating of the Union can be continued.</p>
+
+<h4 id="intersection">Intersection</h4>
+<p>The <i>Intersection</i> operation has both a Java heap and a direct, off-heap variant. 
+When an Intersection operation is converted to a byte array using <i>toByteArray()</i>, 
+the internal structure is a 24-byte preamble followed by a non-contiguous hash 
+table array of 8-byte, long data entries. 
+This enables the Intersection to be quickly reconstructed from the byte array 
+so that updating of the Intersection can be continued.</p>
+
+<h4 id="a-not-b">A not B</h4>
+<p>The <i>A not B</i> operation is asymmetric and stateless. 
+Both the <i>A</i> and <i>B</i> arguments are presented and the difference 
+is computed and returned. 
+There is no need for a byte array form.</p>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Start page_footer.html include -->
+<footer class="ds-footer">
+  <div class="container">
+    <div class="text-center">
+      <p>
+        <div>Copyright © 2019 <a href="https://www.apache.org">Apache Software Foundation</a>, 
+          Licensed under the Apache License, Version 2.0. All Rights Reserved.<br/>
+          Apache DataSketches, Apache, the Apache feather logo, and the Apache DataSketches project logos are trademarks of The Apache Software Foundation.<br/>
+          All other marks mentioned may be trademarks or registered trademarks of their respective owners.<br/>
+          <br/>
+          <b>Disclaimer:</b> Apache DataSketches is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+        </div>
+        
+      </p>
+    </div>
+  </div>
+</footer>
+<!-- End page_footer.html include -->
+
+</body>
+
+</html>
+<!-- End _layouts/doc_page.html-->
