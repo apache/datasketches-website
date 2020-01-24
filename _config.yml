@@ -28,20 +28,21 @@ exclude:
   - Gemfile.lock
   - pom.xml
   - vendor/
+  - node_modules
   - src/
 
 docs_dir: '/docs'
 docs_img_dir: '/docs/img'
-docs_pdf_dir: 'https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf'
+docs_pdf_dir: 'https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf'
 
-core_api_snapshot: 'https://datasketches.github.io/api/core/snapshot/apidocs/index.html'
-pig_api_snapshot: 'https://datasketches.github.io/api/pig/snapshot/apidocs/index.html'
-hive_api_snapshot: 'https://datasketches.github.io/api/hive/snapshot/apidocs/index.html'
-misc_api_snapshot: 'https://datasketches.github.io/api/misc/snapshot/apidocs/index.html'
+java_api_snapshot: 'https://datasketches.apache.org/api/java/snapshot/apidocs/index.html'
+pig_api_snapshot: 'https://datasketches.apache.org/api/pig/snapshot/apidocs/index.html'
+hive_api_snapshot: 'https://datasketches.apache.org/api/hive/snapshot/apidocs/index.html'
+memory_api_snapshot: 'https://datasketches.apache.org/api/memory/snapshot/apidocs/index.html'
 
-core_readme: 'https://github.com/DataSketches/sketches-core/blob/master/README.md'
-pig_readme: 'https://github.com/DataSketches/sketches-pig/blob/master/README.md'
-hive_readme: 'https://github.com/DataSketches/sketches-hive/blob/master/README.md'
+java_readme: 'https://github.com/apache/incubator-datasketches-java/blob/master/README.md'
+pig_readme: 'https://github.com/apache/incubator-datasketches-pig/blob/master/README.md'
+hive_readme: 'https://github.com/apache/incubator-datasketches-hive/blob/master/README.md'
 
-druid_datasketches: 'https://druid.apache.org/docs/latest/development/extensions-core/datasketches-extension.html'
+druid_datasketches: 'https://github.com/apache/druid/tree/master/extensions-core/datasketches'
 
