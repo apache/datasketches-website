@@ -114,7 +114,7 @@ Amit Chakrabarti, Graham Cormode, and Andrew McGregor. A near-optimal algorithm 
 Michael B. Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu. Dimensionality reduction for k-means clustering and low rank approximation. In *ACM STOC Proceedings '15*, pages 163–172, 2015.
 
 [DLRT16]
-Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings '16 *, pages 6:1–6:17, 2016. [Talk Slides](https://github.com/DataSketches/DataSketches.github.io/blob/master/docs/pdf/icdt-talk.pdf).
+Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings '16 *, pages 6:1–6:17, 2016. [Talk Slides](https://github.com/apache/incubator-datasketches-website/blob/master/docs/pdf/icdt-talk.pdf).
 
 [FFGM07]
 Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *DMTCS Conference on Analysis of Algorithms*, pages 137–156, 2007.
@@ -146,7 +146,7 @@ Andrew McGregor. Graph stream algorithms: a survey. *ACM SIGMOD Record*, 43(1):9
 Michael Mitzenmacher, Thomas Steinke, and Justin Thaler. Hierarchical heavy hitters with the space saving algorithm. In *SIAM ALENEX Proceedings '12*, pages 160–174, 2012.
 
 [RLS+ 15]
-Lee Rhodes, Kevin Lang, Alexander Saydakov, Justin Thaler, Edo Liberty, and Jon Malkin. DataSketches: A Java software library for streaming data algorithms. Apache License, Version 2.0, 2015. <https://datasketches.github.io>.
+Lee Rhodes, Kevin Lang, Alexander Saydakov, Justin Thaler, Edo Liberty, and Jon Malkin. DataSketches: A Java software library for streaming data algorithms. Apache License, Version 2.0, 2015. <https://datasketches.apahce.org>.
 
 [Tha07]
 Justin Thaler. REU project website: A near-optimal algorithm for computing the entropy of a stream, 2007. <https://reu.dimacs.rutgers.edu/~jthaler/>.

@@ -132,7 +132,7 @@ them available to the Postgres database users.
 
 ## Web Site
 
-### incubator-datasketches-website (was DataSketches.github.io) 
+### incubator-datasketches-website
 This is the DataSketches web site source, and is constantly being updated with new material 
 and to be current with the GitHub master.
 This site is not versioned.
