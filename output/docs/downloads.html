@@ -466,30 +466,35 @@
 -->
 <h2 id="downloads">Downloads</h2>
 
+<h3 id="download-zip-files">Download Zip Files</h3>
 <p>Choose the most recent release version from 
 <a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches">incubator-datasketches-xxx</a>.</p>
 
-<p>Or, clone or fork the current SNAPSHOT directly from the relevant repository.</p>
+<h3 id="download-java-jar-files">Download Java Jar Files</h3>
+<p>From <a href="https://repository.apache.org/content/repositories/releases/org/apache/datasketches">Maven Central</a>.</p>
+
+<h3 id="download-shapshot-versions">Download Shapshot Versions</h3>
+<p>Clone or fork the current SNAPSHOT directly from the relevant <a href="https://github.com/apache?utf8=%E2%9C%93&amp;q=datasketches">DataSketches repository</a>.</p>
 
 <h3 id="version-numbers">Version Numbers</h3>
 <p>Apache DataSketches uses <a href="https://semver.org/">semantic versioning</a>. Version numbers use the form major.minor.incremental and are incremented as follows:</p>
 
 <ul>
-  <li><strong>major version</strong> for incompatible API changes</li>
-  <li><strong>minor version</strong> for new functionality added in a backward-compatible manner</li>
-  <li><strong>incremental version</strong> for forward-compatible bug fixes</li>
+  <li><strong>major version</strong> for major new functionality and/or major API changes that may be incompatible with prior versions</li>
+  <li><strong>minor version</strong> for new functionality and scheduled bug fixes. This should be API compatible with prior versions</li>
+  <li><strong>incremental version</strong> for unscheduled bug fixes only</li>
 </ul>
 
 <p>The zip files downloaded from <a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches">incubator-datasketches-xxx</a>
 include a version number in the name, as in <em>apache-datasketches-java-1.1.0-incubating-src.zip</em>. 
 This same number is also in the top section of the pom.xml file.</p>
 
-<p>If you are developing using Maven and want to use, for example, incubator-datasketches-java, add the following dependencies to your pom.xml file:</p>
+<p>If you are developing using Maven and want to use, for example, datasketches-java, add the following dependencies to your pom.xml file:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;dependency&gt;
   &lt;groupId&gt;org.apache.datasketches&lt;/groupId&gt;
   &lt;artifactId&gt;datasketches-java&lt;/artifactId&gt;
-  &lt;version&gt;1.1.0-incubating&lt;/version&gt;
+  &lt;version&gt;1.2.0-incubating&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre></div></div>
 
@@ -512,7 +517,7 @@ dependency.</p>
 <p>If you just want to run Hive and don’t require direct access to the <i>incubator-datasketches-java</i> it is
 recommended that you download the “with-shaded-core.jar”, which includes the Hive jar as well as 
 shaded versions of the core jar and memory jar. The shading avoids conflicts with other possible versions
-of core and memory that you might have in your system.</p>
+of core Java and Memory that you might have in your system.</p>
 
 <h4 id="snapshot-jars">SNAPSHOT Jars</h4>
 <p>If you want the latest and greatest version of the code, it is certainly OK for you to create your 
