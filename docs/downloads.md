@@ -21,29 +21,34 @@ layout: doc_page
 -->
 ## Downloads
 
+### Download Zip Files
 Choose the most recent release version from 
 [incubator-datasketches-xxx](https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches).
 
-Or, clone or fork the current SNAPSHOT directly from the relevant repository.
+### Download Java Jar Files
+From [Maven Central](https://repository.apache.org/content/repositories/releases/org/apache/datasketches).
+
+### Download Shapshot Versions
+Clone or fork the current SNAPSHOT directly from the relevant [DataSketches repository](https://github.com/apache?utf8=%E2%9C%93&q=datasketches).
 
 ### Version Numbers
 Apache DataSketches uses [semantic versioning](https://semver.org/). Version numbers use the form major.minor.incremental and are incremented as follows:
 
-* __major version__ for incompatible API changes
-* __minor version__ for new functionality added in a backward-compatible manner
-* __incremental version__ for forward-compatible bug fixes
+* __major version__ for major new functionality and/or major API changes that may be incompatible with prior versions
+* __minor version__ for new functionality and scheduled bug fixes. This should be API compatible with prior versions
+* __incremental version__ for unscheduled bug fixes only
 
 The zip files downloaded from [incubator-datasketches-xxx](https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches)
 include a version number in the name, as in _apache-datasketches-java-1.1.0-incubating-src.zip_. 
 This same number is also in the top section of the pom.xml file.
 
-If you are developing using Maven and want to use, for example, incubator-datasketches-java, add the following dependencies to your pom.xml file:
+If you are developing using Maven and want to use, for example, datasketches-java, add the following dependencies to your pom.xml file:
 
 ```
 <dependency>
   <groupId>org.apache.datasketches</groupId>
   <artifactId>datasketches-java</artifactId>
-  <version>1.1.0-incubating</version>
+  <version>1.2.0-incubating</version>
 </dependency>
 ```
 
@@ -67,7 +72,7 @@ dependency.
 If you just want to run Hive and don't require direct access to the <i>incubator-datasketches-java</i> it is
 recommended that you download the "with-shaded-core.jar", which includes the Hive jar as well as 
 shaded versions of the core jar and memory jar. The shading avoids conflicts with other possible versions
-of core and memory that you might have in your system.
+of core Java and Memory that you might have in your system.
 
 
 #### SNAPSHOT Jars
