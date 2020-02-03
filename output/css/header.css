@@ -54,12 +54,12 @@
 .ds-bootlogo {
   display: block;
   margin: 0 auto;
-  width: 150px; /* was 200 */
-  height: 209px; /* was 278 */
-  background-size: 150px 209px; /* was 200px 278px */
+  width: 300px;
+  height: 300px;
+  background-size: 300px 300px;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url('/img/man_logo_trans_wht_311_432.png');
+  background-image: url('/img/datasketches_VerticalWhite.svg');
 }
 
 .y-bootlogo {
