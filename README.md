@@ -24,15 +24,15 @@ Apache DataSketches is an open source, high-performance library of stochastic st
 
 After 8 years of development and 5 years as in Open Source, we have begun the important migration from a stand-alone GitHub site to being a member of the Apache Software Foundation community.  While we undergo this migration, we beg your patience. 
 
-* Ways to contact us:
+* How to contact us:
     * We have two ASF [the-ASF.slack.com](http://the-ASF.slack.com) slack channels:
         * datasketches -- general user questions
-        * datasketches-dev -- similar to our Apache [dev@datasketches.apache.org](mailto:dev@datasketches.apache.org), except more interactive, but not as easily searchable.
-    * For discussions about problems with any of our sketch repository components (core-java, core-cpp, Hive, Pig, Vector, Android, etc.)
-        * [Google-groups forum](https://groups.google.com/forum/#!forum/sketches-user)
-    * For issues about a specific component, please open issues on the appropriate GitHub repository listed below. 
-    * If you wish to contribute to our sketch development please contact us on our development email list
-        * [dev@datasketches.apache.org](mailto:dev@datasketches.apache.org) 
+        * datasketches-dev -- similar to our Apache [Developers Mail list](https://lists.apache.org/list.html?dev@datasketches.apache.org), except more interactive, but not as easily searchable.
+    * For general questions about using the library 
+        * [Users Mail List](https://lists.apache.org/list.html?users@datasketches.apache.org)
+    * For issues about a specific component repository, please open issues on the appropriate GitHub repository listed below. 
+    * If you wish to contribute to our sketch development please contact us on our developers email list
+        * [Developers Mail list](https://lists.apache.org/list.html?dev@datasketches.apache.org)
 
 * Finding our code releases:
     * Apache releases (versions 1.X.X):
