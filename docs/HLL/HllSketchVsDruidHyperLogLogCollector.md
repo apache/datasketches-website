@@ -21,7 +21,7 @@ layout: doc_page
 -->
 # HLL sketch vs Druid HyperLogLogCollector
 
-The goal of this article is to compare the HLL sketch implemented in this library to the <a href="https://github.com/apache/druid/tree/master/hlll">Druid HyperLogLogCollector</a>.
+The goal of this article is to compare the HLL sketch implemented in this library to the <a href="https://github.com/apache/druid/tree/master/hll">Druid HyperLogLogCollector</a>.
 
 ## Versions
 

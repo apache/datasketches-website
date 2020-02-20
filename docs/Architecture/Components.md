@@ -10,7 +10,7 @@ If you have a specific issue or bug report that impacts only one of these compon
 ## Core Algorithms
 If you like what you see give us a **Star** on one of these two sites!
 
-* **[Java](https://https://github.com/apache/incubator-datasketches-java)** (Versioned, Apache Released) This is the original and the most comprehensive collection of sketch algorithms. It has a dependence on the Memory component and the Java Adaptors have a dependence on this component. 
+* **[Java](https://github.com/apache/incubator-datasketches-java)** (Versioned, Apache Released) This is the original and the most comprehensive collection of sketch algorithms. It has a dependence on the Memory component and the Java Adaptors have a dependence on this component. 
 
 * **[C++/Python](https://github.com/apache/incubator-datasketches-cpp)** (Versioned, Apache Released) This is newer and provides most of the major algorithms available in Java.  Our C++ adaptors have a dependence on this component.  The Pybind adaptors for Python are included here for all the C++ sketches.
 
@@ -18,10 +18,10 @@ If you like what you see give us a **Star** on one of these two sites!
 Apapters integrate the core components into the aggregation APIs of specific data processing systems. Some of these adapters are available as part of the library, other adapters may be directly integrated into the specific data processing system.
 
 ### Java Adaptors
-* **[Apache Hive](https://https://github.com/apache/incubator-datasketches-hive)** (Versioned, Apache Released)
+* **[Apache Hive](https://github.com/apache/incubator-datasketches-hive)** (Versioned, Apache Released)
     * [Theta Sketch Example]({{site.docs_dir}}/Theta/ThetaHiveUDFs.html)
     * [Tuple Sketch Example]({{site.docs_dir}}/Tuple/TuplePigUDFs.html)
-* **[Apache Pig](https://https://github.com/apache/incubator-datasketches-pig)** (Versioned, Apache Released)
+* **[Apache Pig](https://github.com/apache/incubator-datasketches-pig)** (Versioned, Apache Released)
     * [Theta Sketch Example]({{site.docs_dir}}/Theta/ThetaPigUDFs.html)
     * [Tuple Sketch Example]({{site.docs_dir}}/Tuple/TuplePigUDFs.html) 
 * **[Apache Druid](https://github.com/apache/druid/tree/master/extensions-core/datasketches)** (Apach Released as part of Druid)

@@ -14,7 +14,7 @@
             {"class":"Doc",  "desc" : "Key Features",                 "dir" : "Architecture", "file": "KeyFeatures" },
             {"class":"Doc",  "desc" : "Components",              "dir" : "Architecture", "file": "Components" },
             {"class":"Doc",  "desc" : "Sketches by Component",   "dir" : "Architecture", "file": "SketchesByComponent" },
-            {"class":"Doc",  "desc" : "Sketch Criteria",         "dir" : "Architecture", "file": "SketchesCriteria" },
+            {"class":"Doc",  "desc" : "Sketch Criteria",         "dir" : "Architecture", "file": "SketchCriteria" },
             {"class":"Doc",  "desc" : "Notes on Order Sensitivity",   "dir" : "Architecture", "file": "OrderSensitivity" },
             {"class":"Doc",  "desc" : "Notes on Concurrency",         "dir" : "Architecture", "file": "Concurrency" },
           ]
