@@ -461,47 +461,63 @@
       </div>
       <div class="col-md-9 doc-content">
         <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/_includes/toc.html">Table of Contents</a>
-        <!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+        <h1 id="sketch-criteria-for-library-inclusion">Sketch Criteria for Library Inclusion</h1>
 
-      http://www.apache.org/licenses/LICENSE-2.0
+<p>There are lots of clever and useful algorithms that are sometimes called “sketches”.  However, due to limited resources, in order to be included in the DataSketches library, we had to clearly define what we meant by the term “sketch”.  Otherwise, we would end up with a hodge podge of algorithms and have to answer: Why don’t we include algorithm X?.</p>
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<p><a href="/docs/Theta/InverseEstimate.html">Prev</a><br />
-<a href="/docs/Theta/KMVfirstEst.html">Next</a></p>
+<p>In order to be in our library, a <em>Sketch</em> must exhibit these properties:</p>
 
-<h2 id="the-kmv-empty-sketch">The KMV Empty Sketch</h2>
-<p>To explain how a simple sketch works, let us start with the well-known <i>k Minimum Value</i> or <i>KMV</i> sketch in its empty state.</p>
+<h2 id="streaming--one-touch">Streaming / One-Touch</h2>
+<p>Sketches are a class of streaming algorithms by definition, which means they only touch or process each item in a stream once.  This is absolutely required for real-time applications.</p>
 
-<p>Our objectives are as follows:</p>
+<h2 id="small-in-size">Small in Size</h2>
+<p>One of the key properties of any sketch is that it is a synopsis or summary of a much larger data set.  The whole point of a small summary is that it is faster to read and merge.  In this context, <em>small</em> means small with respect to the original data.  If the original data is terabytes in size, a single sketch of 100KB may not seem very different from a sketch of 50KB as both are very small compared to the original data.</p>
+
+<p>But <em>small</em> can also be important in an systems context. If that original terabyte of data generates 10,000 sketches, each sketch consuming 100KB, that amounts to a GB of storage.  Now the total memory use starts to be a concern.  Being able to reduce that by 50% by using a smaller (and otherwise equivalent) sketch can be a big deal.</p>
+
+<p>Nonetheless, <em>small</em> is relevant to the specific application. Sketches can very from a few bytes to many megabytes depending on the specific sketch and how it has been configured. Whether it is small enough is up to the system engineers to determine.</p>
+
+<h2 id="sublinear-in-size-growth">Sublinear in Size Growth</h2>
+<p>Not only should a sketch start small, it needs to stay small as the size of the input stream grows.  Some sketches have an upper bound of size independent of the size of the input stream, which clearly makes them sublinear.  Other sketches may need to continue to increase their size as the stream grows.  For these sketches it is important that they do so very very slowly. They should grow sublinearly by no more then <em>O(log(n))</em> or preferrably by <em>O(k log(n/k))</em> or less.</p>
+
+<h2 id="mergeable">Mergeable</h2>
+<p>In order to be useful in large distributed computing environments, the sketches must be mergeable without additional loss of accuracy.  This is defined as</p>
+
+<p style="text-align: center;"><i>sketch(A + B) &asymp; sketch(A) U sketch(B),</i></p>
+
+<p>where<br />
+   “+” = concatination of streams A and B,<br />
+   “U” = merge or union,<br />
+   “≈” = approximately equal within the error bounds of the sketch.</p>
+
+<h3 id="mergeable-with-different-size-parameters">Mergeable With Different Size Parameters</h3>
+<p>In addition to just being mergeable, sketches used in production environments must be mergeable with different sizing parameters.</p>
+
+<p>In many production applications sketches might be stored for years because they are so much smaller than keeping the original data around, and orders-of-magnitude faster to merge.</p>
+
+<p>Imagine an organization that has saved its sketches for several years with one size/accuracy parameter, then changes its policy about the size/accuracy needed going forward.  Unless the two differently configured sketches can be merged successfully (even if the accuracy degrades to the lower of the two configurations), the data from the older sketch data would be essentially lost. The only other alternative would require reprocessing all the old original data – if it even exists!</p>
+
+<h2 id="data-insensitive">Data Insensitive</h2>
+<p>In many real production environments the data that needs to be processed is ugly. There are often missing or troublesome values in the stream.  It is naive to expect, for example, that a stream of integer time-spent values does not contain zeros or negative values.  In this case, an algorithm that makes the assumption that all the input values are always positive is a very fragile algorithm.  In a real-time streaming application, if the algorithm returns horrible answers because there happend to be zeros in the stream, there may be no opportunity to go back and reprocess the stream after tweeking the algorithm to now ignore zeros! This violates the <em>One-Touch</em> property and places a major burden on the system users.</p>
+
+<p>There are many types of Data Insensitivity where the sketch should return meaningful results, within the specified error bounds:</p>
 
 <ul>
-  <li>Estimate the number of unique identifiers in the entire Big Data in a single pass through all the data.</li>
-  <li>Retain no more than <i>k</i> values in the sketch at any one time.</li>
+  <li><strong>Order Insensitive:</strong> The sketch results should be independent of the order that the items are presented to the sketch.</li>
+  <li><strong>Distribution Insensitive:</strong> The sketch results should be independent of how the data within the stream is distributed.  For example, the data might be distrubuted as Gaussian, Zipf, lognormal, power-law, or whatever.</li>
+  <li><strong>Value Insensitive:</strong> The sketch results should be independent of exceptional values in the stream.  For example, if the stream consists of double values, the sketch should be able to handle NaNs and Infinities in a sensible way.</li>
 </ul>
 
-<p>In the diagram on the left we have a source of data that could be stored data or a live stream of data.  We can imagine that this data consists of many millions of events or rows of data, where each event could consist of many columns of information about the events:  dimensional information, various counters or metrics, and identifiers that uniquely identify a device or user that was the source of the event. There are possibly millions of different identifiers and the same identifiers can appear many times throughout the data. For our purposes here, we will only focus on the identifiers.</p>
+<p>There are practical limits to data insensitivity, for example, A sketch designed for handling <em>double</em> values should not be expected to handle <em>strings</em> or arbitrary objects in the same stream.</p>
 
-<p>In the middle of the diagram we have a hash function whose job is to transform each identifier encountered into a pseudo-random fractional value between zero and one.</p>
+<p>It is important that the sketch developers clearly document the data insensitivities that the sketch is designed to handle.</p>
 
-<p>On the right we have a cache that maintains an ordered list of the hash values retained by the sketch. To the right of this cache we will list the rules that the sketch must follow to achieve our objectives.</p>
+<h2 id="mathematically-proven-error-and-size-properties">Mathematically Proven Error and Size Properties</h2>
+<p>Sketch algorithms must have an openly published and reviewed theoretical basis for their operation including their error and merging properties.  Empirical algorithms do not qualify.</p>
 
-<p><img class="doc-img-full" src="/docs/img/theta/KMV1.png" alt="KMV1" /></p>
+<h3 id="meaningful-and-usable-error-bounds">Meaningful and Usable Error Bounds.</h3>
+<p>It is not sufficient that some algorithm has been published in a scientific paper. There are published and reviewed sketch algorithms that use error definitions that may be interesting theoretically, but very misleading in practice.  For example, if the authors of a paper define their measure of error to be the average error over a distribution of values (<i>L<sub>1</sub> error</i>), this it not what most users would expect.  Given a query, the user has no idea what part of the distribution his query is hitting, thus, the error result could be great or horrible and the user has no way to know.  A sketch must define the error properties (or bounds) that hold for all possible queries simultaneously (<i>L<sub>∞</sub> error</i>).</p>
 
-<p><a href="/docs/Theta/InverseEstimate.html">Prev</a><br />
-<a href="/docs/Theta/KMVfirstEst.html">Next</a></p>
 
       </div>
     </div>

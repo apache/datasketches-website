@@ -57,7 +57,7 @@
             <span class="fa fa-info-circle"></span> OVERVIEW</a>
         </li>
         <li>
-          <a href="/docs/downloads.html">
+          <a href="/docs/Community/Downloads.html">
             <span class="fa fa-download"></span> DOWNLOAD</a>
         </li>
         <li>
@@ -65,11 +65,11 @@
             <span class="fa fa-github"></span> GITHUB</a>
         </li>
         <li>
-          <a href="/docs/Research.html">
+          <a href="/docs/Community/Research.html">
             <span class="fa fa-paper-plane"></span> RESEARCH</a>
         </li>
         <li>
-          <a href="https://groups.google.com/forum/#!forum/sketches-user">
+          <a href="https://lists.apache.org/list.html?users@datasketches.apache.org">
             <span class="fa fa-comment"></span> FORUM</a>
         </li>
         <ul class="nav navbar-nav navbar-right ds-nav">
@@ -121,19 +121,34 @@
     <li><a href="/docs/MajorSketchFamilies.html">The Major Sketch Families</a></li>
     <li><a href="/docs/SketchOrigins.html">Sketch Origins</a></li>
     <li><a href="/docs/SketchElements.html">Sketch Elements</a></li>
-    <li><a href="/docs/KeyFeatures.html">Key Features</a></li>
     <li><a href="/docs/LargeScale.html">Large Scale Computing</a></li>
-    <li><a href="/docs/Architecture.html">Architecture</a></li>
-    <li><a href="/docs/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
-    <li><a href="/docs/Concurrency.html">Notes on Concurrency</a></li>
+
+    <p id="architecture">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_architecture">Architecture</a>
+    </p>
+    <div class="collapse" id="collapse_architecture">
+      <li><a href="/docs/Architecture/KeyFeatures.html">Key Features</a></li>
+      <li><a href="/docs/Architecture/Components.html">Components</a></li>
+      <li><a href="/docs/Architecture/SketchesByComponent.html">Sketches by Component</a></li>
+      <li><a href="/docs/Architecture/SketchesCriteria.html">Sketch Criteria</a></li>
+      <li><a href="/docs/Architecture/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
+      <li><a href="/docs/Architecture/Concurrency.html">Notes on Concurrency</a></li>
+    </div>
     <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">Overview Slide Deck</a></li>
+  </div>
+
+  <p id="community">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_community">Community</a>
+  </p>
+  <div class="collapse" id="collapse_community">
+    <li><a href="/docs/Community/index.html">Community</a></li>
   </div>
 
   <p id="research">
     <a data-toggle="collapse" class="menu collapsed" href="#collapse_research">Research</a>
   </p>
   <div class="collapse" id="collapse_research">
-    <li><a href="/docs/Research.html">Research</a></li>
+    <li><a href="/docs/Community/Research.html">Research</a></li>
   </div>
 
   <p id="distinct-counting">
@@ -445,7 +460,7 @@
 
       </div>
       <div class="col-md-9 doc-content">
-        <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/docs/toc.html">Table of Contents</a>
+        <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/_includes/toc.html">Table of Contents</a>
         <!--
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
@@ -541,7 +556,7 @@ had <tt>n &lt; k</tt> while other reservoirs had moved into sampling mode.</p>
 
 <h3 id="comparison-with-apache-datafu">Comparison with Apache DataFu</h3>
 
-<p><a href="datafu.apache.org">DataFu</a> is an Apache Incubator project that includes a set of Pig UDFs for various data processing purposes.
+<p><a href="https://datafu.apache.org">DataFu</a> is an Apache Incubator project that includes a set of Pig UDFs for various data processing purposes.
 Because the focus of the Sketches library is on sublinear or bounded-size algorithms, compared the performance of our reservoir
 sampling Pig UDF against DataFu’s basic reservoir sampling, which uses a pre-specified maximum size.</p>
 

@@ -57,7 +57,7 @@
             <span class="fa fa-info-circle"></span> OVERVIEW</a>
         </li>
         <li>
-          <a href="/docs/downloads.html">
+          <a href="/docs/Community/Downloads.html">
             <span class="fa fa-download"></span> DOWNLOAD</a>
         </li>
         <li>
@@ -65,11 +65,11 @@
             <span class="fa fa-github"></span> GITHUB</a>
         </li>
         <li>
-          <a href="/docs/Research.html">
+          <a href="/docs/Community/Research.html">
             <span class="fa fa-paper-plane"></span> RESEARCH</a>
         </li>
         <li>
-          <a href="https://groups.google.com/forum/#!forum/sketches-user">
+          <a href="https://lists.apache.org/list.html?users@datasketches.apache.org">
             <span class="fa fa-comment"></span> FORUM</a>
         </li>
         <ul class="nav navbar-nav navbar-right ds-nav">
@@ -121,19 +121,34 @@
     <li><a href="/docs/MajorSketchFamilies.html">The Major Sketch Families</a></li>
     <li><a href="/docs/SketchOrigins.html">Sketch Origins</a></li>
     <li><a href="/docs/SketchElements.html">Sketch Elements</a></li>
-    <li><a href="/docs/KeyFeatures.html">Key Features</a></li>
     <li><a href="/docs/LargeScale.html">Large Scale Computing</a></li>
-    <li><a href="/docs/Architecture.html">Architecture</a></li>
-    <li><a href="/docs/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
-    <li><a href="/docs/Concurrency.html">Notes on Concurrency</a></li>
+
+    <p id="architecture">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_architecture">Architecture</a>
+    </p>
+    <div class="collapse" id="collapse_architecture">
+      <li><a href="/docs/Architecture/KeyFeatures.html">Key Features</a></li>
+      <li><a href="/docs/Architecture/Components.html">Components</a></li>
+      <li><a href="/docs/Architecture/SketchesByComponent.html">Sketches by Component</a></li>
+      <li><a href="/docs/Architecture/SketchesCriteria.html">Sketch Criteria</a></li>
+      <li><a href="/docs/Architecture/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
+      <li><a href="/docs/Architecture/Concurrency.html">Notes on Concurrency</a></li>
+    </div>
     <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">Overview Slide Deck</a></li>
+  </div>
+
+  <p id="community">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_community">Community</a>
+  </p>
+  <div class="collapse" id="collapse_community">
+    <li><a href="/docs/Community/index.html">Community</a></li>
   </div>
 
   <p id="research">
     <a data-toggle="collapse" class="menu collapsed" href="#collapse_research">Research</a>
   </p>
   <div class="collapse" id="collapse_research">
-    <li><a href="/docs/Research.html">Research</a></li>
+    <li><a href="/docs/Community/Research.html">Research</a></li>
   </div>
 
   <p id="distinct-counting">
@@ -445,7 +460,7 @@
 
       </div>
       <div class="col-md-9 doc-content">
-        <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/docs/toc.html">Table of Contents</a>
+        <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/_includes/toc.html">Table of Contents</a>
         <!--
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
@@ -464,22 +479,294 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="adaptors-for-hadoop-pig-hive-and-druid">Adaptors for Hadoop Pig, Hive and Druid</h2>
+<h1 id="sketches-by-component">Sketches by Component</h1>
 
-<h3 id="repositories">Repositories</h3>
+<p>The DataSketches Library is organized into the following repository groups:</p>
+
+<h2 id="java">Java</h2>
+
+<h3 id="incubator-datasketches-java">incubator-datasketches-java</h3>
+<p>This repository has the core-java sketching classes, which are leveraged by some of the other repositories. <br />
+This repository has no external dependencies outside of the DataSketches/memory repository, Java and TestNG for unit tests. 
+This code is versioned and the latest release can be obtained from
+<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/java">incubator-datasketches-java<a></a>.</a></p>
+
+<p><b>High-level Repositories Structure</b></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sketches-core Packages.</th>
+      <th>Package Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>org.apache.datasketches</td>
+      <td>Common functions and utilities</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.cpc</td>
+      <td>New Unique Counting Sketch with better accuracy per size than HLL</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.fdt</td>
+      <td>Frequent Distinct Tuples Sketch.</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.frequencies</td>
+      <td>Frequent Item Sketches, for both longs and generics</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.hash</td>
+      <td>The 128-bit MurmurHash3 and adaptors</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.hll</td>
+      <td>Unique counting HLL sketches for both heap and off-heap.</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.hllmap</td>
+      <td>The (HLL) Unique Count Map Sketch</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.kll</td>
+      <td>New quantiles sketch with better accuracy per size than the standard quantiles sketch.</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.quantiles</td>
+      <td>Sketches for quantiles, PMF and CDF functions, both doubles and generics and for heap and off-heap.</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.sampling</td>
+      <td>Weighted and uniform reservoir sampling with generics</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.theta</td>
+      <td>Unique counting Theta Sketches for both heap and off-heap</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.tuple</td>
+      <td>Tuple sketches for both primitives and generics</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.tuple.adouble</td>
+      <td>A Tuple sketch with a Summary of a single double</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.tuple.aninteger</td>
+      <td>A Tuple sketch with a Summary of a single integer</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.tuple.Strings</td>
+      <td>A Tuple sketch with a Summary of an array of Strings</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="incubator-datasketches-memory">incubator-datasketches-memory</h3>
+<p>This code is versioned and the latest release can be obtained from
+<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/memory">incubator-datasketches-memory<a></a>.</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Memory Packages</th>
+      <th>Package Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>org.apache.datasketches.memory</td>
+      <td>Low level, high-performance Memory data-structure management primarily for off-heap.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="incubator-datasketches-hive">incubator-datasketches-hive</h3>
+<p>This repository contains Hive UDFs and UDAFs for use within Hadoop grid enviornments. 
+This code has dependencies on sketches-core as well as Hadoop and Hive. 
+Users of this code are advised to use Maven to bring in all the required dependencies.
+This code is versioned and the latest release can be obtained from
+<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/hive">incubator-datasketches-hive<a></a>.</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sketches-hive Packages</th>
+      <th>Package Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>org.apache.datasketches.hive.cpc</td>
+      <td>Hive UDF and UDAFs for CPC sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.hive.frequencies</td>
+      <td>Hive UDF and UDAFs for Frequent Items sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.hive.hll</td>
+      <td>Hive UDF and UDAFs for HLL sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.hive.kll</td>
+      <td>Hive UDF and UDAFs for KLL sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.hive.quantiles</td>
+      <td>Hive UDF and UDAFs for Quantiles sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.hive.theta</td>
+      <td>Hive UDF and UDAFs for Theta sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.hive.tuple</td>
+      <td>Hive UDF and UDAFs for Tuple sketches</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="incubator-datasketches-pig">incubator-datasketches-pig</h3>
+<p>This repository contains Pig User Defined Functions (UDF) for use within Hadoop grid environments. 
+This code has dependencies on sketches-core as well as Hadoop and Pig. 
+Users of this code are advised to use Maven to bring in all the required dependencies.
+This code is versioned and the latest release can be obtained from
+<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/pig">incubator-datasketches-pig<a></a>.</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sketches-pig Packages</th>
+      <th>Package Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>org.apache.datasketches.pig.cpc</td>
+      <td>Pig UDFs for CPC sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.pig.frequencies</td>
+      <td>Pig UDFs for Frequent Items sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.pig.hash</td>
+      <td>Pig UDFs for MurmerHash3</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.pig.hll</td>
+      <td>Pig UDFs for HLL sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.pig.kll</td>
+      <td>Pig UDFs for KLL sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.pig.quantiles</td>
+      <td>Pig UDFs for Quantiles sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.pig.sampling.</td>
+      <td>Pig UDFs for Sampling sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.pig.theta</td>
+      <td>Pig UDFs for Theta sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.pig.tuple</td>
+      <td>Pig UDFs for Tuple sketches</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="incubator-datasketches-characterization">incubator-datasketches-characterization</h3>
+<p>This relatively new repository is for Java and C++ code that we use to characterize the accuracy and speed performance of the sketches in 
+the library and is constantly being updated.  Examples of the job command files used for various tests can be found in the src/main/resources directory. Some of these tests can run for hours depending on its configuration.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Characterization Packages</th>
+      <th>Package Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>org.apache.datasketches.characterization</td>
+      <td>Common functions and utilities</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.characterization.concurrent</td>
+      <td>Concurrent Theta Sketch</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.characterization.cpc</td>
+      <td>Compressed Probabilistic Counting Sketch</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.characterization.fdt</td>
+      <td>Frequent Distinct Tuples Sketch</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.characterization.frequencies</td>
+      <td>Frequent Items Sketches</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.characterization.hash</td>
+      <td>Hash function performance</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.characterization.hll</td>
+      <td>HyperLogLog Sketcch</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.characterization.memory</td>
+      <td>Memory performance</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.characterization.quantiles</td>
+      <td>Quantiles performance</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.characterization.theta</td>
+      <td>Theta Sketch</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.characterization.uniquecount</td>
+      <td>Base Profiles for Unique Counting Sketches</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="c-characterizations">C++ Characterizations</h4>
 <ul>
-  <li><a href="https://github.com/DataSketches/sketches-pig">Pig Repository</a></li>
-  <li><a href="https://github.com/DataSketches/sketches-hive">Hive Repository</a></li>
-  <li><a href="https://github.com/druid-io/druid/tree/master/extensions-core/datasketches">Druid Adaptors for DataSketches</a></li>
+  <li>CPC</li>
+  <li>Frequent Items</li>
+  <li>HLL</li>
+  <li>KLL</li>
+  <li>Theta</li>
 </ul>
 
-<h3 id="adaptor-examples">Adaptor Examples</h3>
-<ul>
-  <li><a href="/docs/Theta/ThetaPigUDFs.html">Pig Examples for Theta Sketches</a></li>
-  <li><a href="/docs/Tuple/TuplePigUDFs.html">Pig Examples for Tuple Sketches</a></li>
-  <li><a href="/docs/Theta/ThetaHiveUDFs.html">Hive Examples for Theta Sketches</a></li>
-  <li><a href="/docs/Tuple/TupleHiveUDFs.html">Hive Examples for Tuple Sketches</a></li>
-</ul>
+<h3 id="incubator-datasketches-vector">incubator-datasketches-vector</h3>
+<p>This component implements the <a href="https://datasketches.apache.org/docs/Community/Research.html">Frequent Directions Algorithm</a> [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.</p>
+
+<h2 id="c-and-python">C++ and Python</h2>
+
+<h3 id="incubator-datasketches-cpp">incubator-datasketches-cpp</h3>
+<p>This is the evolving C++ implementations of the same sketches that are available in Java. 
+These implementations are <em>binary compatible</em> with their counterparts in Java.
+In other words, a sketch created and stored in C++ can be opened and read in Java and visa-versa.</p>
+
+<p>This site also has our Python adaptors that basically wrap the C++ implementations, 
+making the high performance C++ implementations available from Python.</p>
+
+<h3 id="incubator-datasketches-postgresql">incubator-datasketches-postgresql</h3>
+<p>This site provides the postgres-specific adaptors that wrap the C++ implementations making
+them available to the PostgreSQL database users. PostgreSQL users should download the PostgreSQL extension from <a href="https://pgxn.org/dist/datasketches/">pgxn.org</a>.  For examples refer to the README on the component site.</p>
 
 
       </div>

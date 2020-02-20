@@ -57,7 +57,7 @@
             <span class="fa fa-info-circle"></span> OVERVIEW</a>
         </li>
         <li>
-          <a href="/docs/downloads.html">
+          <a href="/docs/Community/Downloads.html">
             <span class="fa fa-download"></span> DOWNLOAD</a>
         </li>
         <li>
@@ -65,11 +65,11 @@
             <span class="fa fa-github"></span> GITHUB</a>
         </li>
         <li>
-          <a href="/docs/Research.html">
+          <a href="/docs/Community/Research.html">
             <span class="fa fa-paper-plane"></span> RESEARCH</a>
         </li>
         <li>
-          <a href="https://groups.google.com/forum/#!forum/sketches-user">
+          <a href="https://lists.apache.org/list.html?users@datasketches.apache.org">
             <span class="fa fa-comment"></span> FORUM</a>
         </li>
         <ul class="nav navbar-nav navbar-right ds-nav">
@@ -121,19 +121,34 @@
     <li><a href="/docs/MajorSketchFamilies.html">The Major Sketch Families</a></li>
     <li><a href="/docs/SketchOrigins.html">Sketch Origins</a></li>
     <li><a href="/docs/SketchElements.html">Sketch Elements</a></li>
-    <li><a href="/docs/KeyFeatures.html">Key Features</a></li>
     <li><a href="/docs/LargeScale.html">Large Scale Computing</a></li>
-    <li><a href="/docs/Architecture.html">Architecture</a></li>
-    <li><a href="/docs/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
-    <li><a href="/docs/Concurrency.html">Notes on Concurrency</a></li>
+
+    <p id="architecture">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_architecture">Architecture</a>
+    </p>
+    <div class="collapse" id="collapse_architecture">
+      <li><a href="/docs/Architecture/KeyFeatures.html">Key Features</a></li>
+      <li><a href="/docs/Architecture/Components.html">Components</a></li>
+      <li><a href="/docs/Architecture/SketchesByComponent.html">Sketches by Component</a></li>
+      <li><a href="/docs/Architecture/SketchesCriteria.html">Sketch Criteria</a></li>
+      <li><a href="/docs/Architecture/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
+      <li><a href="/docs/Architecture/Concurrency.html">Notes on Concurrency</a></li>
+    </div>
     <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">Overview Slide Deck</a></li>
+  </div>
+
+  <p id="community">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_community">Community</a>
+  </p>
+  <div class="collapse" id="collapse_community">
+    <li><a href="/docs/Community/index.html">Community</a></li>
   </div>
 
   <p id="research">
     <a data-toggle="collapse" class="menu collapsed" href="#collapse_research">Research</a>
   </p>
   <div class="collapse" id="collapse_research">
-    <li><a href="/docs/Research.html">Research</a></li>
+    <li><a href="/docs/Community/Research.html">Research</a></li>
   </div>
 
   <p id="distinct-counting">
@@ -445,7 +460,7 @@
 
       </div>
       <div class="col-md-9 doc-content">
-        <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/docs/toc.html">Table of Contents</a>
+        <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/_includes/toc.html">Table of Contents</a>
         <!--
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
@@ -466,13 +481,13 @@
 -->
 <h1 id="hll-sketch-vs-druid-hyperloglogcollector">HLL sketch vs Druid HyperLogLogCollector</h1>
 
-<p>The goal of this article is to compare the HLL sketch implemented in this library to the <a href="https://github.com/druid-io/druid/tree/master/hll/src/main/java/io/druid/hll">Druid HyperLogLogCollector</a>.</p>
+<p>The goal of this article is to compare the HLL sketch implemented in this library to the <a href="https://github.com/apache/druid/tree/master/hlll">Druid HyperLogLogCollector</a>.</p>
 
 <h2 id="versions">Versions</h2>
 
 <ul>
-  <li>HLL sketch form <a href="https://github.com/DataSketches/sketches-core/releases/tag/sketches-core-0.11.1">sketches-core-0.11.1</a> (April 20, 2018)</li>
-  <li>Druid HyperLogLogCollector from <a href="https://github.com/druid-io/druid/releases/tag/druid-0.12.0">druid-0.12.0</a> (March 8, 2018)</li>
+  <li>HLL sketch form <a href="https://github.com/apache/incubator-datasketches-java">Java Version 0.11.1, April 20, 2018</a></li>
+  <li>Druid HyperLogLogCollector from <a href="https://github.com/apache/druid">Apache Druid Version 0.12.0, March 8, 2018</a></li>
 </ul>
 
 <h2 id="size">Size</h2>
@@ -530,11 +545,11 @@ This slightly larger error is still within the RSE Specification of error define
 
 <h2 id="source-code">Source code</h2>
 
-<p>The code to reproduce these measurements is available in the <a href="https://github.com/DataSketches/characterization/tree/druid-hyperloglogcollector">Datasketches/characterization repository</a></p>
+<p>The code to reproduce these measurements is available in the <a href="https://github.com/apache/incubator-datasketches-characterization">Datasketches/characterization repository</a></p>
 
-<h2 id="hll-sketch-druid-module">HLL sketch Druid module</h2>
+<h2 id="datasketches-hll-sketch-druid-module">DataSketches HLL Sketch Druid module</h2>
 
-<p>The <a href="http://druid.io/docs/latest/development/extensions-core/datasketches-hll.html">Hll sketch module</a> for Druid is available as a part of the <a href="http://druid.io/docs/latest/development/extensions-core/datasketches-extension.html">DataSketches extension</a>.</p>
+<p>The DataSketches Hll sketch module for Druid is available as a part of the <a href="https://github.com/apache/druid/tree/master/extensions-core/datasketches">druid/extensions-core</a>.</p>
 
       </div>
     </div>

@@ -57,7 +57,7 @@
             <span class="fa fa-info-circle"></span> OVERVIEW</a>
         </li>
         <li>
-          <a href="/docs/downloads.html">
+          <a href="/docs/Community/Downloads.html">
             <span class="fa fa-download"></span> DOWNLOAD</a>
         </li>
         <li>
@@ -65,11 +65,11 @@
             <span class="fa fa-github"></span> GITHUB</a>
         </li>
         <li>
-          <a href="/docs/Research.html">
+          <a href="/docs/Community/Research.html">
             <span class="fa fa-paper-plane"></span> RESEARCH</a>
         </li>
         <li>
-          <a href="https://groups.google.com/forum/#!forum/sketches-user">
+          <a href="https://lists.apache.org/list.html?users@datasketches.apache.org">
             <span class="fa fa-comment"></span> FORUM</a>
         </li>
         <ul class="nav navbar-nav navbar-right ds-nav">
@@ -121,19 +121,34 @@
     <li><a href="/docs/MajorSketchFamilies.html">The Major Sketch Families</a></li>
     <li><a href="/docs/SketchOrigins.html">Sketch Origins</a></li>
     <li><a href="/docs/SketchElements.html">Sketch Elements</a></li>
-    <li><a href="/docs/KeyFeatures.html">Key Features</a></li>
     <li><a href="/docs/LargeScale.html">Large Scale Computing</a></li>
-    <li><a href="/docs/Architecture.html">Architecture</a></li>
-    <li><a href="/docs/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
-    <li><a href="/docs/Concurrency.html">Notes on Concurrency</a></li>
+
+    <p id="architecture">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_architecture">Architecture</a>
+    </p>
+    <div class="collapse" id="collapse_architecture">
+      <li><a href="/docs/Architecture/KeyFeatures.html">Key Features</a></li>
+      <li><a href="/docs/Architecture/Components.html">Components</a></li>
+      <li><a href="/docs/Architecture/SketchesByComponent.html">Sketches by Component</a></li>
+      <li><a href="/docs/Architecture/SketchesCriteria.html">Sketch Criteria</a></li>
+      <li><a href="/docs/Architecture/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
+      <li><a href="/docs/Architecture/Concurrency.html">Notes on Concurrency</a></li>
+    </div>
     <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">Overview Slide Deck</a></li>
+  </div>
+
+  <p id="community">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_community">Community</a>
+  </p>
+  <div class="collapse" id="collapse_community">
+    <li><a href="/docs/Community/index.html">Community</a></li>
   </div>
 
   <p id="research">
     <a data-toggle="collapse" class="menu collapsed" href="#collapse_research">Research</a>
   </p>
   <div class="collapse" id="collapse_research">
-    <li><a href="/docs/Research.html">Research</a></li>
+    <li><a href="/docs/Community/Research.html">Research</a></li>
   </div>
 
   <p id="distinct-counting">
@@ -445,7 +460,7 @@
 
       </div>
       <div class="col-md-9 doc-content">
-        <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/docs/toc.html">Table of Contents</a>
+        <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/_includes/toc.html">Table of Contents</a>
         <!--
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
@@ -505,7 +520,7 @@ duplicate items if the input stream contains duplicates.</p>
 
 <h3 id="more-on-varopt-sampling">More on VarOpt Sampling</h3>
 
-<p>The basic VarOpt algorithm was first presented by Cohen et al<a href="E. Cohen, N. G. Guffield, H. Kapla, C. Lund, M. Thorup, &lt;em&gt;Efficient Stream Sampling for Variance-Optimal Estimation of Subset Sums&lt;/em&gt;, SIAM J. Comput. 40(5): 1402-1431, 2011.">1</a>. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.</p>
+<p>The basic VarOpt algorithm was first presented by Cohen et al<sup>1</sup>. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.</p>
 
 <p>The underlying goal of VarOpt sampling is to provide the best possible estimate of subset sums of items in the sample. As an example, we might select a sample o size <tt>k</tt> from the ~3200 counties (a political administrative region below the level of a state) in the United States, using the county population as the weight. We could then apply a predicate to our sample – for instance, counties in the state of California – and sum the resulting weights. That sum is our estimate of the total population of the state. The weights used when computing subset sums will, in general, be adjusted values rather than the original input weights.</p>
 
@@ -523,6 +538,9 @@ duplicate items if the input stream contains duplicates.</p>
 
 <p>When using VarOpt with uniform input weights, for instance giving all items a weight of 1.0, the sketch will perform standard reservoir sampling. Similarly, if operating over an infinite stream of items with finite weights, there will also be no heavy items and the sketch will return a standard weighted sample of items.</p>
 
+<ol>
+  <li>E. Cohen, N. G. Guffield, H. Kapla, C. Lund, M. Thorup, <em>Efficient Stream Sampling for Variance-Optimal Estimation of Subset Sums</em>, SIAM J. Comput. 40(5): 1402-1431, 2011.</li>
+</ol>
 
       </div>
     </div>

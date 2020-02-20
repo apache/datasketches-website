@@ -461,47 +461,136 @@
       </div>
       <div class="col-md-9 doc-content">
         <a class="btn btn-default btn-xs visible-xs-inline-block visible-sm-inline-block" href="/_includes/toc.html">Table of Contents</a>
-        <!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+        <h1 id="apache-datasketches-github-components">Apache DataSketches GitHub Components</h1>
 
-      http://www.apache.org/licenses/LICENSE-2.0
+<p>Our library is made up of components that are partitioned into GitHub repositories by language and dependencies. The dependencies of the core components are kept to a bare minimum to enable flexible integration into many different environments. Meanwhile, the Hive and Pig components, for example, have major dependencies on those envionments.</p>
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<p><a href="/docs/Theta/InverseEstimate.html">Prev</a><br />
-<a href="/docs/Theta/KMVfirstEst.html">Next</a></p>
+<p>If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository.</p>
 
-<h2 id="the-kmv-empty-sketch">The KMV Empty Sketch</h2>
-<p>To explain how a simple sketch works, let us start with the well-known <i>k Minimum Value</i> or <i>KMV</i> sketch in its empty state.</p>
-
-<p>Our objectives are as follows:</p>
+<h2 id="core-algorithms">Core Algorithms</h2>
+<p>If you like what you see give us a <strong>Star</strong> on one of these two sites!</p>
 
 <ul>
-  <li>Estimate the number of unique identifiers in the entire Big Data in a single pass through all the data.</li>
-  <li>Retain no more than <i>k</i> values in the sketch at any one time.</li>
+  <li>
+    <p><strong><a href="https://https://github.com/apache/incubator-datasketches-java">Java</a></strong> (Versioned, Apache Released) This is the original and the most comprehensive collection of sketch algorithms. It has a dependence on the Memory component and the Java Adaptors have a dependence on this component.</p>
+  </li>
+  <li>
+    <p><strong><a href="https://github.com/apache/incubator-datasketches-cpp">C++/Python</a></strong> (Versioned, Apache Released) This is newer and provides most of the major algorithms available in Java.  Our C++ adaptors have a dependence on this component.  The Pybind adaptors for Python are included here for all the C++ sketches.</p>
+  </li>
 </ul>
 
-<p>In the diagram on the left we have a source of data that could be stored data or a live stream of data.  We can imagine that this data consists of many millions of events or rows of data, where each event could consist of many columns of information about the events:  dimensional information, various counters or metrics, and identifiers that uniquely identify a device or user that was the source of the event. There are possibly millions of different identifiers and the same identifiers can appear many times throughout the data. For our purposes here, we will only focus on the identifiers.</p>
+<h2 id="adapters">Adapters</h2>
+<p>Apapters integrate the core components into the aggregation APIs of specific data processing systems. Some of these adapters are available as part of the library, other adapters may be directly integrated into the specific data processing system.</p>
 
-<p>In the middle of the diagram we have a hash function whose job is to transform each identifier encountered into a pseudo-random fractional value between zero and one.</p>
+<h3 id="java-adaptors">Java Adaptors</h3>
+<ul>
+  <li><strong><a href="https://https://github.com/apache/incubator-datasketches-hive">Apache Hive</a></strong> (Versioned, Apache Released)
+    <ul>
+      <li><a href="/docs/Theta/ThetaHiveUDFs.html">Theta Sketch Example</a></li>
+      <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Sketch Example</a></li>
+    </ul>
+  </li>
+  <li><strong><a href="https://https://github.com/apache/incubator-datasketches-pig">Apache Pig</a></strong> (Versioned, Apache Released)
+    <ul>
+      <li><a href="/docs/Theta/ThetaPigUDFs.html">Theta Sketch Example</a></li>
+      <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Sketch Example</a></li>
+    </ul>
+  </li>
+  <li><strong><a href="https://github.com/apache/druid/tree/master/extensions-core/datasketches">Apache Druid</a></strong> (Apach Released as part of Druid)</li>
+</ul>
 
-<p>On the right we have a cache that maintains an ordered list of the hash values retained by the sketch. To the right of this cache we will list the rules that the sketch must follow to achieve our objectives.</p>
+<h3 id="c-adaptors">C++ Adaptors</h3>
+<ul>
+  <li><strong><a href="https://github.com/apache/incubator-datasketches-postgresql">PostgreSQL</a></strong> (Versioned, Apache Released)
+This site provides the postgres-specific adaptors that wrap the C++ implementations making
+them available to the PostgreSQL database users. PostgreSQL users should download the PostgreSQL extension from <a href="https://pgxn.org/dist/datasketches/">pgxn.org</a>.  For examples refer to the README on the component site.</li>
+</ul>
 
-<p><img class="doc-img-full" src="/docs/img/theta/KMV1.png" alt="KMV1" /></p>
+<h2 id="other-components">Other Components</h2>
+<ul>
+  <li><strong><a href="https://github.com/apache/incubator-datasketches-memory">Memory</a>:</strong> (Versioned, Apache Released) This is a low-level library that enables fast access to off-heap memory for Java.</li>
+  <li><strong><a href="https://github.com/apache/incubator-datasketches-characterization">Characterization</a>:</strong> This is a collection of Java and C++ code that we use for long-running studies of accuracy and speed performance over many different parameters. Feel free to run these tests to reproduce many of the graphs and charts you see on our website.</li>
+  <li><strong><a href="https://github.com/apache/incubator-datasketches-vector">Vector (Experimental)</a>:</strong> This component implements the <a href="https://datasketches.apache.org/docs/Community/Research.html">Frequent Directions Algorithm</a> [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.</li>
+  <li><strong><a href="https://github.com/apache/incubator-datasketches-website">Website</a>:</strong> This repository is the home of our website and is constantly being updated with new material.</li>
+</ul>
 
-<p><a href="/docs/Theta/InverseEstimate.html">Prev</a><br />
-<a href="/docs/Theta/KMVfirstEst.html">Next</a></p>
+<h2 id="deprecated-components">Deprecated Components</h2>
+<p>The code in these components are no longer maintained and will eventually be removed.</p>
+
+<h3 id="sketches-android">sketches-android</h3>
+<p>This is a new repository dedicated to sketches designed to be run in a mobile client, such as a cell phone. 
+It is still in development and should be considered experimental.</p>
+
+<h3 id="experimental">experimental</h3>
+<p>This repository is an experimental staging area for code that will eventually end up in another 
+repository. This code is not versioned.</p>
+
+<h3 id="sketches-misc">sketches-misc</h3>
+<p>Demos, command-line access, characterization testing and other code not related to production 
+deployment.</p>
+
+<p>This code is offered “as is” and primarily as a reference so that users can understand how some of 
+the performance characterization plots were obtained. This code has few unit tests, if any, 
+and was never intended for production use. 
+Nonetheless, some folks have found it useful. If you find it useful, go for it. 
+This code is not versioned.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sketches-misc Packages</th>
+      <th>Package Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>org.apache.datasketches</td>
+      <td>Utility functions used by the sketches-misc packages</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.cmd</td>
+      <td>Support for Command Line functions <strong>Being Redesigned</strong></td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.demo</td>
+      <td>Simple demo for brute-force vs Theta and HLL sketches <strong>Will be superceded by Command Line functions</strong></td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.quantiles</td>
+      <td>Utility for computing &amp; printing space table for Quantiles Sketches (only in the test branch)</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.sampling</td>
+      <td>Benchmarks and Entropy testing for sampling sketches</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="characterization-cpp">characterization-cpp</h3>
+<p>This is the parallel characterization repository with a parallel objective to the Java characterization repository.</p>
+
+<h3 id="experimental-cpp">experimental-cpp</h3>
+<p>This repository is an experimental staging area for C++ code that will eventually end up in another 
+repository.</p>
+
+<h3 id="command-line-tool">Command-Line Tool</h3>
+<p>These repositories provide a command-line tool that provides access to the following sketches:</p>
+<ul>
+  <li>Frequent Items</li>
+  <li>HLL</li>
+  <li>Quantiles</li>
+  <li>Reservoir Sampling</li>
+  <li>Theta Sketches</li>
+  <li>VarOpt Sampling</li>
+</ul>
+
+<p>This tool can be installed from Homebrew.</p>
+
+<h4 id="sketches-cmd">sketches-cmd</h4>
+
+<h4 id="homebrew-sketches">homebrew-sketches</h4>
+
+<h4 id="homebrew-sketches-cmd">homebrew-sketches-cmd</h4>
 
       </div>
     </div>
