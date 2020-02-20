@@ -62,4 +62,4 @@ be merged without losing accuracy.
 are a function of the configured size of the sketch.
 
 With this background, let's examine some of the 
-<a href="{{site.docs_dir}}/KeyFeatures.html">Key Features</a> of the DataSketches library.
+<a href="{{site.docs_dir}}/Architecture/KeyFeatures.html">Key Features</a> of the DataSketches library.

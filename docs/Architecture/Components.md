@@ -24,7 +24,7 @@ Apapters integrate the core components into the aggregation APIs of specific dat
 * **[Apache Pig](https://https://github.com/apache/incubator-datasketches-pig)** (Versioned, Apache Released)
     * [Theta Sketch Example]({{site.docs_dir}}/Theta/ThetaPigUDFs.html)
     * [Tuple Sketch Example]({{site.docs_dir}}/Tuple/TuplePigUDFs.html) 
-* **[Apache Druid](https://github.com/druid-io/druid/tree/master/extensions-core/datasketches)** (Apach Released as part of Druid)
+* **[Apache Druid](https://github.com/apache/druid/tree/master/extensions-core/datasketches)** (Apach Released as part of Druid)
 
 ### C++ Adaptors
 * **[PostgreSQL](https://github.com/apache/incubator-datasketches-postgresql)** (Versioned, Apache Released)
@@ -34,7 +34,7 @@ them available to the PostgreSQL database users. PostgreSQL users should downloa
 ## Other Components
 * **[Memory](https://github.com/apache/incubator-datasketches-memory):** (Versioned, Apache Released) This is a low-level library that enables fast access to off-heap memory for Java.
 * **[Characterization](https://github.com/apache/incubator-datasketches-characterization):** This is a collection of Java and C++ code that we use for long-running studies of accuracy and speed performance over many different parameters. Feel free to run these tests to reproduce many of the graphs and charts you see on our website.
-* **[Vector (Experimental)](https://github.com/apache/incubator-datasketches-vector):** This component implements the [Frequent Directions Algorithm](https://datasketches.apache.org/docs/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.
+* **[Vector (Experimental)](https://github.com/apache/incubator-datasketches-vector):** This component implements the [Frequent Directions Algorithm](https://datasketches.apache.org/docs/Community/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.
 * **[Website](https://github.com/apache/incubator-datasketches-website):** This repository is the home of our website and is constantly being updated with new material.
 
 

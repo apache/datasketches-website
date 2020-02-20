@@ -149,7 +149,7 @@ Michael Mitzenmacher, Thomas Steinke, and Justin Thaler. Hierarchical heavy hitt
 Lee Rhodes, Kevin Lang, Alexander Saydakov, Justin Thaler, Edo Liberty, and Jon Malkin. DataSketches: A Java software library for streaming data algorithms. Apache License, Version 2.0, 2015. <https://datasketches.apahce.org>.
 
 [Tha07]
-Justin Thaler. REU project website: A near-optimal algorithm for computing the entropy of a stream, 2007. <https://reu.dimacs.rutgers.edu/~jthaler/>.
+Justin Thaler. REU project website: A near-optimal algorithm for computing the entropy of a stream, 2007. <https://people.cs.georgetown.edu/jthaler>.
 
 [VSGB05]
 Shobha Venkataraman, Dawn Xiaodong Song, Phillip B. Gibbons, and Avrim Blum. New streaming algorithms for fast detection of superspreaders. In *Internet Society NDSS Proceedings*, 2005.

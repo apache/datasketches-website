@@ -124,7 +124,7 @@ org.apache.datasketches.characterization.uniquecount | Base Profiles for Unique 
 
 
 ### incubator-datasketches-vector
-This component implements the [Frequent Directions Algorithm](https://datasketches.apache.org/docs/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.
+This component implements the [Frequent Directions Algorithm](https://datasketches.apache.org/docs/Community/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.
 
 
 ## C++ and Python

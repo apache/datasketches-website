@@ -20,11 +20,14 @@ There are many ways that are available for our community to communicate with eac
 <br/><br/>
 * **[GitHub Components]({{site.docs_dir}}/Architecture/Components.html):** Our library is made up of components that are partitioned into GitHub repositories. If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository.
 
+## Downloads
+* [Downloads]({{site.docs_dir}}/Community/Downloads.html)
+
 ## Contributing
 
 We are always open to contributions from our community.  Contributions can be of many forms: documentation, testing, science as well as bug fixes, code enhancements, code reviews, feature suggestions, usability feedback, etc. Contributions usually take the form of a Pull Request (PR), but if you wish to contribute and not sure how, please contact us on our [dev]({{page.dev}}) list.  
 
-We are also open to the submission of entirely new sketch algorithms.  If you have a sketch algorithm (or a significant enhancement of our current algorithms), please read our [Sketch Criteria]({{site.docs_dir}}/SketchCriteria.html) and contact us on our [dev]({{page.dev}}) list.
+We are also open to the submission of entirely new sketch algorithms.  If you have a sketch algorithm (or a significant enhancement of our current algorithms), please read our [Sketch Criteria]({{site.docs_dir}}/Architecture/SketchCriteria.html) and contact us on our [dev]({{page.dev}}) list.
 
 ### What to work on
 We are in the process of developing a comprehensive TODO list that will be referenced here.
@@ -38,8 +41,6 @@ Proposed changes to the code or documentation are usually done through GitHub Pu
 
 ### Becoming a committer
 We welcome anyone who is eager to continue to contribute to the DataSketches mission of providing open source, production quality sketch algorithms and become part of our team.  Please send us a message on [dev]({{page.dev}}) where we can give you some guidance.  After you have made some successful contributions, the current committers will discuss your candidacy for becoming a committer.  You can also review the [Apache policies on becoming a committer](https://community.apache.org/contributors/index.html).
-
-
 
 ## Governance
 The [Project Management Committee](https://www.apache.org/foundation/how-it-works.html) (PMC) is responsible for the administrative aspects of the DataSketches project.

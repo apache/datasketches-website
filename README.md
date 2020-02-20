@@ -24,22 +24,11 @@ Apache DataSketches is an open source, high-performance library of stochastic st
 
 After 8 years of development and 5 years as in Open Source, we have begun the important migration from a stand-alone GitHub site to being a member of the Apache Software Foundation community.  While we undergo this migration, we beg your patience. 
 
-* How to contact us:
-    * We have two ASF [the-ASF.slack.com](http://the-ASF.slack.com) slack channels:
-        * datasketches -- general user questions
-        * datasketches-dev -- similar to our Apache [Developers Mail list](https://lists.apache.org/list.html?dev@datasketches.apache.org), except more interactive, but not as easily searchable.
-    * For general questions about using the library 
-        * [Users Mail List](https://lists.apache.org/list.html?users@datasketches.apache.org)
-    * For issues about a specific component repository, please open issues on the appropriate GitHub repository listed below. 
-    * If you wish to contribute to our sketch development please contact us on our developers email list
-        * [Developers Mail list](https://lists.apache.org/list.html?dev@datasketches.apache.org)
+* [How to contact us]({{site.docs_dir}}/Community/index.html)
 
-* Finding our code releases:
-    * Apache releases (versions 1.X.X):
-        * Zip source: [dist.apache.org/repos/dist/release/incubator/datasketches/](https://dist.apache.org/repos/dist/release/incubator/datasketches/)
-        * Jar Artifacts (Java only): [repository.apache.org/#nexus-search;quick~datasketches](https://repository.apache.org/#nexus-search;quick~datasketches)
-    * Pre-Apache releases (versions 0.X.X)
-        * Jar Artifacts (Java only): [search.maven.org/classic/#search%7Cga%7C1%7Ccom.yahoo.datasketches](https://search.maven.org/classic/#search%7Cga%7C1%7Ccom.yahoo.datasketches)
+* [Finding our code releases]({{site.docs_dir}}/Community/index.html)
+
+* [Contributing]({{site.docs_dir}}/Community/index.html)
 
 
 * As the repositories under GitHub.io/DataSketches migrate they will disapear from the the GitHub.com/DataSketches organization page. Please refer to this list be directed to the new locations. 

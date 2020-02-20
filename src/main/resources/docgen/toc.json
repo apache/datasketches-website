@@ -6,24 +6,30 @@
         {"class":"Doc",  "desc" : "The Major Sketch Families",    "dir" : "", "file": "MajorSketchFamilies" },
         {"class":"Doc",  "desc" : "Sketch Origins",               "dir" : "", "file": "SketchOrigins" },
         {"class":"Doc",  "desc" : "Sketch Elements",              "dir" : "", "file": "SketchElements" },
-        {"class":"Doc",  "desc" : "Key Features",                 "dir" : "", "file": "KeyFeatures" },
+        
         {"class":"Doc",  "desc" : "Large Scale Computing",        "dir" : "", "file": "LargeScale" },
-        {"class":"Doc",  "desc" : "Architecture",                 "dir" : "", "file": "Architecture" },
+
         { "class":"Dropdown", "desc" : "Architecture", "array":
           [
+            {"class":"Doc",  "desc" : "Key Features",                 "dir" : "Architecture", "file": "KeyFeatures" },
             {"class":"Doc",  "desc" : "Components",              "dir" : "Architecture", "file": "Components" },
             {"class":"Doc",  "desc" : "Sketches by Component",   "dir" : "Architecture", "file": "SketchesByComponent" },
+            {"class":"Doc",  "desc" : "Sketch Criteria",         "dir" : "Architecture", "file": "SketchesCriteria" },
+            {"class":"Doc",  "desc" : "Notes on Order Sensitivity",   "dir" : "Architecture", "file": "OrderSensitivity" },
+            {"class":"Doc",  "desc" : "Notes on Concurrency",         "dir" : "Architecture", "file": "Concurrency" },
           ]
         },
-		{"class":"Doc",  "desc" : "Notes on Order Sensitivity",   "dir" : "", "file": "OrderSensitivity" },
-        {"class":"Doc",  "desc" : "Notes on Concurrency",         "dir" : "", "file": "Concurrency" },
         {"class":"Doc",  "desc" : "Overview Slide Deck",          "dir" : "", "file": "DataSketches_deck", "pdf":"true" },
       ]
     },
-
+    { "class":"Dropdown", "desc" : "Community", "array":
+      [
+        {"class":"Doc",  "desc" : "Community",                     "dir" : "Community", "file": "index" }
+      ]
+    },
     { "class":"Dropdown", "desc" : "Research", "array":
       [
-        {"class":"Doc",  "desc" : "Research",                     "dir" : "", "file": "Research" }
+        {"class":"Doc",  "desc" : "Research",                     "dir" : "Community", "file": "Research" }
       ]
     },
 

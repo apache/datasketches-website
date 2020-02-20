@@ -39,9 +39,9 @@ id: home
       <!--<p class="lead" style="font-size: 16px; line-height: 1.0; margin-bottom: 15px"><i>"Excellence in theoretically informed algorithm engineering" -- Graham Cormode</i></p> -->
       <p>
         <a class="btn btn-lg btn-outline-inverse" href="overview.html"><span class="fa fa-info-circle"></span> Overview</a>
-        <a class="btn btn-lg btn-outline-inverse" href="/docs/downloads.html"><span class="fa fa-download"></span> Download</a>
+        <a class="btn btn-lg btn-outline-inverse" href="/docs/Community/Downloads.html"><span class="fa fa-download"></span> Download</a>
         <a class="btn btn-lg btn-outline-inverse" href="https://github.com/apache?utf8=%E2%9C%93&q=datasketches"><span class="fa fa-github"></span> GitHub</a>
-        <a class="btn btn-lg btn-outline-inverse" href="/docs/Research.html"><span class="fa fa-paper-plane"></span> Research</a>
+        <a class="btn btn-lg btn-outline-inverse" href="/docs/Community/Research.html"><span class="fa fa-paper-plane"></span> Research</a>
         <a class="btn btn-lg btn-outline-inverse" href="https://lists.apache.org/list.html?users@datasketches.apache.org"><span class="fa fa-comment"></span> Contact Us</a>
       </p>
     </div>
@@ -64,7 +64,7 @@ id: home
   </div>
   <div class="row text-center main-marketing">
     <div class="col-md-4">
-      <p><a href="/docs/KeyFeatures.html">
+      <p><a href="/docs/Architecture/KeyFeatures.html">
         <span class="fa fa-fighter-jet fa-4x"></span><br>
         <h2>Fast</h2>
       </a></p>
@@ -76,7 +76,7 @@ id: home
     </div>
 
     <div class="col-md-4">
-      <a href="/docs/KeyFeatures.html">
+      <a href="/docs/Architecture/KeyFeatures.html">
         <span class="fa fa-database fa-4x"></span>
         <h2>Big Data</h2>
       </a>
@@ -87,7 +87,7 @@ id: home
     </div>
 
     <div class="col-md-4">
-      <p><a href="/docs/KeyFeatures.html">
+      <p><a href="/docs/Architecture/KeyFeatures.html">
         <span class="fa fa-bar-chart-o fa-4x"></span><br>
         <h2>Analysis</h2>
       </a></p>
@@ -101,22 +101,5 @@ id: home
   </div>
 </div>
 
-<div class="ds-panel">
-  <div class="container">
-    <div class="row-fluid text-center">
-      <div class="col-sm-4 col-sm-offset-2">
-        <h3>Get Started</h3>
-        <p><a href="/docs/Architecture.html">Architecture</a></p> <!-- add {{site.stable_version}} -->
-        <!-- <p><a href="/docs/tutorials.html">Tutorials</a></p>  add {{site.stable_version}} -->
-        <!-- ><p style="color:rgba(177,186,198,0.7)">Latest Stable Release</p> add {{site.stable_version}} -->
-      </div>
-      <div class="col-sm-4">
-        <h3>Learn More</h3>
-        <p><a href="/docs/KeyFeatures.html">Key Features</a></p>
-        <p><a href="/docs/TheChallenge.html">The Challenge</a></p>
-        <p><a href="/docs/WhoUses.html">Who uses DataSketches?</a></p>
-      </div>
-    </div>
-  </div>
-</div>
+
 <!-- End index.md -->

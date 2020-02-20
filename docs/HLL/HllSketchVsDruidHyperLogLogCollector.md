@@ -21,12 +21,12 @@ layout: doc_page
 -->
 # HLL sketch vs Druid HyperLogLogCollector
 
-The goal of this article is to compare the HLL sketch implemented in this library to the <a href="https://github.com/druid-io/druid/tree/master/hll/src/main/java/io/druid/hll">Druid HyperLogLogCollector</a>.
+The goal of this article is to compare the HLL sketch implemented in this library to the <a href="https://github.com/apache/druid/tree/master/hlll">Druid HyperLogLogCollector</a>.
 
 ## Versions
 
-* HLL sketch form <a href="https://github.com/DataSketches/sketches-core/releases/tag/sketches-core-0.11.1">sketches-core-0.11.1</a> (April 20, 2018)
-* Druid HyperLogLogCollector from <a href="https://github.com/druid-io/druid/releases/tag/druid-0.12.0">druid-0.12.0</a> (March 8, 2018)
+* HLL sketch form <a href="https://github.com/apache/incubator-datasketches-java">Java Version 0.11.1, April 20, 2018</a>
+* Druid HyperLogLogCollector from <a href="https://github.com/apache/druid">Apache Druid Version 0.12.0, March 8, 2018</a>
 
 ## Size
 
@@ -85,8 +85,8 @@ This slightly larger error is still within the RSE Specification of error define
 
 ## Source code
 
-The code to reproduce these measurements is available in the <a href="https://github.com/DataSketches/characterization/tree/druid-hyperloglogcollector">Datasketches/characterization repository</a>
+The code to reproduce these measurements is available in the <a href="https://github.com/apache/incubator-datasketches-characterization">Datasketches/characterization repository</a>
 
-## HLL sketch Druid module
+## DataSketches HLL Sketch Druid module
 
-The <a href="http://druid.io/docs/latest/development/extensions-core/datasketches-hll.html">Hll sketch module</a> for Druid is available as a part of the <a href="http://druid.io/docs/latest/development/extensions-core/datasketches-extension.html">DataSketches extension</a>.
+The DataSketches Hll sketch module for Druid is available as a part of the <a href="https://github.com/apache/druid/tree/master/extensions-core/datasketches">druid/extensions-core</a>.
