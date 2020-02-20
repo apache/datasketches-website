@@ -53,7 +53,7 @@ public class TocGenerator {
    * </ol>
    * @author Lee Rhodes
    */
-    @Test
+    //@Test
     public static void runTocGenerator() {
       final String jsonSrcFile = "src/main/resources/docgen/toc.json";
       final String htmlScriptFile = "src/main/resources/docgen/tocScript.html";
