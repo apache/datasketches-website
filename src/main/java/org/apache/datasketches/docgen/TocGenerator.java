@@ -25,10 +25,10 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.util.Iterator;
 
+import org.apache.datasketches.Files;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
-import org.apache.datasketches.Files;
 
 /**
  * @author Lee Rhodes
@@ -53,7 +53,7 @@ public class TocGenerator {
    * </ol>
    * @author Lee Rhodes
    */
-    //@Test
+    @Test
     public static void runTocGenerator() {
       final String jsonSrcFile = "src/main/resources/docgen/toc.json";
       final String htmlScriptFile = "src/main/resources/docgen/tocScript.html";
@@ -71,7 +71,7 @@ public class TocGenerator {
   public TocGenerator(final String jsonSrcFile, final String htmlScriptFile, final String tgtTocFile) {
     jsonScrFile = jsonSrcFile;
     this.htmlScriptFile = htmlScriptFile;
-    if ((tgtTocFile != null) && (!tgtTocFile.isEmpty())) {
+    if (tgtTocFile != null && !tgtTocFile.isEmpty()) {
       final File file = new File(tgtTocFile);
       if (file.exists()) { file.delete(); }
       pw = openPrintWriter(tgtTocFile);
@@ -89,7 +89,7 @@ public class TocGenerator {
     if (clazz.equals("TOC")) { emitToc(jo, sb); }
     else if (clazz.equals("Dropdown")) { emitDropdown(jo, sb); }
     else { emitDoc(jo, sb); }
-    if ((htmlScriptFile != null) && (!htmlScriptFile.isEmpty())) {
+    if (htmlScriptFile != null && !htmlScriptFile.isEmpty()) {
       final String script = Files.fileToString(htmlScriptFile);
       sb.append(script);
     }

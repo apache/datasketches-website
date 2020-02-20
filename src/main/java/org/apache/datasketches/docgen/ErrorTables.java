@@ -73,7 +73,7 @@ public class ErrorTables {
 
   static String rse(int lgK, int stdDev, double factor) {
     double k = 1 << lgK;
-    double rse = (stdDev * factor * 100.0) / Math.sqrt(k - 1.0);
+    double rse = stdDev * factor * 100.0 / Math.sqrt(k - 1.0);
     return String.format("%6.3f%%", rse);
   }
 
