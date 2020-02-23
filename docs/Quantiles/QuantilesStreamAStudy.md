@@ -33,7 +33,7 @@ Please get familiar with the [Definitions]({{site.docs_dir}}/Quantiles/Definitio
 ## The Paper
 
 The implementation of this Quantiles Sketch was originally inspired by 
-[Mergable Summaries]https://dl.acm.org/citation.cfm?id=2213562), PODS, May, 2012 paper by Agarwal, Cormode, Huang, Phillips, Wei, and Yi.
+[Mergable Summaries](https://dl.acm.org/citation.cfm?id=2213562), PODS, May, 2012 paper by Agarwal, Cormode, Huang, Phillips, Wei, and Yi.
 
 ## The Input Data
 The data file used for this evaluation, *streamA.txt*, is real data extracted from one of our back-end servers.  It represents one hour of web-site time-spent data measured in milliseconds. The data in this file has a smooth and well-behaved value distribution with a wide dynamic range.  It is a text file and consists of consecutive strings of numeric values separated by a line-feeds. Its size is about 2GB.
