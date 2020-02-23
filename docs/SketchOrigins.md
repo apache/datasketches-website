@@ -48,10 +48,6 @@ Synopses for Massive Data: Samples, Histograms, Wavelets, Sketches</a> by
 <a href="https://www2.warwick.ac.uk/fac/sci/dcs/people/graham_cormode/">Graham Cormode</a>, et al, 
 is an excellent review of this field.
 
-At this point it is useful to describe the 
-<a href="/docs/SketchElements.html">sketch elements</a> of a common sub-class of sketching 
-algorithms used for solving the 
-<a href="https://en.wikipedia.org/wiki/Count-distinct_problem">count-distinct</a> problem.
 
 ________
 <sup>1</sup><small>Also known as "Approximate Query Processing", see 

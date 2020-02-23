@@ -23,7 +23,7 @@ layout: doc_page
 
 <h3>Common Sketch Properties</h3>
 
-  * [Sketch Criteria]({{site.docs_dir}}/Architecture/SketchCriteria.html) for all sketches in the library.
+  * Please refer to the [Sketch Criteria]({{site.docs_dir}}/Architecture/SketchCriteria.html) for all sketches in the library.
   * Query results are <b>approximate</b> but within well defined error bounds that are user 
   configurable by trading off sketch size with accuracy.
   * Designed for <a href="{{site.docs_dir}}/LargeScale.html">Large-scale</a> computing environments 
@@ -33,7 +33,7 @@ layout: doc_page
 <a href="https://hive.apache.org/">Hive</a>,
 <a href="https://druid.io">Druid</a>,
 <a href="https://spark.apache.org">Spark</a>), 
-and are heavily used within Yahoo.
+and are heavily used within Yahoo / Verizon-Media.
   * <b>Maven deployable</b> and registered with 
 <a href="https://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>.
   * Comprehensive <b>unit tests</b> and testing tools are provided.

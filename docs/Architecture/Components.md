@@ -12,10 +12,10 @@ If you like what you see give us a **Star** on one of these two sites!
 
 * **[Java](https://github.com/apache/incubator-datasketches-java)** (Versioned, Apache Released) This is the original and the most comprehensive collection of sketch algorithms. It has a dependence on the Memory component and the Java Adaptors have a dependence on this component. 
 
-* **[C++/Python](https://github.com/apache/incubator-datasketches-cpp)** (Versioned, Apache Released) This is newer and provides most of the major algorithms available in Java.  Our C++ adaptors have a dependence on this component.  The Pybind adaptors for Python are included here for all the C++ sketches.
+* **[C++/Python](https://github.com/apache/incubator-datasketches-cpp)** (Versioned, Apache Released) This is newer and provides most of the major algorithms available in Java.  Our C++ adaptors have a dependence on this component.  The Pybind adaptors for Python are included for all the C++ sketches.
 
 ## Adapters
-Apapters integrate the core components into the aggregation APIs of specific data processing systems. Some of these adapters are available as part of the library, other adapters may be directly integrated into the specific data processing system.
+Apapters integrate the core components into the aggregation APIs of specific data processing systems. Some of these adapters are available as part of the library, other adapters are directly integrated into the target data processing application.
 
 ### Java Adaptors
 * **[Apache Hive](https://github.com/apache/incubator-datasketches-hive)** (Versioned, Apache Released)
@@ -34,7 +34,7 @@ them available to the PostgreSQL database users. PostgreSQL users should downloa
 ## Other Components
 * **[Memory](https://github.com/apache/incubator-datasketches-memory):** (Versioned, Apache Released) This is a low-level library that enables fast access to off-heap memory for Java.
 * **[Characterization](https://github.com/apache/incubator-datasketches-characterization):** This is a collection of Java and C++ code that we use for long-running studies of accuracy and speed performance over many different parameters. Feel free to run these tests to reproduce many of the graphs and charts you see on our website.
-* **[Vector (Experimental)](https://github.com/apache/incubator-datasketches-vector):** This component implements the [Frequent Directions Algorithm](https://datasketches.apache.org/docs/Community/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.
+* **[Vector (Experimental)](https://github.com/apache/incubator-datasketches-vector):** This component implements the [Frequent Directions Algorithm](/docs/Community/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.
 * **[Website](https://github.com/apache/incubator-datasketches-website):** This repository is the home of our website and is constantly being updated with new material.
 
 

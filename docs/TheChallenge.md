@@ -116,7 +116,7 @@ Processing the continuous real-time stream from the edge web servers is possible
 
 ### Big Win #7: Resource Utilization and Cost
 
-It has been our experience at Yahoo, that a good implementation of these large analysis systems using sketches reduces the overall cost of the system considerably. It is difficult to quote exact numbers as your mileage will vary as it is system and data dependent.
+It has been our experience at Yahoo/VM, that a good implementation of these large analysis systems using sketches reduces the overall cost of the system considerably. It is difficult to quote exact numbers as your mileage will vary as it is system and data dependent.
 
 
 

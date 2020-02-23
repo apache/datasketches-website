@@ -22,7 +22,7 @@ layout: doc_page
 ## Downloads
 
 ### Download Zip Files
-Choose the most recent release version from 
+Choose the most recent release version from one of these mirrors:
 [incubator-datasketches-xxx](https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches).
 
 ### Download Java Jar Files
