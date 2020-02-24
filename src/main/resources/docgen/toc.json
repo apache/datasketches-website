@@ -8,10 +8,13 @@
         {"class":"Doc",  "desc" : "Sketch Elements",              "dir" : "", "file": "SketchElements" },
         
         {"class":"Doc",  "desc" : "Large Scale Computing",        "dir" : "", "file": "LargeScale" },
+        {"class":"Doc",  "desc" : "Overview Slide Deck",          "dir" : "", "file": "DataSketches_deck", "pdf":"true" },
+        {"class":"Doc",  "desc" : "Who Uses",                     "dir" : "", "file": "WhoUses" },
 
-        { "class":"Dropdown", "desc" : "Architecture", "array":
+        { "class":"Dropdown", "desc" : "Architecture & Design", "array":
           [
-            {"class":"Doc",  "desc" : "Key Features",                 "dir" : "Architecture", "file": "KeyFeatures" },
+            {"class":"Doc",  "desc" : "Key Features",            "dir" : "Architecture", "file": "KeyFeatures" },
+            {"class":"Doc",  "desc" : "Sketch Feature Matrix",   "dir" : "Architecture", "file": "FeatureMatrix" },
             {"class":"Doc",  "desc" : "Components",              "dir" : "Architecture", "file": "Components" },
             {"class":"Doc",  "desc" : "Sketches by Component",   "dir" : "Architecture", "file": "SketchesByComponent" },
             {"class":"Doc",  "desc" : "Sketch Criteria",         "dir" : "Architecture", "file": "SketchCriteria" },
@@ -19,7 +22,6 @@
             {"class":"Doc",  "desc" : "Notes on Concurrency",         "dir" : "Architecture", "file": "Concurrency" },
           ]
         },
-        {"class":"Doc",  "desc" : "Overview Slide Deck",          "dir" : "", "file": "DataSketches_deck", "pdf":"true" },
       ]
     },
     { "class":"Dropdown", "desc" : "Community", "array":
@@ -230,17 +232,6 @@
       ]
     },
 
-    { "class":"Dropdown", "desc" : "Command Line", "array":
-      [
-        {"class":"Doc",  "desc" : "Creating Command Line Executables",  "dir" : "CommandLine", "file": "CommandLine" },
-      ]
-    },
-
-    { "class":"Dropdown", "desc" : "Who Uses", "array":
-      [
-        {"class":"Doc",  "desc" : "Who Uses",                           "dir" : "",            "file": "WhoUses" },
-      ]
-    },
   ]
 }
 
