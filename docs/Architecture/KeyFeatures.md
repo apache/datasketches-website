@@ -19,11 +19,13 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-<h2>Key Features</h2>
+## Key Features
 
-<h3>Common Sketch Properties</h3>
+### [Sketch Features Matrix]({{site.docs_dir}}/Architecture/SketchFeaturesMatrix.html)
 
-  * [Sketch Criteria]({{site.docs_dir}}/Architecture/SketchCriteria.html) for all sketches in the library.
+### Common Sketch Properties
+
+  * Please refer to the [Sketch Criteria]({{site.docs_dir}}/Architecture/SketchCriteria.html) for the criteria for sketches to be included in the library.
   * Query results are <b>approximate</b> but within well defined error bounds that are user 
   configurable by trading off sketch size with accuracy.
   * Designed for <a href="{{site.docs_dir}}/LargeScale.html">Large-scale</a> computing environments 
@@ -33,13 +35,13 @@ layout: doc_page
 <a href="https://hive.apache.org/">Hive</a>,
 <a href="https://druid.io">Druid</a>,
 <a href="https://spark.apache.org">Spark</a>), 
-and are heavily used within Yahoo.
+and are heavily used within Yahoo / Verizon-Media.
   * <b>Maven deployable</b> and registered with 
 <a href="https://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>.
   * Comprehensive <b>unit tests</b> and testing tools are provided.
   * Extensive documentation with the systems developer in mind.
 
-<h3>Built-In, General Purpose Functions</h3>
+### Built-In, General Purpose Functions
 
   * General purpose <a href="{{site.docs_dir}}/Memory/MemoryPackage.html">Memory Package</a> for managing data off the Java Heap. 
 This enables systems designers the ability to manage their own large data heaps with 
@@ -48,7 +50,7 @@ its garbage collection.
   * General purpose implementaion of Austin Appleby's 128-bit MurmurHash3 algorithm, 
   with a number of useful extensions.
 
-<h3>Robust, High Quality Implementations.</h3>
+### Robust, High Quality Implementations.
 
   * Extensive test code leveraging <a href="https://testng.org">TestNG</a>.
   * Speed and accuracy performance characterization testing code 
@@ -63,17 +65,16 @@ its garbage collection.
 <a href="https://www.oracle.com/technetwork/java/index.html">Java JDK8</a> standards.
 * Suitable for production environments.
 
-<h3>Opportunities to Extend</h3>
+### Opportunities to Extend
 
 * There is ample opportunity for interested parties to contribute additional algorithms in this exciting area.
 
 
+## Key Algorithms
 
-<h2>Key Algorithms</h2>
+### Count Distinct / Count Unique
 
-<h3>Count Distinct / Count Unique</h3>
-
-<h4>Solves Computational Challenges Associated with Unique Identifiers</h4>
+#### Solves Computational Challenges Associated with Unique Identifiers
 
   * <b>Estimating cardinality</b> of a stream with many duplicates
   * Performing <a href="{{site.docs_dir}}/Theta/ThetaSketchSetOps.html">set operations</a> (e.g., Union, Intersection, 
@@ -84,17 +85,17 @@ its garbage collection.
     for operation on the java heap or off-heap.
     * <a href="{{site.docs_dir}}/HLL/HLL.html">The Hyper-Log Log algorithms</a> when sketch size is of utmost concern.
   
-<h3>Quantiles</h3>
+### Quantiles
 
   * Get normal or inverse PDFs or CDFs of the distributions of any numeric value from your raw data in a 
   single pass.
   * Well defined error bounds on the result.
   
-<h3>Frequent Items</h3>
+### Frequent Items
 
   * Get the most frequent items from a stream of items.
   
-<h3>Tuple Sketch</h3>
+### Tuple Sketch
 
   * Associative sketches that are useful for performing approximate join operations and 
   extracting other kinds of behavior associated with unique identifiers.

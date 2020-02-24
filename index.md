@@ -4,6 +4,7 @@ title: DataSketches
 layout: html_page
 id: home
 ---
+<!-- Start /index.md -->
 <!--
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
@@ -23,7 +24,6 @@ id: home
     under the License.
 -->
 
-<!-- Start index.md -->
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/header.css">
 
@@ -37,13 +37,15 @@ id: home
         <a href="https://en.wikipedia.org/wiki/Stochastic" style="color: #EDE379"><i>stochastic</i></a> 
         <a href="https://en.wikipedia.org/wiki/Streaming_algorithm" style="color: #EDE379"><i>streaming algorithms</i></a></p>
       <!--<p class="lead" style="font-size: 16px; line-height: 1.0; margin-bottom: 15px"><i>"Excellence in theoretically informed algorithm engineering" -- Graham Cormode</i></p> -->
+      <!--
       <p>
         <a class="btn btn-lg btn-outline-inverse" href="overview.html"><span class="fa fa-info-circle"></span> Overview</a>
         <a class="btn btn-lg btn-outline-inverse" href="/docs/Community/Downloads.html"><span class="fa fa-download"></span> Download</a>
         <a class="btn btn-lg btn-outline-inverse" href="https://github.com/apache?utf8=%E2%9C%93&q=datasketches"><span class="fa fa-github"></span> GitHub</a>
         <a class="btn btn-lg btn-outline-inverse" href="/docs/Community/Research.html"><span class="fa fa-paper-plane"></span> Research</a>
-        <a class="btn btn-lg btn-outline-inverse" href="https://lists.apache.org/list.html?users@datasketches.apache.org"><span class="fa fa-comment"></span> Contact Us</a>
+        <a class="btn btn-lg btn-outline-inverse" href="/docs/Community/index.html" style="padding-top: 5px; padding-bottom: 0px; padding-left: 11.64px; padding-right: 12px;"><img class="ds-small-man" src="/img/datasketches-ManWhite.svg"/>Community</a>
       </p>
+      -->
     </div>
   </div>
   </div>
@@ -57,7 +59,7 @@ id: home
 
 <p>If approximate results are acceptable, there is a class of specialized algorithms, called streaming algorithms, or <a href="/docs/SketchOrigins.html">sketches</a> that can produce results orders-of magnitude faster and with mathematically proven error bounds. For interactive queries there may not be other viable alternatives, and in the case of real-time analysis, sketches are the only known solution.</p>
 
-<p>For any system that needs to extract useful information from big data these sketches are a required toolkit that should be tightly integrated into their analysis capabilities. This technology has helped Yahoo successfully reduce data processing times from days to hours or minutes on a number of its internal platforms.</p>
+<p>For any system that needs to extract useful information from big data these sketches are a required toolkit that should be tightly integrated into their analysis capabilities. This technology has helped Yahoo (Verizon Media) successfully reduce data processing times from days to hours or minutes on a number of its internal platforms.</p>
 
 <p>This site is dedicated to providing key sketch algorithms of production quality. Contributions are welcome from those in the big data community interested in further development of this science and art.</p>
     </div>
@@ -82,8 +84,9 @@ id: home
       </a>
       <p class="text-justify">This library has been specifically designed for big data systems. 
       Included are adaptors for Hadoop Pig and Hive, which also can be used as examples for other systems, 
-      and many other capabilities typically required in big data analysis systems. 
-      For example, a Memory package for managing large off-heap memory data structures.</p>
+      and many other capabilities typically required in big data analysis systems, such as compatible
+      binary representations across languages (Java, C++, Python) and platforms.
+      </p>
     </div>
 
     <div class="col-md-4">
@@ -100,6 +103,4 @@ id: home
     </div>
   </div>
 </div>
-
-
-<!-- End index.md -->
+<!-- End /index.md -->

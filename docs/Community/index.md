@@ -20,9 +20,6 @@ There are many ways that are available for our community to communicate with eac
 <br/><br/>
 * **[GitHub Components]({{site.docs_dir}}/Architecture/Components.html):** Our library is made up of components that are partitioned into GitHub repositories. If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository.
 
-## Downloads
-* [Downloads]({{site.docs_dir}}/Community/Downloads.html)
-
 ## Contributing
 
 We are always open to contributions from our community.  Contributions can be of many forms: documentation, testing, science as well as bug fixes, code enhancements, code reviews, feature suggestions, usability feedback, etc. Contributions usually take the form of a Pull Request (PR), but if you wish to contribute and not sure how, please contact us on our [dev]({{page.dev}}) list.  

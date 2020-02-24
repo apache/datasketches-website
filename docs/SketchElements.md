@@ -60,6 +60,3 @@ The sketch only needs to see each item in the stream once.
 be merged without losing accuracy.
 * Approximate. As an example, for unique count sketches the relative error bounds 
 are a function of the configured size of the sketch.
-
-With this background, let's examine some of the 
-<a href="{{site.docs_dir}}/Architecture/KeyFeatures.html">Key Features</a> of the DataSketches library.

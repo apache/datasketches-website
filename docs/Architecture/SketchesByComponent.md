@@ -19,8 +19,8 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-# Sketches by Component
-
+# Sketches by [Component Repository](https://github.com/apache?utf8=%E2%9C%93&q=datasketches)
+ 
 The DataSketches Library is organized into the following repository groups:
 
 ## Java
@@ -29,7 +29,7 @@ The DataSketches Library is organized into the following repository groups:
 This repository has the core-java sketching classes, which are leveraged by some of the other repositories.   
 This repository has no external dependencies outside of the DataSketches/memory repository, Java and TestNG for unit tests. 
 This code is versioned and the latest release can be obtained from
-<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/java">incubator-datasketches-java<a/>.
+<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/java">incubator-datasketches-java</a>.
 
 <b>High-level Repositories Structure</b>
 
@@ -53,7 +53,7 @@ org.apache.datasketches.tuple.Strings | A Tuple sketch with a Summary of an arra
 
 ### incubator-datasketches-memory
 This code is versioned and the latest release can be obtained from
-<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/memory">incubator-datasketches-memory<a/>.
+<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/memory">incubator-datasketches-memory</a>.
 
 Memory Packages                | Package Description
 -------------------------------|---------------------
@@ -65,7 +65,7 @@ This repository contains Hive UDFs and UDAFs for use within Hadoop grid enviornm
 This code has dependencies on sketches-core as well as Hadoop and Hive. 
 Users of this code are advised to use Maven to bring in all the required dependencies.
 This code is versioned and the latest release can be obtained from
-<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/hive">incubator-datasketches-hive<a/>.
+<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/hive">incubator-datasketches-hive</a>.
 
 Sketches-hive Packages               | Package Description
 -------------------------------------|---------------------
@@ -82,7 +82,7 @@ This repository contains Pig User Defined Functions (UDF) for use within Hadoop 
 This code has dependencies on sketches-core as well as Hadoop and Pig. 
 Users of this code are advised to use Maven to bring in all the required dependencies.
 This code is versioned and the latest release can be obtained from
-<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/pig">incubator-datasketches-pig<a/>.
+<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/pig">incubator-datasketches-pig</a>.
 
 Sketches-pig Packages              | Package Description
 -----------------------------------|---------------------
@@ -124,7 +124,7 @@ org.apache.datasketches.characterization.uniquecount | Base Profiles for Unique 
 
 
 ### incubator-datasketches-vector
-This component implements the [Frequent Directions Algorithm](https://datasketches.apache.org/docs/Community/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.
+This component implements the [Frequent Directions Algorithm](/docs/Community/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.
 
 
 ## C++ and Python
