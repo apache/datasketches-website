@@ -59,18 +59,23 @@
   background-size: 300px 300px;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url('/img/datasketches_VerticalWhite.svg');
+  background-image: url('/img/datasketches-VerticalWhite.svg');
 }
 
-.y-bootlogo {
-  display: inline-block; 
+.ds-small-man {
+  width: 35.99px;
+  height: 50px;
+}
+
+.ds-small-h-logo {
+  display: block;
   margin: 0 auto;
-  width: 100px;
-  height: 35px;
-  background-size: 100px 35px;
+  width: 117.51px;
+  height: 50px;
+  background-size: 117.51px 50px;
   background-repeat: no-repeat;
-  background-position: 0px 6px;
-  background-image: url('/img/Yahoo_white_small.png');
+  background-position: center;
+  background-image: url('/img/datasketches-HorizontalWhite.svg');
 }
 
 .ds-booticon {
@@ -176,9 +181,10 @@ a:hover, a:focus {
 }
 
 .apache-logo {
-  height: 20px;
+  height: 50px;
   margin-right: 5px;
 }
+
 .dropdown:hover .dropdown-menu {
   display: block;
   margin-top: 0; // remove the gap so it doesn't close

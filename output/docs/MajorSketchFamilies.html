@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-  <!-- Start site_head.html include-->
+  <!-- Start _include/site_head.html -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -26,17 +26,16 @@
 <link rel="stylesheet" href="/css/docs.css">
 
 
-
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
 </script>
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!-- End site_head.html include-->
+<!-- End _include/site_head.html -->
 
 </head>
 
 <body>
-  <!-- Start page_header.html include -->
+  <!-- Start _include/page_header.html -->
 <div class="navbar navbar-inverse navbar-static-top ds-nav">
   <div class="container">
     <div class="navbar-header">
@@ -46,9 +45,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <!-- navbar-brand: https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css -->
-      <!-- /css/main.css:57:.logo -->
-      <a class="navbar-brand logo" href="/">DataSketches</a>
+      <a href="/" style="padding-top: 0px; padding-bottom: 0px;">
+        <span class="ds-small-h-logo"></span></a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
@@ -61,7 +59,7 @@
             <span class="fa fa-download"></span> DOWNLOAD</a>
         </li>
         <li>
-          <a href="https://github.com/apache?utf8=%E2%9C%93&q=datasketches&type=&language=">
+          <a href="/docs/Architecture/Components.html">
             <span class="fa fa-github"></span> GITHUB</a>
         </li>
         <li>
@@ -69,12 +67,12 @@
             <span class="fa fa-paper-plane"></span> RESEARCH</a>
         </li>
         <li>
-          <a href="https://lists.apache.org/list.html?users@datasketches.apache.org">
-            <span class="fa fa-comment"></span> FORUM</a>
+          <a href="/docs/Community" style="padding-top: 0; padding-bottom: 0;">
+            <img class="ds-small-man" src="/img/datasketches-ManWhite.svg"/>COMMUNITY</a>
         </li>
         <ul class="nav navbar-nav navbar-right ds-nav">
-          <li class="dropdown ds-nav">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="apache-logo" src="https://www.apache.org/foundation/press/kit/feather.svg"/>Apache <span class="caret"></span></a>
+          <li class="dropdown ds-nav" >
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-top: 0; padding-bottom: 0;"><img class="apache-logo" src="/img/feather.svg"/>Apache <span class="caret"></span></a>
             <ul class="dropdown-menu ds-nav">
               <li><a href="https://www.apache.org/" target="_blank">Foundation</a></li>
               <li><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></li>
@@ -89,7 +87,7 @@
     </div>
   </div>
 </div>
-<!-- End page_header.html include -->
+<!-- End _include/page_header.html -->
 
 
   <div class="ds-header">
@@ -122,19 +120,254 @@
     <li><a href="/docs/SketchOrigins.html">Sketch Origins</a></li>
     <li><a href="/docs/SketchElements.html">Sketch Elements</a></li>
     <li><a href="/docs/LargeScale.html">Large Scale Computing</a></li>
-
-    <p id="architecture">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_architecture">Architecture</a>
-    </p>
-    <div class="collapse" id="collapse_architecture">
-      <li><a href="/docs/Architecture/KeyFeatures.html">Key Features</a></li>
-      <li><a href="/docs/Architecture/Components.html">Components</a></li>
-      <li><a href="/docs/Architecture/SketchesByComponent.html">Sketches by Component</a></li>
-      <li><a href="/docs/Architecture/SketchCriteria.html">Sketch Criteria</a></li>
-      <li><a href="/docs/Architecture/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
-      <li><a href="/docs/Architecture/Concurrency.html">Notes on Concurrency</a></li>
-    </div>
     <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">Overview Slide Deck</a></li>
+    <li><a href="/docs/WhoUses.html">Who Uses</a></li>
+  </div>
+
+  <p id="architecture-and-design">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_architecture_and_design">Architecture And Design</a>
+  </p>
+  <div class="collapse" id="collapse_architecture_and_design">
+    <li><a href="/docs/Architecture/KeyFeatures.html">Key Features</a></li>
+    <li><a href="/docs/Architecture/SketchFeaturesMatrix.html">Sketch Features Matrix</a></li>
+    <li><a href="/docs/Architecture/Components.html">Components</a></li>
+    <li><a href="/docs/Architecture/SketchesByComponent.html">Sketches by Component</a></li>
+    <li><a href="/docs/Architecture/SketchCriteria.html">Sketch Criteria</a></li>
+
+    <p id="memory-package">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_memory_package">Memory Package</a>
+    </p>
+    <div class="collapse" id="collapse_memory_package">
+      <li><a href="/docs/Memory/MemoryPackage.html">Memory Package</a></li>
+      <li><a href="/docs/Memory/MemoryPerformance.html">Memory Package Performance</a></li>
+    </div>
+    <li><a href="/docs/Architecture/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
+    <li><a href="/docs/Architecture/Concurrency.html">Notes on Concurrency</a></li>
+  </div>
+
+  <p id="sketch-families">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_sketch_families">Sketch Families</a>
+  </p>
+  <div class="collapse" id="collapse_sketch_families">
+
+    <p id="distinct-counting">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_distinct_counting">Distinct Counting</a>
+    </p>
+    <div class="collapse" id="collapse_distinct_counting">
+      <li><a href="/docs/DistinctCountFeaturesMatrix.html">Features Matrix</a></li>
+      <li><a href="/docs/DistinctCountMeritComparisons.html">Figures-of-Merit Comparison</a></li>
+
+      <p id="hyperloglog-sketches">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hyperloglog_sketches">HyperLogLog Sketches</a>
+      </p>
+      <div class="collapse" id="collapse_hyperloglog_sketches">
+        <li><a href="/docs/HLL/HLL.html">HLL Sketch</a></li>
+        <li><a href="/docs/HLL/HllMap.html">HLL Map Sketch</a></li>
+
+        <p id="hll-examples">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_examples">HLL Examples</a>
+        </p>
+        <div class="collapse" id="collapse_hll_examples">
+          <li><a href="/docs/HLL/HllJavaExample.html">HLL Sketch Java Example</a></li>
+          <li><a href="/docs/HLL/HllPigUDFs.html">HLL Sketch Pig UDFs</a></li>
+          <li><a href="/docs/HLL/HllHiveUDFs.html">HLL Sketch Hive UDFs</a></li>
+          <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+        </div>
+
+        <p id="hll-studies">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_studies">HLL Studies</a>
+        </p>
+        <div class="collapse" id="collapse_hll_studies">
+          <li><a href="/docs/HLL/Hll_vs_CS_Hllpp.html">HLL vs Clearspring HLL++</a></li>
+          <li><a href="/docs/HLL/HllSketchVsDruidHyperLogLogCollector.html">HLL Sketch vs Druid HyperLogLogCollector</a></li>
+        </div>
+      </div>
+
+      <p id="theta-sketches">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketches">Theta Sketches</a>
+      </p>
+      <div class="collapse" id="collapse_theta_sketches">
+        <li><a href="/docs/Theta/ThetaSketchFramework.html">Theta Sketch Framework</a></li>
+
+        <p id="theta-examples">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_examples">Theta Examples</a>
+        </p>
+        <div class="collapse" id="collapse_theta_examples">
+          <li><a href="/docs/Theta/ConcurrentThetaSketch.html">Concurrent Theta Sketch</a></li>
+          <li><a href="/docs/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
+          <li><a href="/docs/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
+          <li><a href="/docs/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
+          <li><a href="/docs/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
+          <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+        </div>
+
+        <p id="kmv-tutorial">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_kmv_tutorial">KMV Tutorial</a>
+        </p>
+        <div class="collapse" id="collapse_kmv_tutorial">
+          <li><a href="/docs/Theta/InverseEstimate.html">The Inverse Estimate</a></li>
+          <li><a href="/docs/Theta/KMVempty.html">Empty Sketch</a></li>
+          <li><a href="/docs/Theta/KMVfirstEst.html">First Estimator</a></li>
+          <li><a href="/docs/Theta/KMVbetterEst.html">Better Estimator</a></li>
+          <li><a href="/docs/Theta/KMVrejection.html">Rejection Rules</a></li>
+          <li><a href="/docs/Theta/KMVupdateVkth.html">Update V(kth) Rule</a></li>
+        </div>
+
+        <p id="set-operations-and-p-sampling">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_set_operations_and_p-sampling">Set Operations and P-sampling</a>
+        </p>
+        <div class="collapse" id="collapse_set_operations_and_p-sampling">
+          <li><a href="/docs/Theta/ThetaSketchSetOps.html">Set Operations</a></li>
+          <li><a href="/docs/Theta/ThetaPSampling.html"><i>p</i>-Sampling</a></li>
+        </div>
+
+        <p id="accuracy">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_accuracy">Accuracy</a>
+        </p>
+        <div class="collapse" id="collapse_accuracy">
+          <li><a href="/docs/Theta/ThetaAccuracy.html">Basic Accuracy</a></li>
+          <li><a href="/docs/Theta/ThetaAccuracyPlots.html">Accuracy Plots</a></li>
+          <li><a href="/docs/Theta/ThetaErrorTable.html">Relative Error Table</a></li>
+          <li><a href="/docs/Theta/ThetaSketchSetOpsAccuracy.html">SetOp Accuracy</a></li>
+          <li><a href="/docs/Theta/AccuracyOfDifferentKUnions.html">Unions With Different k</a></li>
+        </div>
+
+        <p id="size">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_size">Size</a>
+        </p>
+        <div class="collapse" id="collapse_size">
+          <li><a href="/docs/Theta/ThetaSize.html">Theta Sketch Size</a></li>
+        </div>
+
+        <p id="speed">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_speed">Speed</a>
+        </p>
+        <div class="collapse" id="collapse_speed">
+          <li><a href="/docs/Theta/ThetaUpdateSpeed.html">Update Speed</a></li>
+          <li><a href="/docs/Theta/ThetaMergeSpeed.html">Merge Speed</a></li>
+        </div>
+
+        <p id="theta-sketch-theory">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketch_theory">Theta Sketch Theory</a>
+        </p>
+        <div class="collapse" id="collapse_theta_sketch_theory">
+          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)</a></li>
+          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">Sketch Equations (PDF)</a></li>
+          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches.pdf">DataSketches (PDF)</a></li>
+          <li><a href="/docs/Theta/ThetaConfidenceIntervals.html">Confidence Intervals Notes</a></li>
+          <li><a href="/docs/Theta/ThetaMergingAlgorithm.html">Merging Algorithm Notes</a></li>
+          <li><a href="/docs/Theta/ThetaReferences.html">Theta References</a></li>
+        </div>
+      </div>
+
+      <p id="tuple-sketches">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_sketches">Tuple Sketches</a>
+      </p>
+      <div class="collapse" id="collapse_tuple_sketches">
+        <li><a href="/docs/Tuple/TupleOverview.html">Tuple Overview</a></li>
+
+        <p id="tuple-examples">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_examples">Tuple Examples</a>
+        </p>
+        <div class="collapse" id="collapse_tuple_examples">
+          <li><a href="/docs/Tuple/TupleJavaExample.html">Tuple Java Example</a></li>
+          <li><a href="/docs/Tuple/TupleEngagementExample.html">Tuple Engagement Example</a></li>
+          <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
+          <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Pig UDFs</a></li>
+          <li><a href="/docs/Tuple/TupleHiveUDFs.html">Tuple Hive UDFs</a></li>
+          <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+        </div>
+      </div>
+    </div>
+
+    <p id="most-frequent">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent">Most Frequent</a>
+    </p>
+    <div class="collapse" id="collapse_most_frequent">
+      <li><a href="/docs/Frequency/FrequencySketchesOverview.html">Frequency Sketches Overview</a></li>
+
+      <p id="frequent-item-sketches">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_item_sketches">Frequent Item Sketches</a>
+      </p>
+      <div class="collapse" id="collapse_frequent_item_sketches">
+        <li><a href="/docs/Frequency/FrequentItemsOverview.html">Frequent Items Overview</a></li>
+        <li><a href="/docs/Frequency/FrequentItemsErrorTable.html">Frequent Items Error Table</a></li>
+        <li><a href="/docs/Frequency/FrequentItemsReferences.html">Frequent Items References</a></li>
+
+        <p id="most-frequent-examples">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent_examples">Most Frequent Examples</a>
+        </p>
+        <div class="collapse" id="collapse_most_frequent_examples">
+          <li><a href="/docs/Frequency/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
+          <li><a href="/docs/Frequency/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
+          <li><a href="/docs/Frequency/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
+          <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+        </div>
+      </div>
+
+      <p id="frequent-distinct-sketches">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_distinct_sketches">Frequent Distinct Sketches</a>
+      </p>
+      <div class="collapse" id="collapse_frequent_distinct_sketches">
+        <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
+      </div>
+    </div>
+
+    <p id="quantiles-and-histograms">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_and_histograms">
+      <li><a href="/docs/Quantiles/QuantilesOverview.html">Quantiles Overview</a></li>
+      <li><a href="/docs/Quantiles/QuantilesAccuracy.html">Quantiles Accuracy and Size</a></li>
+
+      <p id="quantiles-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_examples">Quantiles Examples</a>
+      </p>
+      <div class="collapse" id="collapse_quantiles_examples">
+        <li><a href="/docs/Quantiles/QuantilesJavaExample.html">Quantiles Sketch Java Example</a></li>
+        <li><a href="/docs/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
+        <li><a href="/docs/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+
+      <p id="quantiles-studies">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
+      </p>
+      <div class="collapse" id="collapse_quantiles_studies">
+        <li><a href="/docs/Quantiles/KLLSketch.html">New KLL sketch and comparison with DoublesSketch</a></li>
+        <li><a href="/docs/Quantiles/KllSketchVsTDigest.html">KLL sketch vs t-digest</a></li>
+        <li><a href="/docs/Quantiles/DruidApproxHistogramStudy.html">Druid Approximate Histogram</a></li>
+        <li><a href="/docs/Quantiles/MomentsSketchStudy.html">Moments Sketch Study</a></li>
+        <li><a href="/docs/Quantiles/QuantilesStreamAStudy.html">Quantiles StreamA Study</a></li>
+      </div>
+
+      <p id="quantiles-sketch-theory">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_sketch_theory">Quantiles Sketch Theory</a>
+      </p>
+      <div class="collapse" id="collapse_quantiles_sketch_theory">
+        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">Optimal Quantile Approximation in Streams</a></li>
+        <li><a href="/docs/Quantiles/QuantilesReferences.html">Quantiles References</a></li>
+      </div>
+    </div>
+
+    <p id="sampling">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling</a>
+    </p>
+    <div class="collapse" id="collapse_sampling">
+      <li><a href="/docs/Sampling/ReservoirSampling.html">Reservoir Sampling</a></li>
+      <li><a href="/docs/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
+      <li><a href="/docs/Sampling/VarOptSampling.html">VarOpt Sampling</a></li>
+
+      <p id="sampling-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling_examples">Sampling Examples</a>
+      </p>
+      <div class="collapse" id="collapse_sampling_examples">
+        <li><a href="/docs/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
+        <li><a href="/docs/Sampling/ReservoirSamplingPigUDFs.html">Reservoir Sampling Pig UDFs</a></li>
+        <li><a href="/docs/Sampling/VarOptSamplingJava.html">VarOpt Sampling Java Example</a></li>
+        <li><a href="/docs/Sampling/VarOptPigUDFs.html">VarOpt Sampling Pig UDFs</a></li>
+      </div>
+    </div>
   </div>
 
   <p id="community">
@@ -149,247 +382,6 @@
   </p>
   <div class="collapse" id="collapse_research">
     <li><a href="/docs/Community/Research.html">Research</a></li>
-  </div>
-
-  <p id="distinct-counting">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_distinct_counting">Distinct Counting</a>
-  </p>
-  <div class="collapse" id="collapse_distinct_counting">
-    <li><a href="/docs/DistinctCountCapabilitiesMatrix.html">Capabilities Matrix</a></li>
-
-    <p id="hyperloglog-sketches">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_hyperloglog_sketches">HyperLogLog Sketches</a>
-    </p>
-    <div class="collapse" id="collapse_hyperloglog_sketches">
-      <li><a href="/docs/HLL/HLL.html">HLL Sketch</a></li>
-      <li><a href="/docs/HLL/HllMap.html">HLL Map Sketch</a></li>
-
-      <p id="hll-examples">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_examples">HLL Examples</a>
-      </p>
-      <div class="collapse" id="collapse_hll_examples">
-        <li><a href="/docs/HLL/HllJavaExample.html">HLL Sketch Java Example</a></li>
-        <li><a href="/docs/HLL/HllPigUDFs.html">HLL Sketch Pig UDFs</a></li>
-        <li><a href="/docs/HLL/HllHiveUDFs.html">HLL Sketch Hive UDFs</a></li>
-        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
-      </div>
-
-      <p id="hll-studies">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_studies">HLL Studies</a>
-      </p>
-      <div class="collapse" id="collapse_hll_studies">
-        <li><a href="/docs/HLL/Hll_vs_G_Hllpp.html">HLL vs Google HLL++</a></li>
-        <li><a href="/docs/HLL/Hll_vs_CS_Hllpp.html">HLL vs Clearspring HLL++</a></li>
-        <li><a href="/docs/HLL/HllSketchVsDruidHyperLogLogCollector.html">HLL Sketch vs Druid HyperLogLogCollector</a></li>
-      </div>
-    </div>
-
-    <p id="theta-sketches">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketches">Theta Sketches</a>
-    </p>
-    <div class="collapse" id="collapse_theta_sketches">
-      <li><a href="/docs/Theta/ThetaSketchFramework.html">Theta Sketch Framework</a></li>
-
-      <p id="theta-examples">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_examples">Theta Examples</a>
-      </p>
-      <div class="collapse" id="collapse_theta_examples">
-        <li><a href="/docs/Theta/ConcurrentThetaSketch.html">Concurrent Theta Sketch</a></li>
-        <li><a href="/docs/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
-        <li><a href="/docs/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
-        <li><a href="/docs/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
-        <li><a href="/docs/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
-        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
-      </div>
-
-      <p id="kmv-tutorial">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_kmv_tutorial">KMV Tutorial</a>
-      </p>
-      <div class="collapse" id="collapse_kmv_tutorial">
-        <li><a href="/docs/Theta/InverseEstimate.html">The Inverse Estimate</a></li>
-        <li><a href="/docs/Theta/KMVempty.html">Empty Sketch</a></li>
-        <li><a href="/docs/Theta/KMVfirstEst.html">First Estimator</a></li>
-        <li><a href="/docs/Theta/KMVbetterEst.html">Better Estimator</a></li>
-        <li><a href="/docs/Theta/KMVrejection.html">Rejection Rules</a></li>
-        <li><a href="/docs/Theta/KMVupdateVkth.html">Update V(kth) Rule</a></li>
-      </div>
-
-      <p id="set-operations-and-p-sampling">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_set_operations_and_p-sampling">Set Operations and P-sampling</a>
-      </p>
-      <div class="collapse" id="collapse_set_operations_and_p-sampling">
-        <li><a href="/docs/Theta/ThetaSketchSetOps.html">Set Operations</a></li>
-        <li><a href="/docs/Theta/ThetaPSampling.html"><i>p</i>-Sampling</a></li>
-      </div>
-
-      <p id="accuracy">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_accuracy">Accuracy</a>
-      </p>
-      <div class="collapse" id="collapse_accuracy">
-        <li><a href="/docs/Theta/ThetaAccuracy.html">Basic Accuracy</a></li>
-        <li><a href="/docs/Theta/ThetaAccuracyPlots.html">Accuracy Plots</a></li>
-        <li><a href="/docs/Theta/ThetaErrorTable.html">Relative Error Table</a></li>
-        <li><a href="/docs/Theta/ThetaSketchSetOpsAccuracy.html">SetOp Accuracy</a></li>
-        <li><a href="/docs/Theta/AccuracyOfDifferentKUnions.html">Unions With Different k</a></li>
-      </div>
-
-      <p id="size">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_size">Size</a>
-      </p>
-      <div class="collapse" id="collapse_size">
-        <li><a href="/docs/Theta/ThetaSize.html">Theta Sketch Size</a></li>
-      </div>
-
-      <p id="speed">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_speed">Speed</a>
-      </p>
-      <div class="collapse" id="collapse_speed">
-        <li><a href="/docs/Theta/ThetaUpdateSpeed.html">Update Speed</a></li>
-        <li><a href="/docs/Theta/ThetaMergeSpeed.html">Merge Speed</a></li>
-      </div>
-
-      <p id="theta-sketch-theory">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketch_theory">Theta Sketch Theory</a>
-      </p>
-      <div class="collapse" id="collapse_theta_sketch_theory">
-        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)</a></li>
-        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">Sketch Equations (PDF)</a></li>
-        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches.pdf">DataSketches (PDF)</a></li>
-        <li><a href="/docs/Theta/ThetaConfidenceIntervals.html">Confidence Intervals Notes</a></li>
-        <li><a href="/docs/Theta/ThetaMergingAlgorithm.html">Merging Algorithm Notes</a></li>
-        <li><a href="/docs/Theta/ThetaReferences.html">Theta References</a></li>
-      </div>
-    </div>
-
-    <p id="tuple-sketches">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_sketches">Tuple Sketches</a>
-    </p>
-    <div class="collapse" id="collapse_tuple_sketches">
-      <li><a href="/docs/Tuple/TupleOverview.html">Tuple Overview</a></li>
-
-      <p id="tuple-examples">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_examples">Tuple Examples</a>
-      </p>
-      <div class="collapse" id="collapse_tuple_examples">
-        <li><a href="/docs/Tuple/TupleJavaExample.html">Tuple Java Example</a></li>
-        <li><a href="/docs/Tuple/TupleEngagementExample.html">Tuple Engagement Example</a></li>
-        <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
-        <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Pig UDFs</a></li>
-        <li><a href="/docs/Tuple/TupleHiveUDFs.html">Tuple Hive UDFs</a></li>
-        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
-      </div>
-    </div>
-  </div>
-
-  <p id="most-frequent">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent">Most Frequent</a>
-  </p>
-  <div class="collapse" id="collapse_most_frequent">
-    <li><a href="/docs/Frequency/FrequencySketchesOverview.html">Frequency Sketches Overview</a></li>
-
-    <p id="frequent-item-sketches">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_item_sketches">Frequent Item Sketches</a>
-    </p>
-    <div class="collapse" id="collapse_frequent_item_sketches">
-      <li><a href="/docs/Frequency/FrequentItemsOverview.html">Frequent Items Overview</a></li>
-      <li><a href="/docs/Frequency/FrequentItemsErrorTable.html">Frequent Items Error Table</a></li>
-      <li><a href="/docs/Frequency/FrequentItemsReferences.html">Frequent Items References</a></li>
-
-      <p id="most-frequent-examples">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent_examples">Most Frequent Examples</a>
-      </p>
-      <div class="collapse" id="collapse_most_frequent_examples">
-        <li><a href="/docs/Frequency/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
-        <li><a href="/docs/Frequency/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
-        <li><a href="/docs/Frequency/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
-        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
-      </div>
-    </div>
-
-    <p id="frequent-distinct-sketches">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_distinct_sketches">Frequent Distinct Sketches</a>
-    </p>
-    <div class="collapse" id="collapse_frequent_distinct_sketches">
-      <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
-    </div>
-  </div>
-
-  <p id="quantiles-and-histograms">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
-  </p>
-  <div class="collapse" id="collapse_quantiles_and_histograms">
-    <li><a href="/docs/Quantiles/QuantilesOverview.html">Quantiles Overview</a></li>
-    <li><a href="/docs/Quantiles/QuantilesAccuracy.html">Quantiles Accuracy and Size</a></li>
-
-    <p id="quantiles-examples">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_examples">Quantiles Examples</a>
-    </p>
-    <div class="collapse" id="collapse_quantiles_examples">
-      <li><a href="/docs/Quantiles/QuantilesJavaExample.html">Quantiles Sketch Java Example</a></li>
-      <li><a href="/docs/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
-      <li><a href="/docs/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
-      <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
-    </div>
-
-    <p id="quantiles-studies">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
-    </p>
-    <div class="collapse" id="collapse_quantiles_studies">
-      <li><a href="/docs/Quantiles/KLLSketch.html">New KLL sketch and comparison with DoublesSketch</a></li>
-      <li><a href="/docs/Quantiles/KllSketchVsTDigest.html">KLL sketch vs t-digest</a></li>
-      <li><a href="/docs/Quantiles/DruidApproxHistogramStudy.html">Druid Approximate Histogram</a></li>
-      <li><a href="/docs/Quantiles/MomentsSketchStudy.html">Moments Sketch Study</a></li>
-      <li><a href="/docs/Quantiles/QuantilesStreamAStudy.html">Quantiles StreamA Study</a></li>
-    </div>
-
-    <p id="quantiles-sketch-theory">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_sketch_theory">Quantiles Sketch Theory</a>
-    </p>
-    <div class="collapse" id="collapse_quantiles_sketch_theory">
-      <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">Optimal Quantile Approximation in Streams</a></li>
-      <li><a href="/docs/Quantiles/QuantilesReferences.html">Quantiles References</a></li>
-    </div>
-  </div>
-
-  <p id="sampling">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling</a>
-  </p>
-  <div class="collapse" id="collapse_sampling">
-    <li><a href="/docs/Sampling/ReservoirSampling.html">Reservoir Sampling</a></li>
-    <li><a href="/docs/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
-    <li><a href="/docs/Sampling/VarOptSampling.html">VarOpt Sampling</a></li>
-
-    <p id="sampling-examples">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling_examples">Sampling Examples</a>
-    </p>
-    <div class="collapse" id="collapse_sampling_examples">
-      <li><a href="/docs/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
-      <li><a href="/docs/Sampling/ReservoirSamplingPigUDFs.html">Reservoir Sampling Pig UDFs</a></li>
-      <li><a href="/docs/Sampling/VarOptSamplingJava.html">VarOpt Sampling Java Example</a></li>
-      <li><a href="/docs/Sampling/VarOptPigUDFs.html">VarOpt Sampling Pig UDFs</a></li>
-    </div>
-  </div>
-
-  <p id="memory-package">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_memory_package">Memory Package</a>
-  </p>
-  <div class="collapse" id="collapse_memory_package">
-    <li><a href="/docs/Memory/MemoryPackage.html">Memory Package</a></li>
-    <li><a href="/docs/Memory/MemoryPerformance.html">Memory Package Performance</a></li>
-  </div>
-
-  <p id="command-line">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_command_line">Command Line</a>
-  </p>
-  <div class="collapse" id="collapse_command_line">
-    <li><a href="/docs/CommandLine/CommandLine.html">Creating Command Line Executables</a></li>
-  </div>
-
-  <p id="who-uses">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_who_uses">Who Uses</a>
-  </p>
-  <div class="collapse" id="collapse_who_uses">
-    <li><a href="/docs/WhoUses.html">Who Uses</a></li>
   </div>
 </div>
 <script>
@@ -478,52 +470,14 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h1 id="sketch-capability-matrix">Sketch Capability Matrix</h1>
-
-<div>
-<table>
-<tr style="font-weight:bold"><td colspan="2"></td><td colspan="3">Languages</td><td colspan="4">Set Operations</td><td colspan="4">System Integrations</td><td colspan="5">Misc.</td></tr>
-
-<tr style="font-weight:bold"><td>Type</td><td>Sketch</td><td>Java</td><td>C++</td><td>Python</td><td>Union</td><td>Inter-section</td><td>Difference</td><td>Jaccard</td><td>Hive</td><td>Pig</td><td>Druid<sup>1</sup></td><td>Spark<sup>2</sup></td><td>Con-current</td><td>Compact</td><td>Java Generics</td><td>Off-Heap</td><td>Error Bounds</td></tr>
-
-<tr style="font-weight:bold"><td colspan="18">Major Sketches</td></tr>
-<tr><td>Cardinality/FM85</td><td>CpcSketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td></td><td></td><td></td><td>Y</td><td></td><td></td><td>Y</td></tr>
-<tr><td>Cardinality/FM85</td><td>HllSketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td>Y</td><td>Y</td></tr>
-<tr><td>Cardinality/Theta</td><td>Sketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td>Y</td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>Sketch</td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td></tr>
-<tr><td>Quantiles/Cormode</td><td>DoublesSketch</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td>Y</td><td>Y</td></tr>
-<tr><td>Quantiles/Cormode</td><td>ItemsSketch</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td>Y</td><td></td><td>Y</td></tr>
-<tr><td>Quantiles/KLL</td><td>FloatsSketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Frequencies</td><td>LongsSketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Frequencies</td><td>ItemsSketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td>Y</td><td></td><td>Y</td></tr>
-<tr><td>Sampling</td><td>ReservoirLongsSketch</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Sampling</td><td>ReserviorItemsSketch</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td></td><td>Y</td><td></td><td>Y</td></tr>
-<tr><td>Sampling</td><td>VarOptItemsSketch</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td></td><td>Y</td><td></td><td>Y</td></tr>
-
-<tr style="font-weight:bold"><td colspan="18">Specialty Sketches</td></tr>
-
-<tr><td>Cardinality/FM85</td><td>UniqueCountMap</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>FdtSketch</td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>ArrayOfDoublesSketch</td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td>Y</td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>DoubleSketch</td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>IntegerSketch</td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>ArrayOfStringsSketch</td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>EngagementTest<sup>3</sup></td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-</table>
-</div>
-
-<p><sup>1</sup> Integrated into Druid<br />
-<sup>2</sup> Example Code on website
-<sup>3</sup> Example Code in test/…/tuple/aninteger</p>
-
-<hr />
 
 <h1 id="high-level-descriptions">High-Level Descriptions</h1>
+<p>Please see the <a href="/docs/Architecture/SketchFeaturesMatrix.html">Sketch Features Matrix</a> for a detailed comparison of the features of the different sketches in the library.</p>
 
 <h2 id="cardinality-sketches">Cardinality Sketches</h2>
 
 <h3 id="cpc-sketch-estimating-stream-cardinalities-more-efficiently-than-the-famous-hll-sketch">CPC Sketch: Estimating Stream Cardinalities more efficiently than the famous HLL sketch!</h3>
-<p>This sketch was developed by the late Keven Lang, our chief scientist at the time, is an amazing <em>tour de force</em> of scientific design and engineering and has substantially better accuracy / per stored size than the famous HLL sketch. The theory and demonstration of its performance is detailed in Lang’s paper <a href="https://arxiv.org/abs/1708.06839">Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm</a>.  This sketch is available in Java, C++ and Python.</p>
+<p>This sketch was developed by the late Keven J. Lang, our chief scientist at the time. It is an amazing <em>tour de force</em> of scientific design and engineering and has substantially better accuracy / per stored size than the famous HLL sketch. The theory and demonstration of its performance is detailed in Lang’s paper <a href="https://arxiv.org/abs/1708.06839">Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm</a>.</p>
 
 <h3 id="theta-sketches-estimating-stream-expression-cardinalities"><a href="/docs/Theta/ThetaSketchFramework.html">Theta Sketches</a>: Estimating Stream Expression Cardinalities</h3>
 <p>Internet content, search and media companies like Yahoo, Google, Facebook, etc., collect many tens of billions of event records from the many millions of users to their web sites each day.  These events can be classified by many different dimensions, such as the page visited and user location and profile information.  Each event also contains some unique identifiers associated with the user, specific device (cell phone, tablet, or computer) and the web browser used.</p>
@@ -535,12 +489,12 @@
 <p>Computing cardinalities with massive data requires lots of computer resources and time.
 However, if an approximate answer to these problems is acceptable, <a href="/docs/Theta/ThetaSketchFramework.html">Theta Sketches</a> can provide reasonable estimates, in a single pass, orders of magnitude faster, even fast enough for analysis in near-real time.</p>
 
-<p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/theta/Sketch.java">theta/Sketch</a> can operate both on-heap and off-heap, has powerful Union, Intersection, AnotB and Jaccard operators, has a high-performance concurrent form for multi-threaded environments, has both immutable compact, and updatable representations, and is quite fast. It is available in Java, C++ and Python. Because of its flexibility, it is one of the most popular sketches in our library.</p>
+<p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/theta/Sketch.java">theta/Sketch</a> can operate both on-heap and off-heap, has powerful Union, Intersection, AnotB and Jaccard operators, has a high-performance concurrent form for multi-threaded environments, has both immutable compact, and updatable representations, and is quite fast. Because of its flexibility, it is one of the most popular sketches in our library.</p>
 
 <h3 id="tuple-sketches-extending-theta-sketches-to-perform-associative-analysis"><a href="/docs/Tuple/TupleOverview.html">Tuple Sketches</a>: Extending Theta Sketches to Perform Associative Analysis</h3>
-<p>It is often not enough to perform stream expressions on sets of unique identifiers, it is very valuable to be able to associate additive data with these identifiers, such as impression counts, clicks or timestamps.  Tuple Sketches are a natural extension of the Theta sketch and have Java Genric forms, that enable the user do define the sketch with arbitrary “summary” data.  The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/Sketch.java">tuple/Sketch</a> can operate both on-heap and off-heap, includes both Union and Intersection operators, has both immutable compact, and updatable representations. At the current time this sketch is only available in Java.</p>
+<p>It is often not enough to perform stream expressions on sets of unique identifiers, it is very valuable to be able to associate additive data with these identifiers, such as impression counts, clicks or timestamps.  Tuple Sketches are a natural extension of the Theta sketch and have Java Genric forms that enable the user to define the sketch with arbitrary “summary” data.  The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/Sketch.java">tuple/Sketch</a> can operate both on-heap and off-heap, includes both Union and Intersection operators, and has both immutable compact and updatable representations.</p>
 
-<p>The Tuple sketch is effectively infinitely extendable and there are several common variants of the Tuple Sketch, which also serve as examples on how to extend the base classes, that are also in the library, including:</p>
+<p>The Tuple sketch is effectively infinitely extendable and there are several common variants of the Tuple Sketch, which also serve as examples on how to extend the base classes that are also in the library, including:</p>
 
 <ul>
   <li><a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/adouble/DoubleSketch.java">tuple/adouble/DoubleSketch</a> with a single column of <em>double</em> values as the <em>summary</em>.</li>
@@ -550,12 +504,12 @@ However, if an approximate answer to these problems is acceptable, <a href="/doc
 </ul>
 
 <h3 id="hyperloglog-sketches-estimating-stream-cardinalities"><a href="/docs/HLL/HLL.html">HyperLogLog Sketches</a>: Estimating Stream Cardinalities</h3>
-<p>The HyperLogLog (HLL) is a cardinality sketch similar to the above Theta sketches except they are anywhere from 2 to 16 times smaller in size.  The HLL sketches can be Unioned, but set intersection and difference operations are not provided intrinsically, because the resulting error would be quite poor.  If your application only requires cardinality estimation and Unioning and space is at a premium, the HLL sketch provided could be your best choice.</p>
+<p>The HyperLogLog (HLL) is a cardinality sketch similar to the above Theta sketches except they are anywhere from 2 to 16 times smaller in size.  The HLL sketches can be merged via the Union operator, but set intersection and difference operations are not provided intrinsically, because the resulting error would be quite poor.  If your application only requires cardinality estimation and merging and space is at a premium, the HLL or CPC sketches would be your best choice.</p>
 
-<p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/hll/HllSketch.java">hll/HllSketch</a> can operate both on-heap and off-heap, provides the Union operators, and has both immutable compact, and updatable representations. It is available in Java, C++ and Python.</p>
+<p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/hll/HllSketch.java">hll/HllSketch</a> can operate both on-heap and off-heap, provides the Union operators, and has both immutable compact and updatable representations.</p>
 
 <h3 id="hyperloglog-map-sketch-estimating-stream-cardinalities-of-key-value-pairs"><a href="/docs/HLL/HllMap.html">HyperLogLog Map Sketch</a>: Estimating Stream Cardinalities of Key-Value Pairs</h3>
-<p>This is a specially designed sketch that addresses the problem of individually tracking value cardinalities of Key-Value (K,V) pairs in real-time, where the number of keys can be very large, such as IP addresses, or Geo identifiers, etc. Assigning individual sketches to each key would create unnecessary overhead. This sketch streamlines the process with much better space management.  This <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/hllmap/UniqueCountMap.java">hllmap/UniqueCountMap</a> only operates on heap and does not provide Union capabilites.  Since this is effectively a optimized hash-map of HLL sketches, the overall size is a direct function of the number of keys that it has seen it was intended to operate as a stand-alone sketch. This sketch is only available in Java.</p>
+<p>This is a specially designed sketch that addresses the problem of individually tracking value cardinalities of Key-Value (K,V) pairs in real-time, where the number of keys can be very large, such as IP addresses, or Geo identifiers, etc. Assigning individual sketches to each key would create unnecessary overhead. This sketch streamlines the process with much better space management.  This <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/hllmap/UniqueCountMap.java">hllmap/UniqueCountMap</a> only operates on heap and does not provide Union capabilites.  This sketch is effectively a optimized hash-map of HLL sketches. Like other hash-maps, the overall size is a direct function of the number of keys that it has seen. This sketch was designed to operate as a stand-alone sketch.</p>
 
 <h2 id="quantiles-sketches">Quantiles Sketches</h2>
 
@@ -564,32 +518,31 @@ However, if an approximate answer to these problems is acceptable, <a href="/doc
 
 <p><img class="doc-img-full" src="/docs/img/quantiles/TimeSpentHistogram.png" alt="TimeSpentHistogram" /></p>
 
-<p>There are two different families of quantiles sketches, the original <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/quantiles/DoublesSketch.java">quantiles/DoublesSketch</a>, which can be operated either on-heap or off-heap, and is also available in a Java Generic form for arbitrary comparable objects. It is only available in Java.</p>
+<p>There are two different families of quantiles sketches, the original <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/quantiles/DoublesSketch.java">quantiles/DoublesSketch</a>, which can be operated either on-heap or off-heap, and is also available in a Java Generic form for arbitrary comparable objects.</p>
 
-<p>Later we developed the <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/kll/KllFloatsSketch.java">kll/KllFloatsSketch</a>  (Named after its authors), which is also a quantiles sketch, that achieves near optimal small size for a given accuracy. It is only available on-heap. It is available in Java, C++ and Python.</p>
+<p>Later we developed the <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/kll/KllFloatsSketch.java">kll/KllFloatsSketch</a>  (Named after its authors), which is also a quantiles sketch, that achieves near optimal small size for a given accuracy.</p>
 
 <h2 id="frequent-items--heavy-hitters-sketches">Frequent Items / Heavy Hitters Sketches</h2>
 
 <h3 id="frequent-items-sketches-finding-the-heavy-hitter-objects-from-a-stream"><a href="/docs/Frequency/FrequentItemsOverview.html">Frequent Items Sketches</a>: Finding the Heavy Hitter Objects from a Stream</h3>
-<p>It is very useful to be able to scan a stream of objects, such as song titles, and be able to quickly identify those items that occur most frequently.  The term <i>Heavy Hitter</i> is defined to be an item that occurs more frequently than some fractional share of the overall count of items
-in the stream including duplicates.  Suppose you have a stream of 1M song titles, but in that stream there are only 100K song titles that are unique. If any single title consumes more than 10% of the stream elements it is a Heavy Hitter, and the 10% is a threshold parameter we call epsilon.</p>
+<p>It is very useful to be able to scan a stream of objects, such as song titles, and be able to quickly identify those titles that occur most frequently.  The term <i>Heavy Hitter</i> is defined to be an item that occurs more frequently than its fair share of occurrences. This “fair share” is simply the total count of all occurrences of all items divided by the number of distinct items.  Suppose you have a stream of 1M song titles, but in that stream there are only 100K song titles that are unique. If any single title consumes more than 10% of the stream elements it is a Heavy Hitter. The 10% is a threshold parameter we call epsilon.</p>
 
-<p>The accuracy of a Frequent Items Sketch is proportional to the configured size of the sketch, the larger the sketch, the smaller is the epsilon threshold that can detect Heavy Hitters. This sketch is available in two forms, as the <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/frequencies/LongsSketch.java">frequencies/LongsSketch</a> used for processing a stream of tuples {<em>long</em>, weight}, and the <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/frequencies/ItemsSketch.java">frequencies/ItemsSketch</a> used for processing tuples of {<em>T</em>, weight}, where <em>T</em> is arbitrary, uniquely identifyable object. These sketches are aggregating sketches in that the frequency of occurances of an item (or <em>long</em> key), is accumulated as the stream is processed. These sketches are available in Java, C++ and Python.</p>
+<p>The accuracy of a Frequent Items Sketch is proportional to the configured size of the sketch, the larger the sketch, the smaller is the epsilon threshold that can detect Heavy Hitters. This sketch is available in two forms, as the <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/frequencies/LongsSketch.java">frequencies/LongsSketch</a> used for processing a stream of tuples {<em>long</em>, weight}, and the <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/frequencies/ItemsSketch.java">frequencies/ItemsSketch</a> used for processing tuples of {<em>T</em>, weight}, where <em>T</em> is arbitrary, uniquely identifyable object. These sketches are aggregating sketches in that the frequency of occurances of an item (or <em>long</em> key), is accumulated as the stream is processed.</p>
 
 <h3 id="frequent-distinct-tuples-sketch-finding-the-heavy-hitter-tuples-from-a-stream"><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a>: Finding the Heavy Hitter tuples from a Stream.</h3>
 <p>Suppose our data is a stream of pairs {IP address, User ID} and we want to identify the IP addresses that have the most distinct User IDs. Or conversely, we would like to identify the User IDs that have the most distinct IP addresses. This is a common challenge in the analysis of big data and the FDT sketch helps solve this problem using probabilistic techniques.</p>
 
 <p>More generally, given a multiset of tuples with <em>N</em> dimensions <em>{d1,d2, d3, …, dN}</em>, and a primary subset of dimensions <em>M &lt; N</em>, our task is to identify the combinations of <em>M</em> subset dimensions that have the most frequent number of distinct combinations of the <em>N - M</em> non-primary dimensions.</p>
 
-<p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/fdt/FdtSketch.java">fdt/FdtSketch</a> is currently only available in Java, but because it is an extension of the Tuple Sketch family, it inherits many of the same properties: it can operate both on-heap and off-heap, includes both Union and Intersection operators, has both immutable compact, and updatable representations.</p>
+<p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/fdt/FdtSketch.java">fdt/FdtSketch</a> is currently only available in Java, but because it is an extension of the Tuple Sketch family, it inherits many of the same properties: it can operate both on-heap and off-heap, it includes both Union and Intersection operators, and it has both immutable compact and updatable representations.</p>
 
 <h3 id="frequent-directions-distributed-mergeable-singular-value-decomposition">Frequent Directions: Distributed, mergeable Singular Value Decomposition</h3>
-<p>Part of a new separate sketches-vector package, Frequent Directions is in many ways a generalization of the Frequent Items sketch to handle vector data. This sketch computes an approximate singular value decomposition (SVD) of a matrix, providing a projection matrix that can be used for dimensionality reduction. SVD is a key technique in many recommender systems, providing shopping suggestions based on a customer’s past purchases compared with other similar customers. This sketch is still experimental and feedback from interested users would be welcome.  This sketch can be found in the <a href="https://github.com/apache/incubator-datasketches-vector">Vector</a> repository dedicated to vector and matrix sketches.  This sketch is only available in Java.</p>
+<p>Part of a new separate datasketches-vector component, Frequent Directions is in many ways a generalization of the Frequent Items sketch in order to handle vector data. This sketch computes an approximate singular value decomposition (SVD) of a matrix, providing a projection matrix that can be used for dimensionality reduction. SVD is a key technique in many recommender systems, such as providing shopping suggestions based on a customer’s past purchases compared with other similar customers. This sketch is still experimental and feedback from interested users would be welcome.  This sketch can be found in the <a href="https://github.com/apache/incubator-datasketches-vector">Vector</a> repository dedicated to vector and matrix sketches.</p>
 
 <h2 id="sampling-sketches">Sampling Sketches</h2>
 
-<h3 id="sampling-sketches-uniform-sampling-of-a-stream-into-a-fixed-size-space"><a href="/docs/Sampling/ReservoirSampling.html">Sampling Sketches</a>: Uniform Sampling of a Stream into a fixed size space</h3>
-<p>This family of sketches implements an enhanced version of the famous Reservoir sampling algorithm and extends it with the capabilities that large-scale distributed systems really need: mergability (even with different sized sketches), uses Java Generics so that the base classes can be trivially extended for any input type (even polymorphic types), and an extensible means of performing serialization and deserialization.</p>
+<h3 id="sampling-sketches-uniform-and-weighted-sampling-of-a-stream-into-a-fixed-size-space"><a href="/docs/Sampling/ReservoirSampling.html">Sampling Sketches</a>: Uniform and Weighted Sampling of a Stream into a fixed size space</h3>
+<p>This family of sketches implements an enhanced version of the famous Reservoir sampling algorithm and extends it with the capabilities that large-scale distributed systems really need: mergability (even with different sized sketches). The Java implementaion uses Java Generics so that the base classes can be trivially extended for any input type (even polymorphic types), and also enables an extensible means of performing serialization and deserialization.</p>
 
 <p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/sampling/ReservoirLongsSketch.java">sampling/ReservoirLongsSketch</a> accepts a stream of <em>long</em> values as identifiers with a weight of one, and produces a result Reservoir of a pre-determined size that represents a uniform random sample of the stream.</p>
 
@@ -597,14 +550,12 @@ in the stream including duplicates.  Suppose you have a stream of 1M song titles
 
 <p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/sampling/VarOptItemsSketch.java">sampling/VarOptItemsSketch</a> extends the Reservoir family to weighted sampling, additionally providing subset sum estimates from the sample with provably optimal variance.</p>
 
-<p>This family is currently only available in Java.</p>
-
 
       </div>
     </div>
   </div>
 
-  <!-- Start page_footer.html include -->
+  <!-- Start _include/page_footer.html -->
 <footer class="ds-footer">
   <div class="container">
     <div class="text-center">
@@ -621,7 +572,7 @@ in the stream including duplicates.  Suppose you have a stream of 1M song titles
     </div>
   </div>
 </footer>
-<!-- End page_footer.html include -->
+<!-- End _include/page_footer.html -->
 
 </body>
 

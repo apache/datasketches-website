@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-  <!-- Start site_head.html include-->
+  <!-- Start _include/site_head.html -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -26,17 +26,16 @@
 <link rel="stylesheet" href="/css/docs.css">
 
 
-
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
 </script>
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!-- End site_head.html include-->
+<!-- End _include/site_head.html -->
 
 </head>
 
 <body>
-  <!-- Start page_header.html include -->
+  <!-- Start _include/page_header.html -->
 <div class="navbar navbar-inverse navbar-static-top ds-nav">
   <div class="container">
     <div class="navbar-header">
@@ -46,9 +45,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <!-- navbar-brand: https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css -->
-      <!-- /css/main.css:57:.logo -->
-      <a class="navbar-brand logo" href="/">DataSketches</a>
+      <a href="/" style="padding-top: 0px; padding-bottom: 0px;">
+        <span class="ds-small-h-logo"></span></a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
@@ -61,7 +59,7 @@
             <span class="fa fa-download"></span> DOWNLOAD</a>
         </li>
         <li>
-          <a href="https://github.com/apache?utf8=%E2%9C%93&q=datasketches&type=&language=">
+          <a href="/docs/Architecture/Components.html">
             <span class="fa fa-github"></span> GITHUB</a>
         </li>
         <li>
@@ -69,12 +67,12 @@
             <span class="fa fa-paper-plane"></span> RESEARCH</a>
         </li>
         <li>
-          <a href="https://lists.apache.org/list.html?users@datasketches.apache.org">
-            <span class="fa fa-comment"></span> FORUM</a>
+          <a href="/docs/Community" style="padding-top: 0; padding-bottom: 0;">
+            <img class="ds-small-man" src="/img/datasketches-ManWhite.svg"/>COMMUNITY</a>
         </li>
         <ul class="nav navbar-nav navbar-right ds-nav">
-          <li class="dropdown ds-nav">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="apache-logo" src="https://www.apache.org/foundation/press/kit/feather.svg"/>Apache <span class="caret"></span></a>
+          <li class="dropdown ds-nav" >
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-top: 0; padding-bottom: 0;"><img class="apache-logo" src="/img/feather.svg"/>Apache <span class="caret"></span></a>
             <ul class="dropdown-menu ds-nav">
               <li><a href="https://www.apache.org/" target="_blank">Foundation</a></li>
               <li><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></li>
@@ -89,7 +87,7 @@
     </div>
   </div>
 </div>
-<!-- End page_header.html include -->
+<!-- End _include/page_header.html -->
 
 
   <div class="ds-header">
@@ -122,19 +120,254 @@
     <li><a href="/docs/SketchOrigins.html">Sketch Origins</a></li>
     <li><a href="/docs/SketchElements.html">Sketch Elements</a></li>
     <li><a href="/docs/LargeScale.html">Large Scale Computing</a></li>
-
-    <p id="architecture">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_architecture">Architecture</a>
-    </p>
-    <div class="collapse" id="collapse_architecture">
-      <li><a href="/docs/Architecture/KeyFeatures.html">Key Features</a></li>
-      <li><a href="/docs/Architecture/Components.html">Components</a></li>
-      <li><a href="/docs/Architecture/SketchesByComponent.html">Sketches by Component</a></li>
-      <li><a href="/docs/Architecture/SketchCriteria.html">Sketch Criteria</a></li>
-      <li><a href="/docs/Architecture/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
-      <li><a href="/docs/Architecture/Concurrency.html">Notes on Concurrency</a></li>
-    </div>
     <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">Overview Slide Deck</a></li>
+    <li><a href="/docs/WhoUses.html">Who Uses</a></li>
+  </div>
+
+  <p id="architecture-and-design">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_architecture_and_design">Architecture And Design</a>
+  </p>
+  <div class="collapse" id="collapse_architecture_and_design">
+    <li><a href="/docs/Architecture/KeyFeatures.html">Key Features</a></li>
+    <li><a href="/docs/Architecture/SketchFeaturesMatrix.html">Sketch Features Matrix</a></li>
+    <li><a href="/docs/Architecture/Components.html">Components</a></li>
+    <li><a href="/docs/Architecture/SketchesByComponent.html">Sketches by Component</a></li>
+    <li><a href="/docs/Architecture/SketchCriteria.html">Sketch Criteria</a></li>
+
+    <p id="memory-package">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_memory_package">Memory Package</a>
+    </p>
+    <div class="collapse" id="collapse_memory_package">
+      <li><a href="/docs/Memory/MemoryPackage.html">Memory Package</a></li>
+      <li><a href="/docs/Memory/MemoryPerformance.html">Memory Package Performance</a></li>
+    </div>
+    <li><a href="/docs/Architecture/OrderSensitivity.html">Notes on Order Sensitivity</a></li>
+    <li><a href="/docs/Architecture/Concurrency.html">Notes on Concurrency</a></li>
+  </div>
+
+  <p id="sketch-families">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_sketch_families">Sketch Families</a>
+  </p>
+  <div class="collapse" id="collapse_sketch_families">
+
+    <p id="distinct-counting">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_distinct_counting">Distinct Counting</a>
+    </p>
+    <div class="collapse" id="collapse_distinct_counting">
+      <li><a href="/docs/DistinctCountFeaturesMatrix.html">Features Matrix</a></li>
+      <li><a href="/docs/DistinctCountMeritComparisons.html">Figures-of-Merit Comparison</a></li>
+
+      <p id="hyperloglog-sketches">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hyperloglog_sketches">HyperLogLog Sketches</a>
+      </p>
+      <div class="collapse" id="collapse_hyperloglog_sketches">
+        <li><a href="/docs/HLL/HLL.html">HLL Sketch</a></li>
+        <li><a href="/docs/HLL/HllMap.html">HLL Map Sketch</a></li>
+
+        <p id="hll-examples">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_examples">HLL Examples</a>
+        </p>
+        <div class="collapse" id="collapse_hll_examples">
+          <li><a href="/docs/HLL/HllJavaExample.html">HLL Sketch Java Example</a></li>
+          <li><a href="/docs/HLL/HllPigUDFs.html">HLL Sketch Pig UDFs</a></li>
+          <li><a href="/docs/HLL/HllHiveUDFs.html">HLL Sketch Hive UDFs</a></li>
+          <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+        </div>
+
+        <p id="hll-studies">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_studies">HLL Studies</a>
+        </p>
+        <div class="collapse" id="collapse_hll_studies">
+          <li><a href="/docs/HLL/Hll_vs_CS_Hllpp.html">HLL vs Clearspring HLL++</a></li>
+          <li><a href="/docs/HLL/HllSketchVsDruidHyperLogLogCollector.html">HLL Sketch vs Druid HyperLogLogCollector</a></li>
+        </div>
+      </div>
+
+      <p id="theta-sketches">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketches">Theta Sketches</a>
+      </p>
+      <div class="collapse" id="collapse_theta_sketches">
+        <li><a href="/docs/Theta/ThetaSketchFramework.html">Theta Sketch Framework</a></li>
+
+        <p id="theta-examples">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_examples">Theta Examples</a>
+        </p>
+        <div class="collapse" id="collapse_theta_examples">
+          <li><a href="/docs/Theta/ConcurrentThetaSketch.html">Concurrent Theta Sketch</a></li>
+          <li><a href="/docs/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
+          <li><a href="/docs/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
+          <li><a href="/docs/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
+          <li><a href="/docs/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
+          <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+        </div>
+
+        <p id="kmv-tutorial">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_kmv_tutorial">KMV Tutorial</a>
+        </p>
+        <div class="collapse" id="collapse_kmv_tutorial">
+          <li><a href="/docs/Theta/InverseEstimate.html">The Inverse Estimate</a></li>
+          <li><a href="/docs/Theta/KMVempty.html">Empty Sketch</a></li>
+          <li><a href="/docs/Theta/KMVfirstEst.html">First Estimator</a></li>
+          <li><a href="/docs/Theta/KMVbetterEst.html">Better Estimator</a></li>
+          <li><a href="/docs/Theta/KMVrejection.html">Rejection Rules</a></li>
+          <li><a href="/docs/Theta/KMVupdateVkth.html">Update V(kth) Rule</a></li>
+        </div>
+
+        <p id="set-operations-and-p-sampling">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_set_operations_and_p-sampling">Set Operations and P-sampling</a>
+        </p>
+        <div class="collapse" id="collapse_set_operations_and_p-sampling">
+          <li><a href="/docs/Theta/ThetaSketchSetOps.html">Set Operations</a></li>
+          <li><a href="/docs/Theta/ThetaPSampling.html"><i>p</i>-Sampling</a></li>
+        </div>
+
+        <p id="accuracy">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_accuracy">Accuracy</a>
+        </p>
+        <div class="collapse" id="collapse_accuracy">
+          <li><a href="/docs/Theta/ThetaAccuracy.html">Basic Accuracy</a></li>
+          <li><a href="/docs/Theta/ThetaAccuracyPlots.html">Accuracy Plots</a></li>
+          <li><a href="/docs/Theta/ThetaErrorTable.html">Relative Error Table</a></li>
+          <li><a href="/docs/Theta/ThetaSketchSetOpsAccuracy.html">SetOp Accuracy</a></li>
+          <li><a href="/docs/Theta/AccuracyOfDifferentKUnions.html">Unions With Different k</a></li>
+        </div>
+
+        <p id="size">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_size">Size</a>
+        </p>
+        <div class="collapse" id="collapse_size">
+          <li><a href="/docs/Theta/ThetaSize.html">Theta Sketch Size</a></li>
+        </div>
+
+        <p id="speed">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_speed">Speed</a>
+        </p>
+        <div class="collapse" id="collapse_speed">
+          <li><a href="/docs/Theta/ThetaUpdateSpeed.html">Update Speed</a></li>
+          <li><a href="/docs/Theta/ThetaMergeSpeed.html">Merge Speed</a></li>
+        </div>
+
+        <p id="theta-sketch-theory">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketch_theory">Theta Sketch Theory</a>
+        </p>
+        <div class="collapse" id="collapse_theta_sketch_theory">
+          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)</a></li>
+          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">Sketch Equations (PDF)</a></li>
+          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches.pdf">DataSketches (PDF)</a></li>
+          <li><a href="/docs/Theta/ThetaConfidenceIntervals.html">Confidence Intervals Notes</a></li>
+          <li><a href="/docs/Theta/ThetaMergingAlgorithm.html">Merging Algorithm Notes</a></li>
+          <li><a href="/docs/Theta/ThetaReferences.html">Theta References</a></li>
+        </div>
+      </div>
+
+      <p id="tuple-sketches">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_sketches">Tuple Sketches</a>
+      </p>
+      <div class="collapse" id="collapse_tuple_sketches">
+        <li><a href="/docs/Tuple/TupleOverview.html">Tuple Overview</a></li>
+
+        <p id="tuple-examples">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_examples">Tuple Examples</a>
+        </p>
+        <div class="collapse" id="collapse_tuple_examples">
+          <li><a href="/docs/Tuple/TupleJavaExample.html">Tuple Java Example</a></li>
+          <li><a href="/docs/Tuple/TupleEngagementExample.html">Tuple Engagement Example</a></li>
+          <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
+          <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Pig UDFs</a></li>
+          <li><a href="/docs/Tuple/TupleHiveUDFs.html">Tuple Hive UDFs</a></li>
+          <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+        </div>
+      </div>
+    </div>
+
+    <p id="most-frequent">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent">Most Frequent</a>
+    </p>
+    <div class="collapse" id="collapse_most_frequent">
+      <li><a href="/docs/Frequency/FrequencySketchesOverview.html">Frequency Sketches Overview</a></li>
+
+      <p id="frequent-item-sketches">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_item_sketches">Frequent Item Sketches</a>
+      </p>
+      <div class="collapse" id="collapse_frequent_item_sketches">
+        <li><a href="/docs/Frequency/FrequentItemsOverview.html">Frequent Items Overview</a></li>
+        <li><a href="/docs/Frequency/FrequentItemsErrorTable.html">Frequent Items Error Table</a></li>
+        <li><a href="/docs/Frequency/FrequentItemsReferences.html">Frequent Items References</a></li>
+
+        <p id="most-frequent-examples">
+          <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent_examples">Most Frequent Examples</a>
+        </p>
+        <div class="collapse" id="collapse_most_frequent_examples">
+          <li><a href="/docs/Frequency/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
+          <li><a href="/docs/Frequency/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
+          <li><a href="/docs/Frequency/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
+          <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+        </div>
+      </div>
+
+      <p id="frequent-distinct-sketches">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_distinct_sketches">Frequent Distinct Sketches</a>
+      </p>
+      <div class="collapse" id="collapse_frequent_distinct_sketches">
+        <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
+      </div>
+    </div>
+
+    <p id="quantiles-and-histograms">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_and_histograms">
+      <li><a href="/docs/Quantiles/QuantilesOverview.html">Quantiles Overview</a></li>
+      <li><a href="/docs/Quantiles/QuantilesAccuracy.html">Quantiles Accuracy and Size</a></li>
+
+      <p id="quantiles-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_examples">Quantiles Examples</a>
+      </p>
+      <div class="collapse" id="collapse_quantiles_examples">
+        <li><a href="/docs/Quantiles/QuantilesJavaExample.html">Quantiles Sketch Java Example</a></li>
+        <li><a href="/docs/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
+        <li><a href="/docs/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
+        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
+      </div>
+
+      <p id="quantiles-studies">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
+      </p>
+      <div class="collapse" id="collapse_quantiles_studies">
+        <li><a href="/docs/Quantiles/KLLSketch.html">New KLL sketch and comparison with DoublesSketch</a></li>
+        <li><a href="/docs/Quantiles/KllSketchVsTDigest.html">KLL sketch vs t-digest</a></li>
+        <li><a href="/docs/Quantiles/DruidApproxHistogramStudy.html">Druid Approximate Histogram</a></li>
+        <li><a href="/docs/Quantiles/MomentsSketchStudy.html">Moments Sketch Study</a></li>
+        <li><a href="/docs/Quantiles/QuantilesStreamAStudy.html">Quantiles StreamA Study</a></li>
+      </div>
+
+      <p id="quantiles-sketch-theory">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_sketch_theory">Quantiles Sketch Theory</a>
+      </p>
+      <div class="collapse" id="collapse_quantiles_sketch_theory">
+        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">Optimal Quantile Approximation in Streams</a></li>
+        <li><a href="/docs/Quantiles/QuantilesReferences.html">Quantiles References</a></li>
+      </div>
+    </div>
+
+    <p id="sampling">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling</a>
+    </p>
+    <div class="collapse" id="collapse_sampling">
+      <li><a href="/docs/Sampling/ReservoirSampling.html">Reservoir Sampling</a></li>
+      <li><a href="/docs/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
+      <li><a href="/docs/Sampling/VarOptSampling.html">VarOpt Sampling</a></li>
+
+      <p id="sampling-examples">
+        <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling_examples">Sampling Examples</a>
+      </p>
+      <div class="collapse" id="collapse_sampling_examples">
+        <li><a href="/docs/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
+        <li><a href="/docs/Sampling/ReservoirSamplingPigUDFs.html">Reservoir Sampling Pig UDFs</a></li>
+        <li><a href="/docs/Sampling/VarOptSamplingJava.html">VarOpt Sampling Java Example</a></li>
+        <li><a href="/docs/Sampling/VarOptPigUDFs.html">VarOpt Sampling Pig UDFs</a></li>
+      </div>
+    </div>
   </div>
 
   <p id="community">
@@ -149,247 +382,6 @@
   </p>
   <div class="collapse" id="collapse_research">
     <li><a href="/docs/Community/Research.html">Research</a></li>
-  </div>
-
-  <p id="distinct-counting">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_distinct_counting">Distinct Counting</a>
-  </p>
-  <div class="collapse" id="collapse_distinct_counting">
-    <li><a href="/docs/DistinctCountCapabilitiesMatrix.html">Capabilities Matrix</a></li>
-
-    <p id="hyperloglog-sketches">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_hyperloglog_sketches">HyperLogLog Sketches</a>
-    </p>
-    <div class="collapse" id="collapse_hyperloglog_sketches">
-      <li><a href="/docs/HLL/HLL.html">HLL Sketch</a></li>
-      <li><a href="/docs/HLL/HllMap.html">HLL Map Sketch</a></li>
-
-      <p id="hll-examples">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_examples">HLL Examples</a>
-      </p>
-      <div class="collapse" id="collapse_hll_examples">
-        <li><a href="/docs/HLL/HllJavaExample.html">HLL Sketch Java Example</a></li>
-        <li><a href="/docs/HLL/HllPigUDFs.html">HLL Sketch Pig UDFs</a></li>
-        <li><a href="/docs/HLL/HllHiveUDFs.html">HLL Sketch Hive UDFs</a></li>
-        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
-      </div>
-
-      <p id="hll-studies">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_studies">HLL Studies</a>
-      </p>
-      <div class="collapse" id="collapse_hll_studies">
-        <li><a href="/docs/HLL/Hll_vs_G_Hllpp.html">HLL vs Google HLL++</a></li>
-        <li><a href="/docs/HLL/Hll_vs_CS_Hllpp.html">HLL vs Clearspring HLL++</a></li>
-        <li><a href="/docs/HLL/HllSketchVsDruidHyperLogLogCollector.html">HLL Sketch vs Druid HyperLogLogCollector</a></li>
-      </div>
-    </div>
-
-    <p id="theta-sketches">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketches">Theta Sketches</a>
-    </p>
-    <div class="collapse" id="collapse_theta_sketches">
-      <li><a href="/docs/Theta/ThetaSketchFramework.html">Theta Sketch Framework</a></li>
-
-      <p id="theta-examples">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_examples">Theta Examples</a>
-      </p>
-      <div class="collapse" id="collapse_theta_examples">
-        <li><a href="/docs/Theta/ConcurrentThetaSketch.html">Concurrent Theta Sketch</a></li>
-        <li><a href="/docs/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
-        <li><a href="/docs/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
-        <li><a href="/docs/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
-        <li><a href="/docs/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
-        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
-      </div>
-
-      <p id="kmv-tutorial">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_kmv_tutorial">KMV Tutorial</a>
-      </p>
-      <div class="collapse" id="collapse_kmv_tutorial">
-        <li><a href="/docs/Theta/InverseEstimate.html">The Inverse Estimate</a></li>
-        <li><a href="/docs/Theta/KMVempty.html">Empty Sketch</a></li>
-        <li><a href="/docs/Theta/KMVfirstEst.html">First Estimator</a></li>
-        <li><a href="/docs/Theta/KMVbetterEst.html">Better Estimator</a></li>
-        <li><a href="/docs/Theta/KMVrejection.html">Rejection Rules</a></li>
-        <li><a href="/docs/Theta/KMVupdateVkth.html">Update V(kth) Rule</a></li>
-      </div>
-
-      <p id="set-operations-and-p-sampling">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_set_operations_and_p-sampling">Set Operations and P-sampling</a>
-      </p>
-      <div class="collapse" id="collapse_set_operations_and_p-sampling">
-        <li><a href="/docs/Theta/ThetaSketchSetOps.html">Set Operations</a></li>
-        <li><a href="/docs/Theta/ThetaPSampling.html"><i>p</i>-Sampling</a></li>
-      </div>
-
-      <p id="accuracy">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_accuracy">Accuracy</a>
-      </p>
-      <div class="collapse" id="collapse_accuracy">
-        <li><a href="/docs/Theta/ThetaAccuracy.html">Basic Accuracy</a></li>
-        <li><a href="/docs/Theta/ThetaAccuracyPlots.html">Accuracy Plots</a></li>
-        <li><a href="/docs/Theta/ThetaErrorTable.html">Relative Error Table</a></li>
-        <li><a href="/docs/Theta/ThetaSketchSetOpsAccuracy.html">SetOp Accuracy</a></li>
-        <li><a href="/docs/Theta/AccuracyOfDifferentKUnions.html">Unions With Different k</a></li>
-      </div>
-
-      <p id="size">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_size">Size</a>
-      </p>
-      <div class="collapse" id="collapse_size">
-        <li><a href="/docs/Theta/ThetaSize.html">Theta Sketch Size</a></li>
-      </div>
-
-      <p id="speed">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_speed">Speed</a>
-      </p>
-      <div class="collapse" id="collapse_speed">
-        <li><a href="/docs/Theta/ThetaUpdateSpeed.html">Update Speed</a></li>
-        <li><a href="/docs/Theta/ThetaMergeSpeed.html">Merge Speed</a></li>
-      </div>
-
-      <p id="theta-sketch-theory">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketch_theory">Theta Sketch Theory</a>
-      </p>
-      <div class="collapse" id="collapse_theta_sketch_theory">
-        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)</a></li>
-        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">Sketch Equations (PDF)</a></li>
-        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches.pdf">DataSketches (PDF)</a></li>
-        <li><a href="/docs/Theta/ThetaConfidenceIntervals.html">Confidence Intervals Notes</a></li>
-        <li><a href="/docs/Theta/ThetaMergingAlgorithm.html">Merging Algorithm Notes</a></li>
-        <li><a href="/docs/Theta/ThetaReferences.html">Theta References</a></li>
-      </div>
-    </div>
-
-    <p id="tuple-sketches">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_sketches">Tuple Sketches</a>
-    </p>
-    <div class="collapse" id="collapse_tuple_sketches">
-      <li><a href="/docs/Tuple/TupleOverview.html">Tuple Overview</a></li>
-
-      <p id="tuple-examples">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_tuple_examples">Tuple Examples</a>
-      </p>
-      <div class="collapse" id="collapse_tuple_examples">
-        <li><a href="/docs/Tuple/TupleJavaExample.html">Tuple Java Example</a></li>
-        <li><a href="/docs/Tuple/TupleEngagementExample.html">Tuple Engagement Example</a></li>
-        <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
-        <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Pig UDFs</a></li>
-        <li><a href="/docs/Tuple/TupleHiveUDFs.html">Tuple Hive UDFs</a></li>
-        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
-      </div>
-    </div>
-  </div>
-
-  <p id="most-frequent">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent">Most Frequent</a>
-  </p>
-  <div class="collapse" id="collapse_most_frequent">
-    <li><a href="/docs/Frequency/FrequencySketchesOverview.html">Frequency Sketches Overview</a></li>
-
-    <p id="frequent-item-sketches">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_item_sketches">Frequent Item Sketches</a>
-    </p>
-    <div class="collapse" id="collapse_frequent_item_sketches">
-      <li><a href="/docs/Frequency/FrequentItemsOverview.html">Frequent Items Overview</a></li>
-      <li><a href="/docs/Frequency/FrequentItemsErrorTable.html">Frequent Items Error Table</a></li>
-      <li><a href="/docs/Frequency/FrequentItemsReferences.html">Frequent Items References</a></li>
-
-      <p id="most-frequent-examples">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent_examples">Most Frequent Examples</a>
-      </p>
-      <div class="collapse" id="collapse_most_frequent_examples">
-        <li><a href="/docs/Frequency/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
-        <li><a href="/docs/Frequency/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
-        <li><a href="/docs/Frequency/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
-        <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
-      </div>
-    </div>
-
-    <p id="frequent-distinct-sketches">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_distinct_sketches">Frequent Distinct Sketches</a>
-    </p>
-    <div class="collapse" id="collapse_frequent_distinct_sketches">
-      <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
-    </div>
-  </div>
-
-  <p id="quantiles-and-histograms">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
-  </p>
-  <div class="collapse" id="collapse_quantiles_and_histograms">
-    <li><a href="/docs/Quantiles/QuantilesOverview.html">Quantiles Overview</a></li>
-    <li><a href="/docs/Quantiles/QuantilesAccuracy.html">Quantiles Accuracy and Size</a></li>
-
-    <p id="quantiles-examples">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_examples">Quantiles Examples</a>
-    </p>
-    <div class="collapse" id="collapse_quantiles_examples">
-      <li><a href="/docs/Quantiles/QuantilesJavaExample.html">Quantiles Sketch Java Example</a></li>
-      <li><a href="/docs/Quantiles/QuantilesPigUDFs.html">Quantiles Sketch Pig UDFs</a></li>
-      <li><a href="/docs/Quantiles/QuantilesHiveUDFs.html">Quantiles Sketch Hive UDFs</a></li>
-      <li><a href="/docs/DruidIntegration.html">Using Sketches in Druid</a></li>
-    </div>
-
-    <p id="quantiles-studies">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
-    </p>
-    <div class="collapse" id="collapse_quantiles_studies">
-      <li><a href="/docs/Quantiles/KLLSketch.html">New KLL sketch and comparison with DoublesSketch</a></li>
-      <li><a href="/docs/Quantiles/KllSketchVsTDigest.html">KLL sketch vs t-digest</a></li>
-      <li><a href="/docs/Quantiles/DruidApproxHistogramStudy.html">Druid Approximate Histogram</a></li>
-      <li><a href="/docs/Quantiles/MomentsSketchStudy.html">Moments Sketch Study</a></li>
-      <li><a href="/docs/Quantiles/QuantilesStreamAStudy.html">Quantiles StreamA Study</a></li>
-    </div>
-
-    <p id="quantiles-sketch-theory">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_sketch_theory">Quantiles Sketch Theory</a>
-    </p>
-    <div class="collapse" id="collapse_quantiles_sketch_theory">
-      <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">Optimal Quantile Approximation in Streams</a></li>
-      <li><a href="/docs/Quantiles/QuantilesReferences.html">Quantiles References</a></li>
-    </div>
-  </div>
-
-  <p id="sampling">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling</a>
-  </p>
-  <div class="collapse" id="collapse_sampling">
-    <li><a href="/docs/Sampling/ReservoirSampling.html">Reservoir Sampling</a></li>
-    <li><a href="/docs/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
-    <li><a href="/docs/Sampling/VarOptSampling.html">VarOpt Sampling</a></li>
-
-    <p id="sampling-examples">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling_examples">Sampling Examples</a>
-    </p>
-    <div class="collapse" id="collapse_sampling_examples">
-      <li><a href="/docs/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
-      <li><a href="/docs/Sampling/ReservoirSamplingPigUDFs.html">Reservoir Sampling Pig UDFs</a></li>
-      <li><a href="/docs/Sampling/VarOptSamplingJava.html">VarOpt Sampling Java Example</a></li>
-      <li><a href="/docs/Sampling/VarOptPigUDFs.html">VarOpt Sampling Pig UDFs</a></li>
-    </div>
-  </div>
-
-  <p id="memory-package">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_memory_package">Memory Package</a>
-  </p>
-  <div class="collapse" id="collapse_memory_package">
-    <li><a href="/docs/Memory/MemoryPackage.html">Memory Package</a></li>
-    <li><a href="/docs/Memory/MemoryPerformance.html">Memory Package Performance</a></li>
-  </div>
-
-  <p id="command-line">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_command_line">Command Line</a>
-  </p>
-  <div class="collapse" id="collapse_command_line">
-    <li><a href="/docs/CommandLine/CommandLine.html">Creating Command Line Executables</a></li>
-  </div>
-
-  <p id="who-uses">
-    <a data-toggle="collapse" class="menu collapsed" href="#collapse_who_uses">Who Uses</a>
-  </p>
-  <div class="collapse" id="collapse_who_uses">
-    <li><a href="/docs/WhoUses.html">Who Uses</a></li>
   </div>
 </div>
 <script>
@@ -530,7 +522,7 @@ e	1	1	1
     </div>
   </div>
 
-  <!-- Start page_footer.html include -->
+  <!-- Start _include/page_footer.html -->
 <footer class="ds-footer">
   <div class="container">
     <div class="text-center">
@@ -547,7 +539,7 @@ e	1	1	1
     </div>
   </div>
 </footer>
-<!-- End page_footer.html include -->
+<!-- End _include/page_footer.html -->
 
 </body>
 

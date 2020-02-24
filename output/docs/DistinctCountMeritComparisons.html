@@ -470,105 +470,152 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="key-features">Key Features</h2>
 
-<h3 id="sketch-features-matrix"><a href="/docs/Architecture/SketchFeaturesMatrix.html">Sketch Features Matrix</a></h3>
+<h1 id="figures-of-merit-comparison-of-the-hll-and-cpc-sketches">Figures-of-Merit Comparison of the HLL and CPC Sketches</h1>
 
-<h3 id="common-sketch-properties">Common Sketch Properties</h3>
-
-<ul>
-  <li>Please refer to the <a href="/docs/Architecture/SketchCriteria.html">Sketch Criteria</a> for the criteria for sketches to be included in the library.</li>
-  <li>Query results are <b>approximate</b> but within well defined error bounds that are user 
-  configurable by trading off sketch size with accuracy.</li>
-  <li>Designed for <a href="/docs/LargeScale.html">Large-scale</a> computing environments 
-  that must handle <b>Big Data</b>.( e.g., 
-<a href="https://hadoop.apache.org/">Hadoop</a>, 
-<a href="https://pig.apache.org/">Pig</a>, 
-<a href="https://hive.apache.org/">Hive</a>,
-<a href="https://druid.io">Druid</a>,
-<a href="https://spark.apache.org">Spark</a>), 
-and are heavily used within Yahoo / Verizon-Media.</li>
-  <li><b>Maven deployable</b> and registered with 
-<a href="https://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>.</li>
-  <li>Comprehensive <b>unit tests</b> and testing tools are provided.</li>
-  <li>Extensive documentation with the systems developer in mind.</li>
-</ul>
-
-<h3 id="built-in-general-purpose-functions">Built-In, General Purpose Functions</h3>
+<h2 id="data-generation">Data Generation</h2>
+<p>The following table of data was generated as follows:</p>
 
 <ul>
-  <li>General purpose <a href="/docs/Memory/MemoryPackage.html">Memory Package</a> for managing data off the Java Heap. 
-This enables systems designers the ability to manage their own large data heaps with 
-dedicated processor threads that would otherwise put undue pressure on the Java heap and 
-its garbage collection.</li>
-  <li>General purpose implementaion of Austin Appleby’s 128-bit MurmurHash3 algorithm, 
-  with a number of useful extensions.</li>
-</ul>
-
-<h3 id="robust-high-quality-implementations">Robust, High Quality Implementations.</h3>
-
-<ul>
-  <li>Extensive test code leveraging <a href="https://testng.org">TestNG</a>.</li>
-  <li>Speed and accuracy performance characterization testing code 
-  included in the <a href="https://github.com/DataSketches/sketches-misc">sketches-misc</a>  repository.</li>
-  <li>High Test Code coverage (
-<a href="">Core</a>,
-<a href="https://github.com/apache/incubator-datasketches-pig/blob/master/README.md">Pig</a>,
-<a href="https://github.com/apache/incubator-datasketches-hive/blob/master/README.md">Hive</a>,) as measured by 
-<a href="https://www.eclemma.org/jacoco/">JaCoCo</a> and published by 
-<a href="https://coveralls.io">Coveralls</a>.</li>
-  <li>Comprehensive Javadocs that satisfy 
-<a href="https://www.oracle.com/technetwork/java/index.html">Java JDK8</a> standards.</li>
-  <li>Suitable for production environments.</li>
-</ul>
-
-<h3 id="opportunities-to-extend">Opportunities to Extend</h3>
-
-<ul>
-  <li>There is ample opportunity for interested parties to contribute additional algorithms in this exciting area.</li>
-</ul>
-
-<h2 id="key-algorithms">Key Algorithms</h2>
-
-<h3 id="count-distinct--count-unique">Count Distinct / Count Unique</h3>
-
-<h4 id="solves-computational-challenges-associated-with-unique-identifiers">Solves Computational Challenges Associated with Unique Identifiers</h4>
-
-<ul>
-  <li><b>Estimating cardinality</b> of a stream with many duplicates</li>
-  <li>Performing <a href="/docs/Theta/ThetaSketchSetOps.html">set operations</a> (e.g., Union, Intersection, 
-  and Difference) on sets of unique identifiers</li>
-  <li>Estimates of the <b>error bounds</b> of the result can be obtained directly from the result sketch</li>
-  <li>Two families of Count Unique algorithms:
+  <li>Columns 2 through 5 represent HLL and CPC sketches configured with “comparable” parameters.
     <ul>
-      <li><a href="/docs/Theta/ThetaSketchFramework.html">The Theta Sketch Framework</a> algorithms that are tuned 
-for operation on the java heap or off-heap.</li>
-      <li><a href="/docs/HLL/HLL.html">The Hyper-Log Log algorithms</a> when sketch size is of utmost concern.</li>
+      <li>HLL4, HLL6, HLL8 represent the TgtHllType configurations of HLL_4, HLL_6, HLL_8.</li>
+      <li>The “12” refers to LgK=12 configuration.  Note that CPC is configured as LgK=11 because it is comparable to an HLL sketch of LgK=12.</li>
+      <li>All measurements are for sketches configured for on-heap, except for the Serialization and Deserialization speeds, where the sketch is configured to “wrap” an off-heap sketch.</li>
     </ul>
   </li>
+  <li>The number of uniques fed to each sketch was 2^20 or 1 Mi unique updates.</li>
+  <li>Each Test was run with a large number of trials to reduce the variance in the average. This ranged from 2^16 to 2^20 trials per measurement.</li>
 </ul>
 
-<h3 id="quantiles">Quantiles</h3>
+<h2 id="seven-metrics">Seven Metrics</h2>
+<p>The seven metrics are as follows:</p>
 
 <ul>
-  <li>Get normal or inverse PDFs or CDFs of the distributions of any numeric value from your raw data in a 
-  single pass.</li>
-  <li>Well defined error bounds on the result.</li>
+  <li><strong>Update Time, Nanoseconds</strong> This is the time required to update the sketch with a simple <em>long</em> value in a very tight loop.  This is very sensitive to the measurement environment and hardware so consider these values as important only relatvie to each other as they were measured under the same conditions.</li>
+  <li><strong>Serialization Time, Nanoseconds</strong> Time required to serialize the state of the sketch to a byte array.</li>
+  <li><strong>Deserialization Time, Nanoseconds</strong> Time required to deserialize the serialized byte array back to a sketch on the Java heap.</li>
+  <li><strong>Merge Time, Nanoseconds</strong> The time required, per sketch, to merge into the Union operator.  These numbers are only useful for comparison in this table because merge times are sensitive to many, many factors.</li>
+  <li><strong>Solo Error RSE</strong> This is theoretical Relative Standard Error based on the configured size of the sketch and using the most accurate estimator for a single (solo) sketch that is not involved in any merge operations.</li>
+  <li><strong>Merge Error RSE</strong> This is theoretical Relative Standard Error based on the configured size of the sketch and using the most accurate estimator for a sketch that is a result of a merge operations.</li>
 </ul>
 
-<h3 id="frequent-items">Frequent Items</h3>
+<h2 id="raw-data-table-and-normalization">Raw Data Table and Normalization</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Metric</th>
+      <th style="text-align: center">HLL4-12wrap</th>
+      <th style="text-align: center">HLL6-12wrap</th>
+      <th style="text-align: center">HLL8-12wrap</th>
+      <th style="text-align: center">CPC-11</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Update Time nS</td>
+      <td style="text-align: center">10.7</td>
+      <td style="text-align: center">12.2</td>
+      <td style="text-align: center">10.7</td>
+      <td style="text-align: center">10.3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Ser Time nS</td>
+      <td style="text-align: center">472</td>
+      <td style="text-align: center">1,011</td>
+      <td style="text-align: center">748</td>
+      <td style="text-align: center">9,388</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Deser Time nS</td>
+      <td style="text-align: center">150</td>
+      <td style="text-align: center">210</td>
+      <td style="text-align: center">556</td>
+      <td style="text-align: center">11,638</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Merge Time nS</td>
+      <td style="text-align: center">11,545</td>
+      <td style="text-align: center">12,627</td>
+      <td style="text-align: center">4,399</td>
+      <td style="text-align: center">5,459</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Solo Error RSE</td>
+      <td style="text-align: center">0.013008666</td>
+      <td style="text-align: center">0.013008666</td>
+      <td style="text-align: center">0.013008666</td>
+      <td style="text-align: center">0.013008666</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Merge Error RSE</td>
+      <td style="text-align: center">0.016233778</td>
+      <td style="text-align: center">0.016233778</td>
+      <td style="text-align: center">0.016233778</td>
+      <td style="text-align: center">0.015316534</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Size Bytes</td>
+      <td style="text-align: center">2095</td>
+      <td style="text-align: center">3113</td>
+      <td style="text-align: center">4136</td>
+      <td style="text-align: center">1229</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In order to generate the following radar charts, the data was normalized as follows:</p>
 
 <ul>
-  <li>Get the most frequent items from a stream of items.</li>
+  <li>The relevant maximum values for each row was selected and effectively set to 1.0.</li>
+  <li>The other relevant columns in that row were computed as a fractional value between 0 and 1 with respect to the maximum value for that row.</li>
+  <li>The relevant columns for the HLL plot are columns 2, 3 and 4.</li>
+  <li>The relevant columns for the HLL, CPC plot are clolumns 2, 3, 4 and 5.</li>
 </ul>
 
-<h3 id="tuple-sketch">Tuple Sketch</h3>
+<h2 id="reading-the-radar-charts">Reading the Radar Charts</h2>
 
 <ul>
-  <li>Associative sketches that are useful for performing approximate join operations and 
-  extracting other kinds of behavior associated with unique identifiers.</li>
+  <li>The charts are configured to compare 7 radial dimensions.</li>
+  <li>All of the radial vectors are scaled from 0 to 1 as explained above.</li>
+  <li>The smaller the number on each of the radials the better is the metric.</li>
 </ul>
 
+<h2 id="the-hll-radar-chart">The HLL Radar Chart</h2>
+
+<p><img class="doc-img-full" src="/docs/img/hll/HLL_Radar.png" alt="HLL_Radar.png" /></p>
+
+<h3 id="interpreting-the-hll-radar-chart">Interpreting the HLL radar chart:</h3>
+
+<ul>
+  <li><strong>Error</strong> The different TgtHllTypes are isomorphic with respect to accuracy, they are just different internal representations of the same retained data.  As you can see the Merge Error and Solo Error are identical for all three types.</li>
+  <li><strong>Size</strong> The HLL4, which uses 4 bits per slot, is the smallest followed by the HLL6 (6 bits/slot) then the HLL8 (8 bits/slot).</li>
+  <li><strong>Update Time</strong> The HLL4 and HLL8 are about 12% faster than the HLL6 principally due to the fact that the 6-bit packing has more work to do than the other two.</li>
+  <li><strong>Serialization Time</strong> The HLL4 is the fastest because has less data to serialize. The HLL6 is the slowest again because of the unpacking logic.</li>
+  <li><strong>Deserialization Time</strong> In this case the HLL6 and HLL8 reverse positions. The HLL8 is the slowest.  However, if you look at the data table you can see that all 3 are pretty fast.</li>
+  <li><strong>Merge Time</strong> For this metric the HLL8 is clearly the fastest.  This is largely do to dedicated optimizations that allow the HLL8 sketch to be very fast on merge.</li>
+</ul>
+
+<h2 id="the-hll-and-cpc-radar-chart">The HLL and CPC Radar Chart</h2>
+
+<p><img class="doc-img-full" src="/docs/img/cpc/HLL_CPC_Radar.png" alt="HLL_CPC_Radar.png" /></p>
+
+<h3 id="interpreting-the-hll-cpc-radar-chart">Interpreting the HLL, CPC radar chart:</h3>
+
+<ul>
+  <li><strong>Solo Error</strong> For a single sketch (no merging) all the sketch types are virtually identical in error.</li>
+  <li><strong>Merge Error</strong> With Merging the CPC sketch is about 5.7% better than the HLL sketches.</li>
+  <li><strong>Size</strong> Here the CPC sketch is the big winner.  It is 41% smaller than the HLL4 sketch which is the smallest of the 3 HLL sketches.</li>
+  <li><strong>SerDe Times</strong> Clearly the CPC sketch is the slowest to serialize and deserialize by more than a factor of 10.</li>
+  <li><strong>Merge Time</strong> Here the CPC is nearly as fast as the HLL8.  Note this is measuring just merge time independent of any deserialization.</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Depending on what is important in your environment you should choose the sketch that best suits your needs.</p>
+
+<p>Note that all of these tests were performed with the Java implementations of these sketches.  The results for C++ or Python may be completely different.</p>
 
       </div>
     </div>
