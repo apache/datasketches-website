@@ -21,12 +21,13 @@ layout: doc_page
 -->
 ## Downloads
 
-### Download Zip Files
-Choose the most recent release version from one of these mirrors:
-[incubator-datasketches-xxx](https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches).
+### Download Source Zip Files and Signatures
+Choose the most recent release version from [https://downloads.apache.org/incubator/datasketches/](https://downloads.apache.org/incubator/datasketches/).
+* Select the Component directory you are interested in (cpp, hive, java, memory, pig, postgresql).  Note the characterization and vector components do not have formal Apache releases. Go directly to the GitHub sites for those.
+* Under your chosen component directory, choose the release of interest. We generally recommend that you choose the latest release. 
 
 ### Download Java Jar Files
-From [Maven Central](https://repository.apache.org/content/repositories/releases/org/apache/datasketches).
+From [Maven Central](https://search.maven.org/search?q=g:%20org.apache.datasketches).
 
 ### Download Shapshot Versions
 Clone or fork the current SNAPSHOT directly from the relevant [DataSketches repository](https://github.com/apache?utf8=%E2%9C%93&q=datasketches).
@@ -82,7 +83,7 @@ The code is automatically tested using the current test suite, but you might cat
 transition to a new future release. Caveat Emptor.
 
 ### Version History
-Please use GitHub revisions history on the respective repositories
+Please use GitHub revisions history on the respective component repositories
 
 
  
