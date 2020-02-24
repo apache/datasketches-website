@@ -22,7 +22,7 @@ layout: doc_page
 
 
 # High-Level Descriptions
-Please see the [Sketch Features Matrix]({{site.docs_dir}}/Architecture/FeatureMatrix.html) for a detailed comparison of the features of the different sketches in the library.
+Please see the [Sketch Features Matrix]({{site.docs_dir}}/Architecture/SketchFeaturesMatrix.html) for a detailed comparison of the features of the different sketches in the library.
 
 ## Cardinality Sketches
 

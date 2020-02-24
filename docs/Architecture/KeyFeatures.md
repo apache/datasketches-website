@@ -21,7 +21,7 @@ layout: doc_page
 -->
 ## Key Features
 
-### [Sketch Features Matrix]({{site.docs_dir}}/Architecture/FeatureMatrix)
+### [Sketch Features Matrix]({{site.docs_dir}}/Architecture/SketchFeaturesMatrix.html)
 
 ### Common Sketch Properties
 

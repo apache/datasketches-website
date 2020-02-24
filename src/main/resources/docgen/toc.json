@@ -9,18 +9,24 @@
         {"class":"Doc",  "desc" : "Large Scale Computing",        "dir" : "", "file": "LargeScale" },
         {"class":"Doc",  "desc" : "Overview Slide Deck",          "dir" : "", "file": "DataSketches_deck", "pdf":"true" },
         {"class":"Doc",  "desc" : "Who Uses",                     "dir" : "", "file": "WhoUses" },
+      ]
+    },
 
-        { "class":"Dropdown", "desc" : "Architecture And Design", "array":
+    { "class":"Dropdown", "desc" : "Architecture And Design", "array":
+      [
+        {"class":"Doc",  "desc" : "Key Features",            "dir" : "Architecture", "file": "KeyFeatures" },
+        {"class":"Doc",  "desc" : "Sketch Features Matrix",   "dir" : "Architecture", "file": "SketchFeaturesMatrix" },
+        {"class":"Doc",  "desc" : "Components",              "dir" : "Architecture", "file": "Components" },
+        {"class":"Doc",  "desc" : "Sketches by Component",   "dir" : "Architecture", "file": "SketchesByComponent" },
+        {"class":"Doc",  "desc" : "Sketch Criteria",         "dir" : "Architecture", "file": "SketchCriteria" },
+        { "class":"Dropdown", "desc" : "Memory Package", "array":
           [
-            {"class":"Doc",  "desc" : "Key Features",            "dir" : "Architecture", "file": "KeyFeatures" },
-            {"class":"Doc",  "desc" : "Sketch Feature Matrix",   "dir" : "Architecture", "file": "FeatureMatrix" },
-            {"class":"Doc",  "desc" : "Components",              "dir" : "Architecture", "file": "Components" },
-            {"class":"Doc",  "desc" : "Sketches by Component",   "dir" : "Architecture", "file": "SketchesByComponent" },
-            {"class":"Doc",  "desc" : "Sketch Criteria",         "dir" : "Architecture", "file": "SketchCriteria" },
-            {"class":"Doc",  "desc" : "Notes on Order Sensitivity",   "dir" : "Architecture", "file": "OrderSensitivity" },
-            {"class":"Doc",  "desc" : "Notes on Concurrency",         "dir" : "Architecture", "file": "Concurrency" },
+            {"class":"Doc",  "desc" : "Memory Package",                           "dir" : "Memory", "file": "MemoryPackage" },
+            {"class":"Doc",  "desc" : "Memory Package Performance",               "dir" : "Memory", "file": "MemoryPerformance" },
           ]
         },
+        {"class":"Doc",  "desc" : "Notes on Order Sensitivity",   "dir" : "Architecture", "file": "OrderSensitivity" },
+        {"class":"Doc",  "desc" : "Notes on Concurrency",         "dir" : "Architecture", "file": "Concurrency" },
       ]
     },
 
@@ -28,7 +34,8 @@
       [
         { "class":"Dropdown", "desc" : "Distinct Counting", "array":
           [
-            {"class":"Doc",  "desc" : "Capabilities Matrix",             "dir" : "", "file": "DistinctCountCapabilitiesMatrix" },
+            {"class":"Doc",  "desc" : "Features Matrix",             "dir" : "", "file": "DistinctCountFeaturesMatrix" },
+            {"class":"Doc",  "desc" : "Figures-of-Merit Comparison", "dir" : "", "file": "DistinctCountMeritComparisons"},
             
             { "class":"Dropdown", "desc" : "HyperLogLog Sketches", "array":
               [
@@ -44,7 +51,6 @@
                 },
                 { "class":"Dropdown", "desc" : "HLL Studies", "array":
                   [
-                    {"class":"Doc",  "desc" : "HLL vs Google HLL++",                      "dir" : "HLL", "file": "Hll_vs_G_Hllpp" },
                     {"class":"Doc",  "desc" : "HLL vs Clearspring HLL++",                 "dir" : "HLL", "file": "Hll_vs_CS_Hllpp" },
                     {"class":"Doc",  "desc" : "HLL Sketch vs Druid HyperLogLogCollector", "dir" : "HLL", "file": "HllSketchVsDruidHyperLogLogCollector" },
                   ]
@@ -216,12 +222,6 @@
           ]
         },
       ] 
-    },
-    { "class":"Dropdown", "desc" : "Memory Package", "array":
-      [
-        {"class":"Doc",  "desc" : "Memory Package",                           "dir" : "Memory", "file": "MemoryPackage" },
-        {"class":"Doc",  "desc" : "Memory Package Performance",               "dir" : "Memory", "file": "MemoryPerformance" },
-      ]
     },
 
     { "class":"Dropdown", "desc" : "Community", "array":

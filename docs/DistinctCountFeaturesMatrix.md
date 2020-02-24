@@ -1,5 +1,4 @@
 ---
-sectionid: docs
 layout: doc_page
 ---
 <!--
@@ -21,7 +20,7 @@ layout: doc_page
     under the License.
 -->
 
-## Capabilities Matrix for Distinct Count Sketches
+## Features Matrix for Distinct Count Sketches
 
 Category | Sub-Category | Theta | Tuple | HLL | CPC |
 :-------:|:------------:|:-----:|:-----:|:---:|:---:|
@@ -69,5 +68,7 @@ Other Operations and Modes | Jaccard Index | Y |  |  |  |
  | Associative Columns |  | Y |  |  |
  | Generic Extensions  |  | Y |  |  |
  
- ____
+____
  1. Space Accuracy Merit (Lower is better) = b * C^2 = b * K * RSE^2 
+
+ 
