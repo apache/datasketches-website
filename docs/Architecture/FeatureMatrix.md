@@ -62,7 +62,7 @@ Use the following table to compare the capabilities of the different sketch fami
 
 ## Definitions
 
-### Type (a.k.a. Sketch Family)
+### Type
 
 See [Research]({{site.docs_dir}}/Community/Research.html) for references in [...]
 
