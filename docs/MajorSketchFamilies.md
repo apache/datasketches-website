@@ -59,7 +59,8 @@ Use the following table to compare the capabilities of the different sketch fami
 <sup>2</sup> Example Code on website<br>
 <sup>3</sup> Example Code in test/.../tuple/aninteger
 
-----
+
+---
 
 
 # High-Level Descriptions

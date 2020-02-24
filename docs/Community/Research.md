@@ -52,7 +52,7 @@ The library has been adapted throughout industry and government. For example, at
 
 Beyond its utility in deployed systems, the process of developing of developing the Data Sketches library has led to interesting research. This has involved important contributions to both the theory of streaming algorithms as well as addressing issues that are crucial in real-world stream engines but are often ignored in the academic literature. These issues include mergeability, and dealing with *weighted* stream updates (i.e., data streams where each piece of data comes with an associated importance measure).
 
-In particular, work on the Data Sketches library has led to novel algorithms achieving state of the art practical performance for identifying frequent items in data streams [ABL+17], and mergeable summaries for unique count queries [DLRT16]. On the theoretical side, work on the library has led to the resolution of the space complexity of streaming approximation algorithms for quantile queries, which was a longstanding open question [KLL16], as well as for the problem of identifying frequent *itemsets* [LMTU16].
+In particular, work on the Data Sketches library has led to novel algorithms achieving state of the art practical performance for identifying frequent items in data streams [ABL+17], and mergeable summaries for unique count queries [DLRT16] including intersections and differences as an extension of [BJKST02]. On the theoretical side, work on the library has led to the resolution of the space complexity of streaming approximation algorithms for quantile queries, which was a longstanding open question [KLL16], as well as for the problem of identifying frequent *itemsets* [LMTU16].
 
 The cutting edge of scientific inquiry is to build more powerful algorithms and, at the same time, to devise new theorems and proofs that certify that these algorithms work well enough to draw robust conclusions.  This library is dedicated to that quest. By working in the open source community we are confident that there are major opportunities to incorporate algorithms for new and richer types of queries into the library, as well as to improve the efficiency of the algorithms that are already implemented.
 
@@ -60,7 +60,7 @@ The cutting edge of scientific inquiry is to build more powerful algorithms and,
 
 In a recent pre-print that grew out of work on the Data Sketches library [Lan17], Kevin Lang describes several streaming algorithms for estimating the number of distinct elements in a data stream. The algorithms have a better space/accuracy tradeoff than the previous state of the art algorithm, Hyperloglog (HLL) [FFGM07], which has been considered the gold standard in practical performance for this problem for nearly a decade. Specifically, for a given accuracy level, Lang’s algorithms use up to 20% less space than the *entropy* of the HLL sketch, and hence 20% less space than *any possible* implementation of HLL.
 
-Regarding runtime, Lang’s pre-print shows that some of his algorithms have comparable speed to straightforward implementations of HLL, but are somewhat slower than heavily optimized HLL implementations. Significant research remains to optimize the speed of the new algorithms, determine which variant algorithm performs best on real data and is most suitable for a production environment, and finally to produce a production-quality implementation of this algorithm.
+Regarding runtime, Lang’s pre-print shows that some of his algorithms have comparable speed to straightforward implementations of HLL, but are somewhat slower for serialization than heavily optimized HLL implementations. Significant research remains to optimize the speed of the new algorithms, determine which variant algorithm performs best on real data and is most suitable for a production environment, and finally to produce a production-quality implementation of this algorithm.
 
 ## Algorithms For Anomaly Detection
 
@@ -98,59 +98,47 @@ This solution suffices in some applications, but for other applications the chun
 
 ## References
 
-[ABL+17]
-Daniel Anderson, Pryce Bevan, Kevin J. Lang, Edo Liberty, Lee Rhodes, and Justin Thaler. A high-performance algorithm for identifying frequent items in data streams. In *ACM IMC 2017 (To Appear)*, 2017. [Preliminary paper](https://arxiv.org/abs/1705.07001).
+**[ABL+17]** Daniel Anderson, Pryce Bevan, Kevin J. Lang, Edo Liberty, Lee Rhodes, and Justin Thaler. A high-performance algorithm for identifying frequent items in data streams. In *ACM IMC 2017 (To Appear)*, 2017. [Preliminary paper](https://arxiv.org/abs/1705.07001).
 
-[AC+13]
-Pankaj K. Agarwal, Graham Cormode, Zengfeng Huang, Jeff M. Phillips, Zhewei Wei, Ke Yi. Mergeable summaries. *ACM Trans. Database Syst.* 38(4): 26:1-26:28, 2013
+**[AC+13]** Pankaj K. Agarwal, Graham Cormode, Zengfeng Huang, Jeff M. Phillips, Zhewei Wei, Ke Yi. Mergeable summaries. In *ACM Trans. Database Syst.* 38(4): 26:1-26:28, 2013
 
-[AM04]
-Arvind Arasu and Gurmeet Singh Manku. Approximate counts and quantiles over sliding windows. In *ACM PODS Proceedings '04*, pages 286–296, 2004.
+**[AM04]** Arvind Arasu and Gurmeet Singh Manku. Approximate counts and quantiles over sliding windows. In *ACM PODS Proceedings '04*, pages 286–296, 2004.
 
-[CCM10]
-Amit Chakrabarti, Graham Cormode, and Andrew McGregor. A near-optimal algorithm for estimating the entropy of a stream. *ACM Trans. Algorithms*, 6(3):51:1–51:21, 2010.
+**[BJKST02]** Bar-Yossef Z., Jayram T.S., Kumar R., Sivakumar D., Trevisan L. Counting Distinct Elements in a Data Stream. In *Rolim J.D.P., Vadhan S. (eds) Randomization and Approximation Techniques in Computer Science*. RANDOM 2002.
 
-[CEM+15]
-Michael B. Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu. Dimensionality reduction for k-means clustering and low rank approximation. In *ACM STOC Proceedings '15*, pages 163–172, 2015.
+**[CCM10]** Amit Chakrabarti, Graham Cormode, and Andrew McGregor. A near-optimal algorithm for estimating the entropy of a stream. In *ACM Trans. Algorithms*, 6(3):51:1–51:21, 2010.
 
-[DLRT16]
-Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings '16 *, pages 6:1–6:17, 2016. [Talk Slides](https://github.com/apache/incubator-datasketches-website/blob/master/docs/pdf/icdt-talk.pdf).
+**[CDKLT09]** Edith Cohen, Nick Duffield, Haim Kaplan, Carsten Lund, Mikkel Thorup. Stream sampling for variance-optimal estimation of subset sums. In **Proceedings of the 20th ACM-SIAM Symposium on Discrete Algorithms** SODA 2009.
 
-[FFGM07]
-Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *DMTCS Conference on Analysis of Algorithms*, pages 137–156, 2007.
+**[CEM+15]** Michael B. Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu. Dimensionality reduction for k-means clustering and low rank approximation. In *ACM STOC Proceedings '15*, pages 163–172, 2015.
 
-[GDD+03]
-Lukasz Golab, David DeHaan, Erik D. Demaine, Alejandro Lopez-Ortiz, and J. Ian Munro. Identifying frequent items in sliding windows over on-line packet streams. In *ACM IMC Proceedings '03*, pages 173–178, 2003.
+**[DLRT16]** Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings '16 *, pages 6:1–6:17, 2016. [Paper](https://arxiv.org/pdf/1510.01455.pdf). [Talk Slides](https://github.com/apache/incubator-datasketches-website/blob/master/docs/pdf/icdt-talk.pdf).
 
-[GLP16] Mina Ghashami, Edo Liberty, Jeff M. Phillips. Efficient Frequent Directions Algorithm for Sparse Matrices. In *ACM SIGKDD Proceedings '16*, pages 845-854, 2016
+**[FFGM07]** Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *DMTCS Conference on Analysis of Algorithms*, pages 137–156, 2007.
 
-[GT02]
-Phillip B. Gibbons and Srikanta Tirthapura. Distributed streams algorithms for sliding windows. In *ACM SPAA Proceedings '02*, pages 63–72, New York, NY, USA, 2002.
+**[FM85]** P. Flajolet and G. N. Martin. Probabilistic counting algorithms for data base applications. In *Journal of Computer and System Sciences*, 31:182–209, 1985.
 
-[KLL16]
-Zohar S. Karnin, Kevin J. Lang, and Edo Liberty. Optimal quantile approximation in streams. In *IEEE FOCS Proceedings '16*, pages 71–78, 2016.
+**[GDD+03]** Lukasz Golab, David DeHaan, Erik D. Demaine, Alejandro Lopez-Ortiz, and J. Ian Munro. Identifying frequent items in sliding windows over on-line packet streams. In *ACM IMC Proceedings '03*, pages 173–178, 2003.
 
-[Lan17]
-Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. *arXiv preprint* <https://arxiv.org/abs/1708.06839>, 2017.
+**[GLP16]** Mina Ghashami, Edo Liberty, Jeff M. Phillips. Efficient Frequent Directions Algorithm for Sparse Matrices. In *ACM SIGKDD Proceedings '16*, pages 845-854, 2016
 
-[Lib13]
-Edo Liberty. Simple and deterministic matrix sketching. In *ACM KDD Proceedings '13*, pages 581– 588, 2013.
+**[GT02]** Phillip B. Gibbons and Srikanta Tirthapura. Distributed streams algorithms for sliding windows. In *ACM SPAA Proceedings '02*, pages 63–72, New York, NY, USA, 2002.
 
-[LMTU16]
-Edo Liberty, Michael Mitzenmacher, Justin Thaler, and Jonathan Ullman. Space lower bounds for itemset frequency sketches. In *ACM PODS Proceedings '16*, pages 441–454, 2016.
+**[KLL16]** Zohar S. Karnin, Kevin J. Lang, and Edo Liberty. Optimal quantile approximation in streams. In *IEEE FOCS Proceedings '16*, pages 71–78, 2016.
 
-[McG14]
-Andrew McGregor. Graph stream algorithms: a survey. *ACM SIGMOD Record*, 43(1):9–20, 2014.
+**[Lan17]** Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. In *arXiv preprint* <https://arxiv.org/abs/1708.06839>, 2017.
 
-[MST12]
-Michael Mitzenmacher, Thomas Steinke, and Justin Thaler. Hierarchical heavy hitters with the space saving algorithm. In *SIAM ALENEX Proceedings '12*, pages 160–174, 2012.
+**[Lib13]** Edo Liberty. Simple and deterministic matrix sketching. In *ACM KDD Proceedings '13*, pages 581– 588, 2013.
 
-[RLS+ 15]
-Lee Rhodes, Kevin Lang, Alexander Saydakov, Justin Thaler, Edo Liberty, and Jon Malkin. DataSketches: A Java software library for streaming data algorithms. Apache License, Version 2.0, 2015. <https://datasketches.apahce.org>.
+**[LMTU16]** Edo Liberty, Michael Mitzenmacher, Justin Thaler, and Jonathan Ullman. Space lower bounds for itemset frequency sketches. In *ACM PODS Proceedings '16*, pages 441–454, 2016.
 
-[Tha07]
-Justin Thaler. REU project website: A near-optimal algorithm for computing the entropy of a stream, 2007. <https://people.cs.georgetown.edu/jthaler>.
+**[McG14]** Andrew McGregor. Graph stream algorithms: a survey. In *ACM SIGMOD Record*, 43(1):9–20, 2014.
 
-[VSGB05]
-Shobha Venkataraman, Dawn Xiaodong Song, Phillip B. Gibbons, and Avrim Blum. New streaming algorithms for fast detection of superspreaders. In *Internet Society NDSS Proceedings*, 2005.
+**[MST12]** Michael Mitzenmacher, Thomas Steinke, and Justin Thaler. Hierarchical heavy hitters with the space saving algorithm. In *SIAM ALENEX Proceedings '12*, pages 160–174, 2012.
+
+**[RLS+15]** Lee Rhodes, Kevin Lang, Alexander Saydakov, Justin Thaler, Edo Liberty, and Jon Malkin. **Apache DataSketches**: A Java software library for streaming data algorithms. Apache License, Version 2.0, 2015. <https://datasketches.apache.org>.
+
+**[Tha07]** Justin Thaler. REU project website: A near-optimal algorithm for computing the entropy of a stream, 2007. <https://people.cs.georgetown.edu/jthaler>.
+
+**[VSGB05]** Shobha Venkataraman, Dawn Xiaodong Song, Phillip B. Gibbons, and Avrim Blum. New streaming algorithms for fast detection of superspreaders. In *Internet Society NDSS Proceedings*, 2005.
 
