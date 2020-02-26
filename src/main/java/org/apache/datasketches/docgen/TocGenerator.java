@@ -37,8 +37,7 @@ public class TocGenerator {
   private static final String LS = System.getProperty("line.separator");
   private int level = 0;
   private PrintWriter pw = null;
-  private String jsonScrFile;
-  private String htmlScriptFile;
+  private String jsonSrcFile;
 
   TocGenerator() {} //needed for TestNG
 
@@ -47,6 +46,7 @@ public class TocGenerator {
    * <ol>
    *  <li>Edit the JSON source file (referenced below) for the structure you want.
    *  Be careful not to use any HTML reserved symbols! </li>
+   *  <li>Note that the javascript required is located in the _includes directory.
    *  <li>Execute this test.  The result will be placed in the proper location as part of the web
    *  source.</li>
    *  <li>Stage the changes and push the web site source to origin.</li>
@@ -57,9 +57,8 @@ public class TocGenerator {
     @Test
     public static void runTocGenerator() {
       final String jsonSrcFile = "src/main/resources/docgen/toc.json";
-      final String htmlScriptFile = "src/main/resources/docgen/tocScript.html";
       final String tgtTocFile = "_includes/toc.html";
-      TocGenerator tocgen = new TocGenerator(jsonSrcFile, htmlScriptFile, tgtTocFile);
+      TocGenerator tocgen = new TocGenerator(jsonSrcFile, tgtTocFile);
       tocgen.readJson();
     }
 
@@ -69,9 +68,8 @@ public class TocGenerator {
    * @param htmlScriptFile The javascript source file
    * @param tgtTocFile the target toc.html file
    */
-  public TocGenerator(final String jsonSrcFile, final String htmlScriptFile, final String tgtTocFile) {
-    jsonScrFile = jsonSrcFile;
-    this.htmlScriptFile = htmlScriptFile;
+  public TocGenerator(final String jsonSrcFile, final String tgtTocFile) {
+    this.jsonSrcFile = jsonSrcFile;
     if (tgtTocFile != null && !tgtTocFile.isEmpty()) {
       final File file = new File(tgtTocFile);
       if (file.exists()) { file.delete(); }
@@ -84,16 +82,12 @@ public class TocGenerator {
    */
   public void readJson() {
     final StringBuilder sb = new StringBuilder();
-    final String jin = Files.fileToString(jsonScrFile);
+    final String jin = Files.fileToString(jsonSrcFile);
     final JSONObject jo = new JSONObject(jin);
     final String clazz = jo.getString("class");
     if (clazz.equals("TOC")) { emitToc(jo, sb); }
     else if (clazz.equals("Dropdown")) { emitDropdown(jo, sb); }
     else { emitDoc(jo, sb); }
-    if (htmlScriptFile != null && !htmlScriptFile.isEmpty()) {
-      final String script = Files.fileToString(htmlScriptFile);
-      sb.append(script);
-    }
     println(sb.toString());
   }
 
@@ -103,6 +97,7 @@ public class TocGenerator {
    * @param sb the target StringBuilder
    */
   void emitToc(final JSONObject toc, final StringBuilder sb) {
+    sb.append("<!-- Start _includes/toc.html -->").append(LS);
     sb.append("<!-- Computer Generated File, Do Not Edit! -->").append(LS);
     sb.append("<link rel=\"stylesheet\" href=\"/css/toc.css\">").append(LS);
     sb.append("<div id=\"toc\" class=\"nav toc hidden-print\">").append(LS);
@@ -120,6 +115,7 @@ public class TocGenerator {
     level--;
 
     sb.append("</div>").append(LS);
+    sb.append("<!-- End _includes/toc.html -->").append(LS);
   }
 
   /**
@@ -247,17 +243,15 @@ public class TocGenerator {
 
   /**
    * Command line access.
-   * @param args three arguments are required:
+   * @param args two arguments are required:
    * <ol><li>The JSON source file</li>
-   * <li>The html script file that is appended to the end.</li>
    * <li>The target toc.html file</li>
    * </ol>
    */
   public static void main(final String[] args) {
     final String jsonSrcFile = args[0];
-    final String htmlScriptFile = args[1];
-    final String tgtTocFile = args[2];
-    final TocGenerator tocgen = new TocGenerator(jsonSrcFile, htmlScriptFile, tgtTocFile);
+    final String tgtTocFile = args[1];
+    final TocGenerator tocgen = new TocGenerator(jsonSrcFile, tgtTocFile);
     tocgen.readJson();
   }
 

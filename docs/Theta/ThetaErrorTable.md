@@ -1,5 +1,4 @@
 ---
-sectionid: docs
 layout: doc_page
 ---
 <!--

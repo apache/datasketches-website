@@ -1,3 +1,4 @@
+<!-- Start _includes/toc.html -->
 <!-- Computer Generated File, Do Not Edit! -->
 <link rel="stylesheet" href="/css/toc.css">
 <div id="toc" class="nav toc hidden-print">
@@ -275,68 +276,4 @@
     <li><a href="{{site.docs_dir}}/Community/Research.html">Research</a></li>
   </div>
 </div>
-<script>
-  (function () {
-
-    var findLineItem = function (path) {
-      return document.querySelector(`[href="${path}"]`);
-    };
-
-    var highlighLineItem = function (element) {
-      element.classList.add('highlight');
-    };
-
-    var checkHasClass = function (element, className) {
-      return element.className.split(' ').find(function (item) { return item === className || '' })
-    }
-
-    var findAllCollapseParents = function (element) {
-      var collapseMenus = [];
-      var elementPointer = element;
-      while (elementPointer !== document.body) {
-        if (checkHasClass(elementPointer, 'collapse')) {
-          collapseMenus.push(elementPointer);
-        }
-        elementPointer = elementPointer.parentElement
-      }
-      return collapseMenus
-    };
-
-    var findMatchingCollapseMenu = function (collapseItem) {
-      return document.querySelector(`[href="#${collapseItem.id}"]`);
-    };
-
-    var findAllParentMenus = function (element) {
-      var parentMenus = []
-      var elementPointer = element;
-      while (elementPointer !== document.body) {
-        if (elementPointer.className.split(' ').indexOf('menu') > -1) {
-          parentMenus.push(elementPointer);
-        }
-        elementPointer = elementPointer.parentElement;
-      }
-      return parentMenus;
-    }
-
-    var openMenuItem = function (element) {
-      element.click();
-    };
-
-    var openAllFromList = function (elementList) {
-      elementList.forEach(function (element) {
-        console.log(element)
-        openMenuItem(findMatchingCollapseMenu(element))
-      });
-    };
-
-    var highlightAndOpenMenu = function () {
-      var currentLineItem = findLineItem(document.location.pathname);
-      highlighLineItem(currentLineItem)
-      openAllFromList(findAllCollapseParents(currentLineItem));
-    };
-
-    $(highlightAndOpenMenu);
-
-  }());
-</script>
-
+<!-- End _includes/toc.html -->
