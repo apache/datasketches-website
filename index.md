@@ -1,8 +1,5 @@
 ---
-published: true
-title: DataSketches
-layout: html_page
-id: home
+layout: front_page
 ---
 <!-- Start /index.md -->
 <!--
@@ -37,15 +34,6 @@ id: home
         <a href="https://en.wikipedia.org/wiki/Stochastic" style="color: #EDE379"><i>stochastic</i></a> 
         <a href="https://en.wikipedia.org/wiki/Streaming_algorithm" style="color: #EDE379"><i>streaming algorithms</i></a></p>
       <!--<p class="lead" style="font-size: 16px; line-height: 1.0; margin-bottom: 15px"><i>"Excellence in theoretically informed algorithm engineering" -- Graham Cormode</i></p> -->
-      <!--
-      <p>
-        <a class="btn btn-lg btn-outline-inverse" href="overview.html"><span class="fa fa-info-circle"></span> Overview</a>
-        <a class="btn btn-lg btn-outline-inverse" href="/docs/Community/Downloads.html"><span class="fa fa-download"></span> Download</a>
-        <a class="btn btn-lg btn-outline-inverse" href="https://github.com/apache?utf8=%E2%9C%93&q=datasketches"><span class="fa fa-github"></span> GitHub</a>
-        <a class="btn btn-lg btn-outline-inverse" href="/docs/Community/Research.html"><span class="fa fa-paper-plane"></span> Research</a>
-        <a class="btn btn-lg btn-outline-inverse" href="/docs/Community/index.html" style="padding-top: 5px; padding-bottom: 0px; padding-left: 11.64px; padding-right: 12px;"><img class="ds-small-man" src="/img/datasketches-ManWhite.svg"/>Community</a>
-      </p>
-      -->
     </div>
   </div>
   </div>

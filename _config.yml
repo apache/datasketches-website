@@ -19,7 +19,6 @@ exclude:
   - DISCLAIMER-WIP
   - LICENSE
   - NOTICE
-  - README.md
   - tmp/
   - target/
   - test-output/

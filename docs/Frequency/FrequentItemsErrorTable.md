@@ -1,7 +1,5 @@
 ---
-layout: table_page
-title: Frequent Items
-subtitle: Error Threshold Table
+layout: no_toc_page
 ---
 <!--
     Licensed to the Apache Software Foundation (ASF) under one
@@ -21,6 +19,9 @@ subtitle: Error Threshold Table
     specific language governing permissions and limitations
     under the License.
 -->
+# Frequent Items
+### Error Threshold Table
+
 This table of thresholds is computed a follows:
 
 *  <i>M</i> = Max Map Size.  Always a power of 2.

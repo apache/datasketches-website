@@ -22,18 +22,23 @@
 
 Apache DataSketches is an open source, high-performance library of stochastic streaming algorithms commonly called "sketches" in the data sciences. Sketches are small, stateful programs that process massive data as a stream and provide approximate answers, with mathematical guarantees, to computationally difficult queries orders-of-magnitude faster than traditional, exact methods.
 
-After 8 years of development and 5 years as in Open Source, we have begun the important migration from a stand-alone GitHub site to being a member of the Apache Software Foundation community.  While we undergo this migration, we beg your patience. 
+* [Downloads: Finding our code releases](https://datasketches.apache.org/docs/Community/Downloads.html) Staight to the good stuff!
 
-* [How to contact us]({{site.docs_dir}}/Community/index.html)
+* [Contributing](https://datasketches.apache.org/docs/Community) Learn how you can help!
 
-* [Finding our code releases]({{site.docs_dir}}/Community/index.html)
+* [Research](https://datasketches.apache.org/docs/Community/Research.html) How we are pushing the science forward.
 
-* [Contributing]({{site.docs_dir}}/Community/index.html)
+* [How to contact us](https://datasketches.apache.org/docs/Community) Help us help you by contacting us!
 
+---
 
-* As the repositories under GitHub.io/DataSketches migrate they will disapear from the the GitHub.com/DataSketches organization page. Please refer to this list be directed to the new locations. 
-  * View all of our Apache DataSketches repositories as a [list](https://github.com/apache?utf8=%E2%9C%93&q=datasketches)
-  * Names in **BOLD** are of the old github.com/datasketches/ organization repositories.
+After 8 years of development and 5 years as in Open Source, we have begun the important migration from a stand-alone GitHub site to being a member of the [Apache Software Foundation](https://apache.org) community.  While we undergo this migration, we beg your patience. 
+
+As the repositories under GitHub.io/DataSketches migrate they will disapear from the the GitHub.com/DataSketches organization page. Please refer to this list be directed to the new locations. 
+
+View all of our Apache DataSketches repository components as a [list](https://github.com/apache?utf8=%E2%9C%93&q=datasketches)
+
+**Note** The following names in **BOLD** are of the old github.com/datasketches/ organization repositories.
 
 * Web Site and Web Site Source
   * **datasketches.github.io** moved to [datasketches.apache.org](https://datasketches.apache.org)
