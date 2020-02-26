@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<!-- Start _layouts/table_page.html-->
+<!-- Start _layouts/no_toc_page.html-->
 <html lang="en">
 
 <head>
-  <!-- Start _include/site_head.html -->
+<!-- Start _include/site_head.html -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="datasketches">
 
-<title>DataSketches | Frequent Items</title>
+<title>DataSketches | </title>
 
 <link rel="shortcut icon" href="/img/favicon.png">
 
@@ -31,11 +31,10 @@
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- End _include/site_head.html -->
-
 </head>
 
 <body>
-  <!-- Start _include/page_header.html -->
+<!-- Start _include/nav_bar.html -->
 <div class="navbar navbar-inverse navbar-static-top ds-nav">
   <div class="container">
     <div class="navbar-header">
@@ -51,7 +50,7 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="/overview.html">
+          <a href="/docs/TheChallenge.html">
             <span class="fa fa-info-circle"></span> OVERVIEW</a>
         </li>
         <li>
@@ -87,26 +86,25 @@
     </div>
   </div>
 </div>
-<!-- End _include/page_header.html -->
+<!-- End _include/nav_bar.html -->
 
-
-  <div class="ds-header">
-    <div class="container">
-      <h1>Frequent Items</h1>
-      <h3>Error Threshold Table</h3>
-      <h4>API Snapshots:
-        <a href="/api/java/snapshot/apidocs/index.html">Java Core</a>,
-        <a href="/api/memory/snapshot/apidocs/index.html">Memory</a>,
-        <a href="/api/pig/snapshot/apidocs/index.html">Pig</a>,
-        <a href="/api/hive/snapshot/apidocs/index.html">Hive</a>,
-      </h4>
-    </div>
-  </div>
-
+<!-- Start _include/javadocs.html -->
+<div class="ds-header">
   <div class="container">
-    <div class="row">
-      <div class="col-md-9 doc-content">
-          <!--
+    <h4>API Snapshots:
+      <a href="/api/java/snapshot/apidocs/index.html">Java Core</a>,
+      <a href="/api/memory/snapshot/apidocs/index.html">Memory</a>,
+      <a href="/api/pig/snapshot/apidocs/index.html">Pig</a>,
+      <a href="/api/hive/snapshot/apidocs/index.html">Hive</a>,
+    </h4>
+  </div>
+</div>
+<!-- End _include/javadocs.html -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 doc-content">
+<!--
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
     distributed with this work for additional information
@@ -124,6 +122,9 @@
     specific language governing permissions and limitations
     under the License.
 -->
+<h1 id="frequent-items">Frequent Items</h1>
+<h3 id="error-threshold-table">Error Threshold Table</h3>
+
 <p>This table of thresholds is computed a follows:</p>
 
 <ul>
@@ -928,11 +929,11 @@ than <i>T</i>, but it may exclude some items with frequency greater than
 </table>
 
 
-      </div>>
     </div>
   </div>
+</div>
 
-  <!-- Start _include/page_footer.html -->
+<!-- Start _include/page_footer.html -->
 <footer class="ds-footer">
   <div class="container">
     <div class="text-center">
@@ -950,10 +951,7 @@ than <i>T</i>, but it may exclude some items with frequency greater than
   </div>
 </footer>
 <!-- End _include/page_footer.html -->
-
-
-  <script>$(function () { $(".toc").load("/docs/toc.html"); });</script>
 </body>
 
 </html>
-<!-- End _layouts/table_page.html-->
+<!-- End _layouts/no_toc_page.html-->

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-  <!-- Start _include/site_head.html -->
+<!-- Start _include/site_head.html -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -31,11 +31,10 @@
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- End _include/site_head.html -->
-
 </head>
 
 <body>
-  <!-- Start _include/page_header.html -->
+<!-- Start _include/nav_bar.html -->
 <div class="navbar navbar-inverse navbar-static-top ds-nav">
   <div class="container">
     <div class="navbar-header">
@@ -51,7 +50,7 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="/overview.html">
+          <a href="/docs/TheChallenge.html">
             <span class="fa fa-info-circle"></span> OVERVIEW</a>
         </li>
         <li>
@@ -87,27 +86,31 @@
     </div>
   </div>
 </div>
-<!-- End _include/page_header.html -->
+<!-- End _include/nav_bar.html -->
 
-
-  <div class="ds-header">
-    <div class="container">
-      <h4>API Snapshots:
-        <a href="/api/java/snapshot/apidocs/index.html">Java Core</a>,
-        <a href="/api/memory/snapshot/apidocs/index.html">Memory</a>,
-        <a href="/api/pig/snapshot/apidocs/index.html">Pig</a>,
-        <a href="/api/hive/snapshot/apidocs/index.html">Hive</a>,
-      </h4>
-    </div>
+<!-- Start _include/javadocs.html -->
+<div class="ds-header">
+  <div class="container">
+    <h4>API Snapshots:
+      <a href="/api/java/snapshot/apidocs/index.html">Java Core</a>,
+      <a href="/api/memory/snapshot/apidocs/index.html">Memory</a>,
+      <a href="/api/pig/snapshot/apidocs/index.html">Pig</a>,
+      <a href="/api/hive/snapshot/apidocs/index.html">Hive</a>,
+    </h4>
   </div>
+</div>
+<!-- End _include/javadocs.html -->
 
   <div class="container">
     <div class="row">
+      <!-- Start ToC Block -->
       <div class="col-md-3">
         <div class="searchbox" style="position:relative">
           <gcse:searchbox-only></gcse:searchbox-only>
         </div>
-        <!-- Computer Generated File, Do Not Edit! -->
+
+<!-- Start _includes/toc.html -->
+<!-- Computer Generated File, Do Not Edit! -->
 <link rel="stylesheet" href="/css/toc.css">
 <div id="toc" class="nav toc hidden-print">
 
@@ -384,6 +387,11 @@
     <li><a href="/docs/Community/Research.html">Research</a></li>
   </div>
 </div>
+<!-- End _includes/toc.html -->
+      </div>
+      <!-- End ToC Block -->
+
+<!-- Start _includes/tocScript.html -->
 <script>
   (function () {
 
@@ -448,11 +456,10 @@
 
   }());
 </script>
+<!-- End _includes/tocScript.html -->
 
-
-      </div>
       <div class="col-md-9 doc-content">
-        <!--
+<!--
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
     distributed with this work for additional information
@@ -570,11 +577,11 @@ for operation on the java heap or off-heap.</li>
 </ul>
 
 
-      </div>
-    </div>
-  </div>
+      </div> <!-- End content -->
+    </div> <!-- End row -->
+  </div> <!-- End Container -->
 
-  <!-- Start _include/page_footer.html -->
+<!-- Start _include/page_footer.html -->
 <footer class="ds-footer">
   <div class="container">
     <div class="text-center">
@@ -592,7 +599,6 @@ for operation on the java heap or off-heap.</li>
   </div>
 </footer>
 <!-- End _include/page_footer.html -->
-
 </body>
 
 </html>
