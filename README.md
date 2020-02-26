@@ -30,6 +30,8 @@ Apache DataSketches is an open source, high-performance library of stochastic st
 
 * [How to contact us](https://datasketches.apache.org/docs/Community) Help us help you by contacting us!
 
+---
+
 After 8 years of development and 5 years as in Open Source, we have begun the important migration from a stand-alone GitHub site to being a member of the [Apache Software Foundation](https://apache.org) community.  While we undergo this migration, we beg your patience. 
 
 As the repositories under GitHub.io/DataSketches migrate they will disapear from the the GitHub.com/DataSketches organization page. Please refer to this list be directed to the new locations. 
