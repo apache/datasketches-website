@@ -34,7 +34,9 @@ This functionality appeared in sketches-pig-0.10.0. Depends on sketches-core-0.1
 
 ### hll.pig script: build sketches, union sketches and get estimates
 
-    register sketches-pig-0.10.0-with-shaded-core.jar;
+    register datasketches-memory-1.2.0-incubating.jar;
+    register datasketches-java-1.2.0-incubating.jar;
+    register datasketches-pig-1.0.0-incubating.jar;
 
     -- Parameters are optional. Default is 12
     define dataToSketch org.apache.datasketches.pig.hll.DataToSketch('10');
@@ -93,7 +95,9 @@ From 'dump h':
 
 ### hll_union.pig script: union sketches from different columns
 
-    register sketches-pig-0.10.0-with-shaded-core.jar;
+    register datasketches-memory-1.2.0-incubating.jar;
+    register datasketches-java-1.2.0-incubating.jar;
+    register datasketches-pig-1.0.0-incubating.jar;
 
     define dataToSketch org.apache.datasketches.pig.hll.DataToSketch();
     define unionSketch org.apache.datasketches.pig.hll.UnionSketch();

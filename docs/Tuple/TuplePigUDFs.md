@@ -32,8 +32,9 @@ layout: doc_page
 
 ### tuple.pig script
 
-    register sketches-core-0.7.0.jar;
-    register sketches-pig-0.7.0.jar;
+    register datasketches-memory-1.2.0-incubating.jar;
+    register datasketches-java-1.2.0-incubating.jar;
+    register datasketches-pig-1.0.0-incubating.jar;
 
     define dataToSketch org.apache.datasketches.pig.tuple.DataToDoubleSummarySketch('32');
     define unionSketch org.apache.datasketches.pig.tuple.UnionDoubleSummarySketch('32');

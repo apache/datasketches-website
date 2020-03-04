@@ -32,8 +32,9 @@ layout: doc_page
 
 ### theta.pig script: building sketches, merging sketches and getting estimates
 
-    register sketches-core-0.5.2.jar;
-    register sketches-pig-0.5.2.jar;
+    register datasketches-memory-1.2.0-incubating.jar;
+    register datasketches-java-1.2.0-incubating.jar;
+    register datasketches-pig-1.0.0-incubating.jar;
 
     define dataToSketch org.apache.datasketches.pig.theta.DataToSketch('32');
     define unionSketch org.apache.datasketches.pig.theta.Union('32');
@@ -77,8 +78,9 @@ The expected exact result would be (60.0). The estimate has high relative error 
 
 ### theta_setops.pig script: set operations on sketches
 
-    register sketches-core-0.7.0.jar;
-    register sketches-pig-0.7.0.jar;
+    register datasketches-memory-1.2.0-incubating.jar;
+    register datasketches-java-1.2.0-incubating.jar;
+    register datasketches-pig-1.0.0-incubating.jar;
 
     define dataToSketch org.apache.datasketches.pig.theta.DataToSketch('32');
     define unionSketch org.apache.datasketches.pig.theta.Union();

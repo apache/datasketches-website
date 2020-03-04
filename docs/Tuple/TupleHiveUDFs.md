@@ -21,7 +21,9 @@ layout: doc_page
 -->
 ## Tuple Sketch Hive UDFs
 
-    add jar sketches-hive-0.10.5-with-shaded-core.jar;
+    add jar datasketches-memory-1.2.0-incubating.jar;
+    add jar datasketches-java-1.2.0-incubating.jar;
+    add jar datasketches-hive-1.0.0-incubating.jar;
 
     create temporary function data2sketch as 'org.apache.datasketches.hive.tuple.DataToArrayOfDoublesSketchUDAF';
     create temporary function unionSketches as 'org.apache.datasketches.hive.tuple.UnionArrayOfDoublesSketchUDAF';

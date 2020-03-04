@@ -25,7 +25,9 @@ Depends on sketches-core.
 
 ### Building sketches, merging sketches and getting estimates
 
-    add jar sketches-hive-0.10.5-with-shaded-core.jar;
+    add jar datasketches-memory-1.2.0-incubating.jar;
+    add jar datasketches-java-1.2.0-incubating.jar;
+    add jar datasketches-hive-1.0.0-incubating.jar;
 
     create temporary function data2sketch as 'org.apache.datasketches.hive.theta.DataToSketchUDAF';
     create temporary function unionSketches as 'org.apache.datasketches.hive.theta.UnionSketchUDAF';
@@ -56,7 +58,9 @@ Depends on sketches-core.
 
 Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter. The same is true about IntersectSketchUDF and IntersectSketchUDAF.
 
-    add jar sketches-hive-0.10.5-with-shaded-core.jar;
+    add jar datasketches-memory-1.2.0-incubating.jar;
+    add jar datasketches-java-1.2.0-incubating.jar;
+    add jar datasketches-hive-1.0.0-incubating.jar;
 
     create temporary function data2sketch as 'org.apache.datasketches.hive.theta.DataToSketchUDAF';
     create temporary function estimate as 'org.apache.datasketches.hive.theta.EstimateSketchUDF';
