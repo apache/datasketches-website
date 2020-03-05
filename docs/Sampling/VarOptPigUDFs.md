@@ -32,8 +32,9 @@ layout: doc_page
 
 ### varopt_example.pig script
 
-    register sketches-core-0.10.0.jar;
-    register sketches-pig-0.10.0.jar;
+    register datasketches-memory-1.2.0-incubating.jar;
+    register datasketches-java-1.2.0-incubating.jar;
+    register datasketches-pig-1.0.0-incubating.jar;
 
     -- very small sketch just for the purpose of this tiny example
     DEFINE DataToSketch org.apache.datasketches.pig.sampling.DataToVarOptSketch('4', '0');

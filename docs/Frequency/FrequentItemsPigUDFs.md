@@ -32,8 +32,9 @@ layout: doc_page
 
 ### frequent_items.pig script
 
-    register sketches-core-0.7.0.jar;
-    register sketches-pig-0.7.0.jar;
+    register datasketches-memory-1.2.0-incubating.jar;
+    register datasketches-java-1.2.0-incubating.jar;
+    register datasketches-pig-1.0.0-incubating.jar;
 
     -- very small sketch just for the purpose of this tiny example
     define dataToSketch org.apache.datasketches.pig.frequencies.DataToFrequentStringsSketch('8');

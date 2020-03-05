@@ -32,9 +32,9 @@ layout: doc_page
 
 ### quantiles.pig script
 
-    register memory-0.11.0.jar;
-    register sketches-core-0.11.1.jar;
-    register sketches-pig-0.11.0.jar;
+    register datasketches-memory-1.2.0-incubating.jar;
+    register datasketches-java-1.2.0-incubating.jar;
+    register datasketches-pig-1.0.0-incubating.jar;
 
     define dataToSketch org.apache.datasketches.pig.quantiles.DataToDoublesSketch();
     define unionSketch org.apache.datasketches.pig.quantiles.UnionDoublesSketch();
