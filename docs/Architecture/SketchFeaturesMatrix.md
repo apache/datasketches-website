@@ -67,7 +67,7 @@ Use the following table to compare the capabilities of the different sketch fami
 See [Research]({{site.docs_dir}}/Community/Research.html) for references in [...]
 
 * **Cardinality/FM85** Derivations of [FM85]. They include the popular HyperLogLog (HLL) Sketch as well as the Compressed Probabilistic Counting (CPC) Sketch, which has a completely different theoretical derivation and is superior to the HLL sketch in terms of accuracy per byte of storage. 
-* **Cardinality/Theata** Derivations of [BJKST02].
+* **Cardinality/Theta** Derivations of [BJKST02].
 * **Cardinality/Tuple** An Extension of the Theta family that adds attributes to each hash-key.
 * **Quantiles/Cormode** Based on [AC+13]
 * **Quantiles/KLL** Based on [KLL16].

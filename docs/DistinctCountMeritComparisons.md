@@ -41,6 +41,7 @@ The seven metrics are as follows:
 * **Merge Time, Nanoseconds** The time required, per sketch, to merge into the Union operator.  These numbers are only useful for comparison in this table because merge times are sensitive to many, many factors. 
 * **Solo Error RSE** This is theoretical Relative Standard Error based on the configured size of the sketch and using the most accurate estimator for a single (solo) sketch that is not involved in any merge operations.  
 * **Merge Error RSE** This is theoretical Relative Standard Error based on the configured size of the sketch and using the most accurate estimator for a sketch that is a result of a merge operations.
+* **Size** The stored size of the sketch in bytes. This is a function of the specific configuration of the sketch
 
 ## Raw Data Table and Normalization
 
