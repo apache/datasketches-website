@@ -491,9 +491,9 @@
 
 <h3 id="quantilespig-script">quantiles.pig script</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register memory-0.11.0.jar;
-register sketches-core-0.11.1.jar;
-register sketches-pig-0.11.0.jar;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-1.2.0-incubating.jar;
+register datasketches-java-1.2.0-incubating.jar;
+register datasketches-pig-1.0.0-incubating.jar;
 
 define dataToSketch org.apache.datasketches.pig.quantiles.DataToDoublesSketch();
 define unionSketch org.apache.datasketches.pig.quantiles.UnionDoublesSketch();

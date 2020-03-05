@@ -493,7 +493,9 @@
 
 <h3 id="hllpig-script-build-sketches-union-sketches-and-get-estimates">hll.pig script: build sketches, union sketches and get estimates</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register sketches-pig-0.10.0-with-shaded-core.jar;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-1.2.0-incubating.jar;
+register datasketches-java-1.2.0-incubating.jar;
+register datasketches-pig-1.0.0-incubating.jar;
 
 -- Parameters are optional. Default is 12
 define dataToSketch org.apache.datasketches.pig.hll.DataToSketch('10');
@@ -556,7 +558,9 @@ From ‘dump d’ (unique count estimate per category):</p>
 
 <h3 id="hll_unionpig-script-union-sketches-from-different-columns">hll_union.pig script: union sketches from different columns</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register sketches-pig-0.10.0-with-shaded-core.jar;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-1.2.0-incubating.jar;
+register datasketches-java-1.2.0-incubating.jar;
+register datasketches-pig-1.0.0-incubating.jar;
 
 define dataToSketch org.apache.datasketches.pig.hll.DataToSketch();
 define unionSketch org.apache.datasketches.pig.hll.UnionSketch();
