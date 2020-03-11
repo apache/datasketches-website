@@ -74,7 +74,8 @@ From 'dump g' (merged across categories):
 
     (50.415577215639736)
 
-The expected exact result would be (60.0). The estimate has high relative error because the sketch was configured with only 32 nominal entries.
+The expected exact result would be (60.0). The estimate has high relative error because the sketch was configured with only 32 nominal entries
+to show the estimation mode for the purposes of this example.
 
 ### theta_setops.pig script: set operations on sketches
 

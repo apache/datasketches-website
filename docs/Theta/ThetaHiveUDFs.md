@@ -21,8 +21,6 @@ layout: doc_page
 -->
 ## Hadoop Hive UDFs
 
-Depends on sketches-core.
-
 ### Building sketches, merging sketches and getting estimates
 
     add jar datasketches-memory-1.2.0-incubating.jar;
