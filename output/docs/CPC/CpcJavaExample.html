@@ -476,71 +476,86 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="hyper-log-log-sketch-hive-udfs">Hyper Log Log sketch Hive UDFs</h2>
+<h1 id="cpc-sketch-java-example">CPC Sketch Java Example</h1>
 
-<h3 id="building-sketches-computing-unions-and-getting-estimates">Building sketches, computing unions and getting estimates</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import com.yahoo.memory.Memory;
+import com.yahoo.sketches.cpc.CpcSketch;
+import com.yahoo.sketches.cpc.CpcUnion;
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add jar datasketches-memory-1.2.0-incubating.jar;
-add jar datasketches-java-1.2.0-incubating.jar;
-add jar datasketches-hive-1.0.0-incubating.jar;
+//simplified file operations and no error handling for clarity
+public class CpcExample {
 
-create temporary function data2sketch as 'org.apache.datasketches.hive.hll.DataToSketchUDAF';
-create temporary function unionSketches as 'org.apache.datasketches.hive.hll.UnionSketchUDAF';
-create temporary function estimate as 'org.apache.datasketches.hive.hll.SketchToEstimateUDF';
+  public static void main(String[] args) throws Exception {
+    final int lgK = 10;
+    // this section generates two sketches with some overlap and serializes them into files
+    {
+      // 100000 distinct keys
+      CpcSketch sketch1 = new CpcSketch(lgK);
+      for (int key = 0; key &lt; 100000; key++) sketch1.update(key);
+      FileOutputStream out1 = new FileOutputStream("CpcSketch1.bin");
+      out1.write(sketch1.toByteArray());
+      out1.close();
 
-use &lt;your-db-name-here&gt;;
+      // 100000 distinct keys
+      CpcSketch sketch2 = new CpcSketch(lgK);
+      for (int key = 50000; key &lt; 150000; key++) sketch2.update(key);
+      FileOutputStream out2 = new FileOutputStream("CpcSketch2.bin");
+      out2.write(sketch2.toByteArray());
+      out2.close();
+    }
 
--- prepare input data
-create temporary table sketch_input (id int, category char(1));
-insert into table sketch_input values
-  (1, 'a'), (2, 'a'), (3, 'a'), (4, 'a'), (5, 'a'), (6, 'a'), (7, 'a'), (8, 'a'), (9, 'a'), (10, 'a'),
-  (6, 'b'), (7, 'b'), (8, 'b'), (9, 'b'), (10, 'b'), (11, 'b'), (12, 'b'), (13, 'b'), (14, 'b'), (15, 'b');
+    // this section deserializes the sketches, produces a union and prints the result
+    {
+      FileInputStream in1 = new FileInputStream("CpcSketch1.bin");
+      byte[] bytes1 = new byte[in1.available()];
+      in1.read(bytes1);
+      in1.close();
+      CpcSketch sketch1 = CpcSketch.heapify(Memory.wrap(bytes1));
 
--- build sketches per category
-create temporary table sketch_intermediate (category char(1), sketch binary);
-insert into sketch_intermediate select category, data2sketch(id) from sketch_input group by category;
+      FileInputStream in2 = new FileInputStream("CpcSketch2.bin");
+      byte[] bytes2 = new byte[in2.available()];
+      in2.read(bytes2);
+      in2.close();
+      CpcSketch sketch2 = CpcSketch.heapify(Memory.wrap(bytes2));
 
--- get unique count estimates per category
-select category, estimate(sketch) from sketch_intermediate;
+      CpcUnion union = new CpcUnion(lgK);
+      union.update(sketch1);
+      union.update(sketch2);
+      CpcSketch result = union.getResult();
 
-Output:
-a	10.000000223517425
-b	10.000000223517425
+      // debug summary of the union result sketch
+      System.out.println(result.toString());
 
--- union sketches across categories and get overall unique count estimate
-select estimate(unionSketches(sketch)) from sketch_intermediate;
+      System.out.println("Distinct count estimate: " + result.getEstimate());
+      System.out.println("Distinct count lower bound 95% confidence: " + result.getLowerBound(2));
+      System.out.println("Distinct count upper bound 95% confidence: " + result.getUpperBound(2));
+    }
+  }
 
-Output:
-15.000000521540663
-</code></pre></div></div>
-
-<h3 id="union-two-sketches">Union two sketches</h3>
-
-<p>Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add jar datasketches-memory-1.2.0-incubating.jar;
-add jar datasketches-java-1.2.0-incubating.jar;
-add jar datasketches-hive-1.0.0-incubating.jar;
-
-create temporary function data2sketch as 'org.apache.datasketches.hive.hll.DataToSketchUDAF';
-create temporary function estimate as 'org.apache.datasketches.hive.hll.SketchToEstimateUDF';
-create temporary function unionTwoSketches as 'org.apache.datasketches.hive.hll.UnionSketchUDF';
-
-use &lt;your-db-name-here&gt;;
-
--- prepare input data
-create temporary table sketch_input (id1 int, id2 int);
-insert into table sketch_input values (1, 2), (2, 4), (3, 6), (4, 8), (5, 10), (6, 12), (7, 14), (8, 16), (9, 18), (10, 20);
-
--- build two sketches
-create temporary table sketch_intermediate (sketch1 binary, sketch2 binary);
-insert into sketch_intermediate select data2sketch(id1), data2sketch(id2) from sketch_input;
-
--- get estimates from sketches and union
-select estimate(sketch1), estimate(sketch2), estimate(unionTwoSketches(sketch1, sketch2)) from sketch_intermediate;
+}
 
 Output:
-10.000000223517425	10.000000223517425	15.000000521540663
+### CPD SKETCH - PREAMBLE:
+  Flavor         : SLIDING
+  LgK            : 10
+  Merge Flag     : true
+  Error Const    : 0.6931471805599453
+  RSE            : 0.02166084939249829
+  Seed Hash      : 93cc | 37836
+  Num Coupons    : 7706
+  Num Pairs (SV) : 27
+  First Inter Col: 4
+  Valid Window   : true
+  Valid PairTable: true
+  Window Offset  : 5
+  KxP            : 1024.0
+  HIP Accum      : 0.0
+### END CPC SKETCH
+Distinct count estimate: 149796.50599220005
+Distinct count lower bound 95% confidence: 143416.2744812169
+Distinct count upper bound 95% confidence: 156397.0
 </code></pre></div></div>
 
       </div> <!-- End content -->

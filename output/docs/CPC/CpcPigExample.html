@@ -476,71 +476,73 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="hyper-log-log-sketch-hive-udfs">Hyper Log Log sketch Hive UDFs</h2>
+<h2 id="cpc-sketch-pig-udfs">CPC Sketch Pig UDFs</h2>
 
-<h3 id="building-sketches-computing-unions-and-getting-estimates">Building sketches, computing unions and getting estimates</h3>
+<h3 id="instructions">Instructions</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add jar datasketches-memory-1.2.0-incubating.jar;
-add jar datasketches-java-1.2.0-incubating.jar;
-add jar datasketches-hive-1.0.0-incubating.jar;
+<ul>
+  <li>get jars</li>
+  <li>save the following script as cpc.pig</li>
+  <li>adjust jar versions and paths if necessary</li>
+  <li>save the below data into a file called “data.txt”</li>
+  <li>copy data to hdfs: “hdfs dfs -copyFromLocal data.txt”</li>
+  <li>run pig script: “pig cpc.pig”</li>
+</ul>
 
-create temporary function data2sketch as 'org.apache.datasketches.hive.hll.DataToSketchUDAF';
-create temporary function unionSketches as 'org.apache.datasketches.hive.hll.UnionSketchUDAF';
-create temporary function estimate as 'org.apache.datasketches.hive.hll.SketchToEstimateUDF';
+<h3 id="cpcpig-script-building-sketches-merging-sketches-and-getting-estimates">cpc.pig script: building sketches, merging sketches and getting estimates</h3>
 
-use &lt;your-db-name-here&gt;;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-1.2.0-incubating.jar;
+register datasketches-java-1.2.0-incubating.jar;
+register datasketches-pig-1.0.0-incubating.jar;
 
--- prepare input data
-create temporary table sketch_input (id int, category char(1));
-insert into table sketch_input values
-  (1, 'a'), (2, 'a'), (3, 'a'), (4, 'a'), (5, 'a'), (6, 'a'), (7, 'a'), (8, 'a'), (9, 'a'), (10, 'a'),
-  (6, 'b'), (7, 'b'), (8, 'b'), (9, 'b'), (10, 'b'), (11, 'b'), (12, 'b'), (13, 'b'), (14, 'b'), (15, 'b');
+define dataToSketch org.apache.datasketches.pig.cpc.DataToSketch('12');       
+define unionSketch org.apache.datasketches.pig.cpc.UnionSketch('12');       
+define getEstimate org.apache.datasketches.pig.cpc.GetEstimate();     
+define getEstimateAndBounds org.apache.datasketches.pig.cpc.GetEstimateAndErrorBounds('3');       
+define toString org.apache.datasketches.pig.cpc.SketchToString();              
 
--- build sketches per category
-create temporary table sketch_intermediate (category char(1), sketch binary);
-insert into sketch_intermediate select category, data2sketch(id) from sketch_input group by category;
+a = load 'data.txt' as (id, category);
+b = group a by category;
+c = foreach b generate flatten(group) as (category), dataToSketch(a.id) as sketch;
+-- Sketches can be stored at this point in binary format to be used later:
+-- store c into 'intermediate/$date' using BinStorage();
+-- The next two lines print the results in human readable form for the purpose of this example
+d = foreach c generate category, getEstimate(sketch);
+dump d;
 
--- get unique count estimates per category
-select category, estimate(sketch) from sketch_intermediate;
+-- This can be a separate query
+-- For example, the first part can produce a daily intermediate feed and store it,
+-- and this part can load several instances of this daily intermediate feed and merge them
+e = group c all;
+f = foreach e generate unionSketch(c.sketch) as sketch;
+g = foreach f generate getEstimate(sketch);
+dump g;
 
-Output:
-a	10.000000223517425
-b	10.000000223517425
-
--- union sketches across categories and get overall unique count estimate
-select estimate(unionSketches(sketch)) from sketch_intermediate;
-
-Output:
-15.000000521540663
+h = foreach f generate flatten(getEstimateAndBounds(sketch)) as (estimate, lb, ub);
+dump h;
 </code></pre></div></div>
 
-<h3 id="union-two-sketches">Union two sketches</h3>
+<h3 id="datatxt-tab-separated"><a href="/docs/Theta/data.txt">data.txt</a> (tab separated)</h3>
 
-<p>Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter.</p>
+<p>The example input data has 2 fields: id and category.
+There are 2 categories ‘a’ and ‘b’ with 50 unique IDs in each.
+Most of the IDs in these categories overlap, so that there are 60 unique IDs in total.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add jar datasketches-memory-1.2.0-incubating.jar;
-add jar datasketches-java-1.2.0-incubating.jar;
-add jar datasketches-hive-1.0.0-incubating.jar;
+<p>Results:
+From ‘dump d’:</p>
 
-create temporary function data2sketch as 'org.apache.datasketches.hive.hll.DataToSketchUDAF';
-create temporary function estimate as 'org.apache.datasketches.hive.hll.SketchToEstimateUDF';
-create temporary function unionTwoSketches as 'org.apache.datasketches.hive.hll.UnionSketchUDF';
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(a,50.09992602861082)
+(b,50.09992602861082)
+</code></pre></div></div>
 
-use &lt;your-db-name-here&gt;;
+<p>From ‘dump g’ (merged across categories):</p>
 
--- prepare input data
-create temporary table sketch_input (id1 int, id2 int);
-insert into table sketch_input values (1, 2), (2, 4), (3, 6), (4, 8), (5, 10), (6, 12), (7, 14), (8, 16), (9, 18), (10, 20);
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(60.14445031168714)
+</code></pre></div></div>
 
--- build two sketches
-create temporary table sketch_intermediate (sketch1 binary, sketch2 binary);
-insert into sketch_intermediate select data2sketch(id1), data2sketch(id2) from sketch_input;
+<p>From ‘dump h’ (with error bounds, 99% confidence interval):</p>
 
--- get estimates from sketches and union
-select estimate(sketch1), estimate(sketch2), estimate(unionTwoSketches(sketch1, sketch2)) from sketch_intermediate;
-
-Output:
-10.000000223517425	10.000000223517425	15.000000521540663
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(60.14445031168714,60.0,63.0)
 </code></pre></div></div>
 
       </div> <!-- End content -->

@@ -476,71 +476,72 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="hyper-log-log-sketch-hive-udfs">Hyper Log Log sketch Hive UDFs</h2>
+<h1 id="cpc-sketch-c-example">CPC Sketch C++ Example</h1>
 
-<h3 id="building-sketches-computing-unions-and-getting-estimates">Building sketches, computing unions and getting estimates</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add jar datasketches-memory-1.2.0-incubating.jar;
-add jar datasketches-java-1.2.0-incubating.jar;
-add jar datasketches-hive-1.0.0-incubating.jar;
+#include &lt;cpc_sketch.hpp&gt;
+#include &lt;cpc_union.hpp&gt;
 
-create temporary function data2sketch as 'org.apache.datasketches.hive.hll.DataToSketchUDAF';
-create temporary function unionSketches as 'org.apache.datasketches.hive.hll.UnionSketchUDAF';
-create temporary function estimate as 'org.apache.datasketches.hive.hll.SketchToEstimateUDF';
+//simplified file operations and no error handling for clarity
+int main(int argc, char **argv) {
+  const int lg_k = 10;
 
-use &lt;your-db-name-here&gt;;
+  // this section generates two sketches with some overlap and serializes them into files
+  {
+    // 100000 distinct keys
+    datasketches::cpc_sketch sketch1(lg_k);
+    for (int key = 0; key &lt; 100000; key++) sketch1.update(key);
+    std::ofstream os1("cpc_sketch1.bin");
+    sketch1.serialize(os1);
 
--- prepare input data
-create temporary table sketch_input (id int, category char(1));
-insert into table sketch_input values
-  (1, 'a'), (2, 'a'), (3, 'a'), (4, 'a'), (5, 'a'), (6, 'a'), (7, 'a'), (8, 'a'), (9, 'a'), (10, 'a'),
-  (6, 'b'), (7, 'b'), (8, 'b'), (9, 'b'), (10, 'b'), (11, 'b'), (12, 'b'), (13, 'b'), (14, 'b'), (15, 'b');
+    // 100000 distinct keys
+    datasketches::cpc_sketch sketch2(lg_k);
+    for (int key = 50000; key &lt; 150000; key++) sketch2.update(key);
+    std::ofstream os2("cpc_sketch2.bin");
+    sketch2.serialize(os2);
+  }
 
--- build sketches per category
-create temporary table sketch_intermediate (category char(1), sketch binary);
-insert into sketch_intermediate select category, data2sketch(id) from sketch_input group by category;
+  // this section deserializes the sketches, produces union and prints the result
+  {
+    std::ifstream is1("cpc_sketch1.bin");
+    datasketches::cpc_sketch sketch1 = datasketches::cpc_sketch::deserialize(is1);
 
--- get unique count estimates per category
-select category, estimate(sketch) from sketch_intermediate;
+    std::ifstream is2("cpc_sketch2.bin");
+    datasketches::cpc_sketch sketch2 = datasketches::cpc_sketch::deserialize(is2);
 
-Output:
-a	10.000000223517425
-b	10.000000223517425
+    datasketches::cpc_union u(lg_k);
+    u.update(sketch1);
+    u.update(sketch2);
+    datasketches::cpc_sketch sketch = u.get_result();
 
--- union sketches across categories and get overall unique count estimate
-select estimate(unionSketches(sketch)) from sketch_intermediate;
+    // debug summary of the union result sketch
+    sketch.to_stream(std::cout);
 
-Output:
-15.000000521540663
-</code></pre></div></div>
+    std::cout &lt;&lt; "Distinct count estimate: " &lt;&lt; sketch.get_estimate() &lt;&lt; std::endl;
+    std::cout &lt;&lt; "Distinct count lower bound 95% confidence: " &lt;&lt; sketch.get_lower_bound(2) &lt;&lt; std::endl;
+    std::cout &lt;&lt; "Distinct count upper bound 95% confidence: " &lt;&lt; sketch.get_upper_bound(2) &lt;&lt; std::endl;
+  }
 
-<h3 id="union-two-sketches">Union two sketches</h3>
-
-<p>Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add jar datasketches-memory-1.2.0-incubating.jar;
-add jar datasketches-java-1.2.0-incubating.jar;
-add jar datasketches-hive-1.0.0-incubating.jar;
-
-create temporary function data2sketch as 'org.apache.datasketches.hive.hll.DataToSketchUDAF';
-create temporary function estimate as 'org.apache.datasketches.hive.hll.SketchToEstimateUDF';
-create temporary function unionTwoSketches as 'org.apache.datasketches.hive.hll.UnionSketchUDF';
-
-use &lt;your-db-name-here&gt;;
-
--- prepare input data
-create temporary table sketch_input (id1 int, id2 int);
-insert into table sketch_input values (1, 2), (2, 4), (3, 6), (4, 8), (5, 10), (6, 12), (7, 14), (8, 16), (9, 18), (10, 20);
-
--- build two sketches
-create temporary table sketch_intermediate (sketch1 binary, sketch2 binary);
-insert into sketch_intermediate select data2sketch(id1), data2sketch(id2) from sketch_input;
-
--- get estimates from sketches and union
-select estimate(sketch1), estimate(sketch2), estimate(unionTwoSketches(sketch1, sketch2)) from sketch_intermediate;
+  return 0;
+}
 
 Output:
-10.000000223517425	10.000000223517425	15.000000521540663
+### CPC sketch summary:
+   lg_k           : 10
+   seed hash      : 93cc
+   C              : 7706
+   flavor         : 4
+   merged         : true
+   intresting col : 4
+   table entries  : 27
+   window         : allocated
+   window offset  : 5
+### End sketch summary
+Distinct count estimate: 149797
+Distinct count lower bound 95% confidence: 143416
+Distinct count upper bound 95% confidence: 156397
 </code></pre></div></div>
 
       </div> <!-- End content -->

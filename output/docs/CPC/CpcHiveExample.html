@@ -476,45 +476,47 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="hyper-log-log-sketch-hive-udfs">Hyper Log Log sketch Hive UDFs</h2>
+<h2 id="cpc-sketch-hive-udfs">CPC sketch Hive UDFs</h2>
 
-<h3 id="building-sketches-computing-unions-and-getting-estimates">Building sketches, computing unions and getting estimates</h3>
+<h3 id="building-sketches-merging-sketches-and-getting-estimates">Building sketches, merging sketches and getting estimates</h3>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add jar datasketches-memory-1.2.0-incubating.jar;
 add jar datasketches-java-1.2.0-incubating.jar;
 add jar datasketches-hive-1.0.0-incubating.jar;
 
-create temporary function data2sketch as 'org.apache.datasketches.hive.hll.DataToSketchUDAF';
-create temporary function unionSketches as 'org.apache.datasketches.hive.hll.UnionSketchUDAF';
-create temporary function estimate as 'org.apache.datasketches.hive.hll.SketchToEstimateUDF';
+create temporary function data2sketch as 'org.apache.datasketches.hive.cpc.DataToSketchUDAF';
+create temporary function unionSketches as 'org.apache.datasketches.hive.cpc.UnionSketchUDAF';
+create temporary function estimate as 'org.apache.datasketches.hive.cpc.GetEstimateUDF';
+create temporary function estimateAndBounds as 'org.apache.datasketches.hive.cpc.GetEstimateAndErrorBoundsUDF';
 
 use &lt;your-db-name-here&gt;;
 
--- prepare input data
 create temporary table sketch_input (id int, category char(1));
 insert into table sketch_input values
   (1, 'a'), (2, 'a'), (3, 'a'), (4, 'a'), (5, 'a'), (6, 'a'), (7, 'a'), (8, 'a'), (9, 'a'), (10, 'a'),
   (6, 'b'), (7, 'b'), (8, 'b'), (9, 'b'), (10, 'b'), (11, 'b'), (12, 'b'), (13, 'b'), (14, 'b'), (15, 'b');
 
--- build sketches per category
 create temporary table sketch_intermediate (category char(1), sketch binary);
 insert into sketch_intermediate select category, data2sketch(id) from sketch_input group by category;
 
--- get unique count estimates per category
 select category, estimate(sketch) from sketch_intermediate;
 
 Output:
-a	10.000000223517425
-b	10.000000223517425
+a	10.007331400971685
+b	10.007331400971685
 
--- union sketches across categories and get overall unique count estimate
 select estimate(unionSketches(sketch)) from sketch_intermediate;
 
 Output:
-15.000000521540663
+15.017114660336853
+
+select estimateAndBounds(unionSketches(sketch)) from sketch_intermediate;
+
+Output:
+[15.017114660336853,15.0,16.0]
 </code></pre></div></div>
 
-<h3 id="union-two-sketches">Union two sketches</h3>
+<h3 id="union-of-two-sketches">Union of two sketches</h3>
 
 <p>Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter.</p>
 
@@ -522,25 +524,28 @@ Output:
 add jar datasketches-java-1.2.0-incubating.jar;
 add jar datasketches-hive-1.0.0-incubating.jar;
 
-create temporary function data2sketch as 'org.apache.datasketches.hive.hll.DataToSketchUDAF';
-create temporary function estimate as 'org.apache.datasketches.hive.hll.SketchToEstimateUDF';
-create temporary function unionTwoSketches as 'org.apache.datasketches.hive.hll.UnionSketchUDF';
+create temporary function data2sketch as 'org.apache.datasketches.hive.cpc.DataToSketchUDAF';
+create temporary function union2 as 'org.apache.datasketches.hive.cpc.UnionSketchUDF';
+create temporary function estimate as 'org.apache.datasketches.hive.cpc.GetEstimateUDF';
 
-use &lt;your-db-name-here&gt;;
+use &lt;your-db-nasme-here&gt;;
 
--- prepare input data
 create temporary table sketch_input (id1 int, id2 int);
-insert into table sketch_input values (1, 2), (2, 4), (3, 6), (4, 8), (5, 10), (6, 12), (7, 14), (8, 16), (9, 18), (10, 20);
+insert into table sketch_input values
+  (1, 2), (2, 4), (3, 6), (4, 8), (5, 10), (6, 12), (7, 14), (8, 16), (9, 18), (10, 20);
 
--- build two sketches
 create temporary table sketch_intermediate (sketch1 binary, sketch2 binary);
+
 insert into sketch_intermediate select data2sketch(id1), data2sketch(id2) from sketch_input;
 
--- get estimates from sketches and union
-select estimate(sketch1), estimate(sketch2), estimate(unionTwoSketches(sketch1, sketch2)) from sketch_intermediate;
+select
+  estimate(sketch1),
+  estimate(sketch2),
+  estimate(union2(sketch1, sketch2))
+from sketch_intermediate;
 
 Output:
-10.000000223517425	10.000000223517425	15.000000521540663
+10.007331400971685	10.007331400971685	15.017114660336853
 </code></pre></div></div>
 
       </div> <!-- End content -->
