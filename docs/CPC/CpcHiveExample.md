@@ -19,7 +19,7 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-## Hadoop Hive UDFs
+## CPC sketch Hive UDFs
 
 ### Building sketches, merging sketches and getting estimates
 
@@ -27,44 +27,48 @@ layout: doc_page
     add jar datasketches-java-1.2.0-incubating.jar;
     add jar datasketches-hive-1.0.0-incubating.jar;
 
-    create temporary function data2sketch as 'org.apache.datasketches.hive.theta.DataToSketchUDAF';
-    create temporary function unionSketches as 'org.apache.datasketches.hive.theta.UnionSketchUDAF';
-    create temporary function estimate as 'org.apache.datasketches.hive.theta.EstimateSketchUDF';
+    create temporary function data2sketch as 'org.apache.datasketches.hive.cpc.DataToSketchUDAF';
+    create temporary function unionSketches as 'org.apache.datasketches.hive.cpc.UnionSketchUDAF';
+    create temporary function estimate as 'org.apache.datasketches.hive.cpc.GetEstimateUDF';
+    create temporary function estimateAndBounds as 'org.apache.datasketches.hive.cpc.GetEstimateAndErrorBoundsUDF';
 
     use <your-db-name-here>;
 
-    create temporary table theta_input (id int, category char(1));
-    insert into table theta_input values
+    create temporary table sketch_input (id int, category char(1));
+    insert into table sketch_input values
       (1, 'a'), (2, 'a'), (3, 'a'), (4, 'a'), (5, 'a'), (6, 'a'), (7, 'a'), (8, 'a'), (9, 'a'), (10, 'a'),
       (6, 'b'), (7, 'b'), (8, 'b'), (9, 'b'), (10, 'b'), (11, 'b'), (12, 'b'), (13, 'b'), (14, 'b'), (15, 'b');
 
     create temporary table sketch_intermediate (category char(1), sketch binary);
-    insert into sketch_intermediate select category, data2sketch(id) from theta_input group by category;
+    insert into sketch_intermediate select category, data2sketch(id) from sketch_input group by category;
 
     select category, estimate(sketch) from sketch_intermediate;
 
     Output:
-    a	10.0
-    b	10.0
+    a	10.007331400971685
+    b	10.007331400971685
 
     select estimate(unionSketches(sketch)) from sketch_intermediate;
 
     Output:
-    15.0
+    15.017114660336853
 
-### Set operations
+    select estimateAndBounds(unionSketches(sketch)) from sketch_intermediate;
 
-Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter. The same is true about IntersectSketchUDF and IntersectSketchUDAF.
+    Output:
+    [15.017114660336853,15.0,16.0]
+
+### Union of two sketches
+
+Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter.
 
     add jar datasketches-memory-1.2.0-incubating.jar;
     add jar datasketches-java-1.2.0-incubating.jar;
     add jar datasketches-hive-1.0.0-incubating.jar;
 
-    create temporary function data2sketch as 'org.apache.datasketches.hive.theta.DataToSketchUDAF';
-    create temporary function estimate as 'org.apache.datasketches.hive.theta.EstimateSketchUDF';
-    create temporary function union2 as 'org.apache.datasketches.hive.theta.UnionSketchUDF';
-    create temporary function intersect as 'org.apache.datasketches.hive.theta.IntersectSketchUDF';
-    create temporary function anotb as 'org.apache.datasketches.hive.theta.ExcludeSketchUDF';
+    create temporary function data2sketch as 'org.apache.datasketches.hive.cpc.DataToSketchUDAF';
+    create temporary function union2 as 'org.apache.datasketches.hive.cpc.UnionSketchUDF';
+    create temporary function estimate as 'org.apache.datasketches.hive.cpc.GetEstimateUDF';
 
     use <your-db-nasme-here>;
 
@@ -79,11 +83,8 @@ Notice the difference between UnionUDF in this example, which takes two sketches
     select
       estimate(sketch1),
       estimate(sketch2),
-      estimate(union2(sketch1, sketch2)),
-      estimate((intersect(sketch1, sketch2))),
-      estimate(anotb(sketch1, sketch2)),
-      estimate(anotb(sketch2, sketch1))
+      estimate(union2(sketch1, sketch2))
     from sketch_intermediate;
 
     Output:
-    10.0	10.0	15.0	5.0	5.0	5.0
+    10.007331400971685	10.007331400971685	15.017114660336853
