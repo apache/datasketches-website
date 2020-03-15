@@ -26,7 +26,7 @@ Nonetheless, the HLL and CPC sketches have been intentially designed to offer di
 
 Similar to the HLL sketch, the primary use-case for the CPC sketch is for counting distinct values as a stream, and then merging multiple sketches together for a total distinct count. 
 
-Neither HLL nor CPC sketches provide means for set intersecctions or set differences.  If you anticipate your application might require this capability you are better off using the Theta family of sketches.
+Neither HLL nor CPC sketches provide means for set intersections or set differences.  If you anticipate your application might require this capability you are better off using the Theta family of sketches.
 
 
 
