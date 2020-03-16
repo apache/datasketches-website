@@ -6,6 +6,10 @@ users: https://lists.apache.org/list.html?users@datasketches.apache.org
 
 # Apache DataSketches Community
 
+## Transitioning From Our Previous GitHub Site
+
+* If you were a user of our library from our previous <a href="https://github.com/datasketches">GitHub Site</a> please refer to this <a href="{{site.docs_dir}}/Community/Transitioning.html">Transitioning</a> page.
+
 ## How We Communicate
 
 There are many ways that are available for our community to communicate with each other and directly with the developer team.  Please review the following for methods that meet your needs.
