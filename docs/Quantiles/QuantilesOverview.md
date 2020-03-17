@@ -26,12 +26,14 @@ approximate distribution of comparable values from a very large stream in a sing
 The analysis is obtained using a getQuantiles() function or its inverse functions the 
 Probability Mass Function from getPMF() and the Cumulative Distribution Function from getCDF().
 
+* **NOTE:** See also the <a href="{{site.docs_dir}}/Quantiles/KLLSketch.html">KLL Sketch</a>.
+
 ### Section links:
-* [Section 1](#Section 1) Sketches-Core Numeric Quantiles
-* [Section 2](#Section 2) Sketches-Core Extending Generic Quantiles Classes
+* [Section 1](#Section 1) Numeric Quantiles
+* [Section 2](#Section 2) Extending Generic Quantiles Classes
 * [Section 3](#Section 3) Implementation Notes
 
-## <a name="Section 1"></a>Sketches-Core Numeric Quantiles
+## <a name="Section 1"></a>Numeric Quantiles
 
 Consider this real data example of a stream of 230 million time-spent events collected from one our systems for a period of just 30 minutes. Each event records the amount of time in milliseconds that a user spends on a web page before moving to a different web page by taking some action, such as a click. 
 
@@ -173,7 +175,7 @@ sketch.  Here are some brief snippets, simpler than the above graphs, to get you
     */
 
 
-## <a name="Section 2"></a>Sketches-Core Extending Generic Quantiles Classes
+## <a name="Section 2"></a>Extending Generic Quantiles Classes
 
 Any item type that is comparable, or for which you can create a Comparator, can also be analyzed by extending the abstract generic classes for that particular item.
 
