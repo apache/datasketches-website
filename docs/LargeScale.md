@@ -41,12 +41,12 @@ layout: doc_page
 
 ### Integration for Hive, Pig, Druid and Spark
 
-* <a href="https://github.com/apache/incubator-datasketches-hive">Hadoop / Hive Adaptors</a>.
+* <a href="https://github.com/apache/incubator-datasketches-hive">Apache Hive Adaptors</a>.
   
-* <a href="https://github.com/apache.incubator-datasketches-pig">Hadoop / Pig Adaptors</a>.
+* <a href="https://github.com/apache.incubator-datasketches-pig">Apache Pig Adaptors</a>.
   
 * <a href="https://github.com/apache/druid/tree/master/extensions-core/datasketches">Druid Adaptors</a>.
-  * For documentation navigate to <i>druid.io/docs/latest/development/extensions-core/datasketches-aggregators.html</i>
+  * For documentation see <a href="https://druid.apache.org/docs/latest/development/extensions-core/datasketches-extension.html">Druid Datasketches extension</a>
   
 * <a href="{{site.docs_dir}}/Theta/ThetaSparkExample.html">Spark Examples</a> 
 
