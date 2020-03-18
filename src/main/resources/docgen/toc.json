@@ -197,6 +197,7 @@
             { "class":"Dropdown", "desc" : "Quantiles Examples", "array":
               [
                 {"class":"Doc",  "desc" : "Quantiles Sketch Java Example",            "dir" : "Quantiles", "file": "QuantilesJavaExample" },
+                {"class":"Doc",  "desc" : "KLL Quantiles Sketch C++ Example",         "dir" : "Quantiles", "file": "QuantilesCppExample" },
                 {"class":"Doc",  "desc" : "Quantiles Sketch Pig UDFs",                "dir" : "Quantiles", "file": "QuantilesPigUDFs" },
                 {"class":"Doc",  "desc" : "Quantiles Sketch Hive UDFs",               "dir" : "Quantiles", "file": "QuantilesHiveUDFs" },
                 {"class":"Doc",  "desc" : "Using Sketches in Druid",                  "dir" : "",          "file": "DruidIntegration" },
