@@ -172,6 +172,7 @@
                 { "class":"Dropdown", "desc" : "Most Frequent Examples", "array":
                   [
                     {"class":"Doc",  "desc" : "Frequent Items Java Example",  "dir" : "Frequency", "file": "FrequentItemsJavaExample" },
+                    {"class":"Doc",  "desc" : "Frequent Items C++ Example",   "dir" : "Frequency", "file": "FrequentItemsCppExample" },
                     {"class":"Doc",  "desc" : "Frequent Items Pig UDFs",      "dir" : "Frequency", "file": "FrequentItemsPigUDFs" },
                     {"class":"Doc",  "desc" : "Frequent Items Hive UDFs",     "dir" : "Frequency", "file": "FrequentItemsHiveUDFs" },
                     {"class":"Doc",  "desc" : "Using Sketches in Druid",              "dir" : "",    "file": "DruidIntegration" },
