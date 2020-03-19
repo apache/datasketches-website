@@ -1,0 +1,47 @@
+### Java Core: 1.2.0-incubating
+* **Date/Time:** 1/26/2020 
+* **SVN ID:** 37748
+* **Released by:** leerho
+* **DOWNLOAD ZIP:** [apache-datasketches-java-1.2.0-incubating-src.zip](https://www.apache.org/dyn/closer.lua/incubator/datasketches/java/1.2.0-incubating/apache-datasketches-java-1.2.0-incubating-src.zip)
+* **Signature:** [apache-datasketches-java-1.2.0-incubating-src.zip.asc](https://downloads.apache.org/incubator/datasketches/java/1.2.0-incubating/apache-datasketches-java-1.2.0-incubating-src.zip.asc)
+* **Hash:** [apache-datasketches-java-1.2.0-incubating-src.zip.sha512](https://downloads.apache.org/incubator/datasketches/java/1.2.0-incubating/apache-datasketches-java-1.2.0-incubating-src.zip.sha512)
+
+### C++ and Python Core: 1.0.0-incubating
+* **Date/Time:** 09/17/2019 
+* **SVN ID:** 35919
+* **Released by:** alsay
+* **DOWNLOAD ZIP:** [apache-datasketches-cpp-1.0.0-incubating-src.zip](https://www.apache.org/dyn/closer.lua/incubator/datasketches/cpp/1.0.0-incubating/apache-datasketches-cpp-1.0.0-incubating-src.zip)
+* **Signature:** [apache-datasketches-cpp-1.0.0-incubating-src.zip.asc](https://downloads.apache.org/incubator/datasketches/cpp/1.0.0-incubating/apache-datasketches-cpp-1.0.0-incubating-src.zip.asc)
+* **Hash:** [apache-datasketches-cpp-1.0.0-incubating-src.zip.sha512](https://downloads.apache.org/incubator/datasketches/cpp/1.0.0-incubating/apache-datasketches-cpp-1.0.0-incubating-src.zip.sha512)
+
+### Java Memory: 1.2.0-incubating
+* **Date/Time:** 11/21/2019 
+* **SVN ID:** 36867
+* **Released by:** leerho
+* **DOWNLOAD ZIP:** [apache-datasketches-memory-1.2.0-incubating-src.zip](https://www.apache.org/dyn/closer.lua/incubator/datasketches/memory/1.2.0-incubating/apache-datasketches-memory-1.2.0-incubating-src.zip)
+* **Signature:** [apache-datasketches-memory-1.2.0-incubating-src.zip.asc](https://downloads.apache.org/incubator/datasketches/memory/1.2.0-incubating/apache-datasketches-memory-1.2.0-incubating-src.zip.asc)
+* **Hash:** [apache-datasketches-memory-1.2.0-incubating-src.zip.sha512](https://downloads.apache.org/incubator/datasketches/memory/1.2.0-incubating/apache-datasketches-memory-1.2.0-incubating-src.zip.sha512)
+
+### Java Apache Hive Adaptor: 1.0.0-incubating
+* **Date/Time:** 10/11/2019 
+* **SVN ID:** 36302
+* **Released by:** leerho
+* **DOWNLOAD ZIP:** [apache-datasketches-hive-1.0.0-incubating-src.zip](https://www.apache.org/dyn/closer.lua/incubator/datasketches/hive/1.0.0-incubating/apache-datasketches-hive-1.0.0-incubating-src.zip)
+* **Signature:** [apache-datasketches-hive-1.0.0-incubating-src.zip.asc](https://downloads.apache.org/incubator/datasketches/hive/1.0.0-incubating/apache-datasketches-hive-1.0.0-incubating-src.zip.asc)
+* **Hash:** [apache-datasketches-hive-1.0.0-incubating-src.zip.sha512](https://downloads.apache.org/incubator/datasketches/hive/1.0.0-incubating/apache-datasketches-hive-1.0.0-incubating-src.zip.sha512)
+
+### Java Apache Pig Adaptor: 1.0.0-incubating
+* **Date/Time:** 10/19/2019 
+* **SVN ID:** 36385
+* **Released by:** leerho
+* **DOWNLOAD ZIP:** [apache-datasketches-pig-1.0.0-incubating-src.zip](https://www.apache.org/dyn/closer.lua/incubator/datasketches/pig/1.0.0-incubating/apache-datasketches-pig-1.0.0-incubating-src.zip)
+* **Signature:** [apache-datasketches-pig-1.0.0-incubating-src.zip.asc](https://downloads.apache.org/incubator/datasketches/pig/1.0.0-incubating/apache-datasketches-pig-1.0.0-incubating-src.zip.asc)
+* **Hash:** [apache-datasketches-pig-1.0.0-incubating-src.zip.sha512](https://downloads.apache.org/incubator/datasketches/pig/1.0.0-incubating/apache-datasketches-pig-1.0.0-incubating-src.zip.sha512)
+
+### C++ PostgreSQL Adaptor: 1.3.0-incubating
+* **Date/Time:** 10/29/2019 
+* **SVN ID:** 36536
+* **Released by:** alsay
+* **DOWNLOAD ZIP:** [apache-datasketches-postgresql-1.3.0-incubating-src.zip](https://www.apache.org/dyn/closer.lua/incubator/datasketches/postgresql/1.3.0-incubating/apache-datasketches-postgresql-1.3.0-incubating-src.zip)
+* **Signature:** [apache-datasketches-postgresql-1.3.0-incubating-src.zip.asc](https:/downloads.apache.org/incubator/datasketches/postgresql/1.3.0-incubating/apache-datasketches-postgresql-1.3.0-incubating-src.zip.asc)
+* **Hash:** [apache-datasketches-postgresql-1.3.0-incubating-src.zip.sha512](https://downloads.apache.org/incubator/datasketches/postgresql/1.3.0-incubating/apache-datasketches-postgresql-1.3.0-incubating-src.zip.sha512)
