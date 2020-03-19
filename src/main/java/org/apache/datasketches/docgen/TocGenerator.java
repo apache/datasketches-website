@@ -65,7 +65,6 @@ public class TocGenerator {
   /**
    * Execute the runTocGenerator above.
    * @param jsonSrcFile The JSON source file
-   * @param htmlScriptFile The javascript source file
    * @param tgtTocFile the target toc.html file
    */
   public TocGenerator(final String jsonSrcFile, final String tgtTocFile) {
