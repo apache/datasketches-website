@@ -19,20 +19,22 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-## Downloads
+# Downloads
 
-### Download Source Zip Files and Signatures
-Choose the most recent release version from [https://downloads.apache.org/incubator/datasketches/](https://downloads.apache.org/incubator/datasketches/).
-* Select the Component directory you are interested in (cpp, hive, java, memory, pig, postgresql).  Note the characterization and vector components do not have formal Apache releases. Go directly to the GitHub sites for those.
-* Under your chosen component directory, choose the release of interest. We generally recommend that you choose the latest release. 
+## [Signing Keys](https://downloads.apache.org/incubator/datasketches/KEYS)
+It is essential that you verify the integrity of release downloads. See [instructions here](https://www.apache.org/dyn/closer.cgi#verify).
 
-### Download Java Jar Files
+## Latest Source Zip Files
+
+{% include downloadsInclude.txt %}
+
+## Download Java Jar Files
 From [Maven Central](https://search.maven.org/search?q=g:%20org.apache.datasketches).
 
-### Download Shapshot Versions
+## Download Shapshot Versions
 Clone or fork the current SNAPSHOT directly from the relevant [DataSketches repository](https://github.com/apache?utf8=%E2%9C%93&q=datasketches).
 
-### Version Numbers
+## Version Numbers
 Apache DataSketches uses [semantic versioning](https://semver.org/). Version numbers use the form major.minor.incremental and are incremented as follows:
 
 * __major version__ for major new functionality and/or major API changes that may be incompatible with prior versions
@@ -54,7 +56,7 @@ If you are developing using Maven and want to use, for example, datasketches-jav
 ```
 
 
-#### Release Philosophy
+### Release Philosophy
 
 These are fully tested, production quality releases, and hopefully as bug-free as humanly possible. 
 However, the code is continuously evolving and improvements in performance, documentation, additions 
@@ -76,7 +78,7 @@ shaded versions of the core jar and memory jar. The shading avoids conflicts wit
 of core Java and Memory that you might have in your system.
 
 
-#### SNAPSHOT Jars
+### SNAPSHOT Jars
 If you want the latest and greatest version of the code, it is certainly OK for you to create your 
 own snapshot jars from a clone or fork. 
 The code is automatically tested using the current test suite, but you might catch the code in

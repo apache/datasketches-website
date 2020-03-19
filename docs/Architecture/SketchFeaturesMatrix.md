@@ -19,7 +19,7 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-# Sketch Feature Matrix
+# Sketch Features Matrix
 
 Use the following table to compare the capabilities of the different sketch families.
 

@@ -60,8 +60,8 @@ Deserialize Operations | Heapify() | Y | Y | Y | Y |
  | Wrap() | Y | Y | Y |  |
  | WritableWrap | Y | Y | Y |  |
 Languages | Java | Y | Y | Y | Y |
- | C++ | Y | Y | Y | Y |
- | Python | Y | Y | Y | Y |
+ | C++ | Y |  | Y | Y |
+ | Python | Y |  | Y | Y |
  | Binary compatibility across Languages | Y | Y | Y | Y |
 Other Operations and Modes | Jaccard Index | Y |  |  |  |
  | Off-Heap | Y | Y | Y |
