@@ -498,26 +498,102 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<p><a href="/docs/Theta/KMVempty.html">Prev</a><br />
-<a href="/docs/Theta/KMVbetterEst.html">Next</a></p>
+<h1 id="kll-sketch-c-example">KLL Sketch C++ Example</h1>
 
-<h2 id="the-kmv-sketch-first-estimator-size--1">The KMV Sketch, First Estimator, Size = 1</h2>
-<p>For this step we are going to cheat a little so that we can learn about estimation. We are going to cheat in that we are going to predetermine that our data source only has <span class="doc-math">n</span> = 10 unique values (so we don’t really need a sketch to estimate what we already know).  We have loaded all 10 values into our ordered list.  As one can see, the values are roughly evenly distributed between zero and one so our hash transform is doing its job.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;random&gt;
+#include &lt;chrono&gt;
 
-<p>How many hash values do we have to retain to compute the estimate of <span class="doc-math">n</span>, 
-<span class="doc-math">n̂</span>, accurately? As you might expect, the more samples we retain, the more accurate will be our estimate.</p>
+#include &lt;kll_sketch.hpp&gt;
 
-<p>Suppose we kept only one value, so <i>k = 1</i>, and we chose the smallest hash value out of all the hash values in the set, which, in this case, is 0.008.  We could assume that since the hash values are random-uniform distributed that the separation between the hash values are roughly the same.  Let’s label that separation between values as <i>d</i>.  Our first estimator could be just dividing 1.0 by <i>d</i>. Unfortunately, 1/0.008 is about 125, which is way larger than 10.  And as one can see, there is a lot of variation in the separation of each of the hash values.  If the hash values had been ordered differently, the smallest hash value could have been the separation between the 3rd and 4th values. In this case our first estimator, 1/0.191 would be about 5, which is too small.</p>
+//simplified file operations and no error handling for clarity
+int main(int argc, char **argv) {
+  // this section generates two sketches from random data and serializes them into files
+  {
+    std::default_random_engine generator(std::chrono::system_clock::now().time_since_epoch().count());
+    std::normal_distribution&lt;float&gt; nd(0, 1); // mean=0, stddev=1
 
-<p><img class="doc-img-full" src="/docs/img/theta/KMV2.png" alt="KMV2" /></p>
+    datasketches::kll_sketch&lt;float&gt; sketch1; // default k=200
+    for (int i = 0; i &lt; 10000; i++) {
+      sketch1.update(nd(generator)); // mean=0, stddev=1
+    }
+    std::ofstream os1("kll_sketch_float1.bin");
+    sketch1.serialize(os1);
 
-<p>Clearly, our first estimator, <i>1/d</i>, with a sample size of one is too noisy to be useful. However, what we do have is a simple formula for an estimate:</p>
+    datasketches::kll_sketch&lt;float&gt; sketch2; // default k=200
+    for (int i = 0; i &lt; 10000; i++) {
+      sketch2.update(nd(generator) + 1); // shift the mean for the second sketch
+    }
+    std::ofstream os2("kll_sketch_float2.bin");
+    sketch2.serialize(os2);
+  }
 
-<p><img src="/docs/img/theta/Est1Formula.png" alt="Est1" width="450" /></p>
+  // this section deserializes the sketches, produces a union and prints some results
+  {
+    std::ifstream is1("kll_sketch_float1.bin");
+    auto sketch1 = datasketches::kll_sketch&lt;float&gt;::deserialize(is1);
 
-<p><a href="/docs/Theta/KMVempty.html">Prev</a><br />
-<a href="/docs/Theta/KMVbetterEst.html">Next</a></p>
+    std::ifstream is2("kll_sketch_float2.bin");
+    auto sketch2 = datasketches::kll_sketch&lt;float&gt;::deserialize(is2);
 
+    // we could merge sketch2 into sketch1 or the other way around
+    // this is an example of using a new sketch as a union and keeping the original sketches intact
+    datasketches::kll_sketch&lt;float&gt; u; // default k=200
+    u.merge(sketch1);
+    u.merge(sketch2);
+
+    // Debug output
+    u.to_stream(std::cout);
+
+    std::cout &lt;&lt; "Min, Median, Max values" &lt;&lt; std::endl;
+    const double fractions[3] {0, 0.5, 1};
+    auto quantiles = u.get_quantiles(fractions, 3);
+    std::cout &lt;&lt; quantiles[0] &lt;&lt; ", " &lt;&lt; quantiles[1] &lt;&lt; ", " &lt;&lt; quantiles[2] &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; "Probability Histogram: estimated probability mass in 4 bins: (-inf, -2), [-2, 0), [0, 2), [2, +inf)" &lt;&lt; std::endl;
+    const float split_points[] {-2, 0, 2};
+    const int num_split_points = 3;
+    auto pmf = u.get_PMF(split_points, num_split_points);
+    std::cout &lt;&lt; pmf[0] &lt;&lt; ", " &lt;&lt; pmf[1] &lt;&lt; ", " &lt;&lt; pmf[2] &lt;&lt; ", " &lt;&lt; pmf[3] &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; "Frequency Histogram: estimated number of original values in the same bins" &lt;&lt; std::endl;
+    const int num_bins = num_split_points + 1;
+    int histogram[num_bins];
+    for (int i = 0; i &lt; num_bins; i++) {
+      histogram[i] = pmf[i] * u.get_n(); // scale the fractions by the total count of values
+    }
+    std::cout &lt;&lt; histogram[0] &lt;&lt; ", " &lt;&lt; histogram[1] &lt;&lt; ", " &lt;&lt; histogram[2] &lt;&lt; ", " &lt;&lt; histogram[3] &lt;&lt; std::endl;
+  }
+
+  return 0;
+}
+
+Output (will be sligtly different every time due to random input):
+### KLL sketch summary:
+   K              : 200
+   min K          : 200
+   M              : 8
+   N              : 20000
+   Epsilon        : 1.33%
+   Epsilon PMF    : 1.65%
+   Empty          : false
+   Estimation mode: true
+   Levels         : 7
+   Sorted         : false
+   Capacity items : 565
+   Retained items : 394
+   Storage bytes  : 1632
+   Min value      : -3.49
+   Max value      : 4.52
+### End sketch summary
+Min, Median, Max values
+-3.49, 0.51, 4.52
+Probability Histogram: estimated probability mass in 4 bins: (-inf, -2), [-2, 0), [0, 2), [2, +inf)
+0.0146, 0.313, 0.582, 0.0901
+Frequency Histogram: estimated number of original values in the same bins
+293, 6267, 11639, 1801
+</code></pre></div></div>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
