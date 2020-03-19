@@ -58,6 +58,7 @@
                 { "class":"Dropdown", "desc" : "HLL Examples", "array":
                   [
                     {"class":"Doc",  "desc" : "HLL Sketch Java Example",              "dir" : "HLL", "file": "HllJavaExample" },
+                    {"class":"Doc",  "desc" : "HLL Sketch C++ Example",               "dir" : "HLL", "file": "HllCppExample" },
                     {"class":"Doc",  "desc" : "HLL Sketch Pig UDFs",                  "dir" : "HLL", "file": "HllPigUDFs" },
                     {"class":"Doc",  "desc" : "HLL Sketch Hive UDFs",                 "dir" : "HLL", "file": "HllHiveUDFs" },
                     {"class":"Doc",  "desc" : "Using Sketches in Druid",              "dir" : "",    "file": "DruidIntegration" },
@@ -172,6 +173,7 @@
                 { "class":"Dropdown", "desc" : "Most Frequent Examples", "array":
                   [
                     {"class":"Doc",  "desc" : "Frequent Items Java Example",  "dir" : "Frequency", "file": "FrequentItemsJavaExample" },
+                    {"class":"Doc",  "desc" : "Frequent Items C++ Example",   "dir" : "Frequency", "file": "FrequentItemsCppExample" },
                     {"class":"Doc",  "desc" : "Frequent Items Pig UDFs",      "dir" : "Frequency", "file": "FrequentItemsPigUDFs" },
                     {"class":"Doc",  "desc" : "Frequent Items Hive UDFs",     "dir" : "Frequency", "file": "FrequentItemsHiveUDFs" },
                     {"class":"Doc",  "desc" : "Using Sketches in Druid",              "dir" : "",    "file": "DruidIntegration" },
@@ -196,6 +198,7 @@
             { "class":"Dropdown", "desc" : "Quantiles Examples", "array":
               [
                 {"class":"Doc",  "desc" : "Quantiles Sketch Java Example",            "dir" : "Quantiles", "file": "QuantilesJavaExample" },
+                {"class":"Doc",  "desc" : "KLL Quantiles Sketch C++ Example",         "dir" : "Quantiles", "file": "QuantilesCppExample" },
                 {"class":"Doc",  "desc" : "Quantiles Sketch Pig UDFs",                "dir" : "Quantiles", "file": "QuantilesPigUDFs" },
                 {"class":"Doc",  "desc" : "Quantiles Sketch Hive UDFs",               "dir" : "Quantiles", "file": "QuantilesHiveUDFs" },
                 {"class":"Doc",  "desc" : "Using Sketches in Druid",                  "dir" : "",          "file": "DruidIntegration" },
