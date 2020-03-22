@@ -31,9 +31,6 @@ It is essential that you verify the integrity of release downloads. See [instruc
 ## Download Java Jar Files
 From [Maven Central](https://search.maven.org/search?q=g:%20org.apache.datasketches).
 
-## Download Shapshot Versions
-Clone or fork the current SNAPSHOT directly from the relevant [DataSketches repository](https://github.com/apache?utf8=%E2%9C%93&q=datasketches).
-
 ## Version Numbers
 Apache DataSketches uses [semantic versioning](https://semver.org/). Version numbers use the form major.minor.incremental and are incremented as follows:
 
@@ -77,12 +74,6 @@ recommended that you download the "with-shaded-core.jar", which includes the Hiv
 shaded versions of the core jar and memory jar. The shading avoids conflicts with other possible versions
 of core Java and Memory that you might have in your system.
 
-
-### SNAPSHOT Jars
-If you want the latest and greatest version of the code, it is certainly OK for you to create your 
-own snapshot jars from a clone or fork. 
-The code is automatically tested using the current test suite, but you might catch the code in
-transition to a new future release. Caveat Emptor.
 
 ### Version History
 Please use GitHub revisions history on the respective component repositories

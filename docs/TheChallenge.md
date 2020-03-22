@@ -70,7 +70,7 @@ This, of course, assumes that you care about query responsiveness and speed; tha
 [Sketches]({{site.docs_dir}}/SketchOrigins.html), the informal name for these algorithms, offer an excellent solution to these types of queries, and in some cases may be the only solution.
 
 Instead of requiring to keep such enormous data on-hand, sketches have small data structures that are usually kilobytes in size, orders-of-magnitude smaller than required by the exact solutions. 
-Sketches are also streaming algorithms, in that they only need to see each incoming item only once.
+Sketches are also streaming algorithms, in that they only need to see each incoming item once.
 
 ## System Architecture for Sketch Processing of Big Data 
 
