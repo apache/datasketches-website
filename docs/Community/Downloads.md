@@ -22,7 +22,7 @@ layout: doc_page
 # Downloads
 
 ## [Signing Keys](https://downloads.apache.org/incubator/datasketches/KEYS)
-It is essential that you verify the integrity of release downloads. See [instructions here](https://www.apache.org/dyn/closer.cgi#verify).
+It is essential that you verify the integrity of release downloads. See [instructions here.](https://www.apache.org/dyn/closer.cgi#verify)
 
 ## Latest Source Zip Files
 
