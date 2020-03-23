@@ -21,10 +21,10 @@ layout: doc_page
 -->
 ## Sketch Elements
 
-Sketches are different from traditional sampling techniques in that sketches process all 
+Sketches are different from traditional sampling techniques in that sketches examine all 
 the elements of a stream, touching each element only once,
-and have some form of randomization that forms the basis of their stochastic nature. 
-This "one-touch" property makes sketches ideally suited for real-time data processing.
+and often have some form of randomization that forms the basis of their stochastic nature. 
+This "one-touch" property makes sketches ideally suited for real-time stream processing.
 
 As an example, the first stage of a 
 <a href="https://en.wikipedia.org/wiki/Count-distinct_problem">count-distinct</a> sketching 
@@ -47,7 +47,7 @@ proven error distribution bounds.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/SketchElements.png" alt="SketchElements" />
 
-Sketches are typically
+Sketches are typically<sup>1</sup>
 
 * Small in size. They are typically orders of magnitude smaller than the raw input data stream. 
 Sketches implement *sublinear* algorithms that grow in size much slower than that of the size of
@@ -60,3 +60,6 @@ The sketch only needs to see each item in the stream once.
 be merged without losing accuracy.
 * Approximate. As an example, for unique count sketches the relative error bounds 
 are a function of the configured size of the sketch.
+
+---
+<sup>1</sup> For a more comprehensive definition see [Sketch Criteria]({{site.docs_dir}}/Architecture/SketchCriteria.html)
