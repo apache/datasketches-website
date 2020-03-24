@@ -69,11 +69,6 @@ the version number may be incremented just to be in sync with the java core repo
 and may not reflect any actual code changes other than a change in the pom.xml to reflect the new 
 dependency. 
 
-If you just want to run Hive and don't require direct access to the <i>incubator-datasketches-java</i> it is
-recommended that you download the "with-shaded-core.jar", which includes the Hive jar as well as 
-shaded versions of the core jar and memory jar. The shading avoids conflicts with other possible versions
-of core Java and Memory that you might have in your system.
-
 
 ### Version History
 Please use GitHub revisions history on the respective component repositories

@@ -31,7 +31,7 @@ We are always open to contributions from our community.  Contributions can be of
 We are also open to the submission of entirely new sketch algorithms.  If you have a sketch algorithm (or a significant enhancement of our current algorithms), please read our [Sketch Criteria]({{site.docs_dir}}/Architecture/SketchCriteria.html) and contact us on our [dev]({{page.dev}}) list.
 
 ### What to work on
-We are in the process of developing a comprehensive TODO list that will be referenced here.
+We have three TODO lists for [Java](https://github.com/apache/incubator-datasketches-java/projects/1), [C++](https://github.com/apache/incubator-datasketches-cpp/projects/1) and the [Website](https://github.com/apache/incubator-datasketches-website/projects/1). Please check these out for potential contribution!
 
 ### Getting your proposed changes accepted
 
