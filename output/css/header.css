@@ -216,3 +216,7 @@ a:hover, a:focus {
   margin-right: 0px;
   margin-left: -12px;
 }
+
+.ds-nav a.highlight {
+  color: #fff !important;
+}
