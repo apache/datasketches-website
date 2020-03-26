@@ -1,28 +1,27 @@
 { "class":"TOC", "array":
   [
-    { "class":"Dropdown", "desc" : "Overview", "array":
+    { "class":"Dropdown", "desc" : "Background", "array":
       [
-        {"class":"Doc",  "desc" : "The Challenge",                "dir" : "", "file": "TheChallenge" },
-        {"class":"Doc",  "desc" : "The Major Sketch Families",    "dir" : "", "file": "MajorSketchFamilies" },
-        {"class":"Doc",  "desc" : "Sketch Origins",               "dir" : "", "file": "SketchOrigins" },
-        {"class":"Doc",  "desc" : "Sketch Elements",              "dir" : "", "file": "SketchElements" },
-        {"class":"Doc",  "desc" : "Large Scale Computing",        "dir" : "", "file": "LargeScale" },
+        {"class":"Doc",  "desc" : "The Challenge",                "dir" : "Background", "file": "TheChallenge" },
+        {"class":"Doc",  "desc" : "Sketch Origins",               "dir" : "Background", "file": "SketchOrigins" },
+        {"class":"Doc",  "desc" : "Sketch Elements",              "dir" : "Background", "file": "SketchElements" },
         {"class":"Doc",  "desc" : "Overview Slide Deck",          "dir" : "", "file": "DataSketches_deck", "pdf":"true" },
-        {"class":"Doc",  "desc" : "Who Uses",                     "dir" : "", "file": "WhoUses" },
       ]
     },
 
     { "class":"Dropdown", "desc" : "Architecture And Design", "array":
       [
-        {"class":"Doc",  "desc" : "Key Features",            "dir" : "Architecture", "file": "KeyFeatures" },
-        {"class":"Doc",  "desc" : "Sketch Features Matrix",   "dir" : "Architecture", "file": "SketchFeaturesMatrix" },
-        {"class":"Doc",  "desc" : "Components",              "dir" : "Architecture", "file": "Components" },
-        {"class":"Doc",  "desc" : "Sketches by Component",   "dir" : "Architecture", "file": "SketchesByComponent" },
-        {"class":"Doc",  "desc" : "Sketch Criteria",         "dir" : "Architecture", "file": "SketchCriteria" },
+        {"class":"Doc",  "desc" : "The Major Sketch Families", "dir" : "Architecture", "file": "MajorSketchFamilies" },
+        {"class":"Doc",  "desc" : "Large Scale Computing",     "dir" : "Architecture", "file": "LargeScale" },
+        {"class":"Doc",  "desc" : "Key Features",              "dir" : "Architecture", "file": "KeyFeatures" },
+        {"class":"Doc",  "desc" : "Sketch Features Matrix",    "dir" : "Architecture", "file": "SketchFeaturesMatrix" },
+        {"class":"Doc",  "desc" : "Components",                "dir" : "Architecture", "file": "Components" },
+        {"class":"Doc",  "desc" : "Sketches by Component",     "dir" : "Architecture", "file": "SketchesByComponent" },
+        {"class":"Doc",  "desc" : "Sketch Criteria",           "dir" : "Architecture", "file": "SketchCriteria" },
         { "class":"Dropdown", "desc" : "Memory Package", "array":
           [
-            {"class":"Doc",  "desc" : "Memory Package",                           "dir" : "Memory", "file": "MemoryPackage" },
-            {"class":"Doc",  "desc" : "Memory Package Performance",               "dir" : "Memory", "file": "MemoryPerformance" },
+            {"class":"Doc",  "desc" : "Memory Package",              "dir" : "Memory", "file": "MemoryPackage" },
+            {"class":"Doc",  "desc" : "Memory Package Performance",  "dir" : "Memory", "file": "MemoryPerformance" },
           ]
         },
         {"class":"Doc",  "desc" : "Notes on Order Sensitivity",   "dir" : "Architecture", "file": "OrderSensitivity" },
@@ -45,7 +44,7 @@
                     {"class":"Doc",  "desc" : "CPC Sketch Java Example",              "dir" : "CPC", "file": "CpcJavaExample" },
                     {"class":"Doc",  "desc" : "CPC Sketch C++ Example",               "dir" : "CPC", "file": "CpcCppExample" },
                     {"class":"Doc",  "desc" : "CPC Sketch Pig UDFs",                  "dir" : "CPC", "file": "CpcPigExample" },
-                    {"class":"Doc",  "desc" : "CPC Sketch Hive UDFs",                 "dir" : "CPC", "file": "CpcHiveExample" }
+                    {"class":"Doc",  "desc" : "CPC Sketch Hive UDFs",                 "dir" : "CPC", "file": "CpcHiveExample" },
                   ]
                 },
               ]
@@ -138,7 +137,7 @@
                     {"class":"Doc",  "desc" : "Merging Algorithm Notes",           "dir" : "Theta", "file": "ThetaMergingAlgorithm" },
                     {"class":"Doc",  "desc" : "Theta References",                  "dir" : "Theta", "file": "ThetaReferences" },
                   ]
-                }
+                },
               ]
             },
     
@@ -186,7 +185,7 @@
               [
                 {"class":"Doc",  "desc" : "Frequent Distinct Tuples Sketch", "dir" : "Frequency", "file": "FrequentDistinctTuplesSketch" },
               ]
-            }
+            },
           ]
         },
 
@@ -206,11 +205,13 @@
             },
             { "class":"Dropdown", "desc" : "Quantiles Studies", "array":
               [
+                {"class":"Doc",  "desc" : "Definitions for Quantiles Studies",                "dir" : "Quantiles", "file": "Definitions"},
                 {"class":"Doc",  "desc" : "New KLL sketch and comparison with DoublesSketch", "dir" : "Quantiles", "file": "KLLSketch" },
                 {"class":"Doc",  "desc" : "KLL sketch vs t-digest",                           "dir" : "Quantiles", "file": "KllSketchVsTDigest" },
                 {"class":"Doc",  "desc" : "Druid Approximate Histogram",                      "dir" : "Quantiles", "file": "DruidApproxHistogramStudy" },
                 {"class":"Doc",  "desc" : "Moments Sketch Study",                             "dir" : "Quantiles", "file": "MomentsSketchStudy" },
                 {"class":"Doc",  "desc" : "Quantiles StreamA Study",                          "dir" : "Quantiles", "file": "QuantilesStreamAStudy" },
+                {"class":"Doc",  "desc" : "Exact Quantiles for Studies",                      "dir" : "Quantiles", "file": "ExactQuantiles" },
               ]
             },
             { "class":"Dropdown", "desc" : "Quantiles Sketch Theory", "array":
@@ -218,7 +219,7 @@
                 {"class":"Doc",  "desc" : "Optimal Quantile Approximation in Streams",        "dir" : "", "file": "Quantiles_KLL", "pdf":"true" },
                 {"class":"Doc",  "desc" : "Quantiles References",                             "dir" : "Quantiles", "file": "QuantilesReferences" },
               ]
-            }
+            },
           ]
         },
 
@@ -244,6 +245,9 @@
     { "class":"Dropdown", "desc" : "Community", "array":
       [
         {"class":"Doc",  "desc" : "Community",                     "dir" : "Community", "file": "index" },
+        {"class":"Doc",  "desc" : "Downloads",                     "dir" : "Community", "file": "Downloads"},
+        {"class":"Doc",  "desc" : "Transitioning from prior GitHub Site", "dir" : "Community", "file" : "Transitioning"},
+        {"class":"Doc",  "desc" : "Who Uses",                     "dir" : "Community", "file": "WhoUses" },
       ]
     },
     { "class":"Dropdown", "desc" : "Research", "array":

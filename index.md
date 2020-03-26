@@ -45,7 +45,7 @@ layout: front_page
 <p><b>The Business Challenge:</b> Analyzing Big Data Quickly.</p>
 <p>In the analysis of big data there are often problem queries that don’t scale because they require huge compute resources and time to generate exact results. Examples include <i>count distinct</i>, quantiles, most frequent items, joins, matrix computations, and graph analysis.</p>
 
-<p>If approximate results are acceptable, there is a class of specialized algorithms, called streaming algorithms, or <a href="/docs/SketchOrigins.html">sketches</a> that can produce results orders-of magnitude faster and with mathematically proven error bounds. For interactive queries there may not be other viable alternatives, and in the case of real-time analysis, sketches are the only known solution.</p>
+<p>If approximate results are acceptable, there is a class of specialized algorithms, called streaming algorithms, or <a href="/docs/Background/SketchOrigins.html">sketches</a> that can produce results orders-of magnitude faster and with mathematically proven error bounds. For interactive queries there may not be other viable alternatives, and in the case of real-time analysis, sketches are the only known solution.</p>
 
 <p>For any system that needs to extract useful information from big data these sketches are a required toolkit that should be tightly integrated into their analysis capabilities. This technology has helped Yahoo (Verizon Media) successfully reduce data processing times from days to hours or minutes on a number of its internal platforms.</p>
 
@@ -58,7 +58,7 @@ layout: front_page
         <span class="fa fa-fighter-jet fa-4x"></span><br>
         <h2>Fast</h2>
       </a></p>
-      <p class="text-justify"><a href="/docs/SketchOrigins.html">Sketches</a> are <i>fast</i>. 
+      <p class="text-justify"><a href="/docs/Background/SketchOrigins.html">Sketches</a> are <i>fast</i>. 
       The sketch algorithms in this library process data in a single pass and are suitable for 
       both real-time and batch. 
       Sketches enable streaming computation of set expression cardinalities, quantiles, frequency estimation and more. 
