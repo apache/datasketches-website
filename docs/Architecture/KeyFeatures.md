@@ -28,7 +28,7 @@ layout: doc_page
 * Please refer to the [Sketch Criteria]({{site.docs_dir}}/Architecture/SketchCriteria.html) for the criteria for sketches to be included in the library.
 * Query results are <b>approximate</b> but within well defined error bounds that are user 
   configurable by trading off sketch size with accuracy.
-* Designed for <a href="{{site.docs_dir}}/LargeScale.html">Large-scale</a> computing environments 
+* Designed for <a href="{{site.docs_dir}}/Architecture/LargeScale.html">Large-scale</a> computing environments 
   that must handle <b>Big Data</b>, e.g., 
 <a href="https://hadoop.apache.org/">Hadoop</a>, 
 <a href="https://pig.apache.org/">Pig</a>, 

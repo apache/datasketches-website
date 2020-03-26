@@ -67,7 +67,7 @@ __If an approximate answer is acceptable, then it is possible that there are alg
 
 This, of course, assumes that you care about query responsiveness and speed; that you care about resource utilization; and if you need to accept some approximation, that you care about knowing something about the accuracy that you end up with.
 
-[Sketches]({{site.docs_dir}}/SketchOrigins.html), the informal name for these algorithms, offer an excellent solution to these types of queries, and in some cases may be the only solution.
+[Sketches]({{site.docs_dir}}/Background/SketchOrigins.html), the informal name for these algorithms, offer an excellent solution to these types of queries, and in some cases may be the only solution.
 
 Instead of requiring to keep such enormous data on-hand, sketches have small data structures that are usually kilobytes in size, orders-of-magnitude smaller than required by the exact solutions. 
 Sketches are also streaming algorithms, in that they only need to see each incoming item once.

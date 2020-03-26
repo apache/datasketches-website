@@ -22,7 +22,7 @@ There are many ways that are available for our community to communicate with eac
     * **datasketches** This is for use similar to the Users Mailing List above.
     * **datasketches-dev** This is for use similar to the Developers Mailing List.
 <br/><br/>
-* **[GitHub Components]({{site.docs_dir}}/Architecture/Components.html):** Our library is made up of components that are partitioned into GitHub repositories. If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository.
+
 
 ## Contributing
 
@@ -31,7 +31,9 @@ We are always open to contributions from our community.  Contributions can be of
 We are also open to the submission of entirely new sketch algorithms.  If you have a sketch algorithm (or a significant enhancement of our current algorithms), please read our [Sketch Criteria]({{site.docs_dir}}/Architecture/SketchCriteria.html) and contact us on our [dev]({{page.dev}}) list.
 
 ### What to work on
-We have three TODO lists for [Java](https://github.com/apache/incubator-datasketches-java/projects/1), [C++](https://github.com/apache/incubator-datasketches-cpp/projects/1) and the [Website](https://github.com/apache/incubator-datasketches-website/projects/1). Please check these out for potential contribution!
+* **[GitHub Components]({{site.docs_dir}}/Architecture/Components.html):** Our library is made up of components that are partitioned into GitHub repositories. If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository.
+
+* We have three TODO lists for [Java](https://github.com/apache/incubator-datasketches-java/projects/1), [C++](https://github.com/apache/incubator-datasketches-cpp/projects/1) and the [Website](https://github.com/apache/incubator-datasketches-website/projects/1). Please check these out for potential contribution!
 
 ### Getting your proposed changes accepted
 
