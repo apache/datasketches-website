@@ -34,11 +34,11 @@ From [Maven Central](https://search.maven.org/search?q=g:%20org.apache.datasketc
 ## Version Numbers
 Apache DataSketches uses [semantic versioning](https://semver.org/). Version numbers use the form major.minor.incremental and are updated as follows:
 
-* __major version__ for major new functionality and/or major API changes that may (or may not) be API compatible with prior versions. 
+* __major version__ for major new functionality and/or major API changes.  For major API changes users should expect that there may be some API-incompatible changes.  This will be made clear in the release comments. 
 * __minor version__ for new functionality and scheduled bug fixes. These should be API compatible with prior versions.
 * __incremental version__ for unscheduled bug fixes only.
 
-Note: we maintain *binary compatiblity* of a specific sketch type across language and time, independent of releases.  For example, a Theta Sketch version 0.1.0 (Aug, 2015) generated using Java and stored to its binary image can be merged with a Theta Sketch version 1.2.0 (Jan, 2020) generated with C++ and stored to its binary image.
+Note: we maintain *forward binary compatiblity* of a specific sketch type across language and time, independent of releases.  For example, a Java Theta Sketch stored as a binary image using version 0.1.0 (Aug, 2015) can be merged into a C++ Theta Union version 1.2.0 (Jan, 2020).  The languages can be swapped in this scenario, but the versions cannot be. 
 
 The zip files downloaded from [incubator-datasketches-xxx](https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches)
 include a version number in the name, as in _apache-datasketches-java-1.1.0-incubating-src.zip_. 

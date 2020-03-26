@@ -29,11 +29,10 @@ layout: front_page
   <div class="row">
     <div class="col-md-8 col-md-offset-2 text-center">
       <span class="ds-bootlogo"></span>
-      <!-- <p class="lead" style="font-size: 40px; margin-bottom: 10px">Apache DataSketches</p> -->
       <p class="lead" style="font-size: 20px; line-height: 1.0; margin-bottom: 15px">A software library of 
         <a href="https://en.wikipedia.org/wiki/Stochastic" style="color: #EDE379"><i>stochastic</i></a> 
         <a href="https://en.wikipedia.org/wiki/Streaming_algorithm" style="color: #EDE379"><i>streaming algorithms</i></a></p>
-      <!--<p class="lead" style="font-size: 16px; line-height: 1.0; margin-bottom: 15px"><i>"Excellence in theoretically informed algorithm engineering" -- Graham Cormode</i></p> -->
+      <!-- <p class="lead" style="font-size: 16px; line-height: 1.0; margin-bottom: 15px"><i>"Excellence in theoretically informed algorithm engineering" -- Graham Cormode</i></p> -->
     </div>
   </div>
   </div>
@@ -43,13 +42,13 @@ layout: front_page
   <div class="row">
     <div class="text-justify" style="font-size: 18px; padding-left: 25px; padding-right: 25px">
 <p><b>The Business Challenge:</b> Analyzing Big Data Quickly.</p>
-<p>In the analysis of big data there are often problem queries that don’t scale because they require huge compute resources and time to generate exact results. Examples include <i>count distinct</i>, quantiles, most frequent items, joins, matrix computations, and graph analysis.</p>
+<p>In the analysis of big data there are often problem queries that don’t scale because they require huge compute resources and time to generate exact results. Examples include <i>count distinct</i>, quantiles, most-frequent items, joins, matrix computations, and graph analysis.</p>
 
 <p>If approximate results are acceptable, there is a class of specialized algorithms, called streaming algorithms, or <a href="/docs/Background/SketchOrigins.html">sketches</a> that can produce results orders-of magnitude faster and with mathematically proven error bounds. For interactive queries there may not be other viable alternatives, and in the case of real-time analysis, sketches are the only known solution.</p>
 
-<p>For any system that needs to extract useful information from big data these sketches are a required toolkit that should be tightly integrated into their analysis capabilities. This technology has helped Yahoo (Verizon Media) successfully reduce data processing times from days to hours or minutes on a number of its internal platforms.</p>
+<p>For any system that needs to extract useful information from big data these sketches are a required toolkit that should be tightly integrated into their analysis capabilities. This technology has helped Yahoo (Verizon Media) successfully reduce data processing times from days or hours to minutes or seconds on a number of its internal platforms.</p>
 
-<p>This site is dedicated to providing key sketch algorithms of production quality. Contributions are welcome from those in the big data community interested in further development of this science and art.</p>
+<p>This project is dedicated to providing a broad selection of sketch algorithms of production quality. Contributions are welcome from those interested in further development of this science and art.</p>
     </div>
   </div>
   <div class="row text-center main-marketing">
@@ -62,7 +61,7 @@ layout: front_page
       The sketch algorithms in this library process data in a single pass and are suitable for 
       both real-time and batch. 
       Sketches enable streaming computation of set expression cardinalities, quantiles, frequency estimation and more. 
-      This allows simplification of system's architecture and fast queries of heretofore difficult computational tasks.</p>
+      In addition, designing a system around sketching allows simplification of system's architecture and reduction in overall compute resources required for these heretofore difficult computational tasks.</p>
     </div>
 
     <div class="col-md-4">
@@ -70,10 +69,9 @@ layout: front_page
         <span class="fa fa-database fa-4x"></span>
         <h2>Big Data</h2>
       </a>
-      <p class="text-justify">This library has been specifically designed for big data systems. 
-      Included are adaptors for Hadoop Pig and Hive, which also can be used as examples for other systems, 
-      and many other capabilities typically required in big data analysis systems, such as compatible
-      binary representations across languages (Java, C++, Python) and platforms.
+      <p class="text-justify">This library has been specifically designed for production systems that must process massive data. 
+      The library includes adaptors for Apache Hive, Apache Pig, and PostgreSQL (C++). These adaptors also stand as examples for adaptors for other systems. 
+      The sketches in this library are designed to have compatible binary representations across languages (Java, C++, Python) and platforms.
       </p>
     </div>
 
