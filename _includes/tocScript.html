@@ -55,8 +55,7 @@
 
     var highlightAndOpenMenu = function () {
       var currentLineItem = findLineItem(document.location.pathname);
-      highlighLineItem(currentLineItem)
-      openAllFromList(findAllCollapseParents(currentLineItem));
+      highlighLineItem(currentLineItem);
     };
 
     $(highlightAndOpenMenu);
