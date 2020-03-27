@@ -39,6 +39,7 @@
             { "class":"Dropdown", "desc" : "CPC Sketches", "array":
               [
                 {"class":"Doc",  "desc" : "CPC Sketch",                               "dir" : "CPC", "file": "CPC" },
+                {"class":"Doc",  "desc" : "CPC Sketch Performance",                   "dir" : "CPC", "file": "CpcPerformance" },
                 { "class":"Dropdown", "desc" : "CPC Examples", "array":
                   [
                     {"class":"Doc",  "desc" : "CPC Sketch Java Example",              "dir" : "CPC", "file": "CpcJavaExample" },
