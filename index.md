@@ -29,10 +29,10 @@ layout: front_page
   <div class="row">
     <div class="col-md-8 col-md-offset-2 text-center">
       <span class="ds-bootlogo"></span>
-      <p class="lead" style="font-size: 20px; line-height: 1.0; margin-bottom: 15px">A software library of 
+      <p class="lead" style="font-size: 20px; line-height: 1.0; margin-bottom: 15px; color: #FFFFFF">A software library of 
         <a href="https://en.wikipedia.org/wiki/Stochastic" style="color: #EDE379"><i>stochastic</i></a> 
         <a href="https://en.wikipedia.org/wiki/Streaming_algorithm" style="color: #EDE379"><i>streaming algorithms</i></a></p>
-      <!-- <p class="lead" style="font-size: 16px; line-height: 1.0; margin-bottom: 15px"><i>"Excellence in theoretically informed algorithm engineering" -- Graham Cormode</i></p> -->
+      <p class="lead" style="font-size: 18px; line-height: 1.0; margin-bottom: 15px; color: #FFFFFF"><i>"A truely excellent example of theoretically-informed algorithm engineering"</i> -- Graham Cormode</p>
     </div>
   </div>
   </div>
