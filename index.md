@@ -32,7 +32,7 @@ layout: front_page
       <p class="lead" style="font-size: 20px; line-height: 1.0; margin-bottom: 15px; color: #FFFFFF">A software library of 
         <a href="https://en.wikipedia.org/wiki/Stochastic" style="color: #EDE379"><i>stochastic</i></a> 
         <a href="https://en.wikipedia.org/wiki/Streaming_algorithm" style="color: #EDE379"><i>streaming algorithms</i></a></p>
-      <p class="lead" style="font-size: 18px; line-height: 1.0; margin-bottom: 15px; color: #FFFFFF"><i>"A truely excellent example of theoretically-informed algorithm engineering"</i> -- Graham Cormode</p>
+      <p class="lead" style="font-size: 18px; line-height: 1.0; margin-bottom: 15px; color: #FFFFFF"><i>"A truly excellent example of theoretically-informed algorithm engineering"</i> -- Graham Cormode</p>
     </div>
   </div>
   </div>
