@@ -35,7 +35,7 @@ The code used to produce the data for these plots can be found in the [character
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/CPC_and_HLL_sketch_memory.png"/>
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/CPC_and_HLL_sketch_update_time.png"/>
+<img class="doc-img-full" src="{{site.docs_img_dir}}/CPC_and_HLL_sketch_memory_small.png"/>
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/CPC_HLL_Theta_sketch_update_time.png"/>
 
