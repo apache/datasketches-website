@@ -170,6 +170,7 @@
                 {"class":"Doc",  "desc" : "Frequent Items Overview",      "dir" : "Frequency", "file": "FrequentItemsOverview" },
                 {"class":"Doc",  "desc" : "Frequent Items Error Table",   "dir" : "Frequency", "file": "FrequentItemsErrorTable" },
                 {"class":"Doc",  "desc" : "Frequent Items References",    "dir" : "Frequency", "file": "FrequentItemsReferences" },
+                {"class":"Doc",  "desc" : "Frequent Items Performance",   "dir" : "Frequency", "file": "FrequentItemsPerformance" },
     
                 { "class":"Dropdown", "desc" : "Most Frequent Examples", "array":
                   [
