@@ -66,6 +66,7 @@
                 },
                 { "class":"Dropdown", "desc" : "HLL Studies", "array":
                   [
+                    {"class":"Doc",  "desc" : "HLL Sketch Performance",                   "dir" : "HLL", "file": "HllPerformance" },
                     {"class":"Doc",  "desc" : "HLL vs Clearspring HLL++",                 "dir" : "HLL", "file": "Hll_vs_CS_Hllpp" },
                     {"class":"Doc",  "desc" : "HLL Sketch vs Druid HyperLogLogCollector", "dir" : "HLL", "file": "HllSketchVsDruidHyperLogLogCollector" },
                   ]
