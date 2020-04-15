@@ -124,6 +124,8 @@ This solution suffices in some applications, but for other applications the chun
 
 **[GT02]** Phillip B. Gibbons and Srikanta Tirthapura. Distributed streams algorithms for sliding windows. In *ACM SPAA Proceedings '02*, pages 63–72, New York, NY, USA, 2002.
 
+**[K98]** Donald E. Knuth. The Art of Computer Programming, 3rd Ed. 1998.
+
 **[KLL16]** Zohar S. Karnin, Kevin J. Lang, and Edo Liberty. Optimal quantile approximation in streams. In *IEEE FOCS Proceedings '16*, pages 71–78, 2016.
 
 **[Lan17]** Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. In *arXiv preprint* <https://arxiv.org/abs/1708.06839>, 2017.

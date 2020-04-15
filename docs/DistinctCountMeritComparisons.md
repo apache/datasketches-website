@@ -60,7 +60,7 @@ In order to generate the following radar charts, the data was normalized as foll
 * The relevant maximum values for each row was selected and effectively set to 1.0.
 * The other relevant columns in that row were computed as a fractional value between 0 and 1 with respect to the maximum value for that row.
 * The relevant columns for the HLL plot are columns 2, 3 and 4.
-* The relevant columns for the HLL, CPC plot are clolumns 2, 3, 4 and 5.
+* The relevant columns for the HLL, CPC plot are columns 2, 3, 4 and 5.
 
 ## Reading the Radar Charts
 
