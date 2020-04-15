@@ -109,7 +109,7 @@ and <i>getLowerBound(numStdDev)</i> methods.
 
 The underlying stochastic processes for unique count sketches (both HLL and Theta) do not produce a symmetric Gaussian error distribution at all.  In fact, it is quite complex and more related to the family of multinomial distributions. Nonetheless, the Central Limit Theorem still applies if both K and N are large enough.  If K is small (K <= 4096, lgK<=12), and even if N is large, the distribution becomes quite distorted.  The following plot for a very small-sized HLL sketch is a good example:
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HllHipLgK4LgT20LgU20_accuracy.png" alt="HllHipLgK4LgT20LgU20_accuracy.png" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/hll/HLL_HIP_K4T20U20_Accuracy.png" alt="HllHipLgK4LgT20LgU20_accuracy.png" />
 
 This graph shows the quantile contours for the HLL sketch where LgK = 4 (K = 16). 
 The normalized rank values (the values inside the parentheses, e.g. Q(.00135)) correspond to the normalized rank values at +/- 1,2 and 3 standard deviations of a Gaussian, which this is obviously not! 
