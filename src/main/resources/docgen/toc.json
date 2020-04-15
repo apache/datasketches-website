@@ -39,6 +39,7 @@
             { "class":"Dropdown", "desc" : "CPC Sketches", "array":
               [
                 {"class":"Doc",  "desc" : "CPC Sketch",                               "dir" : "CPC", "file": "CPC" },
+                {"class":"Doc",  "desc" : "CPC Sketch Performance",                   "dir" : "CPC", "file": "CpcPerformance" },
                 { "class":"Dropdown", "desc" : "CPC Examples", "array":
                   [
                     {"class":"Doc",  "desc" : "CPC Sketch Java Example",              "dir" : "CPC", "file": "CpcJavaExample" },
@@ -65,6 +66,7 @@
                 },
                 { "class":"Dropdown", "desc" : "HLL Studies", "array":
                   [
+                    {"class":"Doc",  "desc" : "HLL Sketch Performance",                   "dir" : "HLL", "file": "HllPerformance" },
                     {"class":"Doc",  "desc" : "HLL vs Clearspring HLL++",                 "dir" : "HLL", "file": "Hll_vs_CS_Hllpp" },
                     {"class":"Doc",  "desc" : "HLL Sketch vs Druid HyperLogLogCollector", "dir" : "HLL", "file": "HllSketchVsDruidHyperLogLogCollector" },
                   ]
@@ -168,6 +170,7 @@
                 {"class":"Doc",  "desc" : "Frequent Items Overview",      "dir" : "Frequency", "file": "FrequentItemsOverview" },
                 {"class":"Doc",  "desc" : "Frequent Items Error Table",   "dir" : "Frequency", "file": "FrequentItemsErrorTable" },
                 {"class":"Doc",  "desc" : "Frequent Items References",    "dir" : "Frequency", "file": "FrequentItemsReferences" },
+                {"class":"Doc",  "desc" : "Frequent Items Performance",   "dir" : "Frequency", "file": "FrequentItemsPerformance" },
     
                 { "class":"Dropdown", "desc" : "Most Frequent Examples", "array":
                   [
