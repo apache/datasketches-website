@@ -290,6 +290,7 @@ under the License.
               <exclude>**/*.lock</exclude>
               <exclude>**/*.json</exclude>
               <exclude>**/package-list</exclude>
+              <exclude>**/*.svg</exclude>
               <!-- END: UNIQUE FOR THIS JAVA COMPONENT -->
               <exclude>LICENSE</exclude>
               <exclude>NOTICE</exclude>
