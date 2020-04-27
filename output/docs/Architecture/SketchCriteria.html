@@ -547,7 +547,7 @@
 <p>There are many types of Data Insensitivity where the sketch should return meaningful results, within the specified error bounds:</p>
 
 <ul>
-  <li><strong>Order Insensitive:</strong> The sketch results should be independent of the order that the items are presented to the sketch.</li>
+  <li><strong>Order Insensitive:</strong> The sketch results should be independent of the order that the items are presented to the sketch. See <a href="https://datasketches.apache.org/docs/Architecture/OrderSensitivity.html">Sketching and Order Sensitivity</a>.</li>
   <li><strong>Distribution Insensitive:</strong> The sketch results should be independent of how the data within the stream is distributed.  For example, the data might be distrubuted as Gaussian, Zipf, lognormal, power-law, or whatever.</li>
   <li><strong>Value Insensitive:</strong> The sketch results should be independent of exceptional values in the stream.  For example, if the stream consists of double values, the sketch should be able to handle NaNs and Infinities in a sensible way.</li>
 </ul>
