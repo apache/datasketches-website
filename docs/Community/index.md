@@ -34,7 +34,13 @@ There are many ways that are available for our community to communicate with eac
 
 * **[Users Mailing List]({{page.users}}):** This is a great place for all users (new and experienced) to ask general questions about the library, its general capabilities, and where to get help and find more information.  This is also a great place to give the developers general feedback about the library. If you like what you see, please give us a [Star (Java)](https://github.com/apache/incubator-datasketches-java) and/or [Star (C++/Python)](https://github.com/apache/incubator-datasketches-cpp) If you have general suggestions on how we can improve we would like to hear from you.  All of our developers follow this list and all sincere questions and comments will get a response.
   
+    * To subscribe send an empty email to [users-subscribe@datasketches.apache.org](mailto:users-subscribe@datasketches.apache.org).
+    * To unsubcribe send an empty email to [users-unsubscribe@datasketches.apache.org](mailto:users-unsubscribe@datasketches.apache.org).
+  
 * **[Developers Mailing List]({{page.dev}}):** This is where the developers, committers, and contributors congregate to discuss, vote and establish priorities on addressing issues and opportunities with the library. The issues discussed tend to apply across all the different components of the library (see below).
+
+    * To subscribe send an empty email to [dev-subscribe@datasketches.apache.org](mailto:dev-subscribe@datasketches.apache.org).
+    * To unsubcribe send an empty email to [dev-unsubscribe@datasketches.apache.org](mailto:dev-unsubscribe@datasketches.apache.org).
 
 * **Slack:** We have two channels on the Apache Slack Workspace. Once you [join](https://s.apache.org/slack-invite) add the following channels:
     * **datasketches** This is for use similar to the Users Mailing List above.
