@@ -327,7 +327,7 @@ public final class Files {
     if (rem == 0) {
       return 0;
     }
-    final int nBytes = (rem < numBytes) ? rem : numBytes;
+    final int nBytes = rem < numBytes ? rem : numBytes;
     bb.get(out);
     return nBytes;
   }
@@ -505,6 +505,7 @@ public final class Files {
    * @return the total number of bytes written.
    * @throws RuntimeException if an IOException occurs.
    */
+  @SuppressWarnings("resource")
   public static int stringToFileNIO(final String text, final String fileName,
       final Charset charset) {
     checkFileName(fileName);
@@ -555,6 +556,7 @@ public final class Files {
    * @throws RuntimeException if IOException or SecurityException occurs, or if
    * fileName is null or empty.
    */
+  @SuppressWarnings("resource")
   public static int appendStringToFileNIO(final String text, final String fileName,
       final Charset charset) {
     checkFileName(fileName);
@@ -714,8 +716,8 @@ public final class Files {
    */
   public static BufferedReader openBufferedReader(final File file, final int bufSize,
       final Charset charset) {
-    final int bufSz = (bufSize < DEFAULT_BUFSIZE) ? DEFAULT_BUFSIZE : bufSize;
-    final Charset cSet = (charset == null) ? Charset.defaultCharset() : charset;
+    final int bufSz = bufSize < DEFAULT_BUFSIZE ? DEFAULT_BUFSIZE : bufSize;
+    final Charset cSet = charset == null ? Charset.defaultCharset() : charset;
     BufferedReader in = null; // default bufsize is 8192.
     try {
       final FileInputStream fis = new FileInputStream(file);
@@ -738,7 +740,7 @@ public final class Files {
   public static final PrintWriter openPrintWriter(final String fileName) {
     File file = null;
     PrintWriter pw = null;
-    if ((fileName != null) && !fileName.isEmpty()) {
+    if (fileName != null && !fileName.isEmpty()) {
       file = new File(fileName);
       if (file.isFile()) {
         file.delete(); //remove old file if it exists
@@ -944,7 +946,7 @@ public final class Files {
    */
   public static BufferedWriter openBufferedWriter(final File file, final int bufSize,
       final boolean append, final Charset charset) {
-    final int bufSz = (bufSize < DEFAULT_BUFSIZE) ? DEFAULT_BUFSIZE : bufSize;
+    final int bufSz = bufSize < DEFAULT_BUFSIZE ? DEFAULT_BUFSIZE : bufSize;
     BufferedWriter out = null; // default bufsize is 8192.
     try {
       final FileOutputStream fos = new FileOutputStream(file, append);
