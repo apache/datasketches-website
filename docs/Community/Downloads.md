@@ -31,6 +31,11 @@ It is essential that you verify the integrity of release downloads. See [instruc
 ## Download Java Jar Files
 From [Maven Central](https://search.maven.org/search?q=g:%20org.apache.datasketches).
 
+## Download Earlier Versions
+
+* **[ZIP Files](http://archive.apache.org/dist/incubator/datasketches/java/)**
+* **[Java Jar Files](https://search.maven.org/search?q=g:%20org.apache.datasketches)**
+
 ## Version Numbers
 Apache DataSketches uses [semantic versioning](https://semver.org/). Version numbers use the form major.minor.incremental and are updated as follows:
 

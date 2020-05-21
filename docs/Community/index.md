@@ -30,22 +30,29 @@ users: https://lists.apache.org/list.html?users@datasketches.apache.org
 
 ## How We Communicate
 
-There are many ways that are available for our community to communicate with each other and directly with the developer team.  Please review the following for methods that meet your needs.
+There are many ways that are available for our community to communicate with each other and directly with our developers.  Please review the following for methods that meet your needs.
 
-* **[Users Mailing List]({{page.users}}):** This is a great place for all users (new and experienced) to ask general questions about the library, its general capabilities, and where to get help and find more information.  This is also a great place to give the developers general feedback about the library. If you like what you see, please give us a [Star (Java)](https://github.com/apache/incubator-datasketches-java) and/or [Star (C++/Python)](https://github.com/apache/incubator-datasketches-cpp) If you have general suggestions on how we can improve we would like to hear from you.  All of our developers follow this list and all sincere questions and comments will get a response.
+### [Users Mailing List]({{page.users}}) 
+This is a great place for all users (new and experienced) to ask general questions about the library, its general capabilities, and where to get help and find more information.  This is also a great place to give the developers general feedback about the library. If you like what you see, please give us a [Star (Java)](https://github.com/apache/incubator-datasketches-java) and/or [Star (C++/Python)](https://github.com/apache/incubator-datasketches-cpp) If you have general suggestions on how we can improve we would like to hear from you.  All of our developers follow this list and all sincere questions and comments will get a response.
+    
+* To subscribe send an empty email to [users-subscribe@datasketches.apache.org](mailto:users-subscribe@datasketches.apache.org).
+* To unsubcribe send an empty email to [users-unsubscribe@datasketches.apache.org](mailto:users-unsubscribe@datasketches.apache.org).
   
-    * To subscribe send an empty email to [users-subscribe@datasketches.apache.org](mailto:users-subscribe@datasketches.apache.org).
-    * To unsubcribe send an empty email to [users-unsubscribe@datasketches.apache.org](mailto:users-unsubscribe@datasketches.apache.org).
-  
-* **[Developers Mailing List]({{page.dev}}):** This is where the developers, committers, and contributors congregate to discuss, vote and establish priorities on addressing issues and opportunities with the library. The issues discussed tend to apply across all the different components of the library (see below).
+### [Developers Mailing List]({{page.dev}})
+This is where the developers, committers, and contributors congregate to discuss, vote and establish priorities on addressing issues and opportunities with the library. The issues discussed tend to apply across all the different components of the library (see below).
+    
+* To subscribe send an empty email to [dev-subscribe@datasketches.apache.org](mailto:dev-subscribe@datasketches.apache.org).
+* To unsubcribe send an empty email to [dev-unsubscribe@datasketches.apache.org](mailto:dev-unsubscribe@datasketches.apache.org).
 
-    * To subscribe send an empty email to [dev-subscribe@datasketches.apache.org](mailto:dev-subscribe@datasketches.apache.org).
-    * To unsubcribe send an empty email to [dev-unsubscribe@datasketches.apache.org](mailto:dev-unsubscribe@datasketches.apache.org).
+### Slack
+Chat with users and developers on Slack in _the-asf.slack.com_ workspace. 
 
-* **Slack:** We have two channels on the Apache Slack Workspace. Once you [join](https://s.apache.org/slack-invite) add the following channels:
-    * **datasketches** This is for use similar to the Users Mailing List above.
-    * **datasketches-dev** This is for use similar to the Developers Mailing List.
-<br/><br/>
+* Anyone with an _apache.org_ email account can freely join via [ASF Slack Signup](https://the-asf.slack.com/signup).
+* Otherwise, please [create a Slack account](https://s.apache.org/slack-invite), then join the _#datasketches_ channel when you receive notification.
+* Please do not ask DataSketches questions in the _#general_ channel.
+
+### Bugs and Issues
+If you have a problem or issue with the any aspect of the performance, accuracy or documentation in our library please file an issue with the relevant [Component](https://datasketches.apache.org/docs/Architecture/Components.html) GitHub site.
 
 
 ## Contributing
