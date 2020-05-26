@@ -26,7 +26,7 @@ Please see the [Sketch Features Matrix]({{site.docs_dir}}/Architecture/SketchFea
 
 ## Cardinality Sketches
 
-### CPC Sketch: Estimating Stream Cardinalities more efficiently than the famous HLL sketch!
+### [CPC Sketch}({{site.docs_dir}}/CPC/CPC.html): Estimating Stream Cardinalities more efficiently than the famous HLL sketch!
 This sketch was developed by the late Keven J. Lang, our chief scientist at the time. It is an amazing *tour de force* of scientific design and engineering and has substantially better accuracy / per stored size than the famous HLL sketch. The theory and demonstration of its performance is detailed in Lang's paper [Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm](https://arxiv.org/abs/1708.06839).  
 
 ### [Theta Sketches]({{site.docs_dir}}/Theta/ThetaSketchFramework.html): Estimating Stream Expression Cardinalities
