@@ -20,7 +20,7 @@ layout: blank_page
     under the License.
 -->
 
-# Data Sketching for Real Time Analytics: \nTheory and Practice
+# Data Sketching for Real Time Analytics:<br>Theory and Practice
 
 ## Abstract
 
