@@ -5,6 +5,7 @@
         {"class":"Doc",  "desc" : "The Challenge",                "dir" : "Background", "file": "TheChallenge" },
         {"class":"Doc",  "desc" : "Sketch Origins",               "dir" : "Background", "file": "SketchOrigins" },
         {"class":"Doc",  "desc" : "Sketch Elements",              "dir" : "Background", "file": "SketchElements" },
+        {"class":"Doc",  "desc" : "Presentations",                "dir" : "Background", "file": "Presentations" },
         {"class":"Doc",  "desc" : "Overview Slide Deck",          "dir" : "", "file": "DataSketches_deck", "pdf":"true" },
       ]
     },
@@ -35,7 +36,7 @@
           [
             {"class":"Doc",  "desc" : "Features Matrix",             "dir" : "", "file": "DistinctCountFeaturesMatrix" },
             {"class":"Doc",  "desc" : "Figures-of-Merit Comparison", "dir" : "", "file": "DistinctCountMeritComparisons"},
-            
+
             { "class":"Dropdown", "desc" : "CPC Sketches", "array":
               [
                 {"class":"Doc",  "desc" : "CPC Sketch",                               "dir" : "CPC", "file": "CPC" },
@@ -50,7 +51,7 @@
                 },
               ]
             },
-    
+
             { "class":"Dropdown", "desc" : "HyperLogLog Sketches", "array":
               [
                 {"class":"Doc",  "desc" : "HLL Sketch",                               "dir" : "HLL", "file": "HLL" },
@@ -73,11 +74,11 @@
                 },
               ]
             },
-    
+
             { "class":"Dropdown", "desc" : "Theta Sketches", "array":
               [
                 { "class":"Doc",  "desc" : "Theta Sketch Framework",            "dir" : "Theta", "file": "ThetaSketchFramework" },
-                
+
                 { "class":"Dropdown", "desc" : "Theta Examples", "array":
                   [
                     {"class":"Doc",  "desc" : "Concurrent Theta Sketch",          "dir" : "Theta", "file": "ConcurrentThetaSketch" },
@@ -88,7 +89,7 @@
                     {"class":"Doc",  "desc" : "Using Sketches in Druid",          "dir" : "",      "file": "DruidIntegration" },
                   ]
                 },
-                
+
                 { "class":"Dropdown", "desc" : "KMV Tutorial", "array":
                   [
                     {"class":"Doc",  "desc" : "The Inverse Estimate",           "dir" : "Theta", "file": "InverseEstimate" },
@@ -99,14 +100,14 @@
                     {"class":"Doc",  "desc" : "Update V(kth) Rule",             "dir" : "Theta", "file": "KMVupdateVkth" },
                   ]
                 },
-    
+
                 { "class":"Dropdown", "desc" : "Set Operations and P-sampling", "array":
                   [
                     {"class":"Doc",  "desc" : "Set Operations",                 "dir" : "Theta", "file": "ThetaSketchSetOps" },
                     {"class":"Doc",  "desc" : "<i>p</i>-Sampling",              "dir" : "Theta",  "file": "ThetaPSampling" },
                   ]
                 },
-    
+
                 { "class":"Dropdown", "desc" : "Accuracy", "array":
                   [
                     {"class":"Doc",  "desc" : "Basic Accuracy",                 "dir" : "Theta", "file": "ThetaAccuracy" },
@@ -116,20 +117,20 @@
                     {"class":"Doc",  "desc" : "Unions With Different k",        "dir" : "Theta", "file": "AccuracyOfDifferentKUnions" },
                   ]
                 },
-    
+
                 { "class":"Dropdown", "desc" : "Size", "array":
                   [
                     {"class":"Doc",  "desc" : "Theta Sketch Size",                 "dir" : "Theta", "file": "ThetaSize" },
                   ]
                 },
-    
+
                 { "class":"Dropdown", "desc" : "Speed", "array":
                   [
                     {"class":"Doc",  "desc" : "Update Speed",                      "dir" : "Theta", "file": "ThetaUpdateSpeed" },
                     {"class":"Doc",  "desc" : "Merge Speed",                       "dir" : "Theta", "file": "ThetaMergeSpeed" },
                   ]
                 },
-    
+
                 { "class":"Dropdown", "desc" : "Theta Sketch Theory", "array":
                   [
                     {"class":"Doc",  "desc" : "Theta Sketch Framework (PDF)",      "dir" : "",      "file": "ThetaSketchFramework", "pdf":"true" },
@@ -142,7 +143,7 @@
                 },
               ]
             },
-    
+
             { "class":"Dropdown", "desc" : "Tuple Sketches", "array":
               [
                 {"class":"Doc",  "desc" : "Tuple Overview",           "dir" : "Tuple", "file": "TupleOverview" },
@@ -164,14 +165,14 @@
         { "class":"Dropdown", "desc" : "Most Frequent", "array":
           [
             {"class":"Doc",  "desc" : "Frequency Sketches Overview",  "dir" : "Frequency", "file": "FrequencySketchesOverview" },
-    
+
             { "class":"Dropdown", "desc" : "Frequent Item Sketches", "array":
               [
                 {"class":"Doc",  "desc" : "Frequent Items Overview",      "dir" : "Frequency", "file": "FrequentItemsOverview" },
                 {"class":"Doc",  "desc" : "Frequent Items Error Table",   "dir" : "Frequency", "file": "FrequentItemsErrorTable" },
                 {"class":"Doc",  "desc" : "Frequent Items References",    "dir" : "Frequency", "file": "FrequentItemsReferences" },
                 {"class":"Doc",  "desc" : "Frequent Items Performance",   "dir" : "Frequency", "file": "FrequentItemsPerformance" },
-    
+
                 { "class":"Dropdown", "desc" : "Most Frequent Examples", "array":
                   [
                     {"class":"Doc",  "desc" : "Frequent Items Java Example",  "dir" : "Frequency", "file": "FrequentItemsJavaExample" },
@@ -183,7 +184,7 @@
                 },
               ]
             },
-    
+
             { "class":"Dropdown", "desc" : "Frequent Distinct Sketches", "array":
               [
                 {"class":"Doc",  "desc" : "Frequent Distinct Tuples Sketch", "dir" : "Frequency", "file": "FrequentDistinctTuplesSketch" },
@@ -196,7 +197,7 @@
           [
             {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "Quantiles", "file": "QuantilesOverview" },
             {"class":"Doc",  "desc" : "Quantiles Accuracy and Size",              "dir" : "Quantiles", "file": "QuantilesAccuracy" },
-    
+
             { "class":"Dropdown", "desc" : "Quantiles Examples", "array":
               [
                 {"class":"Doc",  "desc" : "Quantiles Sketch Java Example",            "dir" : "Quantiles", "file": "QuantilesJavaExample" },
@@ -231,7 +232,7 @@
             {"class":"Doc",  "desc" : "Reservoir Sampling",               "dir" : "Sampling", "file": "ReservoirSampling" },
             {"class":"Doc",  "desc" : "Reservoir Sampling Performance",   "dir" : "Sampling", "file": "ReservoirSamplingPerformance" },
             {"class":"Doc",  "desc" : "VarOpt Sampling",                  "dir" : "Sampling", "file": "VarOptSampling" },
-    
+
             { "class":"Dropdown", "desc" : "Sampling Examples", "array":
               [
                 {"class":"Doc",  "desc" : "Reservoir Sampling Java Example",  "dir" : "Sampling", "file": "ReservoirSamplingJava" },
@@ -242,7 +243,7 @@
             },
           ]
         },
-      ] 
+      ]
     },
 
     { "class":"Dropdown", "desc" : "Community", "array":
