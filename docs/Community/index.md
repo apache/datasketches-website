@@ -48,8 +48,7 @@ This is where the developers, committers, and contributors congregate to discuss
 Chat with users and developers on Slack in _the-asf.slack.com_ workspace. 
 
 * Anyone with an _apache.org_ email account can freely join via [ASF Slack Signup](https://the-asf.slack.com/signup).
-* Otherwise, please [create a Slack account](https://s.apache.org/slack-invite), then join the _#datasketches_ channel when you receive notification.
-* Please do not ask DataSketches questions in the _#general_ channel.
+* Otherwise, please send an email to our developers mail list above and we will send you an invite to join our slack channel. Join the _#datasketches_ channel when you receive notification.
 
 ### Bugs and Issues
 If you have a problem or issue with the any aspect of the performance, accuracy or documentation in our library please file an issue with the relevant [Component](https://datasketches.apache.org/docs/Architecture/Components.html) GitHub site.
