@@ -29,10 +29,31 @@ layout: doc_page
 | Date      | February 2017                                                                 |
 | Links     | [YouTube](https://www.youtube.com/watch?v=IrRjzzut40g&feature=youtu.be)       |
 
-| Title     | Simons Institute May 2018: Mergeable Summaries and the Data Sketches Library |
-| --------- | ---------------------------------------------------------------------------- |
-| Synopsis  | Suitability of the Data Sketches library to big data processing.             |
-| Presenter | Edo Liberty and Justin Thaler                                                |
-| Date      | February 2017                                                                |
-| Links     | [YouTube](https://www.youtube.com/watch?v=jezpA1kkgUk&feature=youtu.be)      |
+| Title     | Simons Institute May 2018: Mergeable Summaries and the Data Sketches Library  |
+| --------- | ----------------------------------------------------------------------------  |
+| Synopsis  | Suitability of the Data Sketches library to big data processing.              |
+| Presenter | Edo Liberty and Justin Thaler                                                 |
+| Date      | February 2017                                                                 |
+| Links     | [YouTube](https://www.youtube.com/watch?v=jezpA1kkgUk&feature=youtu.be)       |
+
+| Title     | Imply.io Dec 2019: How Theta Sketches Provide Huge Speed Advantages via Approximation |
+| --------- | ----------------------------------------------------------------------------  |
+| Synopsis  | How Theta Sketches work.                                                      |
+| Presenter | Yakir Buskila & Itai Yaffe from Nielsen                                       |
+| Date      | December, 2019                                                                |
+| Links     | [YouTube](https://www.youtube.com/watch?v=CFVkahVFtaQ)                        |
+
+| Title     | DataWorks Summit Apr 22, 2019: Counting Unique Users in Real-Time             |
+| --------- | ----------------------------------------------------------------------------  |
+| Synopsis  | Re-architecting our data infrastructure, relying on Druid and ThetaSketch.    |
+| Presenter | Yakir Buskila & Itai Yaffe from Nielsen                                       |
+| Date      | April, 2019                                                                   |
+| Links     | [YouTube](https://www.youtube.com/watch?v=MLUhzuQ0DHY)                        |
+
+| Title     | Big Data London: Dec 19 2019: Counting Unique Users in Real Time              |
+| --------- | ----------------------------------------------------------------------------  |
+| Synopsis  | ElasticSearch vs Druid & Theta Sketches.                                      |
+| Presenter | Yakir Buskila & Itai Yaffe from Nielsen                                       |
+| Date      | December 2019                                                                 |
+| Links     | [YouTube](https://www.youtube.com/watch?v=C9txaimgaHw)                        |
 
