@@ -26,7 +26,7 @@ layout: doc_page
 | Title     | A Production Quality Sketching Library for the Analysis of Big Data           |
 | --------- | ----------------------------------------------------------------------------  |
 | Synopsis  | Quick review of Count Distinct, Quantiles, Frequent Items and other sketches. |
-| Presenter | Lee Rhodes from Verizon Media (Yahoo)                                         |
+| Presenter | [Lee Rhodes](https://www.linkedin.com/in/leerho/) from [Verizon Media (Yahoo)](https://www.verizonmedia.com/)  |
 | Date      | June 15, 2020                                                                 |
 | Conference| [Spark+AI](https://www.youtube.com/channel/UC3q8O3Bh2Le8Rj1-Q-_UUbA)          |   
 | Link      | [YouTube](https://www.youtube.com/watch?time_continue=5&v=WPwCnswDbOU)        |
@@ -34,7 +34,7 @@ layout: doc_page
 | Title     | Counting Unique Users in Real Time: Here's a Challenge for You! (Part II)     |
 | --------- | ----------------------------------------------------------------------------  |
 | Synopsis  | ElasticSearch vs Druid & Theta Sketches.                                      |
-| Presenter | Yakir Buskila & Itai Yaffe from Nielsen                                       |
+| Presenters| [Yakir Buskilla](https://www.linkedin.com/in/yakirbuskilla/) & [Itai Yaffe](https://www.linkedin.com/in/itaiy/) from [Nielsen](https://www.nielsen.com/) |
 | Date      | December 19, 2019                                                             |
 | Conference| [Big Data LDN](https://www.youtube.com/channel/UCFbY6n5Ge7PJ98AtnMcD2eA)      |   
 | Link      | [YouTube](https://www.youtube.com/watch?v=C9txaimgaHw)                        |
@@ -42,7 +42,7 @@ layout: doc_page
 | Title     | Theta Sketches for Fast Approximation on Large Data Sets                      |
 | --------- | ----------------------------------------------------------------------------  |
 | Synopsis  | Short video on how Theta Sketches work.                                       |
-| Presenter | [Yakir Buskilla](https://www.linkedin.com/in/yakirbuskilla/) & [Itai Yaffe](https://www.nielsen.com/) from Nielsen |
+| Presenters| [Yakir Buskilla](https://www.linkedin.com/in/yakirbuskilla/) & [Itai Yaffe](https://www.linkedin.com/in/itaiy/) from [Nielsen](https://www.nielsen.com/) |
 | Date      | December 18, 2019                                                             |
 | Conference| [Imply.io Webinar](https://imply.io/videos/introduction-to-imply)             |  
 | Link      | [YouTube](https://www.youtube.com/watch?v=CFVkahVFtaQ)                        |
@@ -50,7 +50,7 @@ layout: doc_page
 | Title     | Counting Unique Users in Real-Time: Here's a Challenge for You!               |
 | --------- | ----------------------------------------------------------------------------  |
 | Synopsis  | Re-architecting our data infrastructure, relying on Druid and ThetaSketch.    |
-| Presenter | Yakir Buskila & Itai Yaffe from Nielsen                                       |
+| Presenters| [Yakir Buskilla](https://www.linkedin.com/in/yakirbuskilla/) & [Itai Yaffe](https://www.linkedin.com/in/itaiy/) from [Nielsen](https://www.nielsen.com/) |
 | Date      | April 22, 2019                                                                |
 | Conference| [DataWorksSummit](https://www.youtube.com/channel/UC5o4P1O-WVE15EZWqayc5dw)   |
 | Link      | [YouTube](https://www.youtube.com/watch?v=MLUhzuQ0DHY)                        |
@@ -58,7 +58,7 @@ layout: doc_page
 | Title     | Mergeable Summaries and the Data Sketches Library                             |
 | --------- | ----------------------------------------------------------------------------  |
 | Synopsis  | Suitability of the Data Sketches library to big data processing.              |
-| Presenter | Edo Liberty and Justin Thaler                                                 |
+| Presenters| [Edo Liberty](https://www.linkedin.com/in/edo-liberty-4380164/) and [Justin Thaler](http://people.cs.georgetown.edu/jthaler/) |
 | Date      | May 3, 2018                                                                   |
 | Conference| [Simons Institute](https://www.youtube.com/channel/UCW1C2xOfXsIzPgjXyuhkw9g)  |
 | Link      | [YouTube](https://www.youtube.com/watch?v=jezpA1kkgUk&feature=youtu.be)       |
@@ -66,7 +66,7 @@ layout: doc_page
 | Title     | Data Sketches: A required toolkit for Big Data Analytics                      |
 | --------- | ----------------------------------------------------------------------------- |
 | Synopsis  | Overview of Datasketches project, together with case studies and examples.    |
-| Presenter | Jon Malkin and Alexander Saydakov                                             |
+| Presenters| [Jon Malkin](https://www.linkedin.com/in/jon-malkin-15aa025/) and Alexander Saydakov |
 | Date      | February 16, 2017                                                             |
 | Conference| [HUG Meetup](https://www.youtube.com/channel/UC4MJvi5SyXYnoorWVBTFJKQ)        |
 | Link      | [YouTube](https://www.youtube.com/watch?v=IrRjzzut40g&feature=youtu.be)       |
