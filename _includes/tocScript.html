@@ -26,36 +26,19 @@
       return collapseMenus
     };
 
-    var findMatchingCollapseMenu = function (collapseItem) {
-      return document.querySelector(`[href="#${collapseItem.id}"]`);
-    };
-
-    var findAllParentMenus = function (element) {
-      var parentMenus = []
-      var elementPointer = element;
-      while (elementPointer !== document.body) {
-        if (elementPointer.className.split(' ').indexOf('menu') > -1) {
-          parentMenus.push(elementPointer);
-        }
-        elementPointer = elementPointer.parentElement;
-      }
-      return parentMenus;
-    }
-
     var openMenuItem = function (element) {
-      element.click();
+      // $(element).collapse('show') would start a transition, adding `in` class instead.
+      element.classList.add('in');
     };
 
     var openAllFromList = function (elementList) {
-      elementList.forEach(function (element) {
-        console.log(element)
-        openMenuItem(findMatchingCollapseMenu(element))
-      });
+      elementList.forEach(openMenuItem);
     };
 
     var highlightAndOpenMenu = function () {
       var currentLineItem = findLineItem(document.location.pathname);
       highlighLineItem(currentLineItem);
+      openAllFromList(findAllCollapseParents(currentLineItem));
     };
 
     $(highlightAndOpenMenu);
