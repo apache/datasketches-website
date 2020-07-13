@@ -44,13 +44,14 @@ public class TocGenerator {
   /**
    * To create the Table of Contents for the website:
    * <ol>
-   *  <li>Edit the JSON source file (referenced below) for the structure you want.
-   *  Be careful not to use any HTML reserved symbols! </li>
-   *  <li>Note that the javascript required is located in the _includes directory.
+   *  <li>Edit the JSON source file (referenced below) for the structure you want.</li>
+   *  <li>Be careful not to use any HTML reserved symbols!</li>
+   *  <li>All links in the ToC should be unique within the ToC.</li>
+   *  <li>Note that the javascript required is located in the _includes directory.</li>
    *  <li>Execute this test.  The result will be placed in the proper location as part of the web
    *  source.</li>
    *  <li>Stage the changes and push the web site source to origin.</li>
-   *  <li>Refresh your browser and confirm that the TOC is correct.
+   *  <li>Refresh your browser and confirm that the TOC is correct.</li>
    * </ol>
    * @author Lee Rhodes
    */

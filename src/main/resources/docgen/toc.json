@@ -62,7 +62,6 @@
                     {"class":"Doc",  "desc" : "HLL Sketch C++ Example",               "dir" : "HLL", "file": "HllCppExample" },
                     {"class":"Doc",  "desc" : "HLL Sketch Pig UDFs",                  "dir" : "HLL", "file": "HllPigUDFs" },
                     {"class":"Doc",  "desc" : "HLL Sketch Hive UDFs",                 "dir" : "HLL", "file": "HllHiveUDFs" },
-                    {"class":"Doc",  "desc" : "Using Sketches in Druid",              "dir" : "",    "file": "DruidIntegration" },
                   ]
                 },
                 { "class":"Dropdown", "desc" : "HLL Studies", "array":
@@ -86,7 +85,6 @@
                     {"class":"Doc",  "desc" : "Theta Sketch Spark Example",       "dir" : "Theta", "file": "ThetaSparkExample" },
                     {"class":"Doc",  "desc" : "Theta Sketch Pig UDFs",            "dir" : "Theta", "file": "ThetaPigUDFs" },
                     {"class":"Doc",  "desc" : "Theta Sketch Hive UDFs",           "dir" : "Theta", "file": "ThetaHiveUDFs" },
-                    {"class":"Doc",  "desc" : "Using Sketches in Druid",          "dir" : "",      "file": "DruidIntegration" },
                   ]
                 },
 
@@ -151,10 +149,8 @@
                   [
                     {"class":"Doc",  "desc" : "Tuple Java Example",       "dir" : "Tuple", "file": "TupleJavaExample" },
                     {"class":"Doc",  "desc" : "Tuple Engagement Example", "dir" : "Tuple", "file": "TupleEngagementExample" },
-                    {"class":"Doc",  "desc" : "Frequent Distinct Tuples Sketch", "dir" : "Frequency", "file": "FrequentDistinctTuplesSketch" },
                     {"class":"Doc",  "desc" : "Tuple Pig UDFs",           "dir" : "Tuple", "file": "TuplePigUDFs" },
                     {"class":"Doc",  "desc" : "Tuple Hive UDFs",          "dir" : "Tuple", "file": "TupleHiveUDFs" },
-                    {"class":"Doc",  "desc" : "Using Sketches in Druid",  "dir" : "",      "file": "DruidIntegration" },
                   ]
                 },
               ]
@@ -179,7 +175,6 @@
                     {"class":"Doc",  "desc" : "Frequent Items C++ Example",   "dir" : "Frequency", "file": "FrequentItemsCppExample" },
                     {"class":"Doc",  "desc" : "Frequent Items Pig UDFs",      "dir" : "Frequency", "file": "FrequentItemsPigUDFs" },
                     {"class":"Doc",  "desc" : "Frequent Items Hive UDFs",     "dir" : "Frequency", "file": "FrequentItemsHiveUDFs" },
-                    {"class":"Doc",  "desc" : "Using Sketches in Druid",              "dir" : "",    "file": "DruidIntegration" },
                   ]
                 },
               ]
@@ -204,7 +199,6 @@
                 {"class":"Doc",  "desc" : "KLL Quantiles Sketch C++ Example",         "dir" : "Quantiles", "file": "QuantilesCppExample" },
                 {"class":"Doc",  "desc" : "Quantiles Sketch Pig UDFs",                "dir" : "Quantiles", "file": "QuantilesPigUDFs" },
                 {"class":"Doc",  "desc" : "Quantiles Sketch Hive UDFs",               "dir" : "Quantiles", "file": "QuantilesHiveUDFs" },
-                {"class":"Doc",  "desc" : "Using Sketches in Druid",                  "dir" : "",          "file": "DruidIntegration" },
               ]
             },
             { "class":"Dropdown", "desc" : "Quantiles Studies", "array":
@@ -243,6 +237,12 @@
             },
           ]
         },
+      ]
+    },
+
+    { "class":"Dropdown", "desc" : "System Integrations", "array":
+      [
+        {"class":"Doc",  "desc" : "Using Sketches in Druid",                  "dir" : "",          "file": "DruidIntegration" },
       ]
     },
 
