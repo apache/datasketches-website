@@ -3,8 +3,12 @@
   (function () {
 
     var findLineItem = function (path) {
-      return document.querySelector(`[href="${path}"]`);
+      return document.querySelector(`#toc [href="${path}"]`);
     };
+
+    function findNavItem(path) {
+      return document.querySelector(`.nav [href="${path}"]`);
+    }
 
     var highlighLineItem = function (element) {
       element.classList.add('highlight');
@@ -36,9 +40,13 @@
     };
 
     var highlightAndOpenMenu = function () {
+      // Highlight & expand nav item in the TOC
       var currentLineItem = findLineItem(document.location.pathname);
       highlighLineItem(currentLineItem);
       openAllFromList(findAllCollapseParents(currentLineItem));
+
+      // Highlight nav item in top navigation
+      highlighLineItem(findNavItem(document.location.pathname));
     };
 
     $(highlightAndOpenMenu);
