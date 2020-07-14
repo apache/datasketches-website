@@ -62,8 +62,8 @@ Use the following table to compare the capabilities of the different sketch fami
 <sup>3</sup> Tuple Sketch: Example Code in test/.../tuple/aninteger.<br>
 <sup>4</sup> Theta Sketch: C++/Python has no implementaion of the Jaccard, yet.<br>
 <sup>5</sup> Frequent Items Sketch: PostgreSQL implemented for Strings only.<br>
-<sup>6</sup> KLL Sketch: Python implemented for both just floats and ints.
-<sup>7</sup> See [Python Install Instructions](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)
+<sup>6</sup> KLL Sketch: Python implemented for both just floats and ints.<br>
+<sup>7</sup> See [Python Install Instructions](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)<br>
 
 
 ## Definitions
