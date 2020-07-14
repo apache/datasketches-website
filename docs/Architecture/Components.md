@@ -37,16 +37,17 @@ If you like what you see give us a **Star** on one of these two sites!
 Apapters integrate the core components into the aggregation APIs of specific data processing systems. Some of these adapters are available as part of the library, other adapters are directly integrated into the target data processing application.
 
 ### Java Adaptors
-* **[Apache Hive](https://github.com/apache/incubator-datasketches-hive)** (Versioned, Apache Released)
+* **[Apache Druid](https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html)** (Apach Released as part of Druid)
+* **[Apache Hive](https://datasketches.apache.org/docs/SystemIntegrations/ApacheHiveIntegration.html)** (Versioned, Apache Released)
     * [Theta Sketch Example]({{site.docs_dir}}/Theta/ThetaHiveUDFs.html)
     * [Tuple Sketch Example]({{site.docs_dir}}/Tuple/TuplePigUDFs.html)
-* **[Apache Pig](https://github.com/apache/incubator-datasketches-pig)** (Versioned, Apache Released)
+* **[Apache Pig](https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html)** (Versioned, Apache Released)
     * [Theta Sketch Example]({{site.docs_dir}}/Theta/ThetaPigUDFs.html)
     * [Tuple Sketch Example]({{site.docs_dir}}/Tuple/TuplePigUDFs.html) 
-* **[Apache Druid](https://github.com/apache/druid/tree/master/extensions-core/datasketches)** (Apach Released as part of Druid)
+
 
 ### C++ Adaptors
-* **[PostgreSQL](https://github.com/apache/incubator-datasketches-postgresql)** (Versioned, Apache Released)
+* **[PostgreSQL](https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html)** (Versioned, Apache Released)
 This site provides the postgres-specific adaptors that wrap the C++ implementations making
 them available to the PostgreSQL database users. PostgreSQL users should download the PostgreSQL extension from [pgxn.org](https://pgxn.org/dist/datasketches/).  For examples refer to the README on the component site.
 

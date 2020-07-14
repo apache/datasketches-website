@@ -19,6 +19,8 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-### Druid Integration
+### Apache Hive Integration
 
-See <a href="https://druid.apache.org/docs/latest/development/extensions-core/datasketches-extension.html">Druid DataSketches extension</a>
+* [Download](https://datasketches.apache.org/docs/Community/Downloads.html)
+
+* Build and Install, See [Hive README](https://github.com/apache/incubator-datasketches-hive)

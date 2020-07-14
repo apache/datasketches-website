@@ -89,4 +89,4 @@ The code to reproduce these measurements is available in the <a href="https://gi
 
 ## DataSketches HLL Sketch Druid module
 
-The DataSketches Hll sketch module for Druid is available as a part of the <a href="https://github.com/apache/druid/tree/master/extensions-core/datasketches">druid/extensions-core</a>.
+The DataSketches Hll sketch module for Druid is available as a part of [Druid/Extensions-core](https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html)

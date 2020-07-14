@@ -31,6 +31,9 @@ It is essential that you verify the integrity of release downloads. See [instruc
 ## Download Java Jar Files
 From [Maven Central](https://search.maven.org/search?q=g:%20org.apache.datasketches).
 
+## Enabling Python
+* First download the C++ core above, then read the [Python Installation Instructions](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)
+
 ## Download Earlier Versions
 
 * **[ZIP Files](http://archive.apache.org/dist/incubator/datasketches/java/)**

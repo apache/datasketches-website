@@ -20,7 +20,7 @@ layout: doc_page
     under the License.
 -->
 
-# Sketch Criteria for Library Inclusion
+# Sketch Criteria for DataSketches Library
 
 There are lots of clever and useful algorithms that are sometimes called "sketches".  However, due to limited resources, in order to be included in the DataSketches library, we had to clearly define what we meant by the term "sketch".  Otherwise, we would end up with a hodge podge of algorithms and have to answer: Why don't we include algorithm X?.
 

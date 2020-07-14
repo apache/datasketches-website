@@ -44,7 +44,7 @@ View all of our Apache DataSketches repository components as a [list](https://gi
   * **sketches-hive** moved to [incubator-datasketches-hive](https://github.com/apache/incubator-datasketches-hive) Adapts the Java core to Apache Hive.
   * **sketches-pig** moved to [incubator-datasketches-pig](https://github.com/apache/incubator-datasketches-pig) Adapts the Java core to Apache Pig.
   * **sketches-vector** moved to [incubator-datasketches-vector](https://github.com/apache/incubator-datasketches-vector) Experimental sketches for vector and matrix processing.
-  * [Apache Druid adaptors](https://github.com/apache/druid/tree/master/extensions-core/datasketches)
+  * [Apache Druid adaptors](https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html)
 
 * C++ / [Python](https://github.com/apache/incubator-datasketches-cpp/tree/master/python) Core
   * **sketches-core-cpp** moved to [incubator-datasketches-cpp](https://github.com/apache/incubator-datasketches-cpp) This is the **core** library that contains all major sketch algorithms written in C++ and Python.
