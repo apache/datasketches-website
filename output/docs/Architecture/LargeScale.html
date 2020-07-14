@@ -399,7 +399,10 @@
     <a data-toggle="collapse" class="menu collapsed" href="#collapse_system_integrations">System Integrations</a>
   </p>
   <div class="collapse" id="collapse_system_integrations">
-    <li><a href="/docs/DruidIntegration.html">•Using Sketches in Druid</a></li>
+    <li><a href="/docs/SystemIntegrations/ApacheDruidIntegration.html">•Using Sketches in ApacheDruid</a></li>
+    <li><a href="/docs/SystemIntegrations/ApacheHiveIntegration.html">•Using Sketches in Apache Hive</a></li>
+    <li><a href="/docs/SystemIntegrations/ApachePigIntegration.html">•Using Sketches in Apache Pig</a></li>
+    <li><a href="/docs/SystemIntegrations/PostgreSQLIntegration.html">•Using Sketches in PostgreSQL</a></li>
   </div>
 
   <p id="community">
@@ -502,69 +505,78 @@
 -->
 <h2 id="designed-for-large-scale-computing-systems">Designed for Large-scale Computing Systems</h2>
 
-<h3 id="minimal-dependencies">Minimal Dependencies</h3>
+<h3 id="easy-integration-with-minimal-dependencies">Easy Integration with Minimal Dependencies</h3>
 
 <ul>
   <li>
-    <p>Can be integrated into virtually any Java-base system environment.</p>
+    <p><a href="https://datasketches.apache.org/docs/Community/Downloads.html">Java Core</a></p>
+
+    <ul>
+      <li>The Java core library (including Memory) has no dependencies outside of the Java JVM at runtime allowing simple integration into virtually any Java based system environment.</li>
+      <li>All of the Java components are Maven Deployable and registered with <a href="https://search.maven.org/classic/#search%7Cga%7C1%7Cg%3A%22org.apache.datasketches%22">The Central Repository</a></li>
+    </ul>
   </li>
-  <li>
-    <p>The core library (including Memory) has no dependencies outside of the Java JVM at runtime.</p>
+  <li><a href="https://datasketches.apache.org/docs/Community/Downloads.html">C++ Core</a>
+    <ul>
+      <li>The C++ core is written as all header files allowing easy integration into a wide range of operating system environments.</li>
+    </ul>
+  </li>
+  <li><a href="https://github.com/apache/incubator-datasketches-cpp/tree/master/python">Python</a>
+    <ul>
+      <li>The C++ Core is extended using the python binding library <a href="https://github.com/pybind/pybind11">pybind11</a> enabling high performance operation from Python.</li>
+    </ul>
   </li>
 </ul>
 
-<h3 id="maven-deployable">Maven Deployable</h3>
+<h3 id="cross-language-binary-compatibility">Cross Language Binary Compatibility</h3>
 
 <ul>
-  <li>Registered with <a href="https://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a></li>
+  <li>Sketches serialized from C++ or Python can be interpreted by compatible Java sketches and visa versa.</li>
 </ul>
 
 <h3 id="speed">Speed</h3>
 
 <ul>
   <li>
-    <p>These single-pass, “one-touch” algorithms are <a href="/docs/Theta/ThetaUpdateSpeed.html"><i>fast</i></a> to enable real-time processing capability.</p>
+    <p>These single-pass, “one-touch” algorithms are <i>fast (<a href="https://datasketches.apache.org/docs/Theta/ThetaUpdateSpeed.html">see example</a>)</i> to enable real-time processing capability.</p>
   </li>
   <li>
-    <p>Coupled with the compact binary representations, in many cases the need for costly serialization and deserialization has been eliminated.</p>
+    <p>Sketches can be represented in an updatable or compact form. The compact form is smaller,  immutable and faster to merge.</p>
   </li>
   <li>
-    <p>The sketch data structures are “additive” and embarrassingly parallelizable. The Theta sketches can be merged without losing accuracy.</p>
+    <p>Some of the Java sketches have been designed to be instantiated and operated <i>off-heap</i>, whicn eliminates costly serialization and deserialization.</p>
+  </li>
+  <li>
+    <p>The sketch data structures are “additive” and embarrassingly parallelizable. Sketches can be merged without losing accuracy.</p>
   </li>
 </ul>
 
-<h3 id="integration-for-hive-pig-druid-and-spark">Integration for Hive, Pig, Druid and Spark</h3>
+<h3 id="systems-integrations">Systems Integrations</h3>
 
 <ul>
-  <li>
-    <p><a href="https://github.com/apache/incubator-datasketches-hive">Apache Hive Adaptors</a>.</p>
-  </li>
-  <li>
-    <p><a href="https://github.com/apache.incubator-datasketches-pig">Apache Pig Adaptors</a>.</p>
-  </li>
-  <li><a href="https://github.com/apache/druid/tree/master/extensions-core/datasketches">Druid Adaptors</a>.
-    <ul>
-      <li>For documentation see <a href="https://druid.apache.org/docs/latest/development/extensions-core/datasketches-extension.html">Druid Datasketches extension</a></li>
-    </ul>
-  </li>
-  <li><a href="/docs/Theta/ThetaSparkExample.html">Spark Examples</a></li>
+  <li><a href="https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html">Druid Integration</a></li>
+  <li><a href="https://datasketches.apache.org/docs/Community/Downloads.html">Apache Hive, Apache Pig and PostgreSQL</a></li>
+  <li><a href="https://datasketches.apache.org/docs/SystemIntegrations/ApacheHiveIntegration.html">Apache Hive</a></li>
+  <li><a href="https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html">Apache Pig</a></li>
+  <li><a href="https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html">PostgreSQL</a></li>
+  <li><a href="https://datasketches.apache.org/docs/Theta/ThetaSparkExample.html">Spark Examples</a></li>
 </ul>
 
-<h3 id="specific-theta-sketch-features-for-large-data">Specific Theta Sketch Features for Large Data</h3>
+<h3 id="specific-sketch-features-for-large-data">Specific Sketch Features for Large Data</h3>
 
 <ul>
   <li>
     <p><b>Hash Seed Handling</b>. Additional protection for managing hash seeds which is 
-particularly important when processing sensitive user identifiers.</p>
+particularly important when processing sensitive user identifiers. Available with Theta Sketches.</p>
   </li>
   <li>
-    <p><a href="/docs/Theta/ThetaPSampling.html"><b>Sampling</b></a>. Built-in up-front sampling for cases where additional 
-contol is required to limit overall memory consumption when dealing with millions of sketches.</p>
+    <p><a href="/docs/Theta/ThetaPSampling.html"><b>Pre-Sampling</b></a>. Built-in up-front sampling for cases where additional 
+contol is required to limit overall memory consumption when dealing with millions of sketches. Available with Theta Sketches.</p>
   </li>
   <li>
-    <p>Off-Heap <a href="/docs/Memory/MemoryPackage.html"><b>Memory Package</b></a>. 
+    <p><a href="/docs/Memory/MemoryPackage.html"><b>Memory Package</b></a>. 
 Large query systems often require their own heaps outside the JVM in order to better manage garbage collection latencies. 
-The sketches in this package are designed to operate either on-heap or off-heap.</p>
+The Java sketches utilize this powerful package.</p>
   </li>
   <li>
     <p>Built-in <b>Upper-Bound and Lower-Bound estimators</b>. 
@@ -577,13 +589,8 @@ confidence level.</p>
 tuning options.</p>
   </li>
   <li>
-    <p>Additional protection of sensitive data by user configuration of a hash seed that is 
-not stored with the serialized data.</p>
-  </li>
-  <li>
     <p><b>Small Footprint Per Sketch</b>. The operating and storage footprint for both 
-row and column oriented storage are minimized with 
-<a href="/docs/Theta/ThetaSize.html">compact binary representations</a>, which are much smaller 
+row and column oriented storage are minimized with compact binary representations, which are much smaller 
 than the raw input stream and with a well defined upper bound of size.</p>
   </li>
 </ul>
