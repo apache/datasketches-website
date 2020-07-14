@@ -39,7 +39,7 @@ layout: doc_page
 <a href="https://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>.
 * Extensive documentation with the systems developer in mind.
 * Designed for production environments:
-    * Available in multiple languages: Java, C++, Python
+    * Available in multiple languages: Java, C++, [Python](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)
     * Binary compatible across systems and languages 
 
 ### Built-In, General Purpose Functions

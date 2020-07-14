@@ -61,7 +61,7 @@ Deserialize Operations | Heapify() | Y | Y | Y | Y |
  | WritableWrap | Y | Y | Y |  |
 Languages | Java | Y | Y | Y | Y |
  | C++ | Y |  | Y | Y |
- | Python | Y |  | Y | Y |
+ | Python<sup>2</sup> | Y |  | Y | Y |
  | Binary compatibility across Languages | Y | Y | Y | Y |
 Other Operations and Modes | Jaccard Index | Y |  |  |  |
  | Off-Heap | Y | Y | Y |
@@ -69,6 +69,7 @@ Other Operations and Modes | Jaccard Index | Y |  |  |  |
  | Generic Extensions  |  | Y |  |  |
  
 ____
- 1. Space Accuracy Merit (Lower is better) = b * C^2 = b * K * RSE^2 
+ <sup>1</sup> Space Accuracy Merit (Lower is better) = b * C^2 = b * K * RSE^2<br>
+ <sup>2</sup> See [Python Install Instructions](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)<br>
 
  

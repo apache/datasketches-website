@@ -98,7 +98,7 @@ The audience should learn about
         2. Accepting approximation
         3. Understanding error
         4. System planning
-    4. Demonstration in python
+    4. Demonstration in [Python](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)
         1. Examples of several sketches
         2. Deeper dive with sampling
 4. Extra topics (Time permitting) (10 minutes)

@@ -27,7 +27,7 @@ Use the following table to compare the capabilities of the different sketch fami
 <table>
 <tr style="font-weight:bold"><td colspan="2"></td><td colspan="3">Languages</td><td colspan="4">Set Operations</td><td colspan="5">System Integrations</td><td colspan="5">Misc.</td></tr>
 
-<tr style="font-weight:bold"><td>Type</td><td>Sketch</td><td>Java</td><td>C++</td><td>Python</td><td>Union</td><td>Inter-section</td><td>Difference</td><td>Jaccard</td><td>Hive</td><td>Pig</td><td>Druid<sup>1</sup></td><td>Spark<sup>2</sup></td><td>PostgreSQL (C++)</td><td>Con-current</td><td>Compact</td><td>Generic Types</td><td>Off Java Heap</td><td>Error Bounds</td></tr>
+<tr style="font-weight:bold"><td>Type</td><td>Sketch</td><td>Java</td><td>C++</td><td>Python<sup>7</sup></td><td>Union</td><td>Inter-section</td><td>Difference</td><td>Jaccard</td><td>Hive</td><td>Pig</td><td>Druid<sup>1</sup></td><td>Spark<sup>2</sup></td><td>PostgreSQL (C++)</td><td>Con-current</td><td>Compact</td><td>Generic Types</td><td>Off Java Heap</td><td>Error Bounds</td></tr>
 
 <tr style="font-weight:bold"><td colspan="19">Major Sketches</td></tr>
 <tr><td>Cardinality/CPC</td><td>CpcSketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td>Y</td><td></td><td></td><td>Y</td></tr>
@@ -63,6 +63,7 @@ Use the following table to compare the capabilities of the different sketch fami
 <sup>4</sup> Theta Sketch: C++/Python has no implementaion of the Jaccard, yet.<br>
 <sup>5</sup> Frequent Items Sketch: PostgreSQL implemented for Strings only.<br>
 <sup>6</sup> KLL Sketch: Python implemented for both just floats and ints.
+<sup>7</sup> See [Python Install Instructions](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)
 
 
 ## Definitions

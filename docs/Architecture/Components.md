@@ -31,7 +31,7 @@ If you like what you see give us a **Star** on one of these two sites!
 
 * **[Java](https://github.com/apache/incubator-datasketches-java)** (Versioned, Apache Released) This is the original and the most comprehensive collection of sketch algorithms. It has a dependence on the Memory component and the Java Adaptors have a dependence on this component. 
 
-* **[C++/Python](https://github.com/apache/incubator-datasketches-cpp)** (Versioned, Apache Released) This is newer and provides most of the major algorithms available in Java.  Our C++ adaptors have a dependence on this component.  The Pybind adaptors for Python are included for all the C++ sketches.
+* **[C++](https://github.com/apache/incubator-datasketches-cpp)/[Python](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)** (Versioned, Apache Released) This is newer and provides most of the major algorithms available in Java.  Our C++ adaptors have a dependence on this component.  The Pybind adaptors for Python are included for all the C++ sketches.
 
 ## Adapters
 Apapters integrate the core components into the aggregation APIs of specific data processing systems. Some of these adapters are available as part of the library, other adapters are directly integrated into the target data processing application.

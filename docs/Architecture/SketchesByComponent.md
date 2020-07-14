@@ -127,15 +127,14 @@ org.apache.datasketches.characterization.uniquecount | Base Profiles for Unique 
 This component implements the [Frequent Directions Algorithm](/docs/Community/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.
 
 
-## C++ and Python
+## C++ and [Python](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)
 
 ### incubator-datasketches-cpp
 This is the evolving C++ implementations of the same sketches that are available in Java. 
 These implementations are *binary compatible* with their counterparts in Java.
 In other words, a sketch created and stored in C++ can be opened and read in Java and visa-versa.
 
-This site also has our Python adaptors that basically wrap the C++ implementations, 
-making the high performance C++ implementations available from Python.
+This site also has our [Python adaptors](https://github.com/apache/incubator-datasketches-cpp/tree/master/python) that basically wrap the C++ implementations, making the high performance C++ implementations available from Python.
 
 ### incubator-datasketches-postgresql
 This site provides the postgres-specific adaptors that wrap the C++ implementations making

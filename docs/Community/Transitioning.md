@@ -46,7 +46,7 @@ View all of our Apache DataSketches repository components as a [list](https://gi
   * **sketches-vector** moved to [incubator-datasketches-vector](https://github.com/apache/incubator-datasketches-vector) Experimental sketches for vector and matrix processing.
   * [Apache Druid adaptors](https://github.com/apache/druid/tree/master/extensions-core/datasketches)
 
-* C++ / Python Core
+* C++ / [Python](https://github.com/apache/incubator-datasketches-cpp/tree/master/python) Core
   * **sketches-core-cpp** moved to [incubator-datasketches-cpp](https://github.com/apache/incubator-datasketches-cpp) This is the **core** library that contains all major sketch algorithms written in C++ and Python.
 
 * C++ Adaptors
@@ -62,7 +62,7 @@ View all of our Apache DataSketches repository components as a [list](https://gi
   * [characterization-cpp](https://github.com/DataSketches/characterization-cpp)
   * [experimental-cpp](https://github.com/DataSketches/experimental-cpp)
 
-* Command Line Functions (Mostly obsolete. These may move to Apache later or replaced by Python) 
+* Command Line Functions (Mostly obsolete. These may move to Apache later or replaced by [Python](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)) 
   * [homebrew-sketches-cmd](https://github.com/DataSketches/homebrew-sketches-cmd)
   * [sketches-cmd](https://github.com/DataSketches/sketches-cmd)
   * [homebrew-sketches](https://github.com/DataSketches/homebrew-sketches)
