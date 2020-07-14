@@ -775,15 +775,14 @@ the library and is constantly being updated.  Examples of the job command files 
 <h3 id="incubator-datasketches-vector">incubator-datasketches-vector</h3>
 <p>This component implements the <a href="/docs/Community/Research.html">Frequent Directions Algorithm</a> [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.</p>
 
-<h2 id="c-and-python">C++ and Python</h2>
+<h2 id="c-and-python">C++ and <a href="https://github.com/apache/incubator-datasketches-cpp/tree/master/python">Python</a></h2>
 
 <h3 id="incubator-datasketches-cpp">incubator-datasketches-cpp</h3>
 <p>This is the evolving C++ implementations of the same sketches that are available in Java. 
 These implementations are <em>binary compatible</em> with their counterparts in Java.
 In other words, a sketch created and stored in C++ can be opened and read in Java and visa-versa.</p>
 
-<p>This site also has our Python adaptors that basically wrap the C++ implementations, 
-making the high performance C++ implementations available from Python.</p>
+<p>This site also has our <a href="https://github.com/apache/incubator-datasketches-cpp/tree/master/python">Python adaptors</a> that basically wrap the C++ implementations, making the high performance C++ implementations available from Python.</p>
 
 <h3 id="incubator-datasketches-postgresql">incubator-datasketches-postgresql</h3>
 <p>This site provides the postgres-specific adaptors that wrap the C++ implementations making
