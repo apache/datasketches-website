@@ -22,9 +22,7 @@ layout: doc_page
 ## Designed for Large-scale Computing Systems
 
 ### Easy Integration with Minimal Dependencies
-
 * [Java Core](https://datasketches.apache.org/docs/Community/Downloads.html)
-  
     * The Java core library (including Memory) has no dependencies outside of the Java JVM at runtime allowing simple integration into virtually any Java based system environment.
     * All of the Java components are Maven Deployable and registered with [The Central Repository](https://search.maven.org/classic/#search%7Cga%7C1%7Cg%3A%22org.apache.datasketches%22)
 
@@ -35,30 +33,29 @@ layout: doc_page
 	* The C++ Core is extended using the python binding library [pybind11](https://github.com/pybind/pybind11) enabling high performance operation from Python.
 
 ### Cross Language Binary Compatibility
-
 * Sketches serialized from C++ or Python can be interpreted by compatible Java sketches and visa versa. 
 
 ### Speed
-
 * These single-pass, "one-touch" algorithms are <i>fast ([see example](https://datasketches.apache.org/docs/Theta/ThetaUpdateSpeed.html))</i> to enable real-time processing capability.
-  
+
 * Sketches can be represented in an updatable or compact form. The compact form is smaller,  immutable and faster to merge.
 
 * Some of the Java sketches have been designed to be instantiated and operated <i>off-heap</i>, whicn eliminates costly serialization and deserialization.
-  
+
 * The sketch data structures are "additive" and embarrassingly parallelizable. Sketches can be merged without losing accuracy.
 
 ### Systems Integrations
-
 * [Druid Integration](https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html)  
-* [Apache Hive, Apache Pig and PostgreSQL](https://datasketches.apache.org/docs/Community/Downloads.html)
+
 * [Apache Hive](https://datasketches.apache.org/docs/SystemIntegrations/ApacheHiveIntegration.html)
+
 * [Apache Pig](https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html)
+
 * [PostgreSQL](https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html)
+
 * [Spark Examples](https://datasketches.apache.org/docs/Theta/ThetaSparkExample.html) 
 
 ### Specific Sketch Features for Large Data
-
 * <b>Hash Seed Handling</b>. Additional protection for managing hash seeds which is 
 particularly important when processing sensitive user identifiers. Available with Theta Sketches.
 
