@@ -24,3 +24,17 @@ layout: doc_page
 * [Download](https://datasketches.apache.org/docs/Community/Downloads.html)
 
 * Build and Install, See [Pig README](https://github.com/apache/incubator-datasketches-pig)
+
+* [CPC Example](https://datasketches.apache.org/docs/CPC/CpcPigExample.html)
+
+* [Frequent Items Example](https://datasketches.apache.org/docs/Frequency/FrequentItemsPigUDFs.html)
+
+* [HLL Example](https://datasketches.apache.org/docs/HLL/HllPigUDFs.html)
+
+* [Quantiles Example](https://datasketches.apache.org/docs/Quantiles/QuantilesPigUDFs.html)
+
+* [Reservoir Example](https://datasketches.apache.org/docs/Sampling/ReservoirSamplingPigUDFs.html)
+
+* [Theta Example](https://datasketches.apache.org/docs/Theta/ThetaPigUDFs.html)
+
+* [VarOpt Example](https://datasketches.apache.org/docs/Sampling/VarOptPigUDFs.html)

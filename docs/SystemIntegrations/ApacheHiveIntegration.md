@@ -24,3 +24,16 @@ layout: doc_page
 * [Download](https://datasketches.apache.org/docs/Community/Downloads.html)
 
 * Build and Install, See [Hive README](https://github.com/apache/incubator-datasketches-hive)
+
+* [CPC Example](https://datasketches.apache.org/docs/CPC/CpcHiveExample.html)
+
+* [Frequent Items Example](https://datasketches.apache.org/docs/Frequency/FrequentItemsHiveUDFs.html)
+
+* [HLL Example](https://datasketches.apache.org/docs/HLL/HllHiveUDFs.html)
+
+* [Quantiles Example](https://datasketches.apache.org/docs/Quantiles/QuantilesHiveUDFs.html)
+
+* [Theta Example](https://datasketches.apache.org/docs/Theta/ThetaHiveUDFs.html)
+
+
+
