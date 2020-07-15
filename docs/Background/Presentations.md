@@ -55,6 +55,14 @@ layout: doc_page
 | Conference| [DataWorksSummit](https://www.youtube.com/channel/UC5o4P1O-WVE15EZWqayc5dw)   |
 | Link      | [YouTube](https://www.youtube.com/watch?v=MLUhzuQ0DHY)                        |
 
+| Title     | DataSketch Based Aggregations and Windowing in a Streaming Query System       |
+| --------- | ----------------------------------------------------------------------------  |
+| Synopsis  | How Bullet and DataSketches achieve real-time forward analysis.               |
+| Presenters| [Michael Natkovich](https://www.linkedin.com/in/michaelnatkovich/) & [Akshai Sarma](https://www.linkedin.com/in/akshay-sarma-9029b011/) |
+| Date      | June 23, 2018                                                                 |
+| Conference| [DataWorksSummit](https://www.youtube.com/channel/UC5o4P1O-WVE15EZWqayc5dw)   |
+| Link      | [YouTube](https://www.youtube.com/watch?v=ubxytCNnF_c&t=3s)                   |
+
 | Title     | Mergeable Summaries and the Data Sketches Library                             |
 | --------- | ----------------------------------------------------------------------------  |
 | Synopsis  | Suitability of the Data Sketches library to big data processing.              |
@@ -70,5 +78,13 @@ layout: doc_page
 | Date      | February 16, 2017                                                             |
 | Conference| [HUG Meetup](https://www.youtube.com/channel/UC4MJvi5SyXYnoorWVBTFJKQ)        |
 | Link      | [YouTube](https://www.youtube.com/watch?v=IrRjzzut40g&feature=youtu.be)       |
+
+| Title     | Estimate Set Cardinality using Druid and Datasketches                         |
+| --------- | ----------------------------------------------------------------------------- |
+| Synopsis  | How Druid & DataSketches significantly outperforms ElasticSearch.             |
+| Presenters| [Yakir Buskila](https://www.linkedin.com/in/yakirbuskilla/)                   |
+| Date      | December 6, 2016                                                              |
+| Conference| DevCon 2016 Tel Aviv                                                          |
+| Link      | [YouTube](https://www.youtube.com/watch?v=mJ13HVnAGwg&t=6s)                   |
 
 
