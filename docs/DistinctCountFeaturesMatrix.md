@@ -55,7 +55,6 @@ Set Operations | Union | Y | Y | Y | Y |
  | Set Op Result Type | Sketch | Sketch | Sketch | Sketch |
  | Merge different LgK | Y | Y | Y | Y |
 Serialize Operations | To Byte Array | Y | Y | Y | Y |
- | To ProtoBuf |  |  |  |  |
 Deserialize Operations | Heapify() | Y | Y | Y | Y |
  | Wrap() | Y | Y | Y |  |
  | WritableWrap | Y | Y | Y |  |
@@ -63,11 +62,13 @@ Languages | Java | Y | Y | Y | Y |
  | C++ | Y |  | Y | Y |
  | Python<sup>2</sup> | Y |  | Y | Y |
  | Binary compatibility across Languages | Y | Y | Y | Y |
-Other Operations and Modes | Jaccard Index | Y |  |  |  |
- | Off-Heap | Y | Y | Y |
- | Associative Columns |  | Y |  |  |
- | Generic Extensions  |  | Y |  |  |
- 
+Other Operations and Modes | Jaccard Index | Y |  |  |   |
+ | Off-Heap Operation       | Y | Y | Y | Y |
+ | Associative Columns      |   | Y |   |   |
+ | Generic Extensions       |   | Y |   |   |
+ | User Specified Hash Seed | Y |   |   | Y |
+ | Pre Sampling             | Y | Y |   |   |
+
 ____
  <sup>1</sup> Space Accuracy Merit (Lower is better) = b * C^2 = b * K * RSE^2<br>
  <sup>2</sup> See [Python Install Instructions](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)<br>
