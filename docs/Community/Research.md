@@ -108,9 +108,11 @@ This solution suffices in some applications, but for other applications the chun
 
 **[CCM10]** Amit Chakrabarti, Graham Cormode, and Andrew McGregor. A near-optimal algorithm for estimating the entropy of a stream. In *ACM Trans. Algorithms*, 6(3):51:1–51:21, 2010.
 
-**[CDKLT09]** Edith Cohen, Nick Duffield, Haim Kaplan, Carsten Lund, Mikkel Thorup. Stream sampling for variance-optimal estimation of subset sums. In **Proceedings of the 20th ACM-SIAM Symposium on Discrete Algorithms** SODA 2009.
+**[CDKLT09]** Edith Cohen, Nick Duffield, Haim Kaplan, Carsten Lund, Mikkel Thorup. Stream sampling for variance-optimal estimation of subset sums. In *Proceedings of the 20th ACM-SIAM Symposium on Discrete Algorithms* SODA 2009.
 
 **[CEM+15]** Michael B. Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu. Dimensionality reduction for k-means clustering and low rank approximation. In *ACM STOC Proceedings '15*, pages 163–172, 2015.
+
+**[CKLTV+20]** Graham Cormode, Zohar Karnin, Edo Liberty, Justin Thaler, Pavel Vesely. Relative Error Streaming Quantiles, In *arXiv.org*, 2020.
 
 **[DLRT16]** Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings '16 *, pages 6:1–6:17, 2016. [Paper](https://arxiv.org/pdf/1510.01455.pdf). [Talk Slides](https://github.com/apache/incubator-datasketches-website/blob/master/docs/pdf/icdt-talk.pdf).
 
@@ -124,7 +126,7 @@ This solution suffices in some applications, but for other applications the chun
 
 **[GT02]** Phillip B. Gibbons and Srikanta Tirthapura. Distributed streams algorithms for sliding windows. In *ACM SPAA Proceedings '02*, pages 63–72, New York, NY, USA, 2002.
 
-**[ILLKB19]** Nikita Ivkin, Edo Liberty, Kevin Lang, Zohar Karnin, Vladimir Braverman. Streaming Quantiles Algorithms with Small Space and Update Time. In *arXiv*, 2019 
+**[ILLKB19]** Nikita Ivkin, Edo Liberty, Kevin Lang, Zohar Karnin, Vladimir Braverman. Streaming Quantiles Algorithms with Small Space and Update Time. In *arXiv.org*, 2019 
 
 **[K98]** Donald E. Knuth. The Art of Computer Programming, 3rd Ed. 1998.
 
@@ -140,7 +142,7 @@ This solution suffices in some applications, but for other applications the chun
 
 **[MST12]** Michael Mitzenmacher, Thomas Steinke, and Justin Thaler. Hierarchical heavy hitters with the space saving algorithm. In *SIAM ALENEX Proceedings '12*, pages 160–174, 2012.
 
-**[RLS+15]** Lee Rhodes, Kevin Lang, Alexander Saydakov, Justin Thaler, Edo Liberty, and Jon Malkin. **Apache DataSketches**: A Java software library for streaming data algorithms. Apache License, Version 2.0, 2015. <https://datasketches.apache.org>.
+**[RLS+15]** Lee Rhodes, Kevin Lang, Alexander Saydakov, Justin Thaler, Edo Liberty, and Jon Malkin. [Apache DataSketches](https://datasketches.apache.org): A Java software library for streaming data algorithms. Apache License, Version 2.0, 2015. <https://datasketches.apache.org>.
 
 **[Tha07]** Justin Thaler. REU project website: A near-optimal algorithm for computing the entropy of a stream, 2007. <https://people.cs.georgetown.edu/jthaler>.
 
