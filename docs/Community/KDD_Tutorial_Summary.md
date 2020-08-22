@@ -40,8 +40,8 @@ In addition to the prerecorded presentations, the slides and Jupyter notebooks a
 
 * Slides: [Theory (part 1)]({{site.docs_img_dir}}/Community/KDD_sketching_tutorial_pt1.pdf)
 * Slides: [Practice (part 2)]({{site.docs_img_dir}}/Community/KDD_sketching_tutorial_pt2.pdf)
-* Notebook: [KLL Sketch]({{site.docs_img_dir}}/Community/KLL_Sketch_tutorial.ipynb)
-* Theta SketchL: [Theta Sketch]({{site.docs_img_dir}}/Community/Theta_Sketch_tutorial.ipynb)
+* Notebook: [KLL Sketch]({{site.docs_img_dir}}/Community/KLL_Sketch_Tutorial.ipynb)
+* Theta SketchL: [Theta Sketch]({{site.docs_img_dir}}/Community/Theta_Sketch_Tutorial.ipynb)
 
 ## Outline
 
