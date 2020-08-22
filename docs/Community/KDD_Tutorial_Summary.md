@@ -20,7 +20,7 @@ layout: blank_page
     under the License.
 -->
 
-# Data Sketching for Real Time Analytics:<br>Theory and Practice
+# Data Sketching for Real Time Analytics: Theory and Practice
 
 ## Abstract
 
@@ -33,6 +33,15 @@ This tutorial covers a number of useful data sketching and sampling methods and 
 This tutorial targets researchers, data systems and infrastructure engineers, and data scientists interested in greatly speeding up or reducing the cost of processing big data sets in practice. It is also useful to theory oriented CS researchers who are interested in statistical techniques that are typically outside CS curricula.
 
 The audience is expected to have a familiarity of probability and statistics that is typical for an undergraduate mathematical statistics or introductory graduate machine learning course.
+
+## Materials
+
+In addition to the prerecorded presentations, the slides and Jupyter notebooks are available. Note that the KLL notebook uses an update method that is only available in release candidate v2.1.0 but as of the tutorial date is not quite available in an official release (the latest is 2.0.0).
+
+* Slides: [Theory (part 1)]({{site.docs_img_dir}}/Community/KDD_sketching_tutorial_pt1.pdf)
+* Slides: [Practice (part 2)]({{site.docs_img_dir}}/Community/KDD_sketching_tutorial_pt2.pdf)
+* Notebook: [KLL Sketch]({{site.docs_img_dir}}/Community/KLL_Sketch_tutorial.ipynb)
+* Theta SketchL: [Theta Sketch]({{site.docs_img_dir}}/Community/Theta_Sketch_tutorial.ipynb)
 
 ## Outline
 
