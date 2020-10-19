@@ -504,7 +504,12 @@
     under the License.
 -->
 <h1 id="reqsketch-accuracy-with-random-shuffled-streams">ReqSketch Accuracy with Random Shuffled Streams</h1>
-<p>This set of tests characterize the accuracy of the ReqSketch using random shuffled streams.</p>
+<p>This set of tests characterize the accuracy (or more precisely the rank error) of the ReqSketch using random shuffled streams.  The goal of this suite of tests is to understand how the rank error of the sketch behaves across all ranks.  All of these tests are run with the same stream length. The two major parameters that are varied are the sketch’s <em>K</em>, which affects size and accuracy of the sketch, and the <em>HRA / LRA</em> parameter, which selects the region of highest accuracy is the high ranks close to 1.0 <em>High Ranks Accuracy (HRA)</em>, or the low ranks close to zero <em>Low Ranks Accuracy (LRA)</em>.</p>
+
+<p>These tests also confirm that the a priori prediction of the error bounds are reasonable and relatively conservative.  The computation of these bounds are based on empirical measurements derived from tests such as these and are subject to some tuning as we understand the sketch’s error behavior over a wider selection of streams.</p>
+
+<p>For those that are interested in the actual code that run these tests can examine the following links.</p>
+
 <ul>
   <li><a href="https://github.com/apache/incubator-datasketches-characterization/blob/master/src/test/java/org/apache/datasketches/characterization/quantiles/ReqSketchAccuracyProfile.java">Code</a>: The code used to generate these characterization studies.</li>
   <li><a href="https://github.com/apache/incubator-datasketches-characterization/blob/master/src/main/resources/quantiles/ReqSketchAccuracyJob.conf">Config</a>: The human readable and editable configuration file that instructs the above code with the specific properties used to run the test. These configuration properties are different for each of the following plots and summarized below with each plot.</li>
@@ -539,17 +544,20 @@
 </ul>
 
 <h2 id="specific-configurations">Specific Configurations</h2>
+<h3 id="common-configuration-for-the-following-plots">Common Configuration for the following plots</h3>
+<ul>
+  <li>SL=2^20: StreamLength</li>
+  <li>Eq Spaced: Equally spaced Plot Points (PP)</li>
+  <li>PP=100: Number of plot points on the x-axis</li>
+  <li>LgT=12: Number of trials = 2^12</li>
+  <li>Shuffled: Random shuffle of the input stream for each trial</li>
+</ul>
 
 <h3 id="plot-1">Plot 1</h3>
 <ul>
   <li>K=12: the sketch sizing &amp; accuracy parameter</li>
-  <li>SL=2^20: StreamLength</li>
   <li>HRA: High Rank Accuracy</li>
-  <li>Eq Spaced: Equally spaced Plot Points (PP)</li>
-  <li>PP=100: Number of plot points on the x-axis</li>
-  <li>LgT=12: Number of trials = 2^12</li>
   <li>Crit=LT: Comparison criterion: LT = Less-Than</li>
-  <li>Shuffled: Random shuffle of the input stream for each trial</li>
 </ul>
 
 <p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK12SL20T12_LT_Sh.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
@@ -557,13 +565,8 @@
 <h3 id="plot-2">Plot 2</h3>
 <ul>
   <li>K=12: the sketch sizing &amp; accuracy parameter</li>
-  <li>SL=2^20: StreamLength</li>
   <li>LRA: Low Rank Accuracy</li>
-  <li>Eq Spaced: Equally spaced Plot Points (PP)</li>
-  <li>PP=100: Number of plot points on the x-axis</li>
-  <li>LgT=12: Number of trials = 2^12</li>
   <li>Crit=LE: Comparison criterion: LE = Less-Than or Equal</li>
-  <li>Shuffled: Random shuffle of the input stream for each trial</li>
 </ul>
 
 <p><img class="doc-img-full" src="/docs/img/req/ReqErrEqLraK12SL20T12_LE_Sh.png" alt="/req/ReqErrEqLraK50SL20T12_LE_Sh.png" /></p>
@@ -571,13 +574,8 @@
 <h3 id="plot-3">Plot 3</h3>
 <ul>
   <li>K=50: the sketch sizing &amp; accuracy parameter</li>
-  <li>SL=2^20: StreamLength</li>
   <li>HRA: High Rank Accuracy</li>
-  <li>Eq Spaced: Equally spaced Plot Points (PP)</li>
-  <li>PP=100: Number of plot points on the x-axis</li>
-  <li>LgT=12: Number of trials = 2^12</li>
   <li>Crit=LT: Comparison criterion: LT = Less-Than</li>
-  <li>Shuffled: Random shuffle of the input stream for each trial</li>
 </ul>
 
 <p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T12_LT_Sh.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
@@ -585,13 +583,8 @@
 <h3 id="plot-4">Plot 4</h3>
 <ul>
   <li>K=50: the sketch sizing &amp; accuracy parameter</li>
-  <li>SL=2^20: StreamLength</li>
   <li>LRA: Low Rank Accuracy</li>
-  <li>Eq Spaced: Equally spaced Plot Points (PP)</li>
-  <li>PP=100: Number of plot points on the x-axis</li>
-  <li>LgT=12: Number of trials = 2^12</li>
   <li>Crit=LE: Comparison criterion: LE = Less-Than or Equal</li>
-  <li>Shuffled: Random shuffle of the input stream for each trial</li>
 </ul>
 
 <p><img class="doc-img-full" src="/docs/img/req/ReqErrEqLraK50SL20T12_LE_Sh.png" alt="/req/ReqErrEqLraK50SL20T12_LE_Sh.png" /></p>

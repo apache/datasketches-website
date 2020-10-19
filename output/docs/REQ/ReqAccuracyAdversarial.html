@@ -505,23 +505,96 @@
 -->
 <h1 id="reqsketch-accuracy-with-adversarial-streams">ReqSketch Accuracy with Adversarial Streams</h1>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T12_LT_Sh.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
+<p>This set of tests characterize the accuracy (or more precisely the rank error) of the ReqSketch using specifically selected adversarial streams.  The goal of this suite of tests is to understand how the rank error of the sketch behaves across all ranks with these specific stream patterns.  All of these tests are run with the same configuration except for the choice of the adversarial stream pattern.</p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T12_LT_NoSh.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
+<p>The design of these tests is quite different from the tests for the <em>Random Shuffled Streams</em>.  Here, each test has one pattern and running multiple trials on the same pattern will not produce a nice distribution of error that we can easily analyze. We would like to capture the ranks where the pattern creates the largest error. These aberrant ranks could occur anywhere in the stream.  Instead of choosing 100 plot points where the error is exclusively measured, we want to measure the error at every value of the stream. However, a stream length of 2^20 presents a practical plotting problem of plotting and visualizing 2^20 error values.</p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Sorted.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
+<p>In this case we collect the statistics of all the errors in 100 contiguous intervals of the stream. For a stream length of 2^20, each interval consists of about ten thousand values.  The errors from these 10K values are fed into a standard quantile sketch as before, and we extract 3 statical quantile points, -3SD, median and +3SD, and plot those 3 values at each of the 100 plot points.</p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Reversed.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
+<p>As you can see, some of these patterns challenge our current a priori calculation of the error bounds, which means we may need to adjust them somewhat. If we do, these plots will be regenerated.</p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Random.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
+<p>For those that are interested in the actual code that run these tests can examine the following links.</p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Zoomin.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
+<ul>
+  <li><a href="https://github.com/apache/incubator-datasketches-characterization/blob/master/src/test/java/org/apache/datasketches/characterization/quantiles/ReqSketchAccuracyProfile2.java">Code</a>: The code used to generate these characterization studies.</li>
+  <li><a href="https://github.com/apache/incubator-datasketches-characterization/blob/master/src/main/resources/quantiles/ReqSketchAccuracy2Job.conf">Config</a>: The human readable and editable configuration file that instructs the above code with the specific properties used to run the test. These configuration properties are different for each of the following plots and summarized below with each plot.</li>
+</ul>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Zoomout.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
+<h2 id="test-design">Test Design</h2>
+<ul>
+  <li>Stream Length (SL): 2^20</li>
+  <li>Stream Values: Natural numbers, ℕ<sub>1</sub>, from 1 to SL, expressed as 32-bit floats.</li>
+  <li>Y-axis: The absolute error of the sketch <em>getRank(value)</em> method.</li>
+  <li>X-axis: The normalized rank [0.0, 1.0]</li>
+  <li>Plot Points (PP): 100.  Equally spaced points along the X-axis starting at <em>1.0/SL</em> and ending at 1.0.</li>
+  <li>Trial:
+    <ul>
+      <li>The stream is generated according to the chosen adversarial pattern.</li>
+      <li>At each Plot Point, we compute the rank errors of all ~10K points from the preceding PP to the current PP.</li>
+      <li>These 10K error values are fed into an error quantile sketch associated with the current PP.</li>
+      <li>3 quantile values (-3sd, Median, +3sd) are extracted from each error sketch. These error quantiles correspond to the standard normal distribuion at the median, and +/- 3SD, where SD stands for Standard Deviation from the mean.</li>
+    </ul>
+  </li>
+  <li>Plotting:
+    <ul>
+      <li>Each of the error quantiles are connected by lines to form contours of the error distribution where the area between the +/- 3SD contours is the 99.7% confidence interval.</li>
+      <li>In addition to the error contours. 6 dashed contours (with colors corresponding to the error contours) represent the a priori estimates of the error at each of the +/- standard deviations computed from the sketch’s <em>getRankLowerBound(double, int)</em> and <em>getRankUpperBound(double, int)</em> methods.</li>
+    </ul>
+  </li>
+</ul>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Sqrt.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
+<h2 id="specific-configurations">Specific Configurations</h2>
+<h3 id="common-configuration-for-the-following-plots">Common Configuration for the following plots</h3>
+<ul>
+  <li>K=50: the sketch sizing &amp; accuracy parameter</li>
+  <li>HRA: High Rank Accuracy</li>
+  <li>Crit=LT: Comparison criterion: LT = Less-Than</li>
+  <li>SL=2^20: StreamLength</li>
+  <li>Eq Spaced: Equally spaced Plot Points (PP)</li>
+  <li>PP=100: Number of plot points on the x-axis</li>
+</ul>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_FlipFlop.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
+<h3 id="plot-1-adversarial-pattern-sorted">Plot 1 Adversarial Pattern: Sorted</h3>
+
+<p><img class="doc-img-qtr" src="/docs/img/req/SortedPattern.png" alt="/req/SortedPattern.png" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Sorted.png" alt="/req/ReqErrEqHraK50SL20T0_LT_Sorted.png" /></p>
+
+<h3 id="plot-2-adversarial-pattern-reversed">Plot 2 Adversarial Pattern: Reversed</h3>
+
+<p><img class="doc-img-qtr" src="/docs/img/req/ReversedPattern.png" alt="/req/ReversedPattern.png" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Reversed.png" alt="/req/ReqErrEqHraK50SL20T0_LT_Reversed.png" /></p>
+
+<h3 id="plot-3-adversarial-pattern-random">Plot 3 Adversarial Pattern: Random</h3>
+
+<p><img class="doc-img-qtr" src="/docs/img/req/RandomPattern.png" alt="/req/RandomPattern.png" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Random.png" alt="/req/ReqErrEqHraK50SL20T0_LT_Random.png" /></p>
+
+<h3 id="plot-4-adversarial-pattern-zoomin">Plot 4 Adversarial Pattern: Zoomin</h3>
+
+<p><img class="doc-img-qtr" src="/docs/img/req/ZoominPattern.png" alt="/req/ZoominPattern.png" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Zoomin.png" alt="/req/ReqErrEqHraK50SL20T0_LT_Zoomin.png" /></p>
+
+<h3 id="plot-5-adversarial-pattern-zoomout">Plot 5 Adversarial Pattern: Zoomout</h3>
+
+<p><img class="doc-img-qtr" src="/docs/img/req/ZoomoutPattern.png" alt="/req/ZoomoutPattern.png" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Zoomout.png" alt="/req/ReqErrEqHraK50SL20T0_LT_Zoomout.png" /></p>
+
+<h3 id="plot-6-adversarial-pattern-sqrt">Plot 6 Adversarial Pattern: Sqrt</h3>
+
+<p><img class="doc-img-qtr" src="/docs/img/req/SqrtPattern.png" alt="/req/SqrtPattern.png" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Sqrt.png" alt="/req/ReqErrEqHraK50SL20T0_LT_Sqrt.png" /></p>
+
+<h3 id="plot-6-adversarial-pattern-flipflop">Plot 6 Adversarial Pattern: FlipFlop</h3>
+
+<p><img class="doc-img-qtr" src="/docs/img/req/FlipFlopPattern.png" alt="/req/FlipFlopPattern.png" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_FlipFlop.png" alt="/req/ReqErrEqHraK50SL20T0_LT_FlipFlop.png" /></p>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
