@@ -20,7 +20,12 @@ layout: doc_page
     under the License.
 -->
 # ReqSketch Accuracy with Random Shuffled Streams
-This set of tests characterize the accuracy of the ReqSketch using random shuffled streams.  
+This set of tests characterize the accuracy (or more precisely the rank error) of the ReqSketch using random shuffled streams.  The goal of this suite of tests is to understand how the rank error of the sketch behaves across all ranks.  All of these tests are run with the same stream length. The two major parameters that are varied are the sketch's *K*, which affects size and accuracy of the sketch, and the *HRA / LRA* parameter, which selects the region of highest accuracy is the high ranks close to 1.0 *High Ranks Accuracy (HRA)*, or the low ranks close to zero *Low Ranks Accuracy (LRA)*. 
+
+These tests also confirm that the a priori prediction of the error bounds are reasonable and relatively conservative.  The computation of these bounds are based on empirical measurements derived from tests such as these and are subject to some tuning as we understand the sketch's error behavior over a wider selection of streams.
+
+For those that are interested in the actual code that run these tests can examine the following links.
+ 
 * [Code](https://github.com/apache/incubator-datasketches-characterization/blob/master/src/test/java/org/apache/datasketches/characterization/quantiles/ReqSketchAccuracyProfile.java): The code used to generate these characterization studies.
 * [Config](https://github.com/apache/incubator-datasketches-characterization/blob/master/src/main/resources/quantiles/ReqSketchAccuracyJob.conf): The human readable and editable configuration file that instructs the above code with the specific properties used to run the test. These configuration properties are different for each of the following plots and summarized below with each plot.
 
@@ -44,52 +49,38 @@ This set of tests characterize the accuracy of the ReqSketch using random shuffl
 
 
 ## Specific Configurations
-
-### Plot 1
-* K=12: the sketch sizing & accuracy parameter
+### Common Configuration for the following plots
 * SL=2^20: StreamLength
-* HRA: High Rank Accuracy
 * Eq Spaced: Equally spaced Plot Points (PP)
 * PP=100: Number of plot points on the x-axis
 * LgT=12: Number of trials = 2^12
-* Crit=LT: Comparison criterion: LT = Less-Than
 * Shuffled: Random shuffle of the input stream for each trial
+
+### Plot 1
+* K=12: the sketch sizing & accuracy parameter
+* HRA: High Rank Accuracy
+* Crit=LT: Comparison criterion: LT = Less-Than
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/req/ReqErrEqHraK12SL20T12_LT_Sh.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" />
 
 ### Plot 2
 * K=12: the sketch sizing & accuracy parameter
-* SL=2^20: StreamLength
 * LRA: Low Rank Accuracy
-* Eq Spaced: Equally spaced Plot Points (PP)
-* PP=100: Number of plot points on the x-axis
-* LgT=12: Number of trials = 2^12
 * Crit=LE: Comparison criterion: LE = Less-Than or Equal
-* Shuffled: Random shuffle of the input stream for each trial
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/req/ReqErrEqLraK12SL20T12_LE_Sh.png" alt="/req/ReqErrEqLraK50SL20T12_LE_Sh.png" />
 
 ### Plot 3
 * K=50: the sketch sizing & accuracy parameter
-* SL=2^20: StreamLength
 * HRA: High Rank Accuracy
-* Eq Spaced: Equally spaced Plot Points (PP)
-* PP=100: Number of plot points on the x-axis
-* LgT=12: Number of trials = 2^12
 * Crit=LT: Comparison criterion: LT = Less-Than
-* Shuffled: Random shuffle of the input stream for each trial
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/req/ReqErrEqHraK50SL20T12_LT_Sh.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" />
 
 ### Plot 4
 * K=50: the sketch sizing & accuracy parameter
-* SL=2^20: StreamLength
 * LRA: Low Rank Accuracy
-* Eq Spaced: Equally spaced Plot Points (PP)
-* PP=100: Number of plot points on the x-axis
-* LgT=12: Number of trials = 2^12
 * Crit=LE: Comparison criterion: LE = Less-Than or Equal
-* Shuffled: Random shuffle of the input stream for each trial
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/req/ReqErrEqLraK50SL20T12_LE_Sh.png" alt="/req/ReqErrEqLraK50SL20T12_LE_Sh.png" />
 
