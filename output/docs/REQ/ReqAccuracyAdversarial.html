@@ -516,35 +516,40 @@
 <p>For those that are interested in the actual code that run these tests can examine the following links.</p>
 
 <ul>
-  <li><a href="https://github.com/apache/incubator-datasketches-characterization/blob/master/src/test/java/org/apache/datasketches/characterization/quantiles/ReqSketchAccuracyProfile2.java">Code</a>: The code used to generate these characterization studies.</li>
-  <li><a href="https://github.com/apache/incubator-datasketches-characterization/blob/master/src/main/resources/quantiles/ReqSketchAccuracy2Job.conf">Config</a>: The human readable and editable configuration file that instructs the above code with the specific properties used to run the test. These configuration properties are different for each of the following plots and summarized below with each plot.</li>
+  <li><a href="https://github.com/apache/incubator-datasketches-characterization/blob/master/src/test/java/org/apache/datasketches/characterization/quantiles/ReqSketchAccuracyProfile.java">Code</a>: The code used to generate these characterization studies.</li>
+  <li><a href="https://github.com/apache/incubator-datasketches-characterization/blob/master/src/main/resources/quantiles/ReqSketchAccuracyJob.conf">Config</a>: The human readable and editable configuration file that instructs the above code with the specific properties used to run the test. These configuration properties are different for each of the following plots and summarized below with each plot.</li>
 </ul>
 
 <h2 id="test-design">Test Design</h2>
 <ul>
-  <li>Stream Length (SL): 2^20</li>
+  <li>Stream Length (SL): 2^20 = 1,048,576 floats</li>
   <li>Stream Values: Natural numbers, ℕ<sub>1</sub>, from 1 to SL, expressed as 32-bit floats.</li>
   <li>Y-axis: The absolute error of the sketch <em>getRank(value)</em> method.</li>
   <li>X-axis: The normalized rank [0.0, 1.0]</li>
-  <li>Plot Points (PP): 100.  Equally spaced points along the X-axis starting at <em>1.0/SL</em> and ending at 1.0.</li>
+  <li>Plot Points (PP): 100.  Equally spaced points along the X-axis starting at 0 and ending at 1.0.</li>
   <li>Trial:
     <ul>
-      <li>The stream is generated according to the chosen adversarial pattern.</li>
-      <li>At each Plot Point, we compute the rank errors of all ~10K points from the preceding PP to the current PP.</li>
-      <li>These 10K error values are fed into an error quantile sketch associated with the current PP.</li>
-      <li>3 quantile values (-3sd, Median, +3sd) are extracted from each error sketch. These error quantiles correspond to the standard normal distribuion at the median, and +/- 3SD, where SD stands for Standard Deviation from the mean.</li>
+      <li>The stream is generated according to the chosen adversarial pattern and presented to the sketch.</li>
+      <li>Execute <em>estRanks[] = getRanks(trueValues[])</em> from the sketch where the array of <em>trueValues[]</em> are the 100 equally spaced values along the x-axis that exactly correspond to the above Plot Points. The <em>estRanks[]</em> is the array of the sketch’s estimates of the ranks of the given <em>trueValues</em>.</li>
+      <li>Computes the absolute error: <em>estRanks[i] - trueRanks[i]</em> for each Plot Point and submits this error to a corresponding array of standard qantile sketches, with one quantile sketch assigned to each Plot Point.</li>
+    </ul>
+  </li>
+  <li>Trials:
+    <ul>
+      <li>2^12 trials are executed. This produces a distribution of error at each Plot Point held by the error quantile skeches.</li>
+      <li><strong>Note:</strong> With these tests, since we do not shuffle the stream with each trial, randomization is due to just the internal random process of the sketch itself.</li>
+      <li>Extract 7 quantiles from the error quantile sketches at each Plot Point.  These error quantiles correspond to the standard normal distribuion at the median, +/- 1SD, +/- 2SD and +/- 3SD, where SD stands for Standard Deviation from the mean.</li>
     </ul>
   </li>
   <li>Plotting:
     <ul>
-      <li>Each of the error quantiles are connected by lines to form contours of the error distribution where the area between the +/- 3SD contours is the 99.7% confidence interval.</li>
+      <li>Each of the error quantiles are connected by lines to form contours of the error distribution where the area between the +/- 1SD contours is the size of the 68% confidence interval; between the +/- 2SD coutours is the 95.4% confidence interval; and between the +/- 3SD contours is the 99.7% confidence interval.</li>
       <li>In addition to the error contours. 6 dashed contours (with colors corresponding to the error contours) represent the a priori estimates of the error at each of the +/- standard deviations computed from the sketch’s <em>getRankLowerBound(double, int)</em> and <em>getRankUpperBound(double, int)</em> methods.</li>
     </ul>
   </li>
 </ul>
 
-<h2 id="specific-configurations">Specific Configurations</h2>
-<h3 id="common-configuration-for-the-following-plots">Common Configuration for the following plots</h3>
+<h3 id="common-configuration-for-the-these-tests">Common Configuration for the these tests</h3>
 <ul>
   <li>K=50: the sketch sizing &amp; accuracy parameter</li>
   <li>HRA: High Rank Accuracy</li>
@@ -554,47 +559,203 @@
   <li>PP=100: Number of plot points on the x-axis</li>
 </ul>
 
-<h3 id="plot-1-adversarial-pattern-sorted">Plot 1 Adversarial Pattern: Sorted</h3>
+<h1 id="results">Results</h1>
+
+<h2 id="plot-1-adversarial-pattern-sorted">Plot 1 Adversarial Pattern: Sorted</h2>
 
 <p><img class="doc-img-qtr" src="/docs/img/req/SortedPattern.png" alt="/req/SortedPattern.png" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Sorted.png" alt="/req/ReqErrEqHraK50SL20T0_LT_Sorted.png" /></p>
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraLtK50SL20T12_Sorted.png" alt="/req/ReqErrEqHraLtK50SL20T12_Sorted.png" /></p>
 
-<h3 id="plot-2-adversarial-pattern-reversed">Plot 2 Adversarial Pattern: Reversed</h3>
+<ul>
+  <li>Run Time: 8:18</li>
+  <li>Unique Error Value Count Per Plot Point: Min=2, Max=2</li>
+</ul>
+
+<h2 id="plot-2-adversarial-pattern-reversed">Plot 2 Adversarial Pattern: Reversed</h2>
 
 <p><img class="doc-img-qtr" src="/docs/img/req/ReversedPattern.png" alt="/req/ReversedPattern.png" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Reversed.png" alt="/req/ReqErrEqHraK50SL20T0_LT_Reversed.png" /></p>
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraLtK50SL20T12_Reversed.png" alt="/req/ReqErrEqHraLtK50SL20T12_Reversed.png" /></p>
 
-<h3 id="plot-3-adversarial-pattern-random">Plot 3 Adversarial Pattern: Random</h3>
+<ul>
+  <li>Run Time: 4:12</li>
+  <li>Unique Error Value Count Per Plot Point: Min=8, Max=104</li>
+</ul>
+
+<h2 id="plot-3-adversarial-pattern-random">Plot 3 Adversarial Pattern: Random</h2>
 
 <p><img class="doc-img-qtr" src="/docs/img/req/RandomPattern.png" alt="/req/RandomPattern.png" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Random.png" alt="/req/ReqErrEqHraK50SL20T0_LT_Random.png" /></p>
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraLtK50SL20T12_Random.png" alt="/req/ReqErrEqHraLtK50SL20T12_Random.png" /></p>
 
-<h3 id="plot-4-adversarial-pattern-zoomin">Plot 4 Adversarial Pattern: Zoomin</h3>
+<ul>
+  <li>Run Time: 14:30</li>
+  <li>Unique Error Value Count Per Plot Point: Min=61, Max=797</li>
+</ul>
+
+<h2 id="plot-4-adversarial-pattern-zoomin">Plot 4 Adversarial Pattern: Zoomin</h2>
 
 <p><img class="doc-img-qtr" src="/docs/img/req/ZoominPattern.png" alt="/req/ZoominPattern.png" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Zoomin.png" alt="/req/ReqErrEqHraK50SL20T0_LT_Zoomin.png" /></p>
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraLtK50SL20T12_Zoomin.png" alt="/req/ReqErrEqHraLtK50SL20T12_Zoomin.png" /></p>
 
-<h3 id="plot-5-adversarial-pattern-zoomout">Plot 5 Adversarial Pattern: Zoomout</h3>
+<ul>
+  <li>Run Time: 12:50</li>
+  <li>Unique Error Value Count Per Plot Point: Min=2, Max=171</li>
+</ul>
+
+<h2 id="plot-5-adversarial-pattern-zoomout">Plot 5 Adversarial Pattern: Zoomout</h2>
 
 <p><img class="doc-img-qtr" src="/docs/img/req/ZoomoutPattern.png" alt="/req/ZoomoutPattern.png" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Zoomout.png" alt="/req/ReqErrEqHraK50SL20T0_LT_Zoomout.png" /></p>
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraLtK50SL20T12_Zoomout.png" alt="/req/ReqErrEqHraLtK50SL20T12_Zoomout.png" /></p>
 
-<h3 id="plot-6-adversarial-pattern-sqrt">Plot 6 Adversarial Pattern: Sqrt</h3>
+<ul>
+  <li>Run Time: 17:36</li>
+  <li>Unique Error Value Count Per Plot Point: Min=24, Max=501</li>
+</ul>
+
+<h2 id="plot-6-adversarial-pattern-sqrt">Plot 6 Adversarial Pattern: Sqrt</h2>
 
 <p><img class="doc-img-qtr" src="/docs/img/req/SqrtPattern.png" alt="/req/SqrtPattern.png" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_Sqrt.png" alt="/req/ReqErrEqHraK50SL20T0_LT_Sqrt.png" /></p>
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraLtK50SL20T12_Sqrt.png" alt="/req/ReqErrEqHraLtK50SL20T12_Sqrt.png" /></p>
 
-<h3 id="plot-6-adversarial-pattern-flipflop">Plot 6 Adversarial Pattern: FlipFlop</h3>
+<ul>
+  <li>Run Time: 7:57</li>
+  <li>Unique Error Value Count Per Plot Point: Min=2, Max=169</li>
+</ul>
+
+<h2 id="plot-6-adversarial-pattern-flipflop">Plot 6 Adversarial Pattern: FlipFlop</h2>
 
 <p><img class="doc-img-qtr" src="/docs/img/req/FlipFlopPattern.png" alt="/req/FlipFlopPattern.png" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T0_LT_FlipFlop.png" alt="/req/ReqErrEqHraK50SL20T0_LT_FlipFlop.png" /></p>
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraLtK50SL20T12_FlipFlop.png" alt="/req/ReqErrEqHraLtK50SL20T12_FlipFlop.png" /></p>
+
+<ul>
+  <li>Run Time: 9:12</li>
+  <li>Unique Error Value Count Per Plot Point: Min=2, Max=137</li>
+</ul>
+
+<h2 id="final-compactor-profile--size">Final Compactor Profile &amp; Size</h2>
+<p>Because all of these tests are run with the same exact sketch configuration and the same input stream length they all have the same final compactor profile, retained items and Serialization Bytes.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Lg Wt</th>
+      <th style="text-align: center">Items</th>
+      <th style="text-align: center">Nominal Size</th>
+      <th style="text-align: center">Section Size</th>
+      <th style="text-align: center">Num Sections</th>
+      <th style="text-align: center">Num Compactions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">786</td>
+      <td style="text-align: center">864</td>
+      <td style="text-align: center">18</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">16288</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">919</td>
+      <td style="text-align: center">864</td>
+      <td style="text-align: center">18</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">6755</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">846</td>
+      <td style="text-align: center">864</td>
+      <td style="text-align: center">18</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">2979</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">531</td>
+      <td style="text-align: center">576</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">1308</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">613</td>
+      <td style="text-align: center">576</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">578</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">529</td>
+      <td style="text-align: center">576</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">246</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">528</td>
+      <td style="text-align: center">576</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">106</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">781</td>
+      <td style="text-align: center">576</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">33</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">621</td>
+      <td style="text-align: center">432</td>
+      <td style="text-align: center">36</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">13</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">364</td>
+      <td style="text-align: center">432</td>
+      <td style="text-align: center">36</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">250</td>
+      <td style="text-align: center">300</td>
+      <td style="text-align: center">50</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center">135</td>
+      <td style="text-align: center">300</td>
+      <td style="text-align: center">50</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">0</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Retained Items: 6903</li>
+  <li>Serialization Bytes: 28144</li>
+</ul>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
