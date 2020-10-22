@@ -505,13 +505,9 @@
 -->
 <h1 id="reqsketch-accuracy-with-adversarial-streams">ReqSketch Accuracy with Adversarial Streams</h1>
 
-<p>This set of tests characterize the accuracy (or more precisely the rank error) of the ReqSketch using specifically selected adversarial streams.  The goal of this suite of tests is to understand how the rank error of the sketch behaves across all ranks with these specific stream patterns.  All of these tests are run with the same configuration except for the choice of the adversarial stream pattern.</p>
+<p>This set of tests characterize the accuracy (or more precisely the rank error) of the ReqSketch using specifically selected adversarial stream patterns.  The goal of this suite of tests is to understand how the rank error of the sketch behaves across all ranks with these specific stream patterns.  All of these tests are run with the same sketch configuration except for the choice of the adversarial stream pattern.</p>
 
-<p>The design of these tests is quite different from the tests for the <em>Random Shuffled Streams</em>.  Here, each test has one pattern and running multiple trials on the same pattern will not produce a nice distribution of error that we can easily analyze. We would like to capture the ranks where the pattern creates the largest error. These aberrant ranks could occur anywhere in the stream.  Instead of choosing 100 plot points where the error is exclusively measured, we want to measure the error at every value of the stream. However, a stream length of 2^20 presents a practical plotting problem of plotting and visualizing 2^20 error values.</p>
-
-<p>In this case we collect the statistics of all the errors in 100 contiguous intervals of the stream. For a stream length of 2^20, each interval consists of about ten thousand values.  The errors from these 10K values are fed into a standard quantile sketch as before, and we extract 3 statical quantile points, -3SD, median and +3SD, and plot those 3 values at each of the 100 plot points.</p>
-
-<p>As you can see, some of these patterns challenge our current a priori calculation of the error bounds, which means we may need to adjust them somewhat. If we do, these plots will be regenerated.</p>
+<p>The design of these tests is different from the tests for the <em>Random Shuffled Streams</em> in one key aspect, we do not shuffle the input stream for each trial.  Here, each test has one pattern and runs multiple trials with exactly the same pattern. The plots then reveal the results of the random process of the sketch itself.</p>
 
 <p>For those that are interested in the actual code that run these tests can examine the following links.</p>
 
