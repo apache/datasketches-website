@@ -19,3 +19,6 @@ jekyll:
 
 publish:
   whoami: asf-site
+
+github:
+  homepage: https://datasketches.apache.org
