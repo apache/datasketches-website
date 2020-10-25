@@ -75,6 +75,9 @@ Proposed changes to the code or documentation are usually done through GitHub Pu
 ### Becoming a committer
 We welcome anyone who is eager to continue to contribute to the DataSketches mission of providing open source, production quality sketch algorithms and become part of our team.  Please send us a message on [dev]({{page.dev}}) where we can give you some guidance.  After you have made some successful contributions, the current committers will discuss your candidacy for becoming a committer.  You can also review the [Apache policies on becoming a committer](https://community.apache.org/contributors/index.html).
 
+### Reporting Security Issues
+If you wish to report a security vulnerability, please contact [security@apache.org](security@apache.org). Apache DataSketches follows the typical [Apache vulnerability handling process](https://apache.org/security/committers.html#vulnerability-handling).
+
 ## Governance
 The [Project Management Committee](https://www.apache.org/foundation/how-it-works.html) (PMC) is responsible for the administrative aspects of the DataSketches project.
 
