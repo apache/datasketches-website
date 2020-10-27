@@ -118,8 +118,9 @@ reliably used to validate the downloaded archives.
 > Convenience binaries can be distributed alongside source code but they are not 
 Apache Releases -- they are just a convenience provided with no guarantee.
 
-#### Yes.
-  * So far, we do not have any convenience binaries to distribute.
+#### Under Discussion
+  * We distribute Java jar file bundles via [Nexus Repository Manager](https://repository.apache.org). These jar files include source jars as well as compiled binaries of the source code. 
+  * We may have needs in the near future for distributions through other venues, e.g., pgxn.org, pypi, and docker; some of these may be binaries, we are not sure yet.  We will consult with Infra and others to make sure we are doing it right.
 
 ### RE50
 > The release process is documented and repeatable to the extent that
@@ -161,7 +162,7 @@ incompatible changes and provide tools and documentation to help users transitio
 #### Yes.
   * We define two types of backward compatibility, API, and Binary:
      * **API:** To the greatest extent possible we try to maintain compatiblity with older APIs. However, some API changes are inevitable. In these cases we deprecate the older API alongside the newer recommended API for at least one major release cycle, after which the older API may be removed. This is standard policy for most industry code bases.
-     * **Binary:** Our current codebase is able to read and process older binary representations of our sketches since about 2014. This is extremely important for our customers and is very high priority as our code evolves.
+     * **Binary:** Our current codebase is able to read and process older binary representations of our sketches since about 2014. This is extremely important for our users and is very high priority as our code evolves.
 
 ### QU50
 > The project strives to respond to documented bug reports in a timely manner.
