@@ -34,7 +34,7 @@ If you like what you see give us a **Star** on one of these two sites!
 * **[C++](https://github.com/apache/incubator-datasketches-cpp)/[Python](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)** (Versioned, Apache Released) This is newer and provides most of the major algorithms available in Java.  Our C++ adaptors have a dependence on this component.  The Pybind adaptors for Python are included for all the C++ sketches.
 
 ## Adapters
-Apapters integrate the core components into the aggregation APIs of specific data processing systems. Some of these adapters are available as part of the library, other adapters are directly integrated into the target data processing application.
+Adapters integrate the core components into the aggregation APIs of specific data processing systems. Some of these adapters are available as part of the library, other adapters are directly integrated into the target data processing application.
 
 ### Java Adaptors
 * **[Apache Druid](https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html)** (Apach Released as part of Druid)
