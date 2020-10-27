@@ -134,6 +134,13 @@ Because these two tests are run with the same exact sketch configuration and the
 * Run Time: 27:20
 * Unique Error Value Count Per Plot Point: Min=167, Max=2475
 
+## Plot 4B: K=50, LRA, LE, Using Theoretical Bounds
+* K=50: the sketch sizing & accuracy parameter
+* LRA: Low Rank Accuracy
+* Crit=LE: Comparison criterion: LE = Less-Than or Equal
+
+<img class="doc-img-full" src="{{site.docs_img_dir}}/req/ReqErrEqLraLeK50SL20T12_PyRSE.png" alt="/req/ReqErrEqLraLeK50SL20T12_PyRSE.png" />
+
 ## Plot 3 and 4, Final Compactor Profile & Size
 Because these two tests are run with the same exact sketch configuration and the same input stream length they both have the same final compactor profile, retained items and Serialization Bytes.
 
