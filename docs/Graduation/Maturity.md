@@ -118,9 +118,10 @@ reliably used to validate the downloaded archives.
 > Convenience binaries can be distributed alongside source code but they are not 
 Apache Releases -- they are just a convenience provided with no guarantee.
 
-#### Under Discussion
-  * We distribute Java jar file bundles via [Nexus Repository Manager](https://repository.apache.org). These jar files include source jars as well as compiled binaries of the source code. 
-  * We may have needs in the near future for distributions through other venues, e.g., pgxn.org, pypi, and docker; some of these may be binaries, we are not sure yet.  We will consult with Infra and others to make sure we are doing it right.
+#### Yes.
+  * We distribute Java jar file bundles via [Nexus Repository Manager](https://repository.apache.org). These jar files include source jars as well as compiled binaries of the source code.
+  * However, we discovered that we need to have a copy of these jar files also on [dist.apache.org](https://dist.apache.org). This was an oversight and will be corrected with the next relevant release.
+  * We may have needs in the near future for distributions through other venues, e.g., pgxn.org, pypi, and docker; some of these may be binaries.  Any such external distributions will have copies on [dist.apache.org](https://dist.apache.org).
 
 ### RE50
 > The release process is documented and repeatable to the extent that
