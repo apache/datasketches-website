@@ -68,20 +68,21 @@ This is a compilation of a number of documents I could find on graduating an inc
 	   * Amazon AWS (in process)
 	* We recently added a new committer on August 17, 2020.
 * Take responsible collective action
-	* We do post major issues for disscussion and vote on our dev@ mailing list. 
+	* We post major issues for disscussion and vote on our dev@ mailing list. 
 * Demonstrate ability to disagree in public on technical matters without destroying personal relationships
 	* We are all professionals and individuals with different points of view. Our ability to deal with diversity is what makes us strong.
 * Create an open, positive and inclusive atmosphere on the mailing lists
 	* We have received very positive feedback from our users about our responsiveness, willingness to help, and openness to invite new users into our discussions. 
 
-## Complete Project Maturity Model - Open for Feedback
-* [Complete Project Maturity Model](https://github.com/apache/incubator-datasketches-website/blob/master/docs/Graduation/Maturity.md): DONE
+## Complete Project Maturity Model
+* [Complete Project Maturity Model](https://github.com/apache/incubator-datasketches-website/blob/master/docs/Graduation/Maturity.md): Open for feedback
 
 
 # The Following Items are TBD
 
 ## Prepare the Resolution
 ### Election of PMC Chair by the PPMC (on private@datasketches.apache.org)
+* [Duties of the PMC Chair](http://www.apache.org/dev/pmc.html#chair)
 * PMC Chairs are Vice Presidents given charge of the proper operation of their projects.
 * The PMC Chair serves at the direction of the Board of Directors as the chair 
     of the Apache Project, and has primary responsibility for management of 
