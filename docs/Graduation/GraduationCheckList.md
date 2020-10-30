@@ -109,11 +109,11 @@ This is a compilation of a number of documents I could find on graduating an inc
 From: (PMC Chair)
 To: board@apache.org
 CC: <<project>-private _at_ incubator dot apache dot org>
-Subject: Proposed Resolution: Establish Apache DataSkeches as TLP
+Subject: Proposed Resolution: Establish Apache DataSketches as TLP
 
 Dear Apache Board,
 
-Apache DataSkeches is ready for graduation out of the incubator. So, please
+Apache DataSketches is ready for graduation out of the incubator. So, please
 consider the draft resolution below at your next meeting.
 
 <thank you, best regards, personal note if you wish, etc etc>
@@ -129,8 +129,7 @@ Vote by incubator: <link to vote thread on general list>
 
 Resolution draft:
 
-<<resolution goes here, 72 characters wide,
-indent with 4 spaces>>
+<<resolution goes here, 72 characters wide, indent with 4 spaces>>
 
 --
 <PMC Chair e-mail sig, if you have one>
