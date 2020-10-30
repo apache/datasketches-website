@@ -31,6 +31,15 @@ layout: doc_page
 | Conference| [Spark+AI](https://www.youtube.com/channel/UC3q8O3Bh2Le8Rj1-Q-_UUbA)          |   
 | Link      | [YouTube](https://www.youtube.com/watch?time_continue=5&v=WPwCnswDbOU)        |
 
+| Title     | DataSketches, an introduction                                                 |
+| --------- | ----------------------------------------------------------------------------  |
+| Synopsis  | Quick review of Quantiles, Frequent Items and other sketches.                 |
+| Presenter | [Claude Warren](https://www.linkedin.com/in/claudewarren/) from Wipro Systems, Ireland  |
+| Date      | Feb 1 & 2, 2020                                                               |
+| Conference| [FOSDEM 2020](https://archive.fosdem.org/2020/)                               |   
+| Link      | [Video](https://archive.fosdem.org/2020/schedule/event/apache_datasketches/)  |
+| Link      | [Slides](https://archive.fosdem.org/2020/schedule/event/apache_datasketches/attachments/slides/3547/export/events/attachments/apache_datasketches/slides/3547/DataSketches_An_introduction.pdf) |
+
 | Title     | Counting Unique Users in Real Time: Here's a Challenge for You! (Part II)     |
 | --------- | ----------------------------------------------------------------------------  |
 | Synopsis  | ElasticSearch vs Druid & Theta Sketches.                                      |
