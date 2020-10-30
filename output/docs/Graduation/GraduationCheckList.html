@@ -503,291 +503,181 @@
     specific language governing permissions and limitations
     under the License.
 -->
+<h1 id="graduation-checklist">Graduation Checklist</h1>
+<p>This is a compilation of a number of documents I could find on graduating an incubator project to a Top Level Project.</p>
 
-<h2 id="presentations">Presentations</h2>
+<h2 id="references">References</h2>
+<ul>
+  <li><a href="https://incubator.apache.org/guides/graduation.html">Guide to Successful Graduation</a></li>
+  <li><a href="https://incubator.apache.org/guides/community.html">Guide to Successful Community Building</a></li>
+  <li><a href="https://whimsy.apache.org/board/minutes/DataSketches.html">DataSketches Board Reports</a></li>
+  <li><a href="http://www.apache.org/dev/pmc.html#chair">Duties of the PMC Chair</a></li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>A Production Quality Sketching Library for the Analysis of Big Data</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Synopsis</td>
-      <td>Quick review of Count Distinct, Quantiles, Frequent Items and other sketches.</td>
-    </tr>
-    <tr>
-      <td>Presenter</td>
-      <td><a href="https://www.linkedin.com/in/leerho/">Lee Rhodes</a> from <a href="https://www.verizonmedia.com/">Verizon Media (Yahoo)</a></td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>June 15, 2020</td>
-    </tr>
-    <tr>
-      <td>Conference</td>
-      <td><a href="https://www.youtube.com/channel/UC3q8O3Bh2Le8Rj1-Q-_UUbA">Spark+AI</a></td>
-    </tr>
-    <tr>
-      <td>Link</td>
-      <td><a href="https://www.youtube.com/watch?time_continue=5&amp;v=WPwCnswDbOU">YouTube</a></td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="initial-checks">Initial Checks</h2>
+<ul>
+  <li><a href="https://incubator.apache.org/projects/datasketches.html">Review the project Status</a> : DONE</li>
+  <li><a href="http://incubator.apache.org/clutch/datasketches.html">Review the Clutch Report</a>: DONE</li>
+  <li><a href="https://whimsy.apache.org/roster/ppmc/datasketches">Review the Roster</a>:  DONE</li>
+  <li><a href="https://whimsy.apache.org/pods/project/datasketches">Review Website checks</a>: DONE</li>
+  <li><a href="https://issues.apache.org/jira/browse/PODLINGNAMESEARCH-168">Successful Name Search</a> : DONE</li>
+  <li>Demonstrate ability to create Apache Releases : DONE
+    <ul>
+      <li>See <a href="https://incubator.apache.org/projects/datasketches.html">Project Status</a></li>
+    </ul>
+  </li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>DataSketches, an introduction</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Synopsis</td>
-      <td>Quick review of Quantiles, Frequent Items and other sketches.</td>
-    </tr>
-    <tr>
-      <td>Presenter</td>
-      <td><a href="https://www.linkedin.com/in/claudewarren/">Claude Warren</a> from Wipro Systems, Ireland</td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>Feb 1 &amp; 2, 2020</td>
-    </tr>
-    <tr>
-      <td>Conference</td>
-      <td><a href="https://archive.fosdem.org/2020/">FOSDEM 2020</a></td>
-    </tr>
-    <tr>
-      <td>Link</td>
-      <td><a href="https://archive.fosdem.org/2020/schedule/event/apache_datasketches/">Video</a></td>
-    </tr>
-    <tr>
-      <td>Link</td>
-      <td><a href="https://archive.fosdem.org/2020/schedule/event/apache_datasketches/attachments/slides/3547/export/events/attachments/apache_datasketches/slides/3547/DataSketches_An_introduction.pdf">Slides</a></td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="define-a-charter---done">Define a Charter - Done</h2>
+<ul>
+  <li>Apache DataSketches consists of software related to
+  an open source, high-performance library of stochastic
+  streaming algorithms commonly called “sketches” in the data sciences.
+  Sketches are small, stateful programs that process massive data as a
+  stream and can provide approximate answers, with mathematical
+  guarantees, to computationally difficult queries orders-of-magnitude
+  faster than traditional, exact methods.</li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Counting Unique Users in Real Time: Here’s a Challenge for You! (Part II)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Synopsis</td>
-      <td>ElasticSearch vs Druid &amp; Theta Sketches.</td>
-    </tr>
-    <tr>
-      <td>Presenters</td>
-      <td><a href="https://www.linkedin.com/in/yakirbuskilla/">Yakir Buskilla</a> &amp; <a href="https://www.linkedin.com/in/itaiy/">Itai Yaffe</a> from <a href="https://www.nielsen.com/">Nielsen</a></td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>December 19, 2019</td>
-    </tr>
-    <tr>
-      <td>Conference</td>
-      <td><a href="https://www.youtube.com/channel/UCFbY6n5Ge7PJ98AtnMcD2eA">Big Data LDN</a></td>
-    </tr>
-    <tr>
-      <td>Link</td>
-      <td><a href="https://www.youtube.com/watch?v=C9txaimgaHw">YouTube</a></td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="demonstrate-community-readiness---open-for-feedback">Demonstrate Community Readiness - Open for Feedback</h2>
+<ul>
+  <li>Recruit users, developers, committers and PMCers
+    <ul>
+      <li>We have participated in a number of conferences
+        <ul>
+          <li>USPTO-2020 Tech Conference</li>
+          <li>Spark &amp; AI 2020 Conference</li>
+          <li>ACM-KDD Conference</li>
+          <li>ApacheCon 2019 and 2020</li>
+          <li>FOSDEM 2020 Conference (Brussels)</li>
+          <li>See <a href="https://datasketches.apache.org/docs/Background/Presentations.html">Presentations</a>.</li>
+        </ul>
+      </li>
+      <li>DataSketches is integrated into a number of systems, for example:
+        <ul>
+          <li>Apache Druid</li>
+          <li>Apache Impala (in process)</li>
+          <li>Permutive.com</li>
+          <li>GCHQ/Gaffer</li>
+          <li>Splice Machine</li>
+          <li>PostgreSQL</li>
+          <li>Apache Hive</li>
+          <li>Apache Pig</li>
+          <li>Nielsen.com</li>
+          <li>Amazon AWS (in process)</li>
+        </ul>
+      </li>
+      <li>We recently added a new committer on August 17, 2020.</li>
+    </ul>
+  </li>
+  <li>Take responsible collective action
+    <ul>
+      <li>We do post major issues for disscussion and vote on our dev@ mailing list.</li>
+    </ul>
+  </li>
+  <li>Demonstrate ability to disagree in public on technical matters without destroying personal relationships
+    <ul>
+      <li>We are all professionals and individuals with different points of view. Our ability to deal with diversity is what makes us strong.</li>
+    </ul>
+  </li>
+  <li>Create an open, positive and inclusive atmosphere on the mailing lists
+    <ul>
+      <li>We have received very positive feedback from our users about our responsiveness, willingness to help, and openness to invite new users into our discussions.</li>
+    </ul>
+  </li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Theta Sketches for Fast Approximation on Large Data Sets</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Synopsis</td>
-      <td>Short video on how Theta Sketches work.</td>
-    </tr>
-    <tr>
-      <td>Presenters</td>
-      <td><a href="https://www.linkedin.com/in/yakirbuskilla/">Yakir Buskilla</a> &amp; <a href="https://www.linkedin.com/in/itaiy/">Itai Yaffe</a> from <a href="https://www.nielsen.com/">Nielsen</a></td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>December 18, 2019</td>
-    </tr>
-    <tr>
-      <td>Conference</td>
-      <td><a href="https://imply.io/videos/introduction-to-imply">Imply.io Webinar</a></td>
-    </tr>
-    <tr>
-      <td>Link</td>
-      <td><a href="https://www.youtube.com/watch?v=CFVkahVFtaQ">YouTube</a></td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="complete-project-maturity-model---open-for-feedback">Complete Project Maturity Model - Open for Feedback</h2>
+<ul>
+  <li><a href="https://github.com/apache/incubator-datasketches-website/blob/master/docs/Graduation/Maturity.md">Complete Project Maturity Model</a>: DONE</li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Counting Unique Users in Real-Time: Here’s a Challenge for You!</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Synopsis</td>
-      <td>Re-architecting our data infrastructure, relying on Druid and ThetaSketch.</td>
-    </tr>
-    <tr>
-      <td>Presenters</td>
-      <td><a href="https://www.linkedin.com/in/yakirbuskilla/">Yakir Buskilla</a> &amp; <a href="https://www.linkedin.com/in/itaiy/">Itai Yaffe</a> from <a href="https://www.nielsen.com/">Nielsen</a></td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>April 22, 2019</td>
-    </tr>
-    <tr>
-      <td>Conference</td>
-      <td><a href="https://www.youtube.com/channel/UC5o4P1O-WVE15EZWqayc5dw">DataWorksSummit</a></td>
-    </tr>
-    <tr>
-      <td>Link</td>
-      <td><a href="https://www.youtube.com/watch?v=MLUhzuQ0DHY">YouTube</a></td>
-    </tr>
-  </tbody>
-</table>
+<h1 id="the-following-items-are-tbd">The Following Items are TBD</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>DataSketch Based Aggregations and Windowing in a Streaming Query System</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Synopsis</td>
-      <td>How Bullet and DataSketches achieve real-time forward analysis.</td>
-    </tr>
-    <tr>
-      <td>Presenters</td>
-      <td><a href="https://www.linkedin.com/in/michaelnatkovich/">Michael Natkovich</a> &amp; <a href="https://www.linkedin.com/in/akshay-sarma-9029b011/">Akshai Sarma</a></td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>June 23, 2018</td>
-    </tr>
-    <tr>
-      <td>Conference</td>
-      <td><a href="https://www.youtube.com/channel/UC5o4P1O-WVE15EZWqayc5dw">DataWorksSummit</a></td>
-    </tr>
-    <tr>
-      <td>Link</td>
-      <td><a href="https://www.youtube.com/watch?v=ubxytCNnF_c&amp;t=3s">YouTube</a></td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="prepare-the-resolution">Prepare the Resolution</h2>
+<h3 id="election-of-pmc-chair-by-the-ppmc-on-privatedatasketchesapacheorg">Election of PMC Chair by the PPMC (on private@datasketches.apache.org)</h3>
+<ul>
+  <li>PMC Chairs are Vice Presidents given charge of the proper operation of their projects.</li>
+  <li>The PMC Chair serves at the direction of the Board of Directors as the chair 
+  of the Apache Project, and has primary responsibility for management of 
+  the project within the scope of responsibility of the Apache Project.</li>
+  <li>Once the PMC Chair has been elected, the Resolution can be created from <a href="https://whimsy.apache.org/roster/ppmc/datasketches">https://whimsy.apache.org/roster/ppmc/datasketches</a></li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Mergeable Summaries and the Data Sketches Library</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Synopsis</td>
-      <td>Suitability of the Data Sketches library to big data processing.</td>
-    </tr>
-    <tr>
-      <td>Presenters</td>
-      <td><a href="https://www.linkedin.com/in/edo-liberty-4380164/">Edo Liberty</a> and <a href="http://people.cs.georgetown.edu/jthaler/">Justin Thaler</a></td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>May 3, 2018</td>
-    </tr>
-    <tr>
-      <td>Conference</td>
-      <td><a href="https://www.youtube.com/channel/UCW1C2xOfXsIzPgjXyuhkw9g">Simons Institute</a></td>
-    </tr>
-    <tr>
-      <td>Link</td>
-      <td><a href="https://www.youtube.com/watch?v=jezpA1kkgUk&amp;feature=youtu.be">YouTube</a></td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="discuss-graduation-on-devdatasketchesapacheorg">DISCUSS Graduation on dev@datasketches.apache.org</h2>
+<ul>
+  <li>Ensure Mentors have no remaining issues</li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Data Sketches: A required toolkit for Big Data Analytics</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Synopsis</td>
-      <td>Overview of Datasketches project, together with case studies and examples.</td>
-    </tr>
-    <tr>
-      <td>Presenters</td>
-      <td><a href="https://www.linkedin.com/in/jon-malkin-15aa025/">Jon Malkin</a> and Alexander Saydakov</td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>February 16, 2017</td>
-    </tr>
-    <tr>
-      <td>Conference</td>
-      <td><a href="https://www.youtube.com/channel/UC4MJvi5SyXYnoorWVBTFJKQ">HUG Meetup</a></td>
-    </tr>
-    <tr>
-      <td>Link</td>
-      <td><a href="https://www.youtube.com/watch?v=IrRjzzut40g&amp;feature=youtu.be">YouTube</a></td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="vote-on-graduation-on-devdatasketchesapacheorg">VOTE on Graduation on dev@datasketches.apache.org</h2>
+<ul>
+  <li>Notify the IPMC general list that a community vote is in progress</li>
+  <li>Achieve positive community graduation recommendatation vote</li>
+</ul>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Estimate Set Cardinality using Druid and Datasketches</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Synopsis</td>
-      <td>How Druid &amp; DataSketches significantly outperforms ElasticSearch.</td>
-    </tr>
-    <tr>
-      <td>Presenters</td>
-      <td><a href="https://www.linkedin.com/in/yakirbuskilla/">Yakir Buskila</a></td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>December 6, 2016</td>
-    </tr>
-    <tr>
-      <td>Conference</td>
-      <td>DevCon 2016 Tel Aviv</td>
-    </tr>
-    <tr>
-      <td>Link</td>
-      <td><a href="https://www.youtube.com/watch?v=mJ13HVnAGwg&amp;t=6s">YouTube</a></td>
-    </tr>
-  </tbody>
-</table>
+<h2 id="discuss-graduation-on-generalincubatorapacheorg">DISCUSS Graduation on general@incubator.apache.org</h2>
+<ul>
+  <li>Ensure IPMC has no remaining issues</li>
+</ul>
+
+<h2 id="vote-graduation-on-generalincubatorapacheorg">VOTE Graduation on general@incubator.apache.org</h2>
+<ul>
+  <li>Achieve positive IPMC graduation recommendatation vote</li>
+</ul>
+
+<h2 id="write-proposal-letter-to-board">Write Proposal Letter to Board</h2>
+<ul>
+  <li><a href="https://incubator.apache.org/guides/graduation.html">https://incubator.apache.org/guides/graduation.html</a></li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>From: (PMC Chair)
+To: board@apache.org
+CC: &lt;&lt;project&gt;-private _at_ incubator dot apache dot org&gt;
+Subject: Proposed Resolution: Establish Apache DataSkeches as TLP
+
+Dear Apache Board,
+
+Apache DataSkeches is ready for graduation out of the incubator. So, please
+consider the draft resolution below at your next meeting.
+
+&lt;thank you, best regards, personal note if you wish, etc etc&gt;
+
+(PMC Chair)
+
+--
+References:
+
+Home: &lt;https://datasketches.apache.org&gt;
+Vote by project: &lt;link to vote thread on project list&gt;
+Vote by incubator: &lt;link to vote thread on general list&gt;
+
+Resolution draft:
+
+&lt;&lt;resolution goes here, 72 characters wide,
+indent with 4 spaces&gt;&gt;
+
+--
+&lt;PMC Chair e-mail sig, if you have one&gt;
+</code></pre></div></div>
+
+<h2 id="acceptance-of-resolution-by-the-board">Acceptance of Resolution by the Board</h2>
+
+<h2 id="press-release-for-new-tlps">Press Release for new TLPs</h2>
+<ul>
+  <li>Notify <a href="mailto:press@apache.org">ASF Marketing &amp; Publicity</a>.</li>
+</ul>
+
+<h2 id="tasks-after-graduaton">Tasks After Graduaton</h2>
+<ul>
+  <li><a href="https://incubator.apache.org/guides/transferring.html">https://incubator.apache.org/guides/transferring.html</a></li>
+</ul>
+
+<h2 id="pmc-guides">PMC Guides</h2>
+<ul>
+  <li><a href="http://www.apache.org/dev/pmc.html">http://www.apache.org/dev/pmc.html</a></li>
+  <li><a href="http://www.apache.org/dev/#pmc">http://www.apache.org/dev/#pmc</a></li>
+  <li><a href="http://www.apache.org/foundation/how-it-works.html#pmc">http://www.apache.org/foundation/how-it-works.html#pmc</a></li>
+</ul>
 
 
       </div> <!-- End content -->
