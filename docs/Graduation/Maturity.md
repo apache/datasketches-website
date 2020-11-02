@@ -137,8 +137,13 @@ Apache Releases -- they are just a convenience provided with no guarantee.
 
 #### Yes.
   * We distribute Java jar file bundles via [Nexus Repository Manager](https://repository.apache.org). These jar files include source jars as well as compiled binaries of the source code.
-  * However, we discovered that we need to have a copy of these jar files also on [dist.apache.org](https://dist.apache.org). This was an oversight and will be corrected with the next relevant release.
-  * We may have needs in the near future for distributions through other venues, e.g., pgxn.org, pypi, and docker; some of these may be binaries.  Any such external distributions will have copies on [dist.apache.org](https://dist.apache.org).
+  * However, we discovered that we need to have a copy of these jar files also on [dist.apache.org](https://dist.apache.org). This was an oversight. This has now been corrected on [dist.apache.org](https://dist.apache.org) for all current DataSketches releases where applicable as follows:
+    * datasketches-java 1.3.0-incubating
+    * datasketches-hive 1.1.0-incubating
+    * datasketches-pig 1.0.0-incubating
+    * datasketches-memory 1.2.0-incubating
+  * This will also be corrected for all new releases going forward.
+  * In the future, we may have needs for distributions through other venues, e.g., pgxn.org, pypi, and docker; some of these may be binaries.  Any such external distributions will have copies on [dist.apache.org](https://dist.apache.org).
 
 ### RE50
 > The release process is documented and repeatable to the extent that
