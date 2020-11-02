@@ -503,435 +503,264 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h1 id="apache-project-maturity-model-assessment-for-datasketches-draft">Apache Project Maturity Model Assessment for DataSketches (DRAFT)</h1>
+<h1 id="new-committer-process">New Committer Process</h1>
 
-<h2 id="overview">Overview</h2>
-<p>This is an assessment of the DataSketches podling’s maturity, meant to help inform the decision (of the mentors, community, Incubator PMC and ASF Board of Directors) to graduate it as a top-level Apache project.</p>
-
-<p>It is based on the ASF project maturity model at <a href="https://community.apache.org/apache-way/apache-project-maturity-model.html">https://community.apache.org/apache-way/apache-project-maturity-model.html</a>.</p>
-
-<h2 id="status-of-this-document">Status of this document</h2>
-
-<p>There is a parallel <em>[DISCUSS] DataSketches Maturity</em> on the <a href="mailto:dev@datasketches.apache.org">dev@datasketches.apache.org</a> mail list to enable discussion of any issues. If there is disagreement on an issue, it will be marked here as under discussion.</p>
-
-<h2 id="code">Code</h2>
-<h3 id="cd10">CD10</h3>
-
-<blockquote>
-  <p>The project produces Open Source software, for distribution to the public at no charge.</p>
-</blockquote>
-
-<h4 id="yes">Yes.</h4>
 <ul>
-  <li>The project source code is licensed under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, version 2.0</a>.</li>
+  <li>Reference: <a href="https://community.apache.org/newcommitter.html#new-committer-process">New Committer Process</a></li>
 </ul>
 
-<h3 id="cd20">CD20</h3>
-<blockquote>
-  <p>The project’s code is easily discoverable and publicly accessible.</p>
-</blockquote>
-
-<h4 id="yes-1">Yes.</h4>
+<h2 id="create-proposal-for-new-candidate">Create Proposal for New Candidate</h2>
 <ul>
-  <li>See <a href="https://datasketches.apache.org/docs/Community/Downloads.html">Downloads</a>.</li>
+  <li><strong><em>NOTE</em></strong> On <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</li>
 </ul>
 
-<h3 id="cd30">CD30</h3>
-<blockquote>
-  <p>The code can be built in a reproducible way using widely available standard tools.</p>
-</blockquote>
+<p>Here are some topics to consider when writing your proposal about the candidate. Any one of which may be sufficient to invite someone to join us as a new committer.</p>
 
-<h4 id="yes-2">Yes.</h4>
-<ul>
-  <li>See the README document on each of the projects repositories<sup>1</sup>. <a href="https://github.com/apache/incubator-datasketches-java/blob/master/README.md">For Example.</a>.</li>
-</ul>
-
-<h3 id="cd40">CD40</h3>
-<blockquote>
-  <p>The full history of the project’s code is available via a source code control system, in a way that allows any released version to be recreated.</p>
-</blockquote>
-
-<h4 id="yes-3">Yes.</h4>
-<ul>
-  <li>We use Git/GitHub for source code, documents, and the <a href="https://datasketches.apache.org">website</a>.</li>
-  <li>For all the Apache DataSketches repositories subject to being released<sup>1</sup>, releases are cut from the respective repository.</li>
-  <li>All releases are tagged and in separate, easy-to-locate branches.</li>
-</ul>
-
-<h3 id="cd50">CD50</h3>
-<blockquote>
-  <p>The provenance of each line of code is established via the source code control system, 
-in a reliable way based on strong authentication of the committer. 
-When third-party contributions are committed, commit messages provide reliable 
-information about the code provenance.</p>
-</blockquote>
-
-<h4 id="yes-4">Yes.</h4>
-<ul>
-  <li>The project uses Apache managed GitHub repositories, ensuring provenance of each line of code to a committer.</li>
-  <li>Third party contributions are accepted in accordance with the <a href="href=&quot;https://www.apache.org/legal/3party.html">Apache Third-Party Licensing Policy</a> only.</li>
-</ul>
-
-<h2 id="licenses-and-copyright">Licenses and Copyright</h2>
-
-<h3 id="lc10">LC10</h3>
-<blockquote>
-  <p>The code is released under the Apache License, version 2.0.</p>
-</blockquote>
-
-<h4 id="yes-5">Yes.</h4>
-<ul>
-  <li>See for example, <a href="https://github.com/apache/incubator-datasketches-java/blob/master/LICENSE">LICENSE</a>, which has been accepted in multiple release cycles.</li>
-  <li>All source code files have license headers.</li>
-  <li>All releases pass the Apache <em>Release Audit Tool</em> according to the <a href="https://www.apache.org/legal/src-headers.html">ASF Source Header and Copyright Notice Policy</a>.</li>
-</ul>
-
-<h3 id="lc20">LC20</h3>
-<blockquote>
-  <p>Libraries that are mandatory dependencies of the project’s code 
-do not create more restrictions than the Apache License does.</p>
-</blockquote>
-
-<h4 id="yes-6">Yes.</h4>
-<ul>
-  <li>All code dependencies have been reviewed to contain approved licenses only.</li>
-</ul>
-
-<h3 id="lc30">LC30</h3>
-<blockquote>
-  <p>The libraries mentioned in LC20 are available as Open Source software.</p>
-</blockquote>
-
-<h4 id="yes-7">Yes.</h4>
-<ul>
-  <li>The references to the open-source libraries mentioned in LC20 can be found in the LICENSE file on each of the repositories subject to release<sup>1</sup>.</li>
-</ul>
-
-<h3 id="lc40">LC40</h3>
-<blockquote>
-  <p>Committers are bound by an Individual Contributor Agreement 
-(the <a href="https://www.apache.org/licenses/icla.txt">Apache ICLA</a>) that 
-defines which code they are allowed to commit and how they need to identify code that is not their own.</p>
-</blockquote>
-
-<h4 id="yes-8">Yes.</h4>
-<ul>
-  <li>The project uses GitHub repositories managed by Apache where write access requires an Apache account and an ICLA on file.</li>
-</ul>
-
-<h3 id="lc50">LC50</h3>
-<blockquote>
-  <p>The copyright ownership of everything that the project produces is clearly defined and documented.</p>
-</blockquote>
+<h3 id="interpersonal-skills">Interpersonal Skills</h3>
 
 <ul>
-  <li>All files in the source repository have appropriate headers (See LC10).</li>
-  <li>Software Grant Agreements for the initial donations and Corporate CLAs have been filed.</li>
-</ul>
-
-<h2 id="releases">Releases</h2>
-<h3 id="re10">RE10</h3>
-<blockquote>
-  <p>Releases consist of source code, distributed using standard and open archive 
-formats that are expected to stay readable in the long term.</p>
-</blockquote>
-
-<h4 id="yes-9">Yes.</h4>
-<ul>
-  <li>Source releases are distributed via <a href="http://ws.apache.org/mirrors.cgi">Apache Download Mirrors</a>
-and linked from the website <a href="https://datasketches.apache.org/docs/Community/Downloads.html">Downloads</a> page.</li>
-</ul>
-
-<h3 id="re20">RE20</h3>
-<blockquote>
-  <p>Releases are approved by the project’s PMC (see CS10), in order to make them 
-an act of the Foundation.</p>
-</blockquote>
-
-<h4 id="yes-10">Yes.</h4>
-<ul>
-  <li>All incubating releases have been approved by the DataSketches community, PPMC, and the IPMC, all with at least 3 IPMC votes.</li>
-</ul>
-
-<h3 id="re30">RE30</h3>
-<blockquote>
-  <p>Releases are signed and/or distributed along with digests that can be 
-reliably used to validate the downloaded archives.</p>
-</blockquote>
-
-<h4 id="yes-11">Yes.</h4>
-<ul>
-  <li>All releases are signed, and KEYS files are provided on <a href="https://dist.apache.org">dist.apache.org</a>.</li>
-</ul>
-
-<h3 id="re40">RE40</h3>
-<blockquote>
-  <p>Convenience binaries can be distributed alongside source code but they are not 
-Apache Releases – they are just a convenience provided with no guarantee.</p>
-</blockquote>
-
-<h4 id="yes-12">Yes.</h4>
-<ul>
-  <li>We distribute Java jar file bundles via <a href="https://repository.apache.org">Nexus Repository Manager</a>. These jar files include source jars as well as compiled binaries of the source code.</li>
-  <li>However, we discovered that we need to have a copy of these jar files also on <a href="https://dist.apache.org">dist.apache.org</a>. This was an oversight. This has now been corrected on <a href="https://dist.apache.org">dist.apache.org</a> for all current DataSketches releases where applicable as follows:
+  <li>Ability to work cooperatively with peers
     <ul>
-      <li>datasketches-java 1.3.0-incubating</li>
-      <li>datasketches-hive 1.1.0-incubating</li>
-      <li>datasketches-pig 1.0.0-incubating</li>
-      <li>datasketches-memory 1.2.0-incubating</li>
+      <li>Is this person willing to help peers to balance workload?</li>
+      <li>Does this person respond positively to criticism?</li>
+      <li>Does this person participate in the group decision-making processes?</li>
     </ul>
   </li>
-  <li>This will also be corrected for all new releases going forward.</li>
-  <li>In the future, we may have needs for distributions through other venues, e.g., pgxn.org, pypi, and docker; some of these may be binaries.  Any such external distributions will have copies on <a href="https://dist.apache.org">dist.apache.org</a>.</li>
-</ul>
-
-<h3 id="re50">RE50</h3>
-<blockquote>
-  <p>The release process is documented and repeatable to the extent that
-someone new to the project is able to independently generate the complete
-set of artifacts required for a release.</p>
-</blockquote>
-
-<h4 id="yes-13">Yes.</h4>
-<ul>
-  <li>All committers have access to <a href="https://dist.apache.org/repos/dist/dev/incubator/datasketches/scripts/">detailed release scripts</a>.</li>
-  <li>As of October 24, 2020, we have successfully completed 17 Apache releases since the start of our incubation.</li>
-  <li>We have 3 committers that have qualified to be <em>release managers</em> and have successfully performed releases.</li>
-</ul>
-
-<h2 id="quality">Quality</h2>
-<h3 id="qu10">QU10</h3>
-<blockquote>
-  <p>The project is open and honest about the quality of its code. Various levels 
-of quality and maturity for various modules are natural and acceptable 
-as long as they are clearly communicated.</p>
-</blockquote>
-
-<h4 id="yes-14">Yes.</h4>
-<ul>
-  <li>Bugs, various deficiencies and documentation problems come to us from many different sources. Once these bugs are made known to us we record them using the GitHub issues lists of the relevant repository<sup>1</sup>.</li>
-</ul>
-
-<h3 id="qu20">QU20</h3>
-<blockquote>
-  <p>The project puts a very high priority on producing secure software.</p>
-</blockquote>
-
-<h3 id="yes-15">Yes.</h3>
-<ul>
-  <li>Security issues will be treated with the highest priority.</li>
-  <li>We will follow the guidelines proposed by <a href="https://cve.mitre.org/about/documents.html">CVE Documents and Guidance</a> should these issues arise.</li>
-</ul>
-
-<h3 id="qu30">QU30</h3>
-<blockquote>
-  <p>The project provides a well-documented, secure and private channel to report security issues, along with a documented way of responding to them.</p>
-</blockquote>
-
-<h4 id="yes-16">Yes.</h4>
-<ul>
-  <li>See <a href="https://datasketches.apache.org/docs/Community/index.html">Community page, “Reporting Security Issues”</a>.</li>
-</ul>
-
-<h3 id="qu40">QU40</h3>
-<blockquote>
-  <p>The project puts a high priority on backwards compatibility and aims to document any 
-incompatible changes and provide tools and documentation to help users transition to new features.</p>
-</blockquote>
-
-<h4 id="yes-17">Yes.</h4>
-<ul>
-  <li>We define two types of backward compatibility, API, and Binary:
+  <li>Ability and willingness to guide and mentor others
     <ul>
-      <li><strong>API:</strong> To the greatest extent possible we try to maintain compatiblity with older APIs. However, some API changes are inevitable. In these cases we deprecate the older API alongside the newer recommended API for at least one major release cycle, after which the older API may be removed. This is standard policy for most industry code bases.</li>
-      <li><strong>Binary:</strong> Our current codebase is able to read and process older binary representations of our sketches since about 2014. This is extremely important for our users and is very high priority as our code evolves.</li>
+      <li>How clearly does this person communicate?</li>
+      <li>Does this person take pains to explain elementary concepts?</li>
+      <li>Does this person demonstrate patience and respect when answering user queries?</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="qu50">QU50</h3>
-<blockquote>
-  <p>The project strives to respond to documented bug reports in a timely manner.</p>
-</blockquote>
-
-<h4 id="yes-18">Yes.</h4>
-<ul>
-  <li>We respond very quickly to bug and problem reports and have received excellent feedback from our users about our quick response.</li>
-</ul>
-
-<h2 id="community">Community</h2>
-
-<h3 id="co10">CO10</h3>
-<blockquote>
-  <p>The project has a well-known homepage that points to all the information 
-required to operate according to this maturity model.</p>
-</blockquote>
-
-<h4 id="yes-19">Yes.</h4>
-<ul>
-  <li>See <a href="https://datasketches.apache.org">datasketches.apache.org</a>.</li>
-</ul>
-
-<h3 id="co20">CO20</h3>
-<blockquote>
-  <p>The community welcomes contributions from anyone who acts in good 
-faith and in a respectful manner and adds value to the project.</p>
-</blockquote>
-
-<h4 id="yes-20">Yes.</h4>
-<ul>
-  <li>See <a href="https://datasketches.apache.org/docs/Community/index.html">Community, Contributing topic</a>.</li>
-</ul>
-
-<h3 id="co30">CO30</h3>
-<blockquote>
-  <p>Contributions include not only source code, but also documentation, constructive bug 
-reports, constructive discussions, marketing and generally anything that adds value to the project.</p>
-</blockquote>
-
-<h4 id="yes-21">Yes.</h4>
-<ul>
-  <li>See <a href="https://datasketches.apache.org/docs/Community/index.html">Community, Contributing topic</a>.</li>
-</ul>
-
-<h3 id="co40">CO40</h3>
-<blockquote>
-  <p>The community strives to be meritocratic and over time aims to give more rights and 
-responsibilities to contributors who add value to the project.</p>
-</blockquote>
-
-<h4 id="yes-22">Yes.</h4>
-<ul>
-  <li>We have elected one new committer and have more on the way. All of these are and will be meritocracy based.</li>
-</ul>
-
-<h3 id="co50">CO50</h3>
-<blockquote>
-  <p>The way in which contributors can be granted more rights such as commit 
-access or decision power is clearly documented and is the same for all contributors.</p>
-</blockquote>
-
-<h4 id="yes-23">Yes.</h4>
-<ul>
-  <li>See <a href="https://datasketches.apache.org/docs/Community/index.html">Community, Contributing topic</a>.</li>
-</ul>
-
-<h3 id="co60">CO60</h3>
-<blockquote>
-  <p>The community operates based on consensus of its members (see CS10) who 
-have decision power. Dictators, benevolent or not, are not welcome in 
-Apache projects.</p>
-</blockquote>
-
-<h4 id="yes-24">Yes.</h4>
-<ul>
-  <li>We work hard to build consensus.</li>
-</ul>
-
-<h3 id="co70">CO70</h3>
-<blockquote>
-  <p>The project strives to answer user questions in a timely manner.</p>
-</blockquote>
-
-<h4 id="yes-25">Yes.</h4>
-<ul>
-  <li>We typically respond to issues within a few hours.  These issues come to our attention through many different channels including our dev@datasketches.apache.org, users@datasketches.apache.org, and GitHub issues lists as well as the Apache Slack channels.</li>
-</ul>
-
-<h2 id="consensus-building">Consensus Building</h2>
-<h3 id="cs10">CS10</h3>
-<blockquote>
-  <p>The project maintains a public list of its contributors who have decision 
-power – the project’s PMC (Project Management Committee) consists of 
-those contributors.</p>
-</blockquote>
-
-<h4 id="yes-26">Yes.</h4>
-<ul>
-  <li>See <a href="https://incubator.apache.org/projects/datasketches.html">DataSketches Project Incubation Status</a>.</li>
-</ul>
-
-<h3 id="cs20">CS20</h3>
-<blockquote>
-  <p>Decisions are made by consensus among PMC members
-and are documented on the project’s main communications channel. 
-Community opinions are taken into account but the PMC has the final word, if needed.</p>
-</blockquote>
-
-<h4 id="yes-27">Yes.</h4>
-<ul>
-  <li>All major projecct decisions are documented via our <a href="mailto:dev@datasketches.apache.org">dev@datasketches.apache.org</a> mail list.</li>
-</ul>
-
-<h3 id="cs30">CS30</h3>
-<blockquote>
-  <p>Documented voting rules are used to build consensus when discussion is not sufficient.</p>
-</blockquote>
-
-<h4 id="yes-28">Yes.</h4>
-<ul>
-  <li>The project uses the standard ASF voting rules. Voting rules are clearly stated before the voting starts for each individual vote.</li>
-</ul>
-
-<h3 id="cs40">CS40</h3>
-<blockquote>
-  <p>In Apache projects, vetoes are only valid for code commits and are 
-justified by a technical explanation, as per the Apache voting rules 
-defined in CS30.</p>
-</blockquote>
-
-<h4 id="yes-29">Yes.</h4>
-<ul>
-  <li>We have had only one instance of a “-1” vote from a PPMC member on a code release. The issue was fixed and resubmitted. We support this policy.</li>
-</ul>
-
-<h3 id="cs50">CS50</h3>
-<blockquote>
-  <p>All “important” discussions happen asynchronously in written form on the 
-project’s main communications channel. Offline, face-to-face or private discussions
-that affect the project are also documented on that channel.</p>
-</blockquote>
-
-<h4 id="yes-30">Yes.</h4>
-<ul>
-  <li>The project has been making important decisions on the project mailing lists. Minor decisions may occasionally happen during code reviews, which are also asynchronous and in written form. Any synchronous discussions that result in major decisions for the project are documented oun our project <a href="mailto:dev@datasketches.apache.org">dev@datasketches.apache.org</a> mailing list.</li>
-</ul>
-
-<h2 id="independence">Independence</h2>
-
-<h3 id="in10">IN10</h3>
-<blockquote>
-  <p>The project is independent from any corporate or organizational influence.</p>
-</blockquote>
-
-<h4 id="yes-31">Yes.</h4>
-<ul>
-  <li>Our project has committers and contributors from Verizon Media, Inc.; Hypercube, Inc.; Permutive, Inc. UK;
-Tableau (Salesforce, Inc.); Georgetown University, Washington, D.C.; Warwick University, UK; 
-UC Berkeley; Apache Druid, and other researchers from around the world.</li>
-</ul>
-
-<h3 id="in20">IN20</h3>
-<blockquote>
-  <p>Contributors act as themselves as opposed to representatives of a corporation or organization.</p>
-</blockquote>
-
-<h4 id="yes-32">Yes.</h4>
-<ul>
-  <li>The committers and contributors act on their own initiative without representing a corporation or organization.</li>
-</ul>
-
-<hr />
-<p><sup>1</sup> List of Source Repositories that have Apache Releases:</p>
+<h3 id="product-contributions">Product Contributions</h3>
+<p>This can be in a number of areas including:</p>
 
 <ul>
-  <li><a href="https://github.com/apache/incubator-datasketches-java">incubator-datasketches-java</a></li>
-  <li><a href="https://github.com/apache/incubator-datasketches-cpp">incubator-datasketches-cpp</a></li>
-  <li><a href="https://github.com/apache/incubator-datasketches-memory">incubator-datasketches-memory</a></li>
-  <li><a href="https://github.com/apache/incubator-datasketches-hive">incubator-datasketches-hive</a></li>
-  <li><a href="https://github.com/apache/incubator-datasketches-pig">incubator-datasketches-pig</a></li>
-  <li><a href="https://github.com/apache/incubator-datasketches-postgresql">incubator-datasketches-postgresql</a></li>
+  <li>PRs or code grants</li>
+  <li>Documentation</li>
+  <li>CI/CD automation</li>
+  <li>Build systems</li>
+  <li>Website structure and content</li>
 </ul>
+
+<h3 id="scientific-contributions">Scientific Contributions</h3>
+
+<ul>
+  <li>
+    <p>Has this person contributed prototype code that was created as part of a research paper?</p>
+  </li>
+  <li>
+    <p>Has this person provided substantial assistance to us in understanding the nuances 
+of a new research paper and how it could be implemented?</p>
+  </li>
+  <li>
+    <p>Has this person demonstrated a high level of interest in having their theoretical work implemented in our library even though this person may not be a fluent programmer?</p>
+  </li>
+</ul>
+
+<h3 id="community-contributions">Community Contributions</h3>
+
+<ul>
+  <li>
+    <p>Has this person participated in our mailing lists,Slack discussions, and GitHub issues?</p>
+  </li>
+  <li>
+    <p>Is this person known and respected by our active committers and PPMC?</p>
+  </li>
+  <li>
+    <p>Has exhibited a high level of interest and commitment to learn, 
+not only about our code base, but about the underlying 
+theory of sketching as well.</p>
+  </li>
+</ul>
+
+<h2 id="write-proposal-in-a-discuss-thread">Write Proposal in a DISCUSS thread</h2>
+<ul>
+  <li><strong><em>NOTE</em></strong> On <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>From: (PMC Member)
+To: private@datasketches.apache.org **ONLY! DO NOT CC!**
+Subject: [DISCUSS] Proposal to invite &lt;candidate&gt; as new committer. 
+
+Dear PMC,
+
+This is a proposal to offer to [Candidate] to join us as a committer on our project.
+
+(justification)
+
+This discussion will end on (month/ day at HH:MM [TimeZone]). 
+
+If this discussion produces a positive consensus, I will proceed to a vote.
+
+Regards,
+(PMC Member)
+
+</code></pre></div></div>
+
+<h2 id="vote">Vote</h2>
+<h3 id="write-a-vote-email-similar-to-the-following">Write a vote email similar to the following:</h3>
+<ul>
+  <li><strong><em>NOTE</em></strong> On <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>From: (PMC Member)
+To: private@datasketches.apache.org
+Subject: [VOTE] [Candidate] as new Committer
+
+(Summarize the results of the DISCUSS thread )
+
+The vote will be performed as follows:
+   - Voting ends X days from today, i.e, midnight UTC on YYYY-MM-DD, &lt;TimeZone&gt;. 
+     (we recommend at least 3 days)
+   - At least 3 (+1) PPMC votes and no (-1) votes.
+   - All PMC members including Mentors can vote.
+
+Please vote accordingly:
+
+[ ] +1 approve
+[ ] +0 no opinion
+[ ] -1 disapprove with the reason
+
+Regards,
+(PMC Member)
+</code></pre></div></div>
+
+<h2 id="close-the-vote">Close the Vote</h2>
+<ul>
+  <li><strong><em>NOTE</em></strong> On <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</li>
+</ul>
+
+<p>After sufficient votes have been obtained and the time as elapsed, issue an email similar to the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Subject: [RESULT] Re: [VOTE] [Candidate] as new Committer
+
+The vote is now closed.
+
+Passed/Did not pass with X (+1) binding votes (list names), and Y 0 votes and Z -1 votes.
+
+Regards,
+(PPMC MEMBER)
+</code></pre></div></div>
+
+<h3 id="if-the-candidate-is-being-nominated-as-a-new-pmc-member">If the candidate is being nominated as a new PMC member:</h3>
+<ul>
+  <li>See <a href="https://www.apache.org/dev/pmc.html#newpmc">https://www.apache.org/dev/pmc.html#newpmc</a>.</li>
+</ul>
+
+<h2 id="committer-invite-example">Committer Invite Example</h2>
+<ul>
+  <li><strong><em>NOTE</em></strong> CC’d to <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</li>
+</ul>
+
+<p>Write a letter to the candidate similar to the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>To: [Candidate]
+CC: private@datasketches.apache.org
+From: (PMC Member)
+Subject: Invitation to become DataSketches Committer
+
+Hello [Candidate]
+
+    The datasketches(incubating) Project Management Committee (PMC) hereby offers
+you committer privileges to the project. These privileges are offered on
+the understanding that you'll use them reasonably and with common sense. We
+like to work on trust rather than unnecessary constraints.
+
+    Being a committer grants you write access to all of our repositories. In our normal code committing process we all use PRs and like to have at least one other committer or PMC member review the code before it is merged into *master*. However, for trivial edits (e.g. typos, documentation corrections) you may make commits on your own.  
+
+    Being a committer does not require you to participate any more than
+you already do. It does tend to make one even more involved as you will
+probably find that you spend more time with our project.  Of course, you can decline and
+instead remain as a contributor, participating as you do now.
+
+     A. This personal invitation is a chance for you to accept or decline
+in private.  Either way, please let us know in reply to the 
+&lt;private@datasketches.apache.org&gt; address only.
+
+     B. If you accept, you will receive a follow-up message with
+the next steps to establish you as a committer.
+
+
+Regards
+(PMC MEMBER)
+</code></pre></div></div>
+
+<h2 id="if-candidate-accepts-followup-instructions">If Candidate Accepts, Followup Instructions</h2>
+<ul>
+  <li><strong><em>NOTE</em></strong> CC’d to <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>To: [Candidate]
+CC: private@datasketches.apache.org
+From: (PMC Member)
+Subject: Welcome to the Apache DataSketches Project as a Committer!
+
+Dear (Candidate),
+
+Welcome to our project!  We are excited to have you join us.
+
+To complete your admission as a committer you need to register an ICLA with ASF. Note that the ICLA contains your confidential information and should only be sent directly to the secretary@apache.org and not CC'd even to
+this private@ email address.
+
+    1. ICLA form: https://www.apache.org/licenses/icla.pdf.
+    2. Explanation of the Contributor License Agreements and how to send: https://www.apache.org/licenses/contributor-agreements.html
+    3. Make sure you send the ICLA just to the secretary@apache.org, request the secretary to notify private@datasketches.apache.org (on the form), and choose a unique Apache ID (on the form).  You can look to see if your preferred ID is already taken at https://people.apache.org/committer-index.html.  Please also send us an email at private@datasketches.apache.org letting us know that you have sent the ICLA to the secretary. This will enable us to monitor its progress.
+    
+After the ICLA has been recorded and your account created we will announce your joining the project on dev@datasketches.apache.org.
+
+The developer section of the website describes the roles and provides other
+resources:
+  https://www.apache.org/foundation/how-it-works.html
+  https://www.apache.org/dev/
+
+The incubator also has some useful information for new committers
+in incubating projects:
+  https://incubator.apache.org/guides/committer.html
+  https://incubator.apache.org/guides/ppmc.html
+
+Just as before you became a committer, participation in any ASF community
+requires adherence to the ASF Code of Conduct:
+  https://www.apache.org/foundation/policies/conduct.html
+
+Regards,
+(PMC Member)
+</code></pre></div></div>
+
+<h2 id="sample-letter-from-secretary-confirming-filing-of-the-icla">Sample Letter from Secretary confirming filing of the ICLA</h2>
+<ul>
+  <li><strong><em>NOTE</em></strong> CC’d to <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>From: Matt Sicker (secretary)
+To: private@datasketches.apache.org
+Subject: [FORM] Account Request - candidate@gxyz.com: [Candidate]
+Date:
+List: private@datasketches.apache.org
+
+Prospective userid: 123456
+Full Name: [Candidate]
+Forwarding emal address:  blah
+
+
+</code></pre></div></div>
+
+<h2 id="account-creation">Account Creation</h2>
+<ul>
+  <li><strong><em>NOTE</em></strong> CC’d to <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</li>
+</ul>
+
+<p>New account requests will only be accepted from PMC chairs and ASF members. Projects in incubation can ask their Mentors to make the account request for them.</p>
+
+<ul>
+  <li>See <a href="https://www.apache.org/dev/pmc.html#newcommitter">https://www.apache.org/dev/pmc.html#newcommitter</a></li>
+</ul>
+
+<h2 id="announcement-to-devdatasketchesapacheorg">Announcement to dev@datasketches.apache.org</h2>
+
 
       </div> <!-- End content -->
     </div> <!-- End row -->
