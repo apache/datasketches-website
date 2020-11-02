@@ -134,9 +134,6 @@ Regards,
 (PPMC MEMBER)
 ```
 
-### If the candidate is being nominated as a new PMC member:
-* See [https://www.apache.org/dev/pmc.html#newpmc](https://www.apache.org/dev/pmc.html#newpmc).
-
 ## Committer Invite Example
 * ***NOTE*** CC'd to <private@datasketches.apache.org> ONLY!
 
