@@ -49,24 +49,26 @@ This can be in a number of areas including:
 * Build systems
 * Website structure and content
 
+### Marketing Contributions
+* Evangelizing the use of sketches to solve problems
+* Organizing workshops, meetups
+* Doing or promoting tech talks with our team and with external scientists and engineers.
+* Writing blogposts and "what's new" posts for community growth
+
 ### Scientific Contributions
 
-* Has this person contributed prototype code that was created as part of a research paper?
-
+* Has this person authored research papers on sketching algorithms and contributed code that was developed as part of that research to our project?
 * Has this person provided substantial assistance to us in understanding the nuances 
-  of a new research paper and how it could be implemented?
-
+  of a theoretical research paper on sketching and how it could be implemented in our library?
 * Has this person demonstrated a high level of interest in having their theoretical work implemented in our library even though this person may not be a fluent programmer?
 
 ### Community Contributions
 
-* Has this person participated in our mailing lists,Slack discussions, and GitHub issues?
-
+* Has this person participated in our mailing lists, Slack discussions, and GitHub issues?
 * Is this person known and respected by our active committers and PPMC?
-
 * Has exhibited a high level of interest and commitment to learn, 
   not only about our code base, but about the underlying 
-  theory of sketching as well.
+  theory of sketching as well?
 
 ## Write Proposal in a DISCUSS thread 
 * ***NOTE*** On <private@datasketches.apache.org> ONLY!
