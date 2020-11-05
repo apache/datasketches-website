@@ -251,10 +251,11 @@
 
     { "class":"Dropdown", "desc" : "Community", "array":
       [
-        {"class":"Doc",  "desc" : "Community",                     "dir" : "Community", "file": "index" },
-        {"class":"Doc",  "desc" : "Downloads",                     "dir" : "Community", "file": "Downloads"},
-        {"class":"Doc",  "desc" : "Transitioning from prior GitHub Site", "dir" : "Community", "file" : "Transitioning"},
-        {"class":"Doc",  "desc" : "Who Uses",                     "dir" : "Community", "file": "WhoUses" },
+        {"class":"Doc",  "desc" : "Community",                            "dir" : "Community", "file": "index" },
+        {"class":"Doc",  "desc" : "Downloads",                            "dir" : "Community", "file": "Downloads"},
+        {"class":"Doc",  "desc" : "New Committer Process",                "dir" : "Community", "file": "NewCommitterProcess"},
+        {"class":"Doc",  "desc" : "Transitioning from prior GitHub Site", "dir" : "Community", "file": "Transitioning"},
+        {"class":"Doc",  "desc" : "Who Uses",                             "dir" : "Community", "file": "WhoUses" },
       ]
     },
     { "class":"Dropdown", "desc" : "Research", "array":
