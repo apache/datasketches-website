@@ -78,10 +78,8 @@ This is a compilation of a number of documents I could find on graduating an inc
 * [Complete Project Maturity Model](https://github.com/apache/incubator-datasketches-website/blob/master/docs/Graduation/Maturity.md): Open for feedback
 
 
-# The Following Items are TBD
-
 ## Prepare the Resolution
-### Election of PMC Chair by the PPMC (on private@datasketches.apache.org)
+### Election of PMC Chair by the PPMC (on private@datasketches.apache.org) - Done
 * [Duties of the PMC Chair](http://www.apache.org/dev/pmc.html#chair)
 * PMC Chairs are Vice Presidents given charge of the proper operation of their projects.
 * The PMC Chair serves at the direction of the Board of Directors as the chair 
@@ -89,9 +87,15 @@ This is a compilation of a number of documents I could find on graduating an inc
     the project within the scope of responsibility of the Apache Project.
 * Once the PMC Chair has been elected, the Resolution can be created from <https://whimsy.apache.org/roster/ppmc/datasketches>
 
+By consensus, Lee Rhodes has been nominated to be the PMC Chair [Thread](https://lists.apache.org/thread.html/r1785eaa1535d1b08d9e802e70543dd69a6525cb90e13a06b86ea3373%40%3Cprivate.datasketches.apache.org%3E), [Conclusion](https://lists.apache.org/thread.html/r41a0738f849ca3e5d00914107dde539ab6bf344071a2b39a24063b3f%40%3Cprivate.datasketches.apache.org%3E).
+
+### [The Resolution]()
+
+# The Following Items are TBD
 
 ## DISCUSS Graduation on dev@datasketches.apache.org
 * Ensure Mentors have no remaining issues
+* Discussion Thread
 
 ## VOTE on Graduation on dev@datasketches.apache.org
 * Notify the IPMC general list that a community vote is in progress
