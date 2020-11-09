@@ -19,7 +19,7 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-#Establish the Apache DataSketches Project
+# Establish the Apache DataSketches Project
 
 WHEREAS, the Board of Directors deems it to be in the best interests of
 the Foundation and consistent with the Foundation's purpose to establish
