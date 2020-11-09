@@ -38,15 +38,17 @@ This is a compilation of a number of documents I could find on graduating an inc
   * See [Project Status](https://incubator.apache.org/projects/datasketches.html)
 
 ## Define a Charter - Done
-* Apache DataSketches consists of software related to
-    an open source, high-performance library of stochastic
-    streaming algorithms commonly called "sketches" in the data sciences.
-    Sketches are small, stateful programs that process massive data as a
-    stream and can provide approximate answers, with mathematical
-    guarantees, to computationally difficult queries orders-of-magnitude
-    faster than traditional, exact methods.
+```
+Apache DataSketches consists of software related to
+an open source, high-performance library of stochastic
+streaming algorithms commonly called "sketches" in the data sciences.
+Sketches are small, stateful programs that process massive data as a
+stream and can provide approximate answers, with mathematical
+guarantees, to computationally difficult queries orders-of-magnitude
+faster than traditional, exact methods.
+```
 
-## Demonstrate Community Readiness - Open for Feedback
+## Demonstrate Community Readiness - Done, <br>(but always open for Feedback)
 * Recruit users, developers, committers and PMCers
 	* We have participated in a number of conferences
 		* USPTO-2020 Tech Conference
@@ -74,28 +76,28 @@ This is a compilation of a number of documents I could find on graduating an inc
 * Create an open, positive and inclusive atmosphere on the mailing lists
 	* We have received very positive feedback from our users about our responsiveness, willingness to help, and openness to invite new users into our discussions. 
 
-## Complete Project Maturity Model
-* [Complete Project Maturity Model](https://github.com/apache/incubator-datasketches-website/blob/master/docs/Graduation/Maturity.md): Open for feedback
+## Complete Project Maturity Model - Done, <br>(But always open for feedback)
+* [Complete Project Maturity Model](https://github.com/apache/incubator-datasketches-website/blob/master/docs/Graduation/Maturity.md)
 
 
 ## Prepare the Resolution
-### Election of PMC Chair by the PPMC (on private@datasketches.apache.org) - Done
+### Election of PMC Chair by the PPMC - Done
 * [Duties of the PMC Chair](http://www.apache.org/dev/pmc.html#chair)
 * PMC Chairs are Vice Presidents given charge of the proper operation of their projects.
 * The PMC Chair serves at the direction of the Board of Directors as the chair 
     of the Apache Project, and has primary responsibility for management of 
     the project within the scope of responsibility of the Apache Project.
-* Once the PMC Chair has been elected, the Resolution can be created from <https://whimsy.apache.org/roster/ppmc/datasketches>
+* Once the PMC Chair has been elected, the Resolution can be created from the [roster](https://whimsy.apache.org/roster/ppmc/datasketches)
 
 By consensus, Lee Rhodes has been nominated to be the PMC Chair [Thread](https://lists.apache.org/thread.html/r1785eaa1535d1b08d9e802e70543dd69a6525cb90e13a06b86ea3373%40%3Cprivate.datasketches.apache.org%3E), [Conclusion](https://lists.apache.org/thread.html/r41a0738f849ca3e5d00914107dde539ab6bf344071a2b39a24063b3f%40%3Cprivate.datasketches.apache.org%3E).
 
-### [The Resolution]()
+### [The Resolution](https://datasketches.apache.org/docs/Graduation/Resolution)
 
 # The Following Items are TBD
 
 ## DISCUSS Graduation on dev@datasketches.apache.org
 * Ensure Mentors have no remaining issues
-* Discussion Thread
+* [Discussion Thread](https://lists.apache.org/thread.html/r691d6394e78f7a9d321fddd040b14a8282e7c6f799fb327ee743beae%40%3Cdev.datasketches.apache.org%3E)
 
 ## VOTE on Graduation on dev@datasketches.apache.org
 * Notify the IPMC general list that a community vote is in progress
