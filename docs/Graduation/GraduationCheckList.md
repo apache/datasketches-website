@@ -40,7 +40,7 @@ This is a compilation of a number of documents I could find on graduating an inc
 ## Define a Charter - Done
 ```
 Apache DataSketches consists of software related to
-an open source, high-performance library of stochastic
+an open source, high-performance library of 
 streaming algorithms commonly called "sketches" in the data sciences.
 Sketches are small, stateful programs that process massive data as a
 stream and can provide approximate answers, with mathematical

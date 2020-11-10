@@ -25,7 +25,7 @@ WHEREAS, the Board of Directors deems it to be in the best interests of
 the Foundation and consistent with the Foundation's purpose to establish
 a Project Management Committee charged with the creation and maintenance
 of open-source software, for distribution at no charge to the public,
-related to an open source, high-performance library of stochastic
+related to an open source, high-performance library of
 streaming algorithms commonly called "sketches" in the data sciences.
 Sketches are small, stateful programs that process massive data as a
 stream and can provide approximate answers, with mathematical
@@ -38,7 +38,7 @@ is established pursuant to Bylaws of the Foundation; and be it further
 
 RESOLVED, that the Apache DataSketches Project be and hereby is
 responsible for the creation and maintenance of software related to an
-open source, high-performance library of stochastic streaming algorithms
+open source, high-performance library of streaming algorithms
 commonly called "sketches" in the data sciences. Sketches are small,
 stateful programs that process massive data as a stream and can provide
 approximate answers, with mathematical guarantees, to computationally
