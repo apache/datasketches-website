@@ -67,7 +67,7 @@ Project:
  * Kenneth Knowles    <kenn@apache.org>
  * Lee Rhodes         <leerho@apache.org>
  * Liang Chen         <chenliang613@apache.org>
- * Roman Leventov     <leventov@apache.org> (TBD)
+ * Roman Leventov     <leventov@apache.org>
 
 NOW, THEREFORE, BE IT FURTHER RESOLVED, that Lee Rhodes be appointed to
 the office of Vice President, Apache DataSketches, to serve in
