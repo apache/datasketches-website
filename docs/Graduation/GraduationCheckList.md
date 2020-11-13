@@ -93,21 +93,25 @@ By consensus, Lee Rhodes has been nominated to be the PMC Chair [Thread](https:/
 
 ### [The Resolution](https://datasketches.apache.org/docs/Graduation/Resolution)
 
-# The Following Items are TBD
 
 ## DISCUSS Graduation on dev@datasketches.apache.org
 * Ensure Mentors have no remaining issues
 * [Discussion Thread](https://lists.apache.org/thread.html/r691d6394e78f7a9d321fddd040b14a8282e7c6f799fb327ee743beae%40%3Cdev.datasketches.apache.org%3E)
 
-## VOTE on Graduation on dev@datasketches.apache.org
+
+## VOTE on Graduation on dev@datasketches.apache.org -- IN PROCESS
 * Notify the IPMC general list that a community vote is in progress
-* Achieve positive community graduation recommendatation vote
+    * [NOTICE Message](https://lists.apache.org/thread.html/rda589f9f881d18c5f61adefb4cda06c0fdf2f6a0f3f00bb0fde1a821%40%3Cgeneral.incubator.apache.org%3E)
+* Achieve positive community graduation recommendation vote
+    * [VOTE Thread](https://lists.apache.org/thread.html/r922e2a10e53b4eabdeb089336828c8c256277c9fd5ab80a3a13329d0%40%3Cdev.datasketches.apache.org%3E)
+
+# The Following Items are TBD
 
 ## DISCUSS Graduation on general@incubator.apache.org
 * Ensure IPMC has no remaining issues
 
 ## VOTE Graduation on general@incubator.apache.org
-* Achieve positive IPMC graduation recommendatation vote
+* Achieve positive IPMC graduation recommendation vote
 
 ## Write Proposal Letter to Board
 * <https://incubator.apache.org/guides/graduation.html>
