@@ -28,7 +28,7 @@ This is a compilation of a number of documents I could find on graduating an inc
 * [DataSketches Board Reports](https://whimsy.apache.org/board/minutes/DataSketches.html)
 * [Duties of the PMC Chair](http://www.apache.org/dev/pmc.html#chair)
 
-## Initial Checks
+## Initial Checks -- Done
 * [Review the project Status](https://incubator.apache.org/projects/datasketches.html) : DONE
 * [Review the Clutch Report](http://incubator.apache.org/clutch/datasketches.html): DONE
 * [Review the Roster](https://whimsy.apache.org/roster/ppmc/datasketches):  DONE
@@ -68,7 +68,7 @@ faster than traditional, exact methods.
 	   * Apache Pig
 	   * Nielsen.com
 	   * Amazon AWS (in process)
-	* We recently added a new committer on August 17, 2020.
+	* We recently added a new committer on August 17, 2020 and have two more in process.
 * Take responsible collective action
 	* We post major issues for disscussion and vote on our dev@ mailing list. 
 * Demonstrate ability to disagree in public on technical matters without destroying personal relationships
@@ -80,7 +80,7 @@ faster than traditional, exact methods.
 * [Complete Project Maturity Model](https://github.com/apache/incubator-datasketches-website/blob/master/docs/Graduation/Maturity.md)
 
 
-## Prepare the Resolution
+## Prepare the Resolution -- Done
 ### Election of PMC Chair by the PPMC - Done
 * [Duties of the PMC Chair](http://www.apache.org/dev/pmc.html#chair)
 * PMC Chairs are Vice Presidents given charge of the proper operation of their projects.
@@ -94,21 +94,22 @@ By consensus, Lee Rhodes has been nominated to be the PMC Chair [Thread](https:/
 ### [The Resolution](https://datasketches.apache.org/docs/Graduation/Resolution)
 
 
-## DISCUSS Graduation on dev@datasketches.apache.org
+## DISCUSS Graduation on dev@datasketches.apache.org -- Done
 * Ensure Mentors have no remaining issues
 * [Discussion Thread](https://lists.apache.org/thread.html/r691d6394e78f7a9d321fddd040b14a8282e7c6f799fb327ee743beae%40%3Cdev.datasketches.apache.org%3E)
 
 
-## VOTE on Graduation on dev@datasketches.apache.org -- IN PROCESS
+## VOTE on Graduation on dev@datasketches.apache.org -- Done
 * Notify the IPMC general list that a community vote is in progress
     * [NOTICE Message](https://lists.apache.org/thread.html/rda589f9f881d18c5f61adefb4cda06c0fdf2f6a0f3f00bb0fde1a821%40%3Cgeneral.incubator.apache.org%3E)
 * Achieve positive community graduation recommendation vote
     * [VOTE Thread](https://lists.apache.org/thread.html/r922e2a10e53b4eabdeb089336828c8c256277c9fd5ab80a3a13329d0%40%3Cdev.datasketches.apache.org%3E)
 
-# The Following Items are TBD
-
-## DISCUSS Graduation on general@incubator.apache.org
+## DISCUSS Graduation on general@incubator.apache.org -- IN PROCESS
 * Ensure IPMC has no remaining issues
+    * [DISCUSS Thread](https://lists.apache.org/thread.html/r65f2c40c15a35026f4bf2e270051cfffed1b47c78c5685e7dd353d2a%40%3Cgeneral.incubator.apache.org%3E) 
+
+# The Following Items are TBD
 
 ## VOTE Graduation on general@incubator.apache.org
 * Achieve positive IPMC graduation recommendation vote

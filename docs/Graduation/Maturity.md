@@ -222,7 +222,7 @@ reports, constructive discussions, marketing and generally anything that adds va
 responsibilities to contributors who add value to the project.
 
 #### Yes.
-  * We have elected one new committer and have more on the way. All of these are and will be meritocracy based.
+  * We have elected three new committers and have more on the way. All of these are and will be meritocracy based.
 
 ### CO50
 > The way in which contributors can be granted more rights such as commit 
@@ -261,7 +261,7 @@ and are documented on the project's main communications channel.
 Community opinions are taken into account but the PMC has the final word, if needed.
 
 #### Yes.
-  * All major projecct decisions are documented via our <dev@datasketches.apache.org> mail list.
+  * All major project decisions are documented via our <dev@datasketches.apache.org> mail list.
 
 ### CS30
 > Documented voting rules are used to build consensus when discussion is not sufficient.
@@ -283,7 +283,7 @@ project's main communications channel. Offline, face-to-face or private discussi
 that affect the project are also documented on that channel.
 
 #### Yes.
-  * The project has been making important decisions on the project mailing lists. Minor decisions may occasionally happen during code reviews, which are also asynchronous and in written form. Any synchronous discussions that result in major decisions for the project are documented oun our project <dev@datasketches.apache.org> mailing list.
+  * The project has been making important decisions on the project mailing lists. Minor decisions may occasionally happen during code reviews, which are also asynchronous and in written form. Any synchronous discussions that result in major decisions for the project are documented on our project <dev@datasketches.apache.org> mailing list.
 
 
 ## Independence
@@ -294,7 +294,7 @@ that affect the project are also documented on that channel.
 #### Yes.
   * Our project has committers and contributors from Verizon Media, Inc.; Hypercube, Inc.; Permutive, Inc. UK;
 Tableau (Salesforce, Inc.); Georgetown University, Washington, D.C.; Warwick University, UK; 
-UC Berkeley; Apache Druid, and other researchers from around the world.
+UC Berkeley; Apache Druid, and other researchers and engineers from around the world.
 
 
 ### IN20
