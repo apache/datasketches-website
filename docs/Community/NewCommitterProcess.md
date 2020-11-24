@@ -73,7 +73,7 @@ This can be in a number of areas including:
 ## Write Proposal in a DISCUSS thread 
 ***NOTE*** On <private@datasketches.apache.org> ONLY!
 
-
+---
 From: (PMC Member)<br>
 To: private@datasketches.apache.org **ONLY! DO NOT CC!**<br>
 Subject: [DISCUSS] Proposal to invite <candidate> as new committer.
@@ -91,13 +91,13 @@ If this discussion produces a positive consensus or no objections, I will use [l
 Regards,
 (PMC Member)
 
-
+---
 
 ## Vote
 ### Write a vote email similar to the following:
 ***NOTE*** On <private@datasketches.apache.org> ONLY!
 
-
+---
 From: (PMC Member)<br>
 To: private@datasketches.apache.org<br>
 Subject: [VOTE] [Candidate] as new Committer<br>
@@ -119,13 +119,14 @@ Please vote accordingly:
 Regards,<br>
 (PMC Member)
 
+---
 
 ## Close the Vote
 ***NOTE*** On <private@datasketches.apache.org> ONLY!
 
 After sufficient votes have been obtained and the time as elapsed, issue an email similar to the following:
 
-
+---
 Subject: [RESULT] Re: [VOTE] [Candidate] as new Committer
 
 The vote is now closed.
@@ -135,13 +136,14 @@ Passed/Did not pass with X (+1) binding votes (list names), and Y 0 votes and Z 
 Regards,
 (PPMC MEMBER)
 
+---
 
 ## Committer Invite Example
 ***NOTE*** CC'd to <private@datasketches.apache.org> ONLY!
 
 Write a letter to the candidate similar to the following:
 
-
+---
 To: [Candidate]<br>
 CC: private@datasketches.apache.org<br>
 From: (PMC Member)<br>
@@ -172,12 +174,12 @@ the next steps to establish you as a committer.
 Regards
 (PMC MEMBER)
 
-
+---
 
 ## If Candidate Accepts, Followup Instructions
 ***NOTE*** CC'd to <private@datasketches.apache.org> ONLY!
 
-
+---
 To: [Candidate]<br>
 CC: private@datasketches.apache.org<br>
 From: (PMC Member)<br>
@@ -216,12 +218,13 @@ Again, welcome to the DataSketches project!
 Best Regards,<br>
 (PMC Member)
 
+---
 
 
 ## Sample Letter from Secretary confirming filing of the ICLA
 ***NOTE*** CC'd to <private@datasketches.apache.org> ONLY!
 
-
+---
 From: Matt Sicker (secretary)<br>
 To: private@datasketches.apache.org<br>
 Subject: [FORM] Account Request - candidate@gxyz.com: [Candidate]<br>
@@ -232,16 +235,89 @@ Prospective userid: 123456<br>
 Full Name: [Candidate]<br>
 Forwarding emal address:  blah<br>
 
+---
 
 ## Account Creation
 ***NOTE*** CC'd to <private@datasketches.apache.org> ONLY!
 
-New account requests will only be accepted from PMC chairs and ASF members. Projects in incubation can ask their Mentors to make the account request for them.
+If the ICLA identifies the project and a valid Apache id, and the [RESULT][VOTE] message has been posted to the PMC private list, then the account creation request is made by the secretary or assistant who files the ICLA.
+
+Otherwise, new account requests will only be accepted from PMC chairs and ASF members. Projects in incubation can ask their Mentors to make the account request for them.
 
 * See <https://www.apache.org/dev/pmc.html#newcommitter>
 
-## Announcement to dev@datasketches.apache.org
 
+## Committer Done Template
+After the committer account is established.
+
+---
+
+To: private@[PROJECT].a.o, ###JoeBloggs@foo.net
+Subject: account request: ###Joe Bloggs
+
+(Candidate), as you know, the ASF Infrastructure has set up your
+committer account as the username 'blah'.
+
+Please follow the instructions to set up your SSH,
+svn password, svn configuration, mail forwarding, etc.
+https://www.apache.org/dev/#committers
+
+[If your project automatically adds committers to the PMC]
+Please subscribe to the [PROJECT] Project Management 
+Committee mailing list private@[PROJECT].apache.org.
+[/If]
+
+You have commit access to specific sections of the
+ASF repository, as follows:
+
+[PROJECT] has various resources at:
+  https://svn.apache.org/repos/asf/[PROJECT]
+
+The general "committers" at:
+https://svn.apache.org/repos/private/committers
+
+You will probably need to 'svn switch" previous checkouts to now use https, 
+for example:
+
+svn switch --relocate https://svn.apache.org/repos/asf/[PROJECT] https://svn.apache.org/repos/asf/[PROJECT]
+    
+If you have any questions during this phase, then please
+see the following resources:
+
+Apache developer's pages: https://www.apache.org/dev/
+Incubator committer guide: https://incubator.apache.org/guides/committer.html
+
+Naturally, if you don't understand anything be sure to ask us on the [PROJECT] dev mailing list. 
+Documentation is maintained by volunteers and hence can be out-of-date and incomplete - of course
+you can now help fix that.
+
+A PMC member will announce your election to the dev list soon.
+
+(for setup see <https://gitbox.apache.org/setup/>)
+
+---
+
+## Committer Announce Template
+After the committer account is established.
+
+----
+From: (who sends this?)
+To: dev@[PROJECT].apache.org
+Subject: new committer: ###Joe Bloggs
+
+The Project Management Committee (PMC) for Apache [PROJECT]
+has invited Joe Bloggs to become a committer and we are pleased 
+to announce that he has accepted.
+
+(add specific details here)
+
+Being a committer enables easier contribution to the
+project since there is no need to go via the patch
+submission process. This should enable better productivity.
+Being a PMC member enables assistance with the management
+and to guide the direction of the project.
+
+---
 
 
 

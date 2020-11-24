@@ -105,22 +105,24 @@ By consensus, Lee Rhodes has been nominated to be the PMC Chair [Thread](https:/
 * Achieve positive community graduation recommendation vote
     * [VOTE Thread](https://lists.apache.org/thread.html/r922e2a10e53b4eabdeb089336828c8c256277c9fd5ab80a3a13329d0%40%3Cdev.datasketches.apache.org%3E)
 
-## DISCUSS Graduation on general@incubator.apache.org -- IN PROCESS
+## DISCUSS Graduation on general@incubator.apache.org -- Done
 * Ensure IPMC has no remaining issues
     * [DISCUSS Thread](https://lists.apache.org/thread.html/r65f2c40c15a35026f4bf2e270051cfffed1b47c78c5685e7dd353d2a%40%3Cgeneral.incubator.apache.org%3E) 
 
-# The Following Items are TBD
 
-## VOTE Graduation on general@incubator.apache.org
+## VOTE Graduation on general@incubator.apache.org -- IN PROCESS
 * Achieve positive IPMC graduation recommendation vote
+    * [VOTE Thread](https://lists.apache.org/thread.html/rf3eaebe1e2430aa85d0b69f3c91debc6c52e8490e59c41b1206dc4fb%40%3Cgeneral.incubator.apache.org%3E)
+
+# The Following Items are TBD
 
 ## Write Proposal Letter to Board
 * <https://incubator.apache.org/guides/graduation.html>
 
-```
-From: (PMC Chair)
-To: board@apache.org
-CC: <<project>-private _at_ incubator dot apache dot org>
+---
+From: (PMC Chair)<br>
+To: board@apache.org<br>
+CC: <datasketches-private@incubator.apache.org><br>
 Subject: Proposed Resolution: Establish Apache DataSketches as TLP
 
 Dear Apache Board,
@@ -132,20 +134,86 @@ consider the draft resolution below at your next meeting.
 
 (PMC Chair)
 
---
+
 References:
 
-Home: <https://datasketches.apache.org>
-Vote by project: <link to vote thread on project list>
-Vote by incubator: <link to vote thread on general list>
+* Home: <https://datasketches.apache.org>
+* Vote by [project DataSketches:](https://lists.apache.org/thread.html/r922e2a10e53b4eabdeb089336828c8c256277c9fd5ab80a3a13329d0%40%3Cdev.datasketches.apache.org%3E)
+* Vote by [Incubator:](https://lists.apache.org/thread.html/rf3eaebe1e2430aa85d0b69f3c91debc6c52e8490e59c41b1206dc4fb%40%3Cgeneral.incubator.apache.org%3E)
 
 Resolution draft:
 
-<<resolution goes here, 72 characters wide, indent with 4 spaces>>
-
---
-<PMC Chair e-mail sig, if you have one>
 ```
+    ESTABLISH THE APACHE DATASKETCHES PROJECT
+    
+    WHEREAS, the Board of Directors deems it to be in the best interests of
+    the Foundation and consistent with the Foundation's purpose to 
+    establish a Project Management Committee charged with the creation and 
+    maintenance of open-source software, for distribution at no charge to 
+    the public, related to an open source, high-performance library of
+    streaming algorithms commonly called "sketches" in the data sciences.
+    Sketches are small, stateful programs that process massive data as a
+    stream and can provide approximate answers, with mathematical
+    guarantees, to computationally difficult queries orders-of-magnitude
+    faster than traditional, exact methods.
+    
+    NOW, THEREFORE, BE IT RESOLVED, that a Project Management Committee
+    (PMC), to be known as the "Apache DataSketches Project", be and hereby
+    is established pursuant to Bylaws of the Foundation; and be it further
+    
+    RESOLVED, that the Apache DataSketches Project be and hereby is
+    responsible for the creation and maintenance of software related to an
+    open source, high-performance library of streaming algorithms
+    commonly called "sketches" in the data sciences. Sketches are small,
+    stateful programs that process massive data as a stream and can provide
+    approximate answers, with mathematical guarantees, to computationally
+    difficult queries orders-of-magnitude faster than traditional, exact
+    methods; and be it further
+    
+    RESOLVED, that the office of "Vice President, Apache DataSketches" be
+    and hereby is created, the person holding such office to serve at the
+    direction of the Board of Directors as the chair of the Apache
+    DataSketches Project, and to have primary responsibility for management
+    of the projects within the scope of responsibility of the Apache
+    DataSketches Project; and be it further
+    
+    RESOLVED, that the persons listed immediately below be and hereby are
+    appointed to serve as the initial members of the Apache DataSketches
+    Project:
+    
+     * Alexander Saydakov <alsay@apache.org>
+     * Dave Fisher        <wave@apache.org>
+     * Edo Liberty        <edo@apache.org>
+     * Eshcar Hillel      <eshcar@apache.org>
+     * Evans Ye           <evansye@apache.org>
+     * Furkan Kamaci      <kamaci@apache.org>
+     * Jon Malkin         <jmalkin@apache.org>
+     * Justin Thaler      <jthaler@apache.org>
+     * Kenneth Knowles    <kenn@apache.org>
+     * Lee Rhodes         <leerho@apache.org>
+     * Liang Chen         <chenliang613@apache.org>
+     * Roman Leventov     <leventov@apache.org>
+    
+    NOW, THEREFORE, BE IT FURTHER RESOLVED, that Lee Rhodes be appointed to
+    the office of Vice President, Apache DataSketches, to serve in
+    accordance with and subject to the direction of the Board of Directors
+    and the Bylaws of the Foundation until death, resignation, retirement,
+    removal or disqualification, or until a successor is appointed; and be
+    it further
+    
+    RESOLVED, that the Apache DataSketches Project be and hereby is tasked
+    with the migration and rationalization of the Apache Incubator
+    DataSketches podling; and be it further
+    
+    RESOLVED, that all responsibilities pertaining to the Apache Incubator
+    DataSketches podling encumbered upon the Apache Incubator PMC are
+    hereafter discharged.
+```
+
+
+<PMC Chair e-mail sig, if you have one>
+
+---
 
 ## Acceptance of Resolution by the Board
 
