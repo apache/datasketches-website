@@ -763,75 +763,83 @@ Forwarding emal address:  blah<br /></p>
   <li>See <a href="https://www.apache.org/dev/pmc.html#newcommitter">https://www.apache.org/dev/pmc.html#newcommitter</a></li>
 </ul>
 
-<h2 id="committer-done-template">Committer Done Template</h2>
+<h2 id="completing-the-new-committer-account-setup">Completing the New Committer Account Setup</h2>
 <p>After the committer account is established.</p>
 
 <hr />
 
-<p>To: private@[PROJECT].a.o, ###JoeBloggs@foo.net
-Subject: account request: ###Joe Bloggs</p>
+<p>To: private@datasketches.apache.org, (new committer)<br />
+Subject: account setup for (new committer)</p>
 
-<p>(Candidate), as you know, the ASF Infrastructure has set up your
-committer account as the username ‘blah’.</p>
+<p>Hello (new committer), the ASF Infrastructure has set up your
+committer account as the username ‘blah’ with an Apache email of <blah>@apache.org.</blah></p>
 
-<p>Please follow the instructions to set up your SSH,
-svn password, svn configuration, mail forwarding, etc.
-https://www.apache.org/dev/#committers</p>
+<p>Please follow the instructions at the <a href="https://infra.apache.org/new-committers-guide.html">Guide For New Project Committers</a> to set up your SSH,
+svn password, svn configuration, mail forwarding, GitHub ID, etc.</p>
 
-<p>[If your project automatically adds committers to the PMC]
-Please subscribe to the [PROJECT] Project Management 
-Committee mailing list private@[PROJECT].apache.org.
-[/If]</p>
+<ul>
+  <li>For new PMC members only:
+    <ul>
+      <li>Please subscribe to the DataSketches Project Management 
+Committee mailing list private@datasketches.apache.org.</li>
+    </ul>
+  </li>
+</ul>
 
-<p>You have commit access to specific sections of the
-ASF repository, as follows:</p>
+<p>As a committer on the DataSketches Project you have commit access to the following DataSketches repositories as follows:</p>
 
-<p>[PROJECT] has various resources at:
-  https://svn.apache.org/repos/asf/[PROJECT]</p>
+<ul>
+  <li>https://github.com/apache/incubator-datasketches-java</li>
+  <li>https://github.com/apache/incubator-datasketches-cpp</li>
+  <li>https://github.com/apache/incubator-datasketches-hive</li>
+  <li>https://github.com/apache/incubator-datasketches-pig</li>
+  <li>https://github.com/apache/incubator-datasketches-postgresql</li>
+  <li>https://github.com/apache/incubator-datasketches-characterization</li>
+  <li>https://github.com/apache/incubator-datasketches-website</li>
+  <li>https://github.com/apache/incubator-datasketches-memory</li>
+  <li>https://github.com/apache/incubator-datasketches-vector</li>
+</ul>
 
-<p>The general “committers” at:
-https://svn.apache.org/repos/private/committers</p>
+<p>Please become familiar with the following ASF resources:</p>
 
-<p>You will probably need to ‘svn switch” previous checkouts to now use https, 
-for example:</p>
+<ul>
+  <li><a href="https://www.apache.org/dev/">Apache developer’s pages</a></li>
+  <li><a href="https://incubator.apache.org/guides/committer.html">Incubator committer guide</a></li>
+  <li><a href="https://gitbox.apache.org/setup/">Account Setup</a></li>
+</ul>
 
-<p>svn switch –relocate https://svn.apache.org/repos/asf/[PROJECT] https://svn.apache.org/repos/asf/[PROJECT]</p>
+<p>Naturally, if you have any questions be sure to ask us on the <a href="mailto:dev@datasketches.apache.org">dev@datasketches.apache.org</a> mailing list or on our slack channel.</p>
 
-<p>If you have any questions during this phase, then please
-see the following resources:</p>
+<p>ASF documentation is maintained by volunteers and hence can be out-of-date and incomplete - of course you can now help fix that!</p>
 
-<p>Apache developer’s pages: https://www.apache.org/dev/
-Incubator committer guide: https://incubator.apache.org/guides/committer.html</p>
+<p>A PMC member will announce your election on the dev list soon.</p>
 
-<p>Naturally, if you don’t understand anything be sure to ask us on the [PROJECT] dev mailing list. 
-Documentation is maintained by volunteers and hence can be out-of-date and incomplete - of course
-you can now help fix that.</p>
+<p>Regards,
+(PMC Member)
+—</p>
 
-<p>A PMC member will announce your election to the dev list soon.</p>
+<h2 id="adding-the-new-committer-to-the-datasketches-roster">Adding the New Committer to the DataSketches Roster</h2>
 
-<p>(for setup see <a href="https://gitbox.apache.org/setup/">https://gitbox.apache.org/setup/</a>)</p>
+<h3 id="ppmc">PPMC</h3>
+<p>Any PMC Member can add the new committer to the roster on the <a href="https://whimsy.apache.org/roster/ppmc/datasketches">DataSketches Roster</a> by clicking the <strong>ADD</strong> button at the top of the page.</p>
 
-<hr />
+<h3 id="pmc">PMC</h3>
+<p>(TBD)</p>
 
 <h2 id="committer-announce-template">Committer Announce Template</h2>
 <p>After the committer account is established.</p>
 
 <hr />
-<p>From: (who sends this?)
-To: dev@[PROJECT].apache.org
-Subject: new committer: ###Joe Bloggs</p>
+<p>From: PMC Member
+To: dev@datasketches.apache.org
+Subject: Please Welcome (new committer) as new committer</p>
 
-<p>The Project Management Committee (PMC) for Apache [PROJECT]
-has invited Joe Bloggs to become a committer and we are pleased 
-to announce that he has accepted.</p>
+<p>I am happy to announce that (new committer) has joined us as a new committer!</p>
 
-<p>(add specific details here)</p>
+<p>(add specific details here about new committer)</p>
 
-<p>Being a committer enables easier contribution to the
-project since there is no need to go via the patch
-submission process. This should enable better productivity.
-Being a PMC member enables assistance with the management
-and to guide the direction of the project.</p>
+<p>Regards,
+(PMC Member)</p>
 
 <hr />
 
