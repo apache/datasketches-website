@@ -504,346 +504,86 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h1 id="new-committer-process">New Committer Process</h1>
 
+<h1 id="pmc-chair-responsibilities">PMC Chair Responsibilities</h1>
+<h2 id="references">References</h2>
 <ul>
-  <li>Reference: <a href="https://community.apache.org/newcommitter.html#new-committer-process">New Committer Process</a></li>
+  <li><a href="https://svn.apache.org/repos/private/committers/board/committee-info.txt">Committee-info</a></li>
+  <li><a href="https://svn.apache.org/repos/private/committers/board/calendar.txt">Board Calendar</a></li>
+  <li><a href="http://www.apache.org/foundation/board/calendar.html">Reporting Calendar</a></li>
+  <li><a href="https://www.apache.org/dev/pmc.html">Project Management Committee Guide</a></li>
+  <li><a href="http://www.apache.org/dev/pmc.html#chair">PMC Chair Duties</a></li>
+  <li><a href="http://www.apache.org/dev/#pmc">PMC Duties</a></li>
+  <li><a href="https://cwiki.apache.org/confluence/display/jakarta/RoleOfChair">PMC Chair Role</a></li>
+  <li><a href="http://incubator.apache.org/guides/chair.html">PPMC Chair Guide</a></li>
+  <li></li>
 </ul>
 
-<h2 id="create-proposal-for-new-candidate">Create Proposal for New Candidate</h2>
+<h2 id="new-committers">New Committers</h2>
 <ul>
-  <li><strong><em>NOTE</em></strong> On <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</li>
+  <li>Ensure that new committers have appropriate access to project repositories.</li>
+  <li>Ensure that the New Committer Process is followed.</li>
+  <li>See <strong>Project Committer Management</strong></li>
 </ul>
 
-<p>Here are some topics to consider when writing your proposal about the candidate. Any one of which may be sufficient to invite someone to join us as a new committer.</p>
+<h2 id="notices-new--changed-pmc-members">Notices: New / Changed PMC Members</h2>
+<ul>
+  <li>The chair is responsible for sending the 72-hour NOTICE email to the board, then updating committee-info.txt and the LDAP committee group after the candidate accepts – see the <a href="https://www.apache.org/dev/pmc.html#newpmc">detailed procedure</a>.</li>
+</ul>
 
-<h3 id="interpersonal-skills">Interpersonal Skills</h3>
+<h2 id="monitor-board-minutes">Monitor Board Minutes</h2>
+<ul>
+  <li>Respond where appropriate to comments about our project by board members.</li>
+  <li>See <strong>Project Committer Management</strong></li>
+</ul>
+
+<h2 id="reports-to-the-board">Reports to the Board</h2>
+<h3 id="what">What</h3>
+<p>Some useful directions for what to include in a report can be found at:</p>
 
 <ul>
-  <li>Ability to work cooperatively with peers
+  <li><a href="https://www.apache.org/foundation/board/reporting">https://www.apache.org/foundation/board/reporting</a></li>
+</ul>
+
+<p>Other useful tools for writing and submitting board reports:</p>
+
+<ul>
+  <li><a href="https://whimsy.apache.org/board/agenda/">https://whimsy.apache.org/board/agenda/</a></li>
+  <li><a href="https://reporter.apache.org/">https://reporter.apache.org/</a></li>
+</ul>
+
+<h3 id="when">When</h3>
+<ul>
+  <li>Reference: <strong>Committee-info</strong></li>
+  <li>Monthly starting January, 2021 through March, 2021.</li>
+  <li>Thereafter, quarterly for months February, May, August, November.</li>
+  <li>Reports are due at least one full week prior to the Monthly Board meeting on the designated months.</li>
+  <li>Board meetings occur on the third Wednesday of each month at 20:00 UTC.
     <ul>
-      <li>Is this person willing to help peers to balance workload?</li>
-      <li>Does this person respond positively to criticism?</li>
-      <li>Does this person participate in the group decision-making processes?</li>
-    </ul>
-  </li>
-  <li>Ability and willingness to guide and mentor others
-    <ul>
-      <li>How clearly does this person communicate?</li>
-      <li>Does this person take pains to explain elementary concepts?</li>
-      <li>Does this person demonstrate patience and respect when answering user queries?</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="product-contributions">Product Contributions</h3>
-<p>This can be in a number of areas including:</p>
-
-<ul>
-  <li>PRs or code grants</li>
-  <li>Documentation</li>
-  <li>CI/CD automation</li>
-  <li>Build systems</li>
-  <li>Website structure and content</li>
-</ul>
-
-<h3 id="marketing-contributions">Marketing Contributions</h3>
-<ul>
-  <li>Evangelizing the use of sketches to solve problems</li>
-  <li>Organizing workshops, meetups</li>
-  <li>Doing or promoting tech talks with our team and with external scientists and engineers.</li>
-  <li>Writing blogposts and “what’s new” posts for community growth</li>
-</ul>
-
-<h3 id="scientific-contributions">Scientific Contributions</h3>
-
-<ul>
-  <li>Has this person authored research papers on sketching algorithms and contributed code that was developed as part of that research to our project?</li>
-  <li>Has this person provided substantial assistance to us in understanding the nuances 
-of a theoretical research paper on sketching and how it could be implemented in our library?</li>
-  <li>Has this person demonstrated a high level of interest in having their theoretical work implemented in our library even though this person may not be a fluent programmer?</li>
-</ul>
-
-<h3 id="community-contributions">Community Contributions</h3>
-
-<ul>
-  <li>Has this person participated in our mailing lists, Slack discussions, and GitHub issues?</li>
-  <li>Is this person known and respected by our active committers and PPMC?</li>
-  <li>Has exhibited a high level of interest and commitment to learn, 
-not only about our code base, but about the underlying 
-theory of sketching as well?</li>
-</ul>
-
-<h2 id="write-proposal-in-a-discuss-thread">Write Proposal in a DISCUSS thread</h2>
-<p><strong><em>NOTE</em></strong> On <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</p>
-
-<hr />
-<p>From: (PMC Member)<br />
-To: private@datasketches.apache.org <strong>ONLY! DO NOT CC!</strong><br />
-Subject: [DISCUSS] Proposal to invite <candidate> as new committer.</candidate></p>
-
-<p>Dear PMC,</p>
-
-<p>This is a proposal to offer to [Candidate] to join us as a committer on our project.</p>
-
-<p>(justification)</p>
-
-<p>This discussion will end on (month/ day at HH:MM [TimeZone]).</p>
-
-<p>If this discussion produces a positive consensus or no objections, I will use <a href="https://www.apache.org/foundation/voting.html">lazy consensus</a> and proceed to a vote.</p>
-
-<p>Regards,
-(PMC Member)</p>
-
-<hr />
-
-<h2 id="vote">Vote</h2>
-<h3 id="write-a-vote-email-similar-to-the-following">Write a vote email similar to the following:</h3>
-<p><strong><em>NOTE</em></strong> On <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</p>
-
-<hr />
-<p>From: (PMC Member)<br />
-To: private@datasketches.apache.org<br />
-Subject: [VOTE] [Candidate] as new Committer<br /></p>
-
-<p>(Summarize the results of the DISCUSS thread )</p>
-
-<p>The vote will be performed as follows:</p>
-
-<ul>
-  <li>Voting ends X days from today, i.e, midnight UTC on YYYY-MM-DD, <TimeZone>. (we recommend at least 3 days)</TimeZone></li>
-  <li>At least 3 (+1) PPMC votes and no (-1) votes.</li>
-  <li>All PMC members including Mentors can vote.</li>
-</ul>
-
-<p>Please vote accordingly:</p>
-
-<p>[ ] +1 approve<br />
-[ ] +0 no opinion<br />
-[ ] -1 disapprove with the reason</p>
-
-<p>Regards,<br />
-(PMC Member)</p>
-
-<hr />
-
-<h2 id="close-the-vote">Close the Vote</h2>
-<p><strong><em>NOTE</em></strong> On <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</p>
-
-<p>After sufficient votes have been obtained and the time as elapsed, issue an email similar to the following:</p>
-
-<hr />
-<p>Subject: [RESULT][VOTE] [Candidate] as new Committer</p>
-
-<p>The vote is now closed.</p>
-
-<p>Passed/Did not pass with X (+1) binding votes (list names), and Y 0 votes and Z -1 votes.</p>
-
-<p>Regards,
-(PPMC MEMBER)</p>
-
-<hr />
-
-<h2 id="committer-invite-example">Committer Invite Example</h2>
-<p><strong><em>NOTE</em></strong> CC’d to <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</p>
-
-<p>Write a letter to the candidate similar to the following:</p>
-
-<hr />
-<p>To: [Candidate]<br />
-CC: private@datasketches.apache.org<br />
-From: (PMC Member)<br />
-Subject: Invitation to become DataSketches Committer<br /></p>
-
-<p>Hello [Candidate]</p>
-
-<p>The datasketches(incubating) Project Management Committee (PMC) hereby offers
-you committer privileges to the project. These privileges are offered on
-the understanding that you’ll use them reasonably and with common sense. We
-like to work on trust rather than unnecessary constraints.</p>
-
-<p>Being a committer grants you write access to all of our repositories. In our normal code committing process we all use PRs and like to have at least one other committer or PMC member review the code before it is merged into <em>master</em>. However, for trivial edits (e.g. typos, documentation corrections) you may make commits on your own.</p>
-
-<p>Being a committer does not require you to participate any more than
-you already do. It does tend to make one even more involved as you will
-probably find that you spend more time with our project.  Of course, you can decline and
-instead remain as a contributor, participating as you do now.</p>
-
-<p>A. This personal invitation is a chance for you to accept or decline
-in private.  Either way, please let us know in reply to the
-<a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> address only.</p>
-
-<p>B. If you accept, you will receive a follow-up message with
-the next steps to establish you as a committer.</p>
-
-<p>Regards
-(PMC MEMBER)</p>
-
-<hr />
-
-<h2 id="if-candidate-accepts-followup-instructions">If Candidate Accepts, Followup Instructions</h2>
-<p><strong><em>NOTE</em></strong> CC’d to <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</p>
-
-<hr />
-<p>To: [Candidate]<br />
-CC: private@datasketches.apache.org<br />
-From: (PMC Member)<br />
-Subject: Welcome to the Apache DataSketches Project as a Committer!</p>
-
-<p>Dear (Candidate),</p>
-
-<p>Welcome to our project!  We are excited to have you join us.</p>
-
-<p>To complete your admission as a committer you need to register an <em>Individual Contributor License Agreement</em> (ICLA) with ASF.</p>
-
-<ul>
-  <li>Explanation of the ICLA: https://www.apache.org/licenses/contributor-agreements.html</li>
-  <li>ICLA form: https://www.apache.org/licenses/icla.pdf.
-    <ul>
-      <li>On the form choose a preferred Apache ID.  This will become your Apache email address, e.g. <ApacheID>@apache.org.  When your account gets set up you will be able to specify a forwarding email address for messages sent to your apache.org email. You can look to see if your preferred ID is already taken at &lt;https://people.apache.org/committer-index.html&gt;.</ApacheID></li>
-      <li>Under notify project write <em>Apache DataSketches</em></li>
-    </ul>
-  </li>
-  <li>Note that the ICLA contains your confidential information and should only be sent directly to <a href="mailto:secretary@apache.org">secretary@apache.org</a> and not CC’d to this private@ email address nor to me</li>
-  <li>In your letter to the secretary please request the secretary to notify <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> once the ICLA has been recorded.</li>
-  <li>Once you have sent your ICLA to the secretary please notify us on this private@ email address so that we can coordinate with the secretary in getting your account set up.</li>
-</ul>
-
-<p>After the ICLA has been recorded and your account created we will announce your joining the project on <a href="mailto:dev@datasketches.apache.org">dev@datasketches.apache.org</a>.</p>
-
-<p>The developer section of the website describes the roles and provides other resources:</p>
-<ul>
-  <li><a href="https://www.apache.org/foundation/how-it-works.html">https://www.apache.org/foundation/how-it-works.html</a></li>
-  <li><a href="https://www.apache.org/dev/">https://www.apache.org/dev/</a></li>
-</ul>
-
-<p>The incubator also has some useful information for new committers in incubating projects:</p>
-<ul>
-  <li><a href="https://incubator.apache.org/guides/committer.html">https://incubator.apache.org/guides/committer.html</a></li>
-  <li><a href="https://incubator.apache.org/guides/ppmc.html">https://incubator.apache.org/guides/ppmc.html</a></li>
-</ul>
-
-<p>Just as before you became a committer, participation in any ASF community
-requires adherence to the ASF Code of Conduct:</p>
-<ul>
-  <li><a href="https://www.apache.org/foundation/policies/conduct.html">https://www.apache.org/foundation/policies/conduct.html</a></li>
-</ul>
-
-<p>Again, welcome to the DataSketches project!</p>
-
-<p>Best Regards,<br />
-(PMC Member)</p>
-
-<hr />
-
-<h2 id="sample-letter-from-secretary-confirming-filing-of-the-icla">Sample Letter from Secretary confirming filing of the ICLA</h2>
-<p><strong><em>NOTE</em></strong> CC’d to <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</p>
-
-<hr />
-<p>From: Matt Sicker (secretary)<br />
-To: private@datasketches.apache.org<br />
-Subject: [FORM] Account Request - candidate@gxyz.com: [Candidate]<br />
-Date:<br />
-List: private@datasketches.apache.org</p>
-
-<p>Prospective userid: 123456<br />
-Full Name: [Candidate]<br />
-Forwarding emal address:  blah<br /></p>
-
-<hr />
-
-<h2 id="account-creation">Account Creation</h2>
-<p><strong><em>NOTE</em></strong> CC’d to <a href="mailto:private@datasketches.apache.org">private@datasketches.apache.org</a> ONLY!</p>
-
-<p>If the ICLA identifies the project and a valid Apache id, and the [RESULT][VOTE] message has been posted to the PMC private list, then the account creation request is made by the secretary or assistant who files the ICLA.</p>
-
-<p>Otherwise, new account requests will only be accepted from PMC chairs and ASF members. Projects in incubation can ask their Mentors to make the account request for them.</p>
-
-<ul>
-  <li>See <a href="https://www.apache.org/dev/pmc.html#newcommitter">https://www.apache.org/dev/pmc.html#newcommitter</a></li>
-</ul>
-
-<h2 id="completing-the-new-committer-account-setup">Completing the New Committer Account Setup</h2>
-<p>After the committer account is established.</p>
-
-<hr />
-
-<p>To: private@datasketches.apache.org, (new committer)<br />
-Subject: Completing the setup of your Account</p>
-
-<p>Hello (new committer),<br />
-The ASF Infrastructure team has set up your committer account with 
-the username ‘blah’ with an Apache email of <blah>@apache.org.
-The next portion of the setup you must do.</blah></p>
-
-<p>Please follow the instructions at the <a href="https://infra.apache.org/new-committers-guide.html">Guide For New Project Committers</a> to set up your SSH,
-svn password, svn configuration, mail forwarding, GitHub ID, etc.</p>
-
-<ul>
-  <li>For new PMC members only:
-    <ul>
-      <li>Please subscribe to the DataSketches Project Management 
-Committee mailing list private@datasketches.apache.org.</li>
+      <li>Reference: <strong>Board Calendar</strong></li>
     </ul>
   </li>
 </ul>
 
-<p>As a committer on the DataSketches Project you will have commit access to the following DataSketches repositories as follows:</p>
+<h3 id="where">Where</h3>
+<p>The content should be committed to the meeting agenda in the board directory
+in the foundation repository, trying to keep a similar format to the others.
+This can be found at:</p>
 
 <ul>
-  <li>https://github.com/apache/incubator-datasketches-java</li>
-  <li>https://github.com/apache/incubator-datasketches-cpp</li>
-  <li>https://github.com/apache/incubator-datasketches-hive</li>
-  <li>https://github.com/apache/incubator-datasketches-pig</li>
-  <li>https://github.com/apache/incubator-datasketches-postgresql</li>
-  <li>https://github.com/apache/incubator-datasketches-characterization</li>
-  <li>https://github.com/apache/incubator-datasketches-website</li>
-  <li>https://github.com/apache/incubator-datasketches-memory</li>
-  <li>https://github.com/apache/incubator-datasketches-vector</li>
-  <li>https://github.com/apache/incubator-datasketches-server</li>
+  <li><a href="https://svn.apache.org/repos/private/foundation/board">https://svn.apache.org/repos/private/foundation/board</a></li>
 </ul>
 
-<p>Please become familiar with the following ASF resources:</p>
+<h3 id="subscribe-to-board-mailing-list-if-desired">Subscribe to <a href="board@apache.org">Board Mailing List</a> if desired.</h3>
 
+<h2 id="record-maintenance">Record Maintenance</h2>
 <ul>
-  <li><a href="https://www.apache.org/dev/">Apache developer’s pages</a></li>
-  <li><a href="https://gitbox.apache.org/setup/">Account Setup</a> (This is the part only you can do.)</li>
+  <li>Reference: <strong>Committee-info</strong></li>
+  <li>LDAP: <a href="https://whimsy.apache.org/roster/committee/datasketches">Roster</a></li>
+  <li><a href="https://whimsy.apache.org/roster/committee/datasketches">https://whimsy.apache.org/roster/committee/datasketches</a></li>
+  <li><a href="https://incubator.apache.org/projects/datasketches.html">https://incubator.apache.org/projects/datasketches.html</a></li>
+  <li><a href="https://reporter.apache.org/?datasketches">Apache Committee Report Helper</a></li>
 </ul>
-
-<p>Once this is completed, I will send you an invite to our ASF slack channel (with your ASF account) and will announce your joining our project on our dev@ list.</p>
-
-<p>ASF documentation is maintained by volunteers and hence can be out-of-date and incomplete, so we beg your understanding, and, of course, perhaps you can help us fix that!</p>
-
-<p>Naturally, if you have any questions be sure to ask us on the <a href="mailto:dev@datasketches.apache.org">dev@datasketches.apache.org</a> mailing list or on our slack channel.</p>
-
-<p>Regards,
-(PMC Member)
-—</p>
-
-<h2 id="adding-the-new-committer-to-the-datasketches-roster">Adding the New Committer to the DataSketches Roster</h2>
-
-<h3 id="ppmc">PPMC</h3>
-<p>Any PMC Member can add the new committer to the roster on the <a href="https://whimsy.apache.org/roster/ppmc/datasketches">DataSketches Roster</a> by clicking the <strong>ADD</strong> button at the top of the page.</p>
-
-<h3 id="pmc">PMC</h3>
-<p>(TBD)</p>
-
-<h2 id="committer-announce-template">Committer Announce Template</h2>
-<p>After the committer account is established.</p>
-
-<hr />
-<p>From: PMC Member
-To: dev@datasketches.apache.org
-Subject: Please Welcome (new committer) as new committer</p>
-
-<p>I am happy to announce that (new committer) has joined us as a new committer!</p>
-
-<p>(add specific details here about new committer)</p>
-
-<p>Regards,
-(PMC Member)</p>
-
-<hr />
 
 
       </div> <!-- End content -->
