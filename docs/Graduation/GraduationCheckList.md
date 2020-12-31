@@ -110,17 +110,14 @@ By consensus, Lee Rhodes has been nominated to be the PMC Chair [Thread](https:/
     * [DISCUSS Thread](https://lists.apache.org/thread.html/r65f2c40c15a35026f4bf2e270051cfffed1b47c78c5685e7dd353d2a%40%3Cgeneral.incubator.apache.org%3E) 
 
 
-## VOTE Graduation on general@incubator.apache.org -- IN PROCESS
+## VOTE Graduation on general@incubator.apache.org -- Done
 * Achieve positive IPMC graduation recommendation vote
     * [VOTE Thread](https://lists.apache.org/thread.html/rf3eaebe1e2430aa85d0b69f3c91debc6c52e8490e59c41b1206dc4fb%40%3Cgeneral.incubator.apache.org%3E)
 
-# The Following Items are TBD
-
-## Write Proposal Letter to Board
+## Write Proposal Letter to Board -- Done
 * <https://incubator.apache.org/guides/graduation.html>
 
 ---
-From: (PMC Chair)<br>
 To: board@apache.org<br>
 CC: <datasketches-private@incubator.apache.org><br>
 Subject: Proposed Resolution: Establish Apache DataSketches as TLP
@@ -130,9 +127,21 @@ Dear Apache Board,
 Apache DataSketches is ready for graduation out of the incubator. So, please
 consider the draft resolution below at your next meeting.
 
-<thank you, best regards, personal note if you wish, etc etc>
+This has been an amazing journey and we have learned a great deal not only about
+ASF and the *Apache Way*, but about ourselves as well and how to build an even
+stronger community. 
 
-(PMC Chair)
+Many thanks to the Mentors and IPMC members who have given us guidance and support
+along the way.  I want to say special thank-yous to Dave Fisher and Justin Mclean
+who have provided substantial coaching for me and the rest of our team, and to
+Furkan Kamaci, who has been there for us for every code release (over 17) and vote
+since the start of our Incubation.
+
+
+Best Regards,
+
+Lee Rhodes,<br>
+PMC Chair Elect, Committer
 
 
 References:
@@ -140,6 +149,15 @@ References:
 * Home: <https://datasketches.apache.org>
 * Vote by [project DataSketches:](https://lists.apache.org/thread.html/r922e2a10e53b4eabdeb089336828c8c256277c9fd5ab80a3a13329d0%40%3Cdev.datasketches.apache.org%3E)
 * Vote by [Incubator:](https://lists.apache.org/thread.html/rf3eaebe1e2430aa85d0b69f3c91debc6c52e8490e59c41b1206dc4fb%40%3Cgeneral.incubator.apache.org%3E)
+    * Summary: 8 (+1 binding) votes, no 0 nor -1 votes
+        * Dave Fisher +1 (binding)
+        * Kevin Ratnasekera +1 (binding)
+        * Ryan Blue +1 (binding)
+        * Furkan Kamaci +1! (binding)
+        * Liang Chen +1 (binding)
+        * Justin Mclean +1 (binding)
+        * Byung-Gon Chun +1 (binding)
+        * Evans Ye +1 (binding)
 
 Resolution draft:
 
@@ -214,6 +232,8 @@ Resolution draft:
 <PMC Chair e-mail sig, if you have one>
 
 ---
+
+# The Following Items are TBD
 
 ## Acceptance of Resolution by the Board
 

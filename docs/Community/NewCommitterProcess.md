@@ -127,7 +127,7 @@ Regards,<br>
 After sufficient votes have been obtained and the time as elapsed, issue an email similar to the following:
 
 ---
-Subject: [RESULT] Re: [VOTE] [Candidate] as new Committer
+Subject: [RESULT][VOTE] [Candidate] as new Committer
 
 The vote is now closed.
 
@@ -253,10 +253,12 @@ After the committer account is established.
 ---
 
 To: private@datasketches.apache.org, (new committer)<br>
-Subject: account setup for (new committer)
+Subject: Completing the setup of your Account
 
-Hello (new committer), the ASF Infrastructure has set up your
-committer account as the username 'blah' with an Apache email of <blah>@apache.org.
+Hello (new committer),<br>
+The ASF Infrastructure team has set up your committer account with 
+the username 'blah' with an Apache email of <blah>@apache.org.
+The next portion of the setup you must do.
 
 Please follow the instructions at the [Guide For New Project Committers](https://infra.apache.org/new-committers-guide.html) to set up your SSH,
 svn password, svn configuration, mail forwarding, GitHub ID, etc.
@@ -265,7 +267,7 @@ svn password, svn configuration, mail forwarding, GitHub ID, etc.
     * Please subscribe to the DataSketches Project Management 
 Committee mailing list private@datasketches.apache.org.
 
-As a committer on the DataSketches Project you have commit access to the following DataSketches repositories as follows:
+As a committer on the DataSketches Project you will have commit access to the following DataSketches repositories as follows:
 
 * https://github.com/apache/incubator-datasketches-java
 * https://github.com/apache/incubator-datasketches-cpp
@@ -276,18 +278,18 @@ As a committer on the DataSketches Project you have commit access to the followi
 * https://github.com/apache/incubator-datasketches-website
 * https://github.com/apache/incubator-datasketches-memory
 * https://github.com/apache/incubator-datasketches-vector
+* https://github.com/apache/incubator-datasketches-server
 
 Please become familiar with the following ASF resources:
 
 * [Apache developer's pages](https://www.apache.org/dev/)
-* [Incubator committer guide](https://incubator.apache.org/guides/committer.html)
-* [Account Setup](https://gitbox.apache.org/setup/)
+* [Account Setup](https://gitbox.apache.org/setup/) (This is the part only you can do.)
+
+Once this is completed, I will send you an invite to our ASF slack channel (with your ASF account) and will announce your joining our project on our dev@ list.
+
+ASF documentation is maintained by volunteers and hence can be out-of-date and incomplete, so we beg your understanding, and, of course, perhaps you can help us fix that!
 
 Naturally, if you have any questions be sure to ask us on the <dev@datasketches.apache.org> mailing list or on our slack channel.
-
-ASF documentation is maintained by volunteers and hence can be out-of-date and incomplete - of course you can now help fix that!
-
-A PMC member will announce your election on the dev list soon.
 
 Regards,
 (PMC Member)
