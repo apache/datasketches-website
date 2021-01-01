@@ -151,7 +151,7 @@ Subject: Invitation to become DataSketches Committer<br>
 
 Hello [Candidate]
 
-The datasketches(incubating) Project Management Committee (PMC) hereby offers
+The datasketches Project Management Committee (PMC) hereby offers
 you committer privileges to the project. These privileges are offered on
 the understanding that you'll use them reasonably and with common sense. We
 like to work on trust rather than unnecessary constraints.
@@ -205,7 +205,7 @@ The developer section of the website describes the roles and provides other reso
 * <https://www.apache.org/foundation/how-it-works.html>
 * <https://www.apache.org/dev/>
 
-The incubator also has some useful information for new committers in incubating projects:
+The Apache Incubator project also has some useful information for new committers:
 * <https://incubator.apache.org/guides/committer.html>
 * <https://incubator.apache.org/guides/ppmc.html>
 
@@ -242,7 +242,7 @@ Forwarding emal address:  blah<br>
 
 If the ICLA identifies the project and a valid Apache id, and the [RESULT][VOTE] message has been posted to the PMC private list, then the account creation request is made by the secretary or assistant who files the ICLA.
 
-Otherwise, new account requests will only be accepted from PMC chairs and ASF members. Projects in incubation can ask their Mentors to make the account request for them.
+Otherwise, new account requests will only be accepted from PMC chairs and ASF members. 
 
 * See <https://www.apache.org/dev/pmc.html#newcommitter>
  
@@ -269,16 +269,16 @@ Committee mailing list private@datasketches.apache.org.
 
 As a committer on the DataSketches Project you will have commit access to the following DataSketches repositories as follows:
 
-* https://github.com/apache/incubator-datasketches-java
-* https://github.com/apache/incubator-datasketches-cpp
-* https://github.com/apache/incubator-datasketches-hive
-* https://github.com/apache/incubator-datasketches-pig
-* https://github.com/apache/incubator-datasketches-postgresql
-* https://github.com/apache/incubator-datasketches-characterization
-* https://github.com/apache/incubator-datasketches-website
-* https://github.com/apache/incubator-datasketches-memory
-* https://github.com/apache/incubator-datasketches-vector
-* https://github.com/apache/incubator-datasketches-server
+* https://github.com/apache/datasketches-java
+* https://github.com/apache/datasketches-cpp
+* https://github.com/apache/datasketches-hive
+* https://github.com/apache/datasketches-pig
+* https://github.com/apache/datasketches-postgresql
+* https://github.com/apache/datasketches-characterization
+* https://github.com/apache/datasketches-website
+* https://github.com/apache/datasketches-memory
+* https://github.com/apache/datasketches-vector
+* https://github.com/apache/datasketches-server
 
 Please become familiar with the following ASF resources:
 

@@ -21,7 +21,7 @@ layout: doc_page
 -->
 # Downloads
 
-## [Signing Keys](https://downloads.apache.org/incubator/datasketches/KEYS)
+## [Signing Keys](https://downloads.apache.org/datasketches/KEYS)
 It is essential that you verify the integrity of release downloads. See [instructions here.](https://www.apache.org/dyn/closer.cgi#verify)
 
 ## Latest Source Zip Files
@@ -32,11 +32,11 @@ It is essential that you verify the integrity of release downloads. See [instruc
 From [Maven Central](https://search.maven.org/search?q=g:%20org.apache.datasketches).
 
 ## Enabling Python
-* First download the C++ core above, then read the [Python Installation Instructions](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)
+* First download the C++ core above, then read the [Python Installation Instructions](https://github.com/apache/datasketches-cpp/tree/master/python)
 
 ## Download Earlier Versions
 
-* **[ZIP Files](http://archive.apache.org/dist/incubator/datasketches/java/)**
+* **[ZIP Files](http://archive.apache.org/dist/datasketches/java/)**  OR **[ZIP Files](http://archive.apache.org/dist/incubator/datasketches/java/)**
 * **[Java Jar Files](https://search.maven.org/search?q=g:%20org.apache.datasketches)**
 
 ## Version Numbers
@@ -48,8 +48,8 @@ Apache DataSketches uses [semantic versioning](https://semver.org/). Version num
 
 Note: we maintain *forward binary compatiblity* of a specific sketch type.  For example, a Java Theta Sketch stored as a binary image using version 0.1.0 (Aug, 2015) can be merged into a C++ Theta Union version 1.2.0 (Jan, 2020).  The languages can be swapped in this scenario, but the versions cannot be. 
 
-The zip files downloaded from [incubator-datasketches-xxx](https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches)
-include a version number in the name, as in _apache-datasketches-java-1.1.0-incubating-src.zip_. 
+The zip files downloaded from [datasketches-xxx](https://www.apache.org/dyn/closer.cgi?path=/datasketches)
+include a version number in the name, as in _apache-datasketches-java-1.1.0-src.zip_. 
 This same number is also in the top section of the pom.xml file.
 
 If you are developing using Maven and want to use, for example, datasketches-java, add the following dependencies to your pom.xml file:
@@ -58,7 +58,7 @@ If you are developing using Maven and want to use, for example, datasketches-jav
 <dependency>
   <groupId>org.apache.datasketches</groupId>
   <artifactId>datasketches-java</artifactId>
-  <version>1.2.0-incubating</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 
@@ -74,7 +74,7 @@ digit will be incremented.  The <b>incremental</b> digit will only be used for b
 As stated above, the <b>major</b> digit is being reserved for major refactorings of the library where backward API 
 compatibility may not be guaranteed. 
 
-For the repositories that depend on java core, such as <i>incubator-datasketches-hive</i>, 
+For the repositories that depend on java core, such as <i>datasketches-hive</i>, 
 the version number may be incremented just to be in sync with the java core repository, 
 and may not reflect any actual code changes other than a change in the pom.xml to reflect the new 
 dependency. 

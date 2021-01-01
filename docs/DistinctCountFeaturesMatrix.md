@@ -71,6 +71,6 @@ Other Operations and Modes | Jaccard Index | Y |  |  |   |
 
 ____
  <sup>1</sup> Space Accuracy Merit (Lower is better) = b * C^2 = b * K * RSE^2<br>
- <sup>2</sup> See [Python Install Instructions](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)<br>
+ <sup>2</sup> See [Python Install Instructions](https://github.com/apache/datasketches-cpp/tree/master/python)<br>
 
  

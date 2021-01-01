@@ -38,7 +38,7 @@ These plots are what we call *pitch-fork* plots. The X-axis is the number of uni
 The colored curves represent different quantile contours of the empirical error distribution. The orange and green curves are the contours corresponding to +/- one standard deviation from the mean error, and which define the 68% confidence bounds. The red and blue curves are the contours at +/- two standard deviations and define the 95.4% confidence bounds. The brown and purple curves are the contours at +/- three standard deviations and define the 99.7% confidence bounds. The mean (gray) and median (black) overlap each other and hug the axis close to zero. 
 
 ### Introduction to Detailed Accuracy Measurements
-Measuring the error properties of these stochastic algorithms is tricky and requires a great deal of thought into the design of the program that measures it. Getting smooth-looking plots requires many tens of thousands of trials, which even with fast CPUs requires a lot of time.  The code used to produce the data for the plots in this paper can be found on the [characterization repository](https://github.com/apache/incubator-datasketches-characterization)
+Measuring the error properties of these stochastic algorithms is tricky and requires a great deal of thought into the design of the program that measures it. Getting smooth-looking plots requires many tens of thousands of trials, which even with fast CPUs requires a lot of time.  The code used to produce the data for the plots in this paper can be found on the [characterization repository](https://github.com/apache/datasketches-characterization)
 
 For accuracy purposes, the *HllSketch* sketch is configured with one parameter, *Log_2(K)* which we abbreviate as *LgK*. This defines the number of bins of the final HyperLogLog-Array (HLL-Array)\[6\] mode, and defines the bounds[7] on the accuracy of the sketch as well as its ultimate size. Thus, specifying a *LgK = 12*, means that the final HyperLogLog mode of the sketch will have *k = 2<sup>12</sup> = 4096* bins. A sketch with *LgK = 21* will ultimately have *k =2,097,152* bins, which is a very large sketch.
 
@@ -225,7 +225,7 @@ Depending on the chosen configuration, the *HllSketch* can be from one to almost
 
 ****
 
-* [1] [DataSketches HllSketch GitHub](https://github.com/apache/incubator-datasketches-java/tree/master/src/main/java/org/apache/datasketches/hll)
+* [1] [DataSketches HllSketch GitHub](https://github.com/apache/datasketches-java/tree/master/src/main/java/org/apache/datasketches/hll)
 * [2] [DataSketches HllSketch JavaDocs](/api/java/snapshot/apidocs/index.html)
 * [3] [HyperLogLogPlus GitHub](https://github.com/addthis/stream-lib/blob/master/src/main/java/com/clearspring/analytics/stream/cardinality/HyperLogLogPlus.java)
 * [4] [Google: HyperLogLog in Practice: Algorithmic Engineering of a State of The Art Cardinality Estimation Algorithm](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40671.pdf)

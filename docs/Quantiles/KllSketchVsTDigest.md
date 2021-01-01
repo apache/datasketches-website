@@ -119,4 +119,4 @@ The input for the following speed measurements was generated using uniform rando
 
 ## Source code
 
-The code to reproduce these measurements is available in the <a href="https://github.com/apache/incubator-datasketches-characterization">Datasketches/characterization repository</a>
+The code to reproduce these measurements is available in the <a href="https://github.com/apache/datasketches-characterization">Datasketches/characterization repository</a>

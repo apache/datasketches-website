@@ -29,7 +29,7 @@ layout: doc_page
 * [PMC Chair Duties](http://www.apache.org/dev/pmc.html#chair)
 * [PMC Duties](http://www.apache.org/dev/#pmc)
 * [PMC Chair Role](https://cwiki.apache.org/confluence/display/jakarta/RoleOfChair)
-* [PPMC Chair Guide](http://incubator.apache.org/guides/chair.html)
+* [Incubator PPMC Chair Guide](http://incubator.apache.org/guides/chair.html)
 * 
 
 
@@ -67,7 +67,7 @@ Other useful tools for writing and submitting board reports:
 ### Where
 The content should be committed to the meeting agenda in the board directory
 in the foundation repository, trying to keep a similar format to the others.
-This can be found at:
+Exmaples can be found at the following link. See past "board_agenda_YYYY_MM_DD.txt". 
 
 * <https://svn.apache.org/repos/private/foundation/board>
 
@@ -75,9 +75,8 @@ This can be found at:
 
 ## Record Maintenance
 * Reference: **Committee-info**
-* LDAP: [Roster](https://whimsy.apache.org/roster/committee/datasketches)
-* <https://whimsy.apache.org/roster/committee/datasketches>
-* <https://incubator.apache.org/projects/datasketches.html>
+* LDAP: [DataSketches Roster](https://whimsy.apache.org/roster/committee/datasketches)
+* [DataSketches Incubation Status](https://incubator.apache.org/projects/datasketches.html)
 * [Apache Committee Report Helper](https://reporter.apache.org/?datasketches)
 
 

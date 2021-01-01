@@ -29,7 +29,7 @@ Compare this study with the DataSketches [Quantiles StreamA Study](/docs/Quantil
 
 ## Versions
 
-* Druid <a href="https://github.com/apache/incubator-druid/blob/master/extensions-core/histogram/src/main/java/org/apache/druid/query/aggregation/histogram/ApproximateHistogram.java">ApproximateHistogram.java Nov 6, 2018</a>
+* Druid <a href="https://github.com/apache/druid/blob/master/extensions-core/histogram/src/main/java/org/apache/druid/query/aggregation/histogram/ApproximateHistogram.java">ApproximateHistogram.java Nov 6, 2018</a>
 
 
 ## The Paper

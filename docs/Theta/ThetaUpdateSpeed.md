@@ -63,7 +63,7 @@ It needs to be pointed out that these tests were designed to measure the maximum
 Very few systems would actually be able to feed a single sketch at this rate so these plots represent an upper bound of performance, and not as realistic update rates in more complex systems environments. Nonetheless, this demonstrates that the sketches would consume very little of an overall system's budget for updating, if there was one, and are quite suitable for real-time streams.
 
 The graphs on this page were generated using the utilities in the 
-[Characterization Repository](https://github.com/apache/incubator-datasketches-characterization).
+[Characterization Repository](https://github.com/apache/datasketches-characterization).
 There is some more documentation with the code on using these tools if you wish to re-run these characterization tests yourself.
 
 
