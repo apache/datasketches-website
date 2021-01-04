@@ -32,16 +32,16 @@ exclude:
 
 docs_dir: '/docs'
 docs_img_dir: '/docs/img'
-docs_pdf_dir: 'https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf'
+docs_pdf_dir: 'https://github.com/apache/datasketches-website/tree/master/docs/pdf'
 
 java_api_snapshot: 'https://datasketches.apache.org/api/java/snapshot/apidocs/index.html'
 pig_api_snapshot: 'https://datasketches.apache.org/api/pig/snapshot/apidocs/index.html'
 hive_api_snapshot: 'https://datasketches.apache.org/api/hive/snapshot/apidocs/index.html'
 memory_api_snapshot: 'https://datasketches.apache.org/api/memory/snapshot/apidocs/index.html'
 
-java_readme: 'https://github.com/apache/incubator-datasketches-java/blob/master/README.md'
-pig_readme: 'https://github.com/apache/incubator-datasketches-pig/blob/master/README.md'
-hive_readme: 'https://github.com/apache/incubator-datasketches-hive/blob/master/README.md'
+java_readme: 'https://github.com/apache/datasketches-java/blob/master/README.md'
+pig_readme: 'https://github.com/apache/datasketches-pig/blob/master/README.md'
+hive_readme: 'https://github.com/apache/datasketches-hive/blob/master/README.md'
 
 druid_datasketches: 'https://github.com/apache/druid/tree/master/extensions-core/datasketches'
 

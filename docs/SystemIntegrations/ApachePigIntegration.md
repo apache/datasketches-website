@@ -23,7 +23,7 @@ layout: doc_page
 
 * [Download](https://datasketches.apache.org/docs/Community/Downloads.html)
 
-* Build and Install, See [Pig README](https://github.com/apache/incubator-datasketches-pig)
+* Build and Install, See [Pig README](https://github.com/apache/datasketches-pig)
 
 * [CPC Example](https://datasketches.apache.org/docs/CPC/CpcPigExample.html)
 

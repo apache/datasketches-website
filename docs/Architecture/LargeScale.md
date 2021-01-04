@@ -29,7 +29,7 @@ layout: doc_page
 * [C++ Core](https://datasketches.apache.org/docs/Community/Downloads.html)
     * The C++ core is written as all header files allowing easy integration into a wide range of operating system environments. 
 
-* [Python](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)
+* [Python](https://github.com/apache/datasketches-cpp/tree/master/python)
 	* The C++ Core is extended using the python binding library [pybind11](https://github.com/pybind/pybind11) enabling high performance operation from Python.
 
 ### Cross Language Binary Compatibility
@@ -59,10 +59,10 @@ layout: doc_page
 * <b>Hash Seed Handling</b>. Additional protection for managing hash seeds which is 
 particularly important when processing sensitive user identifiers. Available with Theta Sketches.
 
-* <a href="{{site.docs_dir}}/Theta/ThetaPSampling.html"><b>Pre-Sampling</b></a>. Built-in up-front sampling for cases where additional 
+* [Pre-Sampling]({{site.docs_dir}}/Theta/ThetaPSampling.html). Built-in up-front sampling for cases where additional 
 contol is required to limit overall memory consumption when dealing with millions of sketches. Available with Theta Sketches.
 
-* <a href="{{site.docs_dir}}/Memory/MemoryPackage.html"><b>Memory Package</b></a>. 
+* [Memory Package]({{site.docs_dir}}/Memory/MemoryPackage.html). 
 Large query systems often require their own heaps outside the JVM in order to better manage garbage collection latencies. 
 The Java sketches utilize this powerful package. 
 

@@ -25,7 +25,7 @@ The goal of this article is to compare the HLL sketch implemented in this librar
 
 ## Versions
 
-* HLL sketch form <a href="https://github.com/apache/incubator-datasketches-java">Java Version 0.11.1, April 20, 2018</a>
+* HLL sketch form <a href="https://github.com/apache/datasketches-java">Java Version 0.11.1, April 20, 2018</a>
 * Druid HyperLogLogCollector from <a href="https://github.com/apache/druid">Apache Druid Version 0.12.0, March 8, 2018</a>
 
 ## Size
@@ -85,7 +85,7 @@ This slightly larger error is still within the RSE Specification of error define
 
 ## Source code
 
-The code to reproduce these measurements is available in the <a href="https://github.com/apache/incubator-datasketches-characterization">Datasketches/characterization repository</a>
+The code to reproduce these measurements is available in the <a href="https://github.com/apache/datasketches-characterization">Datasketches/characterization repository</a>
 
 ## DataSketches HLL Sketch Druid module
 

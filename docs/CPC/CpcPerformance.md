@@ -21,7 +21,7 @@ layout: doc_page
 -->
 # Performance of CPC sketch
 
-The code used to produce the data for these plots can be found in the [characterization repository](https://github.com/apache/incubator-datasketches-characterization)
+The code used to produce the data for these plots can be found in the [characterization repository](https://github.com/apache/datasketches-characterization)
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/cpc/CPC_sketch_accuracy_lgk12.png"/>
 

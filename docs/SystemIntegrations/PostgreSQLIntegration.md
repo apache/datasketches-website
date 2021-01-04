@@ -23,5 +23,5 @@ layout: doc_page
 
 * [Download](https://datasketches.apache.org/docs/Community/Downloads.html)
 
-* Install, See [PostgreSQL README](https://github.com/apache/incubator-datasketches-postgresql)
+* Install, See [PostgreSQL README](https://github.com/apache/datasketches-postgresql)
 

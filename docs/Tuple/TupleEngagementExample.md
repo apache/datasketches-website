@@ -63,7 +63,7 @@ Once we have our 30 day sketches, we merge all 30 sketches together into one fin
 
 ## The IntegerSketch and Helper classes
 
-To help us code our example we will leverage the [IntegerSketch Package](https://github.com/apache/incubator-datasketches-java/tree/master/src/main/java/org/apache/datasketches/tuple/aninteger) from the library. This package consists of 5 classes, the _IntegerSketch_ and 4 helper classes, all of which extend generic classes of the parent _tuple_ package.  Normally, the user/developer would develop these 5 classes to solve a particular analysis problem. These 5 classes can serve as an example of how to create your own Tuple Sketch solutions and we will use them to solve our customer engagement problem.
+To help us code our example we will leverage the [IntegerSketch Package](https://github.com/apache/datasketches-java/tree/master/src/main/java/org/apache/datasketches/tuple/aninteger) from the library. This package consists of 5 classes, the _IntegerSketch_ and 4 helper classes, all of which extend generic classes of the parent _tuple_ package.  Normally, the user/developer would develop these 5 classes to solve a particular analysis problem. These 5 classes can serve as an example of how to create your own Tuple Sketch solutions and we will use them to solve our customer engagement problem.
 
 Please refer to the [Tuple Overview](/docs/Tuple/TupleOverview.html) section on this website for a quick review of how the Tuple Sketch works. 
 
@@ -177,7 +177,7 @@ This class is only called by the underlying sketch code when a new key-value pai
 ### IntegerSummaryDeserializer class
 This class is only called by the underlying sketch code when deserializing a sketch and its summaries from a stored image.  We will not be using this class in our example.
 
-## The [EngagementTest](https://github.com/apache/incubator-datasketches-java/blob/master/src/test/java/org/apache/datasketches/tuple/aninteger/EngagementTest.java) class
+## The [EngagementTest](https://github.com/apache/datasketches-java/blob/master/src/test/java/org/apache/datasketches/tuple/aninteger/EngagementTest.java) class
 Note 1: the version in the GitHub master is more up-to-date than the version of this class in the 1.1.0-incubating release. This tutorial references the code in master.
 
 Note 2: You can run the following _computeEngagementHistogram()_ method as a test, but in order to see the output you will need to un-comment the printf(...) statement at the very end of the class.

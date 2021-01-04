@@ -33,7 +33,7 @@ users: https://lists.apache.org/list.html?users@datasketches.apache.org
 There are many ways that are available for our community to communicate with each other and directly with our developers.  Please review the following for methods that meet your needs.
 
 ### [Users Mailing List]({{page.users}}) 
-This is a great place for all users (new and experienced) to ask general questions about the library, its general capabilities, and where to get help and find more information.  This is also a great place to give the developers general feedback about the library. If you like what you see, please give us a [Star (Java)](https://github.com/apache/incubator-datasketches-java) and/or [Star (C++/Python)](https://github.com/apache/incubator-datasketches-cpp) If you have general suggestions on how we can improve we would like to hear from you.  All of our developers follow this list and all sincere questions and comments will get a response.
+This is a great place for all users (new and experienced) to ask general questions about the library, its general capabilities, and where to get help and find more information.  This is also a great place to give the developers general feedback about the library. If you like what you see, please give us a [Star (Java)](https://github.com/apache/datasketches-java) and/or [Star (C++/Python)](https://github.com/apache/datasketches-cpp) If you have general suggestions on how we can improve we would like to hear from you.  All of our developers follow this list and all sincere questions and comments will get a response.
     
 * To subscribe send an empty email to [users-subscribe@datasketches.apache.org](mailto:users-subscribe@datasketches.apache.org).
 * To unsubscribe send an empty email to [users-unsubscribe@datasketches.apache.org](mailto:users-unsubscribe@datasketches.apache.org).
@@ -63,7 +63,7 @@ We are also open to the submission of entirely new sketch algorithms.  If you ha
 ### What to work on
 * **[GitHub Components]({{site.docs_dir}}/Architecture/Components.html):** Our library is made up of components that are partitioned into GitHub repositories. If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository.
 
-* We have three TODO lists for [Java](https://github.com/apache/incubator-datasketches-java/projects/1), [C++](https://github.com/apache/incubator-datasketches-cpp/projects/1) and the [Website](https://github.com/apache/incubator-datasketches-website/projects/1). Please check these out for potential contribution!
+* We have three TODO lists for [Java](https://github.com/apache/datasketches-java/projects/1), [C++](https://github.com/apache/datasketches-cpp/projects/1) and the [Website](https://github.com/apache/datasketches-website/projects/1). Please check these out for potential contribution!
 
 ### Getting your proposed changes accepted
 

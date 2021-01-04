@@ -56,7 +56,7 @@ Consistent with reservoir updates, we can see that union speed has a nearly line
 
 ### Comparison with Apache DataFu
 
-[DataFu](https://datafu.apache.org) is an Apache Incubator project that includes a set of Pig UDFs for various data processing purposes.
+[DataFu](https://fdatafu.apache.org) is an Apache project that includes a set of Pig UDFs for various data processing purposes.
 Because the focus of the Sketches library is on sublinear or bounded-size algorithms, compared the performance of our reservoir
 sampling Pig UDF against DataFu's basic reservoir sampling, which uses a pre-specified maximum size.
 

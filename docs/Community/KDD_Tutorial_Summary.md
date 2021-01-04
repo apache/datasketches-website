@@ -107,7 +107,7 @@ The audience should learn about
         2. Accepting approximation
         3. Understanding error
         4. System planning
-    4. Demonstration in [Python](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)
+    4. Demonstration in [Python](https://github.com/apache/datasketches-cpp/tree/master/python)
         1. Examples of several sketches
         2. Deeper dive with sampling
 4. Extra topics (Time permitting) (10 minutes)
@@ -123,7 +123,7 @@ Jon Malkin is a senior principal research engineer at Verizon Media and a contri
 
 ## Contributor Bio
 
-Lee Rhodes is a Distinguished Architect at Yahoo (now Verizon Media). He created the DataSketches project in 2012 to address analysis problems in Yahoo's large data processing pipelines. DataSketches was Open Sourced in 2015 and is now in incubation at Apache Software Foundation. He was an author or coauthor on sketching work published in ICDT, IMC, and JCGS. He obtained his Master's Degree in Electrical Engineering from Stanford University.
+Lee Rhodes is a Distinguished Architect at Yahoo (now Verizon Media). He created the DataSketches project in 2012 to address analysis problems in Yahoo's large data processing pipelines. DataSketches was Open Sourced in 2015 and is now a top level project in the Apache Software Foundation. He was an author or coauthor on sketching work published in ICDT, IMC, and JCGS. He obtained his Master's Degree in Electrical Engineering from Stanford University.
 
 ## Societal Impact
 
@@ -133,7 +133,7 @@ Our society is impacted by the ability to do fast data analysis at scale. This t
 
 1. P. K. Agarwal, G. Cormode, Z. Huang, J. M. Phillips, Z. Wei, and K. Yi. Mergeable Summaries. ACM Transactions on Database Systems, 38(4):26, 2013.
 1. N. Alon, Y. Matias, and M. Szegedy. The space complexity of approximating the frequency moments. Journal of Computer and System Sciences, 58(1):137–147, 1999.
-1. Apache. Datasketches (incubating). https://datasketches.apache.org, 2020.
+1. Apache. Datasketches. https://datasketches.apache.org, 2020.
 1. Apache. Druid. https://druid.apache.org, 2020.
 1. A. Broder and M. Mitzenmacher. Network applications of bloom filters: A survey. Internet mathematics, 1(4):485–509, 2004.
 1. E. Cohen. All-distances sketches, revisited: Hip estimators for massive graphsanalysis.IEEE Transactions on Knowledge and Data Engineering, 27(9):2320–2334, 2015.

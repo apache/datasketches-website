@@ -113,7 +113,7 @@ This solution suffices in some applications, but for other applications the chun
 
 **[CKLTV+20]** Graham Cormode, Zohar Karnin, Edo Liberty, Justin Thaler, Pavel Vesely. Relative Error Streaming Quantiles, In *arXiv.org*, 2020.
 
-**[DLRT16]** Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings '16 *, pages 6:1–6:17, 2016. [Paper](https://arxiv.org/pdf/1510.01455.pdf). [Talk Slides](https://github.com/apache/incubator-datasketches-website/blob/master/docs/pdf/icdt-talk.pdf).
+**[DLRT16]** Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings '16 *, pages 6:1–6:17, 2016. [Paper](https://arxiv.org/pdf/1510.01455.pdf). [Talk Slides](https://github.com/apache/datasketches-website/blob/master/docs/pdf/icdt-talk.pdf).
 
 **[FFGM07]** Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *DMTCS Conference on Analysis of Algorithms*, pages 137–156, 2007.
 

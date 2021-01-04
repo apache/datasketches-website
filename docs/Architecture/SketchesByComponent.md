@@ -25,11 +25,11 @@ The DataSketches Library is organized into the following repository groups:
 
 ## Java
 
-### incubator-datasketches-java
+### datasketches-java
 This repository has the core-java sketching classes, which are leveraged by some of the other repositories.   
 This repository has no external dependencies outside of the DataSketches/memory repository, Java and TestNG for unit tests. 
 This code is versioned and the latest release can be obtained from
-<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/java">incubator-datasketches-java</a>.
+[Downloads](https://datasketches.apache.org/docs/Community/Downloads.html).
 
 <b>High-level Repositories Structure</b>
 
@@ -51,21 +51,21 @@ org.apache.datasketches.tuple.adouble | A Tuple sketch with a Summary of a singl
 org.apache.datasketches.tuple.aninteger | A Tuple sketch with a Summary of a single integer
 org.apache.datasketches.tuple.Strings | A Tuple sketch with a Summary of an array of Strings
 
-### incubator-datasketches-memory
+### datasketches-memory
 This code is versioned and the latest release can be obtained from
-<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/memory">incubator-datasketches-memory</a>.
+[Downloads](https://datasketches.apache.org/docs/Community/Downloads.html).
 
 Memory Packages                | Package Description
 -------------------------------|---------------------
 org.apache.datasketches.memory | Low level, high-performance Memory data-structure management primarily for off-heap. 
 
 
-### incubator-datasketches-hive
+### datasketches-hive
 This repository contains Hive UDFs and UDAFs for use within Hadoop grid enviornments. 
 This code has dependencies on sketches-core as well as Hadoop and Hive. 
 Users of this code are advised to use Maven to bring in all the required dependencies.
 This code is versioned and the latest release can be obtained from
-<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/hive">incubator-datasketches-hive</a>.
+[Downloads](https://datasketches.apache.org/docs/Community/Downloads.html).
 
 Sketches-hive Packages               | Package Description
 -------------------------------------|---------------------
@@ -77,12 +77,12 @@ org.apache.datasketches.hive.quantiles    | Hive UDF and UDAFs for Quantiles ske
 org.apache.datasketches.hive.theta        | Hive UDF and UDAFs for Theta sketches
 org.apache.datasketches.hive.tuple        | Hive UDF and UDAFs for Tuple sketches
 
-### incubator-datasketches-pig
+### datasketches-pig
 This repository contains Pig User Defined Functions (UDF) for use within Hadoop grid environments. 
 This code has dependencies on sketches-core as well as Hadoop and Pig. 
 Users of this code are advised to use Maven to bring in all the required dependencies.
 This code is versioned and the latest release can be obtained from
-<a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches/pig">incubator-datasketches-pig</a>.
+[Downloads](https://datasketches.apache.org/docs/Community/Downloads.html).
 
 Sketches-pig Packages              | Package Description
 -----------------------------------|---------------------
@@ -97,9 +97,11 @@ org.apache.datasketches.pig.theta       | Pig UDFs for Theta sketches
 org.apache.datasketches.pig.tuple       | Pig UDFs for Tuple sketches
 
 
-### incubator-datasketches-characterization
+### datasketches-characterization
 This relatively new repository is for Java and C++ code that we use to characterize the accuracy and speed performance of the sketches in 
-the library and is constantly being updated.  Examples of the job command files used for various tests can be found in the src/main/resources directory. Some of these tests can run for hours depending on its configuration.
+the library and is constantly being updated.  Examples of the job command files used for various tests can be found in the src/main/resources directory. 
+Some of these tests can run for hours depending on its configuration. This component is not formally released and code must be obtained from
+the [GitHub site](https://github.com/apache/datasketches-characterization).
 
 Characterization Packages                       | Package Description
 ------------------------------------------------|---------------------
@@ -115,6 +117,11 @@ org.apache.datasketches.characterization.quantiles   | Quantiles performance
 org.apache.datasketches.characterization.theta       | Theta Sketch
 org.apache.datasketches.characterization.uniquecount | Base Profiles for Unique Counting Sketches
 
+### datasketches-server
+This is a new repository for our experimental docker/container server that enables easy access to the core sketches in the library via HTTP.
+This component is not formally released and code must be obtained from
+the [GitHub site](https://github.com/apache/datasketches-server).
+
 #### C++ Characterizations
 * CPC
 * Frequent Items
@@ -123,22 +130,27 @@ org.apache.datasketches.characterization.uniquecount | Base Profiles for Unique 
 * Theta
 
 
-### incubator-datasketches-vector
+### datasketches-vector
 This component implements the [Frequent Directions Algorithm](/docs/Community/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.
+This component is not formally released and code must be obtained from
+the [GitHub site](https://github.com/apache/datasketches-vector).
 
 
-## C++ and [Python](https://github.com/apache/incubator-datasketches-cpp/tree/master/python)
+## C++ and Python
 
-### incubator-datasketches-cpp
+### datasketches-cpp
 This is the evolving C++ implementations of the same sketches that are available in Java. 
 These implementations are *binary compatible* with their counterparts in Java.
 In other words, a sketch created and stored in C++ can be opened and read in Java and visa-versa.
+This code is versioned and the latest release can be obtained from
+[Downloads](https://datasketches.apache.org/docs/Community/Downloads.html).
 
-This site also has our [Python adaptors](https://github.com/apache/incubator-datasketches-cpp/tree/master/python) that basically wrap the C++ implementations, making the high performance C++ implementations available from Python.
+This site also has our [Python adaptors](https://github.com/apache/datasketches-cpp/tree/master/python) that basically wrap the C++ implementations, making the high performance C++ implementations available from Python.
 
-### incubator-datasketches-postgresql
+### datasketches-postgresql
 This site provides the postgres-specific adaptors that wrap the C++ implementations making
-them available to the PostgreSQL database users. PostgreSQL users should download the PostgreSQL extension from [pgxn.org](https://pgxn.org/dist/datasketches/).  For examples refer to the README on the component site.
+them available to the PostgreSQL database users. PostgreSQL users should download the PostgreSQL extension from [pgxn.org](https://pgxn.org/dist/datasketches/).  For examples refer to the README on the component site. This code is versioned and the latest release can be obtained from
+[Downloads](https://datasketches.apache.org/docs/Community/Downloads.html).
 
 
 

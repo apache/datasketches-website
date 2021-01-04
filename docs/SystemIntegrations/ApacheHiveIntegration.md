@@ -23,7 +23,7 @@ layout: doc_page
 
 * [Download](https://datasketches.apache.org/docs/Community/Downloads.html)
 
-* Build and Install, See [Hive README](https://github.com/apache/incubator-datasketches-hive)
+* Build and Install, See [Hive README](https://github.com/apache/datasketches-hive)
 
 * [CPC Example](https://datasketches.apache.org/docs/CPC/CpcHiveExample.html)
 
