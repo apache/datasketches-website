@@ -125,7 +125,7 @@
     <li><a href="/docs/Background/SketchOrigins.html">•Sketch Origins</a></li>
     <li><a href="/docs/Background/SketchElements.html">•Sketch Elements</a></li>
     <li><a href="/docs/Background/Presentations.html">•Presentations</a></li>
-    <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">•Overview Slide Deck</a></li>
+    <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">•Overview Slide Deck</a></li>
   </div>
 
   <p id="architecture-and-design">
@@ -275,9 +275,9 @@
           <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketch_theory">Theta Sketch Theory</a>
         </p>
         <div class="collapse" id="collapse_theta_sketch_theory">
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">•Theta Sketch Framework (PDF)</a></li>
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">•Sketch Equations (PDF)</a></li>
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches.pdf">•DataSketches (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">•Theta Sketch Framework (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">•Sketch Equations (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches.pdf">•DataSketches (PDF)</a></li>
           <li><a href="/docs/Theta/ThetaConfidenceIntervals.html">•Confidence Intervals Notes</a></li>
           <li><a href="/docs/Theta/ThetaMergingAlgorithm.html">•Merging Algorithm Notes</a></li>
           <li><a href="/docs/Theta/ThetaReferences.html">•Theta References</a></li>
@@ -370,7 +370,7 @@
         <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_sketch_theory">Quantiles Sketch Theory</a>
       </p>
       <div class="collapse" id="collapse_quantiles_sketch_theory">
-        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">•Optimal Quantile Approximation in Streams</a></li>
+        <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">•Optimal Quantile Approximation in Streams</a></li>
         <li><a href="/docs/Quantiles/QuantilesReferences.html">•Quantiles References</a></li>
       </div>
     </div>
@@ -525,7 +525,7 @@ The <em>HyperLogLogPlus</em> error curves are on the right.
 <p>The colored curves represent different quantile contours of the empirical error distribution. The orange and green curves are the contours corresponding to +/- one standard deviation from the mean error, and which define the 68% confidence bounds. The red and blue curves are the contours at +/- two standard deviations and define the 95.4% confidence bounds. The brown and purple curves are the contours at +/- three standard deviations and define the 99.7% confidence bounds. The mean (gray) and median (black) overlap each other and hug the axis close to zero.</p>
 
 <h3 id="introduction-to-detailed-accuracy-measurements">Introduction to Detailed Accuracy Measurements</h3>
-<p>Measuring the error properties of these stochastic algorithms is tricky and requires a great deal of thought into the design of the program that measures it. Getting smooth-looking plots requires many tens of thousands of trials, which even with fast CPUs requires a lot of time.  The code used to produce the data for the plots in this paper can be found on the <a href="https://github.com/apache/incubator-datasketches-characterization">characterization repository</a></p>
+<p>Measuring the error properties of these stochastic algorithms is tricky and requires a great deal of thought into the design of the program that measures it. Getting smooth-looking plots requires many tens of thousands of trials, which even with fast CPUs requires a lot of time.  The code used to produce the data for the plots in this paper can be found on the <a href="https://github.com/apache/datasketches-characterization">characterization repository</a></p>
 
 <p>For accuracy purposes, the <em>HllSketch</em> sketch is configured with one parameter, <em>Log_2(K)</em> which we abbreviate as <em>LgK</em>. This defines the number of bins of the final HyperLogLog-Array (HLL-Array)[6] mode, and defines the bounds[7] on the accuracy of the sketch as well as its ultimate size. Thus, specifying a <em>LgK = 12</em>, means that the final HyperLogLog mode of the sketch will have <em>k = 2<sup>12</sup> = 4096</em> bins. A sketch with <em>LgK = 21</em> will ultimately have <em>k =2,097,152</em> bins, which is a very large sketch.</p>
 
@@ -741,7 +741,7 @@ Note that the Y-axis scale is now 100 nanoseconds. Some of the peaks in these pl
 <hr />
 
 <ul>
-  <li>[1] <a href="https://github.com/apache/incubator-datasketches-java/tree/master/src/main/java/org/apache/datasketches/hll">DataSketches HllSketch GitHub</a></li>
+  <li>[1] <a href="https://github.com/apache/datasketches-java/tree/master/src/main/java/org/apache/datasketches/hll">DataSketches HllSketch GitHub</a></li>
   <li>[2] <a href="/api/java/snapshot/apidocs/index.html">DataSketches HllSketch JavaDocs</a></li>
   <li>[3] <a href="https://github.com/addthis/stream-lib/blob/master/src/main/java/com/clearspring/analytics/stream/cardinality/HyperLogLogPlus.java">HyperLogLogPlus GitHub</a></li>
   <li>[4] <a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40671.pdf">Google: HyperLogLog in Practice: Algorithmic Engineering of a State of The Art Cardinality Estimation Algorithm</a></li>
@@ -766,11 +766,8 @@ Note that the Y-axis scale is now 100 nanoseconds. Some of the peaks in these pl
         <div>Copyright © 2020 <a href="https://www.apache.org">Apache Software Foundation</a>, 
           Licensed under the Apache License, Version 2.0. All Rights Reserved.<br/>
           Apache DataSketches, Apache, the Apache feather logo, and the Apache DataSketches project logos are trademarks of The Apache Software Foundation.<br/>
-          All other marks mentioned may be trademarks or registered trademarks of their respective owners.<br/>
-          <br/>
-          <b>Disclaimer:</b> Apache DataSketches is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+          All other marks mentioned may be trademarks or registered trademarks of their respective owners.
         </div>
-        
       </p>
     </div>
   </div>

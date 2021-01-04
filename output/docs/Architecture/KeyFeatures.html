@@ -125,7 +125,7 @@
     <li><a href="/docs/Background/SketchOrigins.html">•Sketch Origins</a></li>
     <li><a href="/docs/Background/SketchElements.html">•Sketch Elements</a></li>
     <li><a href="/docs/Background/Presentations.html">•Presentations</a></li>
-    <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">•Overview Slide Deck</a></li>
+    <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">•Overview Slide Deck</a></li>
   </div>
 
   <p id="architecture-and-design">
@@ -275,9 +275,9 @@
           <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketch_theory">Theta Sketch Theory</a>
         </p>
         <div class="collapse" id="collapse_theta_sketch_theory">
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">•Theta Sketch Framework (PDF)</a></li>
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">•Sketch Equations (PDF)</a></li>
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches.pdf">•DataSketches (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">•Theta Sketch Framework (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">•Sketch Equations (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches.pdf">•DataSketches (PDF)</a></li>
           <li><a href="/docs/Theta/ThetaConfidenceIntervals.html">•Confidence Intervals Notes</a></li>
           <li><a href="/docs/Theta/ThetaMergingAlgorithm.html">•Merging Algorithm Notes</a></li>
           <li><a href="/docs/Theta/ThetaReferences.html">•Theta References</a></li>
@@ -370,7 +370,7 @@
         <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_sketch_theory">Quantiles Sketch Theory</a>
       </p>
       <div class="collapse" id="collapse_quantiles_sketch_theory">
-        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">•Optimal Quantile Approximation in Streams</a></li>
+        <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">•Optimal Quantile Approximation in Streams</a></li>
         <li><a href="/docs/Quantiles/QuantilesReferences.html">•Quantiles References</a></li>
       </div>
     </div>
@@ -515,18 +515,31 @@
   <li>Query results are <b>approximate</b> but within well defined error bounds that are user 
 configurable by trading off sketch size with accuracy.</li>
   <li>Designed for <a href="/docs/Architecture/LargeScale.html">Large-scale</a> computing environments 
-that must handle <b>Big Data</b>, e.g., 
-<a href="https://hadoop.apache.org/">Hadoop</a>, 
-<a href="https://pig.apache.org/">Pig</a>, 
-<a href="https://hive.apache.org/">Hive</a>,
-<a href="https://druid.apache.org">Druid</a>,
-<a href="https://spark.apache.org">Spark</a>.</li>
-  <li><b>Maven deployable</b> and registered with 
-<a href="https://search.maven.org/#search|ga|1|DataSketches">The Central Repository</a>.</li>
+that must handle <b>Big Data</b>, e.g.:
+    <ul>
+      <li><a href="https://hadoop.apache.org/">Hadoop</a></li>
+      <li><a href="https://pig.apache.org">Pig</a></li>
+      <li><a href="https://hive.apache.org">Hive</a></li>
+      <li><a href="https://druid.apache.org">Druid</a></li>
+      <li><a href="https://spark.apache.org">Spark</a></li>
+    </ul>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td><b>Maven deployable</b> and registered with the [Central Repository](https://search.maven.org/#search</td>
+          <td>ga</td>
+          <td>1</td>
+          <td>DataSketches).</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
   <li>Extensive documentation with the systems developer in mind.</li>
   <li>Designed for production environments:
     <ul>
-      <li>Available in multiple languages: Java, C++, <a href="https://github.com/apache/incubator-datasketches-cpp/tree/master/python">Python</a></li>
+      <li>Available in multiple languages: Java, C++, <a href="https://github.com/apache/datasketches-cpp/tree/master/python">Python</a></li>
       <li>Binary compatible across systems and languages</li>
     </ul>
   </li>
@@ -548,15 +561,14 @@ with a number of useful extensions.</li>
   <li>Unit Tests:
     <ul>
       <li>Extensive test code leveraging <a href="https://testng.org">TestNG</a>.</li>
-      <li>High Test Code coverage (&gt; 90%) as measured by 
-<a href="https://www.eclemma.org/jacoco/">JaCoCo</a> and published by 
+      <li>High Test Code coverage (&gt; 90%) as measured by [JaCoCo]https://www.eclemma.org/jacoco) and published by 
 <a href="https://coveralls.io">Coveralls</a>.</li>
     </ul>
   </li>
   <li>Reproducible Characterization Studies
     <ul>
       <li>All our published speed and accuracy performance results can be reproduced using the code included in the 
-<a href="https://github.com/apache/incubator-datasketches-characterization">characterization</a> repository.</li>
+<a href="https://github.com/apache/datasketches-characterization">Characterization</a> repository.</li>
     </ul>
   </li>
   <li>Comprehensive Javadocs that satisfy 
@@ -577,7 +589,7 @@ with a number of useful extensions.</li>
 
 <ul>
   <li><b>Estimating cardinality</b> of a stream with many duplicates</li>
-  <li>Performing <a href="/docs/Theta/ThetaSketchSetOps.html">set operations</a> (e.g., Union, Intersection, 
+  <li>Performing <a href="/docs/Theta/ThetaSketchSetOps.html">Set Operations</a> (e.g., Union, Intersection, 
 and Difference) on sets of unique identifiers</li>
   <li>Estimates of the <b>error bounds</b> of the result can be obtained directly from the result sketch</li>
 </ul>
@@ -585,8 +597,8 @@ and Difference) on sets of unique identifiers</li>
 <h4 id="four-families-of-count-unique-algorithms">Four families of Count Unique algorithms:</h4>
 
 <ul>
-  <li><a href="/docs/HLL/HLL.html">The HLL sketch</a>. The famous HyperLogLog algorithm when stored sketch size is of utmost concern.</li>
-  <li><a href="/docs/CPC/CPC.html">The CPC sketch</a>. The Compressed Probabilistic Counting algorithm when maximizing accuracy per stored sketch size is of utmost concern.</li>
+  <li><a href="/docs/HLL/HLL.html">The HLL Sketch</a>. The famous HyperLogLog algorithm when stored sketch size is of utmost concern.</li>
+  <li><a href="/docs/CPC/CPC.html">The CPC Sketch</a>. The Compressed Probabilistic Counting algorithm when maximizing accuracy per stored sketch size is of utmost concern.</li>
   <li><a href="/docs/Theta/ThetaSketchFramework.html">The Theta Sketch Framework</a>. Theta sketches enable real-time set-expression computations and can operate on or off the java heap.</li>
   <li><a href="/docs/Tuple/TupleOverview.html">The Tuple Sketch</a>. Tuple sketches are associative sketches that are useful for performing approximate join operations and extracting other kinds of statistical behavior associated with unique identifiers.</li>
 </ul>
@@ -623,11 +635,8 @@ and Difference) on sets of unique identifiers</li>
         <div>Copyright © 2020 <a href="https://www.apache.org">Apache Software Foundation</a>, 
           Licensed under the Apache License, Version 2.0. All Rights Reserved.<br/>
           Apache DataSketches, Apache, the Apache feather logo, and the Apache DataSketches project logos are trademarks of The Apache Software Foundation.<br/>
-          All other marks mentioned may be trademarks or registered trademarks of their respective owners.<br/>
-          <br/>
-          <b>Disclaimer:</b> Apache DataSketches is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+          All other marks mentioned may be trademarks or registered trademarks of their respective owners.
         </div>
-        
       </p>
     </div>
   </div>

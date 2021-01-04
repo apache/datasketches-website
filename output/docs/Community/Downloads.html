@@ -125,7 +125,7 @@
     <li><a href="/docs/Background/SketchOrigins.html">•Sketch Origins</a></li>
     <li><a href="/docs/Background/SketchElements.html">•Sketch Elements</a></li>
     <li><a href="/docs/Background/Presentations.html">•Presentations</a></li>
-    <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">•Overview Slide Deck</a></li>
+    <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">•Overview Slide Deck</a></li>
   </div>
 
   <p id="architecture-and-design">
@@ -275,9 +275,9 @@
           <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketch_theory">Theta Sketch Theory</a>
         </p>
         <div class="collapse" id="collapse_theta_sketch_theory">
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">•Theta Sketch Framework (PDF)</a></li>
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">•Sketch Equations (PDF)</a></li>
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches.pdf">•DataSketches (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">•Theta Sketch Framework (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">•Sketch Equations (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches.pdf">•DataSketches (PDF)</a></li>
           <li><a href="/docs/Theta/ThetaConfidenceIntervals.html">•Confidence Intervals Notes</a></li>
           <li><a href="/docs/Theta/ThetaMergingAlgorithm.html">•Merging Algorithm Notes</a></li>
           <li><a href="/docs/Theta/ThetaReferences.html">•Theta References</a></li>
@@ -370,7 +370,7 @@
         <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_sketch_theory">Quantiles Sketch Theory</a>
       </p>
       <div class="collapse" id="collapse_quantiles_sketch_theory">
-        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">•Optimal Quantile Approximation in Streams</a></li>
+        <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">•Optimal Quantile Approximation in Streams</a></li>
         <li><a href="/docs/Quantiles/QuantilesReferences.html">•Quantiles References</a></li>
       </div>
     </div>
@@ -506,7 +506,7 @@
 -->
 <h1 id="downloads">Downloads</h1>
 
-<h2 id="signing-keys"><a href="https://downloads.apache.org/incubator/datasketches/KEYS">Signing Keys</a></h2>
+<h2 id="signing-keys"><a href="https://downloads.apache.org/datasketches/KEYS">Signing Keys</a></h2>
 <p>It is essential that you verify the integrity of release downloads. See <a href="https://www.apache.org/dyn/closer.cgi#verify">instructions here.</a></p>
 
 <h2 id="latest-source-zip-files">Latest Source Zip Files</h2>
@@ -597,13 +597,13 @@
 
 <h2 id="enabling-python">Enabling Python</h2>
 <ul>
-  <li>First download the C++ core above, then read the <a href="https://github.com/apache/incubator-datasketches-cpp/tree/master/python">Python Installation Instructions</a></li>
+  <li>First download the C++ core above, then read the <a href="https://github.com/apache/datasketches-cpp/tree/master/python">Python Installation Instructions</a></li>
 </ul>
 
 <h2 id="download-earlier-versions">Download Earlier Versions</h2>
 
 <ul>
-  <li><strong><a href="http://archive.apache.org/dist/incubator/datasketches/java/">ZIP Files</a></strong></li>
+  <li><strong><a href="http://archive.apache.org/dist/datasketches/java/">ZIP Files</a></strong>  OR <strong><a href="http://archive.apache.org/dist/incubator/datasketches/java/">ZIP Files</a></strong></li>
   <li><strong><a href="https://search.maven.org/search?q=g:%20org.apache.datasketches">Java Jar Files</a></strong></li>
 </ul>
 
@@ -618,8 +618,8 @@
 
 <p>Note: we maintain <em>forward binary compatiblity</em> of a specific sketch type.  For example, a Java Theta Sketch stored as a binary image using version 0.1.0 (Aug, 2015) can be merged into a C++ Theta Union version 1.2.0 (Jan, 2020).  The languages can be swapped in this scenario, but the versions cannot be.</p>
 
-<p>The zip files downloaded from <a href="https://www.apache.org/dyn/closer.cgi?path=/incubator/datasketches">incubator-datasketches-xxx</a>
-include a version number in the name, as in <em>apache-datasketches-java-1.1.0-incubating-src.zip</em>. 
+<p>The zip files downloaded from <a href="https://www.apache.org/dyn/closer.cgi?path=/datasketches">datasketches-xxx</a>
+include a version number in the name, as in <em>apache-datasketches-java-1.1.0-src.zip</em>. 
 This same number is also in the top section of the pom.xml file.</p>
 
 <p>If you are developing using Maven and want to use, for example, datasketches-java, add the following dependencies to your pom.xml file:</p>
@@ -627,7 +627,7 @@ This same number is also in the top section of the pom.xml file.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;dependency&gt;
   &lt;groupId&gt;org.apache.datasketches&lt;/groupId&gt;
   &lt;artifactId&gt;datasketches-java&lt;/artifactId&gt;
-  &lt;version&gt;1.2.0-incubating&lt;/version&gt;
+  &lt;version&gt;1.2.0&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre></div></div>
 
@@ -642,7 +642,7 @@ digit will be incremented.  The <b>incremental</b> digit will only be used for b
 <p>As stated above, the <b>major</b> digit is being reserved for major refactorings of the library where backward API 
 compatibility may not be guaranteed.</p>
 
-<p>For the repositories that depend on java core, such as <i>incubator-datasketches-hive</i>, 
+<p>For the repositories that depend on java core, such as <i>datasketches-hive</i>, 
 the version number may be incremented just to be in sync with the java core repository, 
 and may not reflect any actual code changes other than a change in the pom.xml to reflect the new 
 dependency.</p>
@@ -663,11 +663,8 @@ dependency.</p>
         <div>Copyright © 2020 <a href="https://www.apache.org">Apache Software Foundation</a>, 
           Licensed under the Apache License, Version 2.0. All Rights Reserved.<br/>
           Apache DataSketches, Apache, the Apache feather logo, and the Apache DataSketches project logos are trademarks of The Apache Software Foundation.<br/>
-          All other marks mentioned may be trademarks or registered trademarks of their respective owners.<br/>
-          <br/>
-          <b>Disclaimer:</b> Apache DataSketches is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+          All other marks mentioned may be trademarks or registered trademarks of their respective owners.
         </div>
-        
       </p>
     </div>
   </div>

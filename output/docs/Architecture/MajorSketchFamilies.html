@@ -125,7 +125,7 @@
     <li><a href="/docs/Background/SketchOrigins.html">•Sketch Origins</a></li>
     <li><a href="/docs/Background/SketchElements.html">•Sketch Elements</a></li>
     <li><a href="/docs/Background/Presentations.html">•Presentations</a></li>
-    <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">•Overview Slide Deck</a></li>
+    <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">•Overview Slide Deck</a></li>
   </div>
 
   <p id="architecture-and-design">
@@ -275,9 +275,9 @@
           <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketch_theory">Theta Sketch Theory</a>
         </p>
         <div class="collapse" id="collapse_theta_sketch_theory">
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">•Theta Sketch Framework (PDF)</a></li>
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">•Sketch Equations (PDF)</a></li>
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches.pdf">•DataSketches (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">•Theta Sketch Framework (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">•Sketch Equations (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches.pdf">•DataSketches (PDF)</a></li>
           <li><a href="/docs/Theta/ThetaConfidenceIntervals.html">•Confidence Intervals Notes</a></li>
           <li><a href="/docs/Theta/ThetaMergingAlgorithm.html">•Merging Algorithm Notes</a></li>
           <li><a href="/docs/Theta/ThetaReferences.html">•Theta References</a></li>
@@ -370,7 +370,7 @@
         <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_sketch_theory">Quantiles Sketch Theory</a>
       </p>
       <div class="collapse" id="collapse_quantiles_sketch_theory">
-        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">•Optimal Quantile Approximation in Streams</a></li>
+        <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">•Optimal Quantile Approximation in Streams</a></li>
         <li><a href="/docs/Quantiles/QuantilesReferences.html">•Quantiles References</a></li>
       </div>
     </div>
@@ -523,27 +523,27 @@
 <p>Computing cardinalities with massive data requires lots of computer resources and time.
 However, if an approximate answer to these problems is acceptable, <a href="/docs/Theta/ThetaSketchFramework.html">Theta Sketches</a> can provide reasonable estimates, in a single pass, orders of magnitude faster, even fast enough for analysis in near-real time.</p>
 
-<p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/theta/Sketch.java">theta/Sketch</a> can operate both on-heap and off-heap, has powerful Union, Intersection, AnotB and Jaccard operators, has a high-performance concurrent form for multi-threaded environments, has both immutable compact, and updatable representations, and is quite fast. Because of its flexibility, it is one of the most popular sketches in our library.</p>
+<p>The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/theta/Sketch.java">theta/Sketch</a> can operate both on-heap and off-heap, has powerful Union, Intersection, AnotB and Jaccard operators, has a high-performance concurrent form for multi-threaded environments, has both immutable compact, and updatable representations, and is quite fast. Because of its flexibility, it is one of the most popular sketches in our library.</p>
 
 <h3 id="tuple-sketches-extending-theta-sketches-to-perform-associative-analysis"><a href="/docs/Tuple/TupleOverview.html">Tuple Sketches</a>: Extending Theta Sketches to Perform Associative Analysis</h3>
-<p>It is often not enough to perform stream expressions on sets of unique identifiers, it is very valuable to be able to associate additive data with these identifiers, such as impression counts, clicks or timestamps.  Tuple Sketches are a natural extension of the Theta sketch and have Java Genric forms that enable the user to define the sketch with arbitrary “summary” data.  The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/Sketch.java">tuple/Sketch</a> can operate both on-heap and off-heap, includes both Union and Intersection operators, and has both immutable compact and updatable representations.</p>
+<p>It is often not enough to perform stream expressions on sets of unique identifiers, it is very valuable to be able to associate additive data with these identifiers, such as impression counts, clicks or timestamps.  Tuple Sketches are a natural extension of the Theta sketch and have Java Genric forms that enable the user to define the sketch with arbitrary “summary” data.  The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/Sketch.java">tuple/Sketch</a> can operate both on-heap and off-heap, includes both Union and Intersection operators, and has both immutable compact and updatable representations.</p>
 
 <p>The Tuple sketch is effectively infinitely extendable and there are several common variants of the Tuple Sketch, which also serve as examples on how to extend the base classes that are also in the library, including:</p>
 
 <ul>
-  <li><a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/adouble/DoubleSketch.java">tuple/adouble/DoubleSketch</a> with a single column of <em>double</em> values as the <em>summary</em>.</li>
-  <li><a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/aninteger/IntegerSketch.java">tuple/aninteger/IntegerSketch</a> with a single column of <em>int</em> values as the <em>summary</em>.</li>
-  <li><a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/strings/ArrayOfStringsSketch.java">tuple/strings/ArrayOfStringsSketch</a>, which is effectively a variable number of columns of strings as the <em>summary</em>.</li>
-  <li><a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/ArrayOfDoublesSketch.java">tuple/ArrayOfDoublesSketch</a>, which enables the user to specify the number of columns of double values as the <em>summary</em>. This variant also provides both on-heap and off-heap operation.</li>
+  <li><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/adouble/DoubleSketch.java">tuple/adouble/DoubleSketch</a> with a single column of <em>double</em> values as the <em>summary</em>.</li>
+  <li><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/aninteger/IntegerSketch.java">tuple/aninteger/IntegerSketch</a> with a single column of <em>int</em> values as the <em>summary</em>.</li>
+  <li><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/strings/ArrayOfStringsSketch.java">tuple/strings/ArrayOfStringsSketch</a>, which is effectively a variable number of columns of strings as the <em>summary</em>.</li>
+  <li><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/ArrayOfDoublesSketch.java">tuple/ArrayOfDoublesSketch</a>, which enables the user to specify the number of columns of double values as the <em>summary</em>. This variant also provides both on-heap and off-heap operation.</li>
 </ul>
 
 <h3 id="hyperloglog-sketches-estimating-stream-cardinalities"><a href="/docs/HLL/HLL.html">HyperLogLog Sketches</a>: Estimating Stream Cardinalities</h3>
 <p>The HyperLogLog (HLL) is a cardinality sketch similar to the above Theta sketches except they are anywhere from 2 to 16 times smaller in size.  The HLL sketches can be merged via the Union operator, but set intersection and difference operations are not provided intrinsically, because the resulting error would be quite poor.  If your application only requires cardinality estimation and merging and space is at a premium, the HLL or CPC sketches would be your best choice.</p>
 
-<p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/hll/HllSketch.java">hll/HllSketch</a> can operate both on-heap and off-heap, provides the Union operators, and has both immutable compact and updatable representations.</p>
+<p>The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/hll/HllSketch.java">hll/HllSketch</a> can operate both on-heap and off-heap, provides the Union operators, and has both immutable compact and updatable representations.</p>
 
 <h3 id="hyperloglog-map-sketch-estimating-stream-cardinalities-of-key-value-pairs"><a href="/docs/HLL/HllMap.html">HyperLogLog Map Sketch</a>: Estimating Stream Cardinalities of Key-Value Pairs</h3>
-<p>This is a specially designed sketch that addresses the problem of individually tracking value cardinalities of Key-Value (K,V) pairs in real-time, where the number of keys can be very large, such as IP addresses, or Geo identifiers, etc. Assigning individual sketches to each key would create unnecessary overhead. This sketch streamlines the process with much better space management.  This <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/hllmap/UniqueCountMap.java">hllmap/UniqueCountMap</a> only operates on heap and does not provide Union capabilites.  This sketch is effectively a optimized hash-map of HLL sketches. Like other hash-maps, the overall size is a direct function of the number of keys that it has seen. This sketch was designed to operate as a stand-alone sketch.</p>
+<p>This is a specially designed sketch that addresses the problem of individually tracking value cardinalities of Key-Value (K,V) pairs in real-time, where the number of keys can be very large, such as IP addresses, or Geo identifiers, etc. Assigning individual sketches to each key would create unnecessary overhead. This sketch streamlines the process with much better space management.  This <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/hllmap/UniqueCountMap.java">hllmap/UniqueCountMap</a> only operates on heap and does not provide Union capabilites.  This sketch is effectively a optimized hash-map of HLL sketches. Like other hash-maps, the overall size is a direct function of the number of keys that it has seen. This sketch was designed to operate as a stand-alone sketch.</p>
 
 <h2 id="quantiles-sketches">Quantiles Sketches</h2>
 
@@ -552,37 +552,37 @@ However, if an approximate answer to these problems is acceptable, <a href="/doc
 
 <p><img class="doc-img-full" src="/docs/img/quantiles/TimeSpentHistogram.png" alt="TimeSpentHistogram" /></p>
 
-<p>There are two different families of quantiles sketches, the original <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/quantiles/DoublesSketch.java">quantiles/DoublesSketch</a>, which can be operated either on-heap or off-heap, and is also available in a Java Generic form for arbitrary comparable objects.</p>
+<p>There are two different families of quantiles sketches, the original <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/quantiles/DoublesSketch.java">quantiles/DoublesSketch</a>, which can be operated either on-heap or off-heap, and is also available in a Java Generic form for arbitrary comparable objects.</p>
 
-<p>Later we developed the <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/kll/KllFloatsSketch.java">kll/KllFloatsSketch</a>  (Named after its authors), which is also a quantiles sketch, that achieves near optimal small size for a given accuracy.</p>
+<p>Later we developed the <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/kll/KllFloatsSketch.java">kll/KllFloatsSketch</a>  (Named after its authors), which is also a quantiles sketch, that achieves near optimal small size for a given accuracy.</p>
 
 <h2 id="frequent-items--heavy-hitters-sketches">Frequent Items / Heavy Hitters Sketches</h2>
 
 <h3 id="frequent-items-sketches-finding-the-heavy-hitter-objects-from-a-stream"><a href="/docs/Frequency/FrequentItemsOverview.html">Frequent Items Sketches</a>: Finding the Heavy Hitter Objects from a Stream</h3>
 <p>It is very useful to be able to scan a stream of objects, such as song titles, and be able to quickly identify those titles that occur most frequently.  The term <i>Heavy Hitter</i> is defined to be an item that occurs more frequently than its fair share of occurrences. This “fair share” is simply the total count of all occurrences of all items divided by the number of distinct items.  Suppose you have a stream of 1M song titles, but in that stream there are only 100K song titles that are unique. If any single title consumes more than 10% of the stream elements it is a Heavy Hitter. The 10% is a threshold parameter we call epsilon.</p>
 
-<p>The accuracy of a Frequent Items Sketch is proportional to the configured size of the sketch, the larger the sketch, the smaller is the epsilon threshold that can detect Heavy Hitters. This sketch is available in two forms, as the <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/frequencies/LongsSketch.java">frequencies/LongsSketch</a> used for processing a stream of tuples {<em>long</em>, weight}, and the <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/frequencies/ItemsSketch.java">frequencies/ItemsSketch</a> used for processing tuples of {<em>T</em>, weight}, where <em>T</em> is arbitrary, uniquely identifyable object. These sketches are aggregating sketches in that the frequency of occurances of an item (or <em>long</em> key), is accumulated as the stream is processed.</p>
+<p>The accuracy of a Frequent Items Sketch is proportional to the configured size of the sketch, the larger the sketch, the smaller is the epsilon threshold that can detect Heavy Hitters. This sketch is available in two forms, as the <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/frequencies/LongsSketch.java">frequencies/LongsSketch</a> used for processing a stream of tuples {<em>long</em>, weight}, and the <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/frequencies/ItemsSketch.java">frequencies/ItemsSketch</a> used for processing tuples of {<em>T</em>, weight}, where <em>T</em> is arbitrary, uniquely identifyable object. These sketches are aggregating sketches in that the frequency of occurances of an item (or <em>long</em> key), is accumulated as the stream is processed.</p>
 
 <h3 id="frequent-distinct-tuples-sketch-finding-the-heavy-hitter-tuples-from-a-stream"><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a>: Finding the Heavy Hitter tuples from a Stream.</h3>
 <p>Suppose our data is a stream of pairs {IP address, User ID} and we want to identify the IP addresses that have the most distinct User IDs. Or conversely, we would like to identify the User IDs that have the most distinct IP addresses. This is a common challenge in the analysis of big data and the FDT sketch helps solve this problem using probabilistic techniques.</p>
 
 <p>More generally, given a multiset of tuples with <em>N</em> dimensions <em>{d1,d2, d3, …, dN}</em>, and a primary subset of dimensions <em>M &lt; N</em>, our task is to identify the combinations of <em>M</em> subset dimensions that have the most frequent number of distinct combinations of the <em>N - M</em> non-primary dimensions.</p>
 
-<p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/fdt/FdtSketch.java">fdt/FdtSketch</a> is currently only available in Java, but because it is an extension of the Tuple Sketch family, it inherits many of the same properties: it can operate both on-heap and off-heap, it includes both Union and Intersection operators, and it has both immutable compact and updatable representations.</p>
+<p>The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/fdt/FdtSketch.java">fdt/FdtSketch</a> is currently only available in Java, but because it is an extension of the Tuple Sketch family, it inherits many of the same properties: it can operate both on-heap and off-heap, it includes both Union and Intersection operators, and it has both immutable compact and updatable representations.</p>
 
 <h3 id="frequent-directions-distributed-mergeable-singular-value-decomposition">Frequent Directions: Distributed, mergeable Singular Value Decomposition</h3>
-<p>Part of a new separate datasketches-vector component, Frequent Directions is in many ways a generalization of the Frequent Items sketch in order to handle vector data. This sketch computes an approximate singular value decomposition (SVD) of a matrix, providing a projection matrix that can be used for dimensionality reduction. SVD is a key technique in many recommender systems, such as providing shopping suggestions based on a customer’s past purchases compared with other similar customers. This sketch is still experimental and feedback from interested users would be welcome.  This sketch can be found in the <a href="https://github.com/apache/incubator-datasketches-vector">Vector</a> repository dedicated to vector and matrix sketches.</p>
+<p>Part of a new separate datasketches-vector component, Frequent Directions is in many ways a generalization of the Frequent Items sketch in order to handle vector data. This sketch computes an approximate singular value decomposition (SVD) of a matrix, providing a projection matrix that can be used for dimensionality reduction. SVD is a key technique in many recommender systems, such as providing shopping suggestions based on a customer’s past purchases compared with other similar customers. This sketch is still experimental and feedback from interested users would be welcome.  This sketch can be found in the <a href="https://github.com/apache/datasketches-vector">Vector</a> repository dedicated to vector and matrix sketches.</p>
 
 <h2 id="sampling-sketches">Sampling Sketches</h2>
 
 <h3 id="sampling-sketches-uniform-and-weighted-sampling-of-a-stream-into-a-fixed-size-space"><a href="/docs/Sampling/ReservoirSampling.html">Sampling Sketches</a>: Uniform and Weighted Sampling of a Stream into a fixed size space</h3>
 <p>This family of sketches implements an enhanced version of the famous Reservoir sampling algorithm and extends it with the capabilities that large-scale distributed systems really need: mergability (even with different sized sketches). The Java implementaion uses Java Generics so that the base classes can be trivially extended for any input type (even polymorphic types), and also enables an extensible means of performing serialization and deserialization.</p>
 
-<p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/sampling/ReservoirLongsSketch.java">sampling/ReservoirLongsSketch</a> accepts a stream of <em>long</em> values as identifiers with a weight of one, and produces a result Reservoir of a pre-determined size that represents a uniform random sample of the stream.</p>
+<p>The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/sampling/ReservoirLongsSketch.java">sampling/ReservoirLongsSketch</a> accepts a stream of <em>long</em> values as identifiers with a weight of one, and produces a result Reservoir of a pre-determined size that represents a uniform random sample of the stream.</p>
 
-<p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/sampling/ReservoirItemsSketch.java">sampling/ReservoirItemsSketch</a> accepts a stream of type <em>T</em> as identifiers with a weight of one, and produces a result Reservoir of a pre-determined size that represents a uniform random sample of the stream.</p>
+<p>The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/sampling/ReservoirItemsSketch.java">sampling/ReservoirItemsSketch</a> accepts a stream of type <em>T</em> as identifiers with a weight of one, and produces a result Reservoir of a pre-determined size that represents a uniform random sample of the stream.</p>
 
-<p>The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/main/java/org/apache/datasketches/sampling/VarOptItemsSketch.java">sampling/VarOptItemsSketch</a> extends the Reservoir family to weighted sampling, additionally providing subset sum estimates from the sample with provably optimal variance.</p>
+<p>The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/sampling/VarOptItemsSketch.java">sampling/VarOptItemsSketch</a> extends the Reservoir family to weighted sampling, additionally providing subset sum estimates from the sample with provably optimal variance.</p>
 
 
       </div> <!-- End content -->
@@ -597,11 +597,8 @@ However, if an approximate answer to these problems is acceptable, <a href="/doc
         <div>Copyright © 2020 <a href="https://www.apache.org">Apache Software Foundation</a>, 
           Licensed under the Apache License, Version 2.0. All Rights Reserved.<br/>
           Apache DataSketches, Apache, the Apache feather logo, and the Apache DataSketches project logos are trademarks of The Apache Software Foundation.<br/>
-          All other marks mentioned may be trademarks or registered trademarks of their respective owners.<br/>
-          <br/>
-          <b>Disclaimer:</b> Apache DataSketches is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+          All other marks mentioned may be trademarks or registered trademarks of their respective owners.
         </div>
-        
       </p>
     </div>
   </div>

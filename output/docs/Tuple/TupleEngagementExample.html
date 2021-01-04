@@ -125,7 +125,7 @@
     <li><a href="/docs/Background/SketchOrigins.html">•Sketch Origins</a></li>
     <li><a href="/docs/Background/SketchElements.html">•Sketch Elements</a></li>
     <li><a href="/docs/Background/Presentations.html">•Presentations</a></li>
-    <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">•Overview Slide Deck</a></li>
+    <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">•Overview Slide Deck</a></li>
   </div>
 
   <p id="architecture-and-design">
@@ -275,9 +275,9 @@
           <a data-toggle="collapse" class="menu collapsed" href="#collapse_theta_sketch_theory">Theta Sketch Theory</a>
         </p>
         <div class="collapse" id="collapse_theta_sketch_theory">
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">•Theta Sketch Framework (PDF)</a></li>
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">•Sketch Equations (PDF)</a></li>
-          <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/DataSketches.pdf">•DataSketches (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">•Theta Sketch Framework (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">•Sketch Equations (PDF)</a></li>
+          <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches.pdf">•DataSketches (PDF)</a></li>
           <li><a href="/docs/Theta/ThetaConfidenceIntervals.html">•Confidence Intervals Notes</a></li>
           <li><a href="/docs/Theta/ThetaMergingAlgorithm.html">•Merging Algorithm Notes</a></li>
           <li><a href="/docs/Theta/ThetaReferences.html">•Theta References</a></li>
@@ -370,7 +370,7 @@
         <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_sketch_theory">Quantiles Sketch Theory</a>
       </p>
       <div class="collapse" id="collapse_quantiles_sketch_theory">
-        <li><a href="https://github.com/apache/incubator-datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">•Optimal Quantile Approximation in Streams</a></li>
+        <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">•Optimal Quantile Approximation in Streams</a></li>
         <li><a href="/docs/Quantiles/QuantilesReferences.html">•Quantiles References</a></li>
       </div>
     </div>
@@ -547,7 +547,7 @@
 
 <h2 id="the-integersketch-and-helper-classes">The IntegerSketch and Helper classes</h2>
 
-<p>To help us code our example we will leverage the <a href="https://github.com/apache/incubator-datasketches-java/tree/master/src/main/java/org/apache/datasketches/tuple/aninteger">IntegerSketch Package</a> from the library. This package consists of 5 classes, the <em>IntegerSketch</em> and 4 helper classes, all of which extend generic classes of the parent <em>tuple</em> package.  Normally, the user/developer would develop these 5 classes to solve a particular analysis problem. These 5 classes can serve as an example of how to create your own Tuple Sketch solutions and we will use them to solve our customer engagement problem.</p>
+<p>To help us code our example we will leverage the <a href="https://github.com/apache/datasketches-java/tree/master/src/main/java/org/apache/datasketches/tuple/aninteger">IntegerSketch Package</a> from the library. This package consists of 5 classes, the <em>IntegerSketch</em> and 4 helper classes, all of which extend generic classes of the parent <em>tuple</em> package.  Normally, the user/developer would develop these 5 classes to solve a particular analysis problem. These 5 classes can serve as an example of how to create your own Tuple Sketch solutions and we will use them to solve our customer engagement problem.</p>
 
 <p>Please refer to the <a href="/docs/Tuple/TupleOverview.html">Tuple Overview</a> section on this website for a quick review of how the Tuple Sketch works.</p>
 
@@ -653,7 +653,7 @@ The user system code would call one of these two methods to update the sketch.  
 <h3 id="integersummarydeserializer-class">IntegerSummaryDeserializer class</h3>
 <p>This class is only called by the underlying sketch code when deserializing a sketch and its summaries from a stored image.  We will not be using this class in our example.</p>
 
-<h2 id="the-engagementtest-class">The <a href="https://github.com/apache/incubator-datasketches-java/blob/master/src/test/java/org/apache/datasketches/tuple/aninteger/EngagementTest.java">EngagementTest</a> class</h2>
+<h2 id="the-engagementtest-class">The <a href="https://github.com/apache/datasketches-java/blob/master/src/test/java/org/apache/datasketches/tuple/aninteger/EngagementTest.java">EngagementTest</a> class</h2>
 <p>Note 1: the version in the GitHub master is more up-to-date than the version of this class in the 1.1.0-incubating release. This tutorial references the code in master.</p>
 
 <p>Note 2: You can run the following <em>computeEngagementHistogram()</em> method as a test, but in order to see the output you will need to un-comment the printf(…) statement at the very end of the class.</p>
@@ -838,11 +838,8 @@ Days Visited    Estimate          LB          UB
         <div>Copyright © 2020 <a href="https://www.apache.org">Apache Software Foundation</a>, 
           Licensed under the Apache License, Version 2.0. All Rights Reserved.<br/>
           Apache DataSketches, Apache, the Apache feather logo, and the Apache DataSketches project logos are trademarks of The Apache Software Foundation.<br/>
-          All other marks mentioned may be trademarks or registered trademarks of their respective owners.<br/>
-          <br/>
-          <b>Disclaimer:</b> Apache DataSketches is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+          All other marks mentioned may be trademarks or registered trademarks of their respective owners.
         </div>
-        
       </p>
     </div>
   </div>
