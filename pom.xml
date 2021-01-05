@@ -291,7 +291,6 @@ under the License.
               <!-- END: UNIQUE FOR THIS JAVA COMPONENT -->
               <exclude>LICENSE</exclude>
               <exclude>NOTICE</exclude>
-              <exclude>DISCLAIMER-WIP</exclude>
             </excludes>
           </configuration>
         </plugin>
