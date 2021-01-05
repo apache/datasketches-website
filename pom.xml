@@ -284,6 +284,8 @@ under the License.
               <exclude>**/*.js</exclude>
               <exclude>**/*.lock</exclude>
               <exclude>**/*.json</exclude>
+              <exclude>**/*.yaml</exclude>
+              <exclude>**/*.ipynb</exclude>
               <exclude>**/package-list</exclude>
               <exclude>**/*.svg</exclude>
               <!-- END: UNIQUE FOR THIS JAVA COMPONENT -->
