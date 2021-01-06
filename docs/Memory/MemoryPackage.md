@@ -51,7 +51,7 @@ which can even be orders of magnitude larger.
 How the system designers select the partitions of the data to be in RAM over time is quite complex 
 and varies considerably based on the specific objectives of the systems platform. 
 
-In these very large data environments managing how the data gets copied into RAM,  
+In these very large data environments managing how the data gets copied into RAM,
 when it is considered obsolete, and when it can be written 
 over by newer or different partitions of data, are important aspects of the systems design. 
 Having the JVM manage these large chunks of memory is often problematic. 
@@ -66,9 +66,9 @@ memory directly.
 The JVM has a very sophisticated heap management process and works very well for many 
 general purpose programming tasks. 
 However, for very large systems that have critical latency requirements, 
-utilizing off-heap memory becomes a requirement. 
+utilizing off-heap memory efficiently becomes a requirement. 
 
-Java does not permit normal java processes direct access to off-heap memory. Nonetheless, 
+Java does not permit normal java processes direct access to off-heap memory (except as noted below). Nonetheless, 
 in order to improve performance, many internal Java classes leverage a low-level, restricted
 class called (unfortunately) "_Unsafe_", which does exactly that. The methods of _Unsafe_
 are native methods that are initially compiled into C++ code.  The JIT compiler
