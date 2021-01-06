@@ -276,7 +276,6 @@ under the License.
             <useDefaultExcludes>true</useDefaultExcludes>
             <excludes>
               <!-- rat uses .gitignore for excludes by default -->
-              <exclude>**/test/resources/**/*.txt</exclude>
               <!-- UNIQUE FOR THIS JAVA COMPONENT -->
               <exclude>**/*.txt</exclude>
               <exclude>**/*.html</exclude>
@@ -289,6 +288,8 @@ under the License.
               <exclude>**/package-list</exclude>
               <exclude>**/*.svg</exclude>
               <!-- END: UNIQUE FOR THIS JAVA COMPONENT -->
+              <exclude>**/test/resources/**/*.txt</exclude>
+              <exclude>.asf.yaml</exclude>
               <exclude>LICENSE</exclude>
               <exclude>NOTICE</exclude>
             </excludes>
