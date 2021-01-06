@@ -535,9 +535,9 @@ which can even be orders of magnitude larger.
 How the system designers select the partitions of the data to be in RAM over time is quite complex 
 and varies considerably based on the specific objectives of the systems platform.</p>
 
-<p>It is in these very large data environments that managing how the data gets copied into RAM and 
-when it is considered obsolete and can be written 
-over by newer or different partitions of data is an important aspect of the systems design. 
+<p>In these very large data environments managing how the data gets copied into RAM,<br />
+when it is considered obsolete, and when it can be written 
+over by newer or different partitions of data, are important aspects of the systems design. 
 Having the JVM manage these large chunks of memory is often problematic. 
 For example, the Java specification requires that a new allocation of memory be cleared before
 it can be used. When the allocations become large this alone can result in large pauses in a
