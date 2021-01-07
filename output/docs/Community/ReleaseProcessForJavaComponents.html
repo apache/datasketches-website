@@ -412,8 +412,8 @@
     <li><a href="/docs/Community/index.html">•Community</a></li>
     <li><a href="/docs/Community/Downloads.html">•Downloads</a></li>
     <li><a href="/docs/Community/NewCommitterProcess.html">•New Committer Process</a></li>
-    <li><a href="/docs/Community/ProcessForCppComponentReleases.html">•Process For CPP Component Releases</a></li>
-    <li><a href="/docs/Community/ProcessForJavaComponentReleases.html">•Process For Java Component Releases</a></li>
+    <li><a href="/docs/Community/ReleaseProcessForCppComponents.html">•Release Process For CPP Components</a></li>
+    <li><a href="/docs/Community/ReleaseProcessForJavaComponents.html">•Release Process For Java Components</a></li>
     <li><a href="/docs/Community/Transitioning.html">•Transitioning from prior GitHub Site</a></li>
     <li><a href="/docs/Community/WhoUses.html">•Who Uses</a></li>
   </div>
@@ -507,11 +507,11 @@
     under the License.
 -->
 
-<h1 id="apache-c-release-steps">Apache C++ Release Steps</h1>
+<h1 id="release-process-for-java-components">Release Process For Java Components</h1>
 <p><strong>NOTES:</strong></p>
 
 <ul>
-  <li>This process covers major and minor releases only. Bug-fix releases, which increment the third digit, are performed on a A.B.X branch and not on master, but otherwise is similar.</li>
+  <li>This process covers major and minor releases only. Bug-fix releases, which increment the third digit, are performed on a A.B.X branch and not on master, but otherwise are similar.</li>
   <li>Some of these operations can be performed either on the Command-Line or in your IDE, whatever you prefer.</li>
 </ul>
 
@@ -522,14 +522,17 @@
       <li>LICENSE</li>
       <li>NOTICE – check for copyright dates</li>
       <li>README.md</li>
+      <li>.travis.yml</li>
       <li>.gitignore</li>
-      <li>DISCLAIMER-WIP</li>
+      <li>pom.xml</li>
     </ul>
   </li>
   <li>From Command Line or IDE:
     <ul>
       <li>Run Unit tests</li>
       <li>Run Code Coverage &gt; 90%</li>
+      <li>Run SpotBugs checks (is it properly configured?)</li>
+      <li>Run Checkstyle (is it properly configured?)</li>
       <li>Confirm that all <strong>temporary</strong> branches are checked into master and/or deleted, both local and remote.</li>
       <li>Confirm any new bug fixes have corresponding tests</li>
     </ul>
@@ -570,30 +573,58 @@
             <table>
               <tbody>
                 <tr>
-                  <td>$ find . -name “*.?pp” -type f -print</td>
+                  <td>$ find . -name “*.java” -type f -print</td>
                   <td>xargs grep -i -n -s -A0 “deprecated”</td>
                 </tr>
               </tbody>
             </table>
           </li>
-          <li>may need to ignore false positives in the pybind11 directory</li>
+        </ul>
+      </li>
+      <li>Check Maven Versions:
+        <ul>
+          <li>$ mvn versions:display-plugin-updates</li>
+        </ul>
+      </li>
+      <li>Maven Tests:
+        <ul>
+          <li>$ mvn apache-rat:check</li>
+          <li>$ mvn clean test</li>
+          <li>$ mvn clean test -P strict</li>
+          <li>$ mvn clean javadoc:javadoc</li>
+          <li>$ mvn clean install -DskipTests=true</li>
+          <li>Check that the /target/ directory has 5 jars:
+            <ul>
+              <li>-javadoc.jar</li>
+              <li>-sources.jar</li>
+              <li>-test-sources.jar</li>
+              <li>-tests.jar</li>
+              <li>-.jar</li>
+            </ul>
+          </li>
+          <li>Check your local Maven repository
+            <ul>
+              <li><em>~/.m2/repository/org/apache/datasketches/datasketches-&lt;component&gt;/A.B.0-SNAPSHOT/</em></li>
+              <li>It should have 5 new jars and a .pom file.</li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
   </li>
 </ul>
 
-<h2 id="create-permanent-release-branch--python-version-preparation">Create Permanent Release Branch &amp; Python Version Preparation</h2>
+<h2 id="create-permanent-release-branch--pom-version-preparation">Create Permanent Release Branch &amp; POM Version Preparation</h2>
 <ul>
-  <li>Assume target version = A.B.0</li>
+  <li>Assume current master POM version = A.B.0-SNAPSHOT</li>
   <li>From IDE or Command Line:
     <ul>
-      <li>Switch from master to new <strong>Permanent Branch</strong>: “A.B.X”</li>
-      <li>Check setup.py “version=” line to A.B.X (remove -SNAPSHOT, do not change A or B)</li>
+      <li>Switch from Master to new <strong>Permanent Branch</strong>: “A.B.X”</li>
+      <li>Edit pom.xml version to A.B.0 (remove -SNAPSHOT, do not change A or B)</li>
       <li>Commit the change. <strong>DO NOT PUSH!</strong></li>
       <li>Create Annotated TAG: A.B.0-RC1 (or RCn)</li>
       <li>Write down the Git hash : example: 40c6f4f</li>
-      <li>Now Push Branch  “A.B.X” with edited setup.py to origin</li>
+      <li>Now Push Branch  “A.B.X” with edited pom.xml to origin</li>
       <li><strong>DO NOT MERGE THIS PERMANENT BRANCH INTO MASTER</strong></li>
     </ul>
   </li>
@@ -618,8 +649,8 @@
       <li>Confirm that the tag A.B.0-RC1 and the branch A.B.X, and HEAD coincide with the correct Git hash.</li>
       <li>Confirm that there are no unstaged or staged changes.</li>
       <li>Return to master branch</li>
-      <li>Edit master setup.py to A’.B’.0-SNAPSHOT where A’ or B’ will be incremented by 1. (Bug fix releases will change the 3rd digit)</li>
-      <li>Commit and Push this change to origin/master with the comment “Release Process: Change setup.py version to A’.B’.0-SNAPSHOT.”</li>
+      <li>Edit master pom.xml to A’.B’.0-SNAPSHOT where A’ or B’ will be incremented by 1. (Bug fix releases will change the 3rd digit)</li>
+      <li>Commit and Push this change to origin/master with the comment “Release Process: Change pom version to A’.B’.0-SNAPSHOT.”</li>
       <li>Return to release branch A.B.X</li>
       <li>You may minimize your IDE, pointing at the release branch.</li>
     </ul>
@@ -658,8 +689,9 @@
   <li>You will need the following arguments:
     <ul>
       <li>Absolute path of target project.basedir on your system</li>
-      <li>Artifact name : datasketches-&lt;component&gt; where component is e.g., cpp</li>
+      <li>Project.artifactId : datasketches-&lt;component&gt; where component is e.g., java, pig, hive,…</li>
       <li>GitHub Tag: A.B.0-RC1 (or RCn)</li>
+      <li>Have your GPG passphrase handy – you have only a few seconds to enter it!</li>
     </ul>
   </li>
   <li>Start a new terminal in the above dist/dev/datasketches/scripts directory on your system:
@@ -701,6 +733,53 @@
   </li>
 </ul>
 
+<h3 id="java-push-jars-to-nexus-maven-central-staging">Java: Push Jars to Nexus (Maven Central) Staging</h3>
+<ul>
+  <li>Return to original terminal at the project.basedir</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>If starting new terminal make sure GPG is running: $ env</td>
+          <td>grep GPG</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>If not: $ eval $(gpg-agent –daemon)</li>
+    </ul>
+  </li>
+  <li>$ git status # make sure you are still on the release branch: _A.B.X</li>
+  <li>TRIAL-RUN:
+    <ul>
+      <li>$ mvn clean install -Pnexus-jars -DskipTests=true
+        <ul>
+          <li>Check that jars &amp; pom have .asc signatures</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>DEPLOY
+    <ul>
+      <li>$ mvn clean deploy -Pnexus-jars -DskipTests=true
+        <ul>
+          <li>Login to <a href="https://repository.apache.org/">repository.apache.org</a> / Staging Repositories for orgapachedatasketches-XXXX</li>
+          <li>Click Content and search to the end.  Each jar &amp; pom should have .asc, .md5, .sha1 signatures</li>
+          <li>[CLOSE] the Staging Repository with a comment: “&lt;component&gt; A.B.0”</li>
+          <li>Confirm its existance under Repositories/Staging web-site : org/apache/datasketches-&lt;component&gt;/A.B.0</li>
+          <li>Grab its URL while there. You will need it for the Vote Letter.</li>
+          <li>Check your local Maven repository
+            <ul>
+              <li><em>~/.m2/repository/org/apache/datasketches/datasketches-&lt;component&gt;/A.B.0/</em></li>
+              <li>It should have 5 new jars and a .pom file each with .asc, .md5, and .sha1 signatures</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 <h3 id="create-copy-of-external-artifact-distributions">Create Copy of External Artifact Distributions</h3>
 <ul>
   <li>For Java, we need to place copies of the artifact jars deployed to Nexus under a “maven” directory.</li>
@@ -721,11 +800,11 @@
 <ul>
   <li>See VoteTemplates directory for a recent example</li>
   <li>Declare that the vote is closed.</li>
-  <li>Summarize PPMC vote results</li>
+  <li>Summarize vote results</li>
 </ul>
 
 <h2 id="move-files-from-devstaging-to-release">Move files from dev/staging to release</h2>
-<h3 id="move-primary-zip-files-from-distdev-to-distrelease">Move primary zip files from <em>dist/dev</em> to <em>dist/release</em></h3>
+<h3 id="move-primary-zip-files-distdev-to-distrelease">Move primary zip files <em>dist/dev</em> to <em>dist/release</em></h3>
 <ul>
   <li>In local dist/<strong>dev</strong>/datasketches/
     <ul>
@@ -782,6 +861,18 @@
 </ul>
 
 <h3 id="move-external-artifact-distributions-distdev-to-distrelease">Move External Artifact Distributions <em>dist/dev</em> to <em>dist/release</em></h3>
+
+<h3 id="java-release-jars-on-nexus-staging">Java: Release Jars on Nexus Staging</h3>
+<ul>
+  <li>On Nexus <a href="https://repository.apache.org/">repository.apache.org</a> click on Staging Repositories</li>
+  <li>Select “orgapachedatasketches-XXXX” (If more than one make sure you select the right one!)</li>
+  <li>At the top of the window, select “Release”</li>
+  <li>Confirm that the attributes have moved to the “Releases” repository under “Repositories”
+    <ul>
+      <li>Browse to *Releases/org/apache/datasketches/…</li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="create--document-release-tag-on-github">Create &amp; Document Release Tag on GitHub</h2>
 <ul>
