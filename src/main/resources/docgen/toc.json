@@ -254,7 +254,10 @@
         {"class":"Doc",  "desc" : "Community",                            "dir" : "Community", "file": "index" },
         {"class":"Doc",  "desc" : "Downloads",                            "dir" : "Community", "file": "Downloads"},
         {"class":"Doc",  "desc" : "New Committer Process",                "dir" : "Community", "file": "NewCommitterProcess"},
+        {"class":"Doc",  "desc" : "Process For CPP Component Releases",   "dir" : "Community", "file": "ProcessForCppComponentReleases"},
+        {"class":"Doc",  "desc" : "Process For Java Component Releases",  "dir" : "Community", "file": "ProcessForJavaComponentReleases"},
         {"class":"Doc",  "desc" : "Transitioning from prior GitHub Site", "dir" : "Community", "file": "Transitioning"},
+        
         {"class":"Doc",  "desc" : "Who Uses",                             "dir" : "Community", "file": "WhoUses" },
       ]
     },
