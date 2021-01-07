@@ -522,6 +522,7 @@
       <li>LICENSE</li>
       <li>NOTICE – check for copyright dates</li>
       <li>README.md</li>
+      <li>.asf.yaml</li>
       <li>.travis.yml</li>
       <li>.gitignore</li>
       <li>pom.xml</li>
@@ -541,58 +542,37 @@
     <ul>
       <li>Confirm GPG is running (check this every time you open a new Terminal):
         <ul>
-          <li>
-            <table>
-              <tbody>
-                <tr>
-                  <td>$ env</td>
-                  <td>grep GPG # you should see something like: GPG_TTY=/dev/ttys000</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
+          <li><code class="highlighter-rouge">env | grep GPG</code> # you should see something like: GPG_TTY=/dev/ttys000</li>
           <li>To start GPG if GPG Agent is not running:
             <ul>
-              <li>$ eval $(gpg-agent –daemon)</li>
+              <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
             </ul>
           </li>
         </ul>
       </li>
       <li>Confirm GitHub repository is current and git status is clean:
         <ul>
-          <li>$ git status
-            <ul>
-              <li>“nothing to commit, working tree clean”</li>
-            </ul>
-          </li>
+          <li><code class="highlighter-rouge">git status</code> # should return:</li>
+          <li>“nothing to commit, working tree clean”</li>
         </ul>
       </li>
       <li>At major version releases, search for deprecated code and remove at <strong>Major Versions</strong> only.
         <ul>
-          <li>
-            <table>
-              <tbody>
-                <tr>
-                  <td>$ find . -name “*.java” -type f -print</td>
-                  <td>xargs grep -i -n -s -A0 “deprecated”</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
+          <li><code class="highlighter-rouge">find . -name "*.java" -type f -print | xargs grep -i -n -s -A0 "deprecated"</code></li>
         </ul>
       </li>
       <li>Check Maven Versions:
         <ul>
-          <li>$ mvn versions:display-plugin-updates</li>
+          <li><code class="highlighter-rouge">mvn versions:display-plugin-updates</code></li>
         </ul>
       </li>
       <li>Maven Tests:
         <ul>
-          <li>$ mvn apache-rat:check</li>
-          <li>$ mvn clean test</li>
-          <li>$ mvn clean test -P strict</li>
-          <li>$ mvn clean javadoc:javadoc</li>
-          <li>$ mvn clean install -DskipTests=true</li>
+          <li><code class="highlighter-rouge">mvn apache-rat:check</code></li>
+          <li><code class="highlighter-rouge">mvn clean test</code></li>
+          <li><code class="highlighter-rouge">mvn clean test -P strict</code></li>
+          <li><code class="highlighter-rouge">mvn clean javadoc:javadoc</code></li>
+          <li><code class="highlighter-rouge">mvn clean install -DskipTests=true</code></li>
           <li>Check that the /target/ directory has 5 jars:
             <ul>
               <li>-javadoc.jar</li>
@@ -632,7 +612,7 @@
     <ul>
       <li>Do explicit push of tags on branch “A.B.X” to origin:
         <ul>
-          <li>$ git push origin –tags</li>
+          <li><code class="highlighter-rouge">git push origin --tags</code></li>
         </ul>
       </li>
     </ul>
@@ -661,22 +641,22 @@
 <ul>
   <li>If you have not already, on your system create the two directory structures that mirror the dist.apache.org/repos/ directories:
     <ul>
-      <li>mkdir dist/dev/datasketches/</li>
-      <li>mkdir dist/release/datasketches/</li>
+      <li><code class="highlighter-rouge">mkdir dist/dev/datasketches/</code></li>
+      <li><code class="highlighter-rouge">mkdir dist/release/datasketches/</code></li>
     </ul>
   </li>
   <li>Checkout both “dev” and “release” directories
     <ul>
       <li>Open a terminal in the dist/dev/datasketches directory and do a checkout:
         <ul>
-          <li>svn co https://dist.apache.org/repos/dist/dev/datasketches/ .      #Note the DOT</li>
-          <li>svn status    # make sure it is clean</li>
+          <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>      #Note the DOT</li>
+          <li><code class="highlighter-rouge">svn status</code>    # make sure it is clean</li>
         </ul>
       </li>
       <li>Open a terminal in the dist/release/datasketches directory and do a checkout:
         <ul>
-          <li>svn co https://dist.apache.org/repos/dist/release/datasketches/ .  #Note the DOT</li>
-          <li>svn status    # make sure it is clean</li>
+          <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/release/datasketches/ .</code>  #Note the DOT</li>
+          <li><code class="highlighter-rouge">svn status</code>    # make sure it is clean</li>
         </ul>
       </li>
     </ul>
@@ -696,29 +676,21 @@
   </li>
   <li>Start a new terminal in the above dist/dev/datasketches/scripts directory on your system:
     <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>Confirm GPG is running: $ env</td>
-              <td>grep GPG</td>
-            </tr>
-          </tbody>
-        </table>
+      <li>Confirm GPG is running: <code class="highlighter-rouge">env | grep GPG</code>
         <ul>
-          <li>If not: $ eval $(gpg-agent –daemon)</li>
+          <li>If not: <code class="highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
         </ul>
       </li>
       <li>Run something like:
         <ul>
-          <li>$ ./bashDeployToDist.sh /Users/&lt;name&gt;/dev/git/Apache/datasketches-&lt;component&gt; datasketches-&lt;component&gt; A.B.0-RC1</li>
+          <li><code class="highlighter-rouge">./bashDeployToDist.sh /Users/\&lt;name\&gt;/dev/git/Apache/datasketches-\&lt;component\&gt; datasketches-\&lt;component\&gt; A.B.0-RC1</code></li>
           <li>Follow the instructions.</li>
           <li>NOTE: if you get the error “gpg: signing failed: No pinentry”:
             <ul>
               <li>open .gnupg/gpg-agent.conf</li>
-              <li>change to: pinentry-program /usr/local/bin/pinentry-tty</li>
-              <li>reload the gpg agent in the terminal: gpg-connect-agent reloadagent /bye</li>
-              <li>restart the ./bashDeployToDist script</li>
+              <li>change to: pinentry-program <em>/usr/local/bin/pinentry-tty</em></li>
+              <li>reload the gpg agent in the terminal: <code class="highlighter-rouge">gpg-connect-agent reloadagent /bye</code></li>
+              <li>restart the <em>./bashDeployToDist</em> script</li>
             </ul>
           </li>
           <li>Close the terminal</li>
@@ -726,7 +698,7 @@
       </li>
     </ul>
   </li>
-  <li>Check and grab the web URL ~ https://dist.apache.org/repos/dist/dev/datasketches/&lt;component&gt;/A.B.0-RC1/
+  <li>Check and grab the web URL ~ <em>https://dist.apache.org/repos/dist/dev/datasketches/&lt;component&gt;/A.B.0-RC1/</em>
     <ul>
       <li>There should be 3 files: *-src.zip, *-src.zip.asc, *-src.zip.sha512</li>
     </ul>
@@ -736,23 +708,15 @@
 <h3 id="java-push-jars-to-nexus-maven-central-staging">Java: Push Jars to Nexus (Maven Central) Staging</h3>
 <ul>
   <li>Return to original terminal at the project.basedir</li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>If starting new terminal make sure GPG is running: $ env</td>
-          <td>grep GPG</td>
-        </tr>
-      </tbody>
-    </table>
+  <li>If starting new terminal make sure GPG is running: <code class="highlighter-rouge">env | grep GPG</code>
     <ul>
-      <li>If not: $ eval $(gpg-agent –daemon)</li>
+      <li>If not: <code class="highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
     </ul>
   </li>
-  <li>$ git status # make sure you are still on the release branch: _A.B.X</li>
+  <li><code class="highlighter-rouge">git status</code> # make sure you are still on the release branch: _A.B.X</li>
   <li>TRIAL-RUN:
     <ul>
-      <li>$ mvn clean install -Pnexus-jars -DskipTests=true
+      <li><code class="highlighter-rouge">mvn clean install -Pnexus-jars -DskipTests=true</code>
         <ul>
           <li>Check that jars &amp; pom have .asc signatures</li>
         </ul>
@@ -761,7 +725,7 @@
   </li>
   <li>DEPLOY
     <ul>
-      <li>$ mvn clean deploy -Pnexus-jars -DskipTests=true
+      <li><code class="highlighter-rouge">mvn clean deploy -Pnexus-jars -DskipTests=true</code>
         <ul>
           <li>Login to <a href="https://repository.apache.org/">repository.apache.org</a> / Staging Repositories for orgapachedatasketches-XXXX</li>
           <li>Click Content and search to the end.  Each jar &amp; pom should have .asc, .md5, .sha1 signatures</li>
@@ -783,8 +747,8 @@
 <h3 id="create-copy-of-external-artifact-distributions">Create Copy of External Artifact Distributions</h3>
 <ul>
   <li>For Java, we need to place copies of the artifact jars deployed to Nexus under a “maven” directory.</li>
-  <li>For external artifacts of Python or Docker it will be something else.</li>
   <li>For example see <a href="https://dist.apache.org/repos/dist/release/datasketches/java/1.3.0-incubating/">https://dist.apache.org/repos/dist/release/datasketches/java/1.3.0-incubating/</a></li>
+  <li>For external artifacts of Python or Docker it will be something else.</li>
   <li>These must be signed with GPG (.asc) and SHA512 (.sha512)</li>
   <li>I will create a script for these artifacts someday :)</li>
 </ul>
@@ -806,31 +770,31 @@
 <h2 id="move-files-from-devstaging-to-release">Move files from dev/staging to release</h2>
 <h3 id="move-primary-zip-files-distdev-to-distrelease">Move primary zip files <em>dist/dev</em> to <em>dist/release</em></h3>
 <ul>
-  <li>In local dist/<strong>dev</strong>/datasketches/
+  <li>In local <em>dist/<strong>dev</strong>/datasketches/</em>
     <ul>
       <li>Open Terminal #1
         <ul>
           <li>Perform SVN Checkout:
             <ul>
-              <li>$ svn co https://dist.apache.org/repos/dist/dev/datasketches/ .  #note dot at end</li>
+              <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>  #note dot at end</li>
             </ul>
           </li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>In local dist/<strong>release</strong>/datasketches/
+  <li>In local <em>dist/<strong>release</strong>/datasketches/</em>
     <ul>
       <li>Open Terminal #2
         <ul>
           <li>Perform SVN Checkout:
             <ul>
-              <li>$ svn co https://dist.apache.org/repos/dist/release/datasketches/ . #note dot at end</li>
+              <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/release/datasketches/ .</code> #note dot at end</li>
             </ul>
           </li>
           <li>Create new version directory under appropriate component directory:
             <ul>
-              <li>$ mkdir -p &lt;component&gt;/A.B.0</li>
+              <li><code class="highlighter-rouge">mkdir -p \&lt;component\&gt;/A.B.0</code></li>
             </ul>
           </li>
         </ul>
@@ -843,12 +807,12 @@
       </li>
       <li>Using Terminal #2 at … /dist/release/datasketches directory:
         <ul>
-          <li>svn add . –force</li>
-          <li>svn ci -m “Release A.B.0”</li>
+          <li><code class="highlighter-rouge">svn add . --force</code></li>
+          <li><code class="highlighter-rouge">svn ci -m "Release A.B.0"</code></li>
           <li>Remove the prior release…</li>
-          <li>svn remove &lt;component&gt;/X.Y.0</li>
-          <li>svn ci -m “Remove Prior release”</li>
-          <li>svn status # should be empty</li>
+          <li><code class="highlighter-rouge">svn remove \&lt;component\&gt;/X.Y.0</code></li>
+          <li><code class="highlighter-rouge">svn ci -m "Remove Prior release"</code></li>
+          <li><code class="highlighter-rouge">svn status</code> # should be empty</li>
         </ul>
       </li>
       <li>Using local file system
@@ -869,7 +833,7 @@
   <li>At the top of the window, select “Release”</li>
   <li>Confirm that the attributes have moved to the “Releases” repository under “Repositories”
     <ul>
-      <li>Browse to *Releases/org/apache/datasketches/…</li>
+      <li>Browse to <em>Releases/org/apache/datasketches/…</em></li>
     </ul>
   </li>
 </ul>
@@ -881,7 +845,7 @@
   <li>At that same GitHub ID hash, create a new tag A.B.0 (without the RCn).</li>
   <li>From the Command Line: Push the new tag to origin:
     <ul>
-      <li>$ git push origin –tags</li>
+      <li><code class="highlighter-rouge">git push origin --tags</code></li>
     </ul>
   </li>
   <li>On the GitHub component site document the release</li>
@@ -889,12 +853,12 @@
 
 <h2 id="update-website-downloadsmd-latest-source-zip-files-table">Update Website Downloads.md “Latest Source Zip Files” Table</h2>
 <ul>
-  <li>This script assumes that the remote …/dist/release/datasketches/… directories are up-to-date with no old releases.</li>
-  <li>Start a new terminal in the ../dist/dev/datasketches/scripts directory on your system:</li>
+  <li>This script assumes that the remote <em>…/dist/release/datasketches/…</em> directories are up-to-date with no old releases.</li>
+  <li>Start a new terminal in the <em>../dist/dev/datasketches/scripts</em> directory on your system:</li>
   <li>Make sure you local website directory is pointing to master and up-to-date.</li>
   <li>Run the following with the argument specifying the location of your local website directory:
     <ul>
-      <li>$ ./createDownloadsInclude.sh /Users/&lt;name&gt;/ … /datasketches-website</li>
+      <li><code class="highlighter-rouge">./createDownloadsInclude.sh /Users/\&lt;name\&gt;/ ... /datasketches-website</code></li>
     </ul>
   </li>
   <li>When this is done, be sure to commit the changes to the website.</li>
@@ -915,9 +879,9 @@
 <ul>
   <li>If you have updated this file or any of the scripts, please check it in using SVN using your local dist/dev directory copy:
     <ul>
-      <li>$ svn status</li>
-      <li>$ svn add . –force  # if adding a file for the first time</li>
-      <li>$ svn ci -m “update Release Steps”</li>
+      <li><code class="highlighter-rouge">svn status</code></li>
+      <li><code class="highlighter-rouge">svn add . --force</code>  # if adding a file for the first time</li>
+      <li><code class="highlighter-rouge">svn ci -m "update Release Steps"</code></li>
     </ul>
   </li>
 </ul>
