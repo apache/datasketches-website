@@ -20,7 +20,7 @@ layout: doc_page
     under the License.
 -->
 
-# Process For Java Component Releases 
+# Release Process For Java Components 
 __NOTES:__
 
 * This process covers major and minor releases only. Bug-fix releases, which increment the third digit, are performed on a A.B.X branch and not on master, but otherwise are similar.

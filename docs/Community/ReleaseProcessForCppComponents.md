@@ -20,7 +20,7 @@ layout: doc_page
     under the License.
 -->
 
-# Apache C++ Release Steps
+# Release Process For C++ Components
 __NOTES:__
 
 * This process covers major and minor releases only. Bug-fix releases, which increment the third digit, are performed on a A.B.X branch and not on master, but otherwise is similar.
