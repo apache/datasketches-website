@@ -31,6 +31,7 @@ __NOTES:__
     * LICENSE
     * NOTICE -- check for copyright dates
     * README.md
+    * .asf.yaml
     * .travis.yml
     * .gitignore
     * pom.xml
@@ -45,22 +46,22 @@ __NOTES:__
 
 * From Command Line at Component root:
   * Confirm GPG is running (check this every time you open a new Terminal):
-      * $ env | grep GPG # you should see something like: GPG_TTY=/dev/ttys000
+      * `env | grep GPG` # you should see something like: GPG_TTY=/dev/ttys000
       * To start GPG if GPG Agent is not running:
-          * $ eval $(gpg-agent --daemon)
+          * `eval $(gpg-agent --daemon)`
   * Confirm GitHub repository is current and git status is clean:
-      * $ git status
-          * "nothing to commit, working tree clean"
+      * `git status` # should return:
+      * "nothing to commit, working tree clean"
   * At major version releases, search for deprecated code and remove at __Major Versions__ only.
-      * $ find . -name "*.java" -type f -print | xargs grep -i -n -s -A0 "deprecated"
+      * `find . -name "*.java" -type f -print | xargs grep -i -n -s -A0 "deprecated"`
   * Check Maven Versions:
-      * $ mvn versions:display-plugin-updates
+      * `mvn versions:display-plugin-updates`
   * Maven Tests:
-      * $ mvn apache-rat:check
-      * $ mvn clean test
-      * $ mvn clean test -P strict
-      * $ mvn clean javadoc:javadoc
-      * $ mvn clean install -DskipTests=true
+      * `mvn apache-rat:check`
+      * `mvn clean test`
+      * `mvn clean test -P strict`
+      * `mvn clean javadoc:javadoc`
+      * `mvn clean install -DskipTests=true`
       * Check that the /target/ directory has 5 jars: 
           * -javadoc.jar
           * -sources.jar
@@ -84,7 +85,7 @@ __NOTES:__
     * __DO NOT MERGE THIS PERMANENT BRANCH INTO MASTER__
 * From IDE or Command-line: 
     * Do explicit push of tags on branch "A.B.X" to origin:
-        * $ git push origin --tags
+        * `git push origin --tags`
 * From a web browser at origin web site: github.com/apache/datasketches-\<component\>
     * Select the A.B.X branch
     * Confirm that the tag: A.B.0-RC1 exists and that the tag is on the latest commit and with the correct Git hash.
@@ -100,15 +101,15 @@ __NOTES:__
 
 ## Create and/or Checkout Local *dist/dev* directories on your system
 * If you have not already, on your system create the two directory structures that mirror the dist.apache.org/repos/ directories:
-    * mkdir dist/dev/datasketches/
-    * mkdir dist/release/datasketches/
+    * `mkdir dist/dev/datasketches/`
+    * `mkdir dist/release/datasketches/`
 * Checkout both "dev" and "release" directories 
     * Open a terminal in the dist/dev/datasketches directory and do a checkout:
-        * svn co https://dist.apache.org/repos/dist/dev/datasketches/ .      #Note the DOT
-        * svn status    # make sure it is clean
+        * `svn co https://dist.apache.org/repos/dist/dev/datasketches/ .`      #Note the DOT
+        * `svn status`    # make sure it is clean
     * Open a terminal in the dist/release/datasketches directory and do a checkout:
-        * svn co https://dist.apache.org/repos/dist/release/datasketches/ .  #Note the DOT
-        * svn status    # make sure it is clean
+        * `svn co https://dist.apache.org/repos/dist/release/datasketches/ .`  #Note the DOT
+        * `svn status`    # make sure it is clean
 
 ## Create the Candidate Apache Release Distribution on *dist/dev*
 ### Create primary zip files & signatures
@@ -118,30 +119,30 @@ __NOTES:__
   * GitHub Tag: A.B.0-RC1 (or RCn)
   * Have your GPG passphrase handy -- you have only a few seconds to enter it!
 * Start a new terminal in the above dist/dev/datasketches/scripts directory on your system:
-  * Confirm GPG is running: $ env | grep GPG
-      * If not: $ eval $(gpg-agent --daemon)
+  * Confirm GPG is running: `env | grep GPG`
+      * If not: `eval $(gpg-agent --daemon)`
   * Run something like:
-    * $ ./bashDeployToDist.sh /Users/\<name\>/dev/git/Apache/datasketches-\<component\> datasketches-\<component\> A.B.0-RC1
+    * `./bashDeployToDist.sh /Users/\<name\>/dev/git/Apache/datasketches-\<component\> datasketches-\<component\> A.B.0-RC1`
     * Follow the instructions.
     * NOTE: if you get the error "gpg: signing failed: No pinentry":
         * open .gnupg/gpg-agent.conf
-        * change to: pinentry-program /usr/local/bin/pinentry-tty
-        * reload the gpg agent in the terminal: gpg-connect-agent reloadagent /bye   
-        * restart the ./bashDeployToDist script
+        * change to: pinentry-program */usr/local/bin/pinentry-tty*
+        * reload the gpg agent in the terminal: `gpg-connect-agent reloadagent /bye` 
+        * restart the *./bashDeployToDist* script
     * Close the terminal
-* Check and grab the web URL ~ https://dist.apache.org/repos/dist/dev/datasketches/\<component\>/A.B.0-RC1/
+* Check and grab the web URL ~ *https://dist.apache.org/repos/dist/dev/datasketches/\<component\>/A.B.0-RC1/*
     * There should be 3 files: \*-src.zip, \*-src.zip.asc, \*-src.zip.sha512 
 
 ### Java: Push Jars to Nexus (Maven Central) Staging
 * Return to original terminal at the project.basedir
-* If starting new terminal make sure GPG is running: $ env | grep GPG
-    * If not: $ eval $(gpg-agent --daemon) 
-* $ git status # make sure you are still on the release branch: _A.B.X
+* If starting new terminal make sure GPG is running: `env | grep GPG`
+    * If not: `eval $(gpg-agent --daemon)` 
+* `git status` # make sure you are still on the release branch: _A.B.X
 * TRIAL-RUN:
-  * $ mvn clean install -Pnexus-jars -DskipTests=true
+  * `mvn clean install -Pnexus-jars -DskipTests=true`
       * Check that jars & pom have .asc signatures
 * DEPLOY
-  * $ mvn clean deploy -Pnexus-jars -DskipTests=true
+  * `mvn clean deploy -Pnexus-jars -DskipTests=true`
       * Login to [repository.apache.org](https://repository.apache.org/) / Staging Repositories for orgapachedatasketches-XXXX
       * Click Content and search to the end.  Each jar & pom should have .asc, .md5, .sha1 signatures
       * [CLOSE] the Staging Repository with a comment: "\<component\> A.B.0"
@@ -153,8 +154,8 @@ __NOTES:__
 
 ### Create Copy of External Artifact Distributions
 * For Java, we need to place copies of the artifact jars deployed to Nexus under a "maven" directory.
-* For external artifacts of Python or Docker it will be something else.
 * For example see <https://dist.apache.org/repos/dist/release/datasketches/java/1.3.0-incubating/>
+* For external artifacts of Python or Docker it will be something else.
 * These must be signed with GPG (.asc) and SHA512 (.sha512)
 * I will create a script for these artifacts someday :)
 
@@ -170,26 +171,26 @@ __NOTES:__
 
 ## Move files from dev/staging to release
 ### Move primary zip files *dist/dev* to *dist/release*
-* In local dist/__dev__/datasketches/
+* In local *dist/__dev__/datasketches/*
     * Open Terminal #1 
         * Perform SVN Checkout:
-            * $ svn co https://dist.apache.org/repos/dist/dev/datasketches/ .  #note dot at end
-* In local dist/__release__/datasketches/
+            * `svn co https://dist.apache.org/repos/dist/dev/datasketches/ .`  #note dot at end
+* In local *dist/__release__/datasketches/*
     * Open Terminal #2
         * Perform SVN Checkout:
-            * $ svn co https://dist.apache.org/repos/dist/release/datasketches/ . #note dot at end
+            * `svn co https://dist.apache.org/repos/dist/release/datasketches/ .` #note dot at end
         * Create new version directory under appropriate component directory:
-            * $ mkdir -p \<component\>/A.B.0
+            * `mkdir -p \<component\>/A.B.0`
     * Using local file system copy files 
         * From  ... /dist/dev/datasketches/\<component\>/version-RCnn/*
         * To    ... /dist/release/datasketches/\<component\>/version (no RCnn)/*
     * Using Terminal #2 at ... /dist/release/datasketches directory:
-        * svn add . --force
-        * svn ci -m "Release A.B.0"
+        * `svn add . --force`
+        * `svn ci -m "Release A.B.0"`
         * Remove the prior release...
-        * svn remove \<component\>/X.Y.0
-        * svn ci -m "Remove Prior release"
-        * svn status # should be empty
+        * `svn remove \<component\>/X.Y.0`
+        * `svn ci -m "Remove Prior release"`
+        * `svn status` # should be empty
     * Using local file system
         * Delete the prior X.Y.0 directory  
 
@@ -200,22 +201,22 @@ __NOTES:__
 * Select "orgapachedatasketches-XXXX" (If more than one make sure you select the right one!)
 * At the top of the window, select "Release"
 * Confirm that the attributes have moved to the "Releases" repository under "Repositories"
-    * Browse to *Releases/org/apache/datasketches/... 
+    * Browse to *Releases/org/apache/datasketches/...* 
 
 ## Create & Document Release Tag on GitHub
 * Open your IDE and switch to the recently created Release Branch A.B.X
 * Find the recently created A.B.0-RCn tag in that branch
 * At that same GitHub ID hash, create a new tag A.B.0 (without the RCn).
 * From the Command Line: Push the new tag to origin:
-    * $ git push origin --tags
+    * `git push origin --tags`
 * On the GitHub component site document the release 
 
 ## Update Website Downloads.md "Latest Source Zip Files" Table
-* This script assumes that the remote .../dist/release/datasketches/... directories are up-to-date with no old releases.  
-* Start a new terminal in the ../dist/dev/datasketches/scripts directory on your system:
+* This script assumes that the remote *.../dist/release/datasketches/...* directories are up-to-date with no old releases.  
+* Start a new terminal in the *../dist/dev/datasketches/scripts* directory on your system:
 * Make sure you local website directory is pointing to master and up-to-date. 
 * Run the following with the argument specifying the location of your local website directory:
-    * $ ./createDownloadsInclude.sh /Users/\<name\>/ ... /datasketches-website
+    * `./createDownloadsInclude.sh /Users/\<name\>/ ... /datasketches-website`
 * When this is done, be sure to commit the changes to the website.
 
 ## Update Javadocs (or Equivalent) on Website
@@ -229,6 +230,6 @@ __NOTES:__
 
 ## Update These Instructions
 * If you have updated this file or any of the scripts, please check it in using SVN using your local dist/dev directory copy:
-    * $ svn status
-    * $ svn add . --force  # if adding a file for the first time
-    * $ svn ci -m "update Release Steps" 
+    * `svn status`
+    * `svn add . --force`  # if adding a file for the first time
+    * `svn ci -m "update Release Steps"` 
