@@ -297,11 +297,9 @@ Regards,
 
 ## Adding the New Committer to the DataSketches Roster
 
-### PPMC
-Any PMC Member can add the new committer to the roster on the [DataSketches Roster](https://whimsy.apache.org/roster/ppmc/datasketches) by clicking the **ADD** button at the top of the page. 
-
 ### PMC
-(TBD)
+Any PMC Member can add the new committer to the roster on the [DataSketches Roster](https://whimsy.apache.org/roster/committee/datasketches) by clicking the **ADD** button at the top of the page. 
+
 
 ## Committer Announce Template
 After the committer account is established.
