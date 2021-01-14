@@ -54,8 +54,10 @@ __NOTES:__
       * "nothing to commit, working tree clean"
   * At major version releases, search for deprecated code and remove at __Major Versions__ only.
       * `find . -name "*.java" -type f -print | xargs grep -i -n -s -A0 "deprecated"`
-  * Check Maven Versions:
+  * Check Maven Plugin, Dependency, Property Versions of the POM:
       * `mvn versions:display-plugin-updates`
+      * `mvn versions:display-dependency-updates`
+      * `mvn versions:display-property-updates`
   * Maven Tests:
       * `mvn apache-rat:check`
       * `mvn clean test`
