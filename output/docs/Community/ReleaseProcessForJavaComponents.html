@@ -561,9 +561,11 @@
           <li><code class="highlighter-rouge">find . -name "*.java" -type f -print | xargs grep -i -n -s -A0 "deprecated"</code></li>
         </ul>
       </li>
-      <li>Check Maven Versions:
+      <li>Check Maven Plugin, Dependency, Property Versions of the POM:
         <ul>
           <li><code class="highlighter-rouge">mvn versions:display-plugin-updates</code></li>
+          <li><code class="highlighter-rouge">mvn versions:display-dependency-updates</code></li>
+          <li><code class="highlighter-rouge">mvn versions:display-property-updates</code></li>
         </ul>
       </li>
       <li>Maven Tests:
