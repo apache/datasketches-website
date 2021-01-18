@@ -64,12 +64,13 @@ __NOTES:__
       * `mvn clean test -P strict`
       * `mvn clean javadoc:javadoc`
       * `mvn clean install -DskipTests=true`
-      * Check that the /target/ directory has 5 jars: 
-          * -javadoc.jar
-          * -sources.jar
-          * -test-sources.jar
-          * -tests.jar
-          * -.jar
+      * Check that the /target/ directory has 5 jars: (may need to refresh)
+          * datasketches-\<component\>-SNAPSHOT-javadoc.jar
+          * datasketches-\<component\>-SNAPSHOT-sources.jar
+          * datasketches-\<component\>-SNAPSHOT-test-sources.jar
+          * datasketches-\<component\>-SNAPSHOT-tests.jar
+          * datasketches-\<component\>-SNAPSHOT.jar
+
       * Check your local Maven repository
           * _~/.m2/repository/org/apache/datasketches/datasketches-\<component\>/A.B.0-SNAPSHOT/_ 
           * It should have 5 new jars and a .pom file. 
@@ -141,9 +142,11 @@ __NOTES:__
     * If not: `eval $(gpg-agent --daemon)` 
 * `git status` # make sure you are still on the release branch: _A.B.X
 * TRIAL-RUN:
+  * Have your GPG passphrase handy -- you have only a few seconds to enter it!
   * `mvn clean install -Pnexus-jars -DskipTests=true`
-      * Check that jars & pom have .asc signatures
+      * Check target/ that jars & pom have .asc signatures
 * DEPLOY
+  * Have your GPG passphrase handy -- you have only a few seconds to enter it!
   * `mvn clean deploy -Pnexus-jars -DskipTests=true`
       * Login to [repository.apache.org](https://repository.apache.org/) / Staging Repositories for orgapachedatasketches-XXXX
       * Click Content and search to the end.  Each jar & pom should have .asc, .md5, .sha1 signatures
@@ -155,11 +158,16 @@ __NOTES:__
           * It should have 5 new jars and a .pom file each with .asc, .md5, and .sha1 signatures
 
 ### Create Copy of External Artifact Distributions
-* For Java, we need to place copies of the artifact jars deployed to Nexus under a "maven" directory.
-* For example see <https://dist.apache.org/repos/dist/release/datasketches/java/1.3.0-incubating/>
-* For external artifacts of Python or Docker it will be something else.
+#### JAVA
+* Place copies of the artifact jars deployed to Nexus under a "maven" directory.  For example see <https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/>
+* Note that the `jar` files with their `asc` signature are already in the `target` directory. 
+* Just download the associated `md5` and `sha1` signatures from  `~/.m2/repository/org/apache/datasketches/datasketches-\<component\>/A.B.0/`  into the `target` directory.
+* Add a `maven` directory under the `dist/dev/datasketches/\<component\>/A.B.0/`
+* Bulk copy the `jar, asc, md5` and `sha1` files into the `maven` directory.
+
+#### Non-Java
+* For external artifacts such as Python or Docker the subdirectory name should be relevant to the type.
 * These must be signed with GPG (.asc) and SHA512 (.sha512)
-* I will create a script for these artifacts someday :)
 
 ## Prepare & Send [VOTE] Letter to dev@
 * See VoteTemplates directory for a recent example
@@ -171,8 +179,7 @@ __NOTES:__
 * Declare that the vote is closed.
 * Summarize vote results
 
-## Move files from dev/staging to release
-### Move primary zip files *dist/dev* to *dist/release*
+## Move files from *dist/dev* to *dist/release*
 * In local *dist/__dev__/datasketches/*
     * Open Terminal #1 
         * Perform SVN Checkout:
@@ -194,9 +201,8 @@ __NOTES:__
         * `svn ci -m "Remove Prior release"`
         * `svn status` # should be empty
     * Using local file system
-        * Delete the prior X.Y.0 directory  
-
-### Move External Artifact Distributions *dist/dev* to *dist/release*
+        * Delete the prior X.Y.0 directory
+    * Make sure to move External Artifact Distributions *dist/dev* to *dist/release*
 
 ### Java: Release Jars on Nexus Staging
 * On Nexus [repository.apache.org](https://repository.apache.org/) click on Staging Repositories
