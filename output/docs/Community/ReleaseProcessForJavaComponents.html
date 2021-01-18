@@ -575,13 +575,13 @@
           <li><code class="highlighter-rouge">mvn clean test -P strict</code></li>
           <li><code class="highlighter-rouge">mvn clean javadoc:javadoc</code></li>
           <li><code class="highlighter-rouge">mvn clean install -DskipTests=true</code></li>
-          <li>Check that the /target/ directory has 5 jars:
+          <li>Check that the /target/ directory has 5 jars: (may need to refresh)
             <ul>
-              <li>-javadoc.jar</li>
-              <li>-sources.jar</li>
-              <li>-test-sources.jar</li>
-              <li>-tests.jar</li>
-              <li>-.jar</li>
+              <li>datasketches-&lt;component&gt;-SNAPSHOT-javadoc.jar</li>
+              <li>datasketches-&lt;component&gt;-SNAPSHOT-sources.jar</li>
+              <li>datasketches-&lt;component&gt;-SNAPSHOT-test-sources.jar</li>
+              <li>datasketches-&lt;component&gt;-SNAPSHOT-tests.jar</li>
+              <li>datasketches-&lt;component&gt;-SNAPSHOT.jar</li>
             </ul>
           </li>
           <li>Check your local Maven repository
@@ -718,15 +718,17 @@
   <li><code class="highlighter-rouge">git status</code> # make sure you are still on the release branch: _A.B.X</li>
   <li>TRIAL-RUN:
     <ul>
+      <li>Have your GPG passphrase handy – you have only a few seconds to enter it!</li>
       <li><code class="highlighter-rouge">mvn clean install -Pnexus-jars -DskipTests=true</code>
         <ul>
-          <li>Check that jars &amp; pom have .asc signatures</li>
+          <li>Check target/ that jars &amp; pom have .asc signatures</li>
         </ul>
       </li>
     </ul>
   </li>
   <li>DEPLOY
     <ul>
+      <li>Have your GPG passphrase handy – you have only a few seconds to enter it!</li>
       <li><code class="highlighter-rouge">mvn clean deploy -Pnexus-jars -DskipTests=true</code>
         <ul>
           <li>Login to <a href="https://repository.apache.org/">repository.apache.org</a> / Staging Repositories for orgapachedatasketches-XXXX</li>
@@ -747,12 +749,19 @@
 </ul>
 
 <h3 id="create-copy-of-external-artifact-distributions">Create Copy of External Artifact Distributions</h3>
+<h4 id="java">JAVA</h4>
 <ul>
-  <li>For Java, we need to place copies of the artifact jars deployed to Nexus under a “maven” directory.</li>
-  <li>For example see <a href="https://dist.apache.org/repos/dist/release/datasketches/java/1.3.0-incubating/">https://dist.apache.org/repos/dist/release/datasketches/java/1.3.0-incubating/</a></li>
-  <li>For external artifacts of Python or Docker it will be something else.</li>
+  <li>Place copies of the artifact jars deployed to Nexus under a “maven” directory.  For example see <a href="https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/">https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/</a></li>
+  <li>Note that the <code class="highlighter-rouge">jar</code> files with their <code class="highlighter-rouge">asc</code> signature are already in the <code class="highlighter-rouge">target</code> directory.</li>
+  <li>Just download the associated <code class="highlighter-rouge">md5</code> and <code class="highlighter-rouge">sha1</code> signatures from  <code class="highlighter-rouge">~/.m2/repository/org/apache/datasketches/datasketches-\&lt;component\&gt;/A.B.0/</code>  into the <code class="highlighter-rouge">target</code> directory.</li>
+  <li>Add a <code class="highlighter-rouge">maven</code> directory under the <code class="highlighter-rouge">dist/dev/datasketches/\&lt;component\&gt;/A.B.0/</code></li>
+  <li>Bulk copy the <code class="highlighter-rouge">jar, asc, md5</code> and <code class="highlighter-rouge">sha1</code> files into the <code class="highlighter-rouge">maven</code> directory.</li>
+</ul>
+
+<h4 id="non-java">Non-Java</h4>
+<ul>
+  <li>For external artifacts such as Python or Docker the subdirectory name should be relevant to the type.</li>
   <li>These must be signed with GPG (.asc) and SHA512 (.sha512)</li>
-  <li>I will create a script for these artifacts someday :)</li>
 </ul>
 
 <h2 id="prepare--send-vote-letter-to-dev">Prepare &amp; Send [VOTE] Letter to dev@</h2>
@@ -769,8 +778,7 @@
   <li>Summarize vote results</li>
 </ul>
 
-<h2 id="move-files-from-devstaging-to-release">Move files from dev/staging to release</h2>
-<h3 id="move-primary-zip-files-distdev-to-distrelease">Move primary zip files <em>dist/dev</em> to <em>dist/release</em></h3>
+<h2 id="move-files-from-distdev-to-distrelease">Move files from <em>dist/dev</em> to <em>dist/release</em></h2>
 <ul>
   <li>In local <em>dist/<strong>dev</strong>/datasketches/</em>
     <ul>
@@ -822,11 +830,10 @@
           <li>Delete the prior X.Y.0 directory</li>
         </ul>
       </li>
+      <li>Make sure to move External Artifact Distributions <em>dist/dev</em> to <em>dist/release</em></li>
     </ul>
   </li>
 </ul>
-
-<h3 id="move-external-artifact-distributions-distdev-to-distrelease">Move External Artifact Distributions <em>dist/dev</em> to <em>dist/release</em></h3>
 
 <h3 id="java-release-jars-on-nexus-staging">Java: Release Jars on Nexus Staging</h3>
 <ul>
