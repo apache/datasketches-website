@@ -90,7 +90,7 @@ Using the _Memory_ package cannot be taken lightly, as the systems developer mus
 aware of the importance of memory allocation and deallocation and make sure these resources 
 are managed properly. To the extent possible, this _Memory Package_ has been designed leveraging Java's own
 _AutoCloseable_, and _Cleaner_ and also tracks when allocated memory has been freed and provides safety checks
-against the dreaded "use-after-free" case even in a multi-threaded environment.
+against the dreaded "use-after-free" case.
 
 ### Architecture
 The Memory package is designed around two major types of entities:
