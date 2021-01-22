@@ -179,7 +179,9 @@ __NOTES:__
 * Declare that the vote is closed.
 * Summarize vote results
 
-## Move files from *dist/dev* to *dist/release*
+## Finalize the Release
+
+### Move files from *dist/dev* to *dist/release*
 * In local *dist/__dev__/datasketches/*
     * Open Terminal #1 
         * Perform SVN Checkout:
@@ -193,6 +195,7 @@ __NOTES:__
     * Using local file system copy files 
         * From  ... /dist/dev/datasketches/\<component\>/version-RCnn/*
         * To    ... /dist/release/datasketches/\<component\>/version (no RCnn)/*
+        * Make sure to move External Artifact Distributions *dist/dev* to *dist/release*
     * Using Terminal #2 at ... /dist/release/datasketches directory:
         * `svn add . --force`
         * `svn ci -m "Release A.B.0"`
@@ -201,8 +204,7 @@ __NOTES:__
         * `svn ci -m "Remove Prior release"`
         * `svn status` # should be empty
     * Using local file system
-        * Delete the prior X.Y.0 directory
-    * Make sure to move External Artifact Distributions *dist/dev* to *dist/release*
+        * Delete the prior X.Y.0 directory if necessary.
 
 ### Java: Release Jars on Nexus Staging
 * On Nexus [repository.apache.org](https://repository.apache.org/) click on Staging Repositories
@@ -211,7 +213,14 @@ __NOTES:__
 * Confirm that the attributes have moved to the "Releases" repository under "Repositories"
     * Browse to *Releases/org/apache/datasketches/...* 
 
-## Create & Document Release Tag on GitHub
+## Finalize Release Documentation
+
+### Update Apache Reporter
+* Because of the commit to the `dist/release` branch, you should get an automated email requesting you to update the Apache DataBase about the releaase.
+* The email should point you to the [Apache Committee Report Helper](https://reporter.apache.org/addrelease.html?datasketches).
+* Update the full name of the component release. For example: `Apache datasketches-memory-1.3.0`
+
+### Create & Document Release Tag on GitHub
 * Open your IDE and switch to the recently created Release Branch A.B.X
 * Find the recently created A.B.0-RCn tag in that branch
 * At that same GitHub ID hash, create a new tag A.B.0 (without the RCn).
@@ -219,7 +228,7 @@ __NOTES:__
     * `git push origin --tags`
 * On the GitHub component site document the release 
 
-## Update Website Downloads.md "Latest Source Zip Files" Table
+### Update Website Downloads.md "Latest Source Zip Files" Table
 * This script assumes that the remote *.../dist/release/datasketches/...* directories are up-to-date with no old releases.  
 * Start a new terminal in the *../dist/dev/datasketches/scripts* directory on your system:
 * Make sure you local website directory is pointing to master and up-to-date. 
@@ -227,11 +236,11 @@ __NOTES:__
     * `./createDownloadsInclude.sh /Users/\<name\>/ ... /datasketches-website`
 * When this is done, be sure to commit the changes to the website.
 
-## Update Javadocs (or Equivalent) on Website
+### Update Javadocs (or Equivalent) on Website
 
-## Update Website Documentation (if new functionality)
+### Update Website Documentation (if new functionality)
 
-## Prepare Announce Letter to dev@
+### Prepare Announce Letter to dev@
 * ASF requests that you wait 24 hours to publish Announce letter to allow the propagation to mirrors.
 * Use recent template
 * Summarize vote results
