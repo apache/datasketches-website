@@ -64,16 +64,22 @@ the release was generated from.
 
 
 ### Version History and Release Notes
-Please use GitHub version history on the respective component repositories. 
+Please use GitHub version history on the respective component repositories. There are several ways to access the release notes:
 
-For example:
-* From [datasketches-java](https://github.com/apache/datasketches-java)
+#### Direct link from the GitHub page
+* In the right-hand column click on **Releases**.
+
+#### From the **tags** button on the GitHub page
+* Click on **tags**
+* Select **Releases**
+
+#### From the **Branches (master)** button
 * Click on the branch icon **[master]**
 * Click on **[Tags]**
 * At the bottom of the pop-up click on **[View all tags]**
 * Click on **[Releases]**
 
-Or, you can go directly by apending `/releases` to the URL as in
+#### Or, you can go directly by apending `/releases` to the URL as in
 * `https://github.com/apache/datasketches-java/releases`
 
 
