@@ -31,57 +31,74 @@ It is essential that you verify the integrity of release downloads. See [instruc
 ## Download Java Jar Files
 From [Maven Central](https://search.maven.org/search?q=g:%20org.apache.datasketches).
 
-## Enabling Python
-* First download the C++ core above, then read the [Python Installation Instructions](https://github.com/apache/datasketches-cpp/tree/master/python)
-
-## Download Earlier Versions
-
-* **[ZIP Files](http://archive.apache.org/dist/datasketches/java/)**  OR **[ZIP Files](http://archive.apache.org/dist/incubator/datasketches/java/)**
-* **[Java Jar Files](https://search.maven.org/search?q=g:%20org.apache.datasketches)**
-
-## Version Numbers
-Apache DataSketches uses [semantic versioning](https://semver.org/). Version numbers use the form major.minor.incremental and are updated as follows:
-
-* __major version__ for major new functionality and/or major API changes.  For major API changes users should expect that there may be some API-incompatible changes.  This will be made clear in the release comments. 
-* __minor version__ for new functionality and scheduled bug fixes. These should be API compatible with prior versions.
-* __incremental version__ for unscheduled bug fixes only.
-
-Note: we maintain *forward binary compatiblity* of a specific sketch type.  For example, a Java Theta Sketch stored as a binary image using version 0.1.0 (Aug, 2015) can be merged into a C++ Theta Union version 1.2.0 (Jan, 2020).  The languages can be swapped in this scenario, but the versions cannot be. 
-
-The zip files downloaded from [datasketches-xxx](https://www.apache.org/dyn/closer.cgi?path=/datasketches)
-include a version number in the name, as in _apache-datasketches-java-1.1.0-src.zip_. 
-This same number is also in the top section of the pom.xml file.
-
+### Use with Maven
 If you are developing using Maven and want to use, for example, datasketches-java, add the following dependencies to your pom.xml file:
 
 ```
 <dependency>
   <groupId>org.apache.datasketches</groupId>
   <artifactId>datasketches-java</artifactId>
-  <version>1.2.0</version>
+  <version>1.3.0</version>
 </dependency>
 ```
 
+## Enabling Python
+* First download the C++ core above, then read the [Python Installation Instructions](https://github.com/apache/datasketches-cpp/tree/master/python)
 
-### Release Philosophy
+## Download Earlier Versions
+
+* [Recent ZIP Releases](http://archive.apache.org/dist/datasketches)
+* [Older ZIP Releases](http://archive.apache.org/dist/incubator/datasketches)
+* [Maven Central for Java Jar files](https://search.maven.org/search?q=g:%20org.apache.datasketches)
+
+## Version Numbers
+Apache DataSketches uses [semantic versioning](https://semver.org/). Version numbers use the form major.minor.incremental and are updated as follows:
+
+* __major version__ for major new functionality and/or major API changes.  For major API changes users should expect that there may be some API-incompatible changes.  This should be made clear in the release comments. 
+* __minor version__ for new functionality and scheduled bug fixes. These should be API compatible with prior versions.
+* __incremental version__ for unscheduled bug fixes only.
+
+All download files include a version number in the name, as in _apache-datasketches-java-1.1.0-src.zip_.
+This same number is also in the top section of the pom.xml file and is the same number in the GitHub Tag associated with the GitHub-ID that
+the release was generated from.
+
+
+### Version History and Release Notes
+Please use GitHub version history on the respective component repositories. 
+
+For example:
+* From [datasketches-java](https://github.com/apache/datasketches-java)
+* Click on the branch icon **[master]**
+* Click on **[Tags]**
+* At the bottom of the pop-up click on **[View all tags]**
+* Click on **[Releases]**
+
+Or, you can go directly by apending `/releases` to the URL as in
+* `https://github.com/apache/datasketches-java/releases`
+
+
+## Release Philosophy
 
 These are fully tested, production quality releases, and hopefully as bug-free as humanly possible. 
 However, the code is continuously evolving and improvements in performance, documentation, additions 
 to the API, and bug fixes do occur.  When enough of these build up, especially for bug fixes or 
-performance improvements, a new release will be issued and the <b>minor</b> 
-digit will be incremented.  The <b>incremental</b> digit will only be used for bug fixes as stated above.
+performance improvements, a new release will be issued and the <b>minor version</b> 
+digit will be incremented.  The <b>incremental</b> digit will only be used for unscheduled bug fixes as stated above.
 
 As stated above, the <b>major</b> digit is being reserved for major refactorings of the library where backward API 
 compatibility may not be guaranteed. 
 
-For the repositories that depend on java core, such as <i>datasketches-hive</i>, 
+For the repositories that depend on java core, such as <i>datasketches-hive</i> and <i>datasketches-pig</i>,
 the version number may be incremented just to be in sync with the java core repository, 
 and may not reflect any actual code changes other than a change in the pom.xml to reflect the new 
-dependency. 
+dependency. Please refer to the release notes for that version.
+
+### Binary Compatibilty
+We try as much as possible to maintain *forward binary compatibility* of serialized (stored) sketch images.  For example, a Java Theta Sketch stored as a binary image using version 0.1.0 (Aug, 2015) can be read and merged into a C++ Theta Union version 1.2.0 (Jan, 2020).  The languages can be swapped in this scenario, but the versions cannot be.
 
 
-### Version History
-Please use GitHub revisions history on the respective component repositories
+
+
 
 
  
