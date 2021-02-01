@@ -597,6 +597,16 @@
 <h2 id="download-java-jar-files">Download Java Jar Files</h2>
 <p>From <a href="https://search.maven.org/search?q=g:%20org.apache.datasketches">Maven Central</a>.</p>
 
+<h3 id="use-with-maven">Use with Maven</h3>
+<p>If you are developing using Maven and want to use, for example, datasketches-java, add the following dependencies to your pom.xml file:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.datasketches&lt;/groupId&gt;
+  &lt;artifactId&gt;datasketches-java&lt;/artifactId&gt;
+  &lt;version&gt;1.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></div></div>
+
 <h2 id="enabling-python">Enabling Python</h2>
 <ul>
   <li>First download the C++ core above, then read the <a href="https://github.com/apache/datasketches-cpp/tree/master/python">Python Installation Instructions</a></li>
@@ -605,52 +615,59 @@
 <h2 id="download-earlier-versions">Download Earlier Versions</h2>
 
 <ul>
-  <li><strong><a href="http://archive.apache.org/dist/datasketches/java/">ZIP Files</a></strong>  OR <strong><a href="http://archive.apache.org/dist/incubator/datasketches/java/">ZIP Files</a></strong></li>
-  <li><strong><a href="https://search.maven.org/search?q=g:%20org.apache.datasketches">Java Jar Files</a></strong></li>
+  <li><a href="http://archive.apache.org/dist/datasketches">Recent ZIP Releases</a></li>
+  <li><a href="http://archive.apache.org/dist/incubator/datasketches">Older ZIP Releases</a></li>
+  <li><a href="https://search.maven.org/search?q=g:%20org.apache.datasketches">Maven Central for Java Jar files</a></li>
 </ul>
 
 <h2 id="version-numbers">Version Numbers</h2>
 <p>Apache DataSketches uses <a href="https://semver.org/">semantic versioning</a>. Version numbers use the form major.minor.incremental and are updated as follows:</p>
 
 <ul>
-  <li><strong>major version</strong> for major new functionality and/or major API changes.  For major API changes users should expect that there may be some API-incompatible changes.  This will be made clear in the release comments.</li>
+  <li><strong>major version</strong> for major new functionality and/or major API changes.  For major API changes users should expect that there may be some API-incompatible changes.  This should be made clear in the release comments.</li>
   <li><strong>minor version</strong> for new functionality and scheduled bug fixes. These should be API compatible with prior versions.</li>
   <li><strong>incremental version</strong> for unscheduled bug fixes only.</li>
 </ul>
 
-<p>Note: we maintain <em>forward binary compatiblity</em> of a specific sketch type.  For example, a Java Theta Sketch stored as a binary image using version 0.1.0 (Aug, 2015) can be merged into a C++ Theta Union version 1.2.0 (Jan, 2020).  The languages can be swapped in this scenario, but the versions cannot be.</p>
+<p>All download files include a version number in the name, as in <em>apache-datasketches-java-1.1.0-src.zip</em>.
+This same number is also in the top section of the pom.xml file and is the same number in the GitHub Tag associated with the GitHub-ID that
+the release was generated from.</p>
 
-<p>The zip files downloaded from <a href="https://www.apache.org/dyn/closer.cgi?path=/datasketches">datasketches-xxx</a>
-include a version number in the name, as in <em>apache-datasketches-java-1.1.0-src.zip</em>. 
-This same number is also in the top section of the pom.xml file.</p>
+<h3 id="version-history-and-release-notes">Version History and Release Notes</h3>
+<p>Please use GitHub version history on the respective component repositories.</p>
 
-<p>If you are developing using Maven and want to use, for example, datasketches-java, add the following dependencies to your pom.xml file:</p>
+<p>For example:</p>
+<ul>
+  <li>From <a href="https://github.com/apache/datasketches-java">datasketches-java</a></li>
+  <li>Click on the branch icon <strong>[master]</strong></li>
+  <li>Click on <strong>[Tags]</strong></li>
+  <li>At the bottom of the pop-up click on <strong>[View all tags]</strong></li>
+  <li>Click on <strong>[Releases]</strong></li>
+</ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.datasketches&lt;/groupId&gt;
-  &lt;artifactId&gt;datasketches-java&lt;/artifactId&gt;
-  &lt;version&gt;1.2.0&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre></div></div>
+<p>Or, you can go directly by apending <code class="highlighter-rouge">/releases</code> to the URL as in</p>
+<ul>
+  <li><code class="highlighter-rouge">https://github.com/apache/datasketches-java/releases</code></li>
+</ul>
 
-<h3 id="release-philosophy">Release Philosophy</h3>
+<h2 id="release-philosophy">Release Philosophy</h2>
 
 <p>These are fully tested, production quality releases, and hopefully as bug-free as humanly possible. 
 However, the code is continuously evolving and improvements in performance, documentation, additions 
 to the API, and bug fixes do occur.  When enough of these build up, especially for bug fixes or 
-performance improvements, a new release will be issued and the <b>minor</b> 
-digit will be incremented.  The <b>incremental</b> digit will only be used for bug fixes as stated above.</p>
+performance improvements, a new release will be issued and the <b>minor version</b> 
+digit will be incremented.  The <b>incremental</b> digit will only be used for unscheduled bug fixes as stated above.</p>
 
 <p>As stated above, the <b>major</b> digit is being reserved for major refactorings of the library where backward API 
 compatibility may not be guaranteed.</p>
 
-<p>For the repositories that depend on java core, such as <i>datasketches-hive</i>, 
+<p>For the repositories that depend on java core, such as <i>datasketches-hive</i> and <i>datasketches-pig</i>,
 the version number may be incremented just to be in sync with the java core repository, 
 and may not reflect any actual code changes other than a change in the pom.xml to reflect the new 
-dependency.</p>
+dependency. Please refer to the release notes for that version.</p>
 
-<h3 id="version-history">Version History</h3>
-<p>Please use GitHub revisions history on the respective component repositories</p>
+<h3 id="binary-compatibilty">Binary Compatibilty</h3>
+<p>We try as much as possible to maintain <em>forward binary compatibility</em> of serialized (stored) sketch images.  For example, a Java Theta Sketch stored as a binary image using version 0.1.0 (Aug, 2015) can be read and merged into a C++ Theta Union version 1.2.0 (Jan, 2020).  The languages can be swapped in this scenario, but the versions cannot be.</p>
 
 
       </div> <!-- End content -->
