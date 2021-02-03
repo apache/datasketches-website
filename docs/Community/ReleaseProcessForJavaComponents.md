@@ -32,8 +32,11 @@ __NOTES:__
     * NOTICE -- check for copyright dates
     * README.md
     * .asf.yaml
-    * .travis.yml
-    * .gitignore
+    * .travis.yml (if used)
+    * .gitattributes -- used to exclude files from release zip, assumes .gitignore
+    * .github/workflows
+    * .gitignore -- used to exclude files from origin
+    * pom.xml / apache-rat-plugin -- checks for license headers, assumes .gitignore
     * pom.xml
          
 * From Command Line or IDE:
@@ -51,9 +54,10 @@ __NOTES:__
           * `eval $(gpg-agent --daemon)`
   * Confirm GitHub repository is current and git status is clean:
       * `git status` # should return:
-      * "nothing to commit, working tree clean"
+      * "On branch master, your branch is up to date with 'origin/master', nothing to commit, working tree clean."
   * At major version releases, search for deprecated code and remove at __Major Versions__ only.
       * `find . -name "*.java" -type f -print | xargs grep -i -n -s -A0 "deprecated"`
+      * **Note:** When first marking a segment of code deprecated, please add the current version number. This will make it easier to know when to remove the deprecated code.
   * Check Maven Plugin, Dependency, Property Versions of the POM:
       * `mvn versions:display-plugin-updates`
       * `mvn versions:display-dependency-updates`
@@ -142,11 +146,11 @@ __NOTES:__
     * If not: `eval $(gpg-agent --daemon)` 
 * `git status` # make sure you are still on the release branch: _A.B.X
 * TRIAL-RUN:
-  * Have your GPG passphrase handy -- you have only a few seconds to enter it!
+  * **Have your GPG passphrase handy -- you have only a few seconds to enter it!**
   * `mvn clean install -Pnexus-jars -DskipTests=true`
       * Check target/ that jars & pom have .asc signatures
 * DEPLOY
-  * Have your GPG passphrase handy -- you have only a few seconds to enter it!
+  * **Have your GPG passphrase handy -- you have only a few seconds to enter it, but it may be automatic!**
   * `mvn clean deploy -Pnexus-jars -DskipTests=true`
       * Login to [repository.apache.org](https://repository.apache.org/) / Staging Repositories for orgapachedatasketches-XXXX
       * Click Content and search to the end.  Each jar & pom should have .asc, .md5, .sha1 signatures
@@ -164,6 +168,7 @@ __NOTES:__
 * Just download the associated `md5` and `sha1` signatures from  `~/.m2/repository/org/apache/datasketches/datasketches-\<component\>/A.B.0/`  into the `target` directory.
 * Add a `maven` directory under the `dist/dev/datasketches/\<component\>/A.B.0/`
 * Bulk copy the `jar, asc, md5` and `sha1` files into the `maven` directory.
+* Do a SVN checkin: `svn ci -m "add nexus jars to dist`
 
 #### Non-Java
 * For external artifacts such as Python or Docker the subdirectory name should be relevant to the type.
