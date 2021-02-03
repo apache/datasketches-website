@@ -31,7 +31,7 @@ Refers to sketch accuracy...
 
 <h3><a name="alphaTCF">Alpha TCF</a></h3>
 The Alpha Theta Choosing Function (TCF) and the theory behind it is fully described in the 
-<a href="https://github.com/apache/incubator-datasketches-website/blob/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework</a> paper. 
+<a href="https://github.com/apache/datasketches-website/blob/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework</a> paper. 
 The alpha algorithm is optimized for speed and accuracy in a real-time sketch
 building / estimating environment.
 <p>One of the properties of the Alpha Algorithm used for cache management within a sketch is that
@@ -80,9 +80,10 @@ See <a href="#validHash">Valid Hash</a>.
 <h3><a name="empty">isEmpty()</a></h3>
 In Theta Sketches, the state <i>isEmpty()</i> for a sketch means that the sketch cache has zero hash values and that none of the
 update methods have been called with valid data.  In other words, the sketch has never seen any data.  
-This state is equivalent to "null" in the sense that it is safe to exclude empty sketches from set operations.
+This state is equivalent to "null" in the sense that it is safe to exclude empty sketches from union operations. However, an empty sketch
+will impact intersections and difference set operations.
 
-<p>Note that <i>isEmpty()</i> does not mean that theta is 1.0 because if <i>p</i> &lt; 1.0, theta will be set 
+<p>Note that <i>isEmpty()</i> does not always mean that theta is 1.0 because if <i>p</i> &lt; 1.0, theta will be set 
 equal to <i>p</i> during construction. 
 Also, a cache of zero values (<i>getRetainedEntries(true) = 0</i>) does not mean that the sketch is <i>Empty</i> since 
 set intersection or difference operations can result in a sketch with zero values. 
@@ -216,7 +217,7 @@ some security and protection against "dictionary attacks".
 of sketches that were generated with different seeds a short, 16-bit, 
 <a href="#seedHash">Seed Hash</a> is stored with the sketch image.
 When heapifying or wrapping an UpdateSketch image, which can be either a byte array or a Memory object, 
-the user must provide the original seed either directly or indirectly by assuming the <i>DEFAULT_UPDATE_SEED</i>. 
+the user must provide the original seed either directly or indirectly by assuming the <a href="#defaultUpdateSeed">DEFAULT_UPDATE_SEED</a>. 
 The provided seed will be hashed and validated against the internal short Seed Hash and an error will be thrown if the seed hashes do not match.
 The Set Operations classes, Union, Intersection and AnotB also require the user to provide the seed either directly or indirectly.
 <p>An internal check will be made to make sure that the provided seed does not hash to a 16-bit value of zero. 
@@ -225,7 +226,7 @@ If it does produce zero, an error will be thrown and the user must provide a dif
 See also <a href="#defaultUpdateSeed">Default Update Seed</a>. 
 
 <h3><a name="seedHash">Seed Hash</a></h3>
-For Theta Sketches, a 16-bit hash of the <a href="#seed">Update Hash Seed</a> used internally to validate 
+For Theta and Tuple Sketches, a 16-bit hash of the <a href="#seed">Update Hash Seed</a> used internally to validate 
 (1) that two sketches undergoing set operations were, in fact, created using matching <a href="#seed">Update Hash Seeds</a>; 
 or (2) that when deserializing or wrapping a sketch image that the caller has the correct seed.
 
