@@ -523,8 +523,11 @@
       <li>NOTICE – check for copyright dates</li>
       <li>README.md</li>
       <li>.asf.yaml</li>
-      <li>.travis.yml</li>
-      <li>.gitignore</li>
+      <li>.travis.yml (if used)</li>
+      <li>.gitattributes – used to exclude files from release zip, assumes .gitignore</li>
+      <li>.github/workflows</li>
+      <li>.gitignore – used to exclude files from origin</li>
+      <li>pom.xml / apache-rat-plugin – checks for license headers, assumes .gitignore</li>
       <li>pom.xml</li>
     </ul>
   </li>
@@ -553,12 +556,13 @@
       <li>Confirm GitHub repository is current and git status is clean:
         <ul>
           <li><code class="highlighter-rouge">git status</code> # should return:</li>
-          <li>“nothing to commit, working tree clean”</li>
+          <li>“On branch master, your branch is up to date with ‘origin/master’, nothing to commit, working tree clean.”</li>
         </ul>
       </li>
       <li>At major version releases, search for deprecated code and remove at <strong>Major Versions</strong> only.
         <ul>
           <li><code class="highlighter-rouge">find . -name "*.java" -type f -print | xargs grep -i -n -s -A0 "deprecated"</code></li>
+          <li><strong>Note:</strong> When first marking a segment of code deprecated, please add the current version number. This will make it easier to know when to remove the deprecated code.</li>
         </ul>
       </li>
       <li>Check Maven Plugin, Dependency, Property Versions of the POM:
@@ -718,7 +722,7 @@
   <li><code class="highlighter-rouge">git status</code> # make sure you are still on the release branch: _A.B.X</li>
   <li>TRIAL-RUN:
     <ul>
-      <li>Have your GPG passphrase handy – you have only a few seconds to enter it!</li>
+      <li><strong>Have your GPG passphrase handy – you have only a few seconds to enter it!</strong></li>
       <li><code class="highlighter-rouge">mvn clean install -Pnexus-jars -DskipTests=true</code>
         <ul>
           <li>Check target/ that jars &amp; pom have .asc signatures</li>
@@ -728,7 +732,7 @@
   </li>
   <li>DEPLOY
     <ul>
-      <li>Have your GPG passphrase handy – you have only a few seconds to enter it!</li>
+      <li><strong>Have your GPG passphrase handy – you have only a few seconds to enter it, but it may be automatic!</strong></li>
       <li><code class="highlighter-rouge">mvn clean deploy -Pnexus-jars -DskipTests=true</code>
         <ul>
           <li>Login to <a href="https://repository.apache.org/">repository.apache.org</a> / Staging Repositories for orgapachedatasketches-XXXX</li>
@@ -756,6 +760,7 @@
   <li>Just download the associated <code class="highlighter-rouge">md5</code> and <code class="highlighter-rouge">sha1</code> signatures from  <code class="highlighter-rouge">~/.m2/repository/org/apache/datasketches/datasketches-\&lt;component\&gt;/A.B.0/</code>  into the <code class="highlighter-rouge">target</code> directory.</li>
   <li>Add a <code class="highlighter-rouge">maven</code> directory under the <code class="highlighter-rouge">dist/dev/datasketches/\&lt;component\&gt;/A.B.0/</code></li>
   <li>Bulk copy the <code class="highlighter-rouge">jar, asc, md5</code> and <code class="highlighter-rouge">sha1</code> files into the <code class="highlighter-rouge">maven</code> directory.</li>
+  <li>Do a SVN checkin: <code class="highlighter-rouge">svn ci -m "add nexus jars to dist</code></li>
 </ul>
 
 <h4 id="non-java">Non-Java</h4>
