@@ -704,9 +704,10 @@
       </li>
     </ul>
   </li>
-  <li>Check and grab the web URL ~ <em>https://dist.apache.org/repos/dist/dev/datasketches/&lt;component&gt;/A.B.0-RC1/</em>
+  <li>Check this web URL ~ <em>https://dist.apache.org/repos/dist/dev/datasketches/&lt;component&gt;/A.B.0-RC1/</em>
     <ul>
       <li>There should be 3 files: *-src.zip, *-src.zip.asc, *-src.zip.sha512</li>
+      <li>Copy the URL for later.</li>
     </ul>
   </li>
 </ul>
@@ -760,7 +761,9 @@
   <li>Just download the associated <code class="highlighter-rouge">md5</code> and <code class="highlighter-rouge">sha1</code> signatures from  <code class="highlighter-rouge">~/.m2/repository/org/apache/datasketches/datasketches-\&lt;component\&gt;/A.B.0/</code>  into the <code class="highlighter-rouge">target</code> directory.</li>
   <li>Add a <code class="highlighter-rouge">maven</code> directory under the <code class="highlighter-rouge">dist/dev/datasketches/\&lt;component\&gt;/A.B.0/</code></li>
   <li>Bulk copy the <code class="highlighter-rouge">jar, asc, md5</code> and <code class="highlighter-rouge">sha1</code> files into the <code class="highlighter-rouge">maven</code> directory.</li>
-  <li>Do a SVN checkin: <code class="highlighter-rouge">svn ci -m "add nexus jars to dist</code></li>
+  <li>Do: <code class="highlighter-rouge">svn status</code> # check to see if it is ready to add</li>
+  <li>Do: <code class="highlighter-rouge">svn add . --force</code></li>
+  <li>Do: <code class="highlighter-rouge">svn ci -m "add nexus jars to dist/dev/datasketches"</code></li>
 </ul>
 
 <h4 id="non-java">Non-Java</h4>
