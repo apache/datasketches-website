@@ -137,8 +137,9 @@ __NOTES:__
         * reload the gpg agent in the terminal: `gpg-connect-agent reloadagent /bye` 
         * restart the *./bashDeployToDist* script
     * Close the terminal
-* Check and grab the web URL ~ *https://dist.apache.org/repos/dist/dev/datasketches/\<component\>/A.B.0-RC1/*
-    * There should be 3 files: \*-src.zip, \*-src.zip.asc, \*-src.zip.sha512 
+* Check this web URL ~ *https://dist.apache.org/repos/dist/dev/datasketches/\<component\>/A.B.0-RC1/*
+    * There should be 3 files: \*-src.zip, \*-src.zip.asc, \*-src.zip.sha512
+    * Copy the URL for later.
 
 ### Java: Push Jars to Nexus (Maven Central) Staging
 * Return to original terminal at the project.basedir
@@ -168,7 +169,9 @@ __NOTES:__
 * Just download the associated `md5` and `sha1` signatures from  `~/.m2/repository/org/apache/datasketches/datasketches-\<component\>/A.B.0/`  into the `target` directory.
 * Add a `maven` directory under the `dist/dev/datasketches/\<component\>/A.B.0/`
 * Bulk copy the `jar, asc, md5` and `sha1` files into the `maven` directory.
-* Do a SVN checkin: `svn ci -m "add nexus jars to dist`
+* Do: `svn status` # check to see if it is ready to add
+* Do: `svn add . --force`
+* Do: `svn ci -m "add nexus jars to dist/dev/datasketches"`
 
 #### Non-Java
 * For external artifacts such as Python or Docker the subdirectory name should be relevant to the type.
