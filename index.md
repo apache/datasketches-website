@@ -53,7 +53,7 @@ layout: front_page
   </div>
   <div class="row text-center main-marketing">
     <div class="col-md-4">
-      <p><a href="/docs/Architecture/KeyFeatures.html">
+      <p><a href="/docs/Architecture/LargeScale.html#speed">
         <span class="fa fa-fighter-jet fa-4x"></span><br>
         <h2>Fast</h2>
       </a></p>
@@ -65,7 +65,7 @@ layout: front_page
     </div>
 
     <div class="col-md-4">
-      <a href="/docs/Architecture/KeyFeatures.html">
+      <a href="/docs/Architecture/LargeScale.html#specific-sketch-features-for-large-data">
         <span class="fa fa-database fa-4x"></span>
         <h2>Big Data</h2>
       </a>
@@ -76,7 +76,7 @@ layout: front_page
     </div>
 
     <div class="col-md-4">
-      <p><a href="/docs/Architecture/KeyFeatures.html">
+      <p><a href="/docs/Architecture/KeyFeatures.html#key-algorithms">
         <span class="fa fa-bar-chart-o fa-4x"></span><br>
         <h2>Analysis</h2>
       </a></p>
