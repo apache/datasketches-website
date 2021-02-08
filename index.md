@@ -76,10 +76,10 @@ layout: front_page
     </div>
 
     <div class="col-md-4">
-      <p><a href="/docs/Architecture/KeyFeatures.html#key-algorithms">
-        <span class="fa fa-bar-chart-o fa-4x"></span><br>
+      <a href="/docs/Architecture/KeyFeatures.html#key-algorithms">
+        <span class="fa fa-bar-chart-o fa-4x"></span>
         <h2>Analysis</h2>
-      </a></p>
+      </a>
       <p class="text-justify">Built-in Theta Sketch set operators (Union, Intersection, Difference) 
       produce sketches as a result (and not just a number) enabling full set expressions of cardinality, 
       such as ((A &#8746; B) &#8745; (C &#8746; D)) \ (E &#8746; F). 
