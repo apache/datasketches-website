@@ -53,10 +53,10 @@ layout: front_page
   </div>
   <div class="row text-center main-marketing">
     <div class="col-md-4">
-      <p><a href="/docs/Architecture/LargeScale.html#speed">
-        <span class="fa fa-fighter-jet fa-4x"></span><br>
+      <a href="/docs/Architecture/LargeScale.html#speed">
+        <span class="fa fa-fighter-jet fa-4x"></span>
         <h2>Fast</h2>
-      </a></p>
+      </a>
       <p class="text-justify"><a href="/docs/Background/SketchOrigins.html">Sketches</a> are <i>fast</i>. 
       The sketch algorithms in this library process data in a single pass and are suitable for 
       both real-time and batch. 
