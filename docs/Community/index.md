@@ -56,12 +56,14 @@ If you have a problem or issue with any aspect of the performance, accuracy or d
 
 ## Contributing
 
-We are always open to contributions from our community.  Contributions can be of many forms: documentation, testing, science as well as bug fixes, code enhancements, code reviews, feature suggestions, usability feedback, etc. Contributions usually take the form of a Pull Request (PR), but if you wish to contribute and not sure how, please contact us on our [dev]({{page.dev}}) list.  
+We are always open to contributions from our community.  Contributions can be of many forms: documentation, testing, science as well as bug fixes, code enhancements, code reviews, feature suggestions, usability feedback, etc. Contributions usually take the form of a Pull Request (PR), but if you wish to contribute and not sure how, please contact us on our <dev@datasketches.apache.org> list.  
 
-We are also open to the submission of entirely new sketch algorithms.  If you have a sketch algorithm (or a significant enhancement of our current algorithms), please read our [Sketch Criteria]({{site.docs_dir}}/Architecture/SketchCriteria.html) and contact us on our [dev]({{page.dev}}) list.
+We are also open to the submission of entirely new sketch algorithms.  If you have a sketch algorithm (or a significant enhancement of our current algorithms), please read our [Sketch Criteria]({{site.docs_dir}}/Architecture/SketchCriteria.html) and contact us on our <dev@datasketches.apache.org> list.
+
+## [Our Component Repositories]({{site.docs_dir}}/Architecture/Components.html)
 
 ### What to work on
-* **[GitHub Components]({{site.docs_dir}}/Architecture/Components.html):** Our library is made up of components that are partitioned into GitHub repositories. If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository.
+* Our library is made up of components that are partitioned into GitHub repositories. If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository. But most important, please contact us on <dev@datasketches.apache.org>
 
 * We have three TODO lists for [Java](https://github.com/apache/datasketches-java/projects/1), [C++](https://github.com/apache/datasketches-cpp/projects/1) and the [Website](https://github.com/apache/datasketches-website/projects/1). Please check these out for potential contribution!
 
@@ -70,10 +72,10 @@ We are also open to the submission of entirely new sketch algorithms.  If you ha
 Proposed changes to the code or documentation are usually done through GitHub Pull Requests (PRs).
 
 * Simple PRs, such as simple bug fixes, typos, and documentation corrections require one approval vote (+1) from a committer.
-* Major changes to the code such as API or architectural changes or new sketch algorithms must be discussed on [dev]({{page.dev}}) or on a GitHub issue as these will require additional design and compatibility reviews. These changes must receive at least three (+1) votes from committers. If the author is already a committer, than two additional committers must vote (+1). 
+* Major changes to the code such as API or architectural changes or new sketch algorithms must be discussed on <dev@datasketches.apache.org> or on a GitHub issue as these will require additional design and compatibility reviews. These changes must receive at least three (+1) votes from committers. If the author is already a committer, than two additional committers must vote (+1). 
 
 ### Becoming a committer
-We welcome anyone who is eager to continue to contribute to the DataSketches mission of providing open source, production quality sketch algorithms and become part of our team.  Please send us a message on [dev]({{page.dev}}) where we can give you some guidance.  After you have made some successful contributions, the current committers will discuss your candidacy for becoming a committer.  You can also review the [Apache policies on becoming a committer](https://community.apache.org/contributors/index.html) as well as our [New Committer Process](https://datasketches.apache.org/docs/Community/NewCommitterProcess.html) for selecting and inviting a committer to join our project.  
+We welcome anyone who is eager to continue to contribute to the DataSketches mission of providing open source, production quality sketch algorithms and become part of our team.  Please send us a message on <dev@datasketches.apache.org> where we can give you some guidance.  After you have made some successful contributions, the current committers will discuss your candidacy for becoming a committer.  You can also review the [Apache policies on becoming a committer](https://community.apache.org/contributors/index.html) as well as our [New Committer Process](https://datasketches.apache.org/docs/Community/NewCommitterProcess.html) for selecting and inviting a committer to join our project.  
 
 ### Reporting Security Issues
 If you wish to report a security vulnerability, please contact <security@apache.org>. Apache DataSketches follows the typical [Apache vulnerability handling process](https://apache.org/security/committers.html#vulnerability-handling).
