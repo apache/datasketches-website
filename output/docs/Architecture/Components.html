@@ -513,6 +513,63 @@
 
 <p>If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository.</p>
 
+<h2 id="list-of-component-repositories-explained-below">List of Component Repositories (Explained below)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Repository</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Java Core</td>
+      <td><a href="https://github.com/apache/datasketches-java">https://github.com/apache/datasketches-java</a></td>
+    </tr>
+    <tr>
+      <td>C++ Core</td>
+      <td><a href="https://github.com/apache/datasketches-cpp">https://github.com/apache/datasketches-cpp</a></td>
+    </tr>
+    <tr>
+      <td>Hive Adaptor</td>
+      <td><a href="https://github.com/apache/datasketches-hive">https://github.com/apache/datasketches-hive</a></td>
+    </tr>
+    <tr>
+      <td>Pig Adaptor</td>
+      <td><a href="https://github.com/apache/datasketches-pig">https://github.com/apache/datasketches-pig</a></td>
+    </tr>
+    <tr>
+      <td>PostreSQL Adaptor</td>
+      <td><a href="https://github.com/apache/datasketches-postresql">https://github.com/apache/datasketches-postresql</a></td>
+    </tr>
+    <tr>
+      <td>Memory</td>
+      <td><a href="https://github.com/apache/datasketches-memory">https://github.com/apache/datasketches-memory</a></td>
+    </tr>
+    <tr>
+      <td>Characterization</td>
+      <td><a href="https://github.com/apache/datasketches-characterization">https://github.com/apache/datasketches-characterization</a></td>
+    </tr>
+    <tr>
+      <td>Website</td>
+      <td><a href="https://github.com/apache/datasketches-website">https://github.com/apache/datasketches-website</a></td>
+    </tr>
+    <tr>
+      <td>Vector  (Experimental)</td>
+      <td><a href="https://github.com/apache/datasketches-vector">https://github.com/apache/datasketches-vector</a></td>
+    </tr>
+    <tr>
+      <td>Server  (Under Development)</td>
+      <td><a href="https://github.com/apache/datasketches-server">https://github.com/apache/datasketches-server</a></td>
+    </tr>
+    <tr>
+      <td>Reserved for future use</td>
+      <td><a href="https://github.com/apache/datasketches">https://github.com/apache/datasketches</a></td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="core-algorithms">Core Algorithms</h2>
 <p>If you like what you see give us a <strong>Star</strong> on one of these two sites!</p>
 
@@ -531,14 +588,16 @@
 <h3 id="java-adaptors">Java Adaptors</h3>
 <ul>
   <li><strong><a href="https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html">Apache Druid</a></strong> (Apach Released as part of Druid)</li>
-  <li><strong><a href="https://datasketches.apache.org/docs/SystemIntegrations/ApacheHiveIntegration.html">Apache Hive</a></strong> (Versioned, Apache Released)
+  <li><strong><a href="https://github.com/apache/datasketches-hive">Apache Hive</a></strong> (Versioned, Apache Released)
     <ul>
+      <li><a href="https://datasketches.apache.org/docs/SystemIntegrations/ApacheHiveIntegration.html">Hive Integration</a></li>
       <li><a href="/docs/Theta/ThetaHiveUDFs.html">Theta Sketch Example</a></li>
       <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Sketch Example</a></li>
     </ul>
   </li>
-  <li><strong><a href="https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html">Apache Pig</a></strong> (Versioned, Apache Released)
+  <li><strong><a href="https://github.com/apache/datasketches-pig">Apache Pig</a></strong> (Versioned, Apache Released)
     <ul>
+      <li><a href="https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html">Pig Integration</a></li>
       <li><a href="/docs/Theta/ThetaPigUDFs.html">Theta Sketch Example</a></li>
       <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Sketch Example</a></li>
     </ul>
@@ -547,9 +606,13 @@
 
 <h3 id="c-adaptors">C++ Adaptors</h3>
 <ul>
-  <li><strong><a href="https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html">PostgreSQL</a></strong> (Versioned, Apache Released)
+  <li><strong><a href="https://github.com/apache/datasketches-postresql">PostgreSQL</a></strong> (Versioned, Apache Released)
 This site provides the postgres-specific adaptors that wrap the C++ implementations making
-them available to the PostgreSQL database users. PostgreSQL users should download the PostgreSQL extension from <a href="https://pgxn.org/dist/datasketches/">pgxn.org</a>.  For examples refer to the README on the component site.</li>
+them available to the PostgreSQL database users. PostgreSQL users should download the PostgreSQL extension from <a href="https://pgxn.org/dist/datasketches/">pgxn.org</a>.  For examples refer to the README on the component site.
+    <ul>
+      <li><a href="https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html">PostgreSQL Integration</a></li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="other-components">Other Components</h2>
@@ -558,6 +621,7 @@ them available to the PostgreSQL database users. PostgreSQL users should downloa
   <li><strong><a href="https://github.com/apache/datasketches-characterization">Characterization</a>:</strong> This is a collection of Java and C++ code that we use for long-running studies of accuracy and speed performance over many different parameters. Feel free to run these tests to reproduce many of the graphs and charts you see on our website.</li>
   <li><strong><a href="https://github.com/apache/datasketches-vector">Vector (Experimental)</a>:</strong> This component implements the <a href="/docs/Community/Research.html">Frequent Directions Algorithm</a> [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.</li>
   <li><strong><a href="https://github.com/apache/datasketches-website">Website</a>:</strong> This repository is the home of our website and is constantly being updated with new material.</li>
+  <li><strong><a href="https://github.com/apache/datasketches-server">Server (Under Development)</a></strong></li>
 </ul>
 
 <h2 id="deprecated-components">Deprecated Components</h2>

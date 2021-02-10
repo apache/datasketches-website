@@ -17,7 +17,7 @@
     under the License.
 -->
 
-# Apache DataSketches Website
+# Apache<sup>&reg;</sup> DataSketches&trade; Website
 
 This is the DataSketches website source.  Please visit the main [DataSketches website](https://datasketches.apache.org) for more information.
 

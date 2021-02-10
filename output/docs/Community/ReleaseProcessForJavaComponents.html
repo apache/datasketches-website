@@ -714,13 +714,13 @@
 
 <h3 id="java-push-jars-to-nexus-maven-central-staging">Java: Push Jars to Nexus (Maven Central) Staging</h3>
 <ul>
-  <li>Return to original terminal at the project.basedir</li>
+  <li>Return to original terminal at the project.basedir, still in the A.B.X branch.</li>
   <li>If starting new terminal make sure GPG is running: <code class="highlighter-rouge">env | grep GPG</code>
     <ul>
       <li>If not: <code class="highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
     </ul>
   </li>
-  <li><code class="highlighter-rouge">git status</code> # make sure you are still on the release branch: _A.B.X</li>
+  <li><code class="highlighter-rouge">git status</code> # make sure you are still on the release branch: A.B.X</li>
   <li>TRIAL-RUN:
     <ul>
       <li><strong>Have your GPG passphrase handy – you have only a few seconds to enter it!</strong></li>
@@ -739,7 +739,7 @@
           <li>Login to <a href="https://repository.apache.org/">repository.apache.org</a> / Staging Repositories for orgapachedatasketches-XXXX</li>
           <li>Click Content and search to the end.  Each jar &amp; pom should have .asc, .md5, .sha1 signatures</li>
           <li>[CLOSE] the Staging Repository with a comment: “&lt;component&gt; A.B.0”</li>
-          <li>Confirm its existance under Repositories/Staging web-site : org/apache/datasketches-&lt;component&gt;/A.B.0</li>
+          <li>Confirm its existance under Repositories/Staging web-site URL (in the summary window)</li>
           <li>Grab its URL while there. You will need it for the Vote Letter.</li>
           <li>Check your local Maven repository
             <ul>
@@ -757,13 +757,12 @@
 <h4 id="java">JAVA</h4>
 <ul>
   <li>Place copies of the artifact jars deployed to Nexus under a “maven” directory.  For example see <a href="https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/">https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/</a></li>
-  <li>Note that the <code class="highlighter-rouge">jar</code> files with their <code class="highlighter-rouge">asc</code> signature are already in the <code class="highlighter-rouge">target</code> directory.</li>
-  <li>Just download the associated <code class="highlighter-rouge">md5</code> and <code class="highlighter-rouge">sha1</code> signatures from  <code class="highlighter-rouge">~/.m2/repository/org/apache/datasketches/datasketches-\&lt;component\&gt;/A.B.0/</code>  into the <code class="highlighter-rouge">target</code> directory.</li>
+  <li>Note that the <code class="highlighter-rouge">jar</code> files with their <code class="highlighter-rouge">asc</code>, <code class="highlighter-rouge">md5</code> and <code class="highlighter-rouge">sha1</code> signature are all together in the .md2 archive</li>
   <li>Add a <code class="highlighter-rouge">maven</code> directory under the <code class="highlighter-rouge">dist/dev/datasketches/\&lt;component\&gt;/A.B.0/</code></li>
   <li>Bulk copy the <code class="highlighter-rouge">jar, asc, md5</code> and <code class="highlighter-rouge">sha1</code> files into the <code class="highlighter-rouge">maven</code> directory.</li>
   <li>Do: <code class="highlighter-rouge">svn status</code> # check to see if it is ready to add</li>
   <li>Do: <code class="highlighter-rouge">svn add . --force</code></li>
-  <li>Do: <code class="highlighter-rouge">svn ci -m "add nexus jars to dist/dev/datasketches"</code></li>
+  <li>Do: <code class="highlighter-rouge">svn ci -m "add nexus jars to dist/dev/datasketches"</code>m</li>
 </ul>
 
 <h4 id="non-java">Non-Java</h4>
