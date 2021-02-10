@@ -26,6 +26,23 @@ Our library is made up of components that are partitioned into GitHub repositori
 
 If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository.
 
+## List of Component Repositories (Explained below)
+
+| Repository                  | URL                                                       |
+|-----------------------------|-----------------------------------------------------------|
+| Java Core                   | <https://github.com/apache/datasketches-java>             |
+| C++ Core                    | <https://github.com/apache/datasketches-cpp>              |
+| Hive Adaptor                | <https://github.com/apache/datasketches-hive>             |
+| Pig Adaptor                 | <https://github.com/apache/datasketches-pig>              |
+| PostreSQL Adaptor           | <https://github.com/apache/datasketches-postresql>        |
+| Memory                      | <https://github.com/apache/datasketches-memory>           |
+| Characterization            | <https://github.com/apache/datasketches-characterization> |
+| Website                     | <https://github.com/apache/datasketches-website>          |
+| Vector  (Experimental)      | <https://github.com/apache/datasketches-vector>           |
+| Server  (Under Development) | <https://github.com/apache/datasketches-server>           |
+| Reserved for future use     | <https://github.com/apache/datasketches>                  |
+
+
 ## Core Algorithms
 If you like what you see give us a **Star** on one of these two sites!
 
@@ -38,24 +55,28 @@ Adapters integrate the core components into the aggregation APIs of specific dat
 
 ### Java Adaptors
 * **[Apache Druid](https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html)** (Apach Released as part of Druid)
-* **[Apache Hive](https://datasketches.apache.org/docs/SystemIntegrations/ApacheHiveIntegration.html)** (Versioned, Apache Released)
+* **[Apache Hive](https://github.com/apache/datasketches-hive)** (Versioned, Apache Released)
+    * [Hive Integration](https://datasketches.apache.org/docs/SystemIntegrations/ApacheHiveIntegration.html)
     * [Theta Sketch Example]({{site.docs_dir}}/Theta/ThetaHiveUDFs.html)
     * [Tuple Sketch Example]({{site.docs_dir}}/Tuple/TuplePigUDFs.html)
-* **[Apache Pig](https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html)** (Versioned, Apache Released)
+* **[Apache Pig](https://github.com/apache/datasketches-pig)** (Versioned, Apache Released)
+    * [Pig Integration](https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html)
     * [Theta Sketch Example]({{site.docs_dir}}/Theta/ThetaPigUDFs.html)
     * [Tuple Sketch Example]({{site.docs_dir}}/Tuple/TuplePigUDFs.html) 
 
 
 ### C++ Adaptors
-* **[PostgreSQL](https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html)** (Versioned, Apache Released)
+* **[PostgreSQL](https://github.com/apache/datasketches-postresql)** (Versioned, Apache Released)
 This site provides the postgres-specific adaptors that wrap the C++ implementations making
 them available to the PostgreSQL database users. PostgreSQL users should download the PostgreSQL extension from [pgxn.org](https://pgxn.org/dist/datasketches/).  For examples refer to the README on the component site.
+    * [PostgreSQL Integration](https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html)
 
 ## Other Components
 * **[Memory](https://github.com/apache/datasketches-memory):** (Versioned, Apache Released) This is a low-level library that enables fast access to off-heap memory for Java.
 * **[Characterization](https://github.com/apache/datasketches-characterization):** This is a collection of Java and C++ code that we use for long-running studies of accuracy and speed performance over many different parameters. Feel free to run these tests to reproduce many of the graphs and charts you see on our website.
 * **[Vector (Experimental)](https://github.com/apache/datasketches-vector):** This component implements the [Frequent Directions Algorithm](/docs/Community/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.
 * **[Website](https://github.com/apache/datasketches-website):** This repository is the home of our website and is constantly being updated with new material.
+* **[Server (Under Development)](https://github.com/apache/datasketches-server)** 
 
 
 

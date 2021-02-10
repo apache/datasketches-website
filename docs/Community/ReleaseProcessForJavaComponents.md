@@ -142,10 +142,10 @@ __NOTES:__
     * Copy the URL for later.
 
 ### Java: Push Jars to Nexus (Maven Central) Staging
-* Return to original terminal at the project.basedir
+* Return to original terminal at the project.basedir, still in the A.B.X branch.
 * If starting new terminal make sure GPG is running: `env | grep GPG`
     * If not: `eval $(gpg-agent --daemon)` 
-* `git status` # make sure you are still on the release branch: _A.B.X
+* `git status` # make sure you are still on the release branch: A.B.X
 * TRIAL-RUN:
   * **Have your GPG passphrase handy -- you have only a few seconds to enter it!**
   * `mvn clean install -Pnexus-jars -DskipTests=true`
@@ -156,7 +156,7 @@ __NOTES:__
       * Login to [repository.apache.org](https://repository.apache.org/) / Staging Repositories for orgapachedatasketches-XXXX
       * Click Content and search to the end.  Each jar & pom should have .asc, .md5, .sha1 signatures
       * [CLOSE] the Staging Repository with a comment: "\<component\> A.B.0"
-      * Confirm its existance under Repositories/Staging web-site : org/apache/datasketches-\<component\>/A.B.0
+      * Confirm its existance under Repositories/Staging web-site URL (in the summary window)
       * Grab its URL while there. You will need it for the Vote Letter.
       * Check your local Maven repository
           * _~/.m2/repository/org/apache/datasketches/datasketches-\<component\>/A.B.0/_ 
@@ -165,13 +165,12 @@ __NOTES:__
 ### Create Copy of External Artifact Distributions
 #### JAVA
 * Place copies of the artifact jars deployed to Nexus under a "maven" directory.  For example see <https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/>
-* Note that the `jar` files with their `asc` signature are already in the `target` directory. 
-* Just download the associated `md5` and `sha1` signatures from  `~/.m2/repository/org/apache/datasketches/datasketches-\<component\>/A.B.0/`  into the `target` directory.
+* Note that the `jar` files with their `asc`, `md5` and `sha1` signature are all together in the .md2 archive 
 * Add a `maven` directory under the `dist/dev/datasketches/\<component\>/A.B.0/`
 * Bulk copy the `jar, asc, md5` and `sha1` files into the `maven` directory.
 * Do: `svn status` # check to see if it is ready to add
 * Do: `svn add . --force`
-* Do: `svn ci -m "add nexus jars to dist/dev/datasketches"`
+* Do: `svn ci -m "add nexus jars to dist/dev/datasketches"`m
 
 #### Non-Java
 * For external artifacts such as Python or Docker the subdirectory name should be relevant to the type.
