@@ -190,13 +190,17 @@ __NOTES:__
 
 ### Move files from *dist/dev* to *dist/release*
 * In local *dist/__dev__/datasketches/*
-    * Open Terminal #1 
+    * Open Terminal #1
+        * Confirm you are in the `/dev/` directory: `pwd`
         * Perform SVN Checkout:
             * `svn co https://dist.apache.org/repos/dist/dev/datasketches/ .`  #note dot at end
+            * `svn status` #make sure checkout is clean
 * In local *dist/__release__/datasketches/*
     * Open Terminal #2
+        * Confirm you are in the `/release/` directory: `pwd` 
         * Perform SVN Checkout:
             * `svn co https://dist.apache.org/repos/dist/release/datasketches/ .` #note dot at end
+            * `svn status` #make sure checkout is clean
         * Create new version directory under appropriate component directory:
             * `mkdir -p \<component\>/A.B.0`
     * Using local file system copy files 
@@ -223,8 +227,7 @@ __NOTES:__
 ## Finalize Release Documentation
 
 ### Update Apache Reporter
-* Because of the commit to the `dist/release` branch, you should get an automated email requesting you to update the Apache DataBase about the releaase.
-* The email should point you to the [Apache Committee Report Helper](https://reporter.apache.org/addrelease.html?datasketches).
+* Because of the commit to the `dist/release` branch, you should get an automated email requesting you to update the Apache DataBase about the releaase. The email should point you to the [Apache Committee Report Helper](https://reporter.apache.org/addrelease.html?datasketches). You can choose to go there directly without waiting for the notice, there is only one box to fillout.
 * Update the full name of the component release. For example: `Apache datasketches-memory-1.3.0`
 
 ### Create & Document Release Tag on GitHub

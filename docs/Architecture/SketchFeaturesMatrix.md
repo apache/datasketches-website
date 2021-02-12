@@ -23,36 +23,39 @@ layout: doc_page
 
 Use the following table to compare the capabilities of the different sketch families.
 
-<div>
-<table>
-<tr style="font-weight:bold"><td colspan="2"></td><td colspan="3">Languages</td><td colspan="4">Set Operations</td><td colspan="5">System Integrations</td><td colspan="5">Misc.</td></tr>
+All sketches have *a posteriori* error bounds methods.
 
-<tr style="font-weight:bold"><td>Type</td><td>Sketch</td><td>Java</td><td>C++</td><td>Python<sup>7</sup></td><td>Union</td><td>Inter-section</td><td>Difference</td><td>Jaccard</td><td>Hive</td><td>Pig</td><td>Druid<sup>1</sup></td><td>Spark<sup>2</sup></td><td>PostgreSQL (C++)</td><td>Con-current</td><td>Compact</td><td>Generic Types</td><td>Off Java Heap</td><td>Error Bounds</td></tr>
+<div style="text-align: center">
+<table>
+<tr style="font-weight:bold"><td colspan="2">Sketch</td><td colspan="3">Languages</td><td colspan="4">Set Operations</td><td colspan="5">System Integrations</td><td colspan="3">Misc.</td></tr>
+
+<tr style="font-weight:bold"><td>Type</td><td>Class Name</td><td>Java</td><td>C++</td><td>Python<sup>7</sup></td><td>Union</td><td>Inter-section</td><td>Difference</td><td>Jaccard</td><td>Hive</td><td>Pig</td><td>Druid<sup>1</sup></td><td>Spark<sup>2</sup></td><td>PostgreSQL (C++)</td><td>Con-current</td><td>Compact</td><td>Off Java Heap</td></tr>
 
 <tr style="font-weight:bold"><td colspan="19">Major Sketches</td></tr>
-<tr><td>Cardinality/CPC</td><td>CpcSketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td>Y</td><td></td><td></td><td>Y</td></tr>
-<tr><td>Cardinality/HLL</td><td>HllSketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td></tr>
-<tr><td>Cardinality/Theta</td><td>Sketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y<sup>4</sup></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td>Y</td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>Sketch</td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td>Y</td></tr>
-<tr><td>Quantiles/Cormode</td><td>DoublesSketch</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td>Y</td><td></td><td>Y</td><td>Y</td></tr>
-<tr><td>Quantiles/Cormode</td><td>ItemsSketch</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td>Y</td><td></td><td>Y</td></tr>
-<tr><td>Quantiles/KLL</td><td>FloatsSketch</td><td>Y</td><td>Y</td><td>Y<sup>6</sup></td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Quantiles/KLL</td><td>ItemsSketch</td><td></td><td>Y</td><td></td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td><td></td><td>Y</td></tr>
-<tr><td>Frequencies</td><td>LongsSketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Frequencies</td><td>ItemsSketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td>Y</td><td>Y</td><td></td><td></td><td>Y<sup>5</sup></td><td></td><td></td><td>Y</td><td></td><td>Y</td></tr>
-<tr><td>Sampling/Reservior</td><td>ReservoirLongsSketch</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Sampling/Reservoir</td><td>ReserviorItemsSketch</td><td>Y</td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td>Y</td><td></td><td>Y</td></tr>
-<tr><td>Sampling/VarOpt</td><td>VarOptItemsSketch</td><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td>Y</td><td></td><td>Y</td></tr>
+<tr><td>Cardinality/CPC</td>   <td>CpcSketch</td>                    <td>Y</td> <td>Y</td> <td>Y</td>            <td>Y</td> <td></td>  <td></td>  <td></td>              <td>Y</td> <td>Y</td> <td></td>  <td></td>  <td>Y</td>             <td></td>  <td>Y</td> <td></td></tr>
+<tr><td>Cardinality/HLL</td>   <td>HllSketch</td>                    <td>Y</td> <td>Y</td> <td>Y</td>            <td>Y</td> <td></td>  <td></td>  <td></td>              <td>Y</td> <td>Y</td> <td>Y</td> <td></td>  <td>Y</td>             <td></td>  <td></td>  <td>Y</td></tr>
+<tr><td>Cardinality/Theta</td> <td>Sketch</td>                       <td>Y</td> <td>Y</td> <td>Y</td>            <td>Y</td> <td>Y</td> <td>Y</td> <td>Y<sup>4</sup></td> <td>Y</td> <td>Y</td> <td>Y</td> <td>Y</td> <td>Y</td>             <td>Y</td> <td>Y</td> <td>Y</td></tr>
+<tr><td>Cardinality/Tuple</td> <td>Sketch&lt;S&gt;</td>              <td>Y</td> <td>Y</td> <td></td>             <td>Y</td> <td>Y</td> <td>Y</td> <td></td>              <td></td>  <td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td>Y</td> <td>Y</td></tr>
+<tr><td>Quantiles/Cormode</td> <td>DoublesSketch</td>                <td>Y</td> <td></td>  <td></td>             <td>Y</td> <td></td>  <td></td>  <td></td>              <td>Y</td> <td>Y</td> <td>Y</td> <td></td>  <td></td>              <td></td>  <td>Y</td> <td>Y</td></tr>
+<tr><td>Quantiles/Cormode</td> <td>ItemsSketch&lt;T&gt;</td>         <td>Y</td> <td></td>  <td></td>             <td>Y</td> <td></td>  <td></td>  <td></td>              <td>Y</td> <td>Y</td> <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
+<tr><td>Quantiles/KLL</td>     <td>FloatsSketch</td>                 <td>Y</td> <td>Y</td> <td>Y<sup>6</sup></td><td>Y</td> <td></td>  <td></td>  <td></td>              <td>Y</td> <td>Y</td> <td></td>  <td></td>  <td>Y</td>             <td></td>  <td></td>  <td></td></tr>
+<tr><td>Quantiles/KLL</td>     <td>KLLSketch&lt;T&gt;</td>           <td></td>  <td>Y</td> <td></td>             <td>Y</td> <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
+<tr><td>Quantiles/REQ</td>     <td>FloatsSketch</td>                 <td>Y</td> <td>Y</td> <td>Y<sup>6</sup></td><td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
+<tr><td>Frequencies</td>       <td>LongsSketch</td>                  <td>Y</td> <td>Y</td> <td>Y</td>            <td>Y</td> <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
+<tr><td>Frequencies</td>       <td>ItemsSketch&lt;T&gt;</td>         <td>Y</td> <td>Y</td> <td>Y</td>            <td>Y</td> <td></td>  <td></td>  <td></td>              <td>Y</td> <td>Y</td> <td></td>  <td></td>  <td>Y<sup>5</sup></td> <td></td>  <td></td>  <td></td></tr>
+<tr><td>Sampling/Reservior</td><td>ReservoirLongsSketch</td>         <td>Y</td> <td></td>  <td></td>             <td>Y</td> <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
+<tr><td>Sampling/Reservoir</td><td>ReserviorItemsSketch&lt;T&gt;</td><td>Y</td> <td></td>  <td></td>             <td>Y</td> <td></td>  <td></td>  <td></td>              <td></td>  <td>Y</td> <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
+<tr><td>Sampling/VarOpt</td>   <td>VarOptItemsSketch&lt;T&gt;</td>   <td>Y</td> <td>Y</td> <td>Y</td>            <td>Y</td> <td></td>  <td></td>  <td></td>              <td></td>  <td>Y</td> <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
 
 <tr style="font-weight:bold"><td colspan="19">Specialty Sketches</td></tr>
 
-<tr><td>Cardinality/FM85</td><td>UniqueCountMap</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>FdtSketch</td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>ArrayOfDoublesSketch</td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td>Y</td><td></td><td>Y</td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>DoubleSketch</td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>IntegerSketch</td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>ArrayOfStringsSketch</td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
-<tr><td>Cardinality/Tuple</td><td>EngagementTest<sup>3</sup></td><td>Y</td><td></td><td></td><td>Y</td><td>Y</td><td>Y</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Y</td></tr>
+<tr><td>Cardinality/FM85</td>  <td>UniqueCountMap</td>               <td>Y</td> <td></td>  <td></td>             <td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
+<tr><td>Cardinality/Tuple</td> <td>FdtSketch</td>                    <td>Y</td> <td></td>  <td></td>             <td>Y</td> <td>Y</td> <td>Y</td> <td></td>              <td></td>  <td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
+<tr><td>Cardinality/Tuple</td> <td>ArrayOfDoublesSketch</td>         <td>Y</td> <td></td>  <td></td>             <td>Y</td> <td>Y</td> <td>Y</td> <td></td>              <td>Y</td> <td>Y</td> <td>Y</td> <td></td>  <td></td>              <td></td>  <td>Y</td> <td>Y</td></tr>
+<tr><td>Cardinality/Tuple</td> <td>DoubleSketch</td>                 <td>Y</td> <td></td>  <td></td>             <td>Y</td> <td>Y</td> <td>Y</td> <td></td>              <td></td>  <td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
+<tr><td>Cardinality/Tuple</td> <td>IntegerSketch</td>                <td>Y</td> <td></td>  <td></td>             <td>Y</td> <td>Y</td> <td>Y</td> <td></td>              <td></td>  <td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
+<tr><td>Cardinality/Tuple</td> <td>ArrayOfStringsSketch</td>         <td>Y</td> <td></td>  <td></td>             <td>Y</td> <td>Y</td> <td>Y</td> <td></td>              <td></td>  <td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
+<tr><td>Cardinality/Tuple</td> <td>EngagementTest<sup>3</sup></td>   <td>Y</td> <td></td>  <td></td>             <td>Y</td> <td>Y</td> <td>Y</td> <td></td>              <td></td>  <td></td>  <td></td>  <td></td>  <td></td>              <td></td>  <td></td>  <td></td></tr>
 </table>
 </div>
 
@@ -62,7 +65,7 @@ Use the following table to compare the capabilities of the different sketch fami
 <sup>3</sup> Tuple Sketch: Example Code in test/.../tuple/aninteger.<br>
 <sup>4</sup> Theta Sketch: C++/Python has no implementaion of the Jaccard, yet.<br>
 <sup>5</sup> Frequent Items Sketch: PostgreSQL implemented for Strings only.<br>
-<sup>6</sup> KLL Sketch: Python implemented for both just floats and ints.<br>
+<sup>6</sup> KLL & REQ Sketch: Python implemented for both just floats and ints.<br>
 <sup>7</sup> See [Python Install Instructions](https://github.com/apache/datasketches-cpp/tree/master/python)<br>
 
 

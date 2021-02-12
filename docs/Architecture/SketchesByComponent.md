@@ -42,8 +42,9 @@ org.apache.datasketches.frequencies | Frequent Item Sketches, for both longs and
 org.apache.datasketches.hash        | The 128-bit MurmurHash3 and adaptors
 org.apache.datasketches.hll         | Unique counting HLL sketches for both heap and off-heap.
 org.apache.datasketches.hllmap      | The (HLL) Unique Count Map Sketch
-org.apache.datasketches.kll         | New quantiles sketch with better accuracy per size than the standard quantiles sketch.
-org.apache.datasketches.quantiles   | Sketches for quantiles, PMF and CDF functions, both doubles and generics and for heap and off-heap.
+org.apache.datasketches.kll         | Quantiles sketch with better accuracy per size than the standard quantiles sketch. Includes PMF, CDF funtions, for floats. Only on-heap.
+org.apache.datasketches.quantiles   | Standard Quantiles sketch, plus PMF and CDF functions, for doubles and generics and for heap and off-heap.
+org.apache.datasketches.req         | Relative Error Quantiles (REQ) sketch, plus PMF and CDF functions for floats, on-heap. Extremely high accuracy for very high ranks (e.g., 99.999%ile), or very low ranks (e.g., .00001%ile.
 org.apache.datasketches.sampling    | Weighted and uniform reservoir sampling with generics
 org.apache.datasketches.theta       | Unique counting Theta Sketches for both heap and off-heap
 org.apache.datasketches.tuple       | Tuple sketches for both primitives and generics

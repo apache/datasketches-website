@@ -71,6 +71,8 @@ There are two different families of quantiles sketches, the original [quantiles/
 
 Later we developed the [kll/KllFloatsSketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/kll/KllFloatsSketch.java)  (Named after its authors), which is also a quantiles sketch, that achieves near optimal small size for a given accuracy.
 
+The most recent sketch in this group is called the Relative Error Quantiles sketch, which is a cousin of the KLL sketch except that it provides very high accuracy at one of the ends of the rank domain. If your application requires high accuracy primarily for the very high ranks, e.g., the 99.999%ile, or the very low ranks, e.g. the .00001%ile, and you can give up some accuracy at the other end of the rank scale, this sketch is designed for you. 
+
 ## Frequent Items / Heavy Hitters Sketches
 
 ### [Frequent Items Sketches]({{site.docs_dir}}/Frequency/FrequentItemsOverview.html): Finding the Heavy Hitter Objects from a Stream
