@@ -793,9 +793,11 @@
     <ul>
       <li>Open Terminal #1
         <ul>
+          <li>Confirm you are in the <code class="highlighter-rouge">/dev/</code> directory: <code class="highlighter-rouge">pwd</code></li>
           <li>Perform SVN Checkout:
             <ul>
               <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>  #note dot at end</li>
+              <li><code class="highlighter-rouge">svn status</code> #make sure checkout is clean</li>
             </ul>
           </li>
         </ul>
@@ -806,9 +808,11 @@
     <ul>
       <li>Open Terminal #2
         <ul>
+          <li>Confirm you are in the <code class="highlighter-rouge">/release/</code> directory: <code class="highlighter-rouge">pwd</code></li>
           <li>Perform SVN Checkout:
             <ul>
               <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/release/datasketches/ .</code> #note dot at end</li>
+              <li><code class="highlighter-rouge">svn status</code> #make sure checkout is clean</li>
             </ul>
           </li>
           <li>Create new version directory under appropriate component directory:
@@ -860,8 +864,7 @@
 
 <h3 id="update-apache-reporter">Update Apache Reporter</h3>
 <ul>
-  <li>Because of the commit to the <code class="highlighter-rouge">dist/release</code> branch, you should get an automated email requesting you to update the Apache DataBase about the releaase.</li>
-  <li>The email should point you to the <a href="https://reporter.apache.org/addrelease.html?datasketches">Apache Committee Report Helper</a>.</li>
+  <li>Because of the commit to the <code class="highlighter-rouge">dist/release</code> branch, you should get an automated email requesting you to update the Apache DataBase about the releaase. The email should point you to the <a href="https://reporter.apache.org/addrelease.html?datasketches">Apache Committee Report Helper</a>. You can choose to go there directly without waiting for the notice, there is only one box to fillout.</li>
   <li>Update the full name of the component release. For example: <code class="highlighter-rouge">Apache datasketches-memory-1.3.0</code></li>
 </ul>
 

@@ -558,11 +558,15 @@ This code is versioned and the latest release can be obtained from
     </tr>
     <tr>
       <td>org.apache.datasketches.kll</td>
-      <td>New quantiles sketch with better accuracy per size than the standard quantiles sketch.</td>
+      <td>Quantiles sketch with better accuracy per size than the standard quantiles sketch. Includes PMF, CDF funtions, for floats. Only on-heap.</td>
     </tr>
     <tr>
       <td>org.apache.datasketches.quantiles</td>
-      <td>Sketches for quantiles, PMF and CDF functions, both doubles and generics and for heap and off-heap.</td>
+      <td>Standard Quantiles sketch, plus PMF and CDF functions, for doubles and generics and for heap and off-heap.</td>
+    </tr>
+    <tr>
+      <td>org.apache.datasketches.req</td>
+      <td>Relative Error Quantiles (REQ) sketch, plus PMF and CDF functions for floats, on-heap. Extremely high accuracy for very high ranks (e.g., 99.999%ile), or very low ranks (e.g., .00001%ile.</td>
     </tr>
     <tr>
       <td>org.apache.datasketches.sampling</td>
