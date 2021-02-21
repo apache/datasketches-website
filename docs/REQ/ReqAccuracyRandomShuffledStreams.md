@@ -19,7 +19,8 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-# ReqSketch Accuracy with Random Shuffled Streams
+
+# Accuracy with Random Shuffled Streams
 This set of tests characterize the accuracy (or more precisely the rank error) of the ReqSketch using random shuffled streams.  The goal of this suite of tests is to understand how the rank error of the sketch behaves across all ranks.  All of these tests are run with the same stream length. The two major parameters that are varied are the sketch's *K*, which affects size and accuracy of the sketch, and the *HRA / LRA* parameter, which selects the region of highest accuracy is the high ranks close to 1.0 *High Ranks Accuracy (HRA)*, or the low ranks close to zero *Low Ranks Accuracy (LRA)*. 
 
 These tests also confirm that the a priori prediction of the error bounds are reasonable and relatively conservative.  The computation of these bounds are based on empirical measurements derived from tests such as these and are subject to some tuning as we understand the sketch's error behavior over a wider selection of streams.
