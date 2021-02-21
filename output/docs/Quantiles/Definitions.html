@@ -340,6 +340,7 @@
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
     </p>
     <div class="collapse" id="collapse_quantiles_and_histograms">
+      <li><a href="/docs/Quantiles/Definitions.html">•Quantiles Definitions</a></li>
       <li><a href="/docs/Quantiles/QuantilesOverview.html">•Quantiles Overview</a></li>
       <li><a href="/docs/Quantiles/QuantilesAccuracy.html">•Quantiles Accuracy and Size</a></li>
 
@@ -348,7 +349,7 @@
       </p>
       <div class="collapse" id="collapse_quantiles_examples">
         <li><a href="/docs/Quantiles/QuantilesJavaExample.html">•Quantiles Sketch Java Example</a></li>
-        <li><a href="/docs/Quantiles/QuantilesCppExample.html">•KLL Quantiles Sketch C++ Example</a></li>
+        <li><a href="/docs/KLL/KLLCppExample.html">•KLL Quantiles Sketch C++ Example</a></li>
         <li><a href="/docs/Quantiles/QuantilesPigUDFs.html">•Quantiles Sketch Pig UDFs</a></li>
         <li><a href="/docs/Quantiles/QuantilesHiveUDFs.html">•Quantiles Sketch Hive UDFs</a></li>
       </div>
@@ -357,13 +358,12 @@
         <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
       </p>
       <div class="collapse" id="collapse_quantiles_studies">
-        <li><a href="/docs/Quantiles/Definitions.html">•Definitions for Quantiles Studies</a></li>
-        <li><a href="/docs/Quantiles/KLLSketch.html">•New KLL sketch and comparison with DoublesSketch</a></li>
-        <li><a href="/docs/Quantiles/KllSketchVsTDigest.html">•KLL sketch vs t-digest</a></li>
-        <li><a href="/docs/Quantiles/DruidApproxHistogramStudy.html">•Druid Approximate Histogram</a></li>
-        <li><a href="/docs/Quantiles/MomentsSketchStudy.html">•Moments Sketch Study</a></li>
-        <li><a href="/docs/Quantiles/QuantilesStreamAStudy.html">•Quantiles StreamA Study</a></li>
-        <li><a href="/docs/Quantiles/ExactQuantiles.html">•Exact Quantiles for Studies</a></li>
+        <li><a href="/docs/KLL/KLLSketch.html">•KLL sketch and comparison with DoublesSketch</a></li>
+        <li><a href="/docs/QuantilesStudies/KllSketchVsTDigest.html">•KLL sketch vs t-digest</a></li>
+        <li><a href="/docs/QuantilesStudies/DruidApproxHistogramStudy.html">•Druid Approximate Histogram</a></li>
+        <li><a href="/docs/QuantilesStudies/MomentsSketchStudy.html">•Moments Sketch Study</a></li>
+        <li><a href="/docs/QuantilesStudies/QuantilesStreamAStudy.html">•Quantiles StreamA Study</a></li>
+        <li><a href="/docs/QuantilesStudies/ExactQuantiles.html">•Exact Quantiles for Studies</a></li>
       </div>
 
       <p id="quantiles-sketch-theory">
@@ -411,7 +411,7 @@
   <div class="collapse" id="collapse_community">
     <li><a href="/docs/Community/index.html">•Community</a></li>
     <li><a href="/docs/Community/Downloads.html">•Downloads</a></li>
-    <li><a href="/docs/Community/NewCommitterProcess.html">•New Committer Process</a></li>
+    <li><a href="/docs/Community/NewCommitterProcess.html">•Committer Process</a></li>
     <li><a href="/docs/Community/ReleaseProcessForCppComponents.html">•Release Process For CPP Components</a></li>
     <li><a href="/docs/Community/ReleaseProcessForJavaComponents.html">•Release Process For Java Components</a></li>
     <li><a href="/docs/Community/Transitioning.html">•Transitioning from prior GitHub Site</a></li>
@@ -506,122 +506,273 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h1 id="definitions-for-quantiles-studies">Definitions for Quantiles Studies</h1>
+<h1 id="quantiles-and-ranks-definitions">Quantiles and Ranks Definitions</h1>
+<p>Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions of massive data very quickly using only a small amout of space.  They allow us to extract values given a desired rank, or the reverse. Quantiles sketches enable us to plot the CDF, PMF or histogrms of a distribution.</p>
 
-<p>The goal of this article is to compare the accuracy performance of the Druid built-in Approximate Histogram to an exact, brute-force computation using actual data extracted from one of our back-end servers.</p>
+<p>The goal of this short tutorial it to introduce to the reader some of the basic concepts of quantiles, ranks and their functions.</p>
 
-<h2 id="hypothetically-sorted-stream-hss-of-values">Hypothetically Sorted Stream (HSS) of Values</h2>
-<p>Consider an input stream of <em>n</em> values. Now imagine if this input stream was sorted from the smallest to largest value. This is what we call the <em>hypothetical sorted stream</em> (HSS) of input values. We call it <em>hypothetical</em> because we never actually perform this sort (it would be very expensive) so we ask you to imagine it.</p>
+<p>Before we can define <em>quantile</em>, we must first define what we mean by <em>rank</em>.</p>
 
-<h2 id="rank-and-mass">Rank and Mass</h2>
-<p>We define the <em>natural rank</em> of a value in this HSS as its zero-based index that ranges from 0 to <em>n-1</em>. If we divide the natural rank by <em>n</em>, it becomes the <em>normalized or fractional rank</em>, and would range from 0 to <em>(n-1)/n</em> and be in the interval [0, 1). In our documentation when we refer to <em>rank</em> we are referring to the <em>normalized or fractional rank</em> and not the <em>natural rank</em>.</p>
+<h2 id="what-is-a-rank">What is a rank?</h2>
+<p>Given an ordered set of values the term rank can be defined two different ways.</p>
 
-<p>This <em>normalized rank</em> is closely associated with the concept of <em>mass</em>. If there are 1 million values in the HSS, then the value associated with the rank 0.5 represents the median value, or the center-point of the HSS <em>mass</em>, where half of the values (500,000) are below the median and half are above.</p>
+<blockquote>
+  <p>The <strong><em>natural rank</em></strong> is a <em>natural number</em> from the set of one-based, natural numbers, ℕ<sub>1</sub>, and is derived by enumerating an ordered set of values, starting with the value 1, up to <em>n</em>, the number of values in the set.</p>
+</blockquote>
 
-<h2 id="getquantilerank-and-getrankvalue">getQuantile(rank) and getRank(value)</h2>
-<p>We now have two hypothetical streams of values, a HSS of values and the stream of ranks where each value in the HSS is assigned a unique rank. 
-The definiton of <em>quantile</em> is the <em>value</em> associated with a particular <em>rank</em>. So the function <em>getQuantile(r)</em> returns the value associated rank <em>r</em>.
-Similarly, the function <em>getRank(v)</em> returns the rank associated with the value <em>v</em>.</p>
+<blockquote>
+  <p>The <strong><em>normalized rank</em></strong> is a number between 0 and 1 computed by dividing the <em>natural rank</em> by the total number of values in the set, <em>n</em>. Thus, for finite sets, any <em>normalized rank</em> is in the range (0, 1]. Normalized ranks are often written as a percent. But don’t confuse percent with percentile! This will be explained below.</p>
+</blockquote>
 
-<p>If a particular value <i>v</i> is repeated several times in the HSS, there is obviously a range of ranks that are assigned to each of the identical <i>v</i> values. This results in asymmetry between <em>v = getQuantile(r)</em> and <em>r = getRank(v)</em>. So how do we answer the following two queries when there are duplicate values in the HSS??</p>
+<p>In our sketch library and documentation, when we refer to <em>rank</em>, we imply <em>normalized rank</em>. However, in this tutorial, we will sometimes use <em>natural ranks</em> to simplify the examples.</p>
 
-<ul>
-  <li>What rank is returned from the query <i>getRank(v)</i>?</li>
-  <li>What value is returned from the query <i>getQuantile(r)</i>?</li>
-</ul>
+<h3 id="rank-and-mass">Rank and Mass</h3>
+<p><em>Normalized rank</em> is closely associated with the concept of <em>mass</em>. The value associated with the rank 0.5 represents the median value, or the center of <em>mass</em> of the entire set where half of the values are below the median and half are above. The concept of mass is important to understanding the Prabability Mass Function (PMF) offered by the quantile sketches in the library.
+A rank of <em>0</em> means a mass of <em>0</em> or an empty set.</p>
 
-<p>It turns out that there are 3 different rules for <em>getRank(v)</em> that you will find in the literature when <em>v</em> has duplicates in the HSS:</p>
+<h2 id="what-is-a-quantile">What is a quantile?</h2>
 
-<ul>
-  <li><i>min rank rule</i>: return the smallest rank associated with the range of duplicate values <i>v</i>.</li>
-  <li><i>max rank rule</i>: return the largest rank associated with the range of duplicate values <i>v</i>.</li>
-  <li><i>mid rank rule</i>: return the rank closest to the midpoint of the range of duplicate values <i>v</i>.</li>
-</ul>
+<blockquote>
+  <p>A <strong><em>quantile</em></strong> is a <em>value</em> associated with a <strong><em>rank</em></strong>.</p>
+</blockquote>
 
-<p>In our analysis and algorithms we use the <i>min rank rule</i>.</p>
-
-<p>If the value provided to <em>getRank(v)</em> does not exist in the HSS, the rule is to return the rank of the next largest value greater than <em>v</em>.
-This is the rank that would include <em>v</em> as if it existed.</p>
-
-<p>For example: given the following HSS and associated ranks:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hypothetically Sorted Stream (HSS)
-   Val  Natural Rank  Normalized Rank (divided by n = 9)
-  1.00             0             0.00
-  2.00             1             0.11
-  3.00             2             0.22
-  5.00             3             0.33
-  5.00             4             0.44
-  5.00             5             0.56
-  7.00             6             0.67
-  8.00             7             0.78
-  9.00             8             0.89
-</code></pre></div></div>
-
-<p>The <em>getRank(v)</em> will return for each of the following:</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>getRank(v)
-   Val  Rank
-  0.00  0.00
-  0.50  0.00
-  1.00  0.00
-  1.50  0.11
-  2.00  0.11
-  2.50  0.22
-  3.00  0.22
-  3.50  0.33
-  4.00  0.33
-  4.50  0.33
-  5.00  0.33
-  5.50  0.67
-  6.00  0.67
-  6.50  0.67
-  7.00  0.67
-  7.50  0.78
-  8.00  0.78
-  8.50  0.89
-  9.00  0.89
-</code></pre></div></div>
-
-<p>For the <em>getQuantile(r)</em> query:</p>
+<p><em>Quantile</em> is the general term that describes other terms that are also quantiles.
+To wit:</p>
 
 <ul>
-  <li><i>Strictly less-than quantile rule</i>: return the value associated with the largest rank that is strictly less-than <em>r</em>.</li>
+  <li>A percentile is a quantile where the rank domain is divided into hundredths, e.g., <em>q(0.95)</em>.</li>
+  <li>A decile is a quantile where the rank domain is divided into tenths, e.g., <em>q(0.3)</em>.</li>
+  <li>A quartile is a quantile where the rank domain is divided into forths, e.g., <em>q(0.25)</em>.</li>
+  <li>The median is a quantile that splits the rank domain in half and equals <em>q(0.5)</em>.</li>
 </ul>
 
-<p>The <em>getQuantile(r)</em> will return for each of the following:</p>
+<h2 id="the-quantile-function">The quantile function</h2>
+<p>Because of the association of quantiles and ranks, we can define a <em>quantile function</em>, 
+<em>value = q(r),</em> a monotonic function that translates a rank into its associated quantile or value.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>getQuantile(r)
-  Rank   Val
-  0.00  1.00
-  0.10  1.00
-  0.20  2.00
-  0.30  3.00
-  0.40  5.00
-  0.50  5.00
-  0.60  5.00
-  0.70  7.00
-  0.80  8.00
-  0.90  9.00
-  1.00  9.00
-</code></pre></div></div>
+<h2 id="the-rank-function">The rank function</h2>
+<p>The rank function,  <em>rank = r(q)</em> is the inverse of the quantile function, which, given a quantile (or value), we can compute its associated rank.</p>
 
-<h3 id="accuracy">Accuracy</h3>
-<p>Accuracy for quantiles sketches is measured with respect to the <em>rank</em> only.  Not the values.</p>
+<h2 id="the-challenge-of-duplicates">The challenge of duplicates</h2>
+<p>The functions <em>q(r)</em> and <em>r(q)</em> would form a 1:1 functional pair if <em>q = q(r(q))</em> and <em>r = r(q(r))</em>.
+However, duplicate values are quite common in real data so exact 1:1 functionality is not possible. As a result it is often the case that  <em>q != q(r(q))</em> and <em>r != r(q(r))</em>. Duplicate values also can make the rank function, <em>r(q)</em>, ambiguous.  If there are multiple adjacent ranks with the same value, which rank should the rank function return?</p>
 
-<p>A specified accuracy of 1% at the median (rank = 0.50) means that the true value (if you could extract it from the HSS) should be 
-between <em>getQuantile(0.49)</em> and <em>getQuantile(0.51)</em>. Note that this is an absolute rank error and not a relative rank error. 
-Measured at the 10th percentile means that the true value (from the HSS) should be 
-between <em>getQuantile(0.09)</em> and <em>getQuantile(0.11)</em>.</p>
+<h2 id="the-challenge-of-approximation">The challenge of approximation</h2>
+<p>By definiton, sketching algorithms are approximate, and they achieve their high performance by discarding a vast amount of the data.  Suppose you feed <em>n</em> items into a sketch that retains only <em>m</em> items. This means <em>n-m</em> values were discarded.  The sketch must track the value <em>n</em> used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values <em>n-m</em> rank values are missing creating holes in the sequence of ranks.</p>
 
-<h3 id="the-sketch-and-data-independence">The Sketch and Data Independence</h3>
-<p>A <em>sketch</em> is an implementation of a <em>streaming algorithm</em>. By definition, a sketch has only one chance to examine each item of the stream.  It is this property that makes a sketch a <em>streaming</em> algorithm and useful for real-time analysis of very large streams that may be impractical to actually store.</p>
+<h2 id="the-need-for-inequality-search">The need for inequality search</h2>
+<p>The quantile sketch algorithms discussed in the literature primarily differ by how they choose which values in the stream should be discarded. After the elimination process, all of the quantiles sketch implementations are left with the challenge of how to reconstruct the actual distribution, approximately and with good accuracy.</p>
 
-<p>We also assume that the sketch knows nothing about the input data stream: its length, the range of the values or how the values are distributed. If the authors of a particular algorithm require the user to know any of the above attributes of the input data stream in order to “tune” the algorithm, the algorithm is not a sketch as it would require multiple passes through the input data in order to produce correct results.</p>
+<p>Given the presence of duplicates and absence of values from the stream we must redefine the above quantle and rank functions as inequalities. Let’s start with a simple example.</p>
 
-<p>The only thing the user needs to know is how to extract the values from the stream so that they can be fed into the sketch. 
-It is also reasonable that the user knows the <em>type</em> of values in the stream: e.g., are they alphanumeric strings, numeric strings, or numeric primitives. These properties may determine the type of sketch to use as well as how to extract the appropriate quantities to feed into the sketch.</p>
+<h2 id="two-conventions-used-for-searching-for-ranks">Two conventions used for searching for ranks</h2>
+<ul>
+  <li>The first convention, called the <em>Less-Than</em> (<em>LT</em>) criterion, finds the mass of a distribution, denoted by a rank, that is strictly less-than the given rank.</li>
+  <li>The second convention, called the <em>Less-Than-or-Equal</em> (<em>LE</em>) criterion, finds the mass of a distribution, denoted by a rank, that is strictly less-than-or-equal to the given rank.</li>
+</ul>
 
+<p>You will find both of these in the literature.  Our older <em>quantiles/DoublesSketch</em> and our <em>KLL</em> quantiles sketch use the <em>LT</em> criterion. Our newest <em>REQ</em> sketch allows the user to choose.</p>
+
+<h2 id="two-complementing-conventions-used-for-searching-for-quantiles">Two complementing conventions used for searching for quantiles</h2>
+<p>When searching for quantiles, we require that search to return a quantile, such that our given <em>rank ~ r(q(r))</em> as close a possible.</p>
+
+<p>In order to do that we use two complementing criteria.</p>
+
+<ul>
+  <li>To match the <em>LT</em> criterion for rank, we use the greater-than, <em>GT</em>, criterion for quantiles</li>
+  <li>To match the <em>LE</em> criterion for rank, we use the greater-than-or-equal, <em>GE</em>, criterion for quantiles.</li>
+</ul>
+
+<h2 id="example">Example</h2>
+<p>Given the ordered values <em>{10,20,20,20,30}</em>, we can construct the following table of raw ranks and values. For simplicity we will use natural ranks.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Ranks, <em>r</em></th>
+      <th style="text-align: center">1</th>
+      <th style="text-align: center">2</th>
+      <th style="text-align: center">3</th>
+      <th style="text-align: center">4</th>
+      <th style="text-align: center">5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Values, <em>q</em></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">30</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Table 1: Raw data mapping of ranks to values</p>
+
+<p>After processing the stream the actual representation inside the sketch might look like the following. This compresses out duplicate values and effectively skips over missing values. Note that the top rank will always be <em>n</em>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Ranks, <em>r</em></th>
+      <th style="text-align: center">1</th>
+      <th style="text-align: center">4</th>
+      <th style="text-align: center">5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Values, <em>q</em></td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">30</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Table 1B: Raw data mapping compressed</p>
+
+<p>We will use Table 1B for the following.</p>
+
+<h3 id="convention-lt">Convention <em>LT</em></h3>
+
+<h4 id="the-lt-less-than-criterion-for-finding-ranks">The <em>LT</em> (less-than) criterion for finding ranks</h4>
+<p>Given a value, <em>V</em>, find an adjacent pair of values, <em>q1,q2</em>, where <em>q1 &lt; V &lt;= q2</em>. Return the rank of <em>q1</em>.</p>
+
+<ul>
+  <li>Given <em>V=10</em>, <em>? &lt; V &lt;= 10</em>. Return 0. There is no value in the set &lt; <em>10</em>.</li>
+  <li>Given <em>V=20</em>, <em>10 &lt; V &lt;= 20</em>. Return 1.</li>
+  <li>Given <em>V=30</em>, <em>20 &lt; V &lt;= 30</em>. Return 4.</li>
+</ul>
+
+<p>Table 2 represents this mapping.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Given <em>q</em></th>
+      <th style="text-align: center">10</th>
+      <th style="text-align: center">20</th>
+      <th style="text-align: center">30</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Find <em>r</em> (LT)</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">4</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Table 2: Using the <em>LT</em> criterion for finding ranks.</p>
+
+<p>Obtaining the quantile value given the rank is going the opposite direction, so we use the <em>GT</em> (greater-than) criterion.</p>
+
+<h4 id="the-gt-greater-than-criterion-for-finding-quantiles">The <em>GT</em> (greater-than) criterion for finding quantiles.</h4>
+<p>Given a rank, <em>R</em>, find an adjacent pair of ranks, <em>r1,r2</em>, where <em>r1 &lt;= R &lt; r2</em>. Return <em>q(r2)</em>.</p>
+
+<ul>
+  <li>Given <em>R=1, 2 or 3</em>, <em>1 &lt;= R &lt; 4</em>. Return <em>20</em>.</li>
+  <li>Given <em>R=4</em>, <em>4 &lt;= R &lt; 5</em>. Return <em>30</em></li>
+  <li>Given <em>R=5</em>, <em>5 &lt;= R &lt; ?</em>. Return <em>30</em>. There is no rank &gt; 5, but because it is at the top of the range we can safely return the top value.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Given <em>r</em></th>
+      <th style="text-align: center">1</th>
+      <th style="text-align: center">2</th>
+      <th style="text-align: center">3</th>
+      <th style="text-align: center">4</th>
+      <th style="text-align: center">5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Find <em>q</em> (GT)</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">30</td>
+      <td style="text-align: center">30</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Table 3: Using the <em>GT</em> criterion for finding quantiles</p>
+
+<h3 id="convention-le">Convention <em>LE</em></h3>
+
+<h4 id="the-le-less-than-or-equals-criterion-for-finding-ranks">The <em>LE</em> (less-than or equals) criterion for finding ranks</h4>
+<p>Given a value, <em>V</em>, find an adjacent pair of values, <em>q1,q2</em>, where <em>q1 &lt;= V &lt; q2</em>. Return the rank of <em>q1</em>.</p>
+
+<ul>
+  <li>Given <em>V=10</em>, <em>10 &lt;= V &lt; 20</em>. Return 1.</li>
+  <li>Given <em>V=20</em>, <em>20 &lt;= V &lt; 30</em>. Return 4.</li>
+  <li>Given <em>V=30</em>, <em>30 &lt;= V &lt; ?</em>.  Return 5.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Given <em>q</em></th>
+      <th style="text-align: center">10</th>
+      <th style="text-align: center">20</th>
+      <th style="text-align: center">30</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Find <em>r</em> (LE)</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">5</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Table 4: The <em>LE</em> criterion for finding ranks.</p>
+
+<p>Obtaining the quantile value given the rank is going the opposite direction, so we use the <em>GE</em> (greater-than-or-equals) criterion.</p>
+
+<h4 id="the-ge-greater-than-or-equals-criterion-for-finding-quantiles">The <em>GE</em> (greater-than or equals) criterion for finding quantiles</h4>
+<p>Given a rank, <em>R</em>, find an adjacent pair of ranks, <em>r1,r2</em>, where <em>r1 &lt; R &lt;= r2</em>. Return <em>q(r2)</em>.</p>
+
+<ul>
+  <li>Given <em>R=1</em>, <em>? &lt; R &lt;= 1</em>. Return <em>10</em>.</li>
+  <li>Given <em>R=2, 3 or 4</em>, <em>1 &lt; R &lt;= 4</em>. Return <em>20</em>.</li>
+  <li>Given <em>R=5</em>, <em>4 &lt; R &lt;= 5</em>. Return <em>30</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Given <em>r</em></th>
+      <th style="text-align: center">1</th>
+      <th style="text-align: center">2</th>
+      <th style="text-align: center">3</th>
+      <th style="text-align: center">4</th>
+      <th style="text-align: center">5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Find <em>q</em> (GE)</td>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">30</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Table 5: The <em>GE</em> criterion for finding quantiles.</p>
 
       </div> <!-- End content -->
     </div> <!-- End row -->

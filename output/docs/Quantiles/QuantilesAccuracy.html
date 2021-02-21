@@ -340,6 +340,7 @@
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
     </p>
     <div class="collapse" id="collapse_quantiles_and_histograms">
+      <li><a href="/docs/Quantiles/Definitions.html">•Quantiles Definitions</a></li>
       <li><a href="/docs/Quantiles/QuantilesOverview.html">•Quantiles Overview</a></li>
       <li><a href="/docs/Quantiles/QuantilesAccuracy.html">•Quantiles Accuracy and Size</a></li>
 
@@ -348,7 +349,7 @@
       </p>
       <div class="collapse" id="collapse_quantiles_examples">
         <li><a href="/docs/Quantiles/QuantilesJavaExample.html">•Quantiles Sketch Java Example</a></li>
-        <li><a href="/docs/Quantiles/QuantilesCppExample.html">•KLL Quantiles Sketch C++ Example</a></li>
+        <li><a href="/docs/KLL/KLLCppExample.html">•KLL Quantiles Sketch C++ Example</a></li>
         <li><a href="/docs/Quantiles/QuantilesPigUDFs.html">•Quantiles Sketch Pig UDFs</a></li>
         <li><a href="/docs/Quantiles/QuantilesHiveUDFs.html">•Quantiles Sketch Hive UDFs</a></li>
       </div>
@@ -357,13 +358,12 @@
         <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
       </p>
       <div class="collapse" id="collapse_quantiles_studies">
-        <li><a href="/docs/Quantiles/Definitions.html">•Definitions for Quantiles Studies</a></li>
-        <li><a href="/docs/Quantiles/KLLSketch.html">•New KLL sketch and comparison with DoublesSketch</a></li>
-        <li><a href="/docs/Quantiles/KllSketchVsTDigest.html">•KLL sketch vs t-digest</a></li>
-        <li><a href="/docs/Quantiles/DruidApproxHistogramStudy.html">•Druid Approximate Histogram</a></li>
-        <li><a href="/docs/Quantiles/MomentsSketchStudy.html">•Moments Sketch Study</a></li>
-        <li><a href="/docs/Quantiles/QuantilesStreamAStudy.html">•Quantiles StreamA Study</a></li>
-        <li><a href="/docs/Quantiles/ExactQuantiles.html">•Exact Quantiles for Studies</a></li>
+        <li><a href="/docs/KLL/KLLSketch.html">•KLL sketch and comparison with DoublesSketch</a></li>
+        <li><a href="/docs/QuantilesStudies/KllSketchVsTDigest.html">•KLL sketch vs t-digest</a></li>
+        <li><a href="/docs/QuantilesStudies/DruidApproxHistogramStudy.html">•Druid Approximate Histogram</a></li>
+        <li><a href="/docs/QuantilesStudies/MomentsSketchStudy.html">•Moments Sketch Study</a></li>
+        <li><a href="/docs/QuantilesStudies/QuantilesStreamAStudy.html">•Quantiles StreamA Study</a></li>
+        <li><a href="/docs/QuantilesStudies/ExactQuantiles.html">•Exact Quantiles for Studies</a></li>
       </div>
 
       <p id="quantiles-sketch-theory">
@@ -411,7 +411,7 @@
   <div class="collapse" id="collapse_community">
     <li><a href="/docs/Community/index.html">•Community</a></li>
     <li><a href="/docs/Community/Downloads.html">•Downloads</a></li>
-    <li><a href="/docs/Community/NewCommitterProcess.html">•New Committer Process</a></li>
+    <li><a href="/docs/Community/NewCommitterProcess.html">•Committer Process</a></li>
     <li><a href="/docs/Community/ReleaseProcessForCppComponents.html">•Release Process For CPP Components</a></li>
     <li><a href="/docs/Community/ReleaseProcessForJavaComponents.html">•Release Process For Java Components</a></li>
     <li><a href="/docs/Community/Transitioning.html">•Transitioning from prior GitHub Site</a></li>
@@ -506,11 +506,29 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="quantiles-accuracy-and-size">Quantiles Accuracy and Size</h2>
+<h2 id="quantiles-sketches-accuracy-and-size">Quantiles Sketches Accuracy and Size</h2>
+<p>Please review the Quantiles <a href="/docs/Quantiles/Definitions.html">Definitions</a>.</p>
 
-<p>The accuracy of this sketch is a function of the configured value <i>k</i>, which also affects
-the overall size of the sketch. Accuracy of this quantile sketch is always with respect to
-the normalized rank. A <i>k</i> of 256 produces a normalized rank error of less than 1%.
+<p>The accuracy of a quantile sketch is a function of the configured value <i>k</i>, which also affects
+the overall size of the sketch.</p>
+
+<p>Accuracy for quantiles sketches is specified and measured with respect to the <em>rank</em> only, not the values.</p>
+
+<h3 id="absolute-vs-relative-error">Absolute vs Relative Error</h3>
+<p>The Quantiles/DoublesSketch and the KLL Sketch have <em>absolute error</em>.  For example, a specified accuracy of 1% at the median (rank = 0.50) means that the true value (if you could extract it from the set) should be 
+between <em>getQuantile(0.49)</em> and <em>getQuantile(0.51)</em>. This same 1% error applied at a rank of 0.95 means that the true value should be between <em>getQuantile(0.94)</em> and <em>getQuantile(0.96)</em>. In other words, the error is a fixed +/- epsilon for the entire range of rank values.</p>
+
+<p>The ReqSketch, however, has relative rank error and the user can choose which end of the rank domain should have high accuracy.  Refer to the sketch documentation for more information.</p>
+
+<h2 id="quantiles-sketches-and-data-independence">Quantiles Sketches and Data Independence</h2>
+<p>A <em>sketch</em> is an implementation of a <em>streaming algorithm</em>. By definition, a sketch has only one chance to examine each item of the stream.  It is this property that makes a sketch a <em>streaming</em> algorithm and useful for real-time analysis of very large streams that may be impractical to actually store.</p>
+
+<p>We also assume that the sketch knows nothing about the input data stream: its length, the range of the values or how the values are distributed. If the authors of a particular algorithm require the user to know any of the above attributes of the input data stream in order to “tune” the algorithm, the algorithm is not data independent.</p>
+
+<p>The only thing the user needs to know is how to extract the values from the stream so that they can be fed into the sketch. It is reasonable that the user knows the <em>type</em> of values in the stream: e.g., are they alphanumeric strings, numeric strings, or numeric primitives. These properties may determine the type of sketch to use as well as how to extract the appropriate quantities to feed into the sketch.</p>
+
+<h2 id="accuracy-information-for-the-orgapachedatasketchesquantiles-sketch-package">Accuracy Information for the org.apache.datasketches.quantiles Sketch Package</h2>
+<p>A <i>k</i> of 256 produces a normalized rank error of less than 1%.
 For example, the median value returned from getQuantile(0.5) will be between the actual values
 from the hypothetically sorted array of input values at normalized ranks of 0.49 and 0.51, with 
 a confidence of about 99%.</p>

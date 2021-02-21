@@ -340,6 +340,7 @@
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
     </p>
     <div class="collapse" id="collapse_quantiles_and_histograms">
+      <li><a href="/docs/Quantiles/Definitions.html">•Quantiles Definitions</a></li>
       <li><a href="/docs/Quantiles/QuantilesOverview.html">•Quantiles Overview</a></li>
       <li><a href="/docs/Quantiles/QuantilesAccuracy.html">•Quantiles Accuracy and Size</a></li>
 
@@ -348,7 +349,7 @@
       </p>
       <div class="collapse" id="collapse_quantiles_examples">
         <li><a href="/docs/Quantiles/QuantilesJavaExample.html">•Quantiles Sketch Java Example</a></li>
-        <li><a href="/docs/Quantiles/QuantilesCppExample.html">•KLL Quantiles Sketch C++ Example</a></li>
+        <li><a href="/docs/KLL/KLLCppExample.html">•KLL Quantiles Sketch C++ Example</a></li>
         <li><a href="/docs/Quantiles/QuantilesPigUDFs.html">•Quantiles Sketch Pig UDFs</a></li>
         <li><a href="/docs/Quantiles/QuantilesHiveUDFs.html">•Quantiles Sketch Hive UDFs</a></li>
       </div>
@@ -357,13 +358,12 @@
         <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
       </p>
       <div class="collapse" id="collapse_quantiles_studies">
-        <li><a href="/docs/Quantiles/Definitions.html">•Definitions for Quantiles Studies</a></li>
-        <li><a href="/docs/Quantiles/KLLSketch.html">•New KLL sketch and comparison with DoublesSketch</a></li>
-        <li><a href="/docs/Quantiles/KllSketchVsTDigest.html">•KLL sketch vs t-digest</a></li>
-        <li><a href="/docs/Quantiles/DruidApproxHistogramStudy.html">•Druid Approximate Histogram</a></li>
-        <li><a href="/docs/Quantiles/MomentsSketchStudy.html">•Moments Sketch Study</a></li>
-        <li><a href="/docs/Quantiles/QuantilesStreamAStudy.html">•Quantiles StreamA Study</a></li>
-        <li><a href="/docs/Quantiles/ExactQuantiles.html">•Exact Quantiles for Studies</a></li>
+        <li><a href="/docs/KLL/KLLSketch.html">•KLL sketch and comparison with DoublesSketch</a></li>
+        <li><a href="/docs/QuantilesStudies/KllSketchVsTDigest.html">•KLL sketch vs t-digest</a></li>
+        <li><a href="/docs/QuantilesStudies/DruidApproxHistogramStudy.html">•Druid Approximate Histogram</a></li>
+        <li><a href="/docs/QuantilesStudies/MomentsSketchStudy.html">•Moments Sketch Study</a></li>
+        <li><a href="/docs/QuantilesStudies/QuantilesStreamAStudy.html">•Quantiles StreamA Study</a></li>
+        <li><a href="/docs/QuantilesStudies/ExactQuantiles.html">•Exact Quantiles for Studies</a></li>
       </div>
 
       <p id="quantiles-sketch-theory">
@@ -411,7 +411,7 @@
   <div class="collapse" id="collapse_community">
     <li><a href="/docs/Community/index.html">•Community</a></li>
     <li><a href="/docs/Community/Downloads.html">•Downloads</a></li>
-    <li><a href="/docs/Community/NewCommitterProcess.html">•New Committer Process</a></li>
+    <li><a href="/docs/Community/NewCommitterProcess.html">•Committer Process</a></li>
     <li><a href="/docs/Community/ReleaseProcessForCppComponents.html">•Release Process For CPP Components</a></li>
     <li><a href="/docs/Community/ReleaseProcessForJavaComponents.html">•Release Process For Java Components</a></li>
     <li><a href="/docs/Community/Transitioning.html">•Transitioning from prior GitHub Site</a></li>
@@ -533,7 +533,7 @@
 
 <p>This plot is to validate the basic assumptions about the sketches. The same repeated value was used as the input. The expected rank error is 0%.</p>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td100-error-same-value.png" alt="same value rank error plot" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td100-error-same-value.png" alt="same value rank error plot" /></p>
 
 <h2 id="size">Size</h2>
 
@@ -541,9 +541,9 @@
 
 <p>The input for the following size measurements was generated using uniform random values from 0 to 1 (Random.nextFloat() for KLL sketch and Random.nextDouble() for t-digest)</p>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td100-size.png" alt="KLL200 vs TD100 serialized size plot" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td100-size.png" alt="KLL200 vs TD100 serialized size plot" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td200-size.png" alt="KLL200 vs TD200 serialized size plot" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td200-size.png" alt="KLL200 vs TD200 serialized size plot" /></p>
 
 <h2 id="accuracy">Accuracy</h2>
 
@@ -582,33 +582,33 @@
 
 <h4 id="t-digest-compression100">t-digest compression=100</h4>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td100-error-uniform.png" alt="KLL200 vs TD100 rank error uniform input" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td100-error-uniform.png" alt="KLL200 vs TD100 rank error uniform input" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td100-error-gaussian.png" alt="KLL200 vs TD100 rank error gaussian input" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td100-error-gaussian.png" alt="KLL200 vs TD100 rank error gaussian input" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td100-error-blocky.png" alt="KLL200 vs TD100 rank error blocky input" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td100-error-blocky.png" alt="KLL200 vs TD100 rank error blocky input" /></p>
 
 <h4 id="t-digest-compression200">t-digest compression=200</h4>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td200-error-uniform.png" alt="KLL200 vs TD200 rank error uniform input" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td200-error-uniform.png" alt="KLL200 vs TD200 rank error uniform input" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td200-error-gaussian.png" alt="KLL200 vs TD200 rank error gaussian input" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td200-error-gaussian.png" alt="KLL200 vs TD200 rank error gaussian input" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td200-error-blocky.png" alt="KLL200 vs TD200 rank error blocky input" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td200-error-blocky.png" alt="KLL200 vs TD200 rank error blocky input" /></p>
 
 <h2 id="speed">Speed</h2>
 
 <p>The input for the following speed measurements was generated using uniform random values from 0 to 1 (Random.nextFloat() for KLL sketch and Random.nextDouble() for t-digest)</p>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td100-td200-update-time.png" alt="KLL200 vs TD100 and TD200 update time" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td100-td200-update-time.png" alt="KLL200 vs TD100 and TD200 update time" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td100-serialize-time.png" alt="KLL200 vs TD100 serialize time" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td100-serialize-time.png" alt="KLL200 vs TD100 serialize time" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td200-serialize-time.png" alt="KLL200 vs TD200 serialize time" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td200-serialize-time.png" alt="KLL200 vs TD200 serialize time" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td100-deserialize-time.png" alt="KLL200 vs TD100 deserialize time" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td100-deserialize-time.png" alt="KLL200 vs TD100 deserialize time" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/quantiles/kll200-vs-td200-deserialize-time.png" alt="KLL200 vs TD200 deserialize time" /></p>
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-td200-deserialize-time.png" alt="KLL200 vs TD200 deserialize time" /></p>
 
 <h2 id="source-code">Source code</h2>
 

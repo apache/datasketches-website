@@ -340,6 +340,7 @@
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
     </p>
     <div class="collapse" id="collapse_quantiles_and_histograms">
+      <li><a href="/docs/Quantiles/Definitions.html">•Quantiles Definitions</a></li>
       <li><a href="/docs/Quantiles/QuantilesOverview.html">•Quantiles Overview</a></li>
       <li><a href="/docs/Quantiles/QuantilesAccuracy.html">•Quantiles Accuracy and Size</a></li>
 
@@ -348,7 +349,7 @@
       </p>
       <div class="collapse" id="collapse_quantiles_examples">
         <li><a href="/docs/Quantiles/QuantilesJavaExample.html">•Quantiles Sketch Java Example</a></li>
-        <li><a href="/docs/Quantiles/QuantilesCppExample.html">•KLL Quantiles Sketch C++ Example</a></li>
+        <li><a href="/docs/KLL/KLLCppExample.html">•KLL Quantiles Sketch C++ Example</a></li>
         <li><a href="/docs/Quantiles/QuantilesPigUDFs.html">•Quantiles Sketch Pig UDFs</a></li>
         <li><a href="/docs/Quantiles/QuantilesHiveUDFs.html">•Quantiles Sketch Hive UDFs</a></li>
       </div>
@@ -357,13 +358,12 @@
         <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
       </p>
       <div class="collapse" id="collapse_quantiles_studies">
-        <li><a href="/docs/Quantiles/Definitions.html">•Definitions for Quantiles Studies</a></li>
-        <li><a href="/docs/Quantiles/KLLSketch.html">•New KLL sketch and comparison with DoublesSketch</a></li>
-        <li><a href="/docs/Quantiles/KllSketchVsTDigest.html">•KLL sketch vs t-digest</a></li>
-        <li><a href="/docs/Quantiles/DruidApproxHistogramStudy.html">•Druid Approximate Histogram</a></li>
-        <li><a href="/docs/Quantiles/MomentsSketchStudy.html">•Moments Sketch Study</a></li>
-        <li><a href="/docs/Quantiles/QuantilesStreamAStudy.html">•Quantiles StreamA Study</a></li>
-        <li><a href="/docs/Quantiles/ExactQuantiles.html">•Exact Quantiles for Studies</a></li>
+        <li><a href="/docs/KLL/KLLSketch.html">•KLL sketch and comparison with DoublesSketch</a></li>
+        <li><a href="/docs/QuantilesStudies/KllSketchVsTDigest.html">•KLL sketch vs t-digest</a></li>
+        <li><a href="/docs/QuantilesStudies/DruidApproxHistogramStudy.html">•Druid Approximate Histogram</a></li>
+        <li><a href="/docs/QuantilesStudies/MomentsSketchStudy.html">•Moments Sketch Study</a></li>
+        <li><a href="/docs/QuantilesStudies/QuantilesStreamAStudy.html">•Quantiles StreamA Study</a></li>
+        <li><a href="/docs/QuantilesStudies/ExactQuantiles.html">•Exact Quantiles for Studies</a></li>
       </div>
 
       <p id="quantiles-sketch-theory">
@@ -411,7 +411,7 @@
   <div class="collapse" id="collapse_community">
     <li><a href="/docs/Community/index.html">•Community</a></li>
     <li><a href="/docs/Community/Downloads.html">•Downloads</a></li>
-    <li><a href="/docs/Community/NewCommitterProcess.html">•New Committer Process</a></li>
+    <li><a href="/docs/Community/NewCommitterProcess.html">•Committer Process</a></li>
     <li><a href="/docs/Community/ReleaseProcessForCppComponents.html">•Release Process For CPP Components</a></li>
     <li><a href="/docs/Community/ReleaseProcessForJavaComponents.html">•Release Process For Java Components</a></li>
     <li><a href="/docs/Community/Transitioning.html">•Transitioning from prior GitHub Site</a></li>
@@ -506,102 +506,60 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h1 id="kll-sketch-c-example">KLL Sketch C++ Example</h1>
+<h2 id="kll-sketch">KLL sketch</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;iostream&gt;
-#include &lt;fstream&gt;
-#include &lt;random&gt;
-#include &lt;chrono&gt;
+<p>Implementation of a very compact quantiles sketch with lazy compaction scheme and nearly optimal accuracy per bit.
+See <a href="https://arxiv.org/abs/1603.05346v2">this paper</a>.
+The name KLL is composed of the initial letters of the last names of the authors.</p>
 
-#include &lt;kll_sketch.hpp&gt;
+<p>The usage of KllFloatsSketch is very similar to DoublesSketch. Because the key feature of this sketch is compactness, it was implemented with float values instead of double values.
+The parameter K that affects the accuracy and the size of the sketch is not restricted to powers of 2.
+The default of 200 was chosen to yield approximately the same normalized rank error (1.65%) as the default DoublesSketch (K=128, error 1.73%).</p>
 
-//simplified file operations and no error handling for clarity
-int main(int argc, char **argv) {
-  // this section generates two sketches from random data and serializes them into files
-  {
-    std::default_random_engine generator(std::chrono::system_clock::now().time_since_epoch().count());
-    std::normal_distribution&lt;float&gt; nd(0, 1); // mean=0, stddev=1
+<h3 id="java-example">Java example</h3>
 
-    datasketches::kll_sketch&lt;float&gt; sketch1; // default k=200
-    for (int i = 0; i &lt; 10000; i++) {
-      sketch1.update(nd(generator)); // mean=0, stddev=1
-    }
-    std::ofstream os1("kll_sketch_float1.bin");
-    sketch1.serialize(os1);
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.datasketches.kll.KllFloatsSketch;
 
-    datasketches::kll_sketch&lt;float&gt; sketch2; // default k=200
-    for (int i = 0; i &lt; 10000; i++) {
-      sketch2.update(nd(generator) + 1); // shift the mean for the second sketch
-    }
-    std::ofstream os2("kll_sketch_float2.bin");
-    sketch2.serialize(os2);
-  }
-
-  // this section deserializes the sketches, produces a union and prints some results
-  {
-    std::ifstream is1("kll_sketch_float1.bin");
-    auto sketch1 = datasketches::kll_sketch&lt;float&gt;::deserialize(is1);
-
-    std::ifstream is2("kll_sketch_float2.bin");
-    auto sketch2 = datasketches::kll_sketch&lt;float&gt;::deserialize(is2);
-
-    // we could merge sketch2 into sketch1 or the other way around
-    // this is an example of using a new sketch as a union and keeping the original sketches intact
-    datasketches::kll_sketch&lt;float&gt; u; // default k=200
-    u.merge(sketch1);
-    u.merge(sketch2);
-
-    // Debug output
-    u.to_stream(std::cout);
-
-    std::cout &lt;&lt; "Min, Median, Max values" &lt;&lt; std::endl;
-    const double fractions[3] {0, 0.5, 1};
-    auto quantiles = u.get_quantiles(fractions, 3);
-    std::cout &lt;&lt; quantiles[0] &lt;&lt; ", " &lt;&lt; quantiles[1] &lt;&lt; ", " &lt;&lt; quantiles[2] &lt;&lt; std::endl;
-
-    std::cout &lt;&lt; "Probability Histogram: estimated probability mass in 4 bins: (-inf, -2), [-2, 0), [0, 2), [2, +inf)" &lt;&lt; std::endl;
-    const float split_points[] {-2, 0, 2};
-    const int num_split_points = 3;
-    auto pmf = u.get_PMF(split_points, num_split_points);
-    std::cout &lt;&lt; pmf[0] &lt;&lt; ", " &lt;&lt; pmf[1] &lt;&lt; ", " &lt;&lt; pmf[2] &lt;&lt; ", " &lt;&lt; pmf[3] &lt;&lt; std::endl;
-
-    std::cout &lt;&lt; "Frequency Histogram: estimated number of original values in the same bins" &lt;&lt; std::endl;
-    const int num_bins = num_split_points + 1;
-    int histogram[num_bins];
-    for (int i = 0; i &lt; num_bins; i++) {
-      histogram[i] = pmf[i] * u.get_n(); // scale the fractions by the total count of values
-    }
-    std::cout &lt;&lt; histogram[0] &lt;&lt; ", " &lt;&lt; histogram[1] &lt;&lt; ", " &lt;&lt; histogram[2] &lt;&lt; ", " &lt;&lt; histogram[3] &lt;&lt; std::endl;
-  }
-
-  return 0;
+KllFloatsSketch sketch = new KllFloatsSketch();
+int n = 1000000;
+for (int i = 0; i &lt; n; i++) {
+  sketch.update(i);
 }
-
-Output (will be sligtly different every time due to random input):
-### KLL sketch summary:
-   K              : 200
-   min K          : 200
-   M              : 8
-   N              : 20000
-   Epsilon        : 1.33%
-   Epsilon PMF    : 1.65%
-   Empty          : false
-   Estimation mode: true
-   Levels         : 7
-   Sorted         : false
-   Capacity items : 565
-   Retained items : 394
-   Storage bytes  : 1632
-   Min value      : -3.49
-   Max value      : 4.52
-### End sketch summary
-Min, Median, Max values
--3.49, 0.51, 4.52
-Probability Histogram: estimated probability mass in 4 bins: (-inf, -2), [-2, 0), [0, 2), [2, +inf)
-0.0146, 0.313, 0.582, 0.0901
-Frequency Histogram: estimated number of original values in the same bins
-293, 6267, 11639, 1801
+float median = sketch.getQuantile(0.5);
+double rankOf1000 = sketch.getRank(1000);
 </code></pre></div></div>
+
+<h3 id="differences-of-kllfloatssketch-from-doublessketch">Differences of KllFloatsSketch from DoublesSketch</h3>
+
+<ul>
+  <li>KLL has a smaller size for the same accuracy</li>
+  <li>KLL is slightly faster to update</li>
+  <li>The KLL parameter K doesn’t have to be power of 2</li>
+  <li>KLL operates with float values instead of double values</li>
+  <li>KLL uses a merge method rather than a union object</li>
+  <li>KLL does not offer direct, off-heap implementation</li>
+  <li>KLL does not have separate updatable and compact forms</li>
+</ul>
+
+<p>The starting point for the comparison is setting K in such a way that rank error would be approximately the same. As pointed out above, the default K for both sketches should achieve this. Here is the comparison of the single-sided normalized rank error (getRank() method) for the default K:</p>
+
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-rank-error.png" alt="RankError" /></p>
+
+<p>DoublesSketch has two forms with different serialized sizes: UpdateDoublesSketch and CompactDoublesSketch. KllFloatsSketch has no such distinction. It is always serialized in a compact form, and it is not much bigger than that in memory. Here is the comparison of serialized sizes:</p>
+
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-size.png" alt="SerializedSize" /></p>
+
+<p>Some part of the size difference above is due to using items of float type as opposed to double type. Here is the comparison of the number of retained items to see the difference with no influence of the size of the item type:</p>
+
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-items.png" alt="NumberOfRetainedItems" /></p>
+
+<p>Below is the accuracy per byte measure (the higher the better). Suppose rank error is 1%, so the corresponding accuracy would be 99%. Divide that by size in bytes to arrive at this measure of how expensive each percentage point is in terms of space needed:</p>
+
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-accuracy-per-byte-log.png" alt="AccuracyPerByte" /></p>
+
+<p>Below is the update() method speed:</p>
+
+<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-update.png" alt="UpdateTime" /></p>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
