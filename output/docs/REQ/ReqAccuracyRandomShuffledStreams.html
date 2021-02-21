@@ -507,43 +507,389 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="basic-theta-sketch-accuracy">Basic Theta Sketch Accuracy</h2>
 
-<p>Sketch accuracy is usually measured in terms of Relative Error (<i>RE = Measured/Truth -1</i>).
-Sketches are stochastic processes and the estimates produced are random variables that have a 
-probability distribution that is close to the familiar Gaussian, which looks like the following.</p>
+<h1 id="accuracy-with-random-shuffled-streams">Accuracy with Random Shuffled Streams</h1>
+<p>This set of tests characterize the accuracy (or more precisely the rank error) of the ReqSketch using random shuffled streams.  The goal of this suite of tests is to understand how the rank error of the sketch behaves across all ranks.  All of these tests are run with the same stream length. The two major parameters that are varied are the sketch’s <em>K</em>, which affects size and accuracy of the sketch, and the <em>HRA / LRA</em> parameter, which selects the region of highest accuracy is the high ranks close to 1.0 <em>High Ranks Accuracy (HRA)</em>, or the low ranks close to zero <em>Low Ranks Accuracy (LRA)</em>.</p>
 
-<p><img class="doc-img-half" src="/docs/img/theta/Normal2.png" alt="Normal2" /></p>
+<p>These tests also confirm that the a priori prediction of the error bounds are reasonable and relatively conservative.  The computation of these bounds are based on empirical measurements derived from tests such as these and are subject to some tuning as we understand the sketch’s error behavior over a wider selection of streams.</p>
 
-<p>The sketch estimator algorithm examines the internal state of the sketch and returns an estimate 
-of the mean of the probability distribution that includes the actual value. 
-When the sketch contains more than a hundred or so values, we can assume that the shape is 
-pretty close to Gaussian due to the Central Limit Theorem. 
-It is important to understand that the sketch has no idea what the true value is; 
-it only knows the internal state of the sketch.</p>
-
-<p>From the mathematical theory of these sketches 
-(see <a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/SketchEquations.pdf">Sketch Equations</a> and 
-<a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework</a>) we know:</p>
+<p>For those that are interested in the actual code that run these tests can examine the following links.</p>
 
 <ul>
-  <li>The estimate is unbiased.  If you were to feed the same data into the sketch using 
-<i>T</i> different hash functions, the average of all <i>T</i> trials will converge on the true answer.</li>
-  <li>The variance of the estimate across all <i>T</i> trials is &lt; <i>est<sup>2</sup>/(k-1)</i>, 
-where <i>k</i> is the configured size of the sketch.</li>
+  <li><a href="https://github.com/apache/datasketches-characterization/blob/master/src/test/java/org/apache/datasketches/characterization/quantiles/ReqSketchAccuracyProfile.java">Code</a>: The code used to generate these characterization studies.</li>
+  <li><a href="https://github.com/apache/datasketches-characterization/blob/master/src/main/resources/quantiles/ReqSketchAccuracyJob.conf">Config</a>: The human readable and editable configuration file that instructs the above code with the specific properties used to run the test. These configuration properties are different for each of the following plots and summarized below with each plot.</li>
 </ul>
 
-<p>Dividing the variance by <i>est<sup>2</sup></i> and taking the square root normalizes the error to 
-&lt; <i><span style="white-space: nowrap">1/√<span style="text-decoration:overline;"> k - 1 </span></span></i>, 
-which is called the <i>Relative Standard Error</i> or RSE.  This corresponds to one standard 
-deviation stated as a fraction between zero and one, which can be translated to a percent error.
-Because <i>k</i> is a constant, the bounds of <i>Relative Error</i> of a sketch is constant.</p>
+<h2 id="test-design">Test Design</h2>
+<ul>
+  <li>Stream Length (SL): 2^20</li>
+  <li>Stream Values: Natural numbers, ℕ<sub>1</sub>, from 1 to SL, expressed as 32-bit floats.</li>
+  <li>Y-axis: The absolute error of the sketch <em>getRank(value)</em> method.</li>
+  <li>X-axis: The normalized rank [0.0, 1.0]</li>
+  <li>Plot Points (PP): 100.  Equally spaced points along the X-axis starting at 0.0 and ending at 1.0.</li>
+  <li>Trial:
+    <ul>
+      <li>Randomly Shuffles the input stream and presents it to the sketch.</li>
+      <li>Execute <em>estRanks[] = getRanks(trueValues[])</em> from the sketch where the array of <em>trueValues[]</em> are the 100 equally spaced values along the x-axis that exactly correspond to the above Plot Points. The <em>estRanks[]</em> is the array of the sketch’s estimates of the ranks of the given <em>trueValues</em>.</li>
+      <li>Computes the absolute error: <em>estRanks[i] - trueRanks[i]</em> for each Plot Point and submits this error to a corresponding array of standard qantile sketches, with one quantile sketch assigned to each Plot Point.</li>
+    </ul>
+  </li>
+  <li>Trials:
+    <ul>
+      <li>2^12 trials are executed. This produces a distribution of error at each Plot Point held by the error quantile skeches.</li>
+      <li><strong>Note:</strong> With these tests randomization is due to two sources, the shuffling of the stream and the internal random process of the sketch itself.</li>
+      <li>Extract 7 quantiles from the error quantile sketches at each Plot Point.  These error quantiles correspond to the standard normal distribuion at the median, +/- 1SD, +/- 2SD and +/- 3SD, where SD stands for Standard Deviation from the mean.</li>
+    </ul>
+  </li>
+  <li>Plotting:
+    <ul>
+      <li>Each of the error quantiles are connected by lines to form contours of the error distribution where the area between the +/- 1SD contours is the size of the 68% confidence interval; between the +/- 2SD coutours is the 95.4% confidence interval; and between the +/- 3SD contours is the 99.7% confidence interval.</li>
+      <li>In addition to the error contours. 6 dashed contours (with colors corresponding to the error contours) represent the a priori estimates of the error at each of the +/- standard deviations computed from the sketch’s <em>getRankLowerBound(double, int)</em> and <em>getRankUpperBound(double, int)</em> methods.</li>
+    </ul>
+  </li>
+</ul>
 
-<p>The area under the curve of the Standard Normal (Gaussian) Distribution is defined to be 1.0.
-The fractional area between two points on the X-axis is referred to as the <i>confidence level</i>. 
-Thus, the confidence level (the fractional area) between +1 RSE (+1 SD) and -1 RSE (-1 SD) is 68.27%. 
-Similarly, the confidence level between +2 RSE (+2 SD) and -2 RSE (-2 SD) is 95.4%.</p>
+<h3 id="common-configuration-for-the-following-plots">Common Configuration for the following plots</h3>
+<ul>
+  <li>SL=2^20: StreamLength</li>
+  <li>Eq Spaced: Equally spaced Plot Points (PP)</li>
+  <li>PP=100: Number of plot points on the x-axis</li>
+  <li>LgT=12: Number of trials = 2^12</li>
+  <li>Shuffled: Random shuffle of the input stream for each trial</li>
+</ul>
 
+<h1 id="results">Results</h1>
+
+<h2 id="plot-1-k12-hra-lt">Plot 1: K=12, HRA, LT</h2>
+<h3 id="specific-configuration">Specific Configuration</h3>
+<ul>
+  <li>K=12: the sketch sizing &amp; accuracy parameter</li>
+  <li>HRA: High Rank Accuracy</li>
+  <li>Crit=LT: Comparison criterion: LT = Less-Than</li>
+</ul>
+
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK12SL20T12_LT_Sh.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
+
+<ul>
+  <li>Retained Items: 2015</li>
+  <li>Serialization Bytes: 8676</li>
+  <li>Run Time: 14:01</li>
+  <li>Unique Error Value Count Per Plot Point: Min=459, Max=3055</li>
+</ul>
+
+<h2 id="plot-2-k12-lra-le">Plot 2: K=12, LRA, LE</h2>
+<h3 id="specific-configuration-1">Specific Configuration</h3>
+<ul>
+  <li>K=12: the sketch sizing &amp; accuracy parameter</li>
+  <li>LRA: Low Rank Accuracy</li>
+  <li>Crit=LE: Comparison criterion: LE = Less-Than or Equal</li>
+</ul>
+
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqLraK12SL20T12_LE_Sh.png" alt="/req/ReqErrEqLraK50SL20T12_LE_Sh.png" /></p>
+
+<ul>
+  <li>Retained Items: 2015</li>
+  <li>Serialization Bytes: 8676</li>
+  <li>Run Time: 14:52</li>
+  <li>Unique Error Value Count Per Plot Point: Min=447, Max=3106</li>
+</ul>
+
+<h2 id="plot-1-and-2-final-compactor-profile--size">Plot 1 and 2, Final Compactor Profile &amp; Size</h2>
+<p>Because these two tests are run with the same exact sketch configuration and the same input stream length they both have the same final compactor profile, retained items and Serialization Bytes.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Lg Wt</th>
+      <th style="text-align: center">Items</th>
+      <th style="text-align: center">Nominal Size</th>
+      <th style="text-align: center">Section Size</th>
+      <th style="text-align: center">Num Sections</th>
+      <th style="text-align: center">Num Compactions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">192</td>
+      <td style="text-align: center">192</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">85812</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">188</td>
+      <td style="text-align: center">192</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">36251</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">184</td>
+      <td style="text-align: center">192</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">16596</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">205</td>
+      <td style="text-align: center">192</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">7509</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">188</td>
+      <td style="text-align: center">192</td>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">3185</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">140</td>
+      <td style="text-align: center">144</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">1340</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">173</td>
+      <td style="text-align: center">144</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">590</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">138</td>
+      <td style="text-align: center">144</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">261</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">187</td>
+      <td style="text-align: center">144</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">108</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">138</td>
+      <td style="text-align: center">144</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">35</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">94</td>
+      <td style="text-align: center">96</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">13</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center">36</td>
+      <td style="text-align: center">96</td>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">128</td>
+      <td style="text-align: center">72</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">13</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">72</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">0</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Retained Items: 2015</li>
+  <li>Serialization Bytes: 8676</li>
+</ul>
+
+<h2 id="plot-3-k50-hra-lt">Plot 3: K=50, HRA, LT</h2>
+<h3 id="specific-configuration-2">Specific Configuration</h3>
+<ul>
+  <li>K=50: the sketch sizing &amp; accuracy parameter</li>
+  <li>HRA: High Rank Accuracy</li>
+  <li>Crit=LT: Comparison criterion: LT = Less-Than</li>
+</ul>
+
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T12_LT_Sh.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
+
+<ul>
+  <li>Retained Items: 6903</li>
+  <li>Serialization Bytes: 28144</li>
+  <li>Run Time: 8:38</li>
+  <li>Unique Error Value Count Per Plot Point: Min=156, Max=2465</li>
+</ul>
+
+<h2 id="plot-4-k50-lra-le">Plot 4: K=50, LRA, LE</h2>
+<h3 id="specific-configuration-3">Specific Configuration</h3>
+<ul>
+  <li>K=50: the sketch sizing &amp; accuracy parameter</li>
+  <li>LRA: Low Rank Accuracy</li>
+  <li>Crit=LE: Comparison criterion: LE = Less-Than or Equal</li>
+</ul>
+
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqLraK50SL20T12_LE_Sh.png" alt="/req/ReqErrEqLraK50SL20T12_LE_Sh.png" /></p>
+
+<ul>
+  <li>Retained Items: 6903</li>
+  <li>Serialization Bytes: 28144</li>
+  <li>Run Time: 27:20</li>
+  <li>Unique Error Value Count Per Plot Point: Min=167, Max=2475</li>
+</ul>
+
+<h2 id="plot-4b-k50-lra-le-using-theoretical-bounds">Plot 4B: K=50, LRA, LE, Using Theoretical Bounds</h2>
+<ul>
+  <li>K=50: the sketch sizing &amp; accuracy parameter</li>
+  <li>LRA: Low Rank Accuracy</li>
+  <li>Crit=LE: Comparison criterion: LE = Less-Than or Equal</li>
+</ul>
+
+<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqLraLeK50SL20T12_PyRSE.png" alt="/req/ReqErrEqLraLeK50SL20T12_PyRSE.png" /></p>
+
+<h2 id="plot-3-and-4-final-compactor-profile--size">Plot 3 and 4, Final Compactor Profile &amp; Size</h2>
+<p>Because these two tests are run with the same exact sketch configuration and the same input stream length they both have the same final compactor profile, retained items and Serialization Bytes.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Lg Wt</th>
+      <th style="text-align: center">Items</th>
+      <th style="text-align: center">Nominal Size</th>
+      <th style="text-align: center">Section Size</th>
+      <th style="text-align: center">Num Sections</th>
+      <th style="text-align: center">Num Compactions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">786</td>
+      <td style="text-align: center">864</td>
+      <td style="text-align: center">18</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">16288</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">919</td>
+      <td style="text-align: center">864</td>
+      <td style="text-align: center">18</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">6755</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">846</td>
+      <td style="text-align: center">864</td>
+      <td style="text-align: center">18</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">2979</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">531</td>
+      <td style="text-align: center">576</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">1308</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">613</td>
+      <td style="text-align: center">576</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">578</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">529</td>
+      <td style="text-align: center">576</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">246</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">528</td>
+      <td style="text-align: center">576</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">106</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">781</td>
+      <td style="text-align: center">576</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">33</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">621</td>
+      <td style="text-align: center">432</td>
+      <td style="text-align: center">36</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">13</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">364</td>
+      <td style="text-align: center">432</td>
+      <td style="text-align: center">36</td>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">250</td>
+      <td style="text-align: center">300</td>
+      <td style="text-align: center">50</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center">135</td>
+      <td style="text-align: center">300</td>
+      <td style="text-align: center">50</td>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">0</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Retained Items: 6903</li>
+  <li>Serialization Bytes: 28144</li>
+</ul>
 
       </div> <!-- End content -->
     </div> <!-- End row -->

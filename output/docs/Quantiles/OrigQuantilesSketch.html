@@ -342,7 +342,9 @@
     <div class="collapse" id="collapse_quantiles_and_histograms">
       <li><a href="/docs/Quantiles/Definitions.html">•Quantiles Definitions</a></li>
       <li><a href="/docs/Quantiles/QuantilesOverview.html">•Quantiles Overview</a></li>
-      <li><a href="/docs/Quantiles/QuantilesAccuracy.html">•Quantiles Accuracy and Size</a></li>
+      <li><a href="/docs/KLL/KLLSketch.html">•KLL Floats sketch</a></li>
+      <li><a href="/docs/REQ/ReqSketch.html">•REQ Floats sketch</a></li>
+      <li><a href="/docs/Quantiles/OrigQuantilesSketch.html">•Original QuantilesSketch</a></li>
 
       <p id="quantiles-examples">
         <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_examples">Quantiles Examples</a>
@@ -358,7 +360,6 @@
         <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_studies">Quantiles Studies</a>
       </p>
       <div class="collapse" id="collapse_quantiles_studies">
-        <li><a href="/docs/KLL/KLLSketch.html">•KLL sketch and comparison with DoublesSketch</a></li>
         <li><a href="/docs/QuantilesStudies/KllSketchVsTDigest.html">•KLL sketch vs t-digest</a></li>
         <li><a href="/docs/QuantilesStudies/DruidApproxHistogramStudy.html">•Druid Approximate Histogram</a></li>
         <li><a href="/docs/QuantilesStudies/MomentsSketchStudy.html">•Moments Sketch Study</a></li>
@@ -506,388 +507,120 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h1 id="reqsketch-accuracy-with-random-shuffled-streams">ReqSketch Accuracy with Random Shuffled Streams</h1>
-<p>This set of tests characterize the accuracy (or more precisely the rank error) of the ReqSketch using random shuffled streams.  The goal of this suite of tests is to understand how the rank error of the sketch behaves across all ranks.  All of these tests are run with the same stream length. The two major parameters that are varied are the sketch’s <em>K</em>, which affects size and accuracy of the sketch, and the <em>HRA / LRA</em> parameter, which selects the region of highest accuracy is the high ranks close to 1.0 <em>High Ranks Accuracy (HRA)</em>, or the low ranks close to zero <em>Low Ranks Accuracy (LRA)</em>.</p>
+<h2 id="quantiles-sketches-accuracy-and-size">Quantiles Sketches Accuracy and Size</h2>
+<p>Please review the Quantiles <a href="/docs/Quantiles/Definitions.html">Definitions</a>.</p>
 
-<p>These tests also confirm that the a priori prediction of the error bounds are reasonable and relatively conservative.  The computation of these bounds are based on empirical measurements derived from tests such as these and are subject to some tuning as we understand the sketch’s error behavior over a wider selection of streams.</p>
+<p>The accuracy of a quantile sketch is a function of the configured value <i>k</i>, which also affects
+the overall size of the sketch.</p>
 
-<p>For those that are interested in the actual code that run these tests can examine the following links.</p>
+<p>Accuracy for quantiles sketches is specified and measured with respect to the <em>rank</em> only, not the values.</p>
+
+<h3 id="absolute-vs-relative-error">Absolute vs Relative Error</h3>
+<p>The Quantiles/DoublesSketch and the KLL Sketch have <em>absolute error</em>.  For example, a specified accuracy of 1% at the median (rank = 0.50) means that the true value (if you could extract it from the set) should be 
+between <em>getQuantile(0.49)</em> and <em>getQuantile(0.51)</em>. This same 1% error applied at a rank of 0.95 means that the true value should be between <em>getQuantile(0.94)</em> and <em>getQuantile(0.96)</em>. In other words, the error is a fixed +/- epsilon for the entire range of rank values.</p>
+
+<p>The ReqSketch, however, has relative rank error and the user can choose which end of the rank domain should have high accuracy.  Refer to the sketch documentation for more information.</p>
+
+<h2 id="quantiles-sketches-and-data-independence">Quantiles Sketches and Data Independence</h2>
+<p>A <em>sketch</em> is an implementation of a <em>streaming algorithm</em>. By definition, a sketch has only one chance to examine each item of the stream.  It is this property that makes a sketch a <em>streaming</em> algorithm and useful for real-time analysis of very large streams that may be impractical to actually store.</p>
+
+<p>We also assume that the sketch knows nothing about the input data stream: its length, the range of the values or how the values are distributed. If the authors of a particular algorithm require the user to know any of the above attributes of the input data stream in order to “tune” the algorithm, the algorithm is not data independent.</p>
+
+<p>The only thing the user needs to know is how to extract the values from the stream so that they can be fed into the sketch. It is reasonable that the user knows the <em>type</em> of values in the stream: e.g., are they alphanumeric strings, numeric strings, or numeric primitives. These properties may determine the type of sketch to use as well as how to extract the appropriate quantities to feed into the sketch.</p>
+
+<h2 id="accuracy-information-for-the-orgapachedatasketchesquantiles-sketch-package">Accuracy Information for the org.apache.datasketches.quantiles Sketch Package</h2>
+<p>A <i>k</i> of 256 produces a normalized rank error of less than 1%.
+For example, the median value returned from getQuantile(0.5) will be between the actual values
+from the hypothetically sorted array of input values at normalized ranks of 0.49 and 0.51, with 
+a confidence of about 99%.</p>
+
+<p>The approximate error (epsilon) values listed in the second row of the header in the table below can be computed using the function
+<i>double DoubleSketch.getNormalizedRankError(int k)</i>.  The values in this table match very closely with empirical measurements 
+up to k = 1024 at the 99% confidence level.  Beyond k = 1024, the estimated error is somewhat speculative, but should be reasonable guidance.
+These error values simultaneously apply to all half-open intervals (-Infinity, Q] and closed intervals [Q1, Q2].</p>
+
+<pre>
+Table Guide for Quantiles DoublesSketch Size in Bytes and Approximate Error:
+          K =&gt; |        16        32        64       128       256       512     1,024     2,048     4,096     8,192    16,384    32,768
+    ~ Error =&gt; |   12.145%    6.359%    3.317%    1.725%    0.894%    0.463%    0.239%    0.123%    0.063%    0.033%    0.017%    0.009%
+             N | Size in Bytes -&gt;
+----------------------------------------------------------------------------------------------------------------------------------------
+             0 |         8         8         8         8         8         8         8         8         8         8         8         8
+             1 |        64        64        64        64        64        64        64        64        64        64        64        64
+             3 |        64        64        64        64        64        64        64        64        64        64        64        64
+             7 |        96        96        96        96        96        96        96        96        96        96        96        96
+            15 |       160       160       160       160       160       160       160       160       160       160       160       160
+            31 |       288       288       288       288       288       288       288       288       288       288       288       288
+            63 |       416       544       544       544       544       544       544       544       544       544       544       544
+           127 |       544       800     1,056     1,056     1,056     1,056     1,056     1,056     1,056     1,056     1,056     1,056
+           255 |       672     1,056     1,568     2,080     2,080     2,080     2,080     2,080     2,080     2,080     2,080     2,080
+           511 |       800     1,312     2,080     3,104     4,128     4,128     4,128     4,128     4,128     4,128     4,128     4,128
+         1,023 |       928     1,568     2,592     4,128     6,176     8,224     8,224     8,224     8,224     8,224     8,224     8,224
+         2,047 |     1,056     1,824     3,104     5,152     8,224    12,320    16,416    16,416    16,416    16,416    16,416    16,416
+         4,095 |     1,184     2,080     3,616     6,176    10,272    16,416    24,608    32,800    32,800    32,800    32,800    32,800
+         8,191 |     1,312     2,336     4,128     7,200    12,320    20,512    32,800    49,184    65,568    65,568    65,568    65,568
+        16,383 |     1,440     2,592     4,640     8,224    14,368    24,608    40,992    65,568    98,336   131,104   131,104   131,104
+        32,767 |     1,568     2,848     5,152     9,248    16,416    28,704    49,184    81,952   131,104   196,640   262,176   262,176
+        65,535 |     1,696     3,104     5,664    10,272    18,464    32,800    57,376    98,336   163,872   262,176   393,248   524,320
+       131,071 |     1,824     3,360     6,176    11,296    20,512    36,896    65,568   114,720   196,640   327,712   524,320   786,464
+       262,143 |     1,952     3,616     6,688    12,320    22,560    40,992    73,760   131,104   229,408   393,248   655,392 1,048,608
+       524,287 |     2,080     3,872     7,200    13,344    24,608    45,088    81,952   147,488   262,176   458,784   786,464 1,310,752
+     1,048,575 |     2,208     4,128     7,712    14,368    26,656    49,184    90,144   163,872   294,944   524,320   917,536 1,572,896
+     2,097,151 |     2,336     4,384     8,224    15,392    28,704    53,280    98,336   180,256   327,712   589,856 1,048,608 1,835,040
+     4,194,303 |     2,464     4,640     8,736    16,416    30,752    57,376   106,528   196,640   360,480   655,392 1,179,680 2,097,184
+     8,388,607 |     2,592     4,896     9,248    17,440    32,800    61,472   114,720   213,024   393,248   720,928 1,310,752 2,359,328
+    16,777,215 |     2,720     5,152     9,760    18,464    34,848    65,568   122,912   229,408   426,016   786,464 1,441,824 2,621,472
+    33,554,431 |     2,848     5,408    10,272    19,488    36,896    69,664   131,104   245,792   458,784   852,000 1,572,896 2,883,616
+    67,108,863 |     2,976     5,664    10,784    20,512    38,944    73,760   139,296   262,176   491,552   917,536 1,703,968 3,145,760
+   134,217,727 |     3,104     5,920    11,296    21,536    40,992    77,856   147,488   278,560   524,320   983,072 1,835,040 3,407,904
+   268,435,455 |     3,232     6,176    11,808    22,560    43,040    81,952   155,680   294,944   557,088 1,048,608 1,966,112 3,670,048
+   536,870,911 |     3,360     6,432    12,320    23,584    45,088    86,048   163,872   311,328   589,856 1,114,144 2,097,184 3,932,192
+ 1,073,741,823 |     3,488     6,688    12,832    24,608    47,136    90,144   172,064   327,712   622,624 1,179,680 2,228,256 4,194,336
+ 2,147,483,647 |     3,616     6,944    13,344    25,632    49,184    94,240   180,256   344,096   655,392 1,245,216 2,359,328 4,456,480
+ 4,294,967,295 |     3,744     7,200    13,856    26,656    51,232    98,336   188,448   360,480   688,160 1,310,752 2,490,400 4,718,624
+</pre>
+
+<p>The following graphs illustrate the ability of the Quantiles DoublesSketch to characterize value distributions.</p>
 
 <ul>
-  <li><a href="https://github.com/apache/datasketches-characterization/blob/master/src/test/java/org/apache/datasketches/characterization/quantiles/ReqSketchAccuracyProfile.java">Code</a>: The code used to generate these characterization studies.</li>
-  <li><a href="https://github.com/apache/datasketches-characterization/blob/master/src/main/resources/quantiles/ReqSketchAccuracyJob.conf">Config</a>: The human readable and editable configuration file that instructs the above code with the specific properties used to run the test. These configuration properties are different for each of the following plots and summarized below with each plot.</li>
-</ul>
-
-<h2 id="test-design">Test Design</h2>
-<ul>
-  <li>Stream Length (SL): 2^20</li>
-  <li>Stream Values: Natural numbers, ℕ<sub>1</sub>, from 1 to SL, expressed as 32-bit floats.</li>
-  <li>Y-axis: The absolute error of the sketch <em>getRank(value)</em> method.</li>
-  <li>X-axis: The normalized rank [0.0, 1.0]</li>
-  <li>Plot Points (PP): 100.  Equally spaced points along the X-axis starting at 0.0 and ending at 1.0.</li>
-  <li>Trial:
-    <ul>
-      <li>Randomly Shuffles the input stream and presents it to the sketch.</li>
-      <li>Execute <em>estRanks[] = getRanks(trueValues[])</em> from the sketch where the array of <em>trueValues[]</em> are the 100 equally spaced values along the x-axis that exactly correspond to the above Plot Points. The <em>estRanks[]</em> is the array of the sketch’s estimates of the ranks of the given <em>trueValues</em>.</li>
-      <li>Computes the absolute error: <em>estRanks[i] - trueRanks[i]</em> for each Plot Point and submits this error to a corresponding array of standard qantile sketches, with one quantile sketch assigned to each Plot Point.</li>
-    </ul>
+  <li>
+    <p>1024 (n) values (trueUnsortedValues) were generated from Random’s nextGaussian(). These values were then sorted (trueSortedValues) and assigned
+their true normalized ranks (trueRanks) from 0 to (n-1)/n.</p>
   </li>
-  <li>Trials:
-    <ul>
-      <li>2^12 trials are executed. This produces a distribution of error at each Plot Point held by the error quantile skeches.</li>
-      <li><strong>Note:</strong> With these tests randomization is due to two sources, the shuffling of the stream and the internal random process of the sketch itself.</li>
-      <li>Extract 7 quantiles from the error quantile sketches at each Plot Point.  These error quantiles correspond to the standard normal distribuion at the median, +/- 1SD, +/- 2SD and +/- 3SD, where SD stands for Standard Deviation from the mean.</li>
-    </ul>
+  <li>
+    <p>A DoublesSketch (sketch) was then created with K = 32 and updated with the trueUnsortedValues.</p>
   </li>
-  <li>Plotting:
-    <ul>
-      <li>Each of the error quantiles are connected by lines to form contours of the error distribution where the area between the +/- 1SD contours is the size of the 68% confidence interval; between the +/- 2SD coutours is the 95.4% confidence interval; and between the +/- 3SD contours is the 99.7% confidence interval.</li>
-      <li>In addition to the error contours. 6 dashed contours (with colors corresponding to the error contours) represent the a priori estimates of the error at each of the +/- standard deviations computed from the sketch’s <em>getRankLowerBound(double, int)</em> and <em>getRankUpperBound(double, int)</em> methods.</li>
-    </ul>
+  <li>
+    <p>sketch.getCDF(trueSortedValues) produced an ordered array of estimated ranks (estimatedRanks) . The estimatedRanks (red)
+were then plotted against the trueRanks (black). The upper bound error was plotted in blue and the lower bound error was plotted in green.</p>
+  </li>
+  <li>
+    <p>The error of the estimation from the sketch is called “Epsilon” and is always with respect to the 
+rank axis. It was plotted as a visual bar on the graph to illustrate its size.</p>
+  </li>
+  <li>
+    <p>The size of this sketch, if stored, would be about 1832 bytes.</p>
   </li>
 </ul>
 
-<h3 id="common-configuration-for-the-following-plots">Common Configuration for the following plots</h3>
-<ul>
-  <li>SL=2^20: StreamLength</li>
-  <li>Eq Spaced: Equally spaced Plot Points (PP)</li>
-  <li>PP=100: Number of plot points on the x-axis</li>
-  <li>LgT=12: Number of trials = 2^12</li>
-  <li>Shuffled: Random shuffle of the input stream for each trial</li>
-</ul>
-
-<h1 id="results">Results</h1>
-
-<h2 id="plot-1-k12-hra-lt">Plot 1: K=12, HRA, LT</h2>
-<h3 id="specific-configuration">Specific Configuration</h3>
-<ul>
-  <li>K=12: the sketch sizing &amp; accuracy parameter</li>
-  <li>HRA: High Rank Accuracy</li>
-  <li>Crit=LT: Comparison criterion: LT = Less-Than</li>
-</ul>
-
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK12SL20T12_LT_Sh.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
+<p><img class="doc-img-half" src="/docs/img/quantiles/QuantilesCDF.png" alt="QuantilesCDF" /></p>
 
 <ul>
-  <li>Retained Items: 2015</li>
-  <li>Serialization Bytes: 8676</li>
-  <li>Run Time: 14:01</li>
-  <li>Unique Error Value Count Per Plot Point: Min=459, Max=3055</li>
+  <li>A getQuantiles(trueRanks) produced an ordered array estimatedSortedValues, which correspond to the trueRanks. 
+Plotting the estimatedSortedValues against the trueSortedValues produces the inverse CDF plot as follows:</li>
 </ul>
 
-<h2 id="plot-2-k12-lra-le">Plot 2: K=12, LRA, LE</h2>
-<h3 id="specific-configuration-1">Specific Configuration</h3>
-<ul>
-  <li>K=12: the sketch sizing &amp; accuracy parameter</li>
-  <li>LRA: Low Rank Accuracy</li>
-  <li>Crit=LE: Comparison criterion: LE = Less-Than or Equal</li>
-</ul>
+<p><img class="doc-img-half" src="/docs/img/quantiles/QuantilesInverseCDF.png" alt="QuantilesInverseCDF" /></p>
 
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqLraK12SL20T12_LE_Sh.png" alt="/req/ReqErrEqLraK50SL20T12_LE_Sh.png" /></p>
+<p>The absolute rank error vs the trueRanks produced the following graph.</p>
 
-<ul>
-  <li>Retained Items: 2015</li>
-  <li>Serialization Bytes: 8676</li>
-  <li>Run Time: 14:52</li>
-  <li>Unique Error Value Count Per Plot Point: Min=447, Max=3106</li>
-</ul>
+<p><img class="doc-img-half" src="/docs/img/quantiles/QuantilesCDFAbsRankError.png" alt="QuantilesCDFAbsRankError" /></p>
 
-<h2 id="plot-1-and-2-final-compactor-profile--size">Plot 1 and 2, Final Compactor Profile &amp; Size</h2>
-<p>Because these two tests are run with the same exact sketch configuration and the same input stream length they both have the same final compactor profile, retained items and Serialization Bytes.</p>
+<p>All of the above plots were generated from one trial, and is not a test of the error bounds.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">Lg Wt</th>
-      <th style="text-align: center">Items</th>
-      <th style="text-align: center">Nominal Size</th>
-      <th style="text-align: center">Section Size</th>
-      <th style="text-align: center">Num Sections</th>
-      <th style="text-align: center">Num Compactions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">0</td>
-      <td style="text-align: center">192</td>
-      <td style="text-align: center">192</td>
-      <td style="text-align: center">4</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">85812</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">1</td>
-      <td style="text-align: center">188</td>
-      <td style="text-align: center">192</td>
-      <td style="text-align: center">4</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">36251</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">2</td>
-      <td style="text-align: center">184</td>
-      <td style="text-align: center">192</td>
-      <td style="text-align: center">4</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">16596</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">3</td>
-      <td style="text-align: center">205</td>
-      <td style="text-align: center">192</td>
-      <td style="text-align: center">4</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">7509</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">4</td>
-      <td style="text-align: center">188</td>
-      <td style="text-align: center">192</td>
-      <td style="text-align: center">4</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">3185</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">5</td>
-      <td style="text-align: center">140</td>
-      <td style="text-align: center">144</td>
-      <td style="text-align: center">6</td>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">1340</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">6</td>
-      <td style="text-align: center">173</td>
-      <td style="text-align: center">144</td>
-      <td style="text-align: center">6</td>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">590</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">7</td>
-      <td style="text-align: center">138</td>
-      <td style="text-align: center">144</td>
-      <td style="text-align: center">6</td>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">261</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">8</td>
-      <td style="text-align: center">187</td>
-      <td style="text-align: center">144</td>
-      <td style="text-align: center">6</td>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">108</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">9</td>
-      <td style="text-align: center">138</td>
-      <td style="text-align: center">144</td>
-      <td style="text-align: center">6</td>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">35</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">10</td>
-      <td style="text-align: center">94</td>
-      <td style="text-align: center">96</td>
-      <td style="text-align: center">8</td>
-      <td style="text-align: center">6</td>
-      <td style="text-align: center">13</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">11</td>
-      <td style="text-align: center">36</td>
-      <td style="text-align: center">96</td>
-      <td style="text-align: center">8</td>
-      <td style="text-align: center">6</td>
-      <td style="text-align: center">4</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">128</td>
-      <td style="text-align: center">72</td>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">3</td>
-      <td style="text-align: center">1</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">13</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">72</td>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">3</td>
-      <td style="text-align: center">0</td>
-    </tr>
-  </tbody>
-</table>
+<p>The following plot illustrates the 99th percentile of observed maximum normalized rank error of DoublesSketch with k=128 in 1000 trials at each stream length. The code to reproduce this measurement is available in the  <a href="https://github.com/DataSketches/characterization/tree/master/src/main/java/org/apache/datasketches/characterization/quantiles">DataSketches/characterization</a> repository. Note that these measurements are not directly comparable to the values in the table above as this graph plots the error for only the half-open intervals (-Infinity, Q], which is relevant to simple queries such as <i>getRank(value)</i>.</p>
 
-<ul>
-  <li>Retained Items: 2015</li>
-  <li>Serialization Bytes: 8676</li>
-</ul>
-
-<h2 id="plot-3-k50-hra-lt">Plot 3: K=50, HRA, LT</h2>
-<h3 id="specific-configuration-2">Specific Configuration</h3>
-<ul>
-  <li>K=50: the sketch sizing &amp; accuracy parameter</li>
-  <li>HRA: High Rank Accuracy</li>
-  <li>Crit=LT: Comparison criterion: LT = Less-Than</li>
-</ul>
-
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqHraK50SL20T12_LT_Sh.png" alt="/req/ReqErrEqHraK50SL20T12_LT_Sh.png" /></p>
-
-<ul>
-  <li>Retained Items: 6903</li>
-  <li>Serialization Bytes: 28144</li>
-  <li>Run Time: 8:38</li>
-  <li>Unique Error Value Count Per Plot Point: Min=156, Max=2465</li>
-</ul>
-
-<h2 id="plot-4-k50-lra-le">Plot 4: K=50, LRA, LE</h2>
-<h3 id="specific-configuration-3">Specific Configuration</h3>
-<ul>
-  <li>K=50: the sketch sizing &amp; accuracy parameter</li>
-  <li>LRA: Low Rank Accuracy</li>
-  <li>Crit=LE: Comparison criterion: LE = Less-Than or Equal</li>
-</ul>
-
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqLraK50SL20T12_LE_Sh.png" alt="/req/ReqErrEqLraK50SL20T12_LE_Sh.png" /></p>
-
-<ul>
-  <li>Retained Items: 6903</li>
-  <li>Serialization Bytes: 28144</li>
-  <li>Run Time: 27:20</li>
-  <li>Unique Error Value Count Per Plot Point: Min=167, Max=2475</li>
-</ul>
-
-<h2 id="plot-4b-k50-lra-le-using-theoretical-bounds">Plot 4B: K=50, LRA, LE, Using Theoretical Bounds</h2>
-<ul>
-  <li>K=50: the sketch sizing &amp; accuracy parameter</li>
-  <li>LRA: Low Rank Accuracy</li>
-  <li>Crit=LE: Comparison criterion: LE = Less-Than or Equal</li>
-</ul>
-
-<p><img class="doc-img-full" src="/docs/img/req/ReqErrEqLraLeK50SL20T12_PyRSE.png" alt="/req/ReqErrEqLraLeK50SL20T12_PyRSE.png" /></p>
-
-<h2 id="plot-3-and-4-final-compactor-profile--size">Plot 3 and 4, Final Compactor Profile &amp; Size</h2>
-<p>Because these two tests are run with the same exact sketch configuration and the same input stream length they both have the same final compactor profile, retained items and Serialization Bytes.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">Lg Wt</th>
-      <th style="text-align: center">Items</th>
-      <th style="text-align: center">Nominal Size</th>
-      <th style="text-align: center">Section Size</th>
-      <th style="text-align: center">Num Sections</th>
-      <th style="text-align: center">Num Compactions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">0</td>
-      <td style="text-align: center">786</td>
-      <td style="text-align: center">864</td>
-      <td style="text-align: center">18</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">16288</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">1</td>
-      <td style="text-align: center">919</td>
-      <td style="text-align: center">864</td>
-      <td style="text-align: center">18</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">6755</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">2</td>
-      <td style="text-align: center">846</td>
-      <td style="text-align: center">864</td>
-      <td style="text-align: center">18</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">2979</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">3</td>
-      <td style="text-align: center">531</td>
-      <td style="text-align: center">576</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">1308</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">4</td>
-      <td style="text-align: center">613</td>
-      <td style="text-align: center">576</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">578</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">5</td>
-      <td style="text-align: center">529</td>
-      <td style="text-align: center">576</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">246</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">6</td>
-      <td style="text-align: center">528</td>
-      <td style="text-align: center">576</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">106</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">7</td>
-      <td style="text-align: center">781</td>
-      <td style="text-align: center">576</td>
-      <td style="text-align: center">24</td>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">33</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">8</td>
-      <td style="text-align: center">621</td>
-      <td style="text-align: center">432</td>
-      <td style="text-align: center">36</td>
-      <td style="text-align: center">6</td>
-      <td style="text-align: center">13</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">9</td>
-      <td style="text-align: center">364</td>
-      <td style="text-align: center">432</td>
-      <td style="text-align: center">36</td>
-      <td style="text-align: center">6</td>
-      <td style="text-align: center">4</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">10</td>
-      <td style="text-align: center">250</td>
-      <td style="text-align: center">300</td>
-      <td style="text-align: center">50</td>
-      <td style="text-align: center">3</td>
-      <td style="text-align: center">1</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">11</td>
-      <td style="text-align: center">135</td>
-      <td style="text-align: center">300</td>
-      <td style="text-align: center">50</td>
-      <td style="text-align: center">3</td>
-      <td style="text-align: center">0</td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li>Retained Items: 6903</li>
-  <li>Serialization Bytes: 28144</li>
-</ul>
+<p><img class="doc-img-full" src="/docs/img/quantiles/qds-7-compact-accuracy-1k-99pct-20180224.png" alt="QuantilesRankError" /></p>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
