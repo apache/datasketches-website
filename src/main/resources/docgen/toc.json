@@ -190,26 +190,26 @@
 
         { "class":"Dropdown", "desc" : "Quantiles And Histograms", "array":
           [
+            {"class":"Doc",  "desc" : "Quantiles Definitions",                    "dir" : "Quantiles", "file": "Definitions"},
             {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "Quantiles", "file": "QuantilesOverview" },
             {"class":"Doc",  "desc" : "Quantiles Accuracy and Size",              "dir" : "Quantiles", "file": "QuantilesAccuracy" },
 
             { "class":"Dropdown", "desc" : "Quantiles Examples", "array":
               [
                 {"class":"Doc",  "desc" : "Quantiles Sketch Java Example",            "dir" : "Quantiles", "file": "QuantilesJavaExample" },
-                {"class":"Doc",  "desc" : "KLL Quantiles Sketch C++ Example",         "dir" : "Quantiles", "file": "QuantilesCppExample" },
+                {"class":"Doc",  "desc" : "KLL Quantiles Sketch C++ Example",         "dir" : "KLL", "file": "KLLCppExample" },
                 {"class":"Doc",  "desc" : "Quantiles Sketch Pig UDFs",                "dir" : "Quantiles", "file": "QuantilesPigUDFs" },
                 {"class":"Doc",  "desc" : "Quantiles Sketch Hive UDFs",               "dir" : "Quantiles", "file": "QuantilesHiveUDFs" },
               ]
             },
             { "class":"Dropdown", "desc" : "Quantiles Studies", "array":
               [
-                {"class":"Doc",  "desc" : "Definitions for Quantiles Studies",                "dir" : "Quantiles", "file": "Definitions"},
-                {"class":"Doc",  "desc" : "New KLL sketch and comparison with DoublesSketch", "dir" : "Quantiles", "file": "KLLSketch" },
-                {"class":"Doc",  "desc" : "KLL sketch vs t-digest",                           "dir" : "Quantiles", "file": "KllSketchVsTDigest" },
-                {"class":"Doc",  "desc" : "Druid Approximate Histogram",                      "dir" : "Quantiles", "file": "DruidApproxHistogramStudy" },
-                {"class":"Doc",  "desc" : "Moments Sketch Study",                             "dir" : "Quantiles", "file": "MomentsSketchStudy" },
-                {"class":"Doc",  "desc" : "Quantiles StreamA Study",                          "dir" : "Quantiles", "file": "QuantilesStreamAStudy" },
-                {"class":"Doc",  "desc" : "Exact Quantiles for Studies",                      "dir" : "Quantiles", "file": "ExactQuantiles" },
+                {"class":"Doc",  "desc" : "KLL sketch and comparison with DoublesSketch",     "dir" : "KLL", "file": "KLLSketch" },
+                {"class":"Doc",  "desc" : "KLL sketch vs t-digest",                           "dir" : "QuantilesStudies", "file": "KllSketchVsTDigest" },
+                {"class":"Doc",  "desc" : "Druid Approximate Histogram",                      "dir" : "QuantilesStudies", "file": "DruidApproxHistogramStudy" },
+                {"class":"Doc",  "desc" : "Moments Sketch Study",                             "dir" : "QuantilesStudies", "file": "MomentsSketchStudy" },
+                {"class":"Doc",  "desc" : "Quantiles StreamA Study",                          "dir" : "QuantilesStudies", "file": "QuantilesStreamAStudy" },
+                {"class":"Doc",  "desc" : "Exact Quantiles for Studies",                      "dir" : "QuantilesStudies", "file": "ExactQuantiles" },
               ]
             },
             { "class":"Dropdown", "desc" : "Quantiles Sketch Theory", "array":
@@ -253,7 +253,7 @@
       [
         {"class":"Doc",  "desc" : "Community",                            "dir" : "Community", "file": "index" },
         {"class":"Doc",  "desc" : "Downloads",                            "dir" : "Community", "file": "Downloads"},
-        {"class":"Doc",  "desc" : "New Committer Process",                "dir" : "Community", "file": "NewCommitterProcess"},
+        {"class":"Doc",  "desc" : "Committer Process",                    "dir" : "Community", "file": "NewCommitterProcess"},
         {"class":"Doc",  "desc" : "Release Process For CPP Components",   "dir" : "Community", "file": "ReleaseProcessForCppComponents"},
         {"class":"Doc",  "desc" : "Release Process For Java Components",  "dir" : "Community", "file": "ReleaseProcessForJavaComponents"},
         {"class":"Doc",  "desc" : "Transitioning from prior GitHub Site", "dir" : "Community", "file": "Transitioning"},

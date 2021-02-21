@@ -42,7 +42,7 @@ It is not clear what rule t-digest uses. There is a discrepancy between the defi
 
 This plot is to validate the basic assumptions about the sketches. The same repeated value was used as the input. The expected rank error is 0%.
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td100-error-same-value.png" alt="same value rank error plot" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td100-error-same-value.png" alt="same value rank error plot" />
 
 ## Size
 
@@ -50,9 +50,9 @@ The starting point in this comparison is a choice of parameters for KLL sketch a
 
 The input for the following size measurements was generated using uniform random values from 0 to 1 (Random.nextFloat() for KLL sketch and Random.nextDouble() for t-digest)
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td100-size.png" alt="KLL200 vs TD100 serialized size plot" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td100-size.png" alt="KLL200 vs TD100 serialized size plot" />
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td200-size.png" alt="KLL200 vs TD200 serialized size plot" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td200-size.png" alt="KLL200 vs TD200 serialized size plot" />
 
 ## Accuracy
 
@@ -89,33 +89,33 @@ Since t-digest shows rank error up to 100%, Y axis was plotted using logarithmic
 
 #### t-digest compression=100
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td100-error-uniform.png" alt="KLL200 vs TD100 rank error uniform input" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td100-error-uniform.png" alt="KLL200 vs TD100 rank error uniform input" />
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td100-error-gaussian.png" alt="KLL200 vs TD100 rank error gaussian input" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td100-error-gaussian.png" alt="KLL200 vs TD100 rank error gaussian input" />
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td100-error-blocky.png" alt="KLL200 vs TD100 rank error blocky input" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td100-error-blocky.png" alt="KLL200 vs TD100 rank error blocky input" />
 
 #### t-digest compression=200
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td200-error-uniform.png" alt="KLL200 vs TD200 rank error uniform input" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td200-error-uniform.png" alt="KLL200 vs TD200 rank error uniform input" />
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td200-error-gaussian.png" alt="KLL200 vs TD200 rank error gaussian input" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td200-error-gaussian.png" alt="KLL200 vs TD200 rank error gaussian input" />
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td200-error-blocky.png" alt="KLL200 vs TD200 rank error blocky input" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td200-error-blocky.png" alt="KLL200 vs TD200 rank error blocky input" />
 
 ## Speed
 
 The input for the following speed measurements was generated using uniform random values from 0 to 1 (Random.nextFloat() for KLL sketch and Random.nextDouble() for t-digest)
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td100-td200-update-time.png" alt="KLL200 vs TD100 and TD200 update time" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td100-td200-update-time.png" alt="KLL200 vs TD100 and TD200 update time" />
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td100-serialize-time.png" alt="KLL200 vs TD100 serialize time" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td100-serialize-time.png" alt="KLL200 vs TD100 serialize time" />
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td200-serialize-time.png" alt="KLL200 vs TD200 serialize time" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td200-serialize-time.png" alt="KLL200 vs TD200 serialize time" />
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td100-deserialize-time.png" alt="KLL200 vs TD100 deserialize time" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td100-deserialize-time.png" alt="KLL200 vs TD100 deserialize time" />
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-td200-deserialize-time.png" alt="KLL200 vs TD200 deserialize time" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-td200-deserialize-time.png" alt="KLL200 vs TD200 deserialize time" />
 
 ## Source code
 

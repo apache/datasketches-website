@@ -86,7 +86,7 @@ its garbage collection.
   
 ### Quantiles
 
-* [Quantiles Overview]({{site.docs_dir}}/Quantiles/QuantilesOverview.html). Get normal or inverse PDFs or CDFs of the distributions of any numeric value from your raw data in a single pass with well defined error bounds on the results.
+* [Quantiles Sketch Overview]({{site.docs_dir}}/Quantiles/QuantilesSketchOverview.html). Get normal or inverse PDFs or CDFs of the distributions of any numeric value from your raw data in a single pass with well defined error bounds on the results.
   
 ### Frequent Items
 

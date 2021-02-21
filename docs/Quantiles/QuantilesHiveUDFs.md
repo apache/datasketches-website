@@ -19,7 +19,7 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-## Quantiles Sketch Hive UDFs
+## Quantiles/DoublesSketch Hive UDFs
 
 ### DoublesSketch example
 

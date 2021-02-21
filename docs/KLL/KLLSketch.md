@@ -45,30 +45,30 @@ double rankOf1000 = sketch.getRank(1000);
 
 ### Differences of KllFloatsSketch from DoublesSketch
 
-* Smaller size for the same accuracy
-* Slightly faster to update
-* Parameter K doesn't have to be power of 2
-* Operates with float values instead of double values
-* No union object - one sketch is merged into another
-* No off-heap implementation
-* No separate updatable and compact forms
+* KLL has a smaller size for the same accuracy
+* KLL is slightly faster to update
+* The KLL parameter K doesn't have to be power of 2
+* KLL operates with float values instead of double values
+* KLL uses a merge method rather than a union object
+* KLL does not offer direct, off-heap implementation
+* KLL does not have separate updatable and compact forms
 
-The starting point for the comparison is setting K in such a way that rank error would be approximately the same. As pointed out above, the default K for both sketches should achieve just that. Here is the comparison of the single-sided normalized rank error (getRank() method) for the default K:
+The starting point for the comparison is setting K in such a way that rank error would be approximately the same. As pointed out above, the default K for both sketches should achieve this. Here is the comparison of the single-sided normalized rank error (getRank() method) for the default K:
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-ds128-rank-error.png" alt="RankError" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-ds128-rank-error.png" alt="RankError" />
 
 DoublesSketch has two forms with different serialized sizes: UpdateDoublesSketch and CompactDoublesSketch. KllFloatsSketch has no such distinction. It is always serialized in a compact form, and it is not much bigger than that in memory. Here is the comparison of serialized sizes:
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-ds128-size.png" alt="SerializedSize" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-ds128-size.png" alt="SerializedSize" />
 
 Some part of the size difference above is due to using items of float type as opposed to double type. Here is the comparison of the number of retained items to see the difference with no influence of the size of the item type:
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-ds128-items.png" alt="NumberOfRetainedItems" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-ds128-items.png" alt="NumberOfRetainedItems" />
 
 Below is the accuracy per byte measure (the higher the better). Suppose rank error is 1%, so the corresponding accuracy would be 99%. Divide that by size in bytes to arrive at this measure of how expensive each percentage point is in terms of space needed:
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-ds128-accuracy-per-byte-log.png" alt="AccuracyPerByte" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-ds128-accuracy-per-byte-log.png" alt="AccuracyPerByte" />
 
 Below is the update() method speed:
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/kll200-vs-ds128-update.png" alt="UpdateTime" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-ds128-update.png" alt="UpdateTime" />

@@ -19,7 +19,7 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-## Quantiles Sketch Pig UDFs
+## Quantiles/DoublesSketch Pig UDFs
 
 ### Instructions
 

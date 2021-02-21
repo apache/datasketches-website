@@ -19,11 +19,30 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-## Quantiles Accuracy and Size
+## Quantiles Sketches Accuracy and Size
+Please review the Quantiles [Definitions]({{site.docs_dir}}/Quantiles/Definitions.html).
 
-The accuracy of this sketch is a function of the configured value <i>k</i>, which also affects
-the overall size of the sketch. Accuracy of this quantile sketch is always with respect to
-the normalized rank. A <i>k</i> of 256 produces a normalized rank error of less than 1%.
+The accuracy of a quantile sketch is a function of the configured value <i>k</i>, which also affects
+the overall size of the sketch. 
+
+Accuracy for quantiles sketches is specified and measured with respect to the *rank* only, not the values.
+
+### Absolute vs Relative Error
+The Quantiles/DoublesSketch and the KLL Sketch have *absolute error*.  For example, a specified accuracy of 1% at the median (rank = 0.50) means that the true value (if you could extract it from the set) should be 
+between *getQuantile(0.49)* and *getQuantile(0.51)*. This same 1% error applied at a rank of 0.95 means that the true value should be between *getQuantile(0.94)* and *getQuantile(0.96)*. In other words, the error is a fixed +/- epsilon for the entire range of rank values.
+
+The ReqSketch, however, has relative rank error and the user can choose which end of the rank domain should have high accuracy.  Refer to the sketch documentation for more information.
+
+
+## Quantiles Sketches and Data Independence
+A *sketch* is an implementation of a *streaming algorithm*. By definition, a sketch has only one chance to examine each item of the stream.  It is this property that makes a sketch a *streaming* algorithm and useful for real-time analysis of very large streams that may be impractical to actually store. 
+
+We also assume that the sketch knows nothing about the input data stream: its length, the range of the values or how the values are distributed. If the authors of a particular algorithm require the user to know any of the above attributes of the input data stream in order to "tune" the algorithm, the algorithm is not data independent.
+
+The only thing the user needs to know is how to extract the values from the stream so that they can be fed into the sketch. It is reasonable that the user knows the *type* of values in the stream: e.g., are they alphanumeric strings, numeric strings, or numeric primitives. These properties may determine the type of sketch to use as well as how to extract the appropriate quantities to feed into the sketch.
+
+## Accuracy Information for the org.apache.datasketches.quantiles Sketch Package
+A <i>k</i> of 256 produces a normalized rank error of less than 1%.
 For example, the median value returned from getQuantile(0.5) will be between the actual values
 from the hypothetically sorted array of input values at normalized ranks of 0.49 and 0.51, with 
 a confidence of about 99%.

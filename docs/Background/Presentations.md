@@ -20,7 +20,16 @@ layout: doc_page
     under the License.
 -->
 
-## Presentations
+## Presentations / Tutorials
+
+| Title     | Data Sketching for Real Time Analytics: Theory and Practice                   |
+| --------- | ----------------------------------------------------------------------------  |
+| Synopsis  | Explanation of the theory and operation of this new sketch.                   |
+| Presenter | Daniel Ting (Tableau Software), Jonathan Malkin (Verizon), Lee Rhodes (Verizon) |
+| Date      | Aug 23, 2020                                                                  |
+| Conference| [KDD 2020](https://www.kdd.org/kdd2020/tutorials/lecture-tutorials)           |   
+| Link      | <https://datasketches.apache.org/docs/Community/KDD_Tutorial_Summary.html>    |
+
 
 | Title     | Relative Error Streaming Quantiles                                            |
 | --------- | ----------------------------------------------------------------------------  |

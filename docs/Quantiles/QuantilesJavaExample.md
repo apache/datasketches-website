@@ -19,7 +19,7 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-# Quantiles Sketch Java Example
+# Quantiles/DoublesSketch Java Example
 
     // simplified file operations and no error handling for clarity
 
