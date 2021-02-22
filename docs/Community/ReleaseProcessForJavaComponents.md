@@ -241,7 +241,7 @@ __NOTES:__
 ### Update Website Downloads.md "Latest Source Zip Files" Table
 * This script assumes that the remote *.../dist/release/datasketches/...* directories are up-to-date with no old releases.  
 * Start a new terminal in the *../dist/dev/datasketches/scripts* directory on your system:
-* Make sure you local website directory is pointing to master and up-to-date. 
+* Make sure your local website directory is pointing to master and up-to-date. 
 * Run the following with the argument specifying the location of your local website directory:
     * `./createDownloadsInclude.sh /Users/\<name\>/ ... /datasketches-website`
 * When this is done, be sure to commit the changes to the website.
