@@ -34,7 +34,7 @@ If you have a specific issue or bug report that impacts only one of these compon
 | C++ Core                    | <https://github.com/apache/datasketches-cpp>              |
 | Hive Adaptor                | <https://github.com/apache/datasketches-hive>             |
 | Pig Adaptor                 | <https://github.com/apache/datasketches-pig>              |
-| PostreSQL Adaptor           | <https://github.com/apache/datasketches-postgresql>       |
+| PostgreSQL Adaptor          | <https://github.com/apache/datasketches-postgresql>       |
 | Memory                      | <https://github.com/apache/datasketches-memory>           |
 | Characterization            | <https://github.com/apache/datasketches-characterization> |
 | Website                     | <https://github.com/apache/datasketches-website>          |
@@ -66,7 +66,7 @@ Adapters integrate the core components into the aggregation APIs of specific dat
 
 
 ### C++ Adaptors
-* **[PostgreSQL](https://github.com/apache/datasketches-postresql)** (Versioned, Apache Released)
+* **[PostgreSQL](https://github.com/apache/datasketches-postgresql)** (Versioned, Apache Released)
 This site provides the postgres-specific adaptors that wrap the C++ implementations making
 them available to the PostgreSQL database users. PostgreSQL users should download the PostgreSQL extension from [pgxn.org](https://pgxn.org/dist/datasketches/).  For examples refer to the README on the component site.
     * [PostgreSQL Integration](https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html)
