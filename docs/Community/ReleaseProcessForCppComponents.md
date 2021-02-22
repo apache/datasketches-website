@@ -114,7 +114,7 @@ __NOTES:__
 
 ### Create Copy of External Artifact Distributions
 * For Java, we need to place copies of the artifact jars deployed to Nexus under a "maven" directory.
-* For example see <https://dist.apache.org/repos/dist/release/datasketches/java/1.3.0-incubating/>
+* For example see <https://dist.apache.org/repos/dist/dev/datasketches/java/2.0.0-RC3/>
 * For external artifacts of Python or Docker it will be something else.
 * These must be signed with GPG (.asc) and SHA512 (.sha512)
 * I will create a script for these artifacts someday :)

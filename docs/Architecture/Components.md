@@ -34,7 +34,7 @@ If you have a specific issue or bug report that impacts only one of these compon
 | C++ Core                    | <https://github.com/apache/datasketches-cpp>              |
 | Hive Adaptor                | <https://github.com/apache/datasketches-hive>             |
 | Pig Adaptor                 | <https://github.com/apache/datasketches-pig>              |
-| PostreSQL Adaptor           | <https://github.com/apache/datasketches-postresql>        |
+| PostreSQL Adaptor           | <https://github.com/apache/datasketches-postgresql>       |
 | Memory                      | <https://github.com/apache/datasketches-memory>           |
 | Characterization            | <https://github.com/apache/datasketches-characterization> |
 | Website                     | <https://github.com/apache/datasketches-website>          |

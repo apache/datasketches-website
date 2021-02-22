@@ -50,7 +50,7 @@ The data file used for this evaluation, *streamA.txt*, is real data extracted fr
 ## Creating the Exact CDF and Histograms For Comparison
 In order to measure the accuracy of the Moments Sketch, we need an exact, brute-force analysis of *streamA.txt*. 
 
-The process for creating these comparison standards can be found [here]({{site.docs_dir}}/Quantiles/ExactQuantiles.html).
+The process for creating these comparison standards can be found [here]({{site.docs_dir}}/QuantilesStudies/ExactQuantiles.html).
 
 ## The Results
 
