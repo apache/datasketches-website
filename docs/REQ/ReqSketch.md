@@ -26,11 +26,11 @@ This first plot illustrates the typical error behavior of the KLL sketch (also t
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/req/KllErrorK100SL11.png" alt="/req/KllErrorK100SL11.png" />
 
-The next plot is the exact same data and queries fed to the REQ sketch set for High Rank Accuracy (HRA) mode. In this plot, starting at a rank of about 0.3, the contour lines start converging and actually reach zero error at rank 1.0. Therefore the error (the inverse of accuracy) is relative to the requested rank, thus the name of the sketch.
+The next plot is the exact same data and queries fed to the REQ sketch set for High Rank Accuracy (HRA) mode. In this plot, starting at a rank of about 0.3, the contour lines start converging and actually reach zero error at rank 1.0. Therefore the error (the inverse of accuracy) is relative to the requested rank, thus the name of the sketch.  This means that the user can perform getQuantile(rank) queries, where rank = .99999 and get accurate results.
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/req/ReqErrorHraK12SL11_LT.png" alt="/req/ReqErrorHraK12SL11_LT.png" />
 
-This next plot is also the same data and queries, except the REQ sketch was configured for Low Rank Accuracy (LRA).
+This next plot is also the same data and queries, except the REQ sketch was configured for Low Rank Accuracy (LRA). In this case the user can perform getQuantiles(rank) queries, where rank = .00001 and get accurate results. 
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/req/ReqErrorLraK12SL11_LE.png" alt="/req/ReqErrorLraK12SL11_LE.png" />
 
