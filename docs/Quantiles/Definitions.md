@@ -20,7 +20,7 @@ layout: doc_page
     under the License.
 -->
 # Quantiles and Ranks Definitions
-Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions of massive data very quickly using only a small amout of space.  They allow us to extract values given a desired rank, or the reverse. Quantiles sketches enable us to plot the CDF, PMF or histogrms of a distribution. 
+Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions of massive data very quickly using only a small amout of space.  They allow us to extract values given a desired rank, or the reverse. Quantiles sketches enable us to plot the CDF, PMF or histograms of a distribution. 
 
 The goal of this short tutorial it to introduce to the reader some of the basic concepts of quantiles, ranks and their functions.
 
@@ -42,26 +42,24 @@ A rank of *0* means a mass of *0* or an empty set.
 
 ## What is a quantile?
 
-> A ***quantile*** is a *value* associated with a ***rank***. 
+> A ***quantile*** is a *value* that achieves a particular ***rank***. 
 
 *Quantile* is the general term that describes other terms that are also quantiles.
 To wit:
 
-* A percentile is a quantile where the rank domain is divided into hundredths, e.g., *q(0.95)*.
-* A decile is a quantile where the rank domain is divided into tenths, e.g., *q(0.3)*.
-* A quartile is a quantile where the rank domain is divided into forths, e.g., *q(0.25)*.
-* The median is a quantile that splits the rank domain in half and equals *q(0.5)*.
+* A percentile is a quantile where the rank domain is divided into hundredths. For example, "An SAT Math score of 740 is at the 95th percentile". The score of 740 is the quantile and .95 is the normalized rank.
+* A decile is a quantile where the rank domain is divided into tenths. For example, "An SAT Math score of 690 is at the 9th decile (rank = 0.9).
+* A quartile is a quantile where the rank domain is divided into forths. For example, "An SAT Math score of 600 is at the third quartile (rank = 0.75).
+* The median is a quantile that splits the rank domain in half. For example, "An SAT Math score of 520 is at the median (rank = 0.5).
 
-## The quantile function
-Because of the association of quantiles and ranks, we can define a *quantile function*, 
-*value = q(r),* a monotonic function that translates a rank into its associated quantile or value.
+## The quantile and rank functions
+Because of the relationship of quantiles and ranks, we can define 
 
-## The rank function
-The rank function,  *rank = r(q)* is the inverse of the quantile function, which, given a quantile (or value), we can compute its associated rank.
+* The ***r-quantile*** is a value ***q*** such that ***rank(q) = r***, and ***quantile(r) = q***, assuming no duplicates.  In this tutorial, we shorten these two functions to *r(q)* and *q(r)*.
 
 ## The challenge of duplicates
 The functions *q(r)* and *r(q)* would form a 1:1 functional pair if *q = q(r(q))* and *r = r(q(r))*.
-However, duplicate values are quite common in real data so exact 1:1 functionality is not possible. As a result it is often the case that  *q != q(r(q))* and *r != r(q(r))*. Duplicate values also can make the rank function, *r(q)*, ambiguous.  If there are multiple adjacent ranks with the same value, which rank should the rank function return? 
+However, duplicate values are quite common in real data so exact 1:1 functionality is not possible. As a result it is often the case that  *q != q(r(q))* and *r != r(q(r))*. Duplicate values also could make the rank function, *r(q)*, ambiguous.  If there are multiple adjacent ranks with the same value, which rank should the rank function return? 
 
 ## The challenge of approximation
 By definiton, sketching algorithms are approximate, and they achieve their high performance by discarding a vast amount of the data.  Suppose you feed *n* items into a sketch that retains only *m* items. This means *n-m* values were discarded.  The sketch must track the value *n* used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values *n-m* rank values are missing creating holes in the sequence of ranks.    
@@ -130,9 +128,9 @@ Given a rank, *R*, find an adjacent pair of ranks, *r1,r2*, where *r1 <= R < r2*
 * Given *R=4*, *4 <= R < 5*. Return *30*
 * Given *R=5*, *5 <= R < ?*. Return *30*. There is no rank > 5, but because it is at the top of the range we can safely return the top value.
 
-| Given *r*     | 1  | 2  | 3  | 4  | 5  |
-|:-------------:|:--:|:--:|:--:|:--:|:--:|
-| Find *q* (GT) | 20 | 20 | 20 | 30 | 30 |
+| Given *r*     | 0  | 1  | 2  | 3  | 4  | 5  |
+|:-------------:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Find *q* (GT) | 10 | 20 | 20 | 20 | 30 | 30 |
 
 Table 3: Using the *GT* criterion for finding quantiles 
 
