@@ -508,7 +508,7 @@
     under the License.
 -->
 <h1 id="quantiles-and-ranks-definitions">Quantiles and Ranks Definitions</h1>
-<p>Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions of massive data very quickly using only a small amout of space.  They allow us to extract values given a desired rank, or the reverse. Quantiles sketches enable us to plot the CDF, PMF or histogrms of a distribution.</p>
+<p>Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions of massive data very quickly using only a small amout of space.  They allow us to extract values given a desired rank, or the reverse. Quantiles sketches enable us to plot the CDF, PMF or histograms of a distribution.</p>
 
 <p>The goal of this short tutorial it to introduce to the reader some of the basic concepts of quantiles, ranks and their functions.</p>
 
@@ -535,29 +535,29 @@ A rank of <em>0</em> means a mass of <em>0</em> or an empty set.</p>
 <h2 id="what-is-a-quantile">What is a quantile?</h2>
 
 <blockquote>
-  <p>A <strong><em>quantile</em></strong> is a <em>value</em> associated with a <strong><em>rank</em></strong>.</p>
+  <p>A <strong><em>quantile</em></strong> is a <em>value</em> that achieves a particular <strong><em>rank</em></strong>.</p>
 </blockquote>
 
 <p><em>Quantile</em> is the general term that describes other terms that are also quantiles.
 To wit:</p>
 
 <ul>
-  <li>A percentile is a quantile where the rank domain is divided into hundredths, e.g., <em>q(0.95)</em>.</li>
-  <li>A decile is a quantile where the rank domain is divided into tenths, e.g., <em>q(0.3)</em>.</li>
-  <li>A quartile is a quantile where the rank domain is divided into forths, e.g., <em>q(0.25)</em>.</li>
-  <li>The median is a quantile that splits the rank domain in half and equals <em>q(0.5)</em>.</li>
+  <li>A percentile is a quantile where the rank domain is divided into hundredths. For example, “An SAT Math score of 740 is at the 95th percentile”. The score of 740 is the quantile and .95 is the normalized rank.</li>
+  <li>A decile is a quantile where the rank domain is divided into tenths. For example, “An SAT Math score of 690 is at the 9th decile (rank = 0.9).</li>
+  <li>A quartile is a quantile where the rank domain is divided into forths. For example, “An SAT Math score of 600 is at the third quartile (rank = 0.75).</li>
+  <li>The median is a quantile that splits the rank domain in half. For example, “An SAT Math score of 520 is at the median (rank = 0.5).</li>
 </ul>
 
-<h2 id="the-quantile-function">The quantile function</h2>
-<p>Because of the association of quantiles and ranks, we can define a <em>quantile function</em>, 
-<em>value = q(r),</em> a monotonic function that translates a rank into its associated quantile or value.</p>
+<h2 id="the-quantile-and-rank-functions">The quantile and rank functions</h2>
+<p>Because of the relationship of quantiles and ranks, we can define</p>
 
-<h2 id="the-rank-function">The rank function</h2>
-<p>The rank function,  <em>rank = r(q)</em> is the inverse of the quantile function, which, given a quantile (or value), we can compute its associated rank.</p>
+<ul>
+  <li>The <strong><em>r-quantile</em></strong> is a value <strong><em>q</em></strong> such that <strong><em>rank(q) = r</em></strong>, and <strong><em>quantile(r) = q</em></strong>, assuming no duplicates.  In this tutorial, we shorten these two functions to <em>r(q)</em> and <em>q(r)</em>.</li>
+</ul>
 
 <h2 id="the-challenge-of-duplicates">The challenge of duplicates</h2>
 <p>The functions <em>q(r)</em> and <em>r(q)</em> would form a 1:1 functional pair if <em>q = q(r(q))</em> and <em>r = r(q(r))</em>.
-However, duplicate values are quite common in real data so exact 1:1 functionality is not possible. As a result it is often the case that  <em>q != q(r(q))</em> and <em>r != r(q(r))</em>. Duplicate values also can make the rank function, <em>r(q)</em>, ambiguous.  If there are multiple adjacent ranks with the same value, which rank should the rank function return?</p>
+However, duplicate values are quite common in real data so exact 1:1 functionality is not possible. As a result it is often the case that  <em>q != q(r(q))</em> and <em>r != r(q(r))</em>. Duplicate values also could make the rank function, <em>r(q)</em>, ambiguous.  If there are multiple adjacent ranks with the same value, which rank should the rank function return?</p>
 
 <h2 id="the-challenge-of-approximation">The challenge of approximation</h2>
 <p>By definiton, sketching algorithms are approximate, and they achieve their high performance by discarding a vast amount of the data.  Suppose you feed <em>n</em> items into a sketch that retains only <em>m</em> items. This means <em>n-m</em> values were discarded.  The sketch must track the value <em>n</em> used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values <em>n-m</em> rank values are missing creating holes in the sequence of ranks.</p>
@@ -687,6 +687,7 @@ However, duplicate values are quite common in real data so exact 1:1 functionali
   <thead>
     <tr>
       <th style="text-align: center">Given <em>r</em></th>
+      <th style="text-align: center">0</th>
       <th style="text-align: center">1</th>
       <th style="text-align: center">2</th>
       <th style="text-align: center">3</th>
@@ -697,6 +698,7 @@ However, duplicate values are quite common in real data so exact 1:1 functionali
   <tbody>
     <tr>
       <td style="text-align: center">Find <em>q</em> (GT)</td>
+      <td style="text-align: center">10</td>
       <td style="text-align: center">20</td>
       <td style="text-align: center">20</td>
       <td style="text-align: center">20</td>
