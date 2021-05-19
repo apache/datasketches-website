@@ -132,7 +132,7 @@
                 { "class":"Dropdown", "desc" : "Theta Sketch Theory", "array":
                   [
                     {"class":"Doc",  "desc" : "Theta Sketch Framework (PDF)",      "dir" : "",      "file": "ThetaSketchFramework", "pdf":"true" },
-                    {"class":"Doc",  "desc" : "Sketch Equations (PDF)",            "dir" : "",      "file": "SketchEquations",      "pdf":"true" },
+                    {"class":"Doc",  "desc" : "Theta Sketch Equations (PDF)",      "dir" : "",      "file": "ThetaSketchEquations", "pdf":"true" },
                     {"class":"Doc",  "desc" : "DataSketches (PDF)",                "dir" : "",      "file": "DataSketches",         "pdf":"true" },
                     {"class":"Doc",  "desc" : "Confidence Intervals Notes",        "dir" : "Theta", "file": "ThetaConfidenceIntervals" },
                     {"class":"Doc",  "desc" : "Merging Algorithm Notes",           "dir" : "Theta", "file": "ThetaMergingAlgorithm" },
