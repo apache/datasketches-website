@@ -84,7 +84,7 @@ The following are used to create the plots above.
 * [DSQsketch profiler](https://github.com/DataSketches/characterization/blob/master/src/main/java/org/apache/datasketches/characterization/quantiles/QuantilesStreamAProfile.java)
 * [DSQsketch K256 config](https://github.com/DataSketches/characterization/blob/master/src/main/resources/quantiles/QuantilesK256StreamAJob.conf)
 * [DSQsketch K32 config](https://github.com/DataSketches/characterization/blob/master/src/main/resources/quantiles/QuantilesK32StreamAJob.conf)
-* [StreamA Data file](https://github.com/DataSketches/characterization/blob/master/streamA.txt.zip) This is stored using git-lfs.
+* StreamA Data file: (sorry this file is no longer available.)
 
 Run the above profilers as a java application and supply the config file as the single argument. The program will check if the data file has been unzipped, and if not it will unzip it for you. 
 
