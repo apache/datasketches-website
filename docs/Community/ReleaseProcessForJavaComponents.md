@@ -188,7 +188,7 @@ __NOTES:__
 
 ## Finalize the Release
 
-### Move files from *dist/dev* to *dist/release*
+### Copy files from *dist/dev* to *dist/release*
 * In local *dist/__dev__/datasketches/*
     * Open Terminal #1
         * Confirm you are in the `/dev/` directory: `pwd`
@@ -222,7 +222,9 @@ __NOTES:__
 * Select "orgapachedatasketches-XXXX" (If more than one make sure you select the right one!)
 * At the top of the window, select "Release"
 * Confirm that the attributes have moved to the "Releases" repository under "Repositories"
-    * Browse to *Releases/org/apache/datasketches/...* 
+    * Browse to *Releases/org/apache/datasketches/...*
+
+### Merge branch *master* from branch *A.B.X*.   
 
 ## Finalize Release Documentation
 

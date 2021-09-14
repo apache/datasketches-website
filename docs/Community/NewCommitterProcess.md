@@ -24,7 +24,7 @@ layout: doc_page
 * Reference: [New Committer Process](https://community.apache.org/newcommitter.html#new-committer-process)
 
 ## Create Proposal for New Candidate
-* ***NOTE*** On <private@datasketches.apache.org> ONLY!
+* ***NOTE*** On private datasketches mail list ONLY!
 
 Here are some topics to consider when writing your proposal about the candidate. Any one of which may be sufficient to invite someone to join us as a new committer.
 
@@ -71,11 +71,11 @@ This can be in a number of areas including:
   theory of sketching as well?
 
 ## Write Proposal in a DISCUSS thread 
-***NOTE*** On <private@datasketches.apache.org> ONLY!
+***NOTE*** On private datasketches mail list ONLY!
 
 ---
 From: (PMC Member)<br>
-To: private@datasketches.apache.org **ONLY! DO NOT CC!**<br>
+To: private datasketches mail list **ONLY! DO NOT CC!**<br>
 Subject: [DISCUSS] Proposal to invite <candidate> as new committer.
 
 Dear PMC,
@@ -95,11 +95,11 @@ Regards,
 
 ## Vote
 ### Write a vote email similar to the following:
-***NOTE*** On <private@datasketches.apache.org> ONLY!
+***NOTE*** On private datasketches mail list ONLY!
 
 ---
 From: (PMC Member)<br>
-To: private@datasketches.apache.org<br>
+To: private datasketches mail list<br>
 Subject: [VOTE] [Candidate] as new Committer<br>
 
 (Summarize the results of the DISCUSS thread )
@@ -122,7 +122,7 @@ Regards,<br>
 ---
 
 ## Close the Vote
-***NOTE*** On <private@datasketches.apache.org> ONLY!
+***NOTE*** On private datasketches mail list ONLY!
 
 After sufficient votes have been obtained and the time as elapsed, issue an email similar to the following:
 
@@ -139,13 +139,13 @@ Regards,
 ---
 
 ## Committer Invite Example
-***NOTE*** CC'd to <private@datasketches.apache.org> ONLY!
+***NOTE*** CC'd to private datasketches mail list ONLY!
 
 Write a letter to the candidate similar to the following:
 
 ---
 To: [Candidate]<br>
-CC: private@datasketches.apache.org<br>
+CC: private datasketches mail list<br>
 From: (PMC Member)<br>
 Subject: Invitation to become DataSketches Committer<br>
 
@@ -165,7 +165,7 @@ instead remain as a contributor, participating as you do now.
 
 A. This personal invitation is a chance for you to accept or decline
 in private.  Either way, please let us know in reply to the 
-<private@datasketches.apache.org> address only.
+private datasketches mail list address only.
 
 B. If you accept, you will receive a follow-up message with
 the next steps to establish you as a committer.
@@ -177,11 +177,11 @@ Regards
 ---
 
 ## If Candidate Accepts, Followup Instructions
-***NOTE*** CC'd to <private@datasketches.apache.org> ONLY!
+***NOTE*** CC'd to private datasketches mail list ONLY!
 
 ---
 To: [Candidate]<br>
-CC: private@datasketches.apache.org<br>
+CC: private datasketches mail list<br>
 From: (PMC Member)<br>
 Subject: Welcome to the Apache DataSketches Project as a Committer!
 
@@ -196,7 +196,7 @@ To complete your admission as a committer you need to register an *Individual Co
     * On the form choose a preferred Apache ID.  This will become your Apache email address, e.g. <ApacheID>@apache.org.  When your account gets set up you will be able to specify a forwarding email address for messages sent to your apache.org email. You can look to see if your preferred ID is already taken at <https://people.apache.org/committer-index.html>.
     * Under notify project write *Apache DataSketches*
 * Note that the ICLA contains your confidential information and should only be sent directly to <secretary@apache.org> and not CC'd to this private@ email address nor to me
-* In your letter to the secretary please request the secretary to notify <private@datasketches.apache.org> once the ICLA has been recorded.
+* In your letter to the secretary please request the secretary to notify private datasketches mail list once the ICLA has been recorded.
 * Once you have sent your ICLA to the secretary please notify us on this private@ email address so that we can coordinate with the secretary in getting your account set up.
     
 After the ICLA has been recorded and your account created we will announce your joining the project on <dev@datasketches.apache.org>.
@@ -222,14 +222,14 @@ Best Regards,<br>
 
 
 ## Sample Letter from Secretary confirming filing of the ICLA
-***NOTE*** CC'd to <private@datasketches.apache.org> ONLY!
+***NOTE*** CC'd to private datasketches mail list ONLY!
 
 ---
 From: Matt Sicker (secretary)<br>
-To: private@datasketches.apache.org<br>
+To: private datasketches mail list<br>
 Subject: [FORM] Account Request - candidate@gxyz.com: [Candidate]<br>
 Date:<br>
-List: private@datasketches.apache.org
+List: private datasketches mail list
 
 Prospective userid: 123456<br>
 Full Name: [Candidate]<br>
@@ -238,7 +238,7 @@ Forwarding emal address:  blah<br>
 ---
 
 ## Account Creation
-***NOTE*** CC'd to <private@datasketches.apache.org> ONLY!
+***NOTE*** CC'd to private datasketches mail list ONLY!
 
 If the ICLA identifies the project and a valid Apache id, and the [RESULT][VOTE] message has been posted to the PMC private list, then the account creation request is made by the secretary or assistant who files the ICLA.
 
@@ -252,7 +252,7 @@ After the committer account is established.
 
 ---
 
-To: private@datasketches.apache.org, (new committer)<br>
+To: private datasketches mail list, (new committer)<br>
 Subject: Completing the setup of your Account
 
 Hello (new committer),<br>
@@ -265,7 +265,7 @@ svn password, svn configuration, mail forwarding, GitHub ID, etc.
 
 * For new PMC members only:
     * Please subscribe to the DataSketches Project Management 
-Committee mailing list private@datasketches.apache.org.
+Committee mailing list private datasketches mail list.
 
 As a committer on the DataSketches Project you will have commit access to the following DataSketches repositories as follows:
 

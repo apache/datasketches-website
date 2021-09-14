@@ -89,7 +89,7 @@ faster than traditional, exact methods.
     the project within the scope of responsibility of the Apache Project.
 * Once the PMC Chair has been elected, the Resolution can be created from the [roster](https://whimsy.apache.org/roster/ppmc/datasketches)
 
-By consensus, Lee Rhodes has been nominated to be the PMC Chair [Thread](https://lists.apache.org/thread.html/r1785eaa1535d1b08d9e802e70543dd69a6525cb90e13a06b86ea3373%40%3Cprivate.datasketches.apache.org%3E), [Conclusion](https://lists.apache.org/thread.html/r41a0738f849ca3e5d00914107dde539ab6bf344071a2b39a24063b3f%40%3Cprivate.datasketches.apache.org%3E).
+By consensus, Lee Rhodes has been nominated to be the PMC Chair *(Thread-confidential)* *(Conclusion-confidential)*.
 
 ### [The Resolution](https://datasketches.apache.org/docs/Graduation/Resolution)
 
