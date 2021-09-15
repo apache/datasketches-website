@@ -676,14 +676,14 @@ Special classes called “<em>Handles</em>” are used to manage the <em>AutoClo
 to access the underlying bytes. This isn’t allowed in Java! 
 So you have to keep careful track of your own structure and the appropriate byte offsets. For example:</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">byte</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">16</span><span class="o">]</span>
-    <span class="nc">WritableMemory</span> <span class="n">wmem</span> <span class="o">=</span> <span class="nc">WritableMemory</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kt">byte</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">16</span><span class="o">];</span>
+    <span class="nc">WritableMemory</span> <span class="n">wmem</span> <span class="o">=</span> <span class="nc">WritableMemory</span><span class="o">.</span><span class="na">writableWrap</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
     <span class="n">wmem</span><span class="o">.</span><span class="na">putByte</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="mi">1</span><span class="o">);</span>
     <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">wmem</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
     <span class="k">assert</span> <span class="o">(</span> <span class="n">v</span> <span class="o">==</span> <span class="mi">256</span> <span class="o">);</span>
-    
+
     <span class="n">arr</span><span class="o">[</span><span class="mi">9</span><span class="o">]</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="c1">//you can also access the backing array directly</span>
-    <span class="kt">long</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">mem</span><span class="o">.</span><span class="na">getLong</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
+    <span class="kt">long</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">wmem</span><span class="o">.</span><span class="na">getLong</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
     <span class="k">assert</span> <span class="o">(</span> <span class="n">v2</span> <span class="o">==</span> <span class="mi">768L</span><span class="o">);</span>
 </code></pre></div></div>
 
@@ -704,7 +704,7 @@ Here we write the <em>WritableBuffer</em> and read from both the <em>ByteBuffer<
       <span class="nc">ByteBuffer</span> <span class="n">bb</span> <span class="o">=</span> <span class="nc">ByteBuffer</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
       <span class="n">bb</span><span class="o">.</span><span class="na">order</span><span class="o">(</span><span class="nc">ByteOrder</span><span class="o">.</span><span class="na">nativeOrder</span><span class="o">());</span>
       
-      <span class="nc">WritableBuffer</span> <span class="n">wbuf</span> <span class="o">=</span> <span class="nc">WritableBuffer</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="n">bb</span><span class="o">);</span>
+      <span class="nc">WritableBuffer</span> <span class="n">wbuf</span> <span class="o">=</span> <span class="nc">WritableBuffer</span><span class="o">.</span><span class="na">writableWrap</span><span class="o">(</span><span class="n">bb</span><span class="o">);</span>
       <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> <span class="c1">//write to wbuf</span>
         <span class="n">wbuf</span><span class="o">.</span><span class="na">putLong</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
       <span class="o">}</span>
@@ -733,10 +733,10 @@ This is accomplished using a <em>WritableDirectHandle</em> that implements the J
 Note that this example leverages the try-with-resources statement to properly close the resource.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">simpleAllocateDirect</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">simpleAllocateDirect</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
       <span class="kt">int</span> <span class="n">longs</span> <span class="o">=</span> <span class="mi">32</span><span class="o">;</span>
-      <span class="k">try</span> <span class="o">(</span><span class="nc">WritableDirectHandle</span> <span class="n">wh</span> <span class="o">=</span> <span class="nc">WritableMemory</span><span class="o">.</span><span class="na">allocateDirect</span><span class="o">(</span><span class="n">longs</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="o">))</span> <span class="o">{</span>
-        <span class="nc">WritableMemory</span> <span class="n">wMem1</span> <span class="o">=</span> <span class="n">wh</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+      <span class="k">try</span> <span class="o">(</span><span class="nc">WritableHandle</span> <span class="n">wh</span> <span class="o">=</span> <span class="nc">WritableMemory</span><span class="o">.</span><span class="na">allocateDirect</span><span class="o">(</span><span class="n">longs</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="o">))</span> <span class="o">{</span>
+        <span class="nc">WritableMemory</span> <span class="n">wMem1</span> <span class="o">=</span> <span class="n">wh</span><span class="o">.</span><span class="na">getWritable</span><span class="o">();</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">longs</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
           <span class="n">wMem1</span><span class="o">.</span><span class="na">putLong</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
           <span class="n">assertEquals</span><span class="o">(</span><span class="n">wMem1</span><span class="o">.</span><span class="na">getLong</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="o">),</span> <span class="n">i</span><span class="o">);</span>
@@ -790,10 +790,10 @@ To print out Lincoln’s Gettysburg Address:</p>
       <span class="k">try</span> <span class="o">(</span>
           <span class="nc">WritableMapHandle</span> <span class="n">dstHandle</span>
             <span class="o">=</span> <span class="nc">WritableMemory</span><span class="o">.</span><span class="na">writableMap</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">bytes</span><span class="o">,</span> <span class="nc">ByteOrder</span><span class="o">.</span><span class="na">nativeOrder</span><span class="o">());</span>
-          <span class="nc">WritableDirectHandle</span> <span class="n">srcHandle</span> <span class="o">=</span> <span class="nc">WritableMemory</span><span class="o">.</span><span class="na">allocateDirect</span><span class="o">(</span><span class="n">bytes</span><span class="o">))</span> <span class="o">{</span>
+          <span class="nc">WritableHandle</span> <span class="n">srcHandle</span> <span class="o">=</span> <span class="nc">WritableMemory</span><span class="o">.</span><span class="na">allocateDirect</span><span class="o">(</span><span class="n">bytes</span><span class="o">))</span> <span class="o">{</span>
   
-        <span class="nc">WritableMemory</span> <span class="n">dstMem</span> <span class="o">=</span> <span class="n">dstHandle</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
-        <span class="nc">WritableMemory</span> <span class="n">srcMem</span> <span class="o">=</span> <span class="n">srcHandle</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+        <span class="nc">WritableMemory</span> <span class="n">dstMem</span> <span class="o">=</span> <span class="n">dstHandle</span><span class="o">.</span><span class="na">getWritable</span><span class="o">();</span>
+        <span class="nc">WritableMemory</span> <span class="n">srcMem</span> <span class="o">=</span> <span class="n">srcHandle</span><span class="o">.</span><span class="na">getWritable</span><span class="o">();</span>
   
         <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="o">(</span><span class="n">longs</span><span class="o">);</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
           <span class="n">srcMem</span><span class="o">.</span><span class="na">putLong</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span> <span class="c1">//load source with consecutive longs</span>
