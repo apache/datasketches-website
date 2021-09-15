@@ -181,14 +181,14 @@ to access the underlying bytes. This isn't allowed in Java!
 So you have to keep careful track of your own structure and the appropriate byte offsets. For example:
 
 ```java
-    byte[] arr = new byte[16]
-    WritableMemory wmem = WritableMemory.wrap(arr);
+    byte[] arr = new byte[16];
+    WritableMemory wmem = WritableMemory.writableWrap(arr);
     wmem.putByte(1, (byte) 1);
     int v = wmem.getInt(0);
     assert ( v == 256 );
-    
+
     arr[9] = 3; //you can also access the backing array directly
-    long v2 = mem.getLong(8);
+    long v2 = wmem.getLong(8);
     assert ( v2 == 768L);
 ```
 
@@ -211,7 +211,7 @@ Here we write the _WritableBuffer_ and read from both the _ByteBuffer_ and the _
       ByteBuffer bb = ByteBuffer.wrap(arr);
       bb.order(ByteOrder.nativeOrder());
       
-      WritableBuffer wbuf = WritableBuffer.wrap(bb);
+      WritableBuffer wbuf = WritableBuffer.writableWrap(bb);
       for (int i = 0; i < n; i++) { //write to wbuf
         wbuf.putLong(i);
       }
@@ -241,10 +241,10 @@ Note that this example leverages the try-with-resources statement to properly cl
 
 ```java
     @Test
-    public void simpleAllocateDirect() {
+    public void simpleAllocateDirect() throws Exception {
       int longs = 32;
-      try (WritableDirectHandle wh = WritableMemory.allocateDirect(longs << 3)) {
-        WritableMemory wMem1 = wh.get();
+      try (WritableHandle wh = WritableMemory.allocateDirect(longs << 3)) {
+        WritableMemory wMem1 = wh.getWritable();
         for (int i = 0; i<longs; i++) {
           wMem1.putLong(i << 3, i);
           assertEquals(wMem1.getLong(i << 3), i);
@@ -298,10 +298,10 @@ The following test does the following:
       try (
           WritableMapHandle dstHandle
             = WritableMemory.writableMap(file, 0, bytes, ByteOrder.nativeOrder());
-          WritableDirectHandle srcHandle = WritableMemory.allocateDirect(bytes)) {
+          WritableHandle srcHandle = WritableMemory.allocateDirect(bytes)) {
   
-        WritableMemory dstMem = dstHandle.get();
-        WritableMemory srcMem = srcHandle.get();
+        WritableMemory dstMem = dstHandle.getWritable();
+        WritableMemory srcMem = srcHandle.getWritable();
   
         for (long i = 0; i < (longs); i++) {
           srcMem.putLong(i << 3, i); //load source with consecutive longs
