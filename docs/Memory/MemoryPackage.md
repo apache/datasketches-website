@@ -335,3 +335,7 @@ which is a view into the same underlying resource.
       }
     }
 ```
+
+### Using the Library
+
+See the project [README](https://github.com/apache/datasketches-memory/blob/master/README.md) for further instructions on how to use the Datasketches Memory library in your own applications.  
