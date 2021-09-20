@@ -41,8 +41,9 @@ __NOTES:__
     * Confirm any new bug fixes have corresponding tests
 
 * From Command Line at Component root:
-  * Confirm GPG is running (check this every time you open a new Terminal):
-      * `env | grep GPG` # you should see something like: GPG_TTY=/dev/ttys000
+  * To confirm *gpg-agent* is running type:
+      * `ps -axww | grep gpg`  # you should see something like:
+          * *64438 ??         0:30.33 gpg-agent --homedir /Users/\<name\>/.gnupg --use-standard-socket --daemon*
       * To start GPG if GPG Agent is not running:
           * `eval $(gpg-agent --daemon)`
   * Confirm GitHub repository is current and git status is clean:
@@ -98,8 +99,11 @@ __NOTES:__
   * Artifact name : datasketches-\<component\> where component is e.g., cpp
   * GitHub Tag: A.B.0-RC1 (or RCn)
 * Start a new terminal in the above *dist/dev/datasketches/scripts* directory on your system: 
-  * Confirm GPG is running: `env | grep GPG`
-      * If not: `eval $(gpg-agent --daemon)`
+  * To confirm *gpg-agent* is running type:
+      * `ps -axww | grep gpg`  # you should see something like:
+          * *64438 ??         0:30.33 gpg-agent --homedir /Users/\<name\>/.gnupg --use-standard-socket --daemon*
+      * To start GPG if GPG Agent is not running:
+          * `eval $(gpg-agent --daemon)`
   * Run something like:
     * `./bashDeployToDist.sh /Users/\<name\>/dev/git/Apache/datasketches-\<component\> datasketches-\<component\> A.B.0-RC1`
     * Follow the instructions.
@@ -182,7 +186,4 @@ __NOTES:__
 * Summarize vote results
 
 ## Update These Instructions
-* If you have updated this file or any of the scripts, please check it in using SVN using your local dist/dev directory copy:
-    * `svn status`
-    * `svn add . --force`  # if adding a file for the first time
-    * `svn ci -m "update Release Steps"` 
+* If you have updated this file or any of the scripts, please update this file on the [website](https://datasketches.apache.org/docs/Community/ReleaseProcessForJavaComponents.html) and dist/dev/datasketches for the scripts.
