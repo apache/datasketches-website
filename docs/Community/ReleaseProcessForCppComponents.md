@@ -186,4 +186,4 @@ __NOTES:__
 * Summarize vote results
 
 ## Update These Instructions
-* If you have updated this file or any of the scripts, please update this file on the [website](https://datasketches.apache.org/docs/Community/ReleaseProcessForJavaComponents.html) and dist/dev/datasketches for the scripts.
+* If you have updated this file or any of the scripts, please update this file on the [website](https://datasketches.apache.org/docs/Community/ReleaseProcessForCppComponents.html) and dist/dev/datasketches for the scripts.
