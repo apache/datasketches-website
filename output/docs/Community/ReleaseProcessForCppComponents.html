@@ -537,9 +537,13 @@
   </li>
   <li>From Command Line at Component root:
     <ul>
-      <li>Confirm GPG is running (check this every time you open a new Terminal):
+      <li>To confirm <em>gpg-agent</em> is running type:
         <ul>
-          <li><code class="highlighter-rouge">env | grep GPG</code> # you should see something like: GPG_TTY=/dev/ttys000</li>
+          <li><code class="highlighter-rouge">ps -axww | grep gpg</code>  # you should see something like:
+            <ul>
+              <li><em>64438 ??         0:30.33 gpg-agent –homedir /Users/&lt;name&gt;/.gnupg –use-standard-socket –daemon</em></li>
+            </ul>
+          </li>
           <li>To start GPG if GPG Agent is not running:
             <ul>
               <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
@@ -644,9 +648,18 @@
   </li>
   <li>Start a new terminal in the above <em>dist/dev/datasketches/scripts</em> directory on your system:
     <ul>
-      <li>Confirm GPG is running: <code class="highlighter-rouge">env | grep GPG</code>
+      <li>To confirm <em>gpg-agent</em> is running type:
         <ul>
-          <li>If not: <code class="highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
+          <li><code class="highlighter-rouge">ps -axww | grep gpg</code>  # you should see something like:
+            <ul>
+              <li><em>64438 ??         0:30.33 gpg-agent –homedir /Users/&lt;name&gt;/.gnupg –use-standard-socket –daemon</em></li>
+            </ul>
+          </li>
+          <li>To start GPG if GPG Agent is not running:
+            <ul>
+              <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
+            </ul>
+          </li>
         </ul>
       </li>
       <li>Run something like:
@@ -794,13 +807,7 @@
 
 <h2 id="update-these-instructions">Update These Instructions</h2>
 <ul>
-  <li>If you have updated this file or any of the scripts, please check it in using SVN using your local dist/dev directory copy:
-    <ul>
-      <li><code class="highlighter-rouge">svn status</code></li>
-      <li><code class="highlighter-rouge">svn add . --force</code>  # if adding a file for the first time</li>
-      <li><code class="highlighter-rouge">svn ci -m "update Release Steps"</code></li>
-    </ul>
-  </li>
+  <li>If you have updated this file or any of the scripts, please update this file on the <a href="https://datasketches.apache.org/docs/Community/ReleaseProcessForJavaComponents.html">website</a> and dist/dev/datasketches for the scripts.</li>
 </ul>
 
       </div> <!-- End content -->
