@@ -140,12 +140,12 @@
     <li><a href="/docs/Architecture/SketchesByComponent.html">•Sketches by Component</a></li>
     <li><a href="/docs/Architecture/SketchCriteria.html">•Sketch Criteria</a></li>
 
-    <p id="memory-package">
-      <a data-toggle="collapse" class="menu collapsed" href="#collapse_memory_package">Memory Package</a>
+    <p id="memory-component">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_memory_component">Memory Component</a>
     </p>
-    <div class="collapse" id="collapse_memory_package">
-      <li><a href="/docs/Memory/MemoryPackage.html">•Memory Package</a></li>
-      <li><a href="/docs/Memory/MemoryPerformance.html">•Memory Package Performance</a></li>
+    <div class="collapse" id="collapse_memory_component">
+      <li><a href="/docs/Memory/MemoryComponent.html">•Memory Componet</a></li>
+      <li><a href="/docs/Memory/MemoryPerformance.html">•Memory Component Performance</a></li>
     </div>
     <li><a href="/docs/Architecture/OrderSensitivity.html">•Notes on Order Sensitivity</a></li>
     <li><a href="/docs/Architecture/Concurrency.html">•Notes on Concurrency</a></li>
@@ -507,24 +507,24 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="memory-package">Memory Package</h2>
+<h2 id="memory-component">Memory Component</h2>
 
 <h3 id="introduction">Introduction</h3>
 
-<p>The primary objective for the <em>Memory Package</em> is to allow high-performance read-write access to Java “off-heap” memory 
-(also referred to as <em>direct</em>, or <em>native</em> memory). However, as documented below, this package has a rich set of other
+<p>The primary objective for the <em>Memory Component</em> is to allow high-performance read-write access to Java “off-heap” memory 
+(also referred to as <em>direct</em>, or <em>native</em> memory). However, as documented below, this component has a rich set of other
 capabilities as well.</p>
 
 <h4 id="versioning">Versioning</h4>
-<p>The <em>DataSketches</em> memory package has its own repository and is released with its own jars in <em>Maven Central</em> 
+<p>The <em>DataSketches</em> memory component has its own repository and is released with its own jars in <em>Maven Central</em> 
 (groupId=org.apache.datasketches, artifactId=datasketches-memory).
-This document applies to the memory package versions 0.10.0 and after.</p>
+This document applies to the memory component versions 0.10.0 and after.</p>
 
 <h4 id="naming-conventions">Naming Conventions</h4>
 <p>To avoid confusion in the documentation the capitalized <em>Memory</em> refers to the code in the 
-Java <em>org.apache.datasketches.memory</em> package, and the uncapitalized <em>memory</em> refers to computer memory in general. 
-There is also a class <em>org.apache.datasketches.memory.Memory</em> that should not be confused with the <em>org.apache.datasketches.memory</em> package.
-In the text, sometimes <em>Memory</em> refers to the entire package and sometimes to the specific class, 
+Java <em>org.apache.datasketches.memory</em> component, and the uncapitalized <em>memory</em> refers to computer memory in general. 
+There is also a class <em>org.apache.datasketches.memory.Memory</em> that should not be confused with the <em>org.apache.datasketches.memory</em> component.
+In the text, sometimes <em>Memory</em> refers to the entire component and sometimes to the specific class, 
 but it should be clear from the context.</p>
 
 <p>For compatibility and ease-of-use the <em>Memory</em> API can also be used to manage data structures that are 
@@ -563,24 +563,24 @@ replaces this C++ code with assembly language instructions called “intrinsics�
 can be just a single CPU instruction. This results in superior runtime performance that is
 very close to what could be achieved if the application was written in C++.</p>
 
-<p>The <em>Memory</em> package is essentially an extension of <em>Unsafe</em> and wraps most of the 
+<p>The <em>Memory</em> component is essentially an extension of <em>Unsafe</em> and wraps most of the 
 primitive get and put methods and a few specialized methods into a convenient API 
 organized around an allocated block of native memory.</p>
 
 <p>The only “official” alternative available to systems developers is to use the Java <em>ByteBuffer</em> class 
 that also allows access to off-heap memory.  However, the <em>ByteBuffer</em> API is extremely limited
 and contains serious defects in its design and traps that many users of the <em>ByteBuffer</em> class unwittingly 
-fall into, which results in corrupted data. This <em>Memory Package</em> has been designed to be a 
+fall into, which results in corrupted data. This <em>Memory Component</em> has been designed to be a 
 replacement for the <em>ByteBuffer</em> class.</p>
 
-<p>Using the <em>Memory</em> package cannot be taken lightly, as the systems developer must now be 
+<p>Using the <em>Memory</em> component cannot be taken lightly, as the systems developer must now be 
 aware of the importance of memory allocation and deallocation and make sure these resources 
-are managed properly. To the extent possible, this <em>Memory Package</em> has been designed leveraging Java’s own
+are managed properly. To the extent possible, this <em>Memory Component</em> has been designed leveraging Java’s own
 <em>AutoCloseable</em>, and <em>Cleaner</em> and also tracks when allocated memory has been freed and provides safety checks
 against the dreaded “use-after-free” case.</p>
 
 <h3 id="architecture">Architecture</h3>
-<p>The Memory package is designed around two major types of entities:</p>
+<p>The Memory component is designed around two major types of entities:</p>
 
 <ul>
   <li><em>Resources</em>: A <em>Resource</em> is a collection of consecutive bytes.</li>
@@ -588,7 +588,7 @@ against the dreaded “use-after-free” case.</p>
 </ul>
 
 <h4 id="resourses">Resourses</h4>
-<p>The <em>Memory</em> package defines 4 <em>Resources</em>, which at their most basic level can be viewed as a collection of consecutive bytes.</p>
+<p>The <em>Memory</em> component defines 4 <em>Resources</em>, which at their most basic level can be viewed as a collection of consecutive bytes.</p>
 
 <ul>
   <li>Primitive on-heap arrays: <em>boolean[], byte[], char[], short[], int[], long[], float[], double[]</em>.</li>
@@ -598,11 +598,11 @@ against the dreaded “use-after-free” case.</p>
 </ul>
 
 <p>It should be noted at the outset that the off-heap memory and the memory-mapped file resources require special handling with respect to allocation and deallocation. 
-The <em>Memory Package</em> has been designed to access these resources leveraging the Java <em>AutoCloseable</em> interface and the Java internal <em>Cleaner</em> class, 
+The <em>Memory Component</em> has been designed to access these resources leveraging the Java <em>AutoCloseable</em> interface and the Java internal <em>Cleaner</em> class, 
 which also provides the JVM with mechanisms for tracking overall use of off-heap memory.</p>
 
 <h4 id="apis">APIs</h4>
-<p>The <em>Memory</em> package defines 5 principal APIs for accessing the above resources.</p>
+<p>The <em>Memory</em> component defines 5 principal APIs for accessing the above resources.</p>
 
 <ul>
   <li><em>Memory</em>: Read-only access using byte offsets from the start of the resource.</li>
@@ -623,7 +623,7 @@ which also provides the JVM with mechanisms for tracking overall use of off-heap
 </ul>
 
 <h4 id="design-goals">Design Goals</h4>
-<p>These are the major design goals for the <em>Memory Package</em>.</p>
+<p>These are the major design goals for the <em>Memory Component</em>.</p>
 
 <ul>
   <li><strong>Common API</strong>. The APIs should be agnostic to the chosen resource, with only a few minor exceptions.</li>
@@ -647,7 +647,7 @@ which also provides the JVM with mechanisms for tracking overall use of off-heap
 </ul>
 
 <h4 id="diagram-of-the-core-hierarchy">Diagram of the Core Hierarchy</h4>
-<p>This includes both package-private classes as well as public classes, but should help the user understand the inner workings of the <em>Memory Package</em>.</p>
+<p>This includes both package-private classes as well as public classes, but should help the user understand the inner workings of the <em>Memory Component</em>.</p>
 
 <p><img class="doc-img-full" src="/docs/img/memory/CoreHierarchy.png" alt="CoreHierarchy.png" /></p>
 
