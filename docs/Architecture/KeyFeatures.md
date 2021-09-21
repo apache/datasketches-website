@@ -43,7 +43,7 @@ layout: doc_page
 
 ### Built-In, General Purpose Functions
 
-* General purpose [Memory Package]({{site.docs_dir}}/Memory/MemoryPackage.html) for managing data off the Java Heap. 
+* General purpose [Memory Component]({{site.docs_dir}}/Memory/MemoryComponent.html) for managing data off the Java Heap. 
 This enables systems designers the ability to manage their own large data heaps with 
 dedicated processor threads that would otherwise put undue pressure on the Java heap and 
 its garbage collection.

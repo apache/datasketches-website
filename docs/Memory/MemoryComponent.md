@@ -19,24 +19,24 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-## Memory Package
+## Memory Component
 
 ### Introduction
 
-The primary objective for the _Memory Package_ is to allow high-performance read-write access to Java "off-heap" memory 
-(also referred to as _direct_, or _native_ memory). However, as documented below, this package has a rich set of other
+The primary objective for the _Memory Component_ is to allow high-performance read-write access to Java "off-heap" memory 
+(also referred to as _direct_, or _native_ memory). However, as documented below, this component has a rich set of other
 capabilities as well.
 
 #### Versioning
-The _DataSketches_ memory package has its own repository and is released with its own jars in _Maven Central_ 
+The _DataSketches_ memory component has its own repository and is released with its own jars in _Maven Central_ 
 (groupId=org.apache.datasketches, artifactId=datasketches-memory).
-This document applies to the memory package versions 0.10.0 and after. 
+This document applies to the memory component versions 0.10.0 and after. 
 
 #### Naming Conventions
 To avoid confusion in the documentation the capitalized _Memory_ refers to the code in the 
-Java _org.apache.datasketches.memory_ package, and the uncapitalized _memory_ refers to computer memory in general. 
-There is also a class _org.apache.datasketches.memory.Memory_ that should not be confused with the _org.apache.datasketches.memory_ package.
-In the text, sometimes _Memory_ refers to the entire package and sometimes to the specific class, 
+Java _org.apache.datasketches.memory_ component, and the uncapitalized _memory_ refers to computer memory in general. 
+There is also a class _org.apache.datasketches.memory.Memory_ that should not be confused with the _org.apache.datasketches.memory_ component.
+In the text, sometimes _Memory_ refers to the entire component and sometimes to the specific class, 
 but it should be clear from the context.
 
 
@@ -76,30 +76,30 @@ replaces this C++ code with assembly language instructions called "intrinsics", 
 can be just a single CPU instruction. This results in superior runtime performance that is
 very close to what could be achieved if the application was written in C++.
 
-The _Memory_ package is essentially an extension of _Unsafe_ and wraps most of the 
+The _Memory_ component is essentially an extension of _Unsafe_ and wraps most of the 
 primitive get and put methods and a few specialized methods into a convenient API 
 organized around an allocated block of native memory.
 
 The only "official" alternative available to systems developers is to use the Java _ByteBuffer_ class 
 that also allows access to off-heap memory.  However, the _ByteBuffer_ API is extremely limited
 and contains serious defects in its design and traps that many users of the _ByteBuffer_ class unwittingly 
-fall into, which results in corrupted data. This _Memory Package_ has been designed to be a 
+fall into, which results in corrupted data. This _Memory Component_ has been designed to be a 
 replacement for the _ByteBuffer_ class.
 
-Using the _Memory_ package cannot be taken lightly, as the systems developer must now be 
+Using the _Memory_ component cannot be taken lightly, as the systems developer must now be 
 aware of the importance of memory allocation and deallocation and make sure these resources 
-are managed properly. To the extent possible, this _Memory Package_ has been designed leveraging Java's own
+are managed properly. To the extent possible, this _Memory Component_ has been designed leveraging Java's own
 _AutoCloseable_, and _Cleaner_ and also tracks when allocated memory has been freed and provides safety checks
 against the dreaded "use-after-free" case.
 
 ### Architecture
-The Memory package is designed around two major types of entities:
+The Memory component is designed around two major types of entities:
 
   * _Resources_: A _Resource_ is a collection of consecutive bytes. 
   * _APIs_: An API is a programming interface for reading and writing to a resource.
 
 #### Resourses
-The _Memory_ package defines 4 _Resources_, which at their most basic level can be viewed as a collection of consecutive bytes.
+The _Memory_ component defines 4 _Resources_, which at their most basic level can be viewed as a collection of consecutive bytes.
 
   * Primitive on-heap arrays: _boolean[], byte[], char[], short[], int[], long[], float[], double[]_.
   * Java _ByteBuffers_.
@@ -107,11 +107,11 @@ The _Memory_ package defines 4 _Resources_, which at their most basic level can 
   * Memory-mapped files. 
 
 It should be noted at the outset that the off-heap memory and the memory-mapped file resources require special handling with respect to allocation and deallocation. 
-The _Memory Package_ has been designed to access these resources leveraging the Java _AutoCloseable_ interface and the Java internal _Cleaner_ class, 
+The _Memory Component_ has been designed to access these resources leveraging the Java _AutoCloseable_ interface and the Java internal _Cleaner_ class, 
 which also provides the JVM with mechanisms for tracking overall use of off-heap memory. 
 
 #### APIs
-The _Memory_ package defines 5 principal APIs for accessing the above resources.
+The _Memory_ component defines 5 principal APIs for accessing the above resources.
 
   * _Memory_: Read-only access using byte offsets from the start of the resource.
   * _WritableMemory_: Read/write access using byte offsets from the start of the resource.
@@ -128,7 +128,7 @@ These 5 principal APIs and the four Resources are then multiplexed into 32 API/R
   * Little-Endian versus Big-Endian APIs for multibyte primitives
 
 #### Design Goals 
-These are the major design goals for the _Memory Package_.
+These are the major design goals for the _Memory Component_.
 
   * __Common API__. The APIs should be agnostic to the chosen resource, with only a few minor exceptions. 
   * __Performance is critical__. The architecture has been specifically designed to eliminate unnecessary object and interface redirection.
@@ -151,7 +151,7 @@ These are the major design goals for the _Memory Package_.
   
 
 #### Diagram of the Core Hierarchy
-This includes both package-private classes as well as public classes, but should help the user understand the inner workings of the _Memory Package_.
+This includes both package-private classes as well as public classes, but should help the user understand the inner workings of the _Memory Component_.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/memory/CoreHierarchy.png" alt="CoreHierarchy.png" />
 

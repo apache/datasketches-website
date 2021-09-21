@@ -19,10 +19,10 @@
         {"class":"Doc",  "desc" : "Components",                "dir" : "Architecture", "file": "Components" },
         {"class":"Doc",  "desc" : "Sketches by Component",     "dir" : "Architecture", "file": "SketchesByComponent" },
         {"class":"Doc",  "desc" : "Sketch Criteria",           "dir" : "Architecture", "file": "SketchCriteria" },
-        { "class":"Dropdown", "desc" : "Memory Package", "array":
+        { "class":"Dropdown", "desc" : "Memory Component", "array":
           [
-            {"class":"Doc",  "desc" : "Memory Package",              "dir" : "Memory", "file": "MemoryPackage" },
-            {"class":"Doc",  "desc" : "Memory Package Performance",  "dir" : "Memory", "file": "MemoryPerformance" },
+            {"class":"Doc",  "desc" : "Memory Componet",              "dir" : "Memory", "file": "MemoryComponent" },
+            {"class":"Doc",  "desc" : "Memory Component Performance",  "dir" : "Memory", "file": "MemoryPerformance" },
           ]
         },
         {"class":"Doc",  "desc" : "Notes on Order Sensitivity",   "dir" : "Architecture", "file": "OrderSensitivity" },

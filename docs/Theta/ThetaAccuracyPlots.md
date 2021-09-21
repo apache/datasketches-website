@@ -67,7 +67,7 @@ This means that the plotted x values form an exponential series of the form <i>2
 <img src="{{site.docs_img_dir}}/theta/ErrorSurface2.png" alt="ErrorSurface2" width="150px" />. The cross-sectional slice of this surface is approximately Gaussian like this graph
 <img src="{{site.docs_img_dir}}/theta/400px-StandardNormalCurve.png" alt="400px-StandardNormalCurve" width="200px" />, 
 which has the +/- 1, 2 and 3 standard deviation points on the x-axis marked and the corresponding areas under the curve that represent the associated confidence levels.
-* All the pitchfork graphs in this section were generated using the utilities located in the the <i>sketches-misc</i> repository, performance package.
+* All the pitchfork graphs in this section were generated using the utilities located in the the <i>datasketches-characterization</i> repository.
 
 The specifics of the above pitchfork graph:
 

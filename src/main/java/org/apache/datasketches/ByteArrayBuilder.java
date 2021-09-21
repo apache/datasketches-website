@@ -30,7 +30,7 @@ import java.util.Arrays;
  *
  * @author Lee Rhodes
  */
-@SuppressWarnings("javadoc")
+//@SuppressWarnings("javadoc")
 public class ByteArrayBuilder {
   private byte[] arr_;
   private int count_ = 0;

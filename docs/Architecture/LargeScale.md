@@ -62,9 +62,9 @@ particularly important when processing sensitive user identifiers. Available wit
 * [Pre-Sampling]({{site.docs_dir}}/Theta/ThetaPSampling.html). Built-in up-front sampling for cases where additional 
 contol is required to limit overall memory consumption when dealing with millions of sketches. Available with Theta Sketches.
 
-* [Memory Package]({{site.docs_dir}}/Memory/MemoryPackage.html). 
+* [Memory Component]({{site.docs_dir}}/Memory/MemoryComponent.html). 
 Large query systems often require their own heaps outside the JVM in order to better manage garbage collection latencies. 
-The Java sketches utilize this powerful package. 
+The Java sketches utilize this powerful component. 
 
 * Built-in <b>Upper-Bound and Lower-Bound estimators</b>. 
 You are never in the dark about how good of an estimate the sketch is providing. 

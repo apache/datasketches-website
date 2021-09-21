@@ -47,7 +47,7 @@ import java.util.Arrays;
  *
  * @author Lee Rhodes
  */
-@SuppressWarnings("javadoc")
+//@SuppressWarnings("javadoc")
 public final class Files {
   private static final String LS = System.getProperty("line.separator");
   private static final byte CR = 0xD;
