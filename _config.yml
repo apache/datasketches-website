@@ -29,6 +29,7 @@ exclude:
   - vendor/
   - node_modules
   - src/
+  - logos/
 
 docs_dir: '/docs'
 docs_img_dir: '/docs/img'

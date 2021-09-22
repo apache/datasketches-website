@@ -1,0 +1,21 @@
+box model
+4: top right bottom left
+3: top (right left) bottom
+2: (top bottom) (right left)
+1; (top right bottom left)
+
+Horizontal Logo: width=839 height=357 h/w=0.4255065554 w/h=2.350140056
+h = 50
+w = 50 * 2.350140056 = 117.5070028
+
+Vertical logo: width=442 height=420 h/w=0.9502262443 w/h=1.0523809524
+
+Man logo: width=239 height=332 h/w=1.3891213389 w/h=0.7198795181
+
+Apache feather: width=2392.5 height=4226.6
+
+Small Man:
+  height=50
+  width=50 * 0.7198795181 = 35.99
+  
+
