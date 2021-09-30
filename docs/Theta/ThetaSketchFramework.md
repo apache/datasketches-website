@@ -28,7 +28,7 @@ The <a href="{{site.docs_pdf_dir}}/ThetaSketchFramework.pdf">Theta Sketch Framew
 is a mathematical framework 
 defined in a multi-stream setting that enables set expressions over these streams and encompasses many
 different sketching algorithms. A rudimentary introduction to the mathematics of the simpler sketch algorithms is developed in 
-<a href="{{site.docs_pdf_dir}}/SketchEquations.pdf">Sketch Equations</a>.
+the <a href="{{site.docs_pdf_dir}}/ThetaSketchEquations.pdf">Theta Sketch Equations</a> document.
 
 The TSF consists of the following components:
 
