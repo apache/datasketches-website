@@ -178,7 +178,7 @@ __NOTES:__
 * Bulk copy the `jar, asc, md5` and `sha1` files into the `maven` directory.
 * Do: `svn status` # check to see if it is ready to add
 * Do: `svn add . --force`
-* Do: `svn ci -m "add nexus jars to dist/dev/datasketches"`m
+* Do: `svn ci -m "add nexus jars to dist/dev/datasketches"`
 
 #### Non-Java
 * For external artifacts such as Python or Docker the subdirectory name should be relevant to the type.
