@@ -232,6 +232,11 @@ __NOTES:__
 * Confirm that the attributes have moved to the "Releases" repository under "Repositories"
     * Browse to *Releases/org/apache/datasketches/...*
 
+### Java: Drop any previous Release Candidates that were not used.
+* On Nexus [repository.apache.org](https://repository.apache.org/) click on Staging Repositories
+* Select "orgapachedatasketches-XXXX" (If more than one make sure you select the right one!)
+* At the top of the window, select "Drop"
+
 ### Merge branch *master* from branch *A.B.X*.   
 
 ## Finalize Release Documentation
