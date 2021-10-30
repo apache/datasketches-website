@@ -1,3 +1,25 @@
+---
+layout: doc_page
+---
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+
 # Theta Sketch and Tuple Sketch Set Operation Corner Cases
 
 The *TupleSketch* is an extension of the *ThetaSketch* and both are part of the *Theta Sketch Framework*<sup>1</sup>. In this document, the term *Theta* (upper case) when referencing sketches will refer to both the *ThetaSketch* and the *TupleSketch*.  This is not to be confused with the term *theta* (lower case), which refers to the sketch variable that tracks the sampling probability of the sketch.
