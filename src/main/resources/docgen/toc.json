@@ -102,6 +102,7 @@
                 { "class":"Dropdown", "desc" : "Set Operations and P-sampling", "array":
                   [
                     {"class":"Doc",  "desc" : "Set Operations",                 "dir" : "Theta", "file": "ThetaSketchSetOps" },
+                    {"class":"Doc",  "desc" : "Model & Test Set Operations",    "dir" : "Theta", "file": "ThetaSetOpsCornerCases" },
                     {"class":"Doc",  "desc" : "<i>p</i>-Sampling",              "dir" : "Theta",  "file": "ThetaPSampling" },
                   ]
                 },
