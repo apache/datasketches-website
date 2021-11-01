@@ -63,7 +63,11 @@ Here, the number of inputs to the sketch have exceeded the size of the input buf
 This is a new sketch where the user has set the sampling probability, *p < 1.0* and the sketch has not been presented any data.  Internally at initialization, *theta* is set to *p*, so if *p = 0.5*, *theta* will be set to *0.5*. Since the sketch has not seen any data, *retained entries = 0* and *empty = T*.  This is degenerative form of a new sketch, thus its name.
 
 ### ResultDegen{<1.0, 0, F}
-This requires some explanation.  Imagine the intersection of two estimating sketches where the values retained in the two sketches are disjoint (i.e, no overlap).  Since the two sketches chose their internal values at random, there remains some probability that there could be common values in an exactly computed intersection, but it just so happens that one of the two sketches did not select any of them in the random sampling process.  Therefore, the *retained entries = 0*. The value *1.0 - theta* represents the probability that there could be intersecting values in the exact distribution. Since there is a positive probability of an intersection, *empty = F*.  This is also a degenerative case in the sense that *theta < 1.0* and *empty = F* like an estimating sketch, except that no actual values were found in the operation, so *retained entries = 0*.
+This requires some explanation.  Imagine the intersection of two estimating sketches where the values retained in the two sketches are disjoint (i.e, no overlap).  Since the two sketches chose their internal values at random, there remains some probability that there could be common values in an exactly computed intersection, but it just so happens that one of the two sketches did not select any of them in the random sampling process.  Therefore, the *retained entries = 0*. 
+
+Even though the *retained entries = 0* the upper bound of the estimated number of unique values in the input domain, but missed by the sketch, can be computed statistically.  It is too complex to discuss here, but the sketch code actually performs this estimation.
+
+Since there is a positive probability of an intersection, *empty = F*.  This is also a degenerative case in the sense that *theta < 1.0* and *empty = F* like an estimating sketch, except that no actual values were found in the operation, so *retained entries = 0*.
 
 ### Summary Table of the Valid States of a Sketch
 The *Has Seen Data* column is not an independent variable, but helps with the interpretation of the state.
@@ -73,6 +77,8 @@ We can assign a single octal digit ID to each state where
 * *theta = 1.0 := 4, else 0*
 * *retained entries >0 := 2, else 0*
 * *empty = true := 1, else 0* 
+
+The octal digit ID = ((theta == 1.0) ? 4 : 0) | ((retainedEntries > 0) ? 2 : 0) | (empty ? 1 : 0);
 
 | Shorthand Notation                | theta | retained entries |    empty   | Has Seen Data | ID | Comments                       |
 |:---------------------------------:|:-----:|:----------------:|:----------:|:-------------:|:--:|:------------------------------:|
@@ -92,8 +98,8 @@ The *Has Seen Data* column is not an independent variable, but helps with the in
 | Theta | Retained Entries | Empty Flag | Has Seen Data | Comments                                           |
 |:-----:|:----------------:|:----------:|:-------------:|:--------------------------------------------------:|
 |  1.0  |        0         |      T     |       T       | If it has seen data, Theta != 1.0 AND Entries = 0. |
-|  1.0  |       >0         |      F     |       F       | If it has not seen data, Entries !> 0.             |
-| <1.0  |       >0         |      F     |       F       | If it has not seen data, Entries !> 0.             |
+|  1.0  |       >0         |      F     |       F       | If it has not seen data, Entries ! > 0.             |
+| <1.0  |       >0         |      F     |       F       | If it has not seen data, Entries ! > 0.             |
 
 
 ## Combinations of States of Two Sketches
@@ -136,15 +142,21 @@ The description of each column:
 * AnotB Result
 * The octal representation of the Intersection Result followed by the octal representation of the AnotB result. The result codes are given by the following table:
 
-| Result Action | Result Code | Description            | 
-|:-------------:|:-----------:|:-----------------------|         
-| New{1.0,0,T}  |     1       | New empty sketch       |
-| New{min,0,F}  |     2       | Min=min(thetaA,thetaB) |
-| New{thA,0,F}  |     3       | thA=theta of A         |
-| SkA Min       |     4       | Trim A by minTheta     |
-| Sketch A      |     5       | Sketch A exactly       |
-| Full Inter    |     6       | Full intersect         |
-| Full AnotB    |     7       | Full AnotB             |
+| Result Action | Result Code | Used by Intersection   | Used By AnotB         |
+|:-------------:|:-----------:|:----------------------:|:---------------------:|
+| New{1.0,0,T}  |     1       | Yes                    | Yes                   |
+| New{min,0,F}  |     2       | Yes                    | Yes                   |
+| New{thA,0,F}  |     3       |                        | Yes                   |
+| SkA Min       |     4       |                        | Yes                   |
+| Sketch A      |     5       |                        | Yes                   |
+| Full Inter    |     6       | Yes                    |                       |
+| Full AnotB    |     7       |                        | Yes                   |
+
+Abbreviations:<br>
+
+* min : min(thetaA,thetaB)
+* thA : theta of A
+* SkA Min : Trim Sketch A by minTheta 
 
 
 Note that the results of a *Full Intersect* or a *Full AnotB* will require further interpretation of the resulting state.
@@ -153,13 +165,13 @@ If the resulting sketch is *{<1.0,0,?}* then a *ResultDegen{<1.0,0,F}* is return
 Otherwise, the sketch returned will be an estimating or exact *{theta, >0, F}*.
 
 ## Testing
-The above information is encoded as a model into the special class *org.apache.datasketches.SetOperationCornerCases.java*. This class is made up of enums and static methods to quickly determine for a sketch what actions to take based on the state of the input arguments.  This model is independent of the implementation of the Theta Sketch, whether the set operation is performed as a Theta Sketch, or a Tuple Sketch and when translated can be used in other languages as well.  
+The above information is encoded as a model into the special class *[org.apache.datasketches.SetOperationsCornerCases](https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.SetOperationCornerCases.java)*. This class is made up of enums and static methods to quickly determine for a sketch what actions to take based on the state of the input arguments.  This model is independent of the implementation of the Theta Sketch, whether the set operation is performed as a Theta Sketch, or a Tuple Sketch and when translated can be used in other languages as well.  
 
 Before this model was put to use an extensive set of tests was designed to test any potential implementation against this model.  These tests are slightly different for the Tuple Sketch than the Theta Sketch because the Tuple Sketch has more combinations to test, but the model is the same.
 
-* The tests for the Theta Sketch can be found in the class *org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest.java*
-* The tests for the Tuple Sketch can be found in the class *org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest.java*
+* The tests for the Theta Sketch can be found in the class *[org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest](https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest.java)*
+* The tests for the Tuple Sketch can be found in the class *[org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest](https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest.java)*
 
-The details of how this mode is used in run-time code can be found in the class *org.apache.datasketches.tuple.AnotB.java*.
+The details of how this mode is used in run-time code can be found in the class *[org.apache.datasketches.tuple.AnotB.java](https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.tuple.AnotB.java)*.
 
 
