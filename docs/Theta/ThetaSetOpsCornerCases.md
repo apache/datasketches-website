@@ -44,6 +44,8 @@ We have developed a short hand notation for these three variables to record thei
 
 Each of the above three variables can be represented as boolean variable. Thus, there are 8 possible combinations of the three variables.
 
+---
+
 <sup>1</sup> Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings ‘16 *, pages 6:1–6:17, 2016.
 
 ## Valid States of a Sketch
@@ -78,7 +80,7 @@ We can assign a single octal digit ID to each state where
 * *retained entries >0 := 2, else 0*
 * *empty = true := 1, else 0* 
 
-The octal digit ID = ((theta == 1.0) ? 4 : 0) | ((retainedEntries > 0) ? 2 : 0) | (empty ? 1 : 0);
+The octal digit `ID = ((theta == 1.0) ? 4 : 0) | ((retainedEntries > 0) ? 2 : 0) | (empty ? 1 : 0);`
 
 | Shorthand Notation                | theta | retained entries |    empty   | Has Seen Data | ID | Comments                       |
 |:---------------------------------:|:-----:|:----------------:|:----------:|:-------------:|:--:|:------------------------------:|
@@ -87,6 +89,8 @@ The octal digit ID = ((theta == 1.0) ? 4 : 0) | ((retainedEntries > 0) ? 2 : 0) 
 | Estimation {<1.0,>0,F}            | <1.0  |        >0        |     F      |       T       |  2 | Estimation Mode                |
 | NewDegen {<1.0,0,T}<sup>2</sup>   | <1.0  |         0        |     T      |       F       |  1 | New Sketch, user sets p<1.0    |
 | ResultDegen {<1.0,0,F}<sup>3</sup>| <1.0  |         0        |     F      |       T       |  0 | Valid Intersect or AnotB result   |
+
+---
 
 <sup>2</sup> *New Degenerate*: New Empty Sketch where the user sets *p < 1.0*. This can be safely reinterpreted as {1.0,0,T} because it has not seen any data.<br>
 <sup>3</sup> *Result Degenerate*: Can appear as a result of a an Intersection or AnotB of certain combination of sketches.
@@ -105,33 +109,33 @@ The *Has Seen Data* column is not an independent variable, but helps with the in
 ## Combinations of States of Two Sketches
 Each sketch can have 5 valid states, which means we can have 25 combinations of states of two sketches as expanded in the following table.
  
-| ID | Sketch A               | Sketch B               | Intersection Result  | AnotB Result        | Result Actions |
-|:--:|:----------------------:|:----------------------:|:--------------------:|:-------------------:|:--------------:|
-| 00 | ResultDegen {<1.0,0,F} | ResultDegen {<1.0,0,F} | New {minTheta,0,F}   | New {minTheta,0,F}  | 2,2            |
-| 01 | ResultDegen {<1.0,0,F} | NewDegen {<1.0,0,T}    | New {1.0,0,T}        | New {ThetaA,0,F}    | 1,3            |
-| 02 | ResultDegen {<1.0,0,F} | Estimation {<1.0,>0,F} | New {minTheta,0,F}   | New {minTheta,0,F}  | 2,2            |
-| 05 | ResultDegen {<1.0,0,F} | New {1.0,0,T}          | New {1.0,0,T}        | New {ThetaA,0,F}    | 1,3            |
-| 06 | ResultDegen {<1.0,0,F} | Exact {1.0,>0,F}       | New {minTheta,0,F}   | New {ThetaA,0,F}    | 2,3            |
-| 10 | NewDegen {<1.0,0,T}    | ResultDegen {<1.0,0,F} | New {1.0,0,T}        | New {1.0,0,T}       | 1,1            |
-| 11 | NewDegen {<1.0,0,T}    | NewDegen {<1.0,0,T}    | New {1.0,0,T}        | New {1.0,0,T}       | 1,1            |
-| 12 | NewDegen {<1.0,0,T}    | Estimation {<1.0,>0,F} | New {1.0,0,T}        | New {1.0,0,T}       | 1,1            |
-| 15 | NewDegen {<1.0,0,T}    | New {1.0,0,T}          | New {1.0,0,T}        | New {1.0,0,T}       | 1,1            |
-| 16 | NewDegen {<1.0,0,T}    | Exact {1.0,>0,F}       | New {1.0,0,T}        | New {1.0,0,T}       | 1,1            |
-| 20 | Estimation {<1.0,>0,F} | ResultDegen {<1.0,0,F} | New {minTheta,0,F}   | Trim A by minTheta  | 2,4            |
-| 21 | Estimation {<1.0,>0,F} | NewDegen {<1.0,0,T}    | New {1.0,0,T}        | Sketch A            | 1,5            |
-| 22 | Estimation {<1.0,>0,F} | Estimation {<1.0,>0,F} | Full Intersect       | Full AnotB          | 6,7            |
-| 25 | Estimation {<1.0,>0,F} | New {1.0,0,T}          | New {1.0,0,T}        | Sketch A            | 1,5            |
-| 26 | Estimation {<1.0,>0,F} | Exact {1.0,>0,F}       | Full Intersect       | Full AnotB          | 6,7            |
-| 50 | New {1.0,0,T}          | ResultDegen {<1.0,0,F} | New {1.0,0,T}        | New {1.0,0,T}       | 1,1            |
-| 51 | New {1.0,0,T}          | NewDegen {<1.0,0,T}    | New {1.0,0,T}        | New {1.0,0,T}       | 1,1            |
-| 52 | New {1.0,0,T}          | Estimation {<1.0,>0,F} | New {1.0,0,T}        | New {1.0,0,T}       | 1,1            |
-| 55 | New {1.0,0,T}          | New {1.0,0,T}          | New {1.0,0,T}        | New {1.0,0,T}       | 1,1            |
-| 56 | New {1.0,0,T}          | Exact {1.0,>0,F}       | New {1.0,0,T}        | New {1.0,0,T}       | 1,1            |
-| 60 | Exact {1.0,>0,F}       | ResultDegen {<1.0,0,F} | New {minTheta,0,F}   | Trim A by minTheta  | 2,4            |
-| 61 | Exact {1.0,>0,F}       | NewDegen {<1.0,0,T}    | New {1.0,0,T}        | Sketch A            | 1,5            |
-| 62 | Exact {1.0,>0,F}       | Estimation {<1.0,>0,F} | Full Intersect       | Full AnotB          | 6,7            |
-| 65 | Exact {1.0,>0,F}       | New {1.0,0,T}          | New {1.0,0,T}        | Sketch A            | 1,5            |
-| 66 | Exact {1.0,>0,F}       | Exact {1.0,>0,F}       | Full Intersect       | Full AnotB          | 6,7            |
+| ID | Sketch A               | Sketch B               | Intersection Result          | AnotB Result                | Result Actions |
+|:--:|:----------------------:|:----------------------:|:----------------------------:|:---------------------------:|:--------------:|
+| 00 | ResultDegen {<1.0,0,F} | ResultDegen {<1.0,0,F} | ResultDegen {minTheta,0,F}   | ResultDegen {minTheta,0,F}  | 2,2            |
+| 01 | ResultDegen {<1.0,0,F} | NewDegen {<1.0,0,T}    | New {1.0,0,T}                | ResultDegen {ThetaA,0,F}    | 1,3            |
+| 02 | ResultDegen {<1.0,0,F} | Estimation {<1.0,>0,F} | ResultDegen {minTheta,0,F}   | ResultDegen {minTheta,0,F}  | 2,2            |
+| 05 | ResultDegen {<1.0,0,F} | New {1.0,0,T}          | New {1.0,0,T}                | ResultDegen {ThetaA,0,F}    | 1,3            |
+| 06 | ResultDegen {<1.0,0,F} | Exact {1.0,>0,F}       | ResultDegen {minTheta,0,F}   | ResultDegen {ThetaA,0,F}    | 2,3            |
+| 10 | NewDegen {<1.0,0,T}    | ResultDegen {<1.0,0,F} | New {1.0,0,T}                | New {1.0,0,T}               | 1,1            |
+| 11 | NewDegen {<1.0,0,T}    | NewDegen {<1.0,0,T}    | New {1.0,0,T}                | New {1.0,0,T}               | 1,1            |
+| 12 | NewDegen {<1.0,0,T}    | Estimation {<1.0,>0,F} | New {1.0,0,T}                | New {1.0,0,T}               | 1,1            |
+| 15 | NewDegen {<1.0,0,T}    | New {1.0,0,T}          | New {1.0,0,T}                | New {1.0,0,T}               | 1,1            |
+| 16 | NewDegen {<1.0,0,T}    | Exact {1.0,>0,F}       | New {1.0,0,T}                | New {1.0,0,T}               | 1,1            |
+| 20 | Estimation {<1.0,>0,F} | ResultDegen {<1.0,0,F} | ResultDegen {minTheta,0,F}   | Trim A by minTheta          | 2,4            |
+| 21 | Estimation {<1.0,>0,F} | NewDegen {<1.0,0,T}    | New {1.0,0,T}                | Sketch A                    | 1,5            |
+| 22 | Estimation {<1.0,>0,F} | Estimation {<1.0,>0,F} | Full Intersect               | Full AnotB                  | 6,7            |
+| 25 | Estimation {<1.0,>0,F} | New {1.0,0,T}          | New {1.0,0,T}                | Sketch A                    | 1,5            |
+| 26 | Estimation {<1.0,>0,F} | Exact {1.0,>0,F}       | Full Intersect               | Full AnotB                  | 6,7            |
+| 50 | New {1.0,0,T}          | ResultDegen {<1.0,0,F} | New {1.0,0,T}                | New {1.0,0,T}               | 1,1            |
+| 51 | New {1.0,0,T}          | NewDegen {<1.0,0,T}    | New {1.0,0,T}                | New {1.0,0,T}               | 1,1            |
+| 52 | New {1.0,0,T}          | Estimation {<1.0,>0,F} | New {1.0,0,T}                | New {1.0,0,T}               | 1,1            |
+| 55 | New {1.0,0,T}          | New {1.0,0,T}          | New {1.0,0,T}                | New {1.0,0,T}               | 1,1            |
+| 56 | New {1.0,0,T}          | Exact {1.0,>0,F}       | New {1.0,0,T}                | New {1.0,0,T}               | 1,1            |
+| 60 | Exact {1.0,>0,F}       | ResultDegen {<1.0,0,F} | ResultDegen {minTheta,0,F}   | Trim A by minTheta          | 2,4            |
+| 61 | Exact {1.0,>0,F}       | NewDegen {<1.0,0,T}    | New {1.0,0,T}                | Sketch A                    | 1,5            |
+| 62 | Exact {1.0,>0,F}       | Estimation {<1.0,>0,F} | Full Intersect               | Full AnotB                  | 6,7            |
+| 65 | Exact {1.0,>0,F}       | New {1.0,0,T}          | New {1.0,0,T}                | Sketch A                    | 1,5            |
+| 66 | Exact {1.0,>0,F}       | Exact {1.0,>0,F}       | Full Intersect               | Full AnotB                  | 6,7            |
 
 The description of each column:
 
@@ -142,15 +146,15 @@ The description of each column:
 * AnotB Result
 * The octal representation of the Intersection Result followed by the octal representation of the AnotB result. The result codes are given by the following table:
 
-| Result Action | Result Code | Used by Intersection   | Used By AnotB         |
-|:-------------:|:-----------:|:----------------------:|:---------------------:|
-| New{1.0,0,T}  |     1       | Yes                    | Yes                   |
-| New{min,0,F}  |     2       | Yes                    | Yes                   |
-| New{thA,0,F}  |     3       |                        | Yes                   |
-| SkA Min       |     4       |                        | Yes                   |
-| Sketch A      |     5       |                        | Yes                   |
-| Full Inter    |     6       | Yes                    |                       |
-| Full AnotB    |     7       |                        | Yes                   |
+| Result Action         | Result Code | Used by Intersection   | Used By AnotB         |
+|:---------------------:|:-----------:|:----------------------:|:---------------------:|
+| New{1.0,0,T}          |     1       | Yes                    | Yes                   |
+| ResultDegen{min,0,F}  |     2       | Yes                    | Yes                   |
+| ResultDegen{thA,0,F}  |     3       |                        | Yes                   |
+| SkA Min               |     4       |                        | Yes                   |
+| Sketch A              |     5       |                        | Yes                   |
+| Full Inter            |     6       | Yes                    |                       |
+| Full AnotB            |     7       |                        | Yes                   |
 
 Abbreviations:<br>
 
