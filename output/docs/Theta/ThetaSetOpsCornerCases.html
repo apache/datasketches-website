@@ -543,6 +543,8 @@
 
 <p>Each of the above three variables can be represented as boolean variable. Thus, there are 8 possible combinations of the three variables.</p>
 
+<hr />
+
 <p><sup>1</sup> Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings ‘16 *, pages 6:1–6:17, 2016.</p>
 
 <h2 id="valid-states-of-a-sketch">Valid States of a Sketch</h2>
@@ -579,15 +581,7 @@
   <li><em>empty = true := 1, else 0</em></li>
 </ul>
 
-<table>
-  <tbody>
-    <tr>
-      <td>The octal digit ID = ((theta == 1.0) ? 4 : 0)</td>
-      <td>((retainedEntries &gt; 0) ? 2 : 0)</td>
-      <td>(empty ? 1 : 0);</td>
-    </tr>
-  </tbody>
-</table>
+<p>The octal digit <code class="highlighter-rouge">ID = ((theta == 1.0) ? 4 : 0) | ((retainedEntries &gt; 0) ? 2 : 0) | (empty ? 1 : 0);</code></p>
 
 <table>
   <thead>
@@ -650,6 +644,8 @@
   </tbody>
 </table>
 
+<hr />
+
 <p><sup>2</sup> <em>New Degenerate</em>: New Empty Sketch where the user sets <em>p &lt; 1.0</em>. This can be safely reinterpreted as {1.0,0,T} because it has not seen any data.<br />
 <sup>3</sup> <em>Result Degenerate</em>: Can appear as a result of a an Intersection or AnotB of certain combination of sketches.</p>
 
@@ -711,8 +707,8 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
       <td style="text-align: center">00</td>
       <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
       <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
-      <td style="text-align: center">New {minTheta,0,F}</td>
-      <td style="text-align: center">New {minTheta,0,F}</td>
+      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
+      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
       <td style="text-align: center">2,2</td>
     </tr>
     <tr>
@@ -720,15 +716,15 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
       <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
       <td style="text-align: center">NewDegen {&lt;1.0,0,T}</td>
       <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {ThetaA,0,F}</td>
+      <td style="text-align: center">ResultDegen {ThetaA,0,F}</td>
       <td style="text-align: center">1,3</td>
     </tr>
     <tr>
       <td style="text-align: center">02</td>
       <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
       <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
-      <td style="text-align: center">New {minTheta,0,F}</td>
-      <td style="text-align: center">New {minTheta,0,F}</td>
+      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
+      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
       <td style="text-align: center">2,2</td>
     </tr>
     <tr>
@@ -736,15 +732,15 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
       <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
       <td style="text-align: center">New {1.0,0,T}</td>
       <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {ThetaA,0,F}</td>
+      <td style="text-align: center">ResultDegen {ThetaA,0,F}</td>
       <td style="text-align: center">1,3</td>
     </tr>
     <tr>
       <td style="text-align: center">06</td>
       <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
       <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
-      <td style="text-align: center">New {minTheta,0,F}</td>
-      <td style="text-align: center">New {ThetaA,0,F}</td>
+      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
+      <td style="text-align: center">ResultDegen {ThetaA,0,F}</td>
       <td style="text-align: center">2,3</td>
     </tr>
     <tr>
@@ -791,7 +787,7 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
       <td style="text-align: center">20</td>
       <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
       <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
-      <td style="text-align: center">New {minTheta,0,F}</td>
+      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
       <td style="text-align: center">Trim A by minTheta</td>
       <td style="text-align: center">2,4</td>
     </tr>
@@ -871,7 +867,7 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
       <td style="text-align: center">60</td>
       <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
       <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
-      <td style="text-align: center">New {minTheta,0,F}</td>
+      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
       <td style="text-align: center">Trim A by minTheta</td>
       <td style="text-align: center">2,4</td>
     </tr>
@@ -938,13 +934,13 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
-      <td style="text-align: center">New{min,0,F}</td>
+      <td style="text-align: center">ResultDegen{min,0,F}</td>
       <td style="text-align: center">2</td>
       <td style="text-align: center">Yes</td>
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
-      <td style="text-align: center">New{thA,0,F}</td>
+      <td style="text-align: center">ResultDegen{thA,0,F}</td>
       <td style="text-align: center">3</td>
       <td style="text-align: center"> </td>
       <td style="text-align: center">Yes</td>
