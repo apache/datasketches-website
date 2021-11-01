@@ -562,7 +562,11 @@
 <p>This is a new sketch where the user has set the sampling probability, <em>p &lt; 1.0</em> and the sketch has not been presented any data.  Internally at initialization, <em>theta</em> is set to <em>p</em>, so if <em>p = 0.5</em>, <em>theta</em> will be set to <em>0.5</em>. Since the sketch has not seen any data, <em>retained entries = 0</em> and <em>empty = T</em>.  This is degenerative form of a new sketch, thus its name.</p>
 
 <h3 id="resultdegen10-0-f">ResultDegen{&lt;1.0, 0, F}</h3>
-<p>This requires some explanation.  Imagine the intersection of two estimating sketches where the values retained in the two sketches are disjoint (i.e, no overlap).  Since the two sketches chose their internal values at random, there remains some probability that there could be common values in an exactly computed intersection, but it just so happens that one of the two sketches did not select any of them in the random sampling process.  Therefore, the <em>retained entries = 0</em>. The value <em>1.0 - theta</em> represents the probability that there could be intersecting values in the exact distribution. Since there is a positive probability of an intersection, <em>empty = F</em>.  This is also a degenerative case in the sense that <em>theta &lt; 1.0</em> and <em>empty = F</em> like an estimating sketch, except that no actual values were found in the operation, so <em>retained entries = 0</em>.</p>
+<p>This requires some explanation.  Imagine the intersection of two estimating sketches where the values retained in the two sketches are disjoint (i.e, no overlap).  Since the two sketches chose their internal values at random, there remains some probability that there could be common values in an exactly computed intersection, but it just so happens that one of the two sketches did not select any of them in the random sampling process.  Therefore, the <em>retained entries = 0</em>.</p>
+
+<p>Even though the <em>retained entries = 0</em> the upper bound of the estimated number of unique values in the input domain, but missed by the sketch, can be computed statistically.  It is too complex to discuss here, but the sketch code actually performs this estimation.</p>
+
+<p>Since there is a positive probability of an intersection, <em>empty = F</em>.  This is also a degenerative case in the sense that <em>theta &lt; 1.0</em> and <em>empty = F</em> like an estimating sketch, except that no actual values were found in the operation, so <em>retained entries = 0</em>.</p>
 
 <h3 id="summary-table-of-the-valid-states-of-a-sketch">Summary Table of the Valid States of a Sketch</h3>
 <p>The <em>Has Seen Data</em> column is not an independent variable, but helps with the interpretation of the state.</p>
@@ -574,6 +578,16 @@
   <li><em>retained entries &gt;0 := 2, else 0</em></li>
   <li><em>empty = true := 1, else 0</em></li>
 </ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td>The octal digit ID = ((theta == 1.0) ? 4 : 0)</td>
+      <td>((retainedEntries &gt; 0) ? 2 : 0)</td>
+      <td>(empty ? 1 : 0);</td>
+    </tr>
+  </tbody>
+</table>
 
 <table>
   <thead>
@@ -666,14 +680,14 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
       <td style="text-align: center">&gt;0</td>
       <td style="text-align: center">F</td>
       <td style="text-align: center">F</td>
-      <td style="text-align: center">If it has not seen data, Entries !&gt; 0.</td>
+      <td style="text-align: center">If it has not seen data, Entries ! &gt; 0.</td>
     </tr>
     <tr>
       <td style="text-align: center">&lt;1.0</td>
       <td style="text-align: center">&gt;0</td>
       <td style="text-align: center">F</td>
       <td style="text-align: center">F</td>
-      <td style="text-align: center">If it has not seen data, Entries !&gt; 0.</td>
+      <td style="text-align: center">If it has not seen data, Entries ! &gt; 0.</td>
     </tr>
   </tbody>
 </table>
@@ -912,47 +926,63 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
     <tr>
       <th style="text-align: center">Result Action</th>
       <th style="text-align: center">Result Code</th>
-      <th style="text-align: left">Description</th>
+      <th style="text-align: center">Used by Intersection</th>
+      <th style="text-align: center">Used By AnotB</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td style="text-align: center">New{1.0,0,T}</td>
       <td style="text-align: center">1</td>
-      <td style="text-align: left">New empty sketch</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">Yes</td>
     </tr>
     <tr>
       <td style="text-align: center">New{min,0,F}</td>
       <td style="text-align: center">2</td>
-      <td style="text-align: left">Min=min(thetaA,thetaB)</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">Yes</td>
     </tr>
     <tr>
       <td style="text-align: center">New{thA,0,F}</td>
       <td style="text-align: center">3</td>
-      <td style="text-align: left">thA=theta of A</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">Yes</td>
     </tr>
     <tr>
       <td style="text-align: center">SkA Min</td>
       <td style="text-align: center">4</td>
-      <td style="text-align: left">Trim A by minTheta</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">Yes</td>
     </tr>
     <tr>
       <td style="text-align: center">Sketch A</td>
       <td style="text-align: center">5</td>
-      <td style="text-align: left">Sketch A exactly</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">Yes</td>
     </tr>
     <tr>
       <td style="text-align: center">Full Inter</td>
       <td style="text-align: center">6</td>
-      <td style="text-align: left">Full intersect</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center"> </td>
     </tr>
     <tr>
       <td style="text-align: center">Full AnotB</td>
       <td style="text-align: center">7</td>
-      <td style="text-align: left">Full AnotB</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">Yes</td>
     </tr>
   </tbody>
 </table>
+
+<p>Abbreviations:<br /></p>
+
+<ul>
+  <li>min : min(thetaA,thetaB)</li>
+  <li>thA : theta of A</li>
+  <li>SkA Min : Trim Sketch A by minTheta</li>
+</ul>
 
 <p>Note that the results of a <em>Full Intersect</em> or a <em>Full AnotB</em> will require further interpretation of the resulting state.
 For example, if the resulting sketch is <em>{1.0,0,?}</em>, then a <em>New{1.0,0,T}</em> is returned. 
@@ -960,16 +990,16 @@ If the resulting sketch is <em>{&lt;1.0,0,?}</em> then a <em>ResultDegen{&lt;1.0
 Otherwise, the sketch returned will be an estimating or exact <em>{theta, &gt;0, F}</em>.</p>
 
 <h2 id="testing">Testing</h2>
-<p>The above information is encoded as a model into the special class <em>org.apache.datasketches.SetOperationCornerCases.java</em>. This class is made up of enums and static methods to quickly determine for a sketch what actions to take based on the state of the input arguments.  This model is independent of the implementation of the Theta Sketch, whether the set operation is performed as a Theta Sketch, or a Tuple Sketch and when translated can be used in other languages as well.</p>
+<p>The above information is encoded as a model into the special class <em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.SetOperationCornerCases.java">org.apache.datasketches.SetOperationsCornerCases</a></em>. This class is made up of enums and static methods to quickly determine for a sketch what actions to take based on the state of the input arguments.  This model is independent of the implementation of the Theta Sketch, whether the set operation is performed as a Theta Sketch, or a Tuple Sketch and when translated can be used in other languages as well.</p>
 
 <p>Before this model was put to use an extensive set of tests was designed to test any potential implementation against this model.  These tests are slightly different for the Tuple Sketch than the Theta Sketch because the Tuple Sketch has more combinations to test, but the model is the same.</p>
 
 <ul>
-  <li>The tests for the Theta Sketch can be found in the class <em>org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest.java</em></li>
-  <li>The tests for the Tuple Sketch can be found in the class <em>org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest.java</em></li>
+  <li>The tests for the Theta Sketch can be found in the class <em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest.java">org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest</a></em></li>
+  <li>The tests for the Tuple Sketch can be found in the class <em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest.java">org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest</a></em></li>
 </ul>
 
-<p>The details of how this mode is used in run-time code can be found in the class <em>org.apache.datasketches.tuple.AnotB.java</em>.</p>
+<p>The details of how this mode is used in run-time code can be found in the class <em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.tuple.AnotB.java">org.apache.datasketches.tuple.AnotB.java</a></em>.</p>
 
 
       </div> <!-- End content -->
