@@ -85,7 +85,7 @@ The octal digit `ID = ((theta == 1.0) ? 4 : 0) | ((retainedEntries > 0) ? 2 : 0)
 | Shorthand Notation                | theta | retained entries |    empty   | Has Seen Data | ID | Comments                       |
 |:---------------------------------:|:-----:|:----------------:|:----------:|:-------------:|:--:|:------------------------------:|
 | New {1.0,0,T}                     |  1.0  |         0        |     T      |       F       |  5 | New Sketch, p=1.0 (default)    |
-| Exact {1.0,>0,F}                  |  1.0  |        >0        |     F      |       T       |  6 | Exact Mode                     |
+| Exact {1.0,>0,F}                  |  1.0  |        >0        |     F      |       T       |  7 | Exact Mode                     |
 | Estimation {<1.0,>0,F}            | <1.0  |        >0        |     F      |       T       |  2 | Estimation Mode                |
 | NewDegen {<1.0,0,T}<sup>2</sup>   | <1.0  |         0        |     T      |       F       |  1 | New Sketch, user sets p<1.0    |
 | ResultDegen {<1.0,0,F}<sup>3</sup>| <1.0  |         0        |     F      |       T       |  0 | Valid Intersect or AnotB result   |
@@ -176,6 +176,6 @@ Before this model was put to use an extensive set of tests was designed to test 
 * The tests for the Theta Sketch can be found in the class *[org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest](https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest.java)*
 * The tests for the Tuple Sketch can be found in the class *[org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest](https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest.java)*
 
-The details of how this mode is used in run-time code can be found in the class *[org.apache.datasketches.tuple.AnotB.java](https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.tuple.AnotB.java)*.
+The details of how this model is used in run-time code can be found in the class *[org.apache.datasketches.tuple.AnotB.java](https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.tuple.AnotB.java)*.
 
 
