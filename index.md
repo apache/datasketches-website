@@ -46,7 +46,7 @@ layout: front_page
 
 <p>If approximate results are acceptable, there is a class of specialized algorithms, called streaming algorithms, or <a href="/docs/Background/SketchOrigins.html">sketches</a> that can produce results orders-of magnitude faster and with mathematically proven error bounds. For interactive queries there may not be other viable alternatives, and in the case of real-time analysis, sketches are the only known solution.</p>
 
-<p>For any system that needs to extract useful information from big data these sketches are a required toolkit that should be tightly integrated into their analysis capabilities. This technology has helped Yahoo (Verizon Media) successfully reduce data processing times from days or hours to minutes or seconds on a number of its internal platforms.</p>
+<p>For any system that needs to extract useful information from big data these sketches are a required toolkit that should be tightly integrated into their analysis capabilities. This technology has helped Yahoo successfully reduce data processing times from days or hours to minutes or seconds on a number of its internal platforms.</p>
 
 <p>This project is dedicated to providing a broad selection of sketch algorithms of production quality. Contributions are welcome from those interested in further development of this science and art.</p>
     </div>

@@ -292,7 +292,7 @@ that affect the project are also documented on that channel.
 > The project is independent from any corporate or organizational influence.
 
 #### Yes.
-  * Our project has committers and contributors from Verizon Media, Inc.; Hypercube, Inc.; Permutive, Inc. UK;
+  * Our project has committers and contributors from Yahoo, Inc.; Hypercube, Inc.; Permutive, Inc. UK;
 Tableau (Salesforce, Inc.); Georgetown University, Washington, D.C.; Warwick University, UK; 
 UC Berkeley; Apache Druid, and other researchers and engineers from around the world.
 

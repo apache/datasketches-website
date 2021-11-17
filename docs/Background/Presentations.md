@@ -25,7 +25,7 @@ layout: doc_page
 | Title     | Data Sketching for Real Time Analytics: Theory and Practice                   |
 | --------- | ----------------------------------------------------------------------------  |
 | Synopsis  | Explanation of the theory and operation of this new sketch.                   |
-| Presenter | Daniel Ting (Tableau Software), Jonathan Malkin (Verizon), Lee Rhodes (Verizon) |
+| Presenter | Daniel Ting (Tableau Software), Jonathan Malkin (Yahoo), Lee Rhodes (Yahoo) |
 | Date      | Aug 23, 2020                                                                  |
 | Conference| [KDD 2020](https://www.kdd.org/kdd2020/tutorials/lecture-tutorials)           |   
 | Link      | <https://datasketches.apache.org/docs/Community/KDD_Tutorial_Summary.html>    |
@@ -43,7 +43,7 @@ layout: doc_page
 | Title     | A Production Quality Sketching Library for the Analysis of Big Data           |
 | --------- | ----------------------------------------------------------------------------  |
 | Synopsis  | Quick review of Count Distinct, Quantiles, Frequent Items and other sketches. |
-| Presenter | [Lee Rhodes](https://www.linkedin.com/in/leerho/) from [Verizon Media (Yahoo)](https://www.verizonmedia.com/)  |
+| Presenter | [Lee Rhodes](https://www.linkedin.com/in/leerho/) from [Yahoo](https://www.verizonmedia.com/)  |
 | Date      | June 15, 2020                                                                 |
 | Conference| [Spark+AI](https://www.youtube.com/channel/UC3q8O3Bh2Le8Rj1-Q-_UUbA)          |   
 | Link      | [YouTube](https://www.youtube.com/watch?time_continue=5&v=WPwCnswDbOU)        |
