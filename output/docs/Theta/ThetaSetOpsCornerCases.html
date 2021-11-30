@@ -513,13 +513,13 @@
 
 <p>The <em>TupleSketch</em> is an extension of the <em>ThetaSketch</em> and both are part of the <em>Theta Sketch Framework</em><sup>1</sup>. In this document, the term <em>Theta</em> (upper case) when referencing sketches will refer to both the <em>ThetaSketch</em> and the <em>TupleSketch</em>.  This is not to be confused with the term <em>theta</em> (lower case), which refers to the sketch variable that tracks the sampling probability of the sketch.</p>
 
-<p>Because Theta sketches provide the set operations of <em>intersection</em> and <em>difference</em> (<em>A and not B</em> or just <em>A not B</em>), a number of interesting corner cases arise that require some analysis to determine how the code should handle them.</p>
+<p>Because Theta sketches provide the set operations of <em>intersection</em> and <em>difference</em> (<em>A and not B</em> or just <em>A not B</em>), a number of corner cases arise that require some analysis to determine how the code should handle them.</p>
 
 <p>Theta sketches track three key variables in addition to retained data:</p>
 
 <ul>
   <li>
-    <p><em>theta</em>: This is the current sampling probability of the sketch and mathematically expressed as a 64-bit, double floating value between 0.0 and 1.0. However, internally in the sketch, this value is expressed as a 64-bit, signed, long integer (usually identified as <em>thetaLong</em> in the code), where the maximum positive value (<em>Long.MAX_VALUE</em>) is interpreted as the double 1.0. In this document we will only refer to the mathematical quantity <em>theta</em>.</p>
+    <p><em>theta</em>: This is the current sampling probability of the sketch and mathematically expressed as a real number between 0 and 1 inclusive. In the code it is expressed as a double-precision (64-bit) floating-point value. However, internally in the sketch, this value is expressed as a 64-bit, signed, long integer (usually identified as <em>thetaLong</em> in the code), where the maximum positive value (<em>Long.MAX_VALUE</em>) is interpreted as the double 1.0. In this document we will only refer to the mathematical quantity <em>theta</em>.</p>
   </li>
   <li>
     <p><em>retained entries</em> or <em>count</em>: This is the number of hash values currently retained in the sketch. It can never be less than zero.</p>
@@ -527,13 +527,13 @@
   <li>
     <p><em>empty</em>:</p>
     <ul>
-      <li>By definition, if <em>empty = true</em>, the number of <em>retained entries</em> must be zero.  However, the value of <em>theta</em> can be 1.0 or less-than 1.0.</li>
+      <li>By definition, if <em>empty = true</em>, the number of <em>retained entries</em> must be zero. The value of <em>theta</em> is irrelevant in this case, and can be assumed to be 1.0.</li>
       <li>If <em>empty</em> = false, the <em>retained entries</em> can be zero or greater than zero, and <em>theta</em> can be 1.0 or less than 1.0.</li>
     </ul>
   </li>
 </ul>
 
-<p>We have developed a short hand notation for these three variables to record their state as <em>{theta, retained entries, empty}</em>. When analyzing the corner cases of the set operations, we only need to know whether <em>theta</em> is 1.0 or less than 1.0, <em>retained entries</em> is zero or greater than zero, and <em>empty</em> is true or false.  These are further abbreviated as</p>
+<p>We have developed a shorthand notation for these three variables to record their state as <em>{theta, retained entries, empty}</em>. When analyzing the corner cases of the set operations, we only need to know whether <em>theta</em> is 1.0 or less than 1.0, <em>retained entries</em> is zero or greater than zero, and <em>empty</em> is true or false. These are further abbreviated as</p>
 
 <ul>
   <li><em>theta</em> can be <em>1.0</em> or <em>&lt;1.0</em></li>
@@ -541,7 +541,7 @@
   <li><em>empty</em> can be either <em>T</em> or <em>F</em></li>
 </ul>
 
-<p>Each of the above three variables can be represented as boolean variable. Thus, there are 8 possible combinations of the three variables.</p>
+<p>Each of the above three states can be represented as a boolean variable. Thus, there are 8 possible combinations of the three variables.</p>
 
 <hr />
 
@@ -549,26 +549,23 @@
 
 <h2 id="valid-states-of-a-sketch">Valid States of a Sketch</h2>
 
-<p>Of the eight possible combinations of the three variables and using the above notation, there are five valid states of a <em>Theta</em> sketch.</p>
+<p>Of the eight possible combinations of the three boolean variables and using the above notation, there are four valid states of a <em>Theta</em> sketch.</p>
 
-<h3 id="new10-0-t">New{1.0, 0, T}</h3>
-<p>When a new sketch is created, <em>theta</em> is set to 1.0, <em>retained entries</em> is set to zero, and <em>empty</em> is true.  This state can also occur as the result of a set operation, where the operation creates a new sketch to potentially load result data into the sketch but there is no data to load into the sketch.  So it effectively returns a new sketch that has been untouched and unaffected by the input arguments to the set operation.</p>
+<h3 id="empty10-0-t">Empty{1.0, 0, T}</h3>
+<p>When a new sketch is created, <em>theta</em> is set to 1.0, <em>retained entries</em> is set to zero, and <em>empty</em> is true. This state can also occur as the result of a set operation, where the operation creates a new sketch to potentially load result data into the sketch but there is no data to load into the sketch. So it effectively returns a new empty sketch that has been untouched and unaffected by the input arguments to the set operation.</p>
 
 <h3 id="exact10-0-f">Exact{1.0, &gt;0, F}</h3>
-<p>All of the <em>Theta</em> sketches have an input buffer that is effectively a list of items received by the sketch. If the number of unique input values does not exceed the size of that buffer, the sketch is in <em>exact</em> mode.  There is no probabilistic estimation involved so <em>theta = 1.0</em>, which indicates that all unique values presented to the sketch are in the buffer. <em>retained entries</em> is the count of those values in the buffer, and the sketch is clearly not <em>empty</em>.</p>
+<p>All of the <em>Theta</em> sketches have an internal buffer that is effectively a list of hash values of the items received by the sketch. If the number of distinct input items does not exceed the size of that buffer, the sketch is in <em>exact</em> mode. There is no probabilistic estimation involved so <em>theta = 1.0</em>, which indicates that all distinct values are in the buffer. <em>retained entries</em> is the count of those values in the buffer, and the sketch is not <em>empty</em>.</p>
 
 <h3 id="estimation10-0-f">Estimation{&lt;1.0, &gt;0, F}</h3>
-<p>Here, the number of inputs to the sketch have exceeded the size of the input buffer, so the sketch must start choosing what values to retain in the sketch and starts reducing the value of <em>theta</em> accordingly.  <em>theta &lt; 1.0</em>, <em>retained entries &gt; 0</em>, and <em>empty = F</em>.</p>
+<p>Here, the number of distinct inputs to the sketch have exceeded the size of the buffer, so the sketch must start choosing what values to retain in the sketch and starts reducing the value of <em>theta</em> accordingly. <em>theta &lt; 1.0</em>, <em>retained entries &gt; 0</em>, and <em>empty = F</em>.</p>
 
-<h3 id="newdegen10-0-t">NewDegen{&lt;1.0, 0, T}</h3>
-<p>This is a new sketch where the user has set the sampling probability, <em>p &lt; 1.0</em> and the sketch has not been presented any data.  Internally at initialization, <em>theta</em> is set to <em>p</em>, so if <em>p = 0.5</em>, <em>theta</em> will be set to <em>0.5</em>. Since the sketch has not seen any data, <em>retained entries = 0</em> and <em>empty = T</em>.  This is degenerative form of a new sketch, thus its name.</p>
+<h3 id="degenerate10-0-f">Degenerate{&lt;1.0, 0, F}</h3>
+<p>This requires some explanation. Imagine the intersection of two estimating sketches where the values retained in the two sketches are disjoint (i.e, no overlap). Since the two sketches chose their internal values at random, there remains some probability that there could be common values in an exactly computed intersection, but it just so happens that one of the two sketches did not select any of them in the random sampling process. Therefore, the <em>retained entries = 0</em>.</p>
 
-<h3 id="resultdegen10-0-f">ResultDegen{&lt;1.0, 0, F}</h3>
-<p>This requires some explanation.  Imagine the intersection of two estimating sketches where the values retained in the two sketches are disjoint (i.e, no overlap).  Since the two sketches chose their internal values at random, there remains some probability that there could be common values in an exactly computed intersection, but it just so happens that one of the two sketches did not select any of them in the random sampling process.  Therefore, the <em>retained entries = 0</em>.</p>
+<p>Even though the <em>retained entries = 0</em> the upper bound of the estimated number of distinct values in the input domain, but missed by the sketch, can be computed statistically. It is too complex to discuss here, but the sketch code actually performs this estimation.</p>
 
-<p>Even though the <em>retained entries = 0</em> the upper bound of the estimated number of unique values in the input domain, but missed by the sketch, can be computed statistically.  It is too complex to discuss here, but the sketch code actually performs this estimation.</p>
-
-<p>Since there is a positive probability of an intersection, <em>empty = F</em>.  This is also a degenerative case in the sense that <em>theta &lt; 1.0</em> and <em>empty = F</em> like an estimating sketch, except that no actual values were found in the operation, so <em>retained entries = 0</em>.</p>
+<p>Since there is a non-zero probability of a non-empty intersection, <em>empty = F</em>. This is also a degenerate case in the sense that <em>theta &lt; 1.0</em> and <em>empty = F</em> like an estimating sketch, except that no actual values were found in the operation, so <em>retained entries = 0</em>.</p>
 
 <h3 id="summary-table-of-the-valid-states-of-a-sketch">Summary Table of the Valid States of a Sketch</h3>
 <p>The <em>Has Seen Data</em> column is not an independent variable, but helps with the interpretation of the state.</p>
@@ -597,13 +594,13 @@
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">New {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
       <td style="text-align: center">1.0</td>
       <td style="text-align: center">0</td>
       <td style="text-align: center">T</td>
       <td style="text-align: center">F</td>
       <td style="text-align: center">5</td>
-      <td style="text-align: center">New Sketch, p=1.0 (default)</td>
+      <td style="text-align: center">Empty Sketch</td>
     </tr>
     <tr>
       <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
@@ -624,16 +621,7 @@
       <td style="text-align: center">Estimation Mode</td>
     </tr>
     <tr>
-      <td style="text-align: center">NewDegen {&lt;1.0,0,T}<sup>2</sup></td>
-      <td style="text-align: center">&lt;1.0</td>
-      <td style="text-align: center">0</td>
-      <td style="text-align: center">T</td>
-      <td style="text-align: center">F</td>
-      <td style="text-align: center">1</td>
-      <td style="text-align: center">New Sketch, user sets p&lt;1.0</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">ResultDegen {&lt;1.0,0,F}<sup>3</sup></td>
+      <td style="text-align: center">Degenerate {&lt;1.0,0,F}<sup>3</sup></td>
       <td style="text-align: center">&lt;1.0</td>
       <td style="text-align: center">0</td>
       <td style="text-align: center">F</td>
@@ -646,12 +634,12 @@
 
 <hr />
 
-<p><sup>2</sup> <em>New Degenerate</em>: New Empty Sketch where the user sets <em>p &lt; 1.0</em>. This can be safely reinterpreted as {1.0,0,T} because it has not seen any data.<br />
-<sup>3</sup> <em>Result Degenerate</em>: Can appear as a result of a an Intersection or AnotB of certain combination of sketches.</p>
+<p><sup>3</sup> <em>Degenerate</em>: Can appear as a result of a an Intersection or AnotB of certain combination of sketches.</p>
 
 <h2 id="invalid-states-of-a-sketch">Invalid States of a Sketch</h2>
-<p>The remaining three combinations of the variables represent internal errors and should not occur. 
-The <em>Has Seen Data</em> column is not an independent variable, but helps with the interpretation of the state.</p>
+<p>The remaining four combinations of the variables are invalid and should not occur.</p>
+
+<p>The <em>Has Seen Data</em> column is not an independent variable, but helps with the interpretation of the state.</p>
 
 <table>
   <thead>
@@ -667,29 +655,36 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
     <tr>
       <td style="text-align: center">1.0</td>
       <td style="text-align: center">0</td>
+      <td style="text-align: center">F</td>
       <td style="text-align: center">T</td>
-      <td style="text-align: center">T</td>
-      <td style="text-align: center">If it has seen data, Theta != 1.0 AND Entries = 0.</td>
+      <td style="text-align: center">If it has seen data Empty = F; ∴ Theta cannot be = 1.0 AND Entries = 0</td>
     </tr>
     <tr>
       <td style="text-align: center">1.0</td>
       <td style="text-align: center">&gt;0</td>
+      <td style="text-align: center">T</td>
       <td style="text-align: center">F</td>
-      <td style="text-align: center">F</td>
-      <td style="text-align: center">If it has not seen data, Entries ! &gt; 0.</td>
+      <td style="text-align: center">If it has not seen data Empty = T; ∴ Entries cannot be &gt; 0</td>
     </tr>
     <tr>
       <td style="text-align: center">&lt;1.0</td>
       <td style="text-align: center">&gt;0</td>
+      <td style="text-align: center">T</td>
       <td style="text-align: center">F</td>
+      <td style="text-align: center">If it has not seen data, Empty = T; ∴ Theta cannot be &lt; 0 OR Entries &gt; 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&lt;1.0</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">T</td>
       <td style="text-align: center">F</td>
-      <td style="text-align: center">If it has not seen data, Entries ! &gt; 0.</td>
+      <td style="text-align: center">If it has not seen data, Empty = T; ∴ Theta cannot be &lt; 0</td>
     </tr>
   </tbody>
 </table>
 
 <h2 id="combinations-of-states-of-two-sketches">Combinations of States of Two Sketches</h2>
-<p>Each sketch can have 5 valid states, which means we can have 25 combinations of states of two sketches as expanded in the following table.</p>
+<p>Each sketch can have four valid states, which means we can have 16 combinations of states of two sketches as expanded in the following table.</p>
 
 <table>
   <thead>
@@ -704,114 +699,74 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">00</td>
-      <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
-      <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
-      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
-      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
-      <td style="text-align: center">2,2</td>
+      <td style="text-align: center">55</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">1,1</td>
     </tr>
     <tr>
-      <td style="text-align: center">01</td>
-      <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
-      <td style="text-align: center">NewDegen {&lt;1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">ResultDegen {ThetaA,0,F}</td>
-      <td style="text-align: center">1,3</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">02</td>
-      <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
-      <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
-      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
-      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
-      <td style="text-align: center">2,2</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">05</td>
-      <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">ResultDegen {ThetaA,0,F}</td>
-      <td style="text-align: center">1,3</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">06</td>
-      <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
+      <td style="text-align: center">56</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
       <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
-      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
-      <td style="text-align: center">ResultDegen {ThetaA,0,F}</td>
-      <td style="text-align: center">2,3</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">10</td>
-      <td style="text-align: center">NewDegen {&lt;1.0,0,T}</td>
-      <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
       <td style="text-align: center">1,1</td>
     </tr>
     <tr>
-      <td style="text-align: center">11</td>
-      <td style="text-align: center">NewDegen {&lt;1.0,0,T}</td>
-      <td style="text-align: center">NewDegen {&lt;1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">1,1</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">12</td>
-      <td style="text-align: center">NewDegen {&lt;1.0,0,T}</td>
+      <td style="text-align: center">52</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
       <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
       <td style="text-align: center">1,1</td>
     </tr>
     <tr>
-      <td style="text-align: center">15</td>
-      <td style="text-align: center">NewDegen {&lt;1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
+      <td style="text-align: center">50</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">Degenerate {&lt;1.0,0,F}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
       <td style="text-align: center">1,1</td>
     </tr>
     <tr>
-      <td style="text-align: center">16</td>
-      <td style="text-align: center">NewDegen {&lt;1.0,0,T}</td>
+      <td style="text-align: center">65</td>
       <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">1,1</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">20</td>
-      <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
-      <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
-      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
-      <td style="text-align: center">Trim A by minTheta</td>
-      <td style="text-align: center">2,4</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">21</td>
-      <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
-      <td style="text-align: center">NewDegen {&lt;1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
       <td style="text-align: center">Sketch A</td>
       <td style="text-align: center">1,5</td>
     </tr>
     <tr>
-      <td style="text-align: center">22</td>
-      <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
+      <td style="text-align: center">66</td>
+      <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
+      <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
+      <td style="text-align: center">Full Intersect</td>
+      <td style="text-align: center">Full AnotB</td>
+      <td style="text-align: center">6,7</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">62</td>
+      <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
       <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
       <td style="text-align: center">Full Intersect</td>
       <td style="text-align: center">Full AnotB</td>
       <td style="text-align: center">6,7</td>
     </tr>
     <tr>
+      <td style="text-align: center">60</td>
+      <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
+      <td style="text-align: center">Degenerate {&lt;1.0,0,F}</td>
+      <td style="text-align: center">Degenerate {minTheta,0,F}</td>
+      <td style="text-align: center">Trim A by minTheta</td>
+      <td style="text-align: center">2,4</td>
+    </tr>
+    <tr>
       <td style="text-align: center">25</td>
       <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
       <td style="text-align: center">Sketch A</td>
       <td style="text-align: center">1,5</td>
     </tr>
@@ -824,84 +779,52 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
       <td style="text-align: center">6,7</td>
     </tr>
     <tr>
-      <td style="text-align: center">50</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">1,1</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">51</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">NewDegen {&lt;1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">1,1</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">52</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
+      <td style="text-align: center">22</td>
       <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">1,1</td>
+      <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
+      <td style="text-align: center">Full Intersect</td>
+      <td style="text-align: center">Full AnotB</td>
+      <td style="text-align: center">6,7</td>
     </tr>
     <tr>
-      <td style="text-align: center">55</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">1,1</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">56</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">1,1</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">60</td>
-      <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
-      <td style="text-align: center">ResultDegen {&lt;1.0,0,F}</td>
-      <td style="text-align: center">ResultDegen {minTheta,0,F}</td>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
+      <td style="text-align: center">Degenerate {&lt;1.0,0,F}</td>
+      <td style="text-align: center">Degenerate {minTheta,0,F}</td>
       <td style="text-align: center">Trim A by minTheta</td>
       <td style="text-align: center">2,4</td>
     </tr>
     <tr>
-      <td style="text-align: center">61</td>
-      <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
-      <td style="text-align: center">NewDegen {&lt;1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">Sketch A</td>
-      <td style="text-align: center">1,5</td>
+      <td style="text-align: center">05</td>
+      <td style="text-align: center">Degenerate {&lt;1.0,0,F}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">Degenerate {ThetaA,0,F}</td>
+      <td style="text-align: center">1,3</td>
     </tr>
     <tr>
-      <td style="text-align: center">62</td>
+      <td style="text-align: center">06</td>
+      <td style="text-align: center">Degenerate {&lt;1.0,0,F}</td>
       <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
+      <td style="text-align: center">Degenerate {minTheta,0,F}</td>
+      <td style="text-align: center">Degenerate {ThetaA,0,F}</td>
+      <td style="text-align: center">2,3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">02</td>
+      <td style="text-align: center">Degenerate {&lt;1.0,0,F}</td>
       <td style="text-align: center">Estimation {&lt;1.0,&gt;0,F}</td>
-      <td style="text-align: center">Full Intersect</td>
-      <td style="text-align: center">Full AnotB</td>
-      <td style="text-align: center">6,7</td>
+      <td style="text-align: center">Degenerate {minTheta,0,F}</td>
+      <td style="text-align: center">Degenerate {minTheta,0,F}</td>
+      <td style="text-align: center">2,2</td>
     </tr>
     <tr>
-      <td style="text-align: center">65</td>
-      <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">New {1.0,0,T}</td>
-      <td style="text-align: center">Sketch A</td>
-      <td style="text-align: center">1,5</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">66</td>
-      <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
-      <td style="text-align: center">Exact {1.0,&gt;0,F}</td>
-      <td style="text-align: center">Full Intersect</td>
-      <td style="text-align: center">Full AnotB</td>
-      <td style="text-align: center">6,7</td>
+      <td style="text-align: center">00</td>
+      <td style="text-align: center">Degenerate {&lt;1.0,0,F}</td>
+      <td style="text-align: center">Degenerate {&lt;1.0,0,F}</td>
+      <td style="text-align: center">Degenerate {minTheta,0,F}</td>
+      <td style="text-align: center">Degenerate {minTheta,0,F}</td>
+      <td style="text-align: center">2,2</td>
     </tr>
   </tbody>
 </table>
@@ -914,39 +837,39 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
   <li>Sketch B State</li>
   <li>Intersection Result</li>
   <li>AnotB Result</li>
-  <li>The octal representation of the Intersection Result followed by the octal representation of the AnotB result. The result codes are given by the following table:</li>
+  <li>The ID of the Intersection Result followed by the ID of the AnotB result. The result codes are given by the following table:</li>
 </ul>
 
 <table>
   <thead>
     <tr>
       <th style="text-align: center">Result Action</th>
-      <th style="text-align: center">Result Code</th>
+      <th style="text-align: center">Result ID</th>
       <th style="text-align: center">Used by Intersection</th>
       <th style="text-align: center">Used By AnotB</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">New{1.0,0,T}</td>
+      <td style="text-align: center">Empty{1.0,0,T}</td>
       <td style="text-align: center">1</td>
       <td style="text-align: center">Yes</td>
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
-      <td style="text-align: center">ResultDegen{min,0,F}</td>
+      <td style="text-align: center">Degenerate{minTheta,0,F}</td>
       <td style="text-align: center">2</td>
       <td style="text-align: center">Yes</td>
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
-      <td style="text-align: center">ResultDegen{thA,0,F}</td>
+      <td style="text-align: center">Degenerate{thetaA,0,F}</td>
       <td style="text-align: center">3</td>
       <td style="text-align: center"> </td>
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
-      <td style="text-align: center">SkA Min</td>
+      <td style="text-align: center">Sketch A trimmed by minTheta</td>
       <td style="text-align: center">4</td>
       <td style="text-align: center"> </td>
       <td style="text-align: center">Yes</td>
@@ -958,7 +881,7 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
       <td style="text-align: center">Yes</td>
     </tr>
     <tr>
-      <td style="text-align: center">Full Inter</td>
+      <td style="text-align: center">Full Intersect</td>
       <td style="text-align: center">6</td>
       <td style="text-align: center">Yes</td>
       <td style="text-align: center"> </td>
@@ -972,23 +895,15 @@ The <em>Has Seen Data</em> column is not an independent variable, but helps with
   </tbody>
 </table>
 
-<p>Abbreviations:<br /></p>
-
-<ul>
-  <li>min : min(thetaA,thetaB)</li>
-  <li>thA : theta of A</li>
-  <li>SkA Min : Trim Sketch A by minTheta</li>
-</ul>
-
 <p>Note that the results of a <em>Full Intersect</em> or a <em>Full AnotB</em> will require further interpretation of the resulting state.
-For example, if the resulting sketch is <em>{1.0,0,?}</em>, then a <em>New{1.0,0,T}</em> is returned. 
-If the resulting sketch is <em>{&lt;1.0,0,?}</em> then a <em>ResultDegen{&lt;1.0,0,F}</em> is returned.<br />
+For example, if the resulting sketch is <em>{1.0,0,?}</em>, then an <em>Empty{1.0,0,T}</em> is returned. 
+If the resulting sketch is <em>{&lt;1.0,0,?}</em> then a <em>Degenerate{&lt;1.0,0,F}</em> is returned.<br />
 Otherwise, the sketch returned will be an estimating or exact <em>{theta, &gt;0, F}</em>.</p>
 
 <h2 id="testing">Testing</h2>
-<p>The above information is encoded as a model into the special class <em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.SetOperationCornerCases.java">org.apache.datasketches.SetOperationsCornerCases</a></em>. This class is made up of enums and static methods to quickly determine for a sketch what actions to take based on the state of the input arguments.  This model is independent of the implementation of the Theta Sketch, whether the set operation is performed as a Theta Sketch, or a Tuple Sketch and when translated can be used in other languages as well.</p>
+<p>The above information is encoded as a model into the special class <em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.SetOperationCornerCases.java">org.apache.datasketches.SetOperationsCornerCases</a></em>. This class is made up of enums and static methods to quickly determine for a sketch what actions to take based on the state of the input arguments. This model is independent of the implementation of the Theta Sketch, whether the set operation is performed as a Theta Sketch, or a Tuple Sketch and when translated can be used in other languages as well.</p>
 
-<p>Before this model was put to use an extensive set of tests was designed to test any potential implementation against this model.  These tests are slightly different for the Tuple Sketch than the Theta Sketch because the Tuple Sketch has more combinations to test, but the model is the same.</p>
+<p>Before this model was put to use an extensive set of tests was designed to test any potential implementation against this model. These tests are slightly different for the Tuple Sketch than the Theta Sketch because the Tuple Sketch has more combinations to test, but the model is the same.</p>
 
 <ul>
   <li>The tests for the Theta Sketch can be found in the class <em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest.java">org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest</a></em></li>
