@@ -73,8 +73,8 @@ layout: doc_page
       ArrayOfDoublesSketch sketch2 = ArrayOfDoublesSketches.wrapSketch(Memory.wrap(bytes2));
 
       ArrayOfDoublesUnion union = new ArrayOfDoublesSetOperationBuilder().buildUnion();
-      union.update(sketch1);
-      union.update(sketch2);
+      union.union(sketch1);
+      union.union(sketch2);
       ArrayOfDoublesSketch unionResult = union.getResult();
 
       System.out.println("Union unique count estimate: " + unionResult.getEstimate());
