@@ -90,6 +90,18 @@ The octal digit `ID = ((theta == 1.0) ? 4 : 0) | ((retainedEntries > 0) ? 2 : 0)
 
 <sup>3</sup> *Degenerate*: Can appear as a result of a an Intersection or AnotB of certain combination of sketches.
 
+## Invalid States of a Sketch
+The remaining four combinations of the variables are invalid and should not occur.
+
+The *Has Seen Data* column is not an independent variable, but helps with the interpretation of the state.
+
+| Theta | Retained Entries | Empty Flag | Has Seen Data | Comments                                           |
+|:-----:|:----------------:|:----------:|:-------------:|:--------------------------------------------------:|
+|  1.0  |        0         |      F     |       T       | If it has seen data, Theta = 1.0 AND Entries = 0   |
+|  1.0  |       >0         |      T     |       F       | If it has not seen data, Entries > 0               |
+| <1.0  |       >0         |      T     |       F       | If it has not seen data, Theta < 0 AND Entries > 0 |
+| <1.0  |        0         |      T     |       F       | If it has not seen data, Theta < 0                 |
+
 ## Combinations of States of Two Sketches
 Each sketch can have four valid states, which means we can have 16 combinations of states of two sketches as expanded in the following table.
  
