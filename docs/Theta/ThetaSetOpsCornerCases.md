@@ -99,8 +99,8 @@ The *Has Seen Data* column is not an independent variable, but helps with the in
 |:-----:|:----------------:|:----------:|:-------------:|:--------------------------------------------------:|
 |  1.0  |        0         |      F     |       T       | If it has seen data Empty = F; &there4; Theta cannot be = 1.0 AND Entries = 0    |
 |  1.0  |       >0         |      T     |       F       | If it has not seen data Empty = T; &there4; Entries cannot be > 0                |
-| <1.0  |       >0         |      T     |       F       | If it has not seen data, Empty = T; &there4; Theta cannot be < 0 OR Entries > 0  |
-| <1.0  |        0         |      T     |       F       | If it has not seen data, Empty = T; &there4; Theta cannot be < 0                 |
+| <1.0  |       >0         |      T     |       F       | If it has not seen data, Empty = T; &there4; Theta cannot be < 1.0 OR Entries > 0|
+| <1.0  |        0         |      T     |       F       | If it has not seen data, Empty = T; &there4; Theta cannot be < 1.0               |
 
 ## Combinations of States of Two Sketches
 Each sketch can have four valid states, which means we can have 16 combinations of states of two sketches as expanded in the following table.
