@@ -703,10 +703,10 @@ The <em>getLowerBound(…)</em> will be zero because it is also possible that th
       <th style="text-align: center">Sketch A<br />State</th>
       <th style="text-align: center">Sketch B<br />State</th>
       <th style="text-align: center">Pair<br />ID</th>
-      <th style="text-align: center">Intersection<br />Result</th>
-      <th style="text-align: center">AnotB<br />Result</th>
-      <th style="text-align: center">Union<br />Result</th>
-      <th style="text-align: center">Actions</th>
+      <th style="text-align: center">Intersection<br />Action</th>
+      <th style="text-align: center">AnotB<br />Action</th>
+      <th style="text-align: center">Union<br />Action</th>
+      <th style="text-align: center">Action IDs</th>
     </tr>
   </thead>
   <tbody>
@@ -743,8 +743,8 @@ The <em>getLowerBound(…)</em> will be zero because it is also possible that th
       <td style="text-align: center">50</td>
       <td style="text-align: center">Empty<br />{1.0,0,T}=A</td>
       <td style="text-align: center">Empty<br />{1.0,0,T}=A</td>
-      <td style="text-align: center">Degenerate<br />{minTheta,0,F}=B</td>
-      <td style="text-align: center">E,E,D</td>
+      <td style="text-align: center">Degenerate<br />{ThetaB,0,F}=B</td>
+      <td style="text-align: center">E,E,DB</td>
     </tr>
     <tr>
       <td style="text-align: center">Exact<br />{1.0,&gt;0,F}</td>
@@ -777,10 +777,10 @@ The <em>getLowerBound(…)</em> will be zero because it is also possible that th
       <td style="text-align: center">Exact<br />{1.0,&gt;0,F}</td>
       <td style="text-align: center">Degenerate<br />{&lt;1.0,0,F}</td>
       <td style="text-align: center">60</td>
-      <td style="text-align: center">Degenerate<br />{minTheta,0,F}=B</td>
+      <td style="text-align: center">Degenerate<br />{ThetaB,0,F}=B</td>
       <td style="text-align: center">Trim A<br />by minTheta</td>
       <td style="text-align: center">Trim A<br />by minTheta</td>
-      <td style="text-align: center">D,AT,AT</td>
+      <td style="text-align: center">D,TA,TA</td>
     </tr>
     <tr>
       <td style="text-align: center">Estimation<br />{&lt;1.0,&gt;0,F}</td>
@@ -816,25 +816,25 @@ The <em>getLowerBound(…)</em> will be zero because it is also possible that th
       <td style="text-align: center">Degenerate<br />{minTheta,0,F}</td>
       <td style="text-align: center">Trim A<br />by minTheta</td>
       <td style="text-align: center">Trim A<br />by minTheta</td>
-      <td style="text-align: center">D,AT,AT</td>
+      <td style="text-align: center">D,TA,TA</td>
     </tr>
     <tr>
       <td style="text-align: center">Degenerate<br />{&lt;1.0,0,F}</td>
       <td style="text-align: center">Empty<br />{1.0,0,T}</td>
       <td style="text-align: center">05</td>
       <td style="text-align: center">Empty<br />{1.0,0,T}=B</td>
-      <td style="text-align: center">Degenerate<br />{minTheta,0,F}=A</td>
-      <td style="text-align: center">Degenerate<br />{minTheta,0,F}=A</td>
-      <td style="text-align: center">E,D,D</td>
+      <td style="text-align: center">Degenerate<br />{ThetaA,0,F}=A</td>
+      <td style="text-align: center">Degenerate<br />{ThetaA,0,F}=A</td>
+      <td style="text-align: center">E,DA,DA</td>
     </tr>
     <tr>
       <td style="text-align: center">Degenerate<br />{&lt;1.0,0,F}</td>
       <td style="text-align: center">Exact<br />{1.0,&gt;0,F}</td>
       <td style="text-align: center">06</td>
-      <td style="text-align: center">Degenerate<br />{minTheta,0,F}=A</td>
-      <td style="text-align: center">Degenerate<br />{minTheta,0,F}=A</td>
+      <td style="text-align: center">Degenerate<br />{ThetaA,0,F}=A</td>
+      <td style="text-align: center">Degenerate<br />{ThetaA,0,F}=A</td>
       <td style="text-align: center">Trim B<br />by minTheta</td>
-      <td style="text-align: center">D,D,BT</td>
+      <td style="text-align: center">DA,DA,TB</td>
     </tr>
     <tr>
       <td style="text-align: center">Degenerate<br />{&lt;1.0,0,F}</td>
@@ -843,7 +843,7 @@ The <em>getLowerBound(…)</em> will be zero because it is also possible that th
       <td style="text-align: center">Degenerate<br />{minTheta,0,F}</td>
       <td style="text-align: center">Degenerate<br />{minTheta,0,F}</td>
       <td style="text-align: center">Trim B<br />by minTheta</td>
-      <td style="text-align: center">D,D,BT</td>
+      <td style="text-align: center">D,D,TB</td>
     </tr>
     <tr>
       <td style="text-align: center">Degenerate<br />{&lt;1.0,0,F}</td>
@@ -863,19 +863,19 @@ The <em>getLowerBound(…)</em> will be zero because it is also possible that th
   <li>Pair ID: two octal digits, the first digit represents the state of Sketch A, the second digit represents the state of Sketch B.</li>
   <li>Sketch A State</li>
   <li>Sketch B State</li>
-  <li>Intersection Result</li>
-  <li>AnotB Result</li>
-  <li>Union Result</li>
+  <li>Intersection Action</li>
+  <li>AnotB Action</li>
+  <li>Union Action</li>
   <li>Action Codes: Intersection, AnotB, Union.</li>
 </ul>
 
-<p>The action codes are given by the following table along with description and where used:</p>
+<p>The action IDs are given by the following table along with description and where used:</p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: center">Action</th>
-      <th style="text-align: center">Action Description</th>
+      <th style="text-align: center">Action ID</th>
+      <th style="text-align: center">Action<br />Description</th>
       <th style="text-align: center">Intersection</th>
       <th style="text-align: center">AnotB</th>
       <th style="text-align: center">Union</th>
@@ -890,8 +890,8 @@ The <em>getLowerBound(…)</em> will be zero because it is also possible that th
       <td style="text-align: center">&amp;check;</td>
     </tr>
     <tr>
-      <td style="text-align: center">AT</td>
-      <td style="text-align: center">Sketch A trimmed by minTheta</td>
+      <td style="text-align: center">TA</td>
+      <td style="text-align: center">Trim Sketch A<br />by minTheta</td>
       <td style="text-align: center"> </td>
       <td style="text-align: center">&amp;check;</td>
       <td style="text-align: center">&amp;check;</td>
@@ -904,22 +904,36 @@ The <em>getLowerBound(…)</em> will be zero because it is also possible that th
       <td style="text-align: center">&amp;check;</td>
     </tr>
     <tr>
-      <td style="text-align: center">BT</td>
-      <td style="text-align: center">Sketch B trimmed by minTheta</td>
+      <td style="text-align: center">TB</td>
+      <td style="text-align: center">Trim Sketch B<br />by minTheta</td>
       <td style="text-align: center"> </td>
       <td style="text-align: center"> </td>
       <td style="text-align: center">&amp;check;</td>
     </tr>
     <tr>
       <td style="text-align: center">D</td>
-      <td style="text-align: center">Degenerate {minTheta,0,F}</td>
+      <td style="text-align: center">Degenerate<br />{minTheta,0,F}</td>
       <td style="text-align: center">&amp;check;</td>
       <td style="text-align: center">&amp;check;</td>
       <td style="text-align: center">&amp;check;</td>
     </tr>
     <tr>
+      <td style="text-align: center">DA</td>
+      <td style="text-align: center">Degenerate<br />{ThetaA,0,F}<br />(optional)</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">&amp;check;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">DB</td>
+      <td style="text-align: center">Degenerate<br />{ThetaB,0,F}<br />(optional)</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">&amp;check;</td>
+    </tr>
+    <tr>
       <td style="text-align: center">E</td>
-      <td style="text-align: center">Empty {1.0,0,T}</td>
+      <td style="text-align: center">Empty<br />{1.0,0,T}</td>
       <td style="text-align: center">&amp;check;</td>
       <td style="text-align: center">&amp;check;</td>
       <td style="text-align: center">&amp;check;</td>
@@ -948,10 +962,10 @@ The <em>getLowerBound(…)</em> will be zero because it is also possible that th
   </tbody>
 </table>
 
-<p>Note that the results of a <em>Full Intersect</em>, <em>Full AnotB</em>, or <em>Full Union</em> will require further interpretation of the resulting state. For example:</p>
+<p>Note that the results of <em>Full Intersect</em>, <em>Full AnotB</em>, or <em>Full Union</em> actions will require further interpretation of the resulting state. For example:</p>
 
 <ul>
-  <li>For example, if the resulting sketch is <em>{1.0,0,?}</em>, then an <em>Empty{1.0,0,T}</em> is returned.</li>
+  <li>If the resulting sketch is <em>{1.0,0,?}</em>, then an <em>Empty{1.0,0,T}</em> is returned.</li>
   <li>If the resulting sketch is <em>{&lt;1.0,0,?}</em> then a <em>Degenerate{&lt;1.0,0,F}</em> is returned.</li>
   <li>Otherwise, the sketch returned will be an estimating <em>{minTheta, &gt;0, F}</em>, or exact <em>{1.0, &gt;0, F}</em>.</li>
 </ul>
