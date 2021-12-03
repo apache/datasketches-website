@@ -147,19 +147,19 @@ Each sketch can have four valid states, which means we can have 16 combinations 
 
 The action IDs are given by the following table along with description and where used:
 
-| Action ID | Action<br>Description                    | Intersection | AnotB   | Union   |
-|:---------:|:----------------------------------------:|:------------:|:-------:|:-------:|
-|   A       | Sketch A                                 |              | &check; | &check; |
-|   TA      | Trim Sketch A<br>by minTheta             |              | &check; | &check; |
-|   B       | Sketch B                                 |              |         | &check; |
-|   TB      | Trim Sketch B<br>by minTheta             |              |         | &check; |
-|   D       | Degenerate<br>{minTheta,0,F}             | &check;      | &check; | &check; |
-|   DA      | Degenerate<br>{ThetaA,0,F}<br>(optional) |              |         | &check; |
-|   DB      | Degenerate<br>{ThetaB,0,F}<br>(optional) |              |         | &check; |
-|   E       | Empty<br>{1.0,0,T}                       | &check;      | &check; | &check; |
-|   I       | Full Intersect                           | &check;      |         |         |
-|   N       | Full AnotB                               |              | &check; |         |
-|   U       | Full Union                               |              |         | &check; |
+| Action ID | Action<br>Description                    | Intersection | AnotB    | Union    |
+|:---------:|:----------------------------------------:|:------------:|:--------:|:--------:|
+|   A       | Sketch A                                 |              | &#10004; | &#10004; |
+|   TA      | Trim Sketch A<br>by minTheta             |              | &#10004; | &#10004; |
+|   B       | Sketch B                                 |              |          | &#10004; |
+|   TB      | Trim Sketch B<br>by minTheta             |              |          | &#10004; |
+|   D       | Degenerate<br>{minTheta,0,F}             | &#10004;     | &#10004; | &#10004; |
+|   DA      | Degenerate<br>{ThetaA,0,F}<br>(optional) |              |          | &#10004; |
+|   DB      | Degenerate<br>{ThetaB,0,F}<br>(optional) |              |          | &#10004; |
+|   E       | Empty<br>{1.0,0,T}                       | &#10004;     | &#10004; | &#10004; |
+|   I       | Full Intersect                           | &#10004;     |          |          |
+|   N       | Full AnotB                               |              | &#10004; |          |
+|   U       | Full Union                               |              |          | &#10004; |
 
 
 Note that the results of *Full Intersect*, *Full AnotB*, or *Full Union* actions will require further interpretation of the resulting state. For example:
