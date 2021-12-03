@@ -116,53 +116,55 @@ The *Has Seen Data* column is not an independent variable, but helps with the in
 ## State Combinations of Two Sketches and Set Operation Results
 Each sketch can have four valid states, which means we can have 16 combinations of states of two sketches as expanded in the following table.
  
-| Sketch A<br>State         | Sketch B<br>State         | Pair<br>ID | Intersection<br>Result         | AnotB<br>Result                | Union<br>Result                | Actions |
-|:-------------------------:|:-------------------------:|:----------:|:------------------------------:|:------------------------------:|:------------------------------:|:-------:|
-| Empty<br>{1.0,0,T}        | Empty<br>{1.0,0,T}        | 55         | Empty<br>{1.0,0,T}=A=B         | Empty<br>{1.0,0,T}=A           | Empty<br>{1.0,0,T}=A=B         | E,E,E   |
-| Empty<br>{1.0,0,T}        | Exact<br>{1.0,>0,F}       | 56         | Empty<br>{1.0,0,T}=A           | Empty<br>{1.0,0,T}=A           | Sketch B                       | E,E,B   |
-| Empty<br>{1.0,0,T}        | Estimation<br>{<1.0,>0,F} | 52         | Empty<br>{1.0,0,T}=A           | Empty<br>{1.0,0,T}=A           | Sketch B                       | E,E,B   |
-| Empty<br>{1.0,0,T}        | Degenerate<br>{<1.0,0,F}  | 50         | Empty<br>{1.0,0,T}=A           | Empty<br>{1.0,0,T}=A           | Degenerate<br>{minTheta,0,F}=B | E,E,D   |
-| Exact<br>{1.0,>0,F}       | Empty<br>{1.0,0,T}        | 65         | Empty<br>{1.0,0,T}=B           | Sketch A                       | Sketch A                       | E,A,A   |
-| Exact<br>{1.0,>0,F}       | Exact<br>{1.0,>0,F}       | 66         | Full Intersect                 | Full AnotB                     | Full Union                     | I,N,U   |
-| Exact<br>{1.0,>0,F}       | Estimation<br>{<1.0,>0,F} | 62         | Full Intersect                 | Full AnotB                     | Full Union                     | I,N,U   |
-| Exact<br>{1.0,>0,F}       | Degenerate<br>{<1.0,0,F}  | 60         | Degenerate<br>{minTheta,0,F}=B | Trim A<br>by minTheta          | Trim A<br>by minTheta          | D,AT,AT |
-| Estimation<br>{<1.0,>0,F} | Empty<br>{1.0,0,T}        | 25         | Empty<br>{1.0,0,T}=B           | Sketch A                       | Sketch A                       | E,A,A   |
-| Estimation<br>{<1.0,>0,F} | Exact<br>{1.0,>0,F}       | 26         | Full Intersect                 | Full AnotB                     | Full Union                     | I,N,U   |
-| Estimation<br>{<1.0,>0,F} | Estimation<br>{<1.0,>0,F} | 22         | Full Intersect                 | Full AnotB                     | Full Union                     | I,N,U   |
-| Estimation<br>{<1.0,>0,F} | Degenerate<br>{<1.0,0,F}  | 20         | Degenerate<br>{minTheta,0,F}   | Trim A<br>by minTheta          | Trim A<br>by minTheta          | D,AT,AT |
-| Degenerate<br>{<1.0,0,F}  | Empty<br>{1.0,0,T}        | 05         | Empty<br>{1.0,0,T}=B           | Degenerate<br>{minTheta,0,F}=A | Degenerate<br>{minTheta,0,F}=A | E,D,D   |
-| Degenerate<br>{<1.0,0,F}  | Exact<br>{1.0,>0,F}       | 06         | Degenerate<br>{minTheta,0,F}=A | Degenerate<br>{minTheta,0,F}=A | Trim B<br>by minTheta          | D,D,BT  |
-| Degenerate<br>{<1.0,0,F}  | Estimation<br>{<1.0,>0,F} | 02         | Degenerate<br>{minTheta,0,F}   | Degenerate<br>{minTheta,0,F}   | Trim B<br>by minTheta          | D,D,BT  |
-| Degenerate<br>{<1.0,0,F}  | Degenerate<br>{<1.0,0,F}  | 00         | Degenerate<br>{minTheta,0,F}   | Degenerate<br>{minTheta,0,F}   | Degenerate<br>{minTheta,0,F}   | D,D,D   |
+| Sketch A<br>State         | Sketch B<br>State         | Pair<br>ID | Intersection<br>Action         | AnotB<br>Action                | Union<br>Action                | Action IDs  |
+|:-------------------------:|:-------------------------:|:----------:|:------------------------------:|:------------------------------:|:------------------------------:|:-----------:|
+| Empty<br>{1.0,0,T}        | Empty<br>{1.0,0,T}        | 55         | Empty<br>{1.0,0,T}=A=B         | Empty<br>{1.0,0,T}=A           | Empty<br>{1.0,0,T}=A=B         | E,E,E       |
+| Empty<br>{1.0,0,T}        | Exact<br>{1.0,>0,F}       | 56         | Empty<br>{1.0,0,T}=A           | Empty<br>{1.0,0,T}=A           | Sketch B                       | E,E,B       |
+| Empty<br>{1.0,0,T}        | Estimation<br>{<1.0,>0,F} | 52         | Empty<br>{1.0,0,T}=A           | Empty<br>{1.0,0,T}=A           | Sketch B                       | E,E,B       |
+| Empty<br>{1.0,0,T}        | Degenerate<br>{<1.0,0,F}  | 50         | Empty<br>{1.0,0,T}=A           | Empty<br>{1.0,0,T}=A           | Degenerate<br>{ThetaB,0,F}=B   | E,E,DB      |
+| Exact<br>{1.0,>0,F}       | Empty<br>{1.0,0,T}        | 65         | Empty<br>{1.0,0,T}=B           | Sketch A                       | Sketch A                       | E,A,A       |
+| Exact<br>{1.0,>0,F}       | Exact<br>{1.0,>0,F}       | 66         | Full Intersect                 | Full AnotB                     | Full Union                     | I,N,U       |
+| Exact<br>{1.0,>0,F}       | Estimation<br>{<1.0,>0,F} | 62         | Full Intersect                 | Full AnotB                     | Full Union                     | I,N,U       |
+| Exact<br>{1.0,>0,F}       | Degenerate<br>{<1.0,0,F}  | 60         | Degenerate<br>{ThetaB,0,F}=B   | Trim A<br>by minTheta          | Trim A<br>by minTheta          | D,TA,TA     |
+| Estimation<br>{<1.0,>0,F} | Empty<br>{1.0,0,T}        | 25         | Empty<br>{1.0,0,T}=B           | Sketch A                       | Sketch A                       | E,A,A       |
+| Estimation<br>{<1.0,>0,F} | Exact<br>{1.0,>0,F}       | 26         | Full Intersect                 | Full AnotB                     | Full Union                     | I,N,U       |
+| Estimation<br>{<1.0,>0,F} | Estimation<br>{<1.0,>0,F} | 22         | Full Intersect                 | Full AnotB                     | Full Union                     | I,N,U       |
+| Estimation<br>{<1.0,>0,F} | Degenerate<br>{<1.0,0,F}  | 20         | Degenerate<br>{minTheta,0,F}   | Trim A<br>by minTheta          | Trim A<br>by minTheta          | D,TA,TA     |
+| Degenerate<br>{<1.0,0,F}  | Empty<br>{1.0,0,T}        | 05         | Empty<br>{1.0,0,T}=B           | Degenerate<br>{ThetaA,0,F}=A   | Degenerate<br>{ThetaA,0,F}=A   | E,DA,DA     |
+| Degenerate<br>{<1.0,0,F}  | Exact<br>{1.0,>0,F}       | 06         | Degenerate<br>{ThetaA,0,F}=A   | Degenerate<br>{ThetaA,0,F}=A   | Trim B<br>by minTheta          | DA,DA,TB    |
+| Degenerate<br>{<1.0,0,F}  | Estimation<br>{<1.0,>0,F} | 02         | Degenerate<br>{minTheta,0,F}   | Degenerate<br>{minTheta,0,F}   | Trim B<br>by minTheta          | D,D,TB      |
+| Degenerate<br>{<1.0,0,F}  | Degenerate<br>{<1.0,0,F}  | 00         | Degenerate<br>{minTheta,0,F}   | Degenerate<br>{minTheta,0,F}   | Degenerate<br>{minTheta,0,F}   | D,D,D       |
 
 **Column Descriptions:**
 
 * Pair ID: two octal digits, the first digit represents the state of Sketch A, the second digit represents the state of Sketch B.
 * Sketch A State
 * Sketch B State
-* Intersection Result
-* AnotB Result
-* Union Result
+* Intersection Action
+* AnotB Action
+* Union Action
 * Action Codes: Intersection, AnotB, Union. 
 
-The action codes are given by the following table along with description and where used:
+The action IDs are given by the following table along with description and where used:
 
-| Action | Action Description           | Intersection | AnotB   | Union   |
-|:------:|:----------------------------:|:------------:|:-------:|:-------:|
-|   A    | Sketch A                     |              | &check; | &check; |
-|   AT   | Sketch A trimmed by minTheta |              | &check; | &check; |
-|   B    | Sketch B                     |              |         | &check; |
-|   BT   | Sketch B trimmed by minTheta |              |         | &check; |
-|   D    | Degenerate {minTheta,0,F}    | &check;      | &check; | &check; |
-|   E    | Empty {1.0,0,T}              | &check;      | &check; | &check; |
-|   I    | Full Intersect               | &check;      |         |         |
-|   N    | Full AnotB                   |              | &check; |         |
-|   U    | Full Union                   |              |         | &check; |
+| Action ID | Action<br>Description                    | Intersection | AnotB   | Union   |
+|:---------:|:----------------------------------------:|:------------:|:-------:|:-------:|
+|   A       | Sketch A                                 |              | &check; | &check; |
+|   TA      | Trim Sketch A<br>by minTheta             |              | &check; | &check; |
+|   B       | Sketch B                                 |              |         | &check; |
+|   TB      | Trim Sketch B<br>by minTheta             |              |         | &check; |
+|   D       | Degenerate<br>{minTheta,0,F}             | &check;      | &check; | &check; |
+|   DA      | Degenerate<br>{ThetaA,0,F}<br>(optional) |              |         | &check; |
+|   DB      | Degenerate<br>{ThetaB,0,F}<br>(optional) |              |         | &check; |
+|   E       | Empty<br>{1.0,0,T}                       | &check;      | &check; | &check; |
+|   I       | Full Intersect                           | &check;      |         |         |
+|   N       | Full AnotB                               |              | &check; |         |
+|   U       | Full Union                               |              |         | &check; |
 
 
-Note that the results of a *Full Intersect*, *Full AnotB*, or *Full Union* will require further interpretation of the resulting state. For example:
+Note that the results of *Full Intersect*, *Full AnotB*, or *Full Union* actions will require further interpretation of the resulting state. For example:
 
-* For example, if the resulting sketch is *{1.0,0,?}*, then an *Empty{1.0,0,T}* is returned. 
+* If the resulting sketch is *{1.0,0,?}*, then an *Empty{1.0,0,T}* is returned. 
 * If the resulting sketch is *{<1.0,0,?}* then a *Degenerate{<1.0,0,F}* is returned.  
 * Otherwise, the sketch returned will be an estimating *{minTheta, >0, F}*, or exact *{1.0, >0, F}*.
 
