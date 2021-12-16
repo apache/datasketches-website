@@ -58,7 +58,7 @@ __NOTES:__
 * Assume target version = A.B.0
 * From IDE or Command Line: 
     * Switch from master to new __Permanent Branch__: "A.B.X"
-    * Check setup.py "version=" line to A.B.X (remove -SNAPSHOT, do not change A or B)
+    * Check setup.py "version=" line to A.B.X (remove .dev0, do not change A or B)
     * Commit the change. __DO NOT PUSH!__
     * Create Annotated TAG: A.B.0-RC1 (or RCn)
     * Write down the Git hash : example: 40c6f4f
