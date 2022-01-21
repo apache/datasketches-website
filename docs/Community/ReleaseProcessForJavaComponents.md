@@ -104,6 +104,8 @@ __NOTES:__
     * Return to master branch
     * Edit master pom.xml to A'.B'.0-SNAPSHOT where A' or B' will be incremented by 1. (Bug fix releases will change the 3rd digit)
     * Commit and Push this change to origin/master with the comment "Release Process: Change pom version to A'.B'.0-SNAPSHOT."
+    * Create a tag A'.B'.0-SNAPSHOT on master at the HEAD.
+    * Push the tag to origin: `git push origin --tags`
     * Return to release branch A.B.X
     * You may minimize your IDE, pointing at the release branch.
 
