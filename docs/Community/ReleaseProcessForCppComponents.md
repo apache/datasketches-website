@@ -58,7 +58,7 @@ __NOTES:__
 * Assume target version = A.B.0
 * From IDE or Command Line: 
     * Switch from master to new __Permanent Branch__: "A.B.X"
-    * Check setup.py "version=" line to A.B.X (remove -SNAPSHOT, do not change A or B)
+    * Check setup.py "version=" line to A.B.X (remove .dev0, do not change A or B)
     * Commit the change. __DO NOT PUSH!__
     * Create Annotated TAG: A.B.0-RC1 (or RCn)
     * Write down the Git hash : example: 40c6f4f
@@ -75,8 +75,8 @@ __NOTES:__
     * Confirm that the tag A.B.0-RC1 and the branch A.B.X, and HEAD coincide with the correct Git hash.
     * Confirm that there are no unstaged or staged changes.
     * Return to master branch
-    * Edit master setup.py to A'.B'.0-SNAPSHOT where A' or B' will be incremented by 1. (Bug fix releases will change the 3rd digit)
-    * Commit and Push this change to origin/master with the comment "Release Process: Change setup.py version to A'.B'.0-SNAPSHOT."
+    * Edit master setup.py to A'.B'.0.dev0 where A' or B' will be incremented by 1. (Bug fix releases will change the 3rd digit)
+    * Commit and Push this change to origin/master with the comment "Release Process: Change setup.py version to A'.B'.0.dev0"
     * Return to release branch A.B.X
     * You may minimize your IDE, pointing at the release branch.
     
