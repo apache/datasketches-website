@@ -50,7 +50,7 @@ __NOTES:__
 * From Command Line at Component root:
   * To confirm *gpg-agent* is running type:
       * `ps -axww | grep gpg`  # you should see something like:
-          * *64438 ??         0:30.33 gpg-agent --homedir /Users/\<name\>/.gnupg --use-standard-socket --daemon*
+          * <pre>9566 ??         0:30.33 gpg-agent --daemon<br>20315 ttys000   0:00:00 grep gpg</pre>
       * To start GPG if GPG Agent is not running:
           * `eval $(gpg-agent --daemon)`
   * Confirm GitHub repository is current and git status is clean:
@@ -131,7 +131,7 @@ __NOTES:__
 * Start a new terminal in the above dist/dev/datasketches/scripts directory on your system:
   * To confirm *gpg-agent* is running type:
       * `ps -axww | grep gpg`  # you should see something like:
-          * *64438 ??         0:30.33 gpg-agent --homedir /Users/\<name\>/.gnupg --use-standard-socket --daemon*
+          * <pre>9566 ??         0:30.33 gpg-agent --daemon<br>20315 ttys000   0:00:00 grep gpg</pre>
       * To start GPG if GPG Agent is not running:
           * `eval $(gpg-agent --daemon)` 
   * Run something like:
@@ -152,7 +152,7 @@ __NOTES:__
 * If starting new terminal make sure GPG is running:
   * To confirm *gpg-agent* is running type:
       * `ps -axww | grep gpg`  # you should see something like:
-          * *64438 ??         0:30.33 gpg-agent --homedir /Users/\<name\>/.gnupg --use-standard-socket --daemon*
+          * <pre>9566 ??         0:30.33 gpg-agent --daemon<br>20315 ttys000   0:00:00 grep gpg</pre>
       * To start GPG if GPG Agent is not running:
           * `eval $(gpg-agent --daemon)` 
 * `git status` # make sure you are still on the release branch: A.B.X
