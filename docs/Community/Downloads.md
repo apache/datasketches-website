@@ -38,7 +38,7 @@ If you are developing using Maven and want to use, for example, datasketches-jav
 <dependency>
   <groupId>org.apache.datasketches</groupId>
   <artifactId>datasketches-java</artifactId>
-  <version>1.3.0</version>
+  <version>3.1.0</version>
 </dependency>
 ```
 

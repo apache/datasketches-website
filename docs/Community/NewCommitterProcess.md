@@ -65,7 +65,7 @@ This can be in a number of areas including:
 ### Community Contributions
 
 * Has this person participated in our mailing lists, Slack discussions, and GitHub issues?
-* Is this person known and respected by our active committers and PPMC?
+* Is this person known and respected by our active committers and our PMC?
 * Has exhibited a high level of interest and commitment to learn, 
   not only about our code base, but about the underlying 
   theory of sketching as well?
@@ -107,8 +107,7 @@ Subject: [VOTE] [Candidate] as new Committer<br>
 The vote will be performed as follows:
 
 * Voting ends X days from today, i.e, midnight UTC on YYYY-MM-DD, <TimeZone>. (we recommend at least 3 days)
-* At least 3 (+1) PPMC votes and no (-1) votes.
-* All PMC members including Mentors can vote.
+* At least 3 (+1) PMC votes and no (-1) votes.
 
 Please vote accordingly:
 
@@ -134,7 +133,7 @@ The vote is now closed.
 Passed/Did not pass with X (+1) binding votes (list names), and Y 0 votes and Z -1 votes.
 
 Regards,
-(PPMC MEMBER)
+(PMC MEMBER)
 
 ---
 
