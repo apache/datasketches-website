@@ -32,9 +32,9 @@ layout: doc_page
 
 ### reservoir_example.pig script
 
-    register datasketches-memory-1.2.0-incubating.jar;
-    register datasketches-java-1.2.0-incubating.jar;
-    register datasketches-pig-1.0.0-incubating.jar;
+    register datasketches-memory-2.0.0.jar;
+    register datasketches-java-3.1.0.jar;
+    register datasketches-pig-1.1.0.jar;
 
     -- very small sketch just for the purpose of this tiny example
     DEFINE ReservoirSampling org.apache.datasketches.pig.sampling.ReservoirSampling('4');
