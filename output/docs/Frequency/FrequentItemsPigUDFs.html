@@ -523,9 +523,9 @@
 
 <h3 id="frequent_itemspig-script">frequent_items.pig script</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-1.2.0-incubating.jar;
-register datasketches-java-1.2.0-incubating.jar;
-register datasketches-pig-1.0.0-incubating.jar;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-2.0.0.jar;
+register datasketches-java-3.1.0.jar;
+register datasketches-pig-1.1.0.jar;
 
 -- very small sketch just for the purpose of this tiny example
 define dataToSketch org.apache.datasketches.pig.frequencies.DataToFrequentStringsSketch('8');
