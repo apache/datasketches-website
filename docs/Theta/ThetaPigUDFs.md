@@ -32,9 +32,9 @@ layout: doc_page
 
 ### theta.pig script: building sketches, merging sketches and getting estimates
 
-    register datasketches-memory-1.2.0-incubating.jar;
-    register datasketches-java-1.2.0-incubating.jar;
-    register datasketches-pig-1.0.0-incubating.jar;
+    register datasketches-memory-2.0.0.jar;
+    register datasketches-java-3.1.0.jar;
+    register datasketches-pig-1.1.0.jar;
 
     define dataToSketch org.apache.datasketches.pig.theta.DataToSketch('32');
     define unionSketch org.apache.datasketches.pig.theta.Union('32');
@@ -79,9 +79,9 @@ to show the estimation mode for the purposes of this example.
 
 ### theta_setops.pig script: set operations on sketches
 
-    register datasketches-memory-1.2.0-incubating.jar;
-    register datasketches-java-1.2.0-incubating.jar;
-    register datasketches-pig-1.0.0-incubating.jar;
+    register datasketches-memory-2.0.0-incubating.jar;
+    register datasketches-java-3.1.0.jar;
+    register datasketches-pig-1.1.0.jar;
 
     define dataToSketch org.apache.datasketches.pig.theta.DataToSketch('32');
     define unionSketch org.apache.datasketches.pig.theta.Union();
