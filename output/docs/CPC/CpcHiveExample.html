@@ -512,9 +512,9 @@
 
 <h3 id="building-sketches-merging-sketches-and-getting-estimates">Building sketches, merging sketches and getting estimates</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add jar datasketches-memory-1.2.0-incubating.jar;
-add jar datasketches-java-1.2.0-incubating.jar;
-add jar datasketches-hive-1.0.0-incubating.jar;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add jar datasketches-memory-2.0.0.jar;
+add jar datasketches-java-3.1.0.jar;
+add jar datasketches-hive-1.2.0.jar;
 
 create temporary function data2sketch as 'org.apache.datasketches.hive.cpc.DataToSketchUDAF';
 create temporary function unionSketches as 'org.apache.datasketches.hive.cpc.UnionSketchUDAF';
@@ -552,9 +552,9 @@ Output:
 
 <p>Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add jar datasketches-memory-1.2.0-incubating.jar;
-add jar datasketches-java-1.2.0-incubating.jar;
-add jar datasketches-hive-1.0.0-incubating.jar;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add jar datasketches-memory-2.0.0.jar;
+add jar datasketches-java-3.1.0.jar;
+add jar datasketches-hive-1.2.0.jar;
 
 create temporary function data2sketch as 'org.apache.datasketches.hive.cpc.DataToSketchUDAF';
 create temporary function union2 as 'org.apache.datasketches.hive.cpc.UnionSketchUDF';
