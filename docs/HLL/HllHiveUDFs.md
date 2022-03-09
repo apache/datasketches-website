@@ -23,9 +23,9 @@ layout: doc_page
 
 ### Building sketches, computing unions and getting estimates
 
-    add jar datasketches-memory-1.2.0-incubating.jar;
-    add jar datasketches-java-1.2.0-incubating.jar;
-    add jar datasketches-hive-1.0.0-incubating.jar;
+    add jar datasketches-memory-2.0.0.jar;
+    add jar datasketches-java-3.1.0.jar;
+    add jar datasketches-hive-1.2.0.jar;
 
     create temporary function data2sketch as 'org.apache.datasketches.hive.hll.DataToSketchUDAF';
     create temporary function unionSketches as 'org.apache.datasketches.hive.hll.UnionSketchUDAF';
@@ -60,9 +60,9 @@ layout: doc_page
 
 Notice the difference between UnionUDF in this example, which takes two sketches, and UnionUDAF in the previous example, which is an aggregate function taking a collection of sketches as one parameter.
 
-    add jar datasketches-memory-1.2.0-incubating.jar;
-    add jar datasketches-java-1.2.0-incubating.jar;
-    add jar datasketches-hive-1.0.0-incubating.jar;
+    add jar datasketches-memory-2.0.0.jar;
+    add jar datasketches-java-3.1.0.jar;
+    add jar datasketches-hive-1.2.0.jar;
 
     create temporary function data2sketch as 'org.apache.datasketches.hive.hll.DataToSketchUDAF';
     create temporary function estimate as 'org.apache.datasketches.hive.hll.SketchToEstimateUDF';

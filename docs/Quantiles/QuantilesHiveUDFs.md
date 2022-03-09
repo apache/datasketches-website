@@ -23,9 +23,9 @@ layout: doc_page
 
 ### DoublesSketch example
 
-    add jar datasketches-memory-1.2.0-incubating.jar;
-    add jar datasketches-java-1.2.0-incubating.jar;
-    add jar datasketches-hive-1.0.0-incubating.jar;
+    add jar datasketches-memory-2.0.0.jar;
+    add jar datasketches-java-3.1.0.jar;
+    add jar datasketches-hive-1.2.0.jar;
     
     create temporary function data2sketch as 'org.apache.datasketches.hive.quantiles.DataToDoublesSketchUDAF';
     create temporary function unionSketches as 'org.apache.datasketches.hive.quantiles.UnionDoublesSketchUDAF';
