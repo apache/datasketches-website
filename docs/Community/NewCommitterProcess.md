@@ -278,6 +278,7 @@ As a committer on the DataSketches Project you will have commit access to the fo
 * https://github.com/apache/datasketches-memory
 * https://github.com/apache/datasketches-vector
 * https://github.com/apache/datasketches-server
+* https://github.com/apache/datasketches-experimentation
 
 Please become familiar with the following ASF resources:
 
