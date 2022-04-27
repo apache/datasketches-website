@@ -239,7 +239,9 @@ __NOTES:__
 * Select "orgapachedatasketches-XXXX" (If more than one make sure you select the right one!)
 * At the top of the window, select "Drop"
 
-### Merge branch *master* from branch *A.B.X*.   
+### If necessary, update branch *master* from branch *A.B.X*
+If you have gone through more than one Release Candidate, you may have changes that need to be 
+reflected in the master. Use the **git cherry-pick** command for this.  
 
 ## Finalize Release Documentation
 
