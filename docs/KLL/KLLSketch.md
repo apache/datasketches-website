@@ -19,22 +19,22 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-## KLL sketch
+## KLL Sketch
 
 Implementation of a very compact quantiles sketch with lazy compaction scheme and nearly optimal accuracy per bit.
-See <a href="https://arxiv.org/abs/1603.05346v2">this paper</a>.
+See <a href="https://arxiv.org/abs/1603.05346v2">Optimal Quantile Approximation in Streams, by Zohar Karnin, Kevin Lang, Edo Liberty</a>.
 The name KLL is composed of the initial letters of the last names of the authors.
 
-The usage of KllFloatsSketch is very similar to DoublesSketch. Because the key feature of this sketch is compactness, it was implemented with float values instead of double values.
+The usage of KllSketch is very similar to DoublesSketch. The key feature of this sketch is its compactness for a given accuracy.  It is implemented with both float and double values and can be configured for use on-heap or off-heap (Direct mode).
 The parameter K that affects the accuracy and the size of the sketch is not restricted to powers of 2.
-The default of 200 was chosen to yield approximately the same normalized rank error (1.65%) as the default DoublesSketch (K=128, error 1.73%). 
+The default of 200 was chosen to yield approximately the same normalized rank error (1.65%) as the original DoublesSketch (K=128, error 1.73%). 
 
 ### Java example
 
 ```
 import org.apache.datasketches.kll.KllFloatsSketch;
 
-KllFloatsSketch sketch = new KllFloatsSketch();
+KllFloatsSketch sketch = KllFloatsSketch.newHeapInstance();
 int n = 1000000;
 for (int i = 0; i < n; i++) {
   sketch.update(i);
@@ -43,25 +43,25 @@ float median = sketch.getQuantile(0.5);
 double rankOf1000 = sketch.getRank(1000);
 ```
 
-### Differences of KllFloatsSketch from DoublesSketch
+### Differences of KllSketch from the original quantiles DoublesSketch
 
 * KLL has a smaller size for the same accuracy
 * KLL is slightly faster to update
 * The KLL parameter K doesn't have to be power of 2
-* KLL operates with float values instead of double values
+* KLL operates with either float values or double values
 * KLL uses a merge method rather than a union object
-* KLL does not offer direct, off-heap implementation
-* KLL does not have separate updatable and compact forms
 
 The starting point for the comparison is setting K in such a way that rank error would be approximately the same. As pointed out above, the default K for both sketches should achieve this. Here is the comparison of the single-sided normalized rank error (getRank() method) for the default K:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-ds128-rank-error.png" alt="RankError" />
 
-DoublesSketch has two forms with different serialized sizes: UpdateDoublesSketch and CompactDoublesSketch. KllFloatsSketch has no such distinction. It is always serialized in a compact form, and it is not much bigger than that in memory. Here is the comparison of serialized sizes:
+DoublesSketch has two forms with different serialized sizes: UpdateDoublesSketch and CompactDoublesSketch. The KLL sketches makes this distinction differently. When the KllSketch is serialized using *toByteArray()* it is always in a compact form and immutable. When the KllSketch is on-heap it is always updatable. It can be created off-heap using the static factory method *newDirectInstance(...)* method, which is also updatable. It is possible to move from off-heap (Direct) to on-heap using the *heapify(Memory)* method.  The *merge(...)* method will work with off-heap sketches, on-heap sketches and Memory wrapped compact byte arrays. 
+
+Here is the comparison of serialized sizes:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-ds128-size.png" alt="SerializedSize" />
 
-Some part of the size difference above is due to using items of float type as opposed to double type. Here is the comparison of the number of retained items to see the difference with no influence of the size of the item type:
+Here is the comparison of the number of retained items to see the difference with no influence of the size of the item type:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-ds128-items.png" alt="NumberOfRetainedItems" />
 
