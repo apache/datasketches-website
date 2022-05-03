@@ -24,17 +24,17 @@ layout: doc_page
 
 There are lots of clever and useful algorithms that are sometimes called "sketches".  However, due to limited resources, in order to be included in the DataSketches library, we had to clearly define what we meant by the term "sketch".  Otherwise, we would end up with a hodge podge of algorithms and have to answer: Why don't we include algorithm X?.
 
-In order to be in our library, a *Sketch* must exhibit these properties:
+In order to be in our library, a *Sketch* should exhibit these properties:
 
 ## Streaming / One-Touch 
-Sketches are a class of streaming algorithms by definition, which means they only touch or process each item in a stream once.  This is absolutely required for real-time applications.
+Sketches are a class of streaming algorithms by definition, which means they only touch or process each item in a stream once.  This is absolutely essential for real-time applications.
 
 ## Small in Size
 One of the key properties of any sketch is that it is a synopsis or summary of a much larger data set.  The whole point of a small summary is that it is faster to read and merge.  In this context, *small* means small with respect to the original data.  If the original data is terabytes in size, a single sketch of 100KB may not seem very different from a sketch of 50KB as both are very small compared to the original data.  
 
 But *small* can also be important in an systems context. If that original terabyte of data generates 10,000 sketches, each sketch consuming 100KB, that amounts to a GB of storage.  Now the total memory use starts to be a concern.  Being able to reduce that by 50% by using a smaller (and otherwise equivalent) sketch can be a big deal.
 
-Nonetheless, *small* is relevant to the specific application. Sketches can very from a few bytes to many megabytes depending on the specific sketch and how it has been configured. Whether it is small enough is up to the system engineers to determine. 
+Nonetheless, *small* is relevant to the specific application. Sketches can very from a few bytes to many megabytes depending on the specific sketch and how it has been configured. Whether it is small enough depends on the use-case and the specific environment. 
 
 ## Sublinear in Size Growth
 Not only should a sketch start small, it needs to stay small as the size of the input stream grows.  Some sketches have an upper bound of size independent of the size of the input stream, which clearly makes them sublinear.  Other sketches may need to continue to increase their size as the stream grows.  For these sketches it is important that they do so very very slowly. They should grow sublinearly by no more then *O(log(n))* or preferrably by *O(k log(n/k))* or less.
