@@ -62,7 +62,7 @@ All sketches have *a posteriori* error bounds methods.
 
 
 <sup>1</sup> Integrated into Druid.<br>
-<sup>2</sup> Spark Example Code on website. Theta Sketch is the only one we have tried in Spark, it doesn't mean other sketches cannot be used.<br>
+<sup>2</sup> [Spark Example Code]({{site.docs_dir}}/Theta/ThetaSparkExample.html) on website. Theta Sketch is the only one we have tried in Spark, it doesn't mean other sketches cannot be used.<br>
 <sup>3</sup> Tuple Sketch: Example Code in test/.../tuple/aninteger.<br>
 <sup>4</sup> Theta Sketch: C++/Python has no implementaion of the Jaccard, yet.<br>
 <sup>5</sup> Frequent Items Sketch: PostgreSQL implemented for Strings only.<br>
