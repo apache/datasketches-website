@@ -518,9 +518,7 @@ of quantiles, ranks and their functions.</p>
 
 <h2 id="what-is-a-rank">What is a rank?</h2>
 
-<blockquote>
-  <p>A <strong><em>rank</em></strong> identifies the numeric position of a specific value in an enumerated ordered set if values.</p>
-</blockquote>
+<h3 id="a-rank-identifies-the-numeric-position-of-a-specific-value-in-an-enumerated-ordered-set-if-values">A <em>rank</em> identifies the numeric position of a specific value in an enumerated, ordered set if values.</h3>
 
 <p>The actual enumeration can be done in several ways, but for our use here we will define the two common ways that <em>rank</em> can be specified and that we will use.</p>
 
@@ -535,13 +533,12 @@ of quantiles, ranks and their functions.</p>
 <p>In our sketch library and documentation, when we refer to <em>rank</em>, we imply <em>normalized rank</em>. However, in this tutorial, we will sometimes use <em>natural ranks</em> to simplify the examples.</p>
 
 <h3 id="rank-and-mass">Rank and Mass</h3>
+
 <p><em>Normalized rank</em> is closely associated with the concept of <em>mass</em>. The value associated with the rank 0.5 represents the median value, or the center of <em>mass</em> of the entire set, where half of the values are below the median and half are above. The concept of mass is important to understanding the Prabability Mass Function (PMF) offered by all the quantile sketches in the library.</p>
 
 <h2 id="what-is-a-quantile">What is a quantile?</h2>
 
-<blockquote>
-  <p>A <strong><em>quantile</em></strong> is a <em>value</em> that is associated with a particular <strong><em>rank</em></strong>.</p>
-</blockquote>
+<h3 id="a-quantile-is-a-value-that-is-associated-with-a-particular-rank">A <em>quantile</em> is a <em>value</em> that is associated with a particular <strong><em>rank</em></strong>.</h3>
 
 <p><em>Quantile</em> is the general term that includes other terms that are also quantiles.
 To wit:</p>
@@ -589,13 +586,9 @@ To wit:</p>
 
 <p>Let’s define the functions</p>
 
-<blockquote>
-  <p><em>quantile(rank)</em> or <em>q(r)</em> := return the quantile value <em>q</em> associated with a given <em>rank, r</em>.</p>
-</blockquote>
+<h3 id="quantilerank-or-qr--return-the-quantile-value-q-associated-with-a-given-rank-r"><em>quantile(rank)</em> or <em>q(r)</em> := return the quantile value <em>q</em> associated with a given <em>rank, r</em>.</h3>
 
-<blockquote>
-  <p><em>rank(quantile)</em> or <em>r(q)</em> := return the rank <em>r</em> associated with the given <em>quantile, q</em>.</p>
-</blockquote>
+<h3 id="rankquantile-or-rq--return-the-rank-r-associated-with-the-given-quantile-q"><em>rank(quantile)</em> or <em>r(q)</em> := return the rank <em>r</em> associated with the given <em>quantile, q</em>.</h3>
 
 <p>Using an example from the table:</p>
 
