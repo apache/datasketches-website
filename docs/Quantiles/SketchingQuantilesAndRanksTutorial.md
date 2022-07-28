@@ -30,7 +30,7 @@ of quantiles, ranks and their functions.
 
 ## What is a rank?
 
-### A *rank* identifies the numeric position of a specific value in an enumerated, ordered set if values.
+### A ***rank*** identifies the numeric position of a specific value in an enumerated, ordered set if values.
 
 The actual enumeration can be done in several ways, but for our use here we will define the two common ways that *rank* can be specified and that we will use. 
 
@@ -47,7 +47,7 @@ In our sketch library and documentation, when we refer to *rank*, we imply *norm
 
 ## What is a quantile?
 
-### A *quantile* is a *value* that is associated with a particular ***rank***. 
+### A ***quantile*** is a *value* that is associated with a particular ***rank***. 
 
 *Quantile* is the general term that includes other terms that are also quantiles.
 To wit:
