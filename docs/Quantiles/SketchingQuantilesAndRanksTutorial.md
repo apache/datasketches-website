@@ -19,16 +19,20 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-# Quantiles and Ranks Definitions
-Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions of massive data very quickly using only a small amout of space.  They allow us to compute a quantile values given a desired rank, or compute a rank given
+# Sketching Quantiles and Ranks, the Basics
+Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions 
+of massive data very quickly using only a small amout of space.  
+They allow us to compute a quantile values given a desired rank, or compute a rank given
 a quantile value. Quantile sketches enable us to plot the CDF, PMF or histograms of a distribution. 
 
-The goal of this short tutorial it to introduce to the reader some of the basic concepts of quantiles, ranks and their functions.
-
-Before we can define *quantile*, we must first define what we mean by *rank*.
+The goal of this short tutorial it to introduce to the reader some of the basic concepts 
+of quantiles, ranks and their functions.
 
 ## What is a rank?
-Given an ordered set of values the term rank can be defined two different ways. 
+
+>  A ***rank*** identifies the numeric position of a specific value in an enumerated ordered set if values.
+
+The actual enumeration can be done in several ways, but for our use here we will define the two common ways that *rank* can be specified and that we will use. 
 
 * The **natural rank** is a **natural number** from the set of one-based, natural numbers, &#8469;<sub>1</sub>, and is derived by enumerating an ordered set of values, starting with the value 1, up to *n*, the number of values in the set.
 
@@ -42,7 +46,7 @@ In our sketch library and documentation, when we refer to *rank*, we imply *norm
 
 ## What is a quantile?
 
-> A ***quantile*** is a *value* that achieves a particular ***rank***. 
+> A ***quantile*** is a *value* that is associated with a particular ***rank***. 
 
 *Quantile* is the general term that includes other terms that are also quantiles.
 To wit:
@@ -62,9 +66,9 @@ Let's examine the following table:
 
 Let's define the functions
 
-* *quantile(rank)* or *q(r)* := given a *rank, r*, return the quantile value *q* associated with the given *r*.
+> *quantile(rank)* or *q(r)* := return the quantile value *q* associated with a given *rank, r*.
 
-* *rank(quantile)* or *r(q)* := given a quantile value *q*, return the rank *r* associated with the given *q*.  
+> *rank(quantile)* or *r(q)* := return the rank *r* associated with the given *quantile, q*.  
 
 Using an example from the table:
 
@@ -110,32 +114,37 @@ The sketch might discard the even values producing something like this:
 |-----------------|----|----|----|----|----|
 | Natural Rank    | 2  | 4  | 6  | 8  | 10 |
 
-So how do we resove *q(3)* or *r(20)*?
+When the sketch deletes values it adjusts the associated ranks by effectively increasing the "weight" of adjacent items so that they are positionally approximately correct and the top rank corresponds to *n*.
+
+How do we resove *q(3)* or *r(20)*?
 
 ## The need for inequality search
 The quantile sketch algorithms discussed in the literature primarily differ by how they choose which values in the stream should be discarded. After the elimination process, all of the quantiles sketch implementations are left with the challenge of how to reconstruct the actual distribution, approximately and with good accuracy. 
 
-Given the presence of duplicates and absence of values from the stream we must redefine the above quantile and rank functions as inequalities. **We also want the quantile and rank functions to retain the properties of 1:1 functions.**
+Given the presence of duplicates and absence of values from the stream we must redefine the above quantile and rank functions as inequalities **while retaining the properties of 1:1 functions.**
 
-You will find examples of both of the following definitions in the research literature.  All of our library quantile sketches allow the user to choose between the two searching criteria.  
+One can find examples of the following definitions in the research literature.  All of our library quantile sketches allow the user to choose the searching criteria.  
 
 These next examples use a small data set that mimics what could be the result of both duplication and sketch data deletion.
 
 ## Two search conventions used when finding ranks, r(q)
-* The *non inclusive* criterion for *r(q)*: (a.k.a. the *LT* criterion)
-   * Search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 < q <= q2*. Return the rank associated with *q1*, the first of the pair.
 
-For example *r(30) = 5*
+### The *non inclusive* criterion for *r(q)* (a.k.a. the *LT* criterion):
+
+Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 < q <= q2*. Return the rank associated with *q1*, the first of the pair.
+
+For example *q = 30; r(30) = 5*
 
 | Quantile[]:     | 10    | 20    | q1=20 | q2=30 | 30    | 30    | 40    | 50    |
 |-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
 | Natural Rank[]: | 1     | 3     | r=5   |  7    | 9     | 11    | 13    | 14    |
 
 
-* The *inclusive* criterion for *r(q)*: (a.k.a. the *LE* criterion)
-   * Search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 <= q < q2*. Return the rank associated with *q1*, the first of the pair. 
+### The *inclusive* criterion for *r(q)* (a.k.a. the *LE* criterion):
 
-For example *r(30) = 11*
+Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 <= q < q2*. Return the rank associated with *q1*, the first of the pair. 
+
+For example *q = 30; r(30) = 11*
 
 | Quantile[]:     | 10    | 20    | 20    | 30    | 30    | q1=30 | q2=40 | 50    |
 |-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
@@ -143,17 +152,20 @@ For example *r(30) = 11*
 
 
 ## Two search conventions when finding quantiles, q(r)
-* The *non inclusive* criterion for *q(r)* : (a.k.a. the *GT* criterion)
-   * Search the rank array until we find the adjacent pair *{r1, r2}* where *r1 <= r < r2*. Return the quantile associated with *r2*, the second of the pair.
+
+### The *non inclusive* criterion for *q(r)* (a.k.a. the *GT* criterion):
+
+Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 <= r < r2*. Return the quantile associated with *r2*, the second of the pair.
  
-For example *q(5) = 30*
+For example *r = 5; q(5) = 30*
 
 | Natural Rank[]: | 1     | 3     | r1=5  |  r2=7 | 9     | 11    | 13    | 14    |
 |-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
 | Quantile[]:     | 10    | 20    | 20    | q=30  | 30    | 30    | 40    | 50    |
 
-* The *inclusive* criterion for *q(r)*:  (a.k.a. the *GE* criterion)
-   * Search the rank array until we find the adjacent pair *{r1, r2}* where *r1 < r <= r2*. Return the quantile associated with *r2*, the second of the pair.
+### The *inclusive* criterion for *q(r)*  (a.k.a. the *GE* criterion):
+
+Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 < r <= r2*. Return the quantile associated with *r2*, the second of the pair.
 
 For example *q(11) = 30*
 
@@ -161,8 +173,14 @@ For example *q(11) = 30*
 |-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
 | Quantile[]:     | 10    | 20    | 20    | 30    | 30    | q=30  | 40    | 50    |
 
+## These conventions maintain the 1:1 functional relationship
 
-The power of these inequality search algorithms is that the will produce repeatable and accurate results and insensitive to duplicates and sketch deletions. 
-In addition, the way these algorithms are designed, the property of 1:1 functions are maintained.  
+### The non inclusive search for q(r) is the inverse of the non inclusive search for r(q). Therefore, *q = q(r(q))* and *r = r(q(r))*.
+
+### The inclusive search for q(r) is the inverse of the inclusive search for r(q). Therefore, *q = q(r(q))* and *r = r(q(r))*.
+
+
+## Summary
+The power of these inequality search algorithms is that they produce repeatable and accurate results, are insensitive to duplicates and sketch deletions, and maintain the property of 1:1 functions.
 
 

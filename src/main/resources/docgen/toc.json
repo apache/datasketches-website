@@ -191,7 +191,7 @@
 
         { "class":"Dropdown", "desc" : "Quantiles And Histograms", "array":
           [
-            {"class":"Doc",  "desc" : "Quantiles Definitions",                    "dir" : "Quantiles", "file": "Definitions"},
+            {"class":"Doc",  "desc" : "Quantiles and Ranks Tutorial",             "dir" : "Quantiles", "file": "SketchingQuantilesAndRanksTutorial"},
             {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "Quantiles", "file": "QuantilesOverview" },
             {"class":"Doc",  "desc" : "KLL Floats sketch",                        "dir" : "KLL", "file": "KLLSketch" },
             {"class":"Doc",  "desc" : "REQ Floats sketch",                        "dir" : "REQ", "file": "ReqSketch" },
