@@ -68,8 +68,8 @@ layout: doc_page
       Sketch sketch2 = Sketches.wrapSketch(Memory.wrap(bytes2));
 
       Union union = SetOperation.builder().buildUnion();
-      union.update(sketch1);
-      union.update(sketch2);
+      union.union(sketch1);
+      union.union(sketch2);
       Sketch unionResult = union.getResult();
 
       // debug summary of the union result sketch
@@ -80,8 +80,8 @@ layout: doc_page
       System.out.println("Union unique count upper bound 95% confidence: " + unionResult.getUpperBound(2));
 
       Intersection intersection = SetOperation.builder().buildIntersection();
-      intersection.update(sketch1);
-      intersection.update(sketch2);
+      intersection.intersection(sketch1);
+      intersection.intersection(sketch2);
       Sketch intersectionResult = intersection.getResult();
 
       // debug summary of the intersection result sketch

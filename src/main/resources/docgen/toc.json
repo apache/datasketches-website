@@ -260,8 +260,6 @@
         {"class":"Doc",  "desc" : "Release Process For CPP Components",   "dir" : "Community", "file": "ReleaseProcessForCppComponents"},
         {"class":"Doc",  "desc" : "Release Process For Java Components",  "dir" : "Community", "file": "ReleaseProcessForJavaComponents"},
         {"class":"Doc",  "desc" : "Transitioning from prior GitHub Site", "dir" : "Community", "file": "Transitioning"},
-        
-        {"class":"Doc",  "desc" : "Who Uses",                             "dir" : "Community", "file": "WhoUses" },
       ]
     },
     { "class":"Dropdown", "desc" : "Research", "array":
