@@ -47,7 +47,7 @@ In our sketch library and documentation, when we refer to *rank*, we imply *norm
 
 ## What is a quantile?
 
-### A ***quantile*** is a *value* that is associated with a particular ***rank***. 
+### A ***quantile*** is a ***value*** that is associated with a particular ***rank***. 
 
 *Quantile* is the general term that includes other terms that are also quantiles.
 To wit:
@@ -67,9 +67,9 @@ Let's examine the following table:
 
 Let's define the functions
 
-### *quantile(rank)* or *q(r)* := return the quantile value *q* associated with a given *rank, r*.
+### ***quantile(rank)*** or ***q(r)*** := return the quantile value ***q*** associated with<br> a given ***rank, r***.
 
-### *rank(quantile)* or *r(q)* := return the rank *r* associated with the given *quantile, q*.  
+### ***rank(quantile)*** or ***r(q)*** := return the rank ***r*** associated with<br> a given ***quantile, q***.  
 
 Using an example from the table:
 
@@ -130,7 +130,7 @@ These next examples use a small data set that mimics what could be the result of
 
 ## Two search conventions used when finding ranks, r(q)
 
-### The *non inclusive* criterion for *r(q)* (a.k.a. the *LT* criterion):
+### The ***non inclusive*** criterion for ***r(q)*** (a.k.a. the ***LT*** criterion):
 
 Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 < q <= q2*. Return the rank associated with *q1*, the first of the pair.
 
@@ -141,7 +141,7 @@ For example *q = 30; r(30) = 5*
 | Natural Rank[]: | 1     | 3     | r=5   |  7    | 9     | 11    | 13    | 14    |
 
 
-### The *inclusive* criterion for *r(q)* (a.k.a. the *LE* criterion):
+### The ***inclusive*** criterion for ***r(q)*** (a.k.a. the ***LE*** criterion):
 
 Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 <= q < q2*. Return the rank associated with *q1*, the first of the pair. 
 
@@ -154,7 +154,7 @@ For example *q = 30; r(30) = 11*
 
 ## Two search conventions when finding quantiles, q(r)
 
-### The *non inclusive* criterion for *q(r)* (a.k.a. the *GT* criterion):
+### The ***non inclusive*** criterion for ***q(r)*** (a.k.a. the ***GT*** criterion):
 
 Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 <= r < r2*. Return the quantile associated with *r2*, the second of the pair.
  
@@ -164,7 +164,7 @@ For example *r = 5; q(5) = 30*
 |-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
 | Quantile[]:     | 10    | 20    | 20    | q=30  | 30    | 30    | 40    | 50    |
 
-### The *inclusive* criterion for *q(r)*  (a.k.a. the *GE* criterion):
+### The ***inclusive*** criterion for ***q(r)***  (a.k.a. the ***GE*** criterion):
 
 Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 < r <= r2*. Return the quantile associated with *r2*, the second of the pair.
 
