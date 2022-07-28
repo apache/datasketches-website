@@ -20,7 +20,8 @@ layout: doc_page
     under the License.
 -->
 # Quantiles and Ranks Definitions
-Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions of massive data very quickly using only a small amout of space.  They allow us to extract values given a desired rank, or the reverse. Quantiles sketches enable us to plot the CDF, PMF or histograms of a distribution. 
+Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions of massive data very quickly using only a small amout of space.  They allow us to compute a quantile values given a desired rank, or compute a rank given
+a quantile value. Quantile sketches enable us to plot the CDF, PMF or histograms of a distribution. 
 
 The goal of this short tutorial it to introduce to the reader some of the basic concepts of quantiles, ranks and their functions.
 
@@ -31,20 +32,19 @@ Given an ordered set of values the term rank can be defined two different ways.
 
 * The **natural rank** is a **natural number** from the set of one-based, natural numbers, &#8469;<sub>1</sub>, and is derived by enumerating an ordered set of values, starting with the value 1, up to *n*, the number of values in the set.
 
-
-* The ***normalized rank*** is a number between 0 and 1 computed by dividing the *natural rank* by the total number of values in the set, *n*. Thus, for finite sets, any *normalized rank* is in the range (0, 1]. Normalized ranks are often written as a percent. But don't confuse percent with percentile! This will be explained below.
+* The ***normalized rank*** is a number between 0.0 and 1.0 computed by dividing the *natural rank* by the total number of values in the set, *n*. Thus, for finite sets, any *normalized rank* is in the range (0, 1]. Normalized ranks are often written as a percent. But don't confuse percent with percentile! This will be explained below.
+* A rank of 0, whether natural or normalized, represents the empty set.
  
 In our sketch library and documentation, when we refer to *rank*, we imply *normalized rank*. However, in this tutorial, we will sometimes use *natural ranks* to simplify the examples.
 
 ### Rank and Mass
-*Normalized rank* is closely associated with the concept of *mass*. The value associated with the rank 0.5 represents the median value, or the center of *mass* of the entire set where half of the values are below the median and half are above. The concept of mass is important to understanding the Prabability Mass Function (PMF) offered by the quantile sketches in the library.
-A rank of *0* means a mass of *0* or an empty set.
+*Normalized rank* is closely associated with the concept of *mass*. The value associated with the rank 0.5 represents the median value, or the center of *mass* of the entire set, where half of the values are below the median and half are above. The concept of mass is important to understanding the Prabability Mass Function (PMF) offered by all the quantile sketches in the library.
 
 ## What is a quantile?
 
 > A ***quantile*** is a *value* that achieves a particular ***rank***. 
 
-*Quantile* is the general term that describes other terms that are also quantiles.
+*Quantile* is the general term that includes other terms that are also quantiles.
 To wit:
 
 * A percentile is a quantile where the rank domain is divided into hundredths. For example, "An SAT Math score of 740 is at the 95th percentile". The score of 740 is the quantile and .95 is the normalized rank.
@@ -53,113 +53,116 @@ To wit:
 * The median is a quantile that splits the rank domain in half. For example, "An SAT Math score of 520 is at the median (rank = 0.5).
 
 ## The quantile and rank functions
-Because of the relationship of quantiles and ranks, we can define 
+Let's examine the following table:
 
-* The ***r-quantile*** is a value ***q*** such that ***rank(q) = r***, and ***quantile(r) = q***, assuming no duplicates.  In this tutorial, we shorten these two functions to *r(q)* and *q(r)*.
+| Quantile:       | 10 | 20 | 30 | 40 | 50 |
+|-----------------|----|----|----|----|----|
+| Natural Rank    | 1  | 2  | 3  | 4  | 5  |
+| Normalized Rank | .2 | .4 | .6 | .8 | 1.0|
+
+Let's define the functions
+
+* *quantile(rank)* or *q(r)* := given a *rank, r*, return the quantile value *q* associated with the given *r*.
+
+* *rank(quantile)* or *r(q)* := given a quantile value *q*, return the rank *r* associated with the given *q*.  
+
+Using an example from the table:
+
+* Using natural ranks:
+  * *q(3) = 30*
+  * *r(30) = 3*
+* Using normalized ranks:
+  * *q(.6) = 30*
+  * *r(30) = .6*
+
+
+Because of the close, two-way relationship of quantiles and ranks,  
+*r(q)* and *q(r)* form a *1:1 functional pair* if, and only if
+
+* *q = q(r(q))*
+* *r = r(q(r))*
+
+And this is certainly true of the table above.
 
 ## The challenge of duplicates
-The functions *q(r)* and *r(q)* would form a 1:1 functional pair if *q = q(r(q))* and *r = r(q(r))*.
-However, duplicate values are quite common in real data so exact 1:1 functionality is not possible. As a result it is often the case that  *q != q(r(q))* and *r != r(q(r))*. Duplicate values also could make the rank function, *r(q)*, ambiguous.  If there are multiple adjacent ranks with the same value, which rank should the rank function return? 
+With real data we often encounter duplicate values in the stream. Let's examine this next table.
+
+| Quantile:       | 10 | 20 | 20 | 20 | 50 |
+|-----------------|----|----|----|----|----|
+| Natural Rank    | 1  | 2  | 3  | 4  | 5  |
+
+As you can see *q(r)* is straightforward. But how about *r(q)*?  Which of the rank values 2, 3, or 4 should the function return given the value 20?  Given this data, and our definitions so far, 
+the function *r(q)* is ambiguous. We will see how to resolve this shortly.
+ 
 
 ## The challenge of approximation
-By definiton, sketching algorithms are approximate, and they achieve their high performance by discarding a vast amount of the data.  Suppose you feed *n* items into a sketch that retains only *m* items. This means *n-m* values were discarded.  The sketch must track the value *n* used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values *n-m* rank values are missing creating holes in the sequence of ranks.    
+By definiton, sketching algorithms are approximate, and they achieve their high performance by discarding  data.  Suppose you feed *n* items into a sketch that retains only *m < n* items. This means *n-m* values were discarded.  The sketch must track the value *n* used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values *n-m* rank values are missing creating holes in the sequence of ranks. For example, examine the following tables.
+
+The raw data might look like this, with its associated natural ranks.
+
+| Quantile:       | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100 |
+|-----------------|----|----|----|----|----|----|----|----|----|-----|
+| Natural Rank    | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10  |
+
+The sketch might discard the even values producing something like this:
+
+| Quantile:       | 10 | 30 | 50 | 70 | 90 |
+|-----------------|----|----|----|----|----|
+| Natural Rank    | 2  | 4  | 6  | 8  | 10 |
+
+So how do we resove *q(3)* or *r(20)*?
 
 ## The need for inequality search
 The quantile sketch algorithms discussed in the literature primarily differ by how they choose which values in the stream should be discarded. After the elimination process, all of the quantiles sketch implementations are left with the challenge of how to reconstruct the actual distribution, approximately and with good accuracy. 
 
-Given the presence of duplicates and absence of values from the stream we must redefine the above quantle and rank functions as inequalities. Let's start with a simple example.
+Given the presence of duplicates and absence of values from the stream we must redefine the above quantile and rank functions as inequalities. **We also want the quantile and rank functions to retain the properties of 1:1 functions.**
 
-## Two conventions used for searching for ranks
-* The first convention, called the *Less-Than* (*LT*) criterion, finds the mass of a distribution, denoted by a rank, that is strictly less-than the given rank.
-* The second convention, called the *Less-Than-or-Equal* (*LE*) criterion, finds the mass of a distribution, denoted by a rank, that is strictly less-than-or-equal to the given rank.
+You will find examples of both of the following definitions in the research literature.  All of our library quantile sketches allow the user to choose between the two searching criteria.  
 
-You will find both of these in the literature.  Our older *quantiles/DoublesSketch* and our *KLL* quantiles sketch use the *LT* criterion. Our newest *REQ* sketch allows the user to choose.
+These next examples use a small data set that mimics what could be the result of both duplication and sketch data deletion.
 
-## Two complementing conventions used for searching for quantiles
-When searching for quantiles, we require that search to return a quantile, such that our given *rank ~ r(q(r))* as close a possible.
+## Two search conventions used when finding ranks, r(q)
+* The *non inclusive* criterion for *r(q)*: (a.k.a. the *LT* criterion)
+   * Search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 < q <= q2*. Return the rank associated with *q1*, the first of the pair.
 
-In order to do that we use two complementing criteria.
+For example *r(30) = 5*
 
-* To match the *LT* criterion for rank, we use the greater-than, *GT*, criterion for quantiles
-* To match the *LE* criterion for rank, we use the greater-than-or-equal, *GE*, criterion for quantiles.
+| Quantile[]:     | 10    | 20    | q1=20 | q2=30 | 30    | 30    | 40    | 50    |
+|-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
+| Natural Rank[]: | 1     | 3     | r=5   |  7    | 9     | 11    | 13    | 14    |
 
-## Example
-Given the ordered values *{10,20,20,20,30}*, we can construct the following table of raw ranks and values. For simplicity we will use natural ranks.
 
-| Ranks, *r*  | 1  | 2  | 3  | 4  | 5  |
-|:-----------:|:--:|:--:|:--:|:--:|:--:|
-| Values, *q* | 10 | 20 | 20 | 20 | 30 |
+* The *inclusive* criterion for *r(q)*: (a.k.a. the *LE* criterion)
+   * Search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 <= q < q2*. Return the rank associated with *q1*, the first of the pair. 
 
-Table 1: Raw data mapping of ranks to values
+For example *r(30) = 11*
 
-After processing the stream the actual representation inside the sketch might look like the following. This compresses out duplicate values and effectively skips over missing values. Note that the top rank will always be *n*.
+| Quantile[]:     | 10    | 20    | 20    | 30    | 30    | q1=30 | q2=40 | 50    |
+|-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
+| Natural Rank[]: | 1     | 3     | 5     |  7    | 9     | r=11  | 13    | 14    |
 
-| Ranks, *r*  | 1  | 4  | 5  |
-|:-----------:|:--:|:--:|:--:|
-| Values, *q* | 10 | 20 | 30 |
 
-Table 1B: Raw data mapping compressed
-
-We will use Table 1B for the following.
-
-### Convention *LT*
-
-#### The *LT* (less-than) criterion for finding ranks
-Given a value, *V*, find an adjacent pair of values, *q1,q2*, where *q1 < V <= q2*. Return the rank of *q1*.
-
-* Given *V=10*, *? < V <= 10*. Return 0. There is no value in the set < *10*.
-* Given *V=20*, *10 < V <= 20*. Return 1.
-* Given *V=30*, *20 < V <= 30*. Return 4.
-
-Table 2 represents this mapping.
-
-| Given *q*     | 10 | 20 | 30 |
-|:-------------:|:--:|:--:|:--:|
-| Find *r* (LT) | 0  | 1  | 4  |
-
-Table 2: Using the *LT* criterion for finding ranks.
-
-Obtaining the quantile value given the rank is going the opposite direction, so we use the *GT* (greater-than) criterion.
-
-#### The *GT* (greater-than) criterion for finding quantiles.
-Given a rank, *R*, find an adjacent pair of ranks, *r1,r2*, where *r1 <= R < r2*. Return *q(r2)*.
+## Two search conventions when finding quantiles, q(r)
+* The *non inclusive* criterion for *q(r)* : (a.k.a. the *GT* criterion)
+   * Search the rank array until we find the adjacent pair *{r1, r2}* where *r1 <= r < r2*. Return the quantile associated with *r2*, the second of the pair.
  
-* Given *R=1, 2 or 3*, *1 <= R < 4*. Return *20*.
-* Given *R=4*, *4 <= R < 5*. Return *30*
-* Given *R=5*, *5 <= R < ?*. Return *30*. There is no rank > 5, but because it is at the top of the range we can safely return the top value.
+For example *q(5) = 30*
 
-| Given *r*     | 0  | 1  | 2  | 3  | 4  | 5  |
-|:-------------:|:--:|:--:|:--:|:--:|:--:|:--:|
-| Find *q* (GT) | 10 | 20 | 20 | 20 | 30 | 30 |
+| Natural Rank[]: | 1     | 3     | r1=5  |  r2=7 | 9     | 11    | 13    | 14    |
+|-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
+| Quantile[]:     | 10    | 20    | 20    | q=30  | 30    | 30    | 40    | 50    |
 
-Table 3: Using the *GT* criterion for finding quantiles 
+* The *inclusive* criterion for *q(r)*:  (a.k.a. the *GE* criterion)
+   * Search the rank array until we find the adjacent pair *{r1, r2}* where *r1 < r <= r2*. Return the quantile associated with *r2*, the second of the pair.
 
-### Convention *LE*
+For example *q(11) = 30*
 
-#### The *LE* (less-than or equals) criterion for finding ranks
-Given a value, *V*, find an adjacent pair of values, *q1,q2*, where *q1 <= V < q2*. Return the rank of *q1*.
+| Natural Rank[]: | 1     | 3     | 5     |  7    | r1=9  | r2=11 | 13    | 14    |
+|-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
+| Quantile[]:     | 10    | 20    | 20    | 30    | 30    | q=30  | 40    | 50    |
 
-* Given *V=10*, *10 <= V < 20*. Return 1.
-* Given *V=20*, *20 <= V < 30*. Return 4.
-* Given *V=30*, *30 <= V < ?*.  Return 5. 
 
-| Given *q*     | 10 | 20 | 30 |
-|:-------------:|:--:|:--:|:--:|
-| Find *r* (LE) | 1  | 4  | 5  |
+The power of these inequality search algorithms is that the will produce repeatable and accurate results and insensitive to duplicates and sketch deletions. 
+In addition, the way these algorithms are designed, the property of 1:1 functions are maintained.  
 
-Table 4: The *LE* criterion for finding ranks.
 
-Obtaining the quantile value given the rank is going the opposite direction, so we use the *GE* (greater-than-or-equals) criterion.
-
-#### The *GE* (greater-than or equals) criterion for finding quantiles
-Given a rank, *R*, find an adjacent pair of ranks, *r1,r2*, where *r1 < R <= r2*. Return *q(r2)*.
-
-* Given *R=1*, *? < R <= 1*. Return *10*.
-* Given *R=2, 3 or 4*, *1 < R <= 4*. Return *20*.
-* Given *R=5*, *4 < R <= 5*. Return *30*.
-
-| Given *r*     | 1  | 2  | 3  | 4  | 5  |
-|:-------------:|:--:|:--:|:--:|:--:|:--:|
-| Find *q* (GE) | 10 | 20 | 20 | 20 | 30 |
-
-Table 5: The *GE* criterion for finding quantiles.
