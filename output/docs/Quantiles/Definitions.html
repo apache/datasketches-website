@@ -508,7 +508,8 @@
     under the License.
 -->
 <h1 id="quantiles-and-ranks-definitions">Quantiles and Ranks Definitions</h1>
-<p>Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions of massive data very quickly using only a small amout of space.  They allow us to extract values given a desired rank, or the reverse. Quantiles sketches enable us to plot the CDF, PMF or histograms of a distribution.</p>
+<p>Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions of massive data very quickly using only a small amout of space.  They allow us to compute a quantile values given a desired rank, or compute a rank given
+a quantile value. Quantile sketches enable us to plot the CDF, PMF or histograms of a distribution.</p>
 
 <p>The goal of this short tutorial it to introduce to the reader some of the basic concepts of quantiles, ranks and their functions.</p>
 
@@ -521,16 +522,14 @@
   <li>
     <p>The <strong>natural rank</strong> is a <strong>natural number</strong> from the set of one-based, natural numbers, ℕ<sub>1</sub>, and is derived by enumerating an ordered set of values, starting with the value 1, up to <em>n</em>, the number of values in the set.</p>
   </li>
-  <li>
-    <p>The <strong><em>normalized rank</em></strong> is a number between 0 and 1 computed by dividing the <em>natural rank</em> by the total number of values in the set, <em>n</em>. Thus, for finite sets, any <em>normalized rank</em> is in the range (0, 1]. Normalized ranks are often written as a percent. But don’t confuse percent with percentile! This will be explained below.</p>
-  </li>
+  <li>The <strong><em>normalized rank</em></strong> is a number between 0.0 and 1.0 computed by dividing the <em>natural rank</em> by the total number of values in the set, <em>n</em>. Thus, for finite sets, any <em>normalized rank</em> is in the range (0, 1]. Normalized ranks are often written as a percent. But don’t confuse percent with percentile! This will be explained below.</li>
+  <li>A rank of 0, whether natural or normalized, represents the empty set.</li>
 </ul>
 
 <p>In our sketch library and documentation, when we refer to <em>rank</em>, we imply <em>normalized rank</em>. However, in this tutorial, we will sometimes use <em>natural ranks</em> to simplify the examples.</p>
 
 <h3 id="rank-and-mass">Rank and Mass</h3>
-<p><em>Normalized rank</em> is closely associated with the concept of <em>mass</em>. The value associated with the rank 0.5 represents the median value, or the center of <em>mass</em> of the entire set where half of the values are below the median and half are above. The concept of mass is important to understanding the Prabability Mass Function (PMF) offered by the quantile sketches in the library.
-A rank of <em>0</em> means a mass of <em>0</em> or an empty set.</p>
+<p><em>Normalized rank</em> is closely associated with the concept of <em>mass</em>. The value associated with the rank 0.5 represents the median value, or the center of <em>mass</em> of the entire set, where half of the values are below the median and half are above. The concept of mass is important to understanding the Prabability Mass Function (PMF) offered by all the quantile sketches in the library.</p>
 
 <h2 id="what-is-a-quantile">What is a quantile?</h2>
 
@@ -538,7 +537,7 @@ A rank of <em>0</em> means a mass of <em>0</em> or an empty set.</p>
   <p>A <strong><em>quantile</em></strong> is a <em>value</em> that achieves a particular <strong><em>rank</em></strong>.</p>
 </blockquote>
 
-<p><em>Quantile</em> is the general term that describes other terms that are also quantiles.
+<p><em>Quantile</em> is the general term that includes other terms that are also quantiles.
 To wit:</p>
 
 <ul>
@@ -549,234 +548,341 @@ To wit:</p>
 </ul>
 
 <h2 id="the-quantile-and-rank-functions">The quantile and rank functions</h2>
-<p>Because of the relationship of quantiles and ranks, we can define</p>
+<p>Let’s examine the following table:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank</td>
+      <td>.2</td>
+      <td>.4</td>
+      <td>.6</td>
+      <td>.8</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Let’s define the functions</p>
 
 <ul>
-  <li>The <strong><em>r-quantile</em></strong> is a value <strong><em>q</em></strong> such that <strong><em>rank(q) = r</em></strong>, and <strong><em>quantile(r) = q</em></strong>, assuming no duplicates.  In this tutorial, we shorten these two functions to <em>r(q)</em> and <em>q(r)</em>.</li>
+  <li>
+    <p><em>quantile(rank)</em> or <em>q(r)</em> := given a <em>rank, r</em>, return the quantile value <em>q</em> associated with the given <em>r</em>.</p>
+  </li>
+  <li>
+    <p><em>rank(quantile)</em> or <em>r(q)</em> := given a quantile value <em>q</em>, return the rank <em>r</em> associated with the given <em>q</em>.</p>
+  </li>
 </ul>
 
+<p>Using an example from the table:</p>
+
+<ul>
+  <li>Using natural ranks:
+    <ul>
+      <li><em>q(3) = 30</em></li>
+      <li><em>r(30) = 3</em></li>
+    </ul>
+  </li>
+  <li>Using normalized ranks:
+    <ul>
+      <li><em>q(.6) = 30</em></li>
+      <li><em>r(30) = .6</em></li>
+    </ul>
+  </li>
+</ul>
+
+<p>Because of the close, two-way relationship of quantiles and ranks,<br />
+<em>r(q)</em> and <em>q(r)</em> form a <em>1:1 functional pair</em> if, and only if</p>
+
+<ul>
+  <li><em>q = q(r(q))</em></li>
+  <li><em>r = r(q(r))</em></li>
+</ul>
+
+<p>And this is certainly true of the table above.</p>
+
 <h2 id="the-challenge-of-duplicates">The challenge of duplicates</h2>
-<p>The functions <em>q(r)</em> and <em>r(q)</em> would form a 1:1 functional pair if <em>q = q(r(q))</em> and <em>r = r(q(r))</em>.
-However, duplicate values are quite common in real data so exact 1:1 functionality is not possible. As a result it is often the case that  <em>q != q(r(q))</em> and <em>r != r(q(r))</em>. Duplicate values also could make the rank function, <em>r(q)</em>, ambiguous.  If there are multiple adjacent ranks with the same value, which rank should the rank function return?</p>
+<p>With real data we often encounter duplicate values in the stream. Let’s examine this next table.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>20</th>
+      <th>50</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As you can see <em>q(r)</em> is straightforward. But how about <em>r(q)</em>?  Which of the rank values 2, 3, or 4 should the function return given the value 20?  Given this data, and our definitions so far, 
+the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly.</p>
 
 <h2 id="the-challenge-of-approximation">The challenge of approximation</h2>
-<p>By definiton, sketching algorithms are approximate, and they achieve their high performance by discarding a vast amount of the data.  Suppose you feed <em>n</em> items into a sketch that retains only <em>m</em> items. This means <em>n-m</em> values were discarded.  The sketch must track the value <em>n</em> used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values <em>n-m</em> rank values are missing creating holes in the sequence of ranks.</p>
+<p>By definiton, sketching algorithms are approximate, and they achieve their high performance by discarding  data.  Suppose you feed <em>n</em> items into a sketch that retains only <em>m &lt; n</em> items. This means <em>n-m</em> values were discarded.  The sketch must track the value <em>n</em> used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values <em>n-m</em> rank values are missing creating holes in the sequence of ranks. For example, examine the following tables.</p>
+
+<p>The raw data might look like this, with its associated natural ranks.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+      <th>60</th>
+      <th>70</th>
+      <th>80</th>
+      <th>90</th>
+      <th>100</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The sketch might discard the even values producing something like this:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile:</th>
+      <th>10</th>
+      <th>30</th>
+      <th>50</th>
+      <th>70</th>
+      <th>90</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank</td>
+      <td>2</td>
+      <td>4</td>
+      <td>6</td>
+      <td>8</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>So how do we resove <em>q(3)</em> or <em>r(20)</em>?</p>
 
 <h2 id="the-need-for-inequality-search">The need for inequality search</h2>
 <p>The quantile sketch algorithms discussed in the literature primarily differ by how they choose which values in the stream should be discarded. After the elimination process, all of the quantiles sketch implementations are left with the challenge of how to reconstruct the actual distribution, approximately and with good accuracy.</p>
 
-<p>Given the presence of duplicates and absence of values from the stream we must redefine the above quantle and rank functions as inequalities. Let’s start with a simple example.</p>
+<p>Given the presence of duplicates and absence of values from the stream we must redefine the above quantile and rank functions as inequalities. <strong>We also want the quantile and rank functions to retain the properties of 1:1 functions.</strong></p>
 
-<h2 id="two-conventions-used-for-searching-for-ranks">Two conventions used for searching for ranks</h2>
+<p>You will find examples of both of the following definitions in the research literature.  All of our library quantile sketches allow the user to choose between the two searching criteria.</p>
+
+<p>These next examples use a small data set that mimics what could be the result of both duplication and sketch data deletion.</p>
+
+<h2 id="two-search-conventions-used-when-finding-ranks-rq">Two search conventions used when finding ranks, r(q)</h2>
 <ul>
-  <li>The first convention, called the <em>Less-Than</em> (<em>LT</em>) criterion, finds the mass of a distribution, denoted by a rank, that is strictly less-than the given rank.</li>
-  <li>The second convention, called the <em>Less-Than-or-Equal</em> (<em>LE</em>) criterion, finds the mass of a distribution, denoted by a rank, that is strictly less-than-or-equal to the given rank.</li>
+  <li>The <em>non inclusive</em> criterion for <em>r(q)</em>: (a.k.a. the <em>LT</em> criterion)
+    <ul>
+      <li>Search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt; q &lt;= q2</em>. Return the rank associated with <em>q1</em>, the first of the pair.</li>
+    </ul>
+  </li>
 </ul>
 
-<p>You will find both of these in the literature.  Our older <em>quantiles/DoublesSketch</em> and our <em>KLL</em> quantiles sketch use the <em>LT</em> criterion. Our newest <em>REQ</em> sketch allows the user to choose.</p>
-
-<h2 id="two-complementing-conventions-used-for-searching-for-quantiles">Two complementing conventions used for searching for quantiles</h2>
-<p>When searching for quantiles, we require that search to return a quantile, such that our given <em>rank ~ r(q(r))</em> as close a possible.</p>
-
-<p>In order to do that we use two complementing criteria.</p>
-
-<ul>
-  <li>To match the <em>LT</em> criterion for rank, we use the greater-than, <em>GT</em>, criterion for quantiles</li>
-  <li>To match the <em>LE</em> criterion for rank, we use the greater-than-or-equal, <em>GE</em>, criterion for quantiles.</li>
-</ul>
-
-<h2 id="example">Example</h2>
-<p>Given the ordered values <em>{10,20,20,20,30}</em>, we can construct the following table of raw ranks and values. For simplicity we will use natural ranks.</p>
+<p>For example <em>r(30) = 5</em></p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: center">Ranks, <em>r</em></th>
-      <th style="text-align: center">1</th>
-      <th style="text-align: center">2</th>
-      <th style="text-align: center">3</th>
-      <th style="text-align: center">4</th>
-      <th style="text-align: center">5</th>
+      <th>Quantile[]:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>q1=20</th>
+      <th>q2=30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">Values, <em>q</em></td>
-      <td style="text-align: center">10</td>
-      <td style="text-align: center">20</td>
-      <td style="text-align: center">20</td>
-      <td style="text-align: center">20</td>
-      <td style="text-align: center">30</td>
+      <td>Natural Rank[]:</td>
+      <td>1</td>
+      <td>3</td>
+      <td>r=5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
     </tr>
   </tbody>
 </table>
-
-<p>Table 1: Raw data mapping of ranks to values</p>
-
-<p>After processing the stream the actual representation inside the sketch might look like the following. This compresses out duplicate values and effectively skips over missing values. Note that the top rank will always be <em>n</em>.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">Ranks, <em>r</em></th>
-      <th style="text-align: center">1</th>
-      <th style="text-align: center">4</th>
-      <th style="text-align: center">5</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">Values, <em>q</em></td>
-      <td style="text-align: center">10</td>
-      <td style="text-align: center">20</td>
-      <td style="text-align: center">30</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Table 1B: Raw data mapping compressed</p>
-
-<p>We will use Table 1B for the following.</p>
-
-<h3 id="convention-lt">Convention <em>LT</em></h3>
-
-<h4 id="the-lt-less-than-criterion-for-finding-ranks">The <em>LT</em> (less-than) criterion for finding ranks</h4>
-<p>Given a value, <em>V</em>, find an adjacent pair of values, <em>q1,q2</em>, where <em>q1 &lt; V &lt;= q2</em>. Return the rank of <em>q1</em>.</p>
 
 <ul>
-  <li>Given <em>V=10</em>, <em>? &lt; V &lt;= 10</em>. Return 0. There is no value in the set &lt; <em>10</em>.</li>
-  <li>Given <em>V=20</em>, <em>10 &lt; V &lt;= 20</em>. Return 1.</li>
-  <li>Given <em>V=30</em>, <em>20 &lt; V &lt;= 30</em>. Return 4.</li>
+  <li>The <em>inclusive</em> criterion for <em>r(q)</em>: (a.k.a. the <em>LE</em> criterion)
+    <ul>
+      <li>Search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt;= q &lt; q2</em>. Return the rank associated with <em>q1</em>, the first of the pair.</li>
+    </ul>
+  </li>
 </ul>
 
-<p>Table 2 represents this mapping.</p>
+<p>For example <em>r(30) = 11</em></p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: center">Given <em>q</em></th>
-      <th style="text-align: center">10</th>
-      <th style="text-align: center">20</th>
-      <th style="text-align: center">30</th>
+      <th>Quantile[]:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>q1=30</th>
+      <th>q2=40</th>
+      <th>50</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">Find <em>r</em> (LT)</td>
-      <td style="text-align: center">0</td>
-      <td style="text-align: center">1</td>
-      <td style="text-align: center">4</td>
+      <td>Natural Rank[]:</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>r=11</td>
+      <td>13</td>
+      <td>14</td>
     </tr>
   </tbody>
 </table>
 
-<p>Table 2: Using the <em>LT</em> criterion for finding ranks.</p>
+<h2 id="two-search-conventions-when-finding-quantiles-qr">Two search conventions when finding quantiles, q(r)</h2>
+<ul>
+  <li>The <em>non inclusive</em> criterion for <em>q(r)</em> : (a.k.a. the <em>GT</em> criterion)
+    <ul>
+      <li>Search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt;= r &lt; r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</li>
+    </ul>
+  </li>
+</ul>
 
-<p>Obtaining the quantile value given the rank is going the opposite direction, so we use the <em>GT</em> (greater-than) criterion.</p>
+<p>For example <em>q(5) = 30</em></p>
 
-<h4 id="the-gt-greater-than-criterion-for-finding-quantiles">The <em>GT</em> (greater-than) criterion for finding quantiles.</h4>
-<p>Given a rank, <em>R</em>, find an adjacent pair of ranks, <em>r1,r2</em>, where <em>r1 &lt;= R &lt; r2</em>. Return <em>q(r2)</em>.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Natural Rank[]:</th>
+      <th>1</th>
+      <th>3</th>
+      <th>r1=5</th>
+      <th>r2=7</th>
+      <th>9</th>
+      <th>11</th>
+      <th>13</th>
+      <th>14</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Quantile[]:</td>
+      <td>10</td>
+      <td>20</td>
+      <td>20</td>
+      <td>q=30</td>
+      <td>30</td>
+      <td>30</td>
+      <td>40</td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
 
 <ul>
-  <li>Given <em>R=1, 2 or 3</em>, <em>1 &lt;= R &lt; 4</em>. Return <em>20</em>.</li>
-  <li>Given <em>R=4</em>, <em>4 &lt;= R &lt; 5</em>. Return <em>30</em></li>
-  <li>Given <em>R=5</em>, <em>5 &lt;= R &lt; ?</em>. Return <em>30</em>. There is no rank &gt; 5, but because it is at the top of the range we can safely return the top value.</li>
+  <li>The <em>inclusive</em> criterion for <em>q(r)</em>:  (a.k.a. the <em>GE</em> criterion)
+    <ul>
+      <li>Search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt; r &lt;= r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</li>
+    </ul>
+  </li>
 </ul>
+
+<p>For example <em>q(11) = 30</em></p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: center">Given <em>r</em></th>
-      <th style="text-align: center">0</th>
-      <th style="text-align: center">1</th>
-      <th style="text-align: center">2</th>
-      <th style="text-align: center">3</th>
-      <th style="text-align: center">4</th>
-      <th style="text-align: center">5</th>
+      <th>Natural Rank[]:</th>
+      <th>1</th>
+      <th>3</th>
+      <th>5</th>
+      <th>7</th>
+      <th>r1=9</th>
+      <th>r2=11</th>
+      <th>13</th>
+      <th>14</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">Find <em>q</em> (GT)</td>
-      <td style="text-align: center">10</td>
-      <td style="text-align: center">20</td>
-      <td style="text-align: center">20</td>
-      <td style="text-align: center">20</td>
-      <td style="text-align: center">30</td>
-      <td style="text-align: center">30</td>
+      <td>Quantile[]:</td>
+      <td>10</td>
+      <td>20</td>
+      <td>20</td>
+      <td>30</td>
+      <td>30</td>
+      <td>q=30</td>
+      <td>40</td>
+      <td>50</td>
     </tr>
   </tbody>
 </table>
 
-<p>Table 3: Using the <em>GT</em> criterion for finding quantiles</p>
+<p>The power of these inequality search algorithms is that the will produce repeatable and accurate results and insensitive to duplicates and sketch deletions. 
+In addition, the way these algorithms are designed, the property of 1:1 functions are maintained.</p>
 
-<h3 id="convention-le">Convention <em>LE</em></h3>
-
-<h4 id="the-le-less-than-or-equals-criterion-for-finding-ranks">The <em>LE</em> (less-than or equals) criterion for finding ranks</h4>
-<p>Given a value, <em>V</em>, find an adjacent pair of values, <em>q1,q2</em>, where <em>q1 &lt;= V &lt; q2</em>. Return the rank of <em>q1</em>.</p>
-
-<ul>
-  <li>Given <em>V=10</em>, <em>10 &lt;= V &lt; 20</em>. Return 1.</li>
-  <li>Given <em>V=20</em>, <em>20 &lt;= V &lt; 30</em>. Return 4.</li>
-  <li>Given <em>V=30</em>, <em>30 &lt;= V &lt; ?</em>.  Return 5.</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">Given <em>q</em></th>
-      <th style="text-align: center">10</th>
-      <th style="text-align: center">20</th>
-      <th style="text-align: center">30</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">Find <em>r</em> (LE)</td>
-      <td style="text-align: center">1</td>
-      <td style="text-align: center">4</td>
-      <td style="text-align: center">5</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Table 4: The <em>LE</em> criterion for finding ranks.</p>
-
-<p>Obtaining the quantile value given the rank is going the opposite direction, so we use the <em>GE</em> (greater-than-or-equals) criterion.</p>
-
-<h4 id="the-ge-greater-than-or-equals-criterion-for-finding-quantiles">The <em>GE</em> (greater-than or equals) criterion for finding quantiles</h4>
-<p>Given a rank, <em>R</em>, find an adjacent pair of ranks, <em>r1,r2</em>, where <em>r1 &lt; R &lt;= r2</em>. Return <em>q(r2)</em>.</p>
-
-<ul>
-  <li>Given <em>R=1</em>, <em>? &lt; R &lt;= 1</em>. Return <em>10</em>.</li>
-  <li>Given <em>R=2, 3 or 4</em>, <em>1 &lt; R &lt;= 4</em>. Return <em>20</em>.</li>
-  <li>Given <em>R=5</em>, <em>4 &lt; R &lt;= 5</em>. Return <em>30</em>.</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">Given <em>r</em></th>
-      <th style="text-align: center">1</th>
-      <th style="text-align: center">2</th>
-      <th style="text-align: center">3</th>
-      <th style="text-align: center">4</th>
-      <th style="text-align: center">5</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">Find <em>q</em> (GE)</td>
-      <td style="text-align: center">10</td>
-      <td style="text-align: center">20</td>
-      <td style="text-align: center">20</td>
-      <td style="text-align: center">20</td>
-      <td style="text-align: center">30</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Table 5: The <em>GE</em> criterion for finding quantiles.</p>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
