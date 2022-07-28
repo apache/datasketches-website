@@ -538,7 +538,7 @@ of quantiles, ranks and their functions.</p>
 
 <h2 id="what-is-a-quantile">What is a quantile?</h2>
 
-<h3 id="a-quantile-is-a-value-that-is-associated-with-a-particular-rank">A <strong><em>quantile</em></strong> is a <em>value</em> that is associated with a particular <strong><em>rank</em></strong>.</h3>
+<h3 id="a-quantile-is-a-value-that-is-associated-with-a-particular-rank">A <strong><em>quantile</em></strong> is a <strong><em>value</em></strong> that is associated with a particular <strong><em>rank</em></strong>.</h3>
 
 <p><em>Quantile</em> is the general term that includes other terms that are also quantiles.
 To wit:</p>
@@ -586,9 +586,9 @@ To wit:</p>
 
 <p>Let’s define the functions</p>
 
-<h3 id="quantilerank-or-qr--return-the-quantile-value-q-associated-with-a-given-rank-r"><em>quantile(rank)</em> or <em>q(r)</em> := return the quantile value <em>q</em> associated with a given <em>rank, r</em>.</h3>
+<h3 id="quantilerank-or-qr--return-the-quantile-value-q-associated-with-a-given-rank-r"><strong><em>quantile(rank)</em></strong> or <strong><em>q(r)</em></strong> := return the quantile value <strong><em>q</em></strong> associated with<br /> a given <strong><em>rank, r</em></strong>.</h3>
 
-<h3 id="rankquantile-or-rq--return-the-rank-r-associated-with-the-given-quantile-q"><em>rank(quantile)</em> or <em>r(q)</em> := return the rank <em>r</em> associated with the given <em>quantile, q</em>.</h3>
+<h3 id="rankquantile-or-rq--return-the-rank-r-associated-with-a-given-quantile-q"><strong><em>rank(quantile)</em></strong> or <strong><em>r(q)</em></strong> := return the rank <strong><em>r</em></strong> associated with<br /> a given <strong><em>quantile, q</em></strong>.</h3>
 
 <p>Using an example from the table:</p>
 
@@ -724,7 +724,7 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 
 <h2 id="two-search-conventions-used-when-finding-ranks-rq">Two search conventions used when finding ranks, r(q)</h2>
 
-<h3 id="the-non-inclusive-criterion-for-rq-aka-the-lt-criterion">The <em>non inclusive</em> criterion for <em>r(q)</em> (a.k.a. the <em>LT</em> criterion):</h3>
+<h3 id="the-non-inclusive-criterion-for-rq-aka-the-lt-criterion">The <strong><em>non inclusive</em></strong> criterion for <strong><em>r(q)</em></strong> (a.k.a. the <strong><em>LT</em></strong> criterion):</h3>
 
 <p>Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt; q &lt;= q2</em>. Return the rank associated with <em>q1</em>, the first of the pair.</p>
 
@@ -759,7 +759,7 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
   </tbody>
 </table>
 
-<h3 id="the-inclusive-criterion-for-rq-aka-the-le-criterion">The <em>inclusive</em> criterion for <em>r(q)</em> (a.k.a. the <em>LE</em> criterion):</h3>
+<h3 id="the-inclusive-criterion-for-rq-aka-the-le-criterion">The <strong><em>inclusive</em></strong> criterion for <strong><em>r(q)</em></strong> (a.k.a. the <strong><em>LE</em></strong> criterion):</h3>
 
 <p>Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt;= q &lt; q2</em>. Return the rank associated with <em>q1</em>, the first of the pair.</p>
 
@@ -796,7 +796,7 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 
 <h2 id="two-search-conventions-when-finding-quantiles-qr">Two search conventions when finding quantiles, q(r)</h2>
 
-<h3 id="the-non-inclusive-criterion-for-qr-aka-the-gt-criterion">The <em>non inclusive</em> criterion for <em>q(r)</em> (a.k.a. the <em>GT</em> criterion):</h3>
+<h3 id="the-non-inclusive-criterion-for-qr-aka-the-gt-criterion">The <strong><em>non inclusive</em></strong> criterion for <strong><em>q(r)</em></strong> (a.k.a. the <strong><em>GT</em></strong> criterion):</h3>
 
 <p>Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt;= r &lt; r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</p>
 
@@ -831,7 +831,7 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
   </tbody>
 </table>
 
-<h3 id="the-inclusive-criterion-for-qr--aka-the-ge-criterion">The <em>inclusive</em> criterion for <em>q(r)</em>  (a.k.a. the <em>GE</em> criterion):</h3>
+<h3 id="the-inclusive-criterion-for-qr--aka-the-ge-criterion">The <strong><em>inclusive</em></strong> criterion for <strong><em>q(r)</em></strong>  (a.k.a. the <strong><em>GE</em></strong> criterion):</h3>
 
 <p>Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt; r &lt;= r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</p>
 
