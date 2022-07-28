@@ -341,7 +341,7 @@
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
     </p>
     <div class="collapse" id="collapse_quantiles_and_histograms">
-      <li><a href="/docs/Quantiles/Definitions.html">•Quantiles Definitions</a></li>
+      <li><a href="/docs/Quantiles/SketchingQuantilesAndRanksTutorial.html">•Quantiles and Ranks Tutorial</a></li>
       <li><a href="/docs/Quantiles/QuantilesOverview.html">•Quantiles Overview</a></li>
       <li><a href="/docs/KLL/KLLSketch.html">•KLL Floats sketch</a></li>
       <li><a href="/docs/REQ/ReqSketch.html">•REQ Floats sketch</a></li>
@@ -507,16 +507,22 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h1 id="quantiles-and-ranks-definitions">Quantiles and Ranks Definitions</h1>
-<p>Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions of massive data very quickly using only a small amout of space.  They allow us to compute a quantile values given a desired rank, or compute a rank given
+<h1 id="sketching-quantiles-and-ranks-the-basics">Sketching Quantiles and Ranks, the Basics</h1>
+<p>Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions 
+of massive data very quickly using only a small amout of space.<br />
+They allow us to compute a quantile values given a desired rank, or compute a rank given
 a quantile value. Quantile sketches enable us to plot the CDF, PMF or histograms of a distribution.</p>
 
-<p>The goal of this short tutorial it to introduce to the reader some of the basic concepts of quantiles, ranks and their functions.</p>
-
-<p>Before we can define <em>quantile</em>, we must first define what we mean by <em>rank</em>.</p>
+<p>The goal of this short tutorial it to introduce to the reader some of the basic concepts 
+of quantiles, ranks and their functions.</p>
 
 <h2 id="what-is-a-rank">What is a rank?</h2>
-<p>Given an ordered set of values the term rank can be defined two different ways.</p>
+
+<blockquote>
+  <p>A <strong><em>rank</em></strong> identifies the numeric position of a specific value in an enumerated ordered set if values.</p>
+</blockquote>
+
+<p>The actual enumeration can be done in several ways, but for our use here we will define the two common ways that <em>rank</em> can be specified and that we will use.</p>
 
 <ul>
   <li>
@@ -534,7 +540,7 @@ a quantile value. Quantile sketches enable us to plot the CDF, PMF or histograms
 <h2 id="what-is-a-quantile">What is a quantile?</h2>
 
 <blockquote>
-  <p>A <strong><em>quantile</em></strong> is a <em>value</em> that achieves a particular <strong><em>rank</em></strong>.</p>
+  <p>A <strong><em>quantile</em></strong> is a <em>value</em> that is associated with a particular <strong><em>rank</em></strong>.</p>
 </blockquote>
 
 <p><em>Quantile</em> is the general term that includes other terms that are also quantiles.
@@ -583,14 +589,13 @@ To wit:</p>
 
 <p>Let’s define the functions</p>
 
-<ul>
-  <li>
-    <p><em>quantile(rank)</em> or <em>q(r)</em> := given a <em>rank, r</em>, return the quantile value <em>q</em> associated with the given <em>r</em>.</p>
-  </li>
-  <li>
-    <p><em>rank(quantile)</em> or <em>r(q)</em> := given a quantile value <em>q</em>, return the rank <em>r</em> associated with the given <em>q</em>.</p>
-  </li>
-</ul>
+<blockquote>
+  <p><em>quantile(rank)</em> or <em>q(r)</em> := return the quantile value <em>q</em> associated with a given <em>rank, r</em>.</p>
+</blockquote>
+
+<blockquote>
+  <p><em>rank(quantile)</em> or <em>r(q)</em> := return the rank <em>r</em> associated with the given <em>quantile, q</em>.</p>
+</blockquote>
 
 <p>Using an example from the table:</p>
 
@@ -711,27 +716,26 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
   </tbody>
 </table>
 
-<p>So how do we resove <em>q(3)</em> or <em>r(20)</em>?</p>
+<p>When the sketch deletes values it adjusts the associated ranks by effectively increasing the “weight” of adjacent items so that they are positionally approximately correct and the top rank corresponds to <em>n</em>.</p>
+
+<p>How do we resove <em>q(3)</em> or <em>r(20)</em>?</p>
 
 <h2 id="the-need-for-inequality-search">The need for inequality search</h2>
 <p>The quantile sketch algorithms discussed in the literature primarily differ by how they choose which values in the stream should be discarded. After the elimination process, all of the quantiles sketch implementations are left with the challenge of how to reconstruct the actual distribution, approximately and with good accuracy.</p>
 
-<p>Given the presence of duplicates and absence of values from the stream we must redefine the above quantile and rank functions as inequalities. <strong>We also want the quantile and rank functions to retain the properties of 1:1 functions.</strong></p>
+<p>Given the presence of duplicates and absence of values from the stream we must redefine the above quantile and rank functions as inequalities <strong>while retaining the properties of 1:1 functions.</strong></p>
 
-<p>You will find examples of both of the following definitions in the research literature.  All of our library quantile sketches allow the user to choose between the two searching criteria.</p>
+<p>One can find examples of the following definitions in the research literature.  All of our library quantile sketches allow the user to choose the searching criteria.</p>
 
 <p>These next examples use a small data set that mimics what could be the result of both duplication and sketch data deletion.</p>
 
 <h2 id="two-search-conventions-used-when-finding-ranks-rq">Two search conventions used when finding ranks, r(q)</h2>
-<ul>
-  <li>The <em>non inclusive</em> criterion for <em>r(q)</em>: (a.k.a. the <em>LT</em> criterion)
-    <ul>
-      <li>Search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt; q &lt;= q2</em>. Return the rank associated with <em>q1</em>, the first of the pair.</li>
-    </ul>
-  </li>
-</ul>
 
-<p>For example <em>r(30) = 5</em></p>
+<h3 id="the-non-inclusive-criterion-for-rq-aka-the-lt-criterion">The <em>non inclusive</em> criterion for <em>r(q)</em> (a.k.a. the <em>LT</em> criterion):</h3>
+
+<p>Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt; q &lt;= q2</em>. Return the rank associated with <em>q1</em>, the first of the pair.</p>
+
+<p>For example <em>q = 30; r(30) = 5</em></p>
 
 <table>
   <thead>
@@ -762,15 +766,11 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
   </tbody>
 </table>
 
-<ul>
-  <li>The <em>inclusive</em> criterion for <em>r(q)</em>: (a.k.a. the <em>LE</em> criterion)
-    <ul>
-      <li>Search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt;= q &lt; q2</em>. Return the rank associated with <em>q1</em>, the first of the pair.</li>
-    </ul>
-  </li>
-</ul>
+<h3 id="the-inclusive-criterion-for-rq-aka-the-le-criterion">The <em>inclusive</em> criterion for <em>r(q)</em> (a.k.a. the <em>LE</em> criterion):</h3>
 
-<p>For example <em>r(30) = 11</em></p>
+<p>Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt;= q &lt; q2</em>. Return the rank associated with <em>q1</em>, the first of the pair.</p>
+
+<p>For example <em>q = 30; r(30) = 11</em></p>
 
 <table>
   <thead>
@@ -802,15 +802,12 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 </table>
 
 <h2 id="two-search-conventions-when-finding-quantiles-qr">Two search conventions when finding quantiles, q(r)</h2>
-<ul>
-  <li>The <em>non inclusive</em> criterion for <em>q(r)</em> : (a.k.a. the <em>GT</em> criterion)
-    <ul>
-      <li>Search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt;= r &lt; r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</li>
-    </ul>
-  </li>
-</ul>
 
-<p>For example <em>q(5) = 30</em></p>
+<h3 id="the-non-inclusive-criterion-for-qr-aka-the-gt-criterion">The <em>non inclusive</em> criterion for <em>q(r)</em> (a.k.a. the <em>GT</em> criterion):</h3>
+
+<p>Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt;= r &lt; r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</p>
+
+<p>For example <em>r = 5; q(5) = 30</em></p>
 
 <table>
   <thead>
@@ -841,13 +838,9 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
   </tbody>
 </table>
 
-<ul>
-  <li>The <em>inclusive</em> criterion for <em>q(r)</em>:  (a.k.a. the <em>GE</em> criterion)
-    <ul>
-      <li>Search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt; r &lt;= r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</li>
-    </ul>
-  </li>
-</ul>
+<h3 id="the-inclusive-criterion-for-qr--aka-the-ge-criterion">The <em>inclusive</em> criterion for <em>q(r)</em>  (a.k.a. the <em>GE</em> criterion):</h3>
+
+<p>Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt; r &lt;= r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</p>
 
 <p>For example <em>q(11) = 30</em></p>
 
@@ -880,8 +873,14 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
   </tbody>
 </table>
 
-<p>The power of these inequality search algorithms is that the will produce repeatable and accurate results and insensitive to duplicates and sketch deletions. 
-In addition, the way these algorithms are designed, the property of 1:1 functions are maintained.</p>
+<h2 id="these-conventions-maintain-the-11-functional-relationship">These conventions maintain the 1:1 functional relationship</h2>
+
+<h3 id="the-non-inclusive-search-for-qr-is-the-inverse-of-the-non-inclusive-search-for-rq-therefore-q--qrq-and-r--rqr">The non inclusive search for q(r) is the inverse of the non inclusive search for r(q). Therefore, <em>q = q(r(q))</em> and <em>r = r(q(r))</em>.</h3>
+
+<h3 id="the-inclusive-search-for-qr-is-the-inverse-of-the-inclusive-search-for-rq-therefore-q--qrq-and-r--rqr">The inclusive search for q(r) is the inverse of the inclusive search for r(q). Therefore, <em>q = q(r(q))</em> and <em>r = r(q(r))</em>.</h3>
+
+<h2 id="summary">Summary</h2>
+<p>The power of these inequality search algorithms is that they produce repeatable and accurate results, are insensitive to duplicates and sketch deletions, and maintain the property of 1:1 functions.</p>
 
 
       </div> <!-- End content -->
