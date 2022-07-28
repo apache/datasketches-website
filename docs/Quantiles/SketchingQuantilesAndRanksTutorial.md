@@ -30,7 +30,7 @@ of quantiles, ranks and their functions.
 
 ## What is a rank?
 
->  A ***rank*** identifies the numeric position of a specific value in an enumerated ordered set if values.
+### A *rank* identifies the numeric position of a specific value in an enumerated, ordered set if values.
 
 The actual enumeration can be done in several ways, but for our use here we will define the two common ways that *rank* can be specified and that we will use. 
 
@@ -42,11 +42,12 @@ The actual enumeration can be done in several ways, but for our use here we will
 In our sketch library and documentation, when we refer to *rank*, we imply *normalized rank*. However, in this tutorial, we will sometimes use *natural ranks* to simplify the examples.
 
 ### Rank and Mass
+
 *Normalized rank* is closely associated with the concept of *mass*. The value associated with the rank 0.5 represents the median value, or the center of *mass* of the entire set, where half of the values are below the median and half are above. The concept of mass is important to understanding the Prabability Mass Function (PMF) offered by all the quantile sketches in the library.
 
 ## What is a quantile?
 
-> A ***quantile*** is a *value* that is associated with a particular ***rank***. 
+### A *quantile* is a *value* that is associated with a particular ***rank***. 
 
 *Quantile* is the general term that includes other terms that are also quantiles.
 To wit:
@@ -66,9 +67,9 @@ Let's examine the following table:
 
 Let's define the functions
 
-> *quantile(rank)* or *q(r)* := return the quantile value *q* associated with a given *rank, r*.
+### *quantile(rank)* or *q(r)* := return the quantile value *q* associated with a given *rank, r*.
 
-> *rank(quantile)* or *r(q)* := return the rank *r* associated with the given *quantile, q*.  
+### *rank(quantile)* or *r(q)* := return the rank *r* associated with the given *quantile, q*.  
 
 Using an example from the table:
 
