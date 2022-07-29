@@ -57,7 +57,7 @@ To wit:
 * A quartile is a quantile where the rank domain is divided into forths. For example, "An SAT Math score of 600 is at the third quartile (rank = 0.75).
 * The median is a quantile that splits the rank domain in half. For example, "An SAT Math score of 520 is at the median (rank = 0.5).
 
-## The quantile and rank functions
+## The simple quantile and rank functions
 Let's examine the following table:
 
 | Quantile:       | 10 | 20 | 30 | 40 | 50 |
@@ -65,11 +65,11 @@ Let's examine the following table:
 | Natural Rank    | 1  | 2  | 3  | 4  | 5  |
 | Normalized Rank | .2 | .4 | .6 | .8 | 1.0|
 
-Let's define the functions
+Let's define the simple functions
 
-### ***quantile(rank)*** or ***q(r)*** := return the quantile value ***q*** associated with<br> a given ***rank, r***.
+### ***quantile(rank)*** or ***q(r)*** := return the quantile value ***q*** associated with a given ***rank, r***.
 
-### ***rank(quantile)*** or ***r(q)*** := return the rank ***r*** associated with<br> a given ***quantile, q***.  
+### ***rank(quantile)*** or ***r(q)*** := return the rank ***r*** associated with a given ***quantile, q***.  
 
 Using an example from the table:
 
@@ -128,88 +128,131 @@ One can find examples of the following definitions in the research literature.  
 
 These next examples use a small data set that mimics what could be the result of both duplication and sketch data deletion.
 
-## Two search conventions used when finding ranks, r(q)
+## The rank functions with inequalities
 
-### The ***non inclusive*** criterion for ***r(q)*** (a.k.a. the ***LT*** criterion):
+### ***rank(quantile, NON_INCLUSIVE)*** or ***r(q, LT)*** :=<br>Given *q*, return the rank, *r*, of the largest quantile that is strictly *Less Than* *q*.  
 
-<b>Definition:</b>
-Given *q*, return the rank, *r*, of the largest quantile that is strictly less than *q*.
 
 <b>Implementation:</b>
 Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 < q <= q2*. Return the rank, *r*, associated with *q1*, the first of the pair.
 
-<b>NOTES:</b>
+<b>Boundary Notes:</b>
 
 * If the given *q* is larger than the largest quantile retained by the sketch, the sketch will return the rank of the largest retained quantile.
 * If the given *q* is smaller than the smallest quantile retained by the sketch, the sketch will return a rank of zero.
 
-For example *q = 30; r(30) = 5*
+<b>Examples using normalized ranks:</b>
 
-| Quantile[]:     | 10    | 20    | q1=20 | q2=30 | 30    | 30    | 40    | 50    |
-|-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
-| Natural Rank[]: | 1     | 3     | r=5   |  7    | 9     | 11    | 13    | 14    |
+* *r(55) = 1.0* 
+* *r(5) = 0.0*
+* *r(30) = .357* (Illustrated in table)
 
+| Quantile[]:        | 10    | 20    | 20    | 30    | 30    | 30    | 40    | 50     |
+|--------------------|-------|-------|-------|-------|-------|-------|-------|--------|
+| Natural Rank[]:    | 1     | 3     | 5     | 7     | 9     | 11    | 13    | 14     |
+| Normalized Rank[]: | .071  | .214  | .357  | .500  | .643  | .786  | .929  | 1.000  |
+| Quantile input     |       |       |       |  30   | 30    | 30    |       |        |
+| Qualifying pair    |       |       |       |       |       |  q1   | q2    |        |
+| Rank result        |       |       |       |       |       | .786  |       |        |
 
-### The ***inclusive*** criterion for ***r(q)*** (a.k.a. the ***LE*** criterion):
+--------
 
-<b>Definition:</b>
-Given *q*, return the rank, *r*, of the largest quantile that is less than or equal to *q*.
+### ***rank(quantile, INCLUSIVE)*** or ***r(q, LE)*** :=<br>Given *q*, return the rank, *r*, of the largest quantile that is less than or equal to *q*.
 
 <b>Implementation:</b>
 Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 <= q < q2*. Return the rank, *r*, associated with *q1*, the first of the pair. 
 
-<b>NOTES:</b>
+<b>Boundary Notes:</b>
 
-* If the given *q* is larger than the largest quantile retained by the sketch, the sketch will return the rank of the largest retained quantile.
-* If the given *q* is smaller than the smallest quantile retained by the sketch, the sketch will return a rank of zero.
+* If the given *q* is larger than the largest quantile retained by the sketch, the function will return the rank of the largest retained quantile.
+* If the given *q* is smaller than the smallest quantile retained by the sketch, the function will return a rank of zero.
+
+<b>Examples using normalized ranks:</b>
+
+* *r(55) = 1.0*
+* *r(5) = 0.0*
+* *r(30) = .786* (Illustrated in table)
+
+| Quantile[]:        | 10    | 20    | 20    | 30    | 30    | 30    | 40    | 50     |
+|--------------------|-------|-------|-------|-------|-------|-------|-------|--------|
+| Natural Rank[]:    | 1     | 3     | 5     | 7     | 9     | 11    | 13    | 14     |
+| Normalized Rank[]: | .071  | .214  | .357  | .500  | .643  | .786  | .929  | 1.000  |
+| Quantile input     |       |       |       |  30   | 30    | 30    |       |        |
+| Qualifying pair    |       |       |       |       |       |  q1   | q2    |        |
+| Rank result        |       |       |       |       |       | .786  |       |        |
 
 
-For example *q = 30; r(30) = 11*
+## The quantile functions with inequalities
 
-| Quantile[]:     | 10    | 20    | 20    | 30    | 30    | q1=30 | q2=40 | 50    |
-|-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
-| Natural Rank[]: | 1     | 3     | 5     |  7    | 9     | r=11  | 13    | 14    |
-
-
-## Two search conventions when finding quantiles, q(r)
-
-### The ***non inclusive*** criterion for ***q(r)*** (a.k.a. the ***GT*** criterion):
-
-<b>Definition:</b>
-Given *r*, return the quantile of the smallest rank that is strictly greater than *r*.
+### ***quantile(rank, NON_INCLUSIVE)*** or ***q(r, GT)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater Than *r*.
 
 <b>Implementation:</b>
 Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 <= r < r2*. Return the quantile associated with *r2*, the second of the pair.
 
-<b>NOTES:</b>
+<b>Boundary Notes:</b>
 
-* If the given normalized rank, *r*, is equal to 1.0, there is no quantile that satisfies this criterion. This function may choose to return either a *NaN* value, or return the largest quantile retained by the sketch.
+* If the given normalized rank, *r*, is equal to 1.0, there is no quantile that satisfies this criterion. However, for convenience, the function will return the largest quantile retained by the sketch.
+* If the given normalized rank, *r*, is less than the smallest rank, the function will return the smallest quantile.
 
-For example *r = 5; q(5) = 30*
+<b>Examples using normalized ranks:</b>
 
-| Natural Rank[]: | 1     | 3     | r1=5  |  r2=7 | 9     | 11    | 13    | 14    |
-|-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
-| Quantile[]:     | 10    | 20    | 20    | q=30  | 30    | 30    | 40    | 50    |
+* *q(1.0) = 50*
+* *q(0.0) = 10*
+* *q(.357) = 30* (Illustrated in table)
 
-### The ***inclusive*** criterion for ***q(r)***  (a.k.a. the ***GE*** criterion):
+| Quantile[]:        | 10    | 20    | 20    | 30    | 30    | 30    | 40    | 50     |
+|--------------------|-------|-------|-------|-------|-------|-------|-------|--------|
+| Natural Rank[]:    | 1     | 3     | 5     | 7     | 9     | 11    | 13    | 14     |
+| Normalized Rank[]: | .071  | .214  | .357  | .500  | .643  | .786  | .929  | 1.000  |
+| Rank input         |       |       | .357  |       |       |       |       |        |
+| Qualifying pair    |       |       |  r1   | r2    |       |       |       |        |
+| Quantile result    |       |       |       |  30   |       |       |       |        |
 
-<b>Definition:</b>
-Given *r*, return the quantile of the smallest rank that is strictly greater than or equal to *r*.
+--------
+
+### ***quantile(rank, NON_INCLUSIVE_STRICT)*** or ***q(r, GT_STRICT)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater Than *r*.
+
+In <b>STRICT</b> mode, the only difference is the following:
+
+<b>Boundary Notes:</b>
+
+* If the given normalized rank, *r*, is equal to 1.0, there is no quantile that satisfies this criterion. The function will return *NaN*.
+
+
+--------
+
+### ***quantile(rank, INCLUSIVE)*** or ***q(r, GE)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater than or Equal to *r*.
 
 <b>Implementation:</b>
-Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 < r <= r2*. Return the quantile associated with *r2*, the second of the pair.
+Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 < r <= r2*. Return the quantile, *q*, associated with *r2*, the second of the pair.
 
-For example *q(11) = 30*
+<b>Boundary Notes:</b>
 
-| Natural Rank[]: | 1     | 3     | 5     |  7    | r1=9  | r2=11 | 13    | 14    |
-|-----------------|-------|-------|-------|-------|-------|-------|-------|-------|
-| Quantile[]:     | 10    | 20    | 20    | 30    | 30    | q=30  | 40    | 50    |
+* If the given normalized rank, *r*, is equal to 1.0, the function will return the largest quantile retained by the sketch.
+* If the given normalized rank, *r*, is less than the smallest rank, the function will return the smallest quantile.
 
-## These conventions maintain the 1:1 functional relationship
+<b>Examples using normalized ranks:</b>
 
-### The non inclusive search for q(r) is the inverse of the non inclusive search for r(q). Therefore, *q = q(r(q))* and *r = r(q(r))*.
+For example *q(.786) = 30*
 
-### The inclusive search for q(r) is the inverse of the inclusive search for r(q). Therefore, *q = q(r(q))* and *r = r(q(r))*.
+| Quantile[]:        | 10    | 20    | 20    | 30    | 30    | 30    | 40    | 50     |
+|--------------------|-------|-------|-------|-------|-------|-------|-------|--------|
+| Natural Rank[]:    | 1     | 3     | 5     | 7     | 9     | 11    | 13    | 14     |
+| Normalized Rank[]: | .071  | .214  | .357  | .500  | .643  | .786  | .929  | 1.000  |
+| Rank input         |       |       |       |       |       | .786  |       |        |
+| Qualifying pair    |       |       |       |       |   r1  | r2    |       |        |
+| Quantile result    |       |       |       |       |       | 30    |       |        |
+
+
+## These inequality functions maintain the 1:1 functional relationship
+
+### The non inclusive search for q(r) is the inverse of the non inclusive search for r(q). 
+
+##### Therefore, *q = q(r(q))* and *r = r(q(r))*.
+
+### The inclusive search for q(r) is the inverse of the inclusive search for r(q). 
+
+##### Therefore, *q = q(r(q))* and *r = r(q(r))*.
 
 
 ## Summary
