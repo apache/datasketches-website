@@ -726,7 +726,18 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 
 <h3 id="the-non-inclusive-criterion-for-rq-aka-the-lt-criterion">The <strong><em>non inclusive</em></strong> criterion for <strong><em>r(q)</em></strong> (a.k.a. the <strong><em>LT</em></strong> criterion):</h3>
 
-<p>Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt; q &lt;= q2</em>. Return the rank associated with <em>q1</em>, the first of the pair.</p>
+<p><b>Definition:</b>
+Given <em>q</em>, return the rank, <em>r</em>, of the largest quantile that is strictly less than <em>q</em>.</p>
+
+<p><b>Implementation:</b>
+Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt; q &lt;= q2</em>. Return the rank, <em>r</em>, associated with <em>q1</em>, the first of the pair.</p>
+
+<p><b>NOTES:</b></p>
+
+<ul>
+  <li>If the given <em>q</em> is larger than the largest quantile retained by the sketch, the sketch will return the rank of the largest retained quantile.</li>
+  <li>If the given <em>q</em> is smaller than the smallest quantile retained by the sketch, the sketch will return a rank of zero.</li>
+</ul>
 
 <p>For example <em>q = 30; r(30) = 5</em></p>
 
@@ -761,7 +772,18 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 
 <h3 id="the-inclusive-criterion-for-rq-aka-the-le-criterion">The <strong><em>inclusive</em></strong> criterion for <strong><em>r(q)</em></strong> (a.k.a. the <strong><em>LE</em></strong> criterion):</h3>
 
-<p>Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt;= q &lt; q2</em>. Return the rank associated with <em>q1</em>, the first of the pair.</p>
+<p><b>Definition:</b>
+Given <em>q</em>, return the rank, <em>r</em>, of the largest quantile that is less than or equal to <em>q</em>.</p>
+
+<p><b>Implementation:</b>
+Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt;= q &lt; q2</em>. Return the rank, <em>r</em>, associated with <em>q1</em>, the first of the pair.</p>
+
+<p><b>NOTES:</b></p>
+
+<ul>
+  <li>If the given <em>q</em> is larger than the largest quantile retained by the sketch, the sketch will return the rank of the largest retained quantile.</li>
+  <li>If the given <em>q</em> is smaller than the smallest quantile retained by the sketch, the sketch will return a rank of zero.</li>
+</ul>
 
 <p>For example <em>q = 30; r(30) = 11</em></p>
 
@@ -798,7 +820,17 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 
 <h3 id="the-non-inclusive-criterion-for-qr-aka-the-gt-criterion">The <strong><em>non inclusive</em></strong> criterion for <strong><em>q(r)</em></strong> (a.k.a. the <strong><em>GT</em></strong> criterion):</h3>
 
-<p>Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt;= r &lt; r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</p>
+<p><b>Definition:</b>
+Given <em>r</em>, return the quantile of the smallest rank that is strictly greater than <em>r</em>.</p>
+
+<p><b>Implementation:</b>
+Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt;= r &lt; r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</p>
+
+<p><b>NOTES:</b></p>
+
+<ul>
+  <li>If the given normalized rank, <em>r</em>, is equal to 1.0, there is no quantile that satisfies this criterion. This function may choose to return either a <em>NaN</em> value, or return the largest quantile retained by the sketch.</li>
+</ul>
 
 <p>For example <em>r = 5; q(5) = 30</em></p>
 
@@ -833,7 +865,11 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 
 <h3 id="the-inclusive-criterion-for-qr--aka-the-ge-criterion">The <strong><em>inclusive</em></strong> criterion for <strong><em>q(r)</em></strong>  (a.k.a. the <strong><em>GE</em></strong> criterion):</h3>
 
-<p>Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt; r &lt;= r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</p>
+<p><b>Definition:</b>
+Given <em>r</em>, return the quantile of the smallest rank that is strictly greater than or equal to <em>r</em>.</p>
+
+<p><b>Implementation:</b>
+Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt; r &lt;= r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</p>
 
 <p>For example <em>q(11) = 30</em></p>
 
