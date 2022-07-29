@@ -550,7 +550,7 @@ To wit:</p>
   <li>The median is a quantile that splits the rank domain in half. For example, “An SAT Math score of 520 is at the median (rank = 0.5).</li>
 </ul>
 
-<h2 id="the-quantile-and-rank-functions">The quantile and rank functions</h2>
+<h2 id="the-simple-quantile-and-rank-functions">The simple quantile and rank functions</h2>
 <p>Let’s examine the following table:</p>
 
 <table>
@@ -584,11 +584,11 @@ To wit:</p>
   </tbody>
 </table>
 
-<p>Let’s define the functions</p>
+<p>Let’s define the simple functions</p>
 
-<h3 id="quantilerank-or-qr--return-the-quantile-value-q-associated-with-a-given-rank-r"><strong><em>quantile(rank)</em></strong> or <strong><em>q(r)</em></strong> := return the quantile value <strong><em>q</em></strong> associated with<br /> a given <strong><em>rank, r</em></strong>.</h3>
+<h3 id="quantilerank-or-qr--return-the-quantile-value-q-associated-with-a-given-rank-r"><strong><em>quantile(rank)</em></strong> or <strong><em>q(r)</em></strong> := return the quantile value <strong><em>q</em></strong> associated with a given <strong><em>rank, r</em></strong>.</h3>
 
-<h3 id="rankquantile-or-rq--return-the-rank-r-associated-with-a-given-quantile-q"><strong><em>rank(quantile)</em></strong> or <strong><em>r(q)</em></strong> := return the rank <strong><em>r</em></strong> associated with<br /> a given <strong><em>quantile, q</em></strong>.</h3>
+<h3 id="rankquantile-or-rq--return-the-rank-r-associated-with-a-given-quantile-q"><strong><em>rank(quantile)</em></strong> or <strong><em>r(q)</em></strong> := return the rank <strong><em>r</em></strong> associated with a given <strong><em>quantile, q</em></strong>.</h3>
 
 <p>Using an example from the table:</p>
 
@@ -722,24 +722,27 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 
 <p>These next examples use a small data set that mimics what could be the result of both duplication and sketch data deletion.</p>
 
-<h2 id="two-search-conventions-used-when-finding-ranks-rq">Two search conventions used when finding ranks, r(q)</h2>
+<h2 id="the-rank-functions-with-inequalities">The rank functions with inequalities</h2>
 
-<h3 id="the-non-inclusive-criterion-for-rq-aka-the-lt-criterion">The <strong><em>non inclusive</em></strong> criterion for <strong><em>r(q)</em></strong> (a.k.a. the <strong><em>LT</em></strong> criterion):</h3>
-
-<p><b>Definition:</b>
-Given <em>q</em>, return the rank, <em>r</em>, of the largest quantile that is strictly less than <em>q</em>.</p>
+<h3 id="rankquantile-non_inclusive-or-rq-lt-given-q-return-the-rank-r-of-the-largest-quantile-that-is-strictly-less-than-q"><strong><em>rank(quantile, NON_INCLUSIVE)</em></strong> or <strong><em>r(q, LT)</em></strong> :=<br />Given <em>q</em>, return the rank, <em>r</em>, of the largest quantile that is strictly <em>Less Than</em> <em>q</em>.</h3>
 
 <p><b>Implementation:</b>
 Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt; q &lt;= q2</em>. Return the rank, <em>r</em>, associated with <em>q1</em>, the first of the pair.</p>
 
-<p><b>NOTES:</b></p>
+<p><b>Boundary Notes:</b></p>
 
 <ul>
   <li>If the given <em>q</em> is larger than the largest quantile retained by the sketch, the sketch will return the rank of the largest retained quantile.</li>
   <li>If the given <em>q</em> is smaller than the smallest quantile retained by the sketch, the sketch will return a rank of zero.</li>
 </ul>
 
-<p>For example <em>q = 30; r(30) = 5</em></p>
+<p><b>Examples using normalized ranks:</b></p>
+
+<ul>
+  <li><em>r(55) = 1.0</em></li>
+  <li><em>r(5) = 0.0</em></li>
+  <li><em>r(30) = .357</em> (Illustrated in table)</li>
+</ul>
 
 <table>
   <thead>
@@ -747,8 +750,8 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
       <th>Quantile[]:</th>
       <th>10</th>
       <th>20</th>
-      <th>q1=20</th>
-      <th>q2=30</th>
+      <th>20</th>
+      <th>30</th>
       <th>30</th>
       <th>30</th>
       <th>40</th>
@@ -760,32 +763,81 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
       <td>Natural Rank[]:</td>
       <td>1</td>
       <td>3</td>
-      <td>r=5</td>
+      <td>5</td>
       <td>7</td>
       <td>9</td>
       <td>11</td>
       <td>13</td>
       <td>14</td>
     </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <td>Quantile input</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>30</td>
+      <td>30</td>
+      <td>30</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>q1</td>
+      <td>q2</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Rank result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>.786</td>
+      <td> </td>
+      <td> </td>
+    </tr>
   </tbody>
 </table>
 
-<h3 id="the-inclusive-criterion-for-rq-aka-the-le-criterion">The <strong><em>inclusive</em></strong> criterion for <strong><em>r(q)</em></strong> (a.k.a. the <strong><em>LE</em></strong> criterion):</h3>
+<hr />
 
-<p><b>Definition:</b>
-Given <em>q</em>, return the rank, <em>r</em>, of the largest quantile that is less than or equal to <em>q</em>.</p>
+<h3 id="rankquantile-inclusive-or-rq-le-given-q-return-the-rank-r-of-the-largest-quantile-that-is-less-than-or-equal-to-q"><strong><em>rank(quantile, INCLUSIVE)</em></strong> or <strong><em>r(q, LE)</em></strong> :=<br />Given <em>q</em>, return the rank, <em>r</em>, of the largest quantile that is less than or equal to <em>q</em>.</h3>
 
 <p><b>Implementation:</b>
 Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt;= q &lt; q2</em>. Return the rank, <em>r</em>, associated with <em>q1</em>, the first of the pair.</p>
 
-<p><b>NOTES:</b></p>
+<p><b>Boundary Notes:</b></p>
 
 <ul>
-  <li>If the given <em>q</em> is larger than the largest quantile retained by the sketch, the sketch will return the rank of the largest retained quantile.</li>
-  <li>If the given <em>q</em> is smaller than the smallest quantile retained by the sketch, the sketch will return a rank of zero.</li>
+  <li>If the given <em>q</em> is larger than the largest quantile retained by the sketch, the function will return the rank of the largest retained quantile.</li>
+  <li>If the given <em>q</em> is smaller than the smallest quantile retained by the sketch, the function will return a rank of zero.</li>
 </ul>
 
-<p>For example <em>q = 30; r(30) = 11</em></p>
+<p><b>Examples using normalized ranks:</b></p>
+
+<ul>
+  <li><em>r(55) = 1.0</em></li>
+  <li><em>r(5) = 0.0</em></li>
+  <li><em>r(30) = .786</em> (Illustrated in table)</li>
+</ul>
 
 <table>
   <thead>
@@ -796,8 +848,8 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
       <th>20</th>
       <th>30</th>
       <th>30</th>
-      <th>q1=30</th>
-      <th>q2=40</th>
+      <th>30</th>
+      <th>40</th>
       <th>50</th>
     </tr>
   </thead>
@@ -809,104 +861,264 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
       <td>5</td>
       <td>7</td>
       <td>9</td>
-      <td>r=11</td>
+      <td>11</td>
       <td>13</td>
       <td>14</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <td>Quantile input</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>30</td>
+      <td>30</td>
+      <td>30</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>q1</td>
+      <td>q2</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Rank result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>.786</td>
+      <td> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="two-search-conventions-when-finding-quantiles-qr">Two search conventions when finding quantiles, q(r)</h2>
+<h2 id="the-quantile-functions-with-inequalities">The quantile functions with inequalities</h2>
 
-<h3 id="the-non-inclusive-criterion-for-qr-aka-the-gt-criterion">The <strong><em>non inclusive</em></strong> criterion for <strong><em>q(r)</em></strong> (a.k.a. the <strong><em>GT</em></strong> criterion):</h3>
-
-<p><b>Definition:</b>
-Given <em>r</em>, return the quantile of the smallest rank that is strictly greater than <em>r</em>.</p>
+<h3 id="quantilerank-non_inclusive-or-qr-gt-given-r-return-the-quantile-q-of-the-smallest-rank-that-is-strictly-greater-than-r"><strong><em>quantile(rank, NON_INCLUSIVE)</em></strong> or <strong><em>q(r, GT)</em></strong> :=<br />Given <em>r</em>, return the quantile, <em>q</em>, of the smallest rank that is strictly Greater Than <em>r</em>.</h3>
 
 <p><b>Implementation:</b>
 Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt;= r &lt; r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</p>
 
-<p><b>NOTES:</b></p>
+<p><b>Boundary Notes:</b></p>
 
 <ul>
-  <li>If the given normalized rank, <em>r</em>, is equal to 1.0, there is no quantile that satisfies this criterion. This function may choose to return either a <em>NaN</em> value, or return the largest quantile retained by the sketch.</li>
+  <li>If the given normalized rank, <em>r</em>, is equal to 1.0, there is no quantile that satisfies this criterion. However, for convenience, the function will return the largest quantile retained by the sketch.</li>
+  <li>If the given normalized rank, <em>r</em>, is less than the smallest rank, the function will return the smallest quantile.</li>
 </ul>
 
-<p>For example <em>r = 5; q(5) = 30</em></p>
+<p><b>Examples using normalized ranks:</b></p>
+
+<ul>
+  <li><em>q(1.0) = 50</em></li>
+  <li><em>q(0.0) = 10</em></li>
+  <li><em>q(.357) = 30</em> (Illustrated in table)</li>
+</ul>
 
 <table>
   <thead>
     <tr>
-      <th>Natural Rank[]:</th>
-      <th>1</th>
-      <th>3</th>
-      <th>r1=5</th>
-      <th>r2=7</th>
-      <th>9</th>
-      <th>11</th>
-      <th>13</th>
-      <th>14</th>
+      <th>Quantile[]:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Quantile[]:</td>
-      <td>10</td>
-      <td>20</td>
-      <td>20</td>
-      <td>q=30</td>
+      <td>Natural Rank[]:</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <td>Rank input</td>
+      <td> </td>
+      <td> </td>
+      <td>.357</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td> </td>
+      <td> </td>
+      <td>r1</td>
+      <td>r2</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Quantile result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td>30</td>
-      <td>30</td>
-      <td>40</td>
-      <td>50</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="the-inclusive-criterion-for-qr--aka-the-ge-criterion">The <strong><em>inclusive</em></strong> criterion for <strong><em>q(r)</em></strong>  (a.k.a. the <strong><em>GE</em></strong> criterion):</h3>
+<hr />
 
-<p><b>Definition:</b>
-Given <em>r</em>, return the quantile of the smallest rank that is strictly greater than or equal to <em>r</em>.</p>
+<h3 id="quantilerank-non_inclusive_strict-or-qr-gt_strict-given-r-return-the-quantile-q-of-the-smallest-rank-that-is-strictly-greater-than-r"><strong><em>quantile(rank, NON_INCLUSIVE_STRICT)</em></strong> or <strong><em>q(r, GT_STRICT)</em></strong> :=<br />Given <em>r</em>, return the quantile, <em>q</em>, of the smallest rank that is strictly Greater Than <em>r</em>.</h3>
+
+<p>In <b>STRICT</b> mode, the only difference is the following:</p>
+
+<p><b>Boundary Notes:</b></p>
+
+<ul>
+  <li>If the given normalized rank, <em>r</em>, is equal to 1.0, there is no quantile that satisfies this criterion. The function will return <em>NaN</em>.</li>
+</ul>
+
+<hr />
+
+<h3 id="quantilerank-inclusive-or-qr-ge-given-r-return-the-quantile-q-of-the-smallest-rank-that-is-strictly-greater-than-or-equal-to-r"><strong><em>quantile(rank, INCLUSIVE)</em></strong> or <strong><em>q(r, GE)</em></strong> :=<br />Given <em>r</em>, return the quantile, <em>q</em>, of the smallest rank that is strictly Greater than or Equal to <em>r</em>.</h3>
 
 <p><b>Implementation:</b>
-Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt; r &lt;= r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</p>
+Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt; r &lt;= r2</em>. Return the quantile, <em>q</em>, associated with <em>r2</em>, the second of the pair.</p>
 
-<p>For example <em>q(11) = 30</em></p>
+<p><b>Boundary Notes:</b></p>
+
+<ul>
+  <li>If the given normalized rank, <em>r</em>, is equal to 1.0, the function will return the largest quantile retained by the sketch.</li>
+  <li>If the given normalized rank, <em>r</em>, is less than the smallest rank, the function will return the smallest quantile.</li>
+</ul>
+
+<p><b>Examples using normalized ranks:</b></p>
+
+<p>For example <em>q(.786) = 30</em></p>
 
 <table>
   <thead>
     <tr>
-      <th>Natural Rank[]:</th>
-      <th>1</th>
-      <th>3</th>
-      <th>5</th>
-      <th>7</th>
-      <th>r1=9</th>
-      <th>r2=11</th>
-      <th>13</th>
-      <th>14</th>
+      <th>Quantile[]:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Quantile[]:</td>
-      <td>10</td>
-      <td>20</td>
-      <td>20</td>
+      <td>Natural Rank[]:</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <td>Rank input</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>.786</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>r1</td>
+      <td>r2</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Quantile result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td>30</td>
-      <td>30</td>
-      <td>q=30</td>
-      <td>40</td>
-      <td>50</td>
+      <td> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="these-conventions-maintain-the-11-functional-relationship">These conventions maintain the 1:1 functional relationship</h2>
+<h2 id="these-inequality-functions-maintain-the-11-functional-relationship">These inequality functions maintain the 1:1 functional relationship</h2>
 
-<h3 id="the-non-inclusive-search-for-qr-is-the-inverse-of-the-non-inclusive-search-for-rq-therefore-q--qrq-and-r--rqr">The non inclusive search for q(r) is the inverse of the non inclusive search for r(q). Therefore, <em>q = q(r(q))</em> and <em>r = r(q(r))</em>.</h3>
+<h3 id="the-non-inclusive-search-for-qr-is-the-inverse-of-the-non-inclusive-search-for-rq">The non inclusive search for q(r) is the inverse of the non inclusive search for r(q).</h3>
 
-<h3 id="the-inclusive-search-for-qr-is-the-inverse-of-the-inclusive-search-for-rq-therefore-q--qrq-and-r--rqr">The inclusive search for q(r) is the inverse of the inclusive search for r(q). Therefore, <em>q = q(r(q))</em> and <em>r = r(q(r))</em>.</h3>
+<h5 id="therefore-q--qrq-and-r--rqr">Therefore, <em>q = q(r(q))</em> and <em>r = r(q(r))</em>.</h5>
+
+<h3 id="the-inclusive-search-for-qr-is-the-inverse-of-the-inclusive-search-for-rq">The inclusive search for q(r) is the inverse of the inclusive search for r(q).</h3>
+
+<h5 id="therefore-q--qrq-and-r--rqr-1">Therefore, <em>q = q(r(q))</em> and <em>r = r(q(r))</em>.</h5>
 
 <h2 id="summary">Summary</h2>
 <p>The power of these inequality search algorithms is that they produce repeatable and accurate results, are insensitive to duplicates and sketch deletions, and maintain the property of 1:1 functions.</p>
