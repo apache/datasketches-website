@@ -132,7 +132,16 @@ These next examples use a small data set that mimics what could be the result of
 
 ### The ***non inclusive*** criterion for ***r(q)*** (a.k.a. the ***LT*** criterion):
 
-Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 < q <= q2*. Return the rank associated with *q1*, the first of the pair.
+<b>Definition:</b>
+Given *q*, return the rank, *r*, of the largest quantile that is strictly less than *q*.
+
+<b>Implementation:</b>
+Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 < q <= q2*. Return the rank, *r*, associated with *q1*, the first of the pair.
+
+<b>NOTES:</b>
+
+* If the given *q* is larger than the largest quantile retained by the sketch, the sketch will return the rank of the largest retained quantile.
+* If the given *q* is smaller than the smallest quantile retained by the sketch, the sketch will return a rank of zero.
 
 For example *q = 30; r(30) = 5*
 
@@ -143,7 +152,17 @@ For example *q = 30; r(30) = 5*
 
 ### The ***inclusive*** criterion for ***r(q)*** (a.k.a. the ***LE*** criterion):
 
-Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 <= q < q2*. Return the rank associated with *q1*, the first of the pair. 
+<b>Definition:</b>
+Given *q*, return the rank, *r*, of the largest quantile that is less than or equal to *q*.
+
+<b>Implementation:</b>
+Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 <= q < q2*. Return the rank, *r*, associated with *q1*, the first of the pair. 
+
+<b>NOTES:</b>
+
+* If the given *q* is larger than the largest quantile retained by the sketch, the sketch will return the rank of the largest retained quantile.
+* If the given *q* is smaller than the smallest quantile retained by the sketch, the sketch will return a rank of zero.
+
 
 For example *q = 30; r(30) = 11*
 
@@ -156,8 +175,16 @@ For example *q = 30; r(30) = 11*
 
 ### The ***non inclusive*** criterion for ***q(r)*** (a.k.a. the ***GT*** criterion):
 
+<b>Definition:</b>
+Given *r*, return the quantile of the smallest rank that is strictly greater than *r*.
+
+<b>Implementation:</b>
 Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 <= r < r2*. Return the quantile associated with *r2*, the second of the pair.
- 
+
+<b>NOTES:</b>
+
+* If the given normalized rank, *r*, is equal to 1.0, there is no quantile that satisfies this criterion. This function may choose to return either a *NaN* value, or return the largest quantile retained by the sketch.
+
 For example *r = 5; q(5) = 30*
 
 | Natural Rank[]: | 1     | 3     | r1=5  |  r2=7 | 9     | 11    | 13    | 14    |
@@ -166,6 +193,10 @@ For example *r = 5; q(5) = 30*
 
 ### The ***inclusive*** criterion for ***q(r)***  (a.k.a. the ***GE*** criterion):
 
+<b>Definition:</b>
+Given *r*, return the quantile of the smallest rank that is strictly greater than or equal to *r*.
+
+<b>Implementation:</b>
 Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 < r <= r2*. Return the quantile associated with *r2*, the second of the pair.
 
 For example *q(11) = 30*
