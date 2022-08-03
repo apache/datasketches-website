@@ -21,16 +21,16 @@ layout: doc_page
 -->
 # Sketching Quantiles and Ranks, the Basics
 Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions 
-of massive data very quickly using only a small amout of space.  
-They allow us to compute a quantile values given a desired rank, or compute a rank given
+of massive data very quickly using only a small amount of space.  
+They allow us to compute quantile values given a desired rank, or compute a rank given
 a quantile value. Quantile sketches enable us to plot the CDF, PMF or histograms of a distribution. 
 
-The goal of this short tutorial it to introduce to the reader some of the basic concepts 
+The goal of this short tutorial it to introduce the reader to some of the basic concepts 
 of quantiles, ranks and their functions.
 
 ## What is a rank?
 
-### A ***rank*** identifies the numeric position of a specific value in an enumerated, ordered set if values.
+### A ***rank*** identifies the numeric position of a specific value in an enumerated, ordered set of values.
 
 The actual enumeration can be done in several ways, but for our use here we will define the two common ways that *rank* can be specified and that we will use. 
 
@@ -43,7 +43,7 @@ In our sketch library and documentation, when we refer to *rank*, we imply *norm
 
 ### Rank and Mass
 
-*Normalized rank* is closely associated with the concept of *mass*. The value associated with the rank 0.5 represents the median value, or the center of *mass* of the entire set, where half of the values are below the median and half are above. The concept of mass is important to understanding the Prabability Mass Function (PMF) offered by all the quantile sketches in the library.
+*Normalized rank* is closely associated with the concept of *mass*. The value associated with the rank 0.5 represents the median value, or the center of *mass* of the entire set, where half of the values are below the median and half are above. The concept of mass is important to understanding the Probability Mass Function (PMF) offered by all the quantile sketches in the library.
 
 ## What is a quantile?
 
@@ -54,16 +54,16 @@ To wit:
 
 * A percentile is a quantile where the rank domain is divided into hundredths. For example, "An SAT Math score of 740 is at the 95th percentile". The score of 740 is the quantile and .95 is the normalized rank.
 * A decile is a quantile where the rank domain is divided into tenths. For example, "An SAT Math score of 690 is at the 9th decile (rank = 0.9).
-* A quartile is a quantile where the rank domain is divided into forths. For example, "An SAT Math score of 600 is at the third quartile (rank = 0.75).
+* A quartile is a quantile where the rank domain is divided into fourths. For example, "An SAT Math score of 600 is at the third quartile (rank = 0.75).
 * The median is a quantile that splits the rank domain in half. For example, "An SAT Math score of 520 is at the median (rank = 0.5).
 
 ## The simple quantile and rank functions
 Let's examine the following table:
 
-| Quantile:       | 10 | 20 | 30 | 40 | 50 |
-|-----------------|----|----|----|----|----|
-| Natural Rank    | 1  | 2  | 3  | 4  | 5  |
-| Normalized Rank | .2 | .4 | .6 | .8 | 1.0|
+| Quantile:       | 10  | 20  | 30  | 40  | 50  |
+| --------------- | --- | --- | --- | --- | --- |
+| Natural Rank    | 1   | 2   | 3   | 4   | 5   |
+| Normalized Rank | .2  | .4  | .6  | .8  | 1.0 |
 
 Let's define the simple functions
 
@@ -92,32 +92,32 @@ And this is certainly true of the table above.
 ## The challenge of duplicates
 With real data we often encounter duplicate values in the stream. Let's examine this next table.
 
-| Quantile:       | 10 | 20 | 20 | 20 | 50 |
-|-----------------|----|----|----|----|----|
-| Natural Rank    | 1  | 2  | 3  | 4  | 5  |
+| Quantile:    | 10  | 20  | 20  | 20  | 50  |
+| ------------ | --- | --- | --- | --- | --- |
+| Natural Rank | 1   | 2   | 3   | 4   | 5   |
 
 As you can see *q(r)* is straightforward. But how about *r(q)*?  Which of the rank values 2, 3, or 4 should the function return given the value 20?  Given this data, and our definitions so far, 
 the function *r(q)* is ambiguous. We will see how to resolve this shortly.
  
 
 ## The challenge of approximation
-By definiton, sketching algorithms are approximate, and they achieve their high performance by discarding  data.  Suppose you feed *n* items into a sketch that retains only *m < n* items. This means *n-m* values were discarded.  The sketch must track the value *n* used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values *n-m* rank values are missing creating holes in the sequence of ranks. For example, examine the following tables.
+By definition, sketching algorithms are approximate, and they achieve their high performance by discarding  data.  Suppose you feed *n* items into a sketch that retains only *m < n* items. This means *n-m* values were discarded.  The sketch must track the value *n* used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values *n-m* rank values are missing creating holes in the sequence of ranks. For example, examine the following tables.
 
 The raw data might look like this, with its associated natural ranks.
 
-| Quantile:       | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100 |
-|-----------------|----|----|----|----|----|----|----|----|----|-----|
-| Natural Rank    | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10  |
+| Quantile:    | 10  | 20  | 30  | 40  | 50  | 60  | 70  | 80  | 90  | 100 |
+| ------------ | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Natural Rank | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 10  |
 
 The sketch might discard the even values producing something like this:
 
-| Quantile:       | 10 | 30 | 50 | 70 | 90 |
-|-----------------|----|----|----|----|----|
-| Natural Rank    | 2  | 4  | 6  | 8  | 10 |
+| Quantile:    | 10  | 30  | 50  | 70  | 90  |
+| ------------ | --- | --- | --- | --- | --- |
+| Natural Rank | 2   | 4   | 6   | 8   | 10  |
 
 When the sketch deletes values it adjusts the associated ranks by effectively increasing the "weight" of adjacent items so that they are positionally approximately correct and the top rank corresponds to *n*.
 
-How do we resove *q(3)* or *r(20)*?
+How do we resolve *q(3)* or *r(20)*?
 
 ## The need for inequality search
 The quantile sketch algorithms discussed in the literature primarily differ by how they choose which values in the stream should be discarded. After the elimination process, all of the quantiles sketch implementations are left with the challenge of how to reconstruct the actual distribution, approximately and with good accuracy. 
@@ -147,13 +147,13 @@ Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* 
 * *r(5) = 0.0*
 * *r(30) = .357* (Illustrated in table)
 
-| Quantile[]:        | 10    | 20    | 20    | 30    | 30    | 30    | 40    | 50     |
-|--------------------|-------|-------|-------|-------|-------|-------|-------|--------|
-| Natural Rank[]:    | 1     | 3     | 5     | 7     | 9     | 11    | 13    | 14     |
-| Normalized Rank[]: | .071  | .214  | .357  | .500  | .643  | .786  | .929  | 1.000  |
-| Quantile input     |       |       |       |  30   | 30    | 30    |       |        |
-| Qualifying pair    |       |       |       |       |       |  q1   | q2    |        |
-| Rank result        |       |       |       |       |       | .786  |       |        |
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.000 |
+| Quantile input     |      |      |      | 30   | 30   | 30   |      |       |
+| Qualifying pair    |      |      | q1   | q2   |      |      |      |       |
+| Rank result        |      |      | .357 |      |      |      |      |       |
 
 --------
 
@@ -173,13 +173,13 @@ Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* 
 * *r(5) = 0.0*
 * *r(30) = .786* (Illustrated in table)
 
-| Quantile[]:        | 10    | 20    | 20    | 30    | 30    | 30    | 40    | 50     |
-|--------------------|-------|-------|-------|-------|-------|-------|-------|--------|
-| Natural Rank[]:    | 1     | 3     | 5     | 7     | 9     | 11    | 13    | 14     |
-| Normalized Rank[]: | .071  | .214  | .357  | .500  | .643  | .786  | .929  | 1.000  |
-| Quantile input     |       |       |       |  30   | 30    | 30    |       |        |
-| Qualifying pair    |       |       |       |       |       |  q1   | q2    |        |
-| Rank result        |       |       |       |       |       | .786  |       |        |
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.000 |
+| Quantile input     |      |      |      | 30   | 30   | 30   |      |       |
+| Qualifying pair    |      |      |      |      |      | q1   | q2   |       |
+| Rank result        |      |      |      |      |      | .786 |      |       |
 
 
 ## The quantile functions with inequalities
@@ -200,13 +200,13 @@ Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* wher
 * *q(0.0) = 10*
 * *q(.357) = 30* (Illustrated in table)
 
-| Quantile[]:        | 10    | 20    | 20    | 30    | 30    | 30    | 40    | 50     |
-|--------------------|-------|-------|-------|-------|-------|-------|-------|--------|
-| Natural Rank[]:    | 1     | 3     | 5     | 7     | 9     | 11    | 13    | 14     |
-| Normalized Rank[]: | .071  | .214  | .357  | .500  | .643  | .786  | .929  | 1.000  |
-| Rank input         |       |       | .357  |       |       |       |       |        |
-| Qualifying pair    |       |       |  r1   | r2    |       |       |       |        |
-| Quantile result    |       |       |       |  30   |       |       |       |        |
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.000 |
+| Rank input         |      |      | .357 |      |      |      |      |       |
+| Qualifying pair    |      |      | r1   | r2   |      |      |      |       |
+| Quantile result    |      |      |      | 30   |      |      |      |       |
 
 --------
 
@@ -235,13 +235,13 @@ Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* wher
 
 For example *q(.786) = 30*
 
-| Quantile[]:        | 10    | 20    | 20    | 30    | 30    | 30    | 40    | 50     |
-|--------------------|-------|-------|-------|-------|-------|-------|-------|--------|
-| Natural Rank[]:    | 1     | 3     | 5     | 7     | 9     | 11    | 13    | 14     |
-| Normalized Rank[]: | .071  | .214  | .357  | .500  | .643  | .786  | .929  | 1.000  |
-| Rank input         |       |       |       |       |       | .786  |       |        |
-| Qualifying pair    |       |       |       |       |   r1  | r2    |       |        |
-| Quantile result    |       |       |       |       |       | 30    |       |        |
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.000 |
+| Rank input         |      |      |      |      |      | .786 |      |       |
+| Qualifying pair    |      |      |      |      | r1   | r2   |      |       |
+| Quantile result    |      |      |      |      |      | 30   |      |       |
 
 
 ## These inequality functions maintain the 1:1 functional relationship
