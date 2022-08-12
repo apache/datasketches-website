@@ -31,7 +31,7 @@ For example, let's study the following histogram:
 
 The X-axis is the number of days that a specific customer (identified by some unique ID) visits our site in a 30 day period.
 
-The Y-axis is the number of distinct visitors (customers) that have visited our site Y number of times during the 30 day period. 
+The Y-axis is the number of distinct visitors (customers) that have visited our site X number of times during the 30 day period. 
 
 Reading this histogram we can see that about 100 distinct visitors visited our site exactly one day out of the 30 day period. About 11 visitors visited our site on 5 different days of the 30 day period. And, it seems that we have one customer that visited our site every day of the 30 day period!  We certainly want to encourage more of these loyal customers.
 
