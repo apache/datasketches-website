@@ -509,16 +509,16 @@
 -->
 <h1 id="sketching-quantiles-and-ranks-the-basics">Sketching Quantiles and Ranks, the Basics</h1>
 <p>Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions 
-of massive data very quickly using only a small amout of space.<br />
-They allow us to compute a quantile values given a desired rank, or compute a rank given
+of massive data very quickly using only a small amount of space.<br />
+They allow us to compute quantile values given a desired rank, or compute a rank given
 a quantile value. Quantile sketches enable us to plot the CDF, PMF or histograms of a distribution.</p>
 
-<p>The goal of this short tutorial it to introduce to the reader some of the basic concepts 
+<p>The goal of this short tutorial it to introduce the reader to some of the basic concepts 
 of quantiles, ranks and their functions.</p>
 
 <h2 id="what-is-a-rank">What is a rank?</h2>
 
-<h3 id="a-rank-identifies-the-numeric-position-of-a-specific-value-in-an-enumerated-ordered-set-if-values">A <strong><em>rank</em></strong> identifies the numeric position of a specific value in an enumerated, ordered set if values.</h3>
+<h3 id="a-rank-identifies-the-numeric-position-of-a-specific-value-in-an-enumerated-ordered-set-of-values">A <strong><em>rank</em></strong> identifies the numeric position of a specific value in an enumerated, ordered set of values.</h3>
 
 <p>The actual enumeration can be done in several ways, but for our use here we will define the two common ways that <em>rank</em> can be specified and that we will use.</p>
 
@@ -534,7 +534,7 @@ of quantiles, ranks and their functions.</p>
 
 <h3 id="rank-and-mass">Rank and Mass</h3>
 
-<p><em>Normalized rank</em> is closely associated with the concept of <em>mass</em>. The value associated with the rank 0.5 represents the median value, or the center of <em>mass</em> of the entire set, where half of the values are below the median and half are above. The concept of mass is important to understanding the Prabability Mass Function (PMF) offered by all the quantile sketches in the library.</p>
+<p><em>Normalized rank</em> is closely associated with the concept of <em>mass</em>. The value associated with the rank 0.5 represents the median value, or the center of <em>mass</em> of the entire set, where half of the values are below the median and half are above. The concept of mass is important to understanding the Probability Mass Function (PMF) offered by all the quantile sketches in the library.</p>
 
 <h2 id="what-is-a-quantile">What is a quantile?</h2>
 
@@ -546,7 +546,7 @@ To wit:</p>
 <ul>
   <li>A percentile is a quantile where the rank domain is divided into hundredths. For example, “An SAT Math score of 740 is at the 95th percentile”. The score of 740 is the quantile and .95 is the normalized rank.</li>
   <li>A decile is a quantile where the rank domain is divided into tenths. For example, “An SAT Math score of 690 is at the 9th decile (rank = 0.9).</li>
-  <li>A quartile is a quantile where the rank domain is divided into forths. For example, “An SAT Math score of 600 is at the third quartile (rank = 0.75).</li>
+  <li>A quartile is a quantile where the rank domain is divided into fourths. For example, “An SAT Math score of 600 is at the third quartile (rank = 0.75).</li>
   <li>The median is a quantile that splits the rank domain in half. For example, “An SAT Math score of 520 is at the median (rank = 0.5).</li>
 </ul>
 
@@ -647,7 +647,7 @@ To wit:</p>
 the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly.</p>
 
 <h2 id="the-challenge-of-approximation">The challenge of approximation</h2>
-<p>By definiton, sketching algorithms are approximate, and they achieve their high performance by discarding  data.  Suppose you feed <em>n</em> items into a sketch that retains only <em>m &lt; n</em> items. This means <em>n-m</em> values were discarded.  The sketch must track the value <em>n</em> used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values <em>n-m</em> rank values are missing creating holes in the sequence of ranks. For example, examine the following tables.</p>
+<p>By definition, sketching algorithms are approximate, and they achieve their high performance by discarding  data.  Suppose you feed <em>n</em> items into a sketch that retains only <em>m &lt; n</em> items. This means <em>n-m</em> values were discarded.  The sketch must track the value <em>n</em> used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values <em>n-m</em> rank values are missing creating holes in the sequence of ranks. For example, examine the following tables.</p>
 
 <p>The raw data might look like this, with its associated natural ranks.</p>
 
@@ -711,7 +711,7 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 
 <p>When the sketch deletes values it adjusts the associated ranks by effectively increasing the “weight” of adjacent items so that they are positionally approximately correct and the top rank corresponds to <em>n</em>.</p>
 
-<p>How do we resove <em>q(3)</em> or <em>r(20)</em>?</p>
+<p>How do we resolve <em>q(3)</em> or <em>r(20)</em>?</p>
 
 <h2 id="the-need-for-inequality-search">The need for inequality search</h2>
 <p>The quantile sketch algorithms discussed in the literature primarily differ by how they choose which values in the stream should be discarded. After the elimination process, all of the quantiles sketch implementations are left with the challenge of how to reconstruct the actual distribution, approximately and with good accuracy.</p>
@@ -796,21 +796,21 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
       <td>Qualifying pair</td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td>q1</td>
       <td>q2</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
       <td>Rank result</td>
       <td> </td>
       <td> </td>
+      <td>.357</td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td>.786</td>
       <td> </td>
       <td> </td>
     </tr>
