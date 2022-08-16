@@ -507,7 +507,7 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h1 id="sketching-quantiles-and-ranks-the-basics">Sketching Quantiles and Ranks, the Basics</h1>
+<h1 id="sketching-quantiles-and-ranks-tutorial">Sketching Quantiles and Ranks Tutorial</h1>
 <p>Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions 
 of massive data very quickly using only a small amount of space.<br />
 They allow us to compute quantile values given a desired rank, or compute a rank given
@@ -724,7 +724,7 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 
 <h2 id="the-rank-functions-with-inequalities">The rank functions with inequalities</h2>
 
-<h3 id="rankquantile-non_inclusive-or-rq-lt-given-q-return-the-rank-r-of-the-largest-quantile-that-is-strictly-less-than-q"><strong><em>rank(quantile, NON_INCLUSIVE)</em></strong> or <strong><em>r(q, LT)</em></strong> :=<br />Given <em>q</em>, return the rank, <em>r</em>, of the largest quantile that is strictly <em>Less Than</em> <em>q</em>.</h3>
+<h3 id="rankquantile-exclusive-or-rq-lt-given-q-return-the-rank-r-of-the-largest-quantile-that-is-strictly-less-than-q"><strong><em>rank(quantile, EXCLUSIVE)</em></strong> or <strong><em>r(q, LT)</em></strong> :=<br />Given <em>q</em>, return the rank, <em>r</em>, of the largest quantile that is strictly <em>Less Than</em> <em>q</em>.</h3>
 
 <p><b>Implementation:</b>
 Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt; q &lt;= q2</em>. Return the rank, <em>r</em>, associated with <em>q1</em>, the first of the pair.</p>
@@ -914,7 +914,7 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
 
 <h2 id="the-quantile-functions-with-inequalities">The quantile functions with inequalities</h2>
 
-<h3 id="quantilerank-non_inclusive-or-qr-gt-given-r-return-the-quantile-q-of-the-smallest-rank-that-is-strictly-greater-than-r"><strong><em>quantile(rank, NON_INCLUSIVE)</em></strong> or <strong><em>q(r, GT)</em></strong> :=<br />Given <em>r</em>, return the quantile, <em>q</em>, of the smallest rank that is strictly Greater Than <em>r</em>.</h3>
+<h3 id="quantilerank-exclusive-or-qr-gt-given-r-return-the-quantile-q-of-the-smallest-rank-that-is-strictly-greater-than-r"><strong><em>quantile(rank, EXCLUSIVE)</em></strong> or <strong><em>q(r, GT)</em></strong> :=<br />Given <em>r</em>, return the quantile, <em>q</em>, of the smallest rank that is strictly Greater Than <em>r</em>.</h3>
 
 <p><b>Implementation:</b>
 Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt;= r &lt; r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</p>
@@ -1009,7 +1009,7 @@ Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1,
 
 <hr />
 
-<h3 id="quantilerank-non_inclusive_strict-or-qr-gt_strict-given-r-return-the-quantile-q-of-the-smallest-rank-that-is-strictly-greater-than-r"><strong><em>quantile(rank, NON_INCLUSIVE_STRICT)</em></strong> or <strong><em>q(r, GT_STRICT)</em></strong> :=<br />Given <em>r</em>, return the quantile, <em>q</em>, of the smallest rank that is strictly Greater Than <em>r</em>.</h3>
+<h3 id="quantilerank-exclusive_strict-or-qr-gt_strict-given-r-return-the-quantile-q-of-the-smallest-rank-that-is-strictly-greater-than-r"><strong><em>quantile(rank, EXCLUSIVE_STRICT)</em></strong> or <strong><em>q(r, GT_STRICT)</em></strong> :=<br />Given <em>r</em>, return the quantile, <em>q</em>, of the smallest rank that is strictly Greater Than <em>r</em>.</h3>
 
 <p>In <b>STRICT</b> mode, the only difference is the following:</p>
 
@@ -1112,11 +1112,11 @@ Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1,
 
 <h2 id="these-inequality-functions-maintain-the-11-functional-relationship">These inequality functions maintain the 1:1 functional relationship</h2>
 
-<h3 id="the-non-inclusive-search-for-qr-is-the-inverse-of-the-non-inclusive-search-for-rq">The non inclusive search for q(r) is the inverse of the non inclusive search for r(q).</h3>
+<h3 id="the-exclusive-search-for-qr-is-the-inverse-of-the-exclusive-search-for-rq">The <em>exclusive</em> search for q(r) is the inverse of the <em>exclusive</em> search for r(q).</h3>
 
 <h5 id="therefore-q--qrq-and-r--rqr">Therefore, <em>q = q(r(q))</em> and <em>r = r(q(r))</em>.</h5>
 
-<h3 id="the-inclusive-search-for-qr-is-the-inverse-of-the-inclusive-search-for-rq">The inclusive search for q(r) is the inverse of the inclusive search for r(q).</h3>
+<h3 id="the-inclusive-search-for-qr-is-the-inverse-of-the-inclusive-search-for-rq">The <em>inclusive</em> search for q(r) is the inverse of the <em>inclusive</em> search for r(q).</h3>
 
 <h5 id="therefore-q--qrq-and-r--rqr-1">Therefore, <em>q = q(r(q))</em> and <em>r = r(q(r))</em>.</h5>
 
