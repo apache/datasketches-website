@@ -19,7 +19,7 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-# Sketching Quantiles and Ranks, the Basics
+# Sketching Quantiles and Ranks Tutorial
 Streaming quantiles algorithms, or quantiles sketches, enable us to analyze the distributions 
 of massive data very quickly using only a small amout of space.  
 They allow us to compute a quantile values given a desired rank, or compute a rank given
@@ -130,7 +130,7 @@ These next examples use a small data set that mimics what could be the result of
 
 ## The rank functions with inequalities
 
-### ***rank(quantile, NON_INCLUSIVE)*** or ***r(q, LT)*** :=<br>Given *q*, return the rank, *r*, of the largest quantile that is strictly *Less Than* *q*.  
+### ***rank(quantile, EXCLUSIVE)*** or ***r(q, LT)*** :=<br>Given *q*, return the rank, *r*, of the largest quantile that is strictly *Less Than* *q*.  
 
 
 <b>Implementation:</b>
@@ -184,7 +184,7 @@ Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* 
 
 ## The quantile functions with inequalities
 
-### ***quantile(rank, NON_INCLUSIVE)*** or ***q(r, GT)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater Than *r*.
+### ***quantile(rank, EXCLUSIVE)*** or ***q(r, GT)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater Than *r*.
 
 <b>Implementation:</b>
 Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 <= r < r2*. Return the quantile associated with *r2*, the second of the pair.
@@ -210,7 +210,7 @@ Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* wher
 
 --------
 
-### ***quantile(rank, NON_INCLUSIVE_STRICT)*** or ***q(r, GT_STRICT)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater Than *r*.
+### ***quantile(rank, EXCLUSIVE_STRICT)*** or ***q(r, GT_STRICT)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater Than *r*.
 
 In <b>STRICT</b> mode, the only difference is the following:
 
@@ -246,11 +246,11 @@ For example *q(.786) = 30*
 
 ## These inequality functions maintain the 1:1 functional relationship
 
-### The non inclusive search for q(r) is the inverse of the non inclusive search for r(q). 
+### The *exclusive* search for q(r) is the inverse of the *exclusive* search for r(q). 
 
 ##### Therefore, *q = q(r(q))* and *r = r(q(r))*.
 
-### The inclusive search for q(r) is the inverse of the inclusive search for r(q). 
+### The *inclusive* search for q(r) is the inverse of the *inclusive* search for r(q). 
 
 ##### Therefore, *q = q(r(q))* and *r = r(q(r))*.
 
