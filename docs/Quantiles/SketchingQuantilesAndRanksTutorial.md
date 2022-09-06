@@ -128,77 +128,183 @@ One can find examples of the following definitions in the research literature.  
 
 These next examples use a small data set that mimics what could be the result of both duplication and sketch data deletion.
 
+## The rules for returned quantiles or ranks
+
+* **Rule 1:** Every Quantile that exists in the input stream or retained by the sketch has an associated Rank.
+
+* **Rule 2:** All of our quantile sketches only retain quantiles that exist in the actual input stream of quantiles. 
+
+* **Rule 3:** For the *getQuantile(rank)* queries, all of our quantile sketches only return quantiles that were retained by the sketch. (i.e, we do not interpolate between quantiles.)
+
+* **Rule 4:** For the *getRank(quantile)* queries, all of our quantile sketches only return ranks that are associated with quantiles retained by the sketch. (i.e, we do not interpolate between ranks.)
+
+* **Rule 5:** All of our quantile algorithms compensate for quantiles removed during the sketch quantile selection and compression process by increasing the weights of some of the quantiles not selected for removal, such that:
+
+     * The sum of the natural weights of all quantiles retained by the sketch equals **N**, the total count of all quantiles given to the sketch.
+     * And by corollary, the largest quantile, when sorted by cumulative rank, has a cumulative natural rank of **N**, or equivalently, a cumulative normalized rank of **1.0**.
+
+
 ## The rank functions with inequalities
+
+### ***rank(quantile, INCLUSIVE)*** or ***r(q, LE)*** :=<br>Given *q*, return the rank, *r*, of the largest quantile that is less than or equal to *q*.
+
+<b>Implementation:</b>
+
+* Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 <= q < q2*. 
+* Return the rank, *r*, associated with *q1*, the first of the pair. 
+
+<b>Boundary Exceptions:</b>
+
+* **Boundary Rule 1:** If the given *q* is *>=* the quantile associated with the largest cumulative rank retained by the sketch, the function will return the largest cumulative rank, *1.0*.
+* **Boundary Rule 2:** If the given *q* is *<* the quantile associated with the smallest cumulative rank retained by the sketch, the function will return a rank of *0.0*.
+
+#### Examples using normalized ranks:</b>
+
+* *r(30) = .786* Normal rule applies: *30 <= 30 < 40*, return *r(q1) = .786*.
+
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.0   |
+| Quantile input     |      |      |      |      |      | 30   |      |       |
+| Qualifying pair    |      |      |      |      |      | q1   | q2   |       |
+| Rank result        |      |      |      |      |      | .786 |      |       |
+
+
+* *r(55) = 1.0* Use Boundary Rule 1: *50 <= 55*, return *1.0*.
+
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |   ?   |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |       |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.0   |       |
+| Quantile input     |      |      |      |      |      |      |      |  55   |       |
+| Qualifying pair    |      |      |      |      |      |      |      |  q1   | (q2)  |
+| Rank result        |      |      |      |      |      |      |      | 1.0   |       |
+
+
+* *r(5) = 0.0* Use Boundary Rule 2: *5 < 10*, return *0.0*.
+
+| Quantile[]:        |   ?  | 10   | 20   | 20   | 30   | 30   | 30   | 40    | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- | ----- |
+| Natural Rank[]:    |      | 1    | 3    | 5    | 7    | 9    | 11   | 13    | 14    |
+| Normalized Rank[]: |      | .071 | .214 | .357 | .500 | .643 | .786 | .929  | 1.0   |
+| Quantile input     |   5  |      |      |      |      |      |      |       |       |
+| Qualifying pair    | (q1) |  q2  |      |      |      |      |      |       |       |
+| Rank result        |   0  |      |      |      |      |      |      |       |       |
+
+
+--------
 
 ### ***rank(quantile, EXCLUSIVE)*** or ***r(q, LT)*** :=<br>Given *q*, return the rank, *r*, of the largest quantile that is strictly *Less Than* *q*.  
 
 
 <b>Implementation:</b>
-Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 < q <= q2*. Return the rank, *r*, associated with *q1*, the first of the pair.
 
-<b>Boundary Notes:</b>
+* Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 < q <= q2*. 
+* Return the rank, *r*, associated with *q1*, the first of the pair.
 
-* If the given *q* is larger than the largest quantile retained by the sketch, the sketch will return the rank of the largest retained quantile.
-* If the given *q* is smaller than the smallest quantile retained by the sketch, the sketch will return a rank of zero.
+<b>Boundary Exceptions:</b>
+
+* **Boundary Rule 1:** If the given *q* is *>* the quantile associated with the largest cumulative rank retained by the sketch, the sketch will return the the largest cumulative rank, *1.0*.
+* **Boundary Rule 2:** If the given *q* is *<=* the quantile associated with the smallest cumulative rank retained by the sketch, the sketch will return a rank of *0.0*.
 
 <b>Examples using normalized ranks:</b>
 
-* *r(55) = 1.0* 
-* *r(5) = 0.0*
-* *r(30) = .357* (Illustrated in table)
+* *r(30) = .357* Normal rule applies: *20 < 30 <= 30*, return *r(q1) = .357*.
 
 | Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
 | ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
 | Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |
 | Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.000 |
-| Quantile input     |      |      |      | 30   | 30   | 30   |      |       |
+| Quantile input     |      |      |      | 30   |      |      |      |       |
 | Qualifying pair    |      |      | q1   | q2   |      |      |      |       |
 | Rank result        |      |      | .357 |      |      |      |      |       |
 
---------
+* *r(55) = 1.0* Use Boundary Rule 1: *50 < 55*, return *1.0*.
 
-### ***rank(quantile, INCLUSIVE)*** or ***r(q, LE)*** :=<br>Given *q*, return the rank, *r*, of the largest quantile that is less than or equal to *q*.
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |   ?   |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |       |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.0   |       |
+| Quantile input     |      |      |      |      |      |      |      |       |  55   |
+| Qualifying pair    |      |      |      |      |      |      |      |  q1   | (q2)  |
+| Rank result        |      |      |      |      |      |      |      | 1.000 |       |
 
-<b>Implementation:</b>
-Given *q*, search the quantile array until we find the adjacent pair *{q1, q2}* where *q1 <= q < q2*. Return the rank, *r*, associated with *q1*, the first of the pair. 
+* *r(5) = 0.0* Use Boundary Rule 2: *5 <= 10*, return *0*.
 
-<b>Boundary Notes:</b>
+| Quantile[]:        |   ?  | 10   | 20   | 20   | 30   | 30   | 30   | 40    | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- | ----- |
+| Natural Rank[]:    |      | 1    | 3    | 5    | 7    | 9    | 11   | 13    | 14    |
+| Normalized Rank[]: |      | .071 | .214 | .357 | .500 | .643 | .786 | .929  | 1.0   |
+| Quantile input     |   5  |      |      |      |      |      |      |       |       |
+| Qualifying pair    | (q1) |  q2  |      |      |      |      |      |       |       |
+| Rank result        |   0  |      |      |      |      |      |      |       |       |
 
-* If the given *q* is larger than the largest quantile retained by the sketch, the function will return the rank of the largest retained quantile.
-* If the given *q* is smaller than the smallest quantile retained by the sketch, the function will return a rank of zero.
-
-<b>Examples using normalized ranks:</b>
-
-* *r(55) = 1.0*
-* *r(5) = 0.0*
-* *r(30) = .786* (Illustrated in table)
-
-| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
-| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
-| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |
-| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.000 |
-| Quantile input     |      |      |      | 30   | 30   | 30   |      |       |
-| Qualifying pair    |      |      |      |      |      | q1   | q2   |       |
-| Rank result        |      |      |      |      |      | .786 |      |       |
 
 
 ## The quantile functions with inequalities
 
-### ***quantile(rank, EXCLUSIVE)*** or ***q(r, GT)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater Than *r*.
+### ***quantile(rank, INCLUSIVE)*** or ***q(r, GE)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater than or Equal to *r*.
 
 <b>Implementation:</b>
-Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 <= r < r2*. Return the quantile associated with *r2*, the second of the pair.
 
-<b>Boundary Notes:</b>
+* Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 < r <= r2*. 
+* Return the quantile, *q*, associated with *r2*, the second of the pair.
 
-* If the given normalized rank, *r*, is equal to 1.0, there is no quantile that satisfies this criterion. However, for convenience, the function will return the largest quantile retained by the sketch.
-* If the given normalized rank, *r*, is less than the smallest rank, the function will return the smallest quantile.
+<b>Boundary Exceptions:</b>
+
+* **Boundary Rule 2:** If the given normalized rank, *r*, is *<=* the smallest rank, the function will return the **quantile** associated with the smallest cumulative rank.
 
 <b>Examples using normalized ranks:</b>
 
-* *q(1.0) = 50*
-* *q(0.0) = 10*
-* *q(.357) = 30* (Illustrated in table)
+* *q(.786) = 30* Normal rule applies: *.643 < .786 <= .786*, return *q(r2) = 30*.
+
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.000 |
+| Rank input         |      |      |      |      |      | .786 |      |       |
+| Qualifying pair    |      |      |      |      | r1   | r2   |      |       |
+| Quantile result    |      |      |      |      |      | 30   |      |       |
+
+* *q(1.0) = 50* Normal rule applies: *.929 < 1.0 <= 1.0*, return *q(r2) = 50*.
+
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.0   |
+| Rank input         |      |      |      |      |      |      |      | 1.0   |
+| Qualifying pair    |      |      |      |      |      |      |  r1  |  r2   |
+| Quantile result    |      |      |      |      |      |      |      | 50    |
+
+* *q(0.0 <= .071) = 10* Use Boundary Rule 2: *0.0 <= .071*, return *10*.
+
+| Quantile[]:        |   ?  | 10   | 20   | 20   | 30   | 30   | 30   | 40    | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- | ----- |
+| Natural Rank[]:    |      | 1    | 3    | 5    | 7    | 9    | 11   | 13    | 14    |
+| Normalized Rank[]: |      | .071 | .214 | .357 | .500 | .643 | .786 | .929  | 1.0   |
+| Rank input         |  0.0 |      |      |      |      |      |      |       |       |
+| Qualifying pair    | (r1) |  r2  |      |      |      |      |      |       |       |
+| Rank result        |      | 10   |      |      |      |      |      |       |       |
+
+
+--------
+
+### ***quantile(rank, EXCLUSIVE)*** or ***q(r, GT)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater Than *r*.
+
+<b>Implementation:</b>
+
+* Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 <= r < r2*. 
+* Return the quantile, *q*, associated with *r2*, the second of the pair.
+
+<b>Boundary Exceptions:</b>
+
+* **Boundary Rule 1:** If the given normalized rank, *r*, is equal to 1.0, there is no quantile that satisfies this criterion. However, for convenience, the function will return quantile associated with the largest cumulative rank retained by the sketch.
+* **Boundary Rule 2:** If the given normalized rank, *r*, is less than the smallest rank, the function will return the quantile associated with the smallest cumulative rank retained by the sketch.
+
+<b>Examples using normalized ranks:</b>
+
+* *q(.357) = 30* Normal rule applies: *.357 <= .357 < .500*, return *q(r2) = 30*.
 
 | Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
 | ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
@@ -208,40 +314,94 @@ Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* wher
 | Qualifying pair    |      |      | r1   | r2   |      |      |      |       |
 | Quantile result    |      |      |      | 30   |      |      |      |       |
 
+* *q(1.0) = 50* Use Boundary Rule 1 *1.0 <= 1.0 < ?*, return *50*.
+
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |   ?   |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |       |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.0   |       |
+| Rank input         |      |      |      |      |      |      |      | 1.0   |       |
+| Qualifying pair    |      |      |      |      |      |      |      |  r1   | (r2)  |
+| Quantile result    |      |      |      |      |      |      |      |       |  50   |
+
+* *q(0.99) = 50* Normal rule applies *.929 <= .99 < 1.0*, return *50*.
+
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.0   |
+| Rank input         |      |      |      |      |      |      | .99  |       |
+| Qualifying pair    |      |      |      |      |      |      |  r1  | r2    |
+| Quantile result    |      |      |      |      |      |      |      | 50    |
+
+
+* *q(0.0 <= .071) = 10* Use Boundary Rule 2: *0.0 < .071*, return *10*.
+
+| Quantile[]:        |   ?  | 10   | 20   | 20   | 30   | 30   | 30   | 40    | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- | ----- |
+| Natural Rank[]:    |      | 1    | 3    | 5    | 7    | 9    | 11   | 13    | 14    |
+| Normalized Rank[]: |      | .071 | .214 | .357 | .500 | .643 | .786 | .929  | 1.0   |
+| Rank input         |  0.0 |      |      |      |      |      |      |       |       |
+| Qualifying pair    | (r1) |  r2  |      |      |      |      |      |       |       |
+| Rank result        |      | 10   |      |      |      |      |      |       |       |
+
+
 --------
 
 ### ***quantile(rank, EXCLUSIVE_STRICT)*** or ***q(r, GT_STRICT)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater Than *r*.
 
-In <b>STRICT</b> mode, the only difference is the following:
-
-<b>Boundary Notes:</b>
-
-* If the given normalized rank, *r*, is equal to 1.0, there is no quantile that satisfies this criterion. The function will return *NaN*.
-
-
---------
-
-### ***quantile(rank, INCLUSIVE)*** or ***q(r, GE)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater than or Equal to *r*.
-
 <b>Implementation:</b>
-Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 < r <= r2*. Return the quantile, *q*, associated with *r2*, the second of the pair.
 
-<b>Boundary Notes:</b>
+* Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 <= r < r2*. 
+* Return the quantile, *q*, associated with *r2*, the second of the pair.
 
-* If the given normalized rank, *r*, is equal to 1.0, the function will return the largest quantile retained by the sketch.
-* If the given normalized rank, *r*, is less than the smallest rank, the function will return the smallest quantile.
+<b>Boundary Exceptions:</b>
+
+* **Boundary Rule 1:** If the given normalized rank, *r*, is equal to *1.0*, there is no quantile that satisfies this criterion. Return *NaN* or *null*.
+* **Boundary Rule 2:** If the given normalized rank, *r*, is less than the smallest rank, the function will return the quantile associated with the smallest cumulative rank retained by the sketch..
 
 <b>Examples using normalized ranks:</b>
 
-For example *q(.786) = 30*
+* *q(.357) = 30* Normal rule applies: *.357 <= .357 < .500*, return *q(r2) = 30*.
 
 | Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
 | ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
 | Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |
 | Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.000 |
-| Rank input         |      |      |      |      |      | .786 |      |       |
-| Qualifying pair    |      |      |      |      | r1   | r2   |      |       |
-| Quantile result    |      |      |      |      |      | 30   |      |       |
+| Rank input         |      |      | .357 |      |      |      |      |       |
+| Qualifying pair    |      |      | r1   | r2   |      |      |      |       |
+| Quantile result    |      |      |      | 30   |      |      |      |       |
+
+* *q(1.0) = 50* Use Boundary Rule 1 *1.0 <= 1.0 < ?*, return *NaN or null*.
+
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |   ?   |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |       |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.0   |       |
+| Rank input         |      |      |      |      |      |      |      | 1.0   |       |
+| Qualifying pair    |      |      |      |      |      |      |      |  r1   | (r2)  |
+| Quantile result    |      |      |      |      |      |      |      |       |  NaN or null |
+
+* *q(0.99) = 50* Normal rule applies *.929 <= .99 < 1.0*, return *50*.
+
+| Quantile[]:        | 10   | 20   | 20   | 30   | 30   | 30   | 40   | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- |
+| Natural Rank[]:    | 1    | 3    | 5    | 7    | 9    | 11   | 13   | 14    |
+| Normalized Rank[]: | .071 | .214 | .357 | .500 | .643 | .786 | .929 | 1.0   |
+| Rank input         |      |      |      |      |      |      | .99  |       |
+| Qualifying pair    |      |      |      |      |      |      |  r1  | r2    |
+| Quantile result    |      |      |      |      |      |      |      | 50    |
+
+* *q(0.0 <= .071) = 10* Use Boundary Rule 2: *0.0 < .071*, return *10*.
+
+| Quantile[]:        |   ?  | 10   | 20   | 20   | 30   | 30   | 30   | 40    | 50    |
+| ------------------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ----- | ----- |
+| Natural Rank[]:    |      | 1    | 3    | 5    | 7    | 9    | 11   | 13    | 14    |
+| Normalized Rank[]: |      | .071 | .214 | .357 | .500 | .643 | .786 | .929  | 1.0   |
+| Rank input         |  0.0 |      |      |      |      |      |      |       |       |
+| Qualifying pair    | (r1) |  r2  |      |      |      |      |      |       |       |
+| Rank result        |      | 10   |      |      |      |      |      |       |       |
+
 
 
 ## These inequality functions maintain the 1:1 functional relationship
