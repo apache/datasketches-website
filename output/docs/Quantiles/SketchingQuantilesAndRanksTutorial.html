@@ -723,26 +723,53 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 
 <p>These next examples use a small data set that mimics what could be the result of both duplication and sketch data deletion.</p>
 
-<h2 id="the-rank-functions-with-inequalities">The rank functions with inequalities</h2>
-
-<h3 id="rankquantile-exclusive-or-rq-lt-given-q-return-the-rank-r-of-the-largest-quantile-that-is-strictly-less-than-q"><strong><em>rank(quantile, EXCLUSIVE)</em></strong> or <strong><em>r(q, LT)</em></strong> :=<br />Given <em>q</em>, return the rank, <em>r</em>, of the largest quantile that is strictly <em>Less Than</em> <em>q</em>.</h3>
-
-<p><b>Implementation:</b>
-Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt; q &lt;= q2</em>. Return the rank, <em>r</em>, associated with <em>q1</em>, the first of the pair.</p>
-
-<p><b>Boundary Notes:</b></p>
+<h2 id="the-rules-for-returned-quantiles-or-ranks">The rules for returned quantiles or ranks</h2>
 
 <ul>
-  <li>If the given <em>q</em> is larger than the largest quantile retained by the sketch, the sketch will return the rank of the largest retained quantile.</li>
-  <li>If the given <em>q</em> is smaller than the smallest quantile retained by the sketch, the sketch will return a rank of zero.</li>
+  <li>
+    <p><strong>Rule 1:</strong> Every Quantile that exists in the input stream or retained by the sketch has an associated Rank.</p>
+  </li>
+  <li>
+    <p><strong>Rule 2:</strong> All of our quantile sketches only retain quantiles that exist in the actual input stream of quantiles.</p>
+  </li>
+  <li>
+    <p><strong>Rule 3:</strong> For the <em>getQuantile(rank)</em> queries, all of our quantile sketches only return quantiles that were retained by the sketch. (i.e, we do not interpolate between quantiles.)</p>
+  </li>
+  <li>
+    <p><strong>Rule 4:</strong> For the <em>getRank(quantile)</em> queries, all of our quantile sketches only return ranks that are associated with quantiles retained by the sketch. (i.e, we do not interpolate between ranks.)</p>
+  </li>
+  <li>
+    <p><strong>Rule 5:</strong> All of our quantile algorithms compensate for quantiles removed during the sketch quantile selection and compression process by increasing the weights of some of the quantiles not selected for removal, such that:</p>
+
+    <ul>
+      <li>The sum of the natural weights of all quantiles retained by the sketch equals <strong>N</strong>, the total count of all quantiles given to the sketch.</li>
+      <li>And by corollary, the largest quantile, when sorted by cumulative rank, has a cumulative natural rank of <strong>N</strong>, or equivalently, a cumulative normalized rank of <strong>1.0</strong>.</li>
+    </ul>
+  </li>
 </ul>
 
-<p><b>Examples using normalized ranks:</b></p>
+<h2 id="the-rank-functions-with-inequalities">The rank functions with inequalities</h2>
+
+<h3 id="rankquantile-inclusive-or-rq-le-given-q-return-the-rank-r-of-the-largest-quantile-that-is-less-than-or-equal-to-q"><strong><em>rank(quantile, INCLUSIVE)</em></strong> or <strong><em>r(q, LE)</em></strong> :=<br />Given <em>q</em>, return the rank, <em>r</em>, of the largest quantile that is less than or equal to <em>q</em>.</h3>
+
+<p><b>Implementation:</b></p>
 
 <ul>
-  <li><em>r(55) = 1.0</em></li>
-  <li><em>r(5) = 0.0</em></li>
-  <li><em>r(30) = .357</em> (Illustrated in table)</li>
+  <li>Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt;= q &lt; q2</em>.</li>
+  <li>Return the rank, <em>r</em>, associated with <em>q1</em>, the first of the pair.</li>
+</ul>
+
+<p><b>Boundary Exceptions:</b></p>
+
+<ul>
+  <li><strong>Boundary Rule 1:</strong> If the given <em>q</em> is <em>&gt;=</em> the quantile associated with the largest cumulative rank retained by the sketch, the function will return the largest cumulative rank, <em>1.0</em>.</li>
+  <li><strong>Boundary Rule 2:</strong> If the given <em>q</em> is <em>&lt;</em> the quantile associated with the smallest cumulative rank retained by the sketch, the function will return a rank of <em>0.0</em>.</li>
+</ul>
+
+<h4 id="examples-using-normalized-ranksb">Examples using normalized ranks:&lt;/b&gt;</h4>
+
+<ul>
+  <li><em>r(30) = .786</em> Normal rule applies: <em>30 &lt;= 30 &lt; 40</em>, return <em>r(q1) = .786</em>.</li>
 </ul>
 
 <table>
@@ -780,15 +807,15 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
       <td>.643</td>
       <td>.786</td>
       <td>.929</td>
-      <td>1.000</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <td>Quantile input</td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td>30</td>
-      <td>30</td>
+      <td> </td>
+      <td> </td>
       <td>30</td>
       <td> </td>
       <td> </td>
@@ -797,8 +824,173 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
       <td>Qualifying pair</td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td>q1</td>
       <td>q2</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Rank result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>.786</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><em>r(55) = 1.0</em> Use Boundary Rule 1: <em>50 &lt;= 55</em>, return <em>1.0</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+      <th>?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.0</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Quantile input</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>55</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>q1</td>
+      <td>(q2)</td>
+    </tr>
+    <tr>
+      <td>Rank result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>1.0</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><em>r(5) = 0.0</em> Use Boundary Rule 2: <em>5 &lt; 10</em>, return <em>0.0</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>?</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td> </td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td> </td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Quantile input</td>
+      <td>5</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td>(q1)</td>
+      <td>q2</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -806,9 +998,10 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
     </tr>
     <tr>
       <td>Rank result</td>
+      <td>0</td>
       <td> </td>
       <td> </td>
-      <td>.357</td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -820,24 +1013,26 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
 
 <hr />
 
-<h3 id="rankquantile-inclusive-or-rq-le-given-q-return-the-rank-r-of-the-largest-quantile-that-is-less-than-or-equal-to-q"><strong><em>rank(quantile, INCLUSIVE)</em></strong> or <strong><em>r(q, LE)</em></strong> :=<br />Given <em>q</em>, return the rank, <em>r</em>, of the largest quantile that is less than or equal to <em>q</em>.</h3>
+<h3 id="rankquantile-exclusive-or-rq-lt-given-q-return-the-rank-r-of-the-largest-quantile-that-is-strictly-less-than-q"><strong><em>rank(quantile, EXCLUSIVE)</em></strong> or <strong><em>r(q, LT)</em></strong> :=<br />Given <em>q</em>, return the rank, <em>r</em>, of the largest quantile that is strictly <em>Less Than</em> <em>q</em>.</h3>
 
-<p><b>Implementation:</b>
-Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt;= q &lt; q2</em>. Return the rank, <em>r</em>, associated with <em>q1</em>, the first of the pair.</p>
-
-<p><b>Boundary Notes:</b></p>
+<p><b>Implementation:</b></p>
 
 <ul>
-  <li>If the given <em>q</em> is larger than the largest quantile retained by the sketch, the function will return the rank of the largest retained quantile.</li>
-  <li>If the given <em>q</em> is smaller than the smallest quantile retained by the sketch, the function will return a rank of zero.</li>
+  <li>Given <em>q</em>, search the quantile array until we find the adjacent pair <em>{q1, q2}</em> where <em>q1 &lt; q &lt;= q2</em>.</li>
+  <li>Return the rank, <em>r</em>, associated with <em>q1</em>, the first of the pair.</li>
+</ul>
+
+<p><b>Boundary Exceptions:</b></p>
+
+<ul>
+  <li><strong>Boundary Rule 1:</strong> If the given <em>q</em> is <em>&gt;</em> the quantile associated with the largest cumulative rank retained by the sketch, the sketch will return the the largest cumulative rank, <em>1.0</em>.</li>
+  <li><strong>Boundary Rule 2:</strong> If the given <em>q</em> is <em>&lt;=</em> the quantile associated with the smallest cumulative rank retained by the sketch, the sketch will return a rank of <em>0.0</em>.</li>
 </ul>
 
 <p><b>Examples using normalized ranks:</b></p>
 
 <ul>
-  <li><em>r(55) = 1.0</em></li>
-  <li><em>r(5) = 0.0</em></li>
-  <li><em>r(30) = .786</em> (Illustrated in table)</li>
+  <li><em>r(30) = .357</em> Normal rule applies: <em>20 &lt; 30 &lt;= 30</em>, return <em>r(q1) = .357</em>.</li>
 </ul>
 
 <table>
@@ -883,10 +1078,91 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
       <td> </td>
       <td> </td>
       <td>30</td>
-      <td>30</td>
-      <td>30</td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td> </td>
+      <td> </td>
+      <td>q1</td>
+      <td>q2</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Rank result</td>
+      <td> </td>
+      <td> </td>
+      <td>.357</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><em>r(55) = 1.0</em> Use Boundary Rule 1: <em>50 &lt; 55</em>, return <em>1.0</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+      <th>?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.0</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Quantile input</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>55</td>
     </tr>
     <tr>
       <td>Qualifying pair</td>
@@ -895,12 +1171,171 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
       <td>q1</td>
+      <td>(q2)</td>
+    </tr>
+    <tr>
+      <td>Rank result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>1.000</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><em>r(5) = 0.0</em> Use Boundary Rule 2: <em>5 &lt;= 10</em>, return <em>0</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>?</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td> </td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td> </td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Quantile input</td>
+      <td>5</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td>(q1)</td>
       <td>q2</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
       <td>Rank result</td>
+      <td>0</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="the-quantile-functions-with-inequalities">The quantile functions with inequalities</h2>
+
+<h3 id="quantilerank-inclusive-or-qr-ge-given-r-return-the-quantile-q-of-the-smallest-rank-that-is-strictly-greater-than-or-equal-to-r"><strong><em>quantile(rank, INCLUSIVE)</em></strong> or <strong><em>q(r, GE)</em></strong> :=<br />Given <em>r</em>, return the quantile, <em>q</em>, of the smallest rank that is strictly Greater than or Equal to <em>r</em>.</h3>
+
+<p><b>Implementation:</b></p>
+
+<ul>
+  <li>Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt; r &lt;= r2</em>.</li>
+  <li>Return the quantile, <em>q</em>, associated with <em>r2</em>, the second of the pair.</li>
+</ul>
+
+<p><b>Boundary Exceptions:</b></p>
+
+<ul>
+  <li><strong>Boundary Rule 2:</strong> If the given normalized rank, <em>r</em>, is <em>&lt;=</em> the smallest rank, the function will return the <strong>quantile</strong> associated with the smallest cumulative rank.</li>
+</ul>
+
+<p><b>Examples using normalized ranks:</b></p>
+
+<ul>
+  <li><em>q(.786) = 30</em> Normal rule applies: <em>.643 &lt; .786 &lt;= .786</em>, return <em>q(r2) = 30</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.000</td>
+    </tr>
+    <tr>
+      <td>Rank input</td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -910,29 +1345,213 @@ Given <em>q</em>, search the quantile array until we find the adjacent pair <em>
       <td> </td>
       <td> </td>
     </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>r1</td>
+      <td>r2</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Quantile result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>30</td>
+      <td> </td>
+      <td> </td>
+    </tr>
   </tbody>
 </table>
 
-<h2 id="the-quantile-functions-with-inequalities">The quantile functions with inequalities</h2>
+<ul>
+  <li><em>q(1.0) = 50</em> Normal rule applies: <em>.929 &lt; 1.0 &lt;= 1.0</em>, return <em>q(r2) = 50</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Rank input</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>r1</td>
+      <td>r2</td>
+    </tr>
+    <tr>
+      <td>Quantile result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><em>q(0.0 &lt;= .071) = 10</em> Use Boundary Rule 2: <em>0.0 &lt;= .071</em>, return <em>10</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>?</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td> </td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td> </td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Rank input</td>
+      <td>0.0</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td>(r1)</td>
+      <td>r2</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Rank result</td>
+      <td> </td>
+      <td>10</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
 
 <h3 id="quantilerank-exclusive-or-qr-gt-given-r-return-the-quantile-q-of-the-smallest-rank-that-is-strictly-greater-than-r"><strong><em>quantile(rank, EXCLUSIVE)</em></strong> or <strong><em>q(r, GT)</em></strong> :=<br />Given <em>r</em>, return the quantile, <em>q</em>, of the smallest rank that is strictly Greater Than <em>r</em>.</h3>
 
-<p><b>Implementation:</b>
-Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt;= r &lt; r2</em>. Return the quantile associated with <em>r2</em>, the second of the pair.</p>
-
-<p><b>Boundary Notes:</b></p>
+<p><b>Implementation:</b></p>
 
 <ul>
-  <li>If the given normalized rank, <em>r</em>, is equal to 1.0, there is no quantile that satisfies this criterion. However, for convenience, the function will return the largest quantile retained by the sketch.</li>
-  <li>If the given normalized rank, <em>r</em>, is less than the smallest rank, the function will return the smallest quantile.</li>
+  <li>Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt;= r &lt; r2</em>.</li>
+  <li>Return the quantile, <em>q</em>, associated with <em>r2</em>, the second of the pair.</li>
+</ul>
+
+<p><b>Boundary Exceptions:</b></p>
+
+<ul>
+  <li><strong>Boundary Rule 1:</strong> If the given normalized rank, <em>r</em>, is equal to 1.0, there is no quantile that satisfies this criterion. However, for convenience, the function will return quantile associated with the largest cumulative rank retained by the sketch.</li>
+  <li><strong>Boundary Rule 2:</strong> If the given normalized rank, <em>r</em>, is less than the smallest rank, the function will return the quantile associated with the smallest cumulative rank retained by the sketch.</li>
 </ul>
 
 <p><b>Examples using normalized ranks:</b></p>
 
 <ul>
-  <li><em>q(1.0) = 50</em></li>
-  <li><em>q(0.0) = 10</em></li>
-  <li><em>q(.357) = 30</em> (Illustrated in table)</li>
+  <li><em>q(.357) = 30</em> Normal rule applies: <em>.357 &lt;= .357 &lt; .500</em>, return <em>q(r2) = 30</em>.</li>
 </ul>
 
 <table>
@@ -1000,6 +1619,249 @@ Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1,
       <td> </td>
       <td> </td>
       <td>30</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><em>q(1.0) = 50</em> Use Boundary Rule 1 <em>1.0 &lt;= 1.0 &lt; ?</em>, return <em>50</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+      <th>?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.0</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Rank input</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>1.0</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>r1</td>
+      <td>(r2)</td>
+    </tr>
+    <tr>
+      <td>Quantile result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><em>q(0.99) = 50</em> Normal rule applies <em>.929 &lt;= .99 &lt; 1.0</em>, return <em>50</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Rank input</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>.99</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>r1</td>
+      <td>r2</td>
+    </tr>
+    <tr>
+      <td>Quantile result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><em>q(0.0 &lt;= .071) = 10</em> Use Boundary Rule 2: <em>0.0 &lt; .071</em>, return <em>10</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>?</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td> </td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td> </td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Rank input</td>
+      <td>0.0</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td>(r1)</td>
+      <td>r2</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Rank result</td>
+      <td> </td>
+      <td>10</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1012,31 +1874,25 @@ Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1,
 
 <h3 id="quantilerank-exclusive_strict-or-qr-gt_strict-given-r-return-the-quantile-q-of-the-smallest-rank-that-is-strictly-greater-than-r"><strong><em>quantile(rank, EXCLUSIVE_STRICT)</em></strong> or <strong><em>q(r, GT_STRICT)</em></strong> :=<br />Given <em>r</em>, return the quantile, <em>q</em>, of the smallest rank that is strictly Greater Than <em>r</em>.</h3>
 
-<p>In <b>STRICT</b> mode, the only difference is the following:</p>
-
-<p><b>Boundary Notes:</b></p>
+<p><b>Implementation:</b></p>
 
 <ul>
-  <li>If the given normalized rank, <em>r</em>, is equal to 1.0, there is no quantile that satisfies this criterion. The function will return <em>NaN</em>.</li>
+  <li>Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt;= r &lt; r2</em>.</li>
+  <li>Return the quantile, <em>q</em>, associated with <em>r2</em>, the second of the pair.</li>
 </ul>
 
-<hr />
-
-<h3 id="quantilerank-inclusive-or-qr-ge-given-r-return-the-quantile-q-of-the-smallest-rank-that-is-strictly-greater-than-or-equal-to-r"><strong><em>quantile(rank, INCLUSIVE)</em></strong> or <strong><em>q(r, GE)</em></strong> :=<br />Given <em>r</em>, return the quantile, <em>q</em>, of the smallest rank that is strictly Greater than or Equal to <em>r</em>.</h3>
-
-<p><b>Implementation:</b>
-Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1, r2}</em> where <em>r1 &lt; r &lt;= r2</em>. Return the quantile, <em>q</em>, associated with <em>r2</em>, the second of the pair.</p>
-
-<p><b>Boundary Notes:</b></p>
+<p><b>Boundary Exceptions:</b></p>
 
 <ul>
-  <li>If the given normalized rank, <em>r</em>, is equal to 1.0, the function will return the largest quantile retained by the sketch.</li>
-  <li>If the given normalized rank, <em>r</em>, is less than the smallest rank, the function will return the smallest quantile.</li>
+  <li><strong>Boundary Rule 1:</strong> If the given normalized rank, <em>r</em>, is equal to <em>1.0</em>, there is no quantile that satisfies this criterion. Return <em>NaN</em> or <em>null</em>.</li>
+  <li><strong>Boundary Rule 2:</strong> If the given normalized rank, <em>r</em>, is less than the smallest rank, the function will return the quantile associated with the smallest cumulative rank retained by the sketch..</li>
 </ul>
 
 <p><b>Examples using normalized ranks:</b></p>
 
-<p>For example <em>q(.786) = 30</em></p>
+<ul>
+  <li><em>q(.357) = 30</em> Normal rule applies: <em>.357 &lt;= .357 &lt; .500</em>, return <em>q(r2) = 30</em>.</li>
+</ul>
 
 <table>
   <thead>
@@ -1079,10 +1935,10 @@ Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1,
       <td>Rank input</td>
       <td> </td>
       <td> </td>
+      <td>.357</td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td>.786</td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1090,10 +1946,10 @@ Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1,
       <td>Qualifying pair</td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
       <td>r1</td>
       <td>r2</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1102,9 +1958,252 @@ Given <em>r</em>, search the rank array until we find the adjacent pair <em>{r1,
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
       <td>30</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><em>q(1.0) = 50</em> Use Boundary Rule 1 <em>1.0 &lt;= 1.0 &lt; ?</em>, return <em>NaN or null</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+      <th>?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.0</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Rank input</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>1.0</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>r1</td>
+      <td>(r2)</td>
+    </tr>
+    <tr>
+      <td>Quantile result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>NaN or null</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><em>q(0.99) = 50</em> Normal rule applies <em>.929 &lt;= .99 &lt; 1.0</em>, return <em>50</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Rank input</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>.99</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>r1</td>
+      <td>r2</td>
+    </tr>
+    <tr>
+      <td>Quantile result</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>50</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><em>q(0.0 &lt;= .071) = 10</em> Use Boundary Rule 2: <em>0.0 &lt; .071</em>, return <em>10</em>.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantile[]:</th>
+      <th>?</th>
+      <th>10</th>
+      <th>20</th>
+      <th>20</th>
+      <th>30</th>
+      <th>30</th>
+      <th>30</th>
+      <th>40</th>
+      <th>50</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Natural Rank[]:</td>
+      <td> </td>
+      <td>1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>7</td>
+      <td>9</td>
+      <td>11</td>
+      <td>13</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <td>Normalized Rank[]:</td>
+      <td> </td>
+      <td>.071</td>
+      <td>.214</td>
+      <td>.357</td>
+      <td>.500</td>
+      <td>.643</td>
+      <td>.786</td>
+      <td>.929</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <td>Rank input</td>
+      <td>0.0</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Qualifying pair</td>
+      <td>(r1)</td>
+      <td>r2</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Rank result</td>
+      <td> </td>
+      <td>10</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
