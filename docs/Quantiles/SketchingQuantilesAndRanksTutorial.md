@@ -158,7 +158,7 @@ These next examples use a small data set that mimics what could be the result of
 * **Boundary Rule 1:** If the given *q* is *>=* the quantile associated with the largest cumulative rank retained by the sketch, the function will return the largest cumulative rank, *1.0*.
 * **Boundary Rule 2:** If the given *q* is *<* the quantile associated with the smallest cumulative rank retained by the sketch, the function will return a rank of *0.0*.
 
-#### Examples using normalized ranks:</b>
+<b>Examples using normalized ranks:</b>
 
 * *r(30) = .786* Normal rule applies: *30 <= 30 < 40*, return *r(q1) = .786*.
 
