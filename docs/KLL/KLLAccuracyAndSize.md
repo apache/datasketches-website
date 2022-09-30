@@ -21,17 +21,16 @@ layout: doc_page
 -->
 # KLL Sketch Accuracy and Size
 
-The accuracy of a quantile sketch is a function of the configured value <i>K</i>, which also affects
-the overall size of the sketch (default K = 200).
+The accuracy of the KLL quantile sketch is a function of the configured <i>K</i>, which also affects the overall size of the sketch (default K = 200).
 
-The accuracy quantiles sketches is specified and measured with respect to the *rank* only, not the values.
+The accuracy of quantiles sketches is specified and measured with respect to the *rank* only, not the quantiles.
 
-The KLL Sketch has *absolute error*. For example, a specified accuracy of 1% at the median (rank = 0.50) means that the true value (if you could extract it from the set) should be 
-between *getQuantile(0.49)* and *getQuantile(0.51)*. This same 1% error applied at a rank of 0.95 means that the true value should be between *getQuantile(0.94)* and *getQuantile(0.96)*. In other words, the error is a fixed +/- epsilon for the entire range of rank values.
+The KLL Sketch has *absolute error*. For example, a specified rank accuracy of 1% at the median (rank = 0.50) means that the true quantile (if you could extract it from the set) should be between *getQuantile(0.49)* and *getQuantile(0.51)*. 
+This same 1% error applied at a rank of 0.95 means that the true quantile should be between *getQuantile(0.94)* and *getQuantile(0.96)*. In other words, the error is a fixed +/- epsilon for the entire range of ranks.
 
 The approximate rank error values listed in the second row of the header in the table below can be computed using the function <i>KLLSketch.getNormalizedRankError(int k, false)</i>. The third row shows the double-sided error that applies to a portion of the distribution such as an element of PMF (bar in a histogram) that is a subject to rank error on both sides. It can be computed using the function <i>KLLSketch.getNormalizedRankError(int k, true)</i>.
 
-## KllFloatsSketch (Java) or kll_sketch&lt;float&gt; (C++) serialized size in bytes and rank error
+## KllFloatsSketch (Java) or kll_sketch&lt;float&gt; (C++) serialized size in bytes from *K* or rank error % vs. *N*.
 
 | N                  | K=25   | K=50  | K=100 | K=200 | K=400 | K=800  | K=1600 |
 | ------------------ | ------ | ----- | ----- | ----- | ----- | ------ | ------ |
@@ -74,7 +73,7 @@ The approximate rank error values listed in the second row of the header in the 
 | 8,589,934,592      | 1,148  | 1,384 | 1,888 | 2,992 | 5,312 | 10,032 | 19,540 |
 | 17,179,869,184     | 1,188  | 1,432 | 1,936 | 3,040 | 5,344 | 10,052 | 19,576 |
 
-## KllDoublesSketch (Java) or kll_sketch&lt;double&gt; (C++) serialized size in bytes and rank error
+## KllDoublesSketch (Java) or kll_sketch&lt;double&gt; (C++) serialized size in bytes from *K* or rank error % vs. *N*.
 
 | N                  | K=25   | K=50  | K=100 | K=200 | K=400  | K=800  | k=1600 |
 | ------------------ | ------ | ----- | ----- | ----- | ------ | ------ | ------ |

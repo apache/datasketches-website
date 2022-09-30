@@ -26,7 +26,7 @@ layout: doc_page
 
 This is an overview of the three types of quantiles sketches in the library. Each of these quantile types may have one or more specific implementtaions. 
 
-The mathematical error bounds of all the quantile sketches is specified with respect to rank and not with respect to quantile values.  In other words, the difference between the rank upper bound and the rank lower bound is the confidence interval and can be expressed as a percent of the overall rank distribution (which is 1.0) and is the mathematically derived error for a specific configuration of the sketch.  
+The mathematical error bounds of all the quantile sketches is specified with respect to rank and not with respect to quantiles.  In other words, the difference between the rank upper bound and the rank lower bound is the confidence interval and can be expressed as a percent of the overall rank distribution (which is 1.0) and is the mathematically derived error for a specific configuration of the sketch.  
 
 Although the quantile upper bound and quantile lower bounds can be approximately computed from the rank upper bound and rank lower bound, and the difference between the quantile bounds is also an approximate confidence interval, the size of the quantile confidence interval may not be meaningful and is not constrained by the defined error of the sketch.
 
