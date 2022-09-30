@@ -510,17 +510,16 @@
 -->
 <h1 id="kll-sketch-accuracy-and-size">KLL Sketch Accuracy and Size</h1>
 
-<p>The accuracy of a quantile sketch is a function of the configured value <i>K</i>, which also affects
-the overall size of the sketch (default K = 200).</p>
+<p>The accuracy of the KLL quantile sketch is a function of the configured <i>K</i>, which also affects the overall size of the sketch (default K = 200).</p>
 
-<p>The accuracy quantiles sketches is specified and measured with respect to the <em>rank</em> only, not the values.</p>
+<p>The accuracy of quantiles sketches is specified and measured with respect to the <em>rank</em> only, not the quantiles.</p>
 
-<p>The KLL Sketch has <em>absolute error</em>. For example, a specified accuracy of 1% at the median (rank = 0.50) means that the true value (if you could extract it from the set) should be 
-between <em>getQuantile(0.49)</em> and <em>getQuantile(0.51)</em>. This same 1% error applied at a rank of 0.95 means that the true value should be between <em>getQuantile(0.94)</em> and <em>getQuantile(0.96)</em>. In other words, the error is a fixed +/- epsilon for the entire range of rank values.</p>
+<p>The KLL Sketch has <em>absolute error</em>. For example, a specified rank accuracy of 1% at the median (rank = 0.50) means that the true quantile (if you could extract it from the set) should be between <em>getQuantile(0.49)</em> and <em>getQuantile(0.51)</em>. 
+This same 1% error applied at a rank of 0.95 means that the true quantile should be between <em>getQuantile(0.94)</em> and <em>getQuantile(0.96)</em>. In other words, the error is a fixed +/- epsilon for the entire range of ranks.</p>
 
 <p>The approximate rank error values listed in the second row of the header in the table below can be computed using the function <i>KLLSketch.getNormalizedRankError(int k, false)</i>. The third row shows the double-sided error that applies to a portion of the distribution such as an element of PMF (bar in a histogram) that is a subject to rank error on both sides. It can be computed using the function <i>KLLSketch.getNormalizedRankError(int k, true)</i>.</p>
 
-<h2 id="kllfloatssketch-java-or-kll_sketchfloat-c-serialized-size-in-bytes-and-rank-error">KllFloatsSketch (Java) or kll_sketch&lt;float&gt; (C++) serialized size in bytes and rank error</h2>
+<h2 id="kllfloatssketch-java-or-kll_sketchfloat-c-serialized-size-in-bytes-from-k-or-rank-error--vs-n">KllFloatsSketch (Java) or kll_sketch&lt;float&gt; (C++) serialized size in bytes from <em>K</em> or rank error % vs. <em>N</em>.</h2>
 
 <table>
   <thead>
@@ -919,7 +918,7 @@ between <em>getQuantile(0.49)</em> and <em>getQuantile(0.51)</em>. This same 1% 
   </tbody>
 </table>
 
-<h2 id="klldoublessketch-java-or-kll_sketchdouble-c-serialized-size-in-bytes-and-rank-error">KllDoublesSketch (Java) or kll_sketch&lt;double&gt; (C++) serialized size in bytes and rank error</h2>
+<h2 id="klldoublessketch-java-or-kll_sketchdouble-c-serialized-size-in-bytes-from-k-or-rank-error--vs-n">KllDoublesSketch (Java) or kll_sketch&lt;double&gt; (C++) serialized size in bytes from <em>K</em> or rank error % vs. <em>N</em>.</h2>
 
 <table>
   <thead>

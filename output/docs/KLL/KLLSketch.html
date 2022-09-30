@@ -514,9 +514,14 @@
 See <a href="https://arxiv.org/abs/1603.05346v2">Optimal Quantile Approximation in Streams, by Zohar Karnin, Kevin Lang, Edo Liberty</a>.
 The name KLL is composed of the initial letters of the last names of the authors.</p>
 
-<p>The usage of KllSketch is very similar to DoublesSketch. The key feature of this sketch is its compactness for a given accuracy.  It is implemented with both float and double values and can be configured for use on-heap or off-heap (Direct mode).
-The parameter K that affects the accuracy and the size of the sketch is not restricted to powers of 2.
-The default of 200 was chosen to yield approximately the same normalized rank error (1.65%) as the original DoublesSketch (K=128, error 1.73%).</p>
+<p>The usage of KllSketch is very similar to the classic quantiles DoublesSketch.</p>
+
+<ul>
+  <li>The key feature of this sketch is its compactness for a given accuracy.</li>
+  <li>It is separately implemented for both float and double values and can be configured for use on-heap or off-heap (Direct mode).</li>
+  <li>The parameter K that affects the accuracy and the size of the sketch is not restricted to powers of 2.</li>
+  <li>The default of 200 was chosen to yield approximately the same normalized rank error (1.65%) as the classic quantiles DoublesSketch (K=128, error 1.73%).</li>
+</ul>
 
 <h3 id="java-example">Java example</h3>
 
@@ -534,18 +539,18 @@ double rankOf1000 = sketch.getRank(1000);
 <h3 id="differences-of-kllsketch-from-the-original-quantiles-doublessketch">Differences of KllSketch from the original quantiles DoublesSketch</h3>
 
 <ul>
-  <li>KLL has a smaller size for the same accuracy</li>
-  <li>KLL is slightly faster to update</li>
-  <li>The KLL parameter K doesn’t have to be power of 2</li>
-  <li>KLL operates with either float values or double values</li>
-  <li>KLL uses a merge method rather than a union object</li>
+  <li>KLL has a smaller size for the same accuracy.</li>
+  <li>KLL is slightly faster to update.</li>
+  <li>The KLL parameter K doesn’t have to be power of 2.</li>
+  <li>KLL operates with either float values or double values.</li>
+  <li>KLL uses a merge method rather than a union object.</li>
 </ul>
 
 <p>The starting point for the comparison is setting K in such a way that rank error would be approximately the same. As pointed out above, the default K for both sketches should achieve this. Here is the comparison of the single-sided normalized rank error (getRank() method) for the default K:</p>
 
 <p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-rank-error.png" alt="RankError" /></p>
 
-<p>DoublesSketch has two forms with different serialized sizes: UpdateDoublesSketch and CompactDoublesSketch. The KLL sketches makes this distinction differently. When the KllSketch is serialized using <em>toByteArray()</em> it is always in a compact form and immutable. When the KllSketch is on-heap it is always updatable. It can be created off-heap using the static factory method <em>newDirectInstance(…)</em> method, which is also updatable. It is possible to move from off-heap (Direct) to on-heap using the <em>heapify(Memory)</em> method.  The <em>merge(…)</em> method will work with off-heap sketches, on-heap sketches and Memory wrapped compact byte arrays.</p>
+<p>The classic quantiles DoublesSketch has two forms with different serialized sizes: UpdateDoublesSketch and CompactDoublesSketch. The KLL sketches makes this distinction differently. When the KllSketch is serialized using <em>toByteArray()</em> it is always in a compact form and immutable. When the KllSketch is on-heap it is always updatable. It can be created off-heap using the static factory method <em>newDirectInstance(…)</em> method, which is also updatable. It is possible to move from off-heap (Direct) to on-heap using the <em>heapify(Memory)</em> method.  The <em>merge(…)</em> method will work with off-heap sketches, on-heap sketches and Memory wrapped compact byte arrays.</p>
 
 <p>Here is the comparison of serialized sizes:</p>
 
