@@ -147,3 +147,4 @@ This solution suffices in some applications, but for other applications the chun
 
 **[VSGB05]** Shobha Venkataraman, Dawn Xiaodong Song, Phillip B. Gibbons, and Avrim Blum. New streaming algorithms for fast detection of superspreaders. In *Internet Society NDSS Proceedings*, 2005.
 
+**[CKLTV]** Graham Cormode, Zohar Karnin, Edo Liberty, Justin Thaler, Pavel Veselý. Relative Error Streaming Quantiles. In *PODS '21 Proceedings*, 2021.

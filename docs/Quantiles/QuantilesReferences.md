@@ -30,3 +30,4 @@ layout: doc_page
 * In J. Gehrke M. Garofalakis and R. Rastogi, editors, In Data Stream Management: Processing High-Speed Data Streams. Springer, 2016.
 * David Felber and Rafail Ostrovsky. A randomized online quantile summary in O((1/ε) log(1/ε))
 * Graham Cormode, Zohar Karnin, Edo Liberty, Justin Thaler, Pavel Veselý. Relative Error Streaming Quantiles. https://arxiv.org/abs/2004.01668.
+* Graham Cormode, Zohar Karnin, Edo Liberty, Justin Thaler, Pavel Veselý. Relative Error Streaming Quantiles. In *PODS '21 Proceedings*, 2021.

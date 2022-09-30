@@ -24,7 +24,7 @@ layout: doc_page
 The accuracy of a quantile sketch is a function of the configured value <i>K</i>, which also affects
 the overall size of the sketch (default K = 200).
 
-Accuracy for quantiles sketches is specified and measured with respect to the *rank* only, not the values.
+The accuracy quantiles sketches is specified and measured with respect to the *rank* only, not the values.
 
 The KLL Sketch has *absolute error*. For example, a specified accuracy of 1% at the median (rank = 0.50) means that the true value (if you could extract it from the set) should be 
 between *getQuantile(0.49)* and *getQuantile(0.51)*. This same 1% error applied at a rank of 0.95 means that the true value should be between *getQuantile(0.94)* and *getQuantile(0.96)*. In other words, the error is a fixed +/- epsilon for the entire range of rank values.

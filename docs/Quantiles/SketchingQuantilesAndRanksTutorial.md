@@ -34,7 +34,7 @@ of quantiles, ranks and their functions.
 
 The actual enumeration can be done in several ways, but for our use here we will define the two common ways that *rank* can be specified and that we will use. 
 
-* The **natural rank** is a **natural number** from the set of one-based, natural numbers, &#8469;<sub>1</sub>, and is derived by enumerating an ordered set of values, starting with the value 1, up to *n*, the number of values in the set.
+* The **natural rank** is a **natural number** from the set of one-based, natural numbers, &#8469;<sub>1</sub>, and is derived by enumerating an ordered set of values, starting with the value 1, up to *n*, the number of values in the original set.
 
 * The ***normalized rank*** is a number between 0.0 and 1.0 computed by dividing the *natural rank* by the total number of values in the set, *n*. Thus, for finite sets, any *normalized rank* is in the range (0, 1]. Normalized ranks are often written as a percent. But don't confuse percent with percentile! This will be explained below.
 * A rank of 0, whether natural or normalized, represents the empty set.
@@ -65,9 +65,12 @@ Let's examine the following table:
 | Natural Rank    | 1   | 2   | 3   | 4   | 5   |
 | Normalized Rank | .2  | .4  | .6  | .8  | 1.0 |
 
+### Note: 
+The term "value" can be ambiguous because items that we stream into a sketch are values and numeric ranks are also values.  To avoid this ambiguity, we will use the term "quantiles" to refer to values that are streamed into a sketch even before they have been associated with a rank.  
+
 Let's define the simple functions
 
-### ***quantile(rank)*** or ***q(r)*** := return the quantile value ***q*** associated with a given ***rank, r***.
+### ***quantile(rank)*** or ***q(r)*** := return the quantile ***q*** associated with a given ***rank, r***.
 
 ### ***rank(quantile)*** or ***r(q)*** := return the rank ***r*** associated with a given ***quantile, q***.  
 
@@ -90,18 +93,17 @@ Because of the close, two-way relationship of quantiles and ranks,
 And this is certainly true of the table above.
 
 ## The challenge of duplicates
-With real data we often encounter duplicate values in the stream. Let's examine this next table.
+With real data we often encounter duplicate quantiles in the stream. Let's examine this next table.
 
 | Quantile:    | 10  | 20  | 20  | 20  | 50  |
 | ------------ | --- | --- | --- | --- | --- |
 | Natural Rank | 1   | 2   | 3   | 4   | 5   |
 
-As you can see *q(r)* is straightforward. But how about *r(q)*?  Which of the rank values 2, 3, or 4 should the function return given the value 20?  Given this data, and our definitions so far, 
-the function *r(q)* is ambiguous. We will see how to resolve this shortly.
+As you can see *q(r)* is straightforward. But how about *r(q)*?  Which of the ranks 2, 3, or 4 should the function return, given the quantile 20?  Given this data, and our definitions so far, the function *r(q)* is ambiguous. We will see how to resolve this shortly.
  
 
 ## The challenge of approximation
-By definition, sketching algorithms are approximate, and they achieve their high performance by discarding  data.  Suppose you feed *n* items into a sketch that retains only *m < n* items. This means *n-m* values were discarded.  The sketch must track the value *n* used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values *n-m* rank values are missing creating holes in the sequence of ranks. For example, examine the following tables.
+By definition, sketching algorithms are approximate, and they achieve their high performance by discarding data.  Suppose you feed *n* quantiles into a sketch that retains only *m < n* quantiles. This means *n-m* quantiles were discarded.  The sketch must track the quantity *n* used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and quantiles, *n-m* quantiles are missing creating holes in the ordered sequence. For example, examine the following tables.
 
 The raw data might look like this, with its associated natural ranks.
 
@@ -109,18 +111,18 @@ The raw data might look like this, with its associated natural ranks.
 | ------------ | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Natural Rank | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 10  |
 
-The sketch might discard the even values producing something like this:
+The sketch might discard the even numbered quantiles producing something like this:
 
 | Quantile:    | 10  | 30  | 50  | 70  | 90  |
 | ------------ | --- | --- | --- | --- | --- |
 | Natural Rank | 2   | 4   | 6   | 8   | 10  |
 
-When the sketch deletes values it adjusts the associated ranks by effectively increasing the "weight" of adjacent items so that they are positionally approximately correct and the top rank corresponds to *n*.
+When the sketch deletes quantiles it adjusts the associated ranks by effectively increasing the "weight" of adjacent quantiles so that they are approximately positionally correct and the top natural rank corresponds to *n*.
 
 How do we resolve *q(3)* or *r(20)*?
 
 ## The need for inequality search
-The quantile sketch algorithms discussed in the literature primarily differ by how they choose which values in the stream should be discarded. After the elimination process, all of the quantiles sketch implementations are left with the challenge of how to reconstruct the actual distribution, approximately and with good accuracy. 
+The quantile sketch algorithms discussed in the literature primarily differ by how they choose which quantiles in the stream should be discarded. After the elimination process, all of the quantiles sketch implementations are left with the challenge of how to reconstruct the actual distribution, approximately and with good accuracy. 
 
 Given the presence of duplicates and absence of values from the stream we must redefine the above quantile and rank functions as inequalities **while retaining the properties of 1:1 functions.**
 
@@ -130,7 +132,7 @@ These next examples use a small data set that mimics what could be the result of
 
 ## The rules for returned quantiles or ranks
 
-* **Rule 1:** Every Quantile that exists in the input stream or retained by the sketch has an associated Rank.
+* **Rule 1:** Every quantile that exists in the input stream or retained by the sketch has an associated rank.
 
 * **Rule 2:** All of our quantile sketches only retain quantiles that exist in the actual input stream of quantiles. 
 
@@ -140,8 +142,8 @@ These next examples use a small data set that mimics what could be the result of
 
 * **Rule 5:** All of our quantile algorithms compensate for quantiles removed during the sketch quantile selection and compression process by increasing the weights of some of the quantiles not selected for removal, such that:
 
-     * The sum of the natural weights of all quantiles retained by the sketch equals **N**, the total count of all quantiles given to the sketch.
-     * And by corollary, the largest quantile, when sorted by cumulative rank, has a cumulative natural rank of **N**, or equivalently, a cumulative normalized rank of **1.0**.
+     * The sum of the natural weights of all quantiles retained by the sketch equals **n**, the total count of all quantiles given to the sketch.
+     * And by corollary, the largest quantile, when sorted by cumulative rank, has a cumulative natural rank of **n**, or equivalently, a cumulative normalized rank of **1.0**.
 
 
 ## The rank functions with inequalities
@@ -350,6 +352,8 @@ These next examples use a small data set that mimics what could be the result of
 
 ### ***quantile(rank, EXCLUSIVE_STRICT)*** or ***q(r, GT_STRICT)*** :=<br>Given *r*, return the quantile, *q*, of the smallest rank that is strictly Greater Than *r*.
 
+### Note: This rule is marginal in its usefulness so it is not currently implemented. 
+
 <b>Implementation:</b>
 
 * Given *r*, search the rank array until we find the adjacent pair *{r1, r2}* where *r1 <= r < r2*. 
@@ -404,7 +408,7 @@ These next examples use a small data set that mimics what could be the result of
 
 
 
-## These inequality functions maintain the 1:1 functional relationship
+## These inequality functions maintain the 1:1 functional relationship, approximately. 
 
 ### The *exclusive* search for q(r) is the inverse of the *exclusive* search for r(q). 
 

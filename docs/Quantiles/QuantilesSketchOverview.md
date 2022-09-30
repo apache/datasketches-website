@@ -25,8 +25,8 @@ Package: org.apache.datasketches.quantiles
 
 This is a stochastic streaming sketch that enables near-real time analysis of the 
 approximate distribution of comparable values from a very large stream in a single pass. 
-The analysis is obtained using a getQuantiles() function or its inverse functions the 
-Probability Mass Function from getPMF() and the Cumulative Distribution Function from getCDF().
+The analysis is obtained using a getQuantiles() function or its inverse functions, the 
+Probability Mass Function, getPMF(), and the Cumulative Distribution Function, getCDF().
 
 * **NOTE:** See also the <a href="{{site.docs_dir}}/KLL/KLLSketch.html">KLL Sketch</a>.
 
@@ -89,8 +89,7 @@ way off.
 
 ### More Code Snippets
 
-Code examples are best gleaned from the test code that exercises all the various capabilities of the
-sketch.  Here are some brief snippets, simpler than the above graphs, to get you started.
+Code examples are best gleaned from the test code that exercises all the various capabilities of the sketch.  Here are some brief snippets, simpler than the above graphs, to get you started.
 
 #### Median and Top Quartile
 
@@ -247,8 +246,7 @@ Using a simple binary search you can now split your data into the 10 partitions.
 The quantiles algorithm is an implementation of the Low Discrepancy Mergeable Quantiles Sketch, using double values, described in section 3.2 of the journal version of the paper "Mergeable Summaries" by Agarwal, Cormode, Huang, Phillips, Wei, and Yi. 
 <a href="http://dblp.org/rec/html/journals/tods/AgarwalCHPWY13"></a> <!-- does not work with https -->
 
-This algorithm is independent of the distribution of values, which can be anywhere in the
-range of the IEEE-754 64-bit doubles. 
+This algorithm is independent of the distribution of values, which can be anywhere in the range of the IEEE-754 64-bit doubles. 
 
 This algorithm intentionally inserts randomness into the sampling process for values that
 ultimately get retained in the sketch. The result is that this algorithm is not 
