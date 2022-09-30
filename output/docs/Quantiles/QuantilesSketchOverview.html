@@ -514,8 +514,8 @@
 
 <p>This is a stochastic streaming sketch that enables near-real time analysis of the 
 approximate distribution of comparable values from a very large stream in a single pass. 
-The analysis is obtained using a getQuantiles() function or its inverse functions the 
-Probability Mass Function from getPMF() and the Cumulative Distribution Function from getCDF().</p>
+The analysis is obtained using a getQuantiles() function or its inverse functions, the 
+Probability Mass Function, getPMF(), and the Cumulative Distribution Function, getCDF().</p>
 
 <ul>
   <li><strong>NOTE:</strong> See also the <a href="/docs/KLL/KLLSketch.html">KLL Sketch</a>.</li>
@@ -584,8 +584,7 @@ way off.</p>
 
 <h3 id="more-code-snippets">More Code Snippets</h3>
 
-<p>Code examples are best gleaned from the test code that exercises all the various capabilities of the
-sketch.  Here are some brief snippets, simpler than the above graphs, to get you started.</p>
+<p>Code examples are best gleaned from the test code that exercises all the various capabilities of the sketch.  Here are some brief snippets, simpler than the above graphs, to get you started.</p>
 
 <h4 id="median-and-top-quartile">Median and Top Quartile</h4>
 
@@ -745,8 +744,7 @@ MyItem[] itemSplitPoints = sketch.getQuantiles(rankFractions);
 <p>The quantiles algorithm is an implementation of the Low Discrepancy Mergeable Quantiles Sketch, using double values, described in section 3.2 of the journal version of the paper “Mergeable Summaries” by Agarwal, Cormode, Huang, Phillips, Wei, and Yi. 
 <a href="http://dblp.org/rec/html/journals/tods/AgarwalCHPWY13"></a> <!-- does not work with https --></p>
 
-<p>This algorithm is independent of the distribution of values, which can be anywhere in the
-range of the IEEE-754 64-bit doubles.</p>
+<p>This algorithm is independent of the distribution of values, which can be anywhere in the range of the IEEE-754 64-bit doubles.</p>
 
 <p>This algorithm intentionally inserts randomness into the sampling process for values that
 ultimately get retained in the sketch. The result is that this algorithm is not 

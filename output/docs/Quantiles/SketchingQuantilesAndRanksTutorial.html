@@ -525,7 +525,7 @@ of quantiles, ranks and their functions.</p>
 
 <ul>
   <li>
-    <p>The <strong>natural rank</strong> is a <strong>natural number</strong> from the set of one-based, natural numbers, ℕ<sub>1</sub>, and is derived by enumerating an ordered set of values, starting with the value 1, up to <em>n</em>, the number of values in the set.</p>
+    <p>The <strong>natural rank</strong> is a <strong>natural number</strong> from the set of one-based, natural numbers, ℕ<sub>1</sub>, and is derived by enumerating an ordered set of values, starting with the value 1, up to <em>n</em>, the number of values in the original set.</p>
   </li>
   <li>The <strong><em>normalized rank</em></strong> is a number between 0.0 and 1.0 computed by dividing the <em>natural rank</em> by the total number of values in the set, <em>n</em>. Thus, for finite sets, any <em>normalized rank</em> is in the range (0, 1]. Normalized ranks are often written as a percent. But don’t confuse percent with percentile! This will be explained below.</li>
   <li>A rank of 0, whether natural or normalized, represents the empty set.</li>
@@ -585,9 +585,12 @@ To wit:</p>
   </tbody>
 </table>
 
+<h3 id="note">Note:</h3>
+<p>The term “value” can be ambiguous because items that we stream into a sketch are values and numeric ranks are also values.  To avoid this ambiguity, we will use the term “quantiles” to refer to values that are streamed into a sketch even before they have been associated with a rank.</p>
+
 <p>Let’s define the simple functions</p>
 
-<h3 id="quantilerank-or-qr--return-the-quantile-value-q-associated-with-a-given-rank-r"><strong><em>quantile(rank)</em></strong> or <strong><em>q(r)</em></strong> := return the quantile value <strong><em>q</em></strong> associated with a given <strong><em>rank, r</em></strong>.</h3>
+<h3 id="quantilerank-or-qr--return-the-quantile-q-associated-with-a-given-rank-r"><strong><em>quantile(rank)</em></strong> or <strong><em>q(r)</em></strong> := return the quantile <strong><em>q</em></strong> associated with a given <strong><em>rank, r</em></strong>.</h3>
 
 <h3 id="rankquantile-or-rq--return-the-rank-r-associated-with-a-given-quantile-q"><strong><em>rank(quantile)</em></strong> or <strong><em>r(q)</em></strong> := return the rank <strong><em>r</em></strong> associated with a given <strong><em>quantile, q</em></strong>.</h3>
 
@@ -619,7 +622,7 @@ To wit:</p>
 <p>And this is certainly true of the table above.</p>
 
 <h2 id="the-challenge-of-duplicates">The challenge of duplicates</h2>
-<p>With real data we often encounter duplicate values in the stream. Let’s examine this next table.</p>
+<p>With real data we often encounter duplicate quantiles in the stream. Let’s examine this next table.</p>
 
 <table>
   <thead>
@@ -644,11 +647,10 @@ To wit:</p>
   </tbody>
 </table>
 
-<p>As you can see <em>q(r)</em> is straightforward. But how about <em>r(q)</em>?  Which of the rank values 2, 3, or 4 should the function return given the value 20?  Given this data, and our definitions so far, 
-the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly.</p>
+<p>As you can see <em>q(r)</em> is straightforward. But how about <em>r(q)</em>?  Which of the ranks 2, 3, or 4 should the function return, given the quantile 20?  Given this data, and our definitions so far, the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly.</p>
 
 <h2 id="the-challenge-of-approximation">The challenge of approximation</h2>
-<p>By definition, sketching algorithms are approximate, and they achieve their high performance by discarding  data.  Suppose you feed <em>n</em> items into a sketch that retains only <em>m &lt; n</em> items. This means <em>n-m</em> values were discarded.  The sketch must track the value <em>n</em> used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and values <em>n-m</em> rank values are missing creating holes in the sequence of ranks. For example, examine the following tables.</p>
+<p>By definition, sketching algorithms are approximate, and they achieve their high performance by discarding data.  Suppose you feed <em>n</em> quantiles into a sketch that retains only <em>m &lt; n</em> quantiles. This means <em>n-m</em> quantiles were discarded.  The sketch must track the quantity <em>n</em> used for computing the rank and quantile functions. When the sketch reconstructs the relationship between ranks and quantiles, <em>n-m</em> quantiles are missing creating holes in the ordered sequence. For example, examine the following tables.</p>
 
 <p>The raw data might look like this, with its associated natural ranks.</p>
 
@@ -685,7 +687,7 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
   </tbody>
 </table>
 
-<p>The sketch might discard the even values producing something like this:</p>
+<p>The sketch might discard the even numbered quantiles producing something like this:</p>
 
 <table>
   <thead>
@@ -710,12 +712,12 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
   </tbody>
 </table>
 
-<p>When the sketch deletes values it adjusts the associated ranks by effectively increasing the “weight” of adjacent items so that they are positionally approximately correct and the top rank corresponds to <em>n</em>.</p>
+<p>When the sketch deletes quantiles it adjusts the associated ranks by effectively increasing the “weight” of adjacent quantiles so that they are approximately positionally correct and the top natural rank corresponds to <em>n</em>.</p>
 
 <p>How do we resolve <em>q(3)</em> or <em>r(20)</em>?</p>
 
 <h2 id="the-need-for-inequality-search">The need for inequality search</h2>
-<p>The quantile sketch algorithms discussed in the literature primarily differ by how they choose which values in the stream should be discarded. After the elimination process, all of the quantiles sketch implementations are left with the challenge of how to reconstruct the actual distribution, approximately and with good accuracy.</p>
+<p>The quantile sketch algorithms discussed in the literature primarily differ by how they choose which quantiles in the stream should be discarded. After the elimination process, all of the quantiles sketch implementations are left with the challenge of how to reconstruct the actual distribution, approximately and with good accuracy.</p>
 
 <p>Given the presence of duplicates and absence of values from the stream we must redefine the above quantile and rank functions as inequalities <strong>while retaining the properties of 1:1 functions.</strong></p>
 
@@ -727,7 +729,7 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 
 <ul>
   <li>
-    <p><strong>Rule 1:</strong> Every Quantile that exists in the input stream or retained by the sketch has an associated Rank.</p>
+    <p><strong>Rule 1:</strong> Every quantile that exists in the input stream or retained by the sketch has an associated rank.</p>
   </li>
   <li>
     <p><strong>Rule 2:</strong> All of our quantile sketches only retain quantiles that exist in the actual input stream of quantiles.</p>
@@ -742,8 +744,8 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
     <p><strong>Rule 5:</strong> All of our quantile algorithms compensate for quantiles removed during the sketch quantile selection and compression process by increasing the weights of some of the quantiles not selected for removal, such that:</p>
 
     <ul>
-      <li>The sum of the natural weights of all quantiles retained by the sketch equals <strong>N</strong>, the total count of all quantiles given to the sketch.</li>
-      <li>And by corollary, the largest quantile, when sorted by cumulative rank, has a cumulative natural rank of <strong>N</strong>, or equivalently, a cumulative normalized rank of <strong>1.0</strong>.</li>
+      <li>The sum of the natural weights of all quantiles retained by the sketch equals <strong>n</strong>, the total count of all quantiles given to the sketch.</li>
+      <li>And by corollary, the largest quantile, when sorted by cumulative rank, has a cumulative natural rank of <strong>n</strong>, or equivalently, a cumulative normalized rank of <strong>1.0</strong>.</li>
     </ul>
   </li>
 </ul>
@@ -1874,6 +1876,8 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
 
 <h3 id="quantilerank-exclusive_strict-or-qr-gt_strict-given-r-return-the-quantile-q-of-the-smallest-rank-that-is-strictly-greater-than-r"><strong><em>quantile(rank, EXCLUSIVE_STRICT)</em></strong> or <strong><em>q(r, GT_STRICT)</em></strong> :=<br />Given <em>r</em>, return the quantile, <em>q</em>, of the smallest rank that is strictly Greater Than <em>r</em>.</h3>
 
+<h3 id="note-this-rule-is-marginal-in-its-usefulness-so-it-is-not-currently-implemented">Note: This rule is marginal in its usefulness so it is not currently implemented.</h3>
+
 <p><b>Implementation:</b></p>
 
 <ul>
@@ -2210,7 +2214,7 @@ the function <em>r(q)</em> is ambiguous. We will see how to resolve this shortly
   </tbody>
 </table>
 
-<h2 id="these-inequality-functions-maintain-the-11-functional-relationship">These inequality functions maintain the 1:1 functional relationship</h2>
+<h2 id="these-inequality-functions-maintain-the-11-functional-relationship-approximately">These inequality functions maintain the 1:1 functional relationship, approximately.</h2>
 
 <h3 id="the-exclusive-search-for-qr-is-the-inverse-of-the-exclusive-search-for-rq">The <em>exclusive</em> search for q(r) is the inverse of the <em>exclusive</em> search for r(q).</h3>
 
