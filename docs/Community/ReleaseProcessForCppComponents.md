@@ -117,7 +117,7 @@ __NOTES:__
 ### Create Copy of External Artifact Distributions
 * Run 'Build Python Wheels' action on GitHub for the release branch
 * When the build finishes download artifact.zip from it
-* Use sign_pypi_wheels.sh script to add GPG signatures and SHA512
+* Use sign_pypi_wheels.sh script to add GPG signatures and SHA512 checksums
 * Check in the result as 'pypi' subdirectory in the release candidate directory 
 
 ## Prepare & Send [VOTE] Letter to dev@
