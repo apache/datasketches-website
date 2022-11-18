@@ -57,14 +57,13 @@ __NOTES:__
 ## Create Permanent Release Branch & Python Version Preparation
 * Assume target version = A.B.0
 * From IDE or Command Line: 
-    * Switch from master to new __Permanent Branch__: "A.B.X"
-    * Check setup.py "version=" line to A.B.X (remove .dev0, do not change A or B)
-    * Commit the change. __DO NOT PUSH!__
+    * Create new __Permanent Branch__: "A.B.X"
+    * Change the content of the version.cfg.in file to A.B.0
+    * Commit the change.
     * Create Annotated TAG: A.B.0-RC1 (or RCn)
     * Write down the Git hash : example: 40c6f4f
-    * Now Push Branch  "A.B.X" with edited setup.py to origin
+    * Push Branch "A.B.X" with edited version.cfg.in to origin
     * __DO NOT MERGE THIS PERMANENT BRANCH INTO MASTER__
-* From IDE or Command-line: 
     * Do explicit push of tags on branch "A.B.X" to origin:
         * `git push origin --tags`
 * From a web browser at origin web site: github.com/apache/datasketches-\<component\>
@@ -75,10 +74,9 @@ __NOTES:__
     * Confirm that the tag A.B.0-RC1 and the branch A.B.X, and HEAD coincide with the correct Git hash.
     * Confirm that there are no unstaged or staged changes.
     * Return to master branch
-    * Edit master setup.py to A'.B'.0.dev0 where A' or B' will be incremented by 1. (Bug fix releases will change the 3rd digit)
-    * Commit and Push this change to origin/master with the comment "Release Process: Change setup.py version to A'.B'.0.dev0"
+    * Edit master version.cfg.in to A'.B'.@DT@.@HHMM@ where A' or B' will be incremented by 1.
+    * Commit and Push this change to origin/master with the comment "Release Process: Change version to A'.B' development"
     * Return to release branch A.B.X
-    * You may minimize your IDE, pointing at the release branch.
     
 ## Create and/or Checkout Local *dist/dev* directories on your system
 * If you have not already, on your system create the two directory structures that mirror the dist.apache.org/repos/ directories:
@@ -117,11 +115,10 @@ __NOTES:__
     * There should be 3 files: \*-src.zip, \*-src.zip.asc, \*-src.zip.sha512 
 
 ### Create Copy of External Artifact Distributions
-* For Java, we need to place copies of the artifact jars deployed to Nexus under a "maven" directory.
-* For example see <https://dist.apache.org/repos/dist/dev/datasketches/java/2.0.0-RC3/>
-* For external artifacts of Python or Docker it will be something else.
-* These must be signed with GPG (.asc) and SHA512 (.sha512)
-* I will create a script for these artifacts someday :)
+* Run 'Build Python Wheels' action on GitHub for the release branch
+* When the build finishes download artifact.zip from it
+* Use sign_pypi_wheels.sh script to add GPG signatures and SHA512
+* Check in the result as 'pypi' subdirectory in the release candidate directory 
 
 ## Prepare & Send [VOTE] Letter to dev@
 * See VoteTemplates directory for a recent example
@@ -175,8 +172,6 @@ __NOTES:__
 * Run the following with the argument specifying the location of your local website directory:
     * `./createDownloadsInclude.sh /Users/\<name\>/ ... /datasketches-website`
 * When this is done, be sure to commit the changes to the website.
-
-## Update Javadocs (or Equivalent) on Website
 
 ## Update Website Documentation (if new functionality)
 
