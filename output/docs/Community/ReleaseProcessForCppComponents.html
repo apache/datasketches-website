@@ -573,17 +573,13 @@
   <li>Assume target version = A.B.0</li>
   <li>From IDE or Command Line:
     <ul>
-      <li>Switch from master to new <strong>Permanent Branch</strong>: “A.B.X”</li>
-      <li>Check setup.py “version=” line to A.B.X (remove .dev0, do not change A or B)</li>
-      <li>Commit the change. <strong>DO NOT PUSH!</strong></li>
+      <li>Create new <strong>Permanent Branch</strong>: “A.B.X”</li>
+      <li>Change the content of the version.cfg.in file to A.B.0</li>
+      <li>Commit the change.</li>
       <li>Create Annotated TAG: A.B.0-RC1 (or RCn)</li>
       <li>Write down the Git hash : example: 40c6f4f</li>
-      <li>Now Push Branch  “A.B.X” with edited setup.py to origin</li>
+      <li>Push Branch “A.B.X” with edited version.cfg.in to origin</li>
       <li><strong>DO NOT MERGE THIS PERMANENT BRANCH INTO MASTER</strong></li>
-    </ul>
-  </li>
-  <li>From IDE or Command-line:
-    <ul>
       <li>Do explicit push of tags on branch “A.B.X” to origin:
         <ul>
           <li><code class="highlighter-rouge">git push origin --tags</code></li>
@@ -603,10 +599,9 @@
       <li>Confirm that the tag A.B.0-RC1 and the branch A.B.X, and HEAD coincide with the correct Git hash.</li>
       <li>Confirm that there are no unstaged or staged changes.</li>
       <li>Return to master branch</li>
-      <li>Edit master setup.py to A’.B’.0.dev0 where A’ or B’ will be incremented by 1. (Bug fix releases will change the 3rd digit)</li>
-      <li>Commit and Push this change to origin/master with the comment “Release Process: Change setup.py version to A’.B’.0.dev0”</li>
+      <li>Edit master version.cfg.in to A’.B’.@DT@.@HHMM@ where A’ or B’ will be incremented by 1.</li>
+      <li>Commit and Push this change to origin/master with the comment “Release Process: Change version to A’.B’ development”</li>
       <li>Return to release branch A.B.X</li>
-      <li>You may minimize your IDE, pointing at the release branch.</li>
     </ul>
   </li>
 </ul>
@@ -689,11 +684,10 @@
 
 <h3 id="create-copy-of-external-artifact-distributions">Create Copy of External Artifact Distributions</h3>
 <ul>
-  <li>For Java, we need to place copies of the artifact jars deployed to Nexus under a “maven” directory.</li>
-  <li>For example see <a href="https://dist.apache.org/repos/dist/dev/datasketches/java/2.0.0-RC3/">https://dist.apache.org/repos/dist/dev/datasketches/java/2.0.0-RC3/</a></li>
-  <li>For external artifacts of Python or Docker it will be something else.</li>
-  <li>These must be signed with GPG (.asc) and SHA512 (.sha512)</li>
-  <li>I will create a script for these artifacts someday :)</li>
+  <li>Run ‘Build Python Wheels’ action on GitHub for the release branch</li>
+  <li>When the build finishes download artifact.zip from it</li>
+  <li>Use sign_pypi_wheels.sh script to add GPG signatures and SHA512</li>
+  <li>Check in the result as ‘pypi’ subdirectory in the release candidate directory</li>
 </ul>
 
 <h2 id="prepare--send-vote-letter-to-dev">Prepare &amp; Send [VOTE] Letter to dev@</h2>
@@ -794,8 +788,6 @@
   </li>
   <li>When this is done, be sure to commit the changes to the website.</li>
 </ul>
-
-<h2 id="update-javadocs-or-equivalent-on-website">Update Javadocs (or Equivalent) on Website</h2>
 
 <h2 id="update-website-documentation-if-new-functionality">Update Website Documentation (if new functionality)</h2>
 
