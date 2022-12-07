@@ -705,63 +705,21 @@
 </ul>
 
 <h2 id="move-files-from-devstaging-to-release">Move files from dev/staging to release</h2>
-<h3 id="move-primary-zip-files-from-distdev-to-distrelease">Move primary zip files from <em>dist/dev</em> to <em>dist/release</em></h3>
 <ul>
-  <li>In local <em>dist/<strong>dev</strong>/datasketches/</em>
+  <li>use dist/dev/datasketches/scripts/moveDevToRelease.sh script to move the approved release candidate to the destination</li>
+  <li>upload pypi artifacts to pypi.org
     <ul>
-      <li>Open Terminal #1
+      <li>make a temporary copy of the pypi directory and remove *.asc and *.sha512 files from it</li>
+      <li>follow <a href="https://packaging.python.org/en/latest/tutorials/packaging-projects/#uploading-the-distribution-archives">this guide</a>
         <ul>
-          <li>Perform SVN Checkout:
-            <ul>
-              <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>  #note dot at end</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>In local <em>dist/<strong>release</strong>/datasketches/</em>
-    <ul>
-      <li>Open Terminal #2
-        <ul>
-          <li>Perform SVN Checkout:
-            <ul>
-              <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/release/datasketches/ .</code> #note dot at end</li>
-            </ul>
-          </li>
-          <li>Create new version directory under appropriate component directory:
-            <ul>
-              <li><code class="highlighter-rouge">mkdir -p \&lt;component\&gt;/A.B.0</code></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>Using local file system copy files
-        <ul>
-          <li>From  … /dist/dev/datasketches/&lt;component&gt;/version-RCnn/*</li>
-          <li>To    … /dist/release/datasketches/&lt;component&gt;/version (no RCnn)/*</li>
-        </ul>
-      </li>
-      <li>Using Terminal #2 at … /dist/release/datasketches directory:
-        <ul>
-          <li><code class="highlighter-rouge">svn add . --force</code></li>
-          <li><code class="highlighter-rouge">svn ci -m "Release A.B.0"</code></li>
-          <li>Remove the prior release…</li>
-          <li><code class="highlighter-rouge">svn remove \&lt;component\&gt;/X.Y.0</code></li>
-          <li><code class="highlighter-rouge">svn ci -m "Remove Prior release"</code></li>
-          <li><code class="highlighter-rouge">svn status</code> # should be empty</li>
-        </ul>
-      </li>
-      <li>Using local file system
-        <ul>
-          <li>Delete the prior X.Y.0 directory</li>
+          <li>upload to test.pypi.org</li>
+          <li>install from test pypi</li>
+          <li>upload to pypi.org</li>
         </ul>
       </li>
     </ul>
   </li>
 </ul>
-
-<h3 id="move-external-artifact-distributions-distdev-to-distrelease">Move External Artifact Distributions <em>dist/dev</em> to <em>dist/release</em></h3>
 
 <h2 id="create--document-release-tag-on-github">Create &amp; Document Release Tag on GitHub</h2>
 <ul>
