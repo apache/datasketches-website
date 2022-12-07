@@ -131,31 +131,13 @@ __NOTES:__
 * Summarize PPMC vote results
 
 ## Move files from dev/staging to release
-### Move primary zip files from *dist/dev* to *dist/release*
-* In local *dist/__dev__/datasketches/*
-    * Open Terminal #1 
-        * Perform SVN Checkout:
-            * `svn co https://dist.apache.org/repos/dist/dev/datasketches/ .`  #note dot at end
-* In local *dist/__release__/datasketches/*
-    * Open Terminal #2
-        * Perform SVN Checkout:
-            * `svn co https://dist.apache.org/repos/dist/release/datasketches/ .` #note dot at end
-        * Create new version directory under appropriate component directory:
-            * `mkdir -p \<component\>/A.B.0`
-    * Using local file system copy files 
-        * From  ... /dist/dev/datasketches/\<component\>/version-RCnn/*
-        * To    ... /dist/release/datasketches/\<component\>/version (no RCnn)/*
-    * Using Terminal #2 at ... /dist/release/datasketches directory:
-        * `svn add . --force`
-        * `svn ci -m "Release A.B.0"`
-        * Remove the prior release...
-        * `svn remove \<component\>/X.Y.0`
-        * `svn ci -m "Remove Prior release"`
-        * `svn status` # should be empty
-    * Using local file system
-        * Delete the prior X.Y.0 directory
-
-### Move External Artifact Distributions *dist/dev* to *dist/release*
+* use dist/dev/datasketches/scripts/moveDevToRelease.sh script to move the approved release candidate to the destination
+* upload pypi artifacts to pypi.org
+   * make a temporary copy of the pypi directory and remove *.asc and *.sha512 files from it
+   * follow [this guide](https://packaging.python.org/en/latest/tutorials/packaging-projects/#uploading-the-distribution-archives)
+      * upload to test.pypi.org
+      * install from test pypi
+      * upload to pypi.org
 
 ## Create & Document Release Tag on GitHub
 * Open your IDE and switch to the recently created Release Branch A.B.X
