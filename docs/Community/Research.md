@@ -115,6 +115,8 @@ This solution suffices in some applications, but for other applications the chun
 
 **[DLRT16]** Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings '16 *, pages 6:1–6:17, 2016. [Paper](https://arxiv.org/pdf/1510.01455.pdf). [Talk Slides](https://github.com/apache/datasketches-website/blob/master/docs/pdf/icdt-talk.pdf).
 
+**[DTT22]** Charlie Dickens, Justin Thaler, Daniel Ting. Order-Invariant Cardinality Estimators Are Differentially Private. In *Advances in Neural Information Processing Systems.* [Paper](https://arxiv.org/abs/2203.15400), [Slides](https://neurips.cc/virtual/2022/poster/54146), [Poster](https://neurips.cc/media/PosterPDFs/NeurIPS%202022/54146.png?t=1669130364.160391)
+
 **[FFGM07]** Philippe Flajolet, E ́ric Fusy, Olivier Gandouet, and Fre ́de ́ric Meunier. Hyperloglog: the analysis of a near-optimal cardinality estimation algorithm. In *DMTCS Conference on Analysis of Algorithms*, pages 137–156, 2007.
 
 **[FM85]** P. Flajolet and G. N. Martin. Probabilistic counting algorithms for data base applications. In *Journal of Computer and System Sciences*, 31:182–209, 1985.
