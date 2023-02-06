@@ -111,7 +111,9 @@ This solution suffices in some applications, but for other applications the chun
 
 **[CEM+15]** Michael B. Cohen, Sam Elder, Cameron Musco, Christopher Musco, and Madalina Persu. Dimensionality reduction for k-means clustering and low rank approximation. In *ACM STOC Proceedings '15*, pages 163–172, 2015.
 
-**[CKLTV+20]** Graham Cormode, Zohar Karnin, Edo Liberty, Justin Thaler, Pavel Vesely. Relative Error Streaming Quantiles, In *arXiv.org*, 2020.
+**[CKLTV+20]** Graham Cormode, Zohar Karnin, Edo Liberty, Justin Thaler, Pavel Vesely. Relative Error Streaming Quantiles, 
+In *In Proceedings of the 40th ACM SIGMOD-SIGACT-SIGAI Symposium on Principles of Database Systems*, 2021.
+[Paper](https://dl.acm.org/doi/abs/10.1145/3452021.3458323)
 
 **[DLRT16]** Anirban Dasgupta, Kevin J. Lang, Lee Rhodes, and Justin Thaler. A framework for estimating stream expression cardinalities. In *EDBT/ICDT Proceedings '16 *, pages 6:1–6:17, 2016. [Paper](https://arxiv.org/pdf/1510.01455.pdf). [Talk Slides](https://github.com/apache/datasketches-website/blob/master/docs/pdf/icdt-talk.pdf).
 
