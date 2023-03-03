@@ -578,12 +578,12 @@ The following plot was generated with <i>LgK</i> = 14 using 2<sup>20</sup> trial
 
 <p>The <i>Factor = 0.8326</i> is directly relatable to the Flajolet alpha factor of 1.04. 
 As a result, this plot demonstrates that this implementation of the HLL sketch
-will be about 20% = (0.8326/1.04 -1) more accurate than a conventional HLL sketch using Flajolet’s estimators (or derived estimators). 
+will be about 20% = (0.8326/1.04 - 1) more accurate than a conventional HLL sketch using Flajolet’s estimators (or derived estimators). 
 This is partially due to the use of the HIP estimator[1] for range above the transition point, which occurs at about 1500 on the graph. 
 Below this transition point the accuracy is near zero (an RSE of about 50 ppm), which is far better than any known implementation of HLL. 
 This is due to a newly developed theory and estimator developed by Kevin Lang[2].</p>
 
-<p>The base Relative Standard Error (RSE) for this sketch (at LgK = 14) is 0.0065 = 0.8326 / 2<sup>7</sup>. 
+<p>The base Relative Standard Error (RSE) for this sketch (at LgK = 14) is 0.0065 = 0.8326 / sqrt(2<sup>14</sup>).
 The horizontal gridlines are configured to be +/- multiples of the base RSE.</p>
 
 <p>The different color curves are contours of the actual error distribution measured at normalized rank values 
