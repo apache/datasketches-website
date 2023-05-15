@@ -505,7 +505,7 @@ public final class Files {
    * @return the total number of bytes written.
    * @throws RuntimeException if an IOException occurs.
    */
-  @SuppressWarnings("resource")
+  //@SuppressWarnings("resource")
   public static int stringToFileNIO(final String text, final String fileName,
       final Charset charset) {
     checkFileName(fileName);
@@ -556,7 +556,7 @@ public final class Files {
    * @throws RuntimeException if IOException or SecurityException occurs, or if
    * fileName is null or empty.
    */
-  @SuppressWarnings("resource")
+  //@SuppressWarnings("resource")
   public static int appendStringToFileNIO(final String text, final String fileName,
       final Charset charset) {
     checkFileName(fileName);

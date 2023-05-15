@@ -272,7 +272,11 @@ under the License.
             <excludes>
               <!-- rat uses .gitignore for excludes by default -->
               <!-- UNIQUE FOR THIS JAVA COMPONENT -->
+              <exclude>**/*.yaml</exclude>
+              <exclude>**/*.yml</exclude>
               <exclude>**/*.txt</exclude>
+              <exclude>**/.*</exclude>
+              <exclude>**/git.properties</exclude>
               <exclude>**/*.html</exclude>
               <exclude>**/*.css</exclude>
               <exclude>**/*.js</exclude>
