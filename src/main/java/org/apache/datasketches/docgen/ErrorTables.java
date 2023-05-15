@@ -49,10 +49,10 @@ public class ErrorTables {
     buildTable(.708, 9);
   }
 
-  private static void buildTable(double factor, int lgKlow) {
-    StringBuilder sb = new StringBuilder();
-    int[] colWidths = {10, 12, 7, 7, 7 };
-    double f = factor; //.708 for Alpha, 1.0 for QuickSelect
+  private static void buildTable(final double factor, final int lgKlow) {
+    final StringBuilder sb = new StringBuilder();
+    final int[] colWidths = {10, 12, 7, 7, 7 };
+    final double f = factor; //.708 for Alpha, 1.0 for QuickSelect
     //the &nbsp; is required on the first line when Col#1 is blank for GitHub to render properly.
     //MackDown doesn't care.
     sb.append(emitRow(colWidths, "&nbsp;","#Std Dev:", "1","2","3"));
@@ -60,26 +60,26 @@ public class ErrorTables {
     sb.append(emitBoldRow(colWidths,"","Conf:", "68.27%","95.45%","99.73%"));
     sb.append(emitBoldRow(colWidths,"LgK","K", "1 RSE","2 RSE","3 RSE"));
     for (int lgK = lgKlow; lgK <= 26; lgK++) { //for Alpha start with 9, QuickSelect start with 4
-      String lgKStr = Integer.toString(lgK);
+      final String lgKStr = Integer.toString(lgK);
       sb.append(emitRow(colWidths,lgKStr, k(lgK), rse(lgK, 1, f), rse(lgK,2,f), rse(lgK,3,f)));
     }
     println(sb.toString());
   }
 
-  static String k(int lgK) {
-    int lgk = 1 << lgK;
+  static String k(final int lgK) {
+    final int lgk = 1 << lgK;
     return String.format("%,d", lgk);
   }
 
-  static String rse(int lgK, int stdDev, double factor) {
-    double k = 1 << lgK;
-    double rse = stdDev * factor * 100.0 / Math.sqrt(k - 1.0);
+  static String rse(final int lgK, final int stdDev, final double factor) {
+    final double k = 1 << lgK;
+    final double rse = stdDev * factor * 100.0 / Math.sqrt(k - 1.0);
     return String.format("%6.3f%%", rse);
   }
 
-  static void println(Object o) { System.out.println(o.toString()); }
+  static void println(final Object o) { System.out.println(o.toString()); }
 
-  static void printf(String fmt, Object ... args) {
+  static void printf(final String fmt, final Object ... args) {
     System.out.printf(fmt, args);
   }
 

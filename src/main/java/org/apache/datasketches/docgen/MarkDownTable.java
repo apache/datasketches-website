@@ -22,7 +22,7 @@ package org.apache.datasketches.docgen;
 import static java.lang.Math.max;
 
 /**
- * General purpose MarkDown table generator for GitHub Flavored Markdown.
+ * General purpose MarkDown table generator for GitHub Flavored MarkDown.
  * This produces readable source and particularly useful when the data of the
  * table is machine generated.
  * @author Lee Rhodes
@@ -34,19 +34,19 @@ public class MarkDownTable {
   /**
    * Emit a table row
    * @param colWidths integers representing the column widths of each column.
-   * This only makes the markdown source look nice.
+   * This only makes the markDown source look nice.
    * @param strings the content of each column
    * @return the source table row
    */
-  public static String emitRow(int[] colWidths, String ... strings) {
-    int cols = colWidths.length;
+  public static String emitRow(final int[] colWidths, final String ... strings) {
+    final int cols = colWidths.length;
     if (cols != strings.length) {
       throw new IllegalArgumentException("Unequal # of columns");
     }
-    StringBuilder sb = new StringBuilder();
+    final StringBuilder sb = new StringBuilder();
     for (int i = 0; i < cols; i++) {
-      String s = strings[i];
-      int w = colWidths[i];
+      final String s = strings[i];
+      final int w = colWidths[i];
       if (s.isEmpty()) {
         sb.append(pad(s, max(w, mcw))).append("|");
       } else {
@@ -64,19 +64,19 @@ public class MarkDownTable {
    * @param strings the content of each column
    * @return the source table row in bold
    */
-  public static String emitBoldRow(int[] colWidths, String ... strings) {
-    int cols = colWidths.length;
+  public static String emitBoldRow(final int[] colWidths, final String ... strings) {
+    final int cols = colWidths.length;
     if (cols != strings.length) {
       throw new IllegalArgumentException("Unequal # of columns");
     }
-    StringBuilder sb = new StringBuilder();
+    final StringBuilder sb = new StringBuilder();
     for (int i = 0; i < cols; i++) {
-      String s = strings[i];
-      int w = colWidths[i];
+      final String s = strings[i];
+      final int w = colWidths[i];
       if (s.isEmpty()) {
         sb.append(pad(s, max(w, mcw))).append("|");
       } else {
-        String s2 = "<b>" + s + "</b>";
+        final String s2 = "<b>" + s + "</b>";
         sb.append(pad(s2, max(w, mcw))).append("|");
       }
     }
@@ -91,22 +91,22 @@ public class MarkDownTable {
    * "C"=center, "L"=left, "R"=right
    * @return the alignment line
    */
-  public static String emitAlignLine(int[] colWidths, String align) {
-    int cols = colWidths.length;
-    StringBuilder sb = new StringBuilder();
+  public static String emitAlignLine(final int[] colWidths, final String align) {
+    final int cols = colWidths.length;
+    final StringBuilder sb = new StringBuilder();
     for (int i = 0; i < cols; i++) {
-      char c = align.charAt(i);
-      int w = colWidths[i];
+      final char c = align.charAt(i);
+      final int w = colWidths[i];
       if (c == 'C') {
-        int numDash = max(w - 2, mcw - 2);
+        final int numDash = max(w - 2, mcw - 2);
         sb.append(":").append(dupDash(numDash)).append(":|");
       }
       else if (c == 'L') {
-        int numDash = max(w - 1, mcw - 1);
+        final int numDash = max(w - 1, mcw - 1);
         sb.append(":").append(dupDash(numDash)).append("|");
       }
       else {
-        int numDash = max(w - 1, mcw - 1);
+        final int numDash = max(w - 1, mcw - 1);
         sb.append(dupDash(numDash)).append(":|");
       }
     }
@@ -114,15 +114,15 @@ public class MarkDownTable {
     return sb.toString();
   }
 
-  private static String dupDash(int num) {
-    StringBuilder sb = new StringBuilder();
+  private static String dupDash(final int num) {
+    final StringBuilder sb = new StringBuilder();
     for (int i = 0; i < num; i++) { sb.append("-"); }
     return sb.toString();
   }
 
-  private static String pad(String s, int num) {
-    StringBuilder sb = new StringBuilder();
-    int strLen = s.length();
+  private static String pad(final String s, final int num) {
+    final StringBuilder sb = new StringBuilder();
+    final int strLen = s.length();
     if (strLen >= num) { return s; }
     sb.append(s);
     for (int i = 0; i < (num - strLen); i++) {

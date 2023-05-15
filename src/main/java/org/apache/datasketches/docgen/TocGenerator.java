@@ -59,7 +59,7 @@ public class TocGenerator {
     public static void runTocGenerator() {
       final String jsonSrcFile = "src/main/resources/docgen/toc.json";
       final String tgtTocFile = "_includes/toc.html";
-      TocGenerator tocgen = new TocGenerator(jsonSrcFile, tgtTocFile);
+      final TocGenerator tocgen = new TocGenerator(jsonSrcFile, tgtTocFile);
       tocgen.readJson();
     }
 
