@@ -50,4 +50,3 @@ However, if you need to add a new page to the website, you may need to modify th
 - If you have Jekyll installed on your computer you can visually check the *toc* for proper operation before submitting your PR.
 
 - Lastly, submit your pull request for review!
-
