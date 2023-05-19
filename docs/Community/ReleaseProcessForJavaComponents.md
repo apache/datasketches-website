@@ -49,10 +49,12 @@ __NOTES:__
 
 * From Command Line at Component root:
   * To confirm *gpg-agent* is running type:
-      * `ps -axww | grep gpg`  # you should see something like:
+      * `eval $(gpg-agent --daemon)`
+          * if it is not running it will start it and you will see something like:
           * <pre>9566 ??         0:30.33 gpg-agent --daemon<br>20315 ttys000   0:00:00 grep gpg</pre>
-      * To start GPG if GPG Agent is not running:
-          * `eval $(gpg-agent --daemon)`
+          * if it is already running you will see something like:
+          * `gpg-agent: a gpg-agent is already running - not starting a new one`  
+
   * Confirm GitHub repository is current and git status is clean:
       * `git status` # should return:
       * "On branch master, your branch is up to date with 'origin/master', nothing to commit, working tree clean."
@@ -130,10 +132,11 @@ __NOTES:__
   * Have your GPG passphrase handy -- you have only a few seconds to enter it!
 * Start a new terminal in the above dist/dev/datasketches/scripts directory on your system:
   * To confirm *gpg-agent* is running type:
-      * `ps -axww | grep gpg`  # you should see something like:
+      * `eval $(gpg-agent --daemon)`
+          * if it is not running it will start it and you will see something like:
           * <pre>9566 ??         0:30.33 gpg-agent --daemon<br>20315 ttys000   0:00:00 grep gpg</pre>
-      * To start GPG if GPG Agent is not running:
-          * `eval $(gpg-agent --daemon)` 
+          * if it is already running you will see something like:
+          * `gpg-agent: a gpg-agent is already running - not starting a new one`  
   * Run something like:
     * `./bashDeployToDist.sh /Users/\<name\>/dev/git/Apache/datasketches-\<component\> datasketches-\<component\> A.B.0-RC1`
     * Follow the instructions.
@@ -151,10 +154,11 @@ __NOTES:__
 * Return to original terminal at the project.basedir, still in the A.B.X branch.
 * If starting new terminal make sure GPG is running:
   * To confirm *gpg-agent* is running type:
-      * `ps -axww | grep gpg`  # you should see something like:
+      * `eval $(gpg-agent --daemon)`
+          * if it is not running it will start it and you will see something like:
           * <pre>9566 ??         0:30.33 gpg-agent --daemon<br>20315 ttys000   0:00:00 grep gpg</pre>
-      * To start GPG if GPG Agent is not running:
-          * `eval $(gpg-agent --daemon)` 
+          * if it is already running you will see something like:
+          * `gpg-agent: a gpg-agent is already running - not starting a new one`  
 * `git status` # make sure you are still on the release branch: A.B.X
 * TRIAL-RUN:
   * **Have your GPG passphrase handy -- you have only a few seconds to enter it!**
