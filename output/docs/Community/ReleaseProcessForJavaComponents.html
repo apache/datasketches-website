@@ -547,16 +547,14 @@
     <ul>
       <li>To confirm <em>gpg-agent</em> is running type:
         <ul>
-          <li><code class="highlighter-rouge">ps -axww | grep gpg</code>  # you should see something like:
+          <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code>
             <ul>
+              <li>if it is not running it will start it and you will see something like:</li>
               <li>
                 <pre>9566 ??         0:30.33 gpg-agent --daemon<br />20315 ttys000   0:00:00 grep gpg</pre>
               </li>
-            </ul>
-          </li>
-          <li>To start GPG if GPG Agent is not running:
-            <ul>
-              <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
+              <li>if it is already running you will see something like:</li>
+              <li><code class="highlighter-rouge">gpg-agent: a gpg-agent is already running - not starting a new one</code></li>
             </ul>
           </li>
         </ul>
@@ -694,16 +692,14 @@
     <ul>
       <li>To confirm <em>gpg-agent</em> is running type:
         <ul>
-          <li><code class="highlighter-rouge">ps -axww | grep gpg</code>  # you should see something like:
+          <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code>
             <ul>
+              <li>if it is not running it will start it and you will see something like:</li>
               <li>
                 <pre>9566 ??         0:30.33 gpg-agent --daemon<br />20315 ttys000   0:00:00 grep gpg</pre>
               </li>
-            </ul>
-          </li>
-          <li>To start GPG if GPG Agent is not running:
-            <ul>
-              <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
+              <li>if it is already running you will see something like:</li>
+              <li><code class="highlighter-rouge">gpg-agent: a gpg-agent is already running - not starting a new one</code></li>
             </ul>
           </li>
         </ul>
@@ -740,16 +736,14 @@
     <ul>
       <li>To confirm <em>gpg-agent</em> is running type:
         <ul>
-          <li><code class="highlighter-rouge">ps -axww | grep gpg</code>  # you should see something like:
+          <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code>
             <ul>
+              <li>if it is not running it will start it and you will see something like:</li>
               <li>
                 <pre>9566 ??         0:30.33 gpg-agent --daemon<br />20315 ttys000   0:00:00 grep gpg</pre>
               </li>
-            </ul>
-          </li>
-          <li>To start GPG if GPG Agent is not running:
-            <ul>
-              <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
+              <li>if it is already running you will see something like:</li>
+              <li><code class="highlighter-rouge">gpg-agent: a gpg-agent is already running - not starting a new one</code></li>
             </ul>
           </li>
         </ul>
