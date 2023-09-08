@@ -49,18 +49,18 @@ layout: doc_page
       // this section deserializes the sketches, produces union and prints the result
       {
         std::ifstream is1("hll_sketch1.bin");
-        datasketches::hll_sketch sketch1 = datasketches::hll_sketch::deserialize(is1);
+        auto sketch1 = datasketches::hll_sketch::deserialize(is1);
     
         std::ifstream is2("hll_sketch2.bin");
-        datasketches::hll_sketch sketch2 = datasketches::hll_sketch::deserialize(is2);
+        auto sketch2 = datasketches::hll_sketch::deserialize(is2);
     
         datasketches::hll_union u(lg_k);
         u.update(sketch1);
         u.update(sketch2);
-        datasketches::hll_sketch sketch = u.get_result(type); // type is optional, defaults to HLL_4
+        auto sketch = u.get_result(type); // type is optional, defaults to HLL_4
     
         // debug summary of the union result sketch
-        sketch.to_string(std::cout);
+        std::cout << sketch.to_string();
     
         std::cout << "Distinct count estimate: " << sketch.get_estimate() << std::endl;
         std::cout << "Distinct count lower bound 95% confidence: " << sketch.get_lower_bound(2) << std::endl;
