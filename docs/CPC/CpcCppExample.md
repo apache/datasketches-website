@@ -49,18 +49,18 @@ layout: doc_page
       // this section deserializes the sketches, produces union and prints the result
       {
         std::ifstream is1("cpc_sketch1.bin");
-        datasketches::cpc_sketch sketch1 = datasketches::cpc_sketch::deserialize(is1);
+        auto sketch1 = datasketches::cpc_sketch::deserialize(is1);
     
         std::ifstream is2("cpc_sketch2.bin");
-        datasketches::cpc_sketch sketch2 = datasketches::cpc_sketch::deserialize(is2);
+        auto sketch2 = datasketches::cpc_sketch::deserialize(is2);
     
         datasketches::cpc_union u(lg_k);
         u.update(sketch1);
         u.update(sketch2);
-        datasketches::cpc_sketch sketch = u.get_result();
+        auto sketch = u.get_result();
     
         // debug summary of the union result sketch
-        sketch.to_stream(std::cout);
+        sketch.to_string();
 
         std::cout << "Distinct count estimate: " << sketch.get_estimate() << std::endl;
         std::cout << "Distinct count lower bound 95% confidence: " << sketch.get_lower_bound(2) << std::endl;

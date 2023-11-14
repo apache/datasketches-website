@@ -65,11 +65,12 @@ layout: doc_page
         u.merge(sketch2);
 
         // Debug output
-        u.to_stream(std::cout);
+        std::cout << u.to_string();
 
-        std::cout << "Min, Median, Max values" << std::endl;
-        const double fractions[3] {0, 0.5, 1};
-        auto quantiles = u.get_quantiles(fractions, 3);
+        std::cout << "Min: " << u.get_min_item() << std::endl;
+        std::cout << "Max: " << u.get_max_item() << std::endl;
+        auto quantiles = u.get_quantiles((double[3]){0.5, 0.75, 0.9}, 3);
+        std::cout << "Quantiles: 0.5 (median), 0.75, 0.9:\n";
         std::cout << quantiles[0] << ", " << quantiles[1] << ", " << quantiles[2] << std::endl;
 
         std::cout << "Probability Histogram: estimated probability mass in 4 bins: (-inf, -2), [-2, 0), [0, 2), [2, +inf)" << std::endl;
@@ -90,7 +91,7 @@ layout: doc_page
       return 0;
     }
 
-    Output (will be sligtly different every time due to random input):
+    Output (will be slightly different every time due to random input):
     ### KLL sketch summary:
        K              : 200
        min K          : 200
@@ -104,13 +105,14 @@ layout: doc_page
        Sorted         : false
        Capacity items : 565
        Retained items : 394
-       Storage bytes  : 1632
-       Min value      : -3.49
-       Max value      : 4.52
+       Min item      : -3.75
+       Max item      : 4.6
     ### End sketch summary
-    Min, Median, Max values
-    -3.49, 0.51, 4.52
+    Min: -3.75359
+    Max: 4.60465
+    Quantiles: 0.5 (median), 0.75, 0.9:
+    0.508168, 1.25914, 1.938
     Probability Histogram: estimated probability mass in 4 bins: (-inf, -2), [-2, 0), [0, 2), [2, +inf)
-    0.0146, 0.313, 0.582, 0.0901
+    0.0118, 0.3134, 0.58475, 0.09005
     Frequency Histogram: estimated number of original values in the same bins
-    293, 6267, 11639, 1801
+    236, 6268, 11695, 1800

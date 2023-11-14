@@ -21,7 +21,7 @@
         {"class":"Doc",  "desc" : "Sketch Criteria",           "dir" : "Architecture", "file": "SketchCriteria" },
         { "class":"Dropdown", "desc" : "Memory Component", "array":
           [
-            {"class":"Doc",  "desc" : "Memory Componet",              "dir" : "Memory", "file": "MemoryComponent" },
+            {"class":"Doc",  "desc" : "Memory Component",              "dir" : "Memory", "file": "MemoryComponent" },
             {"class":"Doc",  "desc" : "Memory Component Performance",  "dir" : "Memory", "file": "MemoryPerformance" },
           ]
         },
@@ -208,7 +208,7 @@
             },
             { "class":"Dropdown", "desc" : "Quantiles Studies", "array":
               [
-                
+
                 {"class":"Doc",  "desc" : "KLL sketch vs t-digest",                           "dir" : "QuantilesStudies", "file": "KllSketchVsTDigest" },
                 {"class":"Doc",  "desc" : "Druid Approximate Histogram",                      "dir" : "QuantilesStudies", "file": "DruidApproxHistogramStudy" },
                 {"class":"Doc",  "desc" : "Moments Sketch Study",                             "dir" : "QuantilesStudies", "file": "MomentsSketchStudy" },
