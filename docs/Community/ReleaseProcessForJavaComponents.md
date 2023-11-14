@@ -50,8 +50,7 @@ __NOTES:__
 * From Command Line at Component root:
   * To confirm *gpg-agent* is running type:
       * `eval $(gpg-agent --daemon)`
-          * if it is not running it will start it and you will see something like:
-          * <pre>9566 ??         0:30.33 gpg-agent --daemon<br>20315 ttys000   0:00:00 grep gpg</pre>
+          * if it is not running it will start it.
           * if it is already running you will see something like:
           * `gpg-agent: a gpg-agent is already running - not starting a new one`  
 
@@ -133,8 +132,7 @@ __NOTES:__
 * Start a new terminal in the above dist/dev/datasketches/scripts directory on your system:
   * To confirm *gpg-agent* is running type:
       * `eval $(gpg-agent --daemon)`
-          * if it is not running it will start it and you will see something like:
-          * <pre>9566 ??         0:30.33 gpg-agent --daemon<br>20315 ttys000   0:00:00 grep gpg</pre>
+          * if it is not running it will start it
           * if it is already running you will see something like:
           * `gpg-agent: a gpg-agent is already running - not starting a new one`  
   * Run something like:
@@ -155,8 +153,7 @@ __NOTES:__
 * If starting new terminal make sure GPG is running:
   * To confirm *gpg-agent* is running type:
       * `eval $(gpg-agent --daemon)`
-          * if it is not running it will start it and you will see something like:
-          * <pre>9566 ??         0:30.33 gpg-agent --daemon<br>20315 ttys000   0:00:00 grep gpg</pre>
+          * if it is not running it will start it
           * if it is already running you will see something like:
           * `gpg-agent: a gpg-agent is already running - not starting a new one`  
 * `git status` # make sure you are still on the release branch: A.B.X
