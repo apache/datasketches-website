@@ -86,28 +86,29 @@ __NOTES:__
 * Assume current master POM version = A.B.0-SNAPSHOT
 * From IDE or Command Line: 
     * Switch from Master to new __Permanent Branch__: "A.B.X"
-    * Edit pom.xml version to A.B.0 (remove -SNAPSHOT, do not change A or B)
+        * Note: This assumes a normal progressions of release numbers. However, when moving to a new major release the current A.B.0-SNAPSHOT will be followed by a new __Permanent Branch__: A'.0.X, where A' = A + 1.   
+    * Edit pom.xml version to A.B.0 (remove -SNAPSHOT, do not change A or B) in case of normal progression, or A'.0.0 in the case of a new major release.
     * Commit the change. __DO NOT PUSH!__
-    * Create Annotated TAG: A.B.0-RC1 (or RCn)
+    * Create Annotated TAG: A.B.0-RC1 (or RCn) or A'.0.0-RC1
     * Write down the Git hash : example: 40c6f4f
     * Now Push Branch  "A.B.X" with edited pom.xml to origin
     * __DO NOT MERGE THIS PERMANENT BRANCH INTO MASTER__
 * From IDE or Command-line: 
-    * Do explicit push of tags on branch "A.B.X" to origin:
+    * Do explicit push of tags on new branch A.B.X (or A'.0.X) to origin:
         * `git push origin --tags`
 * From a web browser at origin web site: github.com/apache/datasketches-\<component\>
-    * Select the A.B.X branch
-    * Confirm that the tag: A.B.0-RC1 exists and that the tag is on the latest commit and with the correct Git hash.
+    * Select the A.B.X branch or A'.0.X
+    * Confirm that the tag: A.B.0-RC1 (or A'.0.0-RC1) exists and that the tag is on the latest commit and with the correct Git hash.
     * __DO NOT CREATE PR OR MERGE THIS PERMANENT BRANCH INTO MASTER__
 * From IDE or Command Line:
-    * Confirm that the tag A.B.0-RC1 and the branch A.B.X, and HEAD coincide with the correct Git hash.
+    * Confirm that the tag A.B.0-RC1 and the branch A.B.X, (or A'.0.0-RC1 and the branch A'.0.X) and HEAD coincide with the correct Git hash.
     * Confirm that there are no unstaged or staged changes.
     * Return to master branch
     * Edit master pom.xml to A'.B'.0-SNAPSHOT where A' or B' will be incremented by 1. (Bug fix releases will change the 3rd digit)
     * Commit and Push this change to origin/master with the comment "Release Process: Change pom version to A'.B'.0-SNAPSHOT."
     * Create a tag A'.B'.0-SNAPSHOT on master at the HEAD.
     * Push the tag to origin: `git push origin --tags`
-    * Return to release branch A.B.X
+    * Return to release branch A.B.X (or A'.0.X)
     * You may minimize your IDE, pointing at the release branch.
 
 ## Create and/or Checkout Local *dist/dev* directories on your system
