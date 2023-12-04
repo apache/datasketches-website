@@ -611,10 +611,14 @@
   <li>Assume current master POM version = A.B.0-SNAPSHOT</li>
   <li>From IDE or Command Line:
     <ul>
-      <li>Switch from Master to new <strong>Permanent Branch</strong>: “A.B.X”</li>
-      <li>Edit pom.xml version to A.B.0 (remove -SNAPSHOT, do not change A or B)</li>
+      <li>Switch from Master to new <strong>Permanent Branch</strong>: “A.B.X”
+        <ul>
+          <li>Note: This assumes a normal progressions of release numbers. However, when moving to a new major release the current A.B.0-SNAPSHOT will be followed by a new <strong>Permanent Branch</strong>: A’.0.X, where A’ = A + 1.</li>
+        </ul>
+      </li>
+      <li>Edit pom.xml version to A.B.0 (remove -SNAPSHOT, do not change A or B) in case of normal progression, or A’.0.0 in the case of a new major release.</li>
       <li>Commit the change. <strong>DO NOT PUSH!</strong></li>
-      <li>Create Annotated TAG: A.B.0-RC1 (or RCn)</li>
+      <li>Create Annotated TAG: A.B.0-RC1 (or RCn) or A’.0.0-RC1</li>
       <li>Write down the Git hash : example: 40c6f4f</li>
       <li>Now Push Branch  “A.B.X” with edited pom.xml to origin</li>
       <li><strong>DO NOT MERGE THIS PERMANENT BRANCH INTO MASTER</strong></li>
@@ -622,7 +626,7 @@
   </li>
   <li>From IDE or Command-line:
     <ul>
-      <li>Do explicit push of tags on branch “A.B.X” to origin:
+      <li>Do explicit push of tags on new branch A.B.X (or A’.0.X) to origin:
         <ul>
           <li><code class="highlighter-rouge">git push origin --tags</code></li>
         </ul>
@@ -631,21 +635,21 @@
   </li>
   <li>From a web browser at origin web site: github.com/apache/datasketches-&lt;component&gt;
     <ul>
-      <li>Select the A.B.X branch</li>
-      <li>Confirm that the tag: A.B.0-RC1 exists and that the tag is on the latest commit and with the correct Git hash.</li>
+      <li>Select the A.B.X branch or A’.0.X</li>
+      <li>Confirm that the tag: A.B.0-RC1 (or A’.0.0-RC1) exists and that the tag is on the latest commit and with the correct Git hash.</li>
       <li><strong>DO NOT CREATE PR OR MERGE THIS PERMANENT BRANCH INTO MASTER</strong></li>
     </ul>
   </li>
   <li>From IDE or Command Line:
     <ul>
-      <li>Confirm that the tag A.B.0-RC1 and the branch A.B.X, and HEAD coincide with the correct Git hash.</li>
+      <li>Confirm that the tag A.B.0-RC1 and the branch A.B.X, (or A’.0.0-RC1 and the branch A’.0.X) and HEAD coincide with the correct Git hash.</li>
       <li>Confirm that there are no unstaged or staged changes.</li>
       <li>Return to master branch</li>
       <li>Edit master pom.xml to A’.B’.0-SNAPSHOT where A’ or B’ will be incremented by 1. (Bug fix releases will change the 3rd digit)</li>
       <li>Commit and Push this change to origin/master with the comment “Release Process: Change pom version to A’.B’.0-SNAPSHOT.”</li>
       <li>Create a tag A’.B’.0-SNAPSHOT on master at the HEAD.</li>
       <li>Push the tag to origin: <code class="highlighter-rouge">git push origin --tags</code></li>
-      <li>Return to release branch A.B.X</li>
+      <li>Return to release branch A.B.X (or A’.0.X)</li>
       <li>You may minimize your IDE, pointing at the release branch.</li>
     </ul>
   </li>
