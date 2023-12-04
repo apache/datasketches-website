@@ -86,7 +86,7 @@ __NOTES:__
 * Assume current master POM version = A.B.0-SNAPSHOT
 * From IDE or Command Line: 
     * Switch from Master to new __Permanent Branch__: "A.B.X"
-        * Note: This assumes a normal progressions of release numbers. However, when moving to a new major release the current A.B.0-SNAPSHOT will be followed by a new __Permanent Branch__: A'.0.X, where A' = A + 1.   
+        * Note: This assumes a normal progression of release numbers. However, when moving to a new major release the current A.B.0-SNAPSHOT will be followed by a new __Permanent Branch__: A'.0.X, where A' = A + 1.   
     * Edit pom.xml version to A.B.0 (remove -SNAPSHOT, do not change A or B) in case of normal progression, or A'.0.0 in the case of a new major release.
     * Commit the change. __DO NOT PUSH!__
     * Create Annotated TAG: A.B.0-RC1 (or RCn) or A'.0.0-RC1
