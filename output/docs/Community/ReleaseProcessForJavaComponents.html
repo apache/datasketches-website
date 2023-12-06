@@ -521,42 +521,83 @@
 </ul>
 
 <h2 id="preparation">Preparation</h2>
+
+<h3 id="check-for-code-completeness">Check for Code Completeness</h3>
 <ul>
-  <li>Confirm correctness for
+  <li>Confirm that all <strong>temporary</strong> branches are checked into master and/or deleted, both local and remote.</li>
+  <li>Confirm any new bug fixes have corresponding tests</li>
+  <li>At major version releases, search for deprecated code and remove at <strong>Major Versions</strong> only.
     <ul>
-      <li>LICENSE</li>
-      <li>NOTICE – check for copyright dates</li>
-      <li>README.md</li>
-      <li>.asf.yaml</li>
-      <li>.travis.yml (if used)</li>
-      <li>.gitattributes – used to exclude files from release zip, assumes .gitignore</li>
-      <li>.github/workflows</li>
-      <li>.gitignore – used to exclude files from origin</li>
-      <li>pom.xml / apache-rat-plugin – checks for license headers, assumes .gitignore</li>
-      <li>pom.xml</li>
+      <li><code class="highlighter-rouge">find . -name "*.java" -type f -print | xargs grep -i -n -s -A0 "deprecated"</code></li>
+      <li><strong>Note:</strong> When first marking a segment of code deprecated, please add the current version number. This will make it easier to know when to remove the deprecated code.</li>
     </ul>
   </li>
-  <li>From Command Line or IDE:
+</ul>
+
+<h3 id="check-maven-plugin-dependency-property-versions-of-the-pom">Check Maven Plugin, Dependency, Property Versions of the POM:</h3>
+<ul>
+  <li><code class="highlighter-rouge">mvn versions:display-plugin-updates</code></li>
+  <li><code class="highlighter-rouge">mvn versions:display-dependency-updates</code></li>
+  <li><code class="highlighter-rouge">mvn versions:display-property-updates</code></li>
+</ul>
+
+<h3 id="visual-checks-for-correctness">Visual Checks for Correctness</h3>
+<ul>
+  <li>LICENSE</li>
+  <li>NOTICE – check for copyright dates</li>
+  <li>README.md</li>
+  <li>.asf.yaml</li>
+  <li>.travis.yml (if used)</li>
+  <li>.gitattributes – used to exclude files from release zip, assumes .gitignore</li>
+  <li>.github/workflows</li>
+  <li>.gitignore – used to exclude files from origin</li>
+  <li>pom.xml / apache-rat-plugin config – checks for license headers, assumes .gitignore</li>
+  <li>pom.xml</li>
+</ul>
+
+<h3 id="run-maven-tests">Run Maven Tests</h3>
+<ul>
+  <li><code class="highlighter-rouge">mvn apache-rat:check</code></li>
+  <li><code class="highlighter-rouge">mvn clean test</code></li>
+  <li><code class="highlighter-rouge">mvn clean test -P strict</code></li>
+  <li><code class="highlighter-rouge">mvn clean test -P check-cpp-files</code></li>
+  <li><code class="highlighter-rouge">mvn clean javadoc:javadoc</code></li>
+  <li><code class="highlighter-rouge">mvn clean install -DskipTests=true</code></li>
+  <li>Check that the /target/ directory has 5 jars: (may need to refresh)
     <ul>
-      <li>Run Unit tests</li>
-      <li>Run Code Coverage &gt; 90%</li>
-      <li>Run SpotBugs checks (is it properly configured?)</li>
-      <li>Run Checkstyle (is it properly configured?)</li>
-      <li>Confirm that all <strong>temporary</strong> branches are checked into master and/or deleted, both local and remote.</li>
-      <li>Confirm any new bug fixes have corresponding tests</li>
+      <li>datasketches-&lt;component&gt;-SNAPSHOT-javadoc.jar</li>
+      <li>datasketches-&lt;component&gt;-SNAPSHOT-sources.jar</li>
+      <li>datasketches-&lt;component&gt;-SNAPSHOT-test-sources.jar</li>
+      <li>datasketches-&lt;component&gt;-SNAPSHOT-tests.jar</li>
+      <li>datasketches-&lt;component&gt;-SNAPSHOT.jar</li>
     </ul>
   </li>
+  <li>Check your local Maven local repository
+    <ul>
+      <li><em>~/.m2/repository/org/apache/datasketches/datasketches-&lt;component&gt;/A.B.0-SNAPSHOT/</em></li>
+      <li>It should have 5 new jars and a .pom file.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="run-ide-checks">Run IDE Checks</h3>
+<ul>
+  <li>Run Code Coverage &gt; 90%</li>
+  <li>SpotBugs checks (is it properly configured?)</li>
+  <li>Checkstyle (is it properly configured?)</li>
+</ul>
+
+<h2 id="create-permanent-release-branch--update-pom-version">Create Permanent Release Branch &amp; Update POM Version</h2>
+
+<h3 id="make-sure-gpg-agent-is-running-and-github-is-clean">Make sure GPG-Agent is running and GitHub is clean</h3>
+<ul>
   <li>From Command Line at Component root:
     <ul>
-      <li>To confirm <em>gpg-agent</em> is running type:
+      <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code>
         <ul>
-          <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code>
-            <ul>
-              <li>if it is not running it will start it.</li>
-              <li>if it is already running you will see something like:</li>
-              <li><code class="highlighter-rouge">gpg-agent: a gpg-agent is already running - not starting a new one</code></li>
-            </ul>
-          </li>
+          <li>if it is not running it will start it.</li>
+          <li>if it is already running you will see something like:</li>
+          <li><code class="highlighter-rouge">gpg-agent: a gpg-agent is already running - not starting a new one</code></li>
         </ul>
       </li>
       <li>Confirm GitHub repository is current and git status is clean:
@@ -565,74 +606,37 @@
           <li>“On branch master, your branch is up to date with ‘origin/master’, nothing to commit, working tree clean.”</li>
         </ul>
       </li>
-      <li>At major version releases, search for deprecated code and remove at <strong>Major Versions</strong> only.
-        <ul>
-          <li><code class="highlighter-rouge">find . -name "*.java" -type f -print | xargs grep -i -n -s -A0 "deprecated"</code></li>
-          <li><strong>Note:</strong> When first marking a segment of code deprecated, please add the current version number. This will make it easier to know when to remove the deprecated code.</li>
-        </ul>
-      </li>
-      <li>Check Maven Plugin, Dependency, Property Versions of the POM:
-        <ul>
-          <li><code class="highlighter-rouge">mvn versions:display-plugin-updates</code></li>
-          <li><code class="highlighter-rouge">mvn versions:display-dependency-updates</code></li>
-          <li><code class="highlighter-rouge">mvn versions:display-property-updates</code></li>
-        </ul>
-      </li>
-      <li>Maven Tests:
-        <ul>
-          <li><code class="highlighter-rouge">mvn apache-rat:check</code></li>
-          <li><code class="highlighter-rouge">mvn clean test</code></li>
-          <li><code class="highlighter-rouge">mvn clean test -P strict</code></li>
-          <li><code class="highlighter-rouge">mvn clean javadoc:javadoc</code></li>
-          <li><code class="highlighter-rouge">mvn clean install -DskipTests=true</code></li>
-          <li>Check that the /target/ directory has 5 jars: (may need to refresh)
-            <ul>
-              <li>datasketches-&lt;component&gt;-SNAPSHOT-javadoc.jar</li>
-              <li>datasketches-&lt;component&gt;-SNAPSHOT-sources.jar</li>
-              <li>datasketches-&lt;component&gt;-SNAPSHOT-test-sources.jar</li>
-              <li>datasketches-&lt;component&gt;-SNAPSHOT-tests.jar</li>
-              <li>datasketches-&lt;component&gt;-SNAPSHOT.jar</li>
-            </ul>
-          </li>
-          <li>Check your local Maven repository
-            <ul>
-              <li><em>~/.m2/repository/org/apache/datasketches/datasketches-&lt;component&gt;/A.B.0-SNAPSHOT/</em></li>
-              <li>It should have 5 new jars and a .pom file.</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
     </ul>
   </li>
 </ul>
 
-<h2 id="create-permanent-release-branch--pom-version-preparation">Create Permanent Release Branch &amp; POM Version Preparation</h2>
+<h3 id="create-new-release-branch">Create New Release Branch</h3>
 <ul>
   <li>Assume current master POM version = A.B.0-SNAPSHOT</li>
-  <li>From IDE or Command Line:
+  <li>Create new <strong>Permanent Branch</strong>: “A.B.X”
     <ul>
-      <li>Switch from Master to new <strong>Permanent Branch</strong>: “A.B.X”
-        <ul>
-          <li>Note: This assumes a normal progression of release numbers. However, when moving to a new major release the current A.B.0-SNAPSHOT will be followed by a new <strong>Permanent Branch</strong>: A’.0.X, where A’ = A + 1.</li>
-        </ul>
-      </li>
-      <li>Edit pom.xml version to A.B.0 (remove -SNAPSHOT, do not change A or B) in case of normal progression, or A’.0.0 in the case of a new major release.</li>
-      <li>Commit the change. <strong>DO NOT PUSH!</strong></li>
-      <li>Create Annotated TAG: A.B.0-RC1 (or RCn) or A’.0.0-RC1</li>
-      <li>Write down the Git hash : example: 40c6f4f</li>
-      <li>Now Push Branch  “A.B.X” with edited pom.xml to origin</li>
-      <li><strong>DO NOT MERGE THIS PERMANENT BRANCH INTO MASTER</strong></li>
+      <li>Note: This assumes a normal progression of release numbers. However, when moving to a new major release the current A.B.0-SNAPSHOT will be followed by a new <strong>Permanent Branch</strong>: A’.0.X, where A’ = A + 1.</li>
     </ul>
   </li>
-  <li>From IDE or Command-line:
+</ul>
+
+<h3 id="edit-release-branch-pom-version-to-target-release-version">Edit Release Branch POM Version to Target Release Version</h3>
+<ul>
+  <li>Switch to new Release Branch</li>
+  <li>Edit pom.xml version to A.B.0 (remove -SNAPSHOT, do not change A or B) in case of normal progression, or A’.0.0 in the case of a new major release.</li>
+  <li>Commit the change. <strong>DO NOT PUSH!</strong></li>
+  <li>Create Annotated TAG for this commit: A.B.0-RC1 (or RCn) or A’.0.0-RC1</li>
+  <li>Write down the Git hash : example: 40c6f4f (you will need it later)</li>
+  <li><strong>Now Push</strong> Branch  “A.B.X” with edited pom.xml to origin <strong>NEVER MERGE THIS PERMANENT BRANCH INTO MASTER</strong></li>
+  <li>Do explicit push of tags on new branch A.B.X (or A’.0.X) to origin:
     <ul>
-      <li>Do explicit push of tags on new branch A.B.X (or A’.0.X) to origin:
-        <ul>
-          <li><code class="highlighter-rouge">git push origin --tags</code></li>
-        </ul>
-      </li>
+      <li><code class="highlighter-rouge">git push origin --tags</code></li>
     </ul>
   </li>
+</ul>
+
+<h3 id="confirm-new-release-branch-tag-and-git-hash">Confirm new Release Branch, Tag and Git hash</h3>
+<ul>
   <li>From a web browser at origin web site: github.com/apache/datasketches-&lt;component&gt;
     <ul>
       <li>Select the A.B.X branch or A’.0.X</li>
@@ -645,14 +649,22 @@
       <li>Confirm that the tag A.B.0-RC1 and the branch A.B.X, (or A’.0.0-RC1 and the branch A’.0.X) and HEAD coincide with the correct Git hash.</li>
       <li>Confirm that there are no unstaged or staged changes.</li>
       <li>Return to master branch</li>
-      <li>Edit master pom.xml to A’.B’.0-SNAPSHOT where A’ or B’ will be incremented by 1. (Bug fix releases will change the 3rd digit)</li>
-      <li>Commit and Push this change to origin/master with the comment “Release Process: Change pom version to A’.B’.0-SNAPSHOT.”</li>
-      <li>Create a tag A’.B’.0-SNAPSHOT on master at the HEAD.</li>
-      <li>Push the tag to origin: <code class="highlighter-rouge">git push origin --tags</code></li>
-      <li>Return to release branch A.B.X (or A’.0.X)</li>
-      <li>You may minimize your IDE, pointing at the release branch.</li>
     </ul>
   </li>
+</ul>
+
+<h3 id="edit-master-branch-with-the-snapshot-version-of-the-next-release">Edit Master Branch with the SNAPSHOT Version of the Next Release</h3>
+<ul>
+  <li>Edit master pom.xml to A’.B’.0-SNAPSHOT where A’ or B’ will be incremented by 1. (Bug fix releases will change the 3rd digit)</li>
+  <li>Commit and Push this change to origin/master with the comment “Release Process: Change pom version to A’.B’.0-SNAPSHOT.”
+    <ul>
+      <li>This may require changing to a temparary branch and creating a PR to be approved if master branch is restricted.</li>
+    </ul>
+  </li>
+  <li>Create a tag A’.B’.0-SNAPSHOT on master at the HEAD.</li>
+  <li>Push the tag to origin: <code class="highlighter-rouge">git push origin --tags</code></li>
+  <li>Return to release branch A.B.X (or A’.0.X)</li>
+  <li>You may minimize your IDE, pointing at the release branch.</li>
 </ul>
 
 <h2 id="create-andor-checkout-local-distdev-directories-on-your-system">Create and/or Checkout Local <em>dist/dev</em> directories on your system</h2>
@@ -682,19 +694,19 @@
 </ul>
 
 <h2 id="create-the-candidate-apache-release-distribution-on-distdev">Create the Candidate Apache Release Distribution on <em>dist/dev</em></h2>
-<h3 id="create-primary-zip-files--signatures">Create primary zip files &amp; signatures</h3>
+<h3 id="create-primary-zip-files--signatureshashes">Create Primary Zip Files &amp; Signatures/Hashes</h3>
 <ul>
   <li>You will need the following arguments:
     <ul>
       <li>Absolute path of target project.basedir on your system</li>
       <li>Project.artifactId : datasketches-&lt;component&gt; where component is e.g., java, pig, hive,…</li>
       <li>GitHub Tag: A.B.0-RC1 (or RCn)</li>
-      <li>Have your GPG passphrase handy – you have only a few seconds to enter it!</li>
+      <li>Have your GPG passphrase handy – you may have only a few seconds to enter it!</li>
     </ul>
   </li>
   <li>Start a new terminal in the above dist/dev/datasketches/scripts directory on your system:
     <ul>
-      <li>To confirm <em>gpg-agent</em> is running type:
+      <li>Confirm <em>gpg-agent</em> is running:
         <ul>
           <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code>
             <ul>
@@ -705,7 +717,7 @@
           </li>
         </ul>
       </li>
-      <li>Run something like:
+      <li>Run something like (you need to edit this):
         <ul>
           <li><code class="highlighter-rouge">./bashDeployToDist.sh /Users/\&lt;name\&gt;/dev/git/Apache/datasketches-\&lt;component\&gt; datasketches-\&lt;component\&gt; A.B.0-RC1</code></li>
           <li>Follow the instructions.</li>
@@ -722,6 +734,10 @@
       </li>
     </ul>
   </li>
+</ul>
+
+<h3 id="check-primary-zip-files--signatureshashes">Check Primary Zip Files &amp; Signatures/Hashes</h3>
+<ul>
   <li>Check this web URL ~ <em>https://dist.apache.org/repos/dist/dev/datasketches/&lt;component&gt;/A.B.0-RC1/</em>
     <ul>
       <li>There should be 3 files: *-src.zip, *-src.zip.asc, *-src.zip.sha512</li>
@@ -730,12 +746,12 @@
   </li>
 </ul>
 
-<h3 id="java-push-jars-to-nexus-maven-central-staging">Java: Push Jars to Nexus (Maven Central) Staging</h3>
+<h2 id="java-only-push-jars-to-nexus-maven-central-staging">Java Only: Push Jars to Nexus (Maven Central) Staging</h2>
 <ul>
   <li>Return to original terminal at the project.basedir, still in the A.B.X branch.</li>
   <li>If starting new terminal make sure GPG is running:
     <ul>
-      <li>To confirm <em>gpg-agent</em> is running type:
+      <li>Confirm <em>gpg-agent</em> is running:
         <ul>
           <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code>
             <ul>
@@ -749,51 +765,64 @@
     </ul>
   </li>
   <li><code class="highlighter-rouge">git status</code> # make sure you are still on the release branch: A.B.X</li>
-  <li>TRIAL-RUN:
+</ul>
+
+<h3 id="trial-run">TRIAL-RUN:</h3>
+<ul>
+  <li><strong>Have your GPG passphrase handy – you may have only a few seconds to enter it!</strong></li>
+  <li><code class="highlighter-rouge">mvn clean install -Pnexus-jars -DskipTests=true</code>
     <ul>
-      <li><strong>Have your GPG passphrase handy – you have only a few seconds to enter it!</strong></li>
-      <li><code class="highlighter-rouge">mvn clean install -Pnexus-jars -DskipTests=true</code>
-        <ul>
-          <li>Check target/ that jars &amp; pom have .asc signatures</li>
-        </ul>
-      </li>
+      <li>Check target/ that jars &amp; pom have .asc signatures</li>
     </ul>
   </li>
-  <li>DEPLOY
+</ul>
+
+<h3 id="deploy">DEPLOY</h3>
+<ul>
+  <li><strong>Have your GPG passphrase handy – you may have only a few seconds to enter it, but it may be automatic!</strong></li>
+  <li><code class="highlighter-rouge">mvn clean deploy -Pnexus-jars -DskipTests=true</code></li>
+</ul>
+
+<h3 id="deploy-check">DEPLOY-CHECK</h3>
+<ul>
+  <li>Login to <a href="https://repository.apache.org/">repository.apache.org</a> / Staging Repositories for orgapachedatasketches-XXXX</li>
+  <li>Click <strong>Content</strong> and search to the end.  Each jar &amp; pom should have .asc, .md5, .sha1 signatures</li>
+</ul>
+
+<h3 id="close-very-important">CLOSE (Very Important)</h3>
+<ul>
+  <li>[CLOSE] the Staging Repository with a comment: “&lt;component&gt; A.B.0”</li>
+</ul>
+
+<h3 id="check-close">CHECK CLOSE</h3>
+<ul>
+  <li>Confirm its existance under Repositories/Staging web-site URL (in the summary window)</li>
+  <li>Grab its URL while there. You will need it for the Vote Letter.</li>
+</ul>
+
+<h3 id="check-local-maven-repo">CHECK Local Maven Repo</h3>
+<ul>
+  <li>Check your local Maven repository
     <ul>
-      <li><strong>Have your GPG passphrase handy – you have only a few seconds to enter it, but it may be automatic!</strong></li>
-      <li><code class="highlighter-rouge">mvn clean deploy -Pnexus-jars -DskipTests=true</code>
-        <ul>
-          <li>Login to <a href="https://repository.apache.org/">repository.apache.org</a> / Staging Repositories for orgapachedatasketches-XXXX</li>
-          <li>Click Content and search to the end.  Each jar &amp; pom should have .asc, .md5, .sha1 signatures</li>
-          <li>[CLOSE] the Staging Repository with a comment: “&lt;component&gt; A.B.0”</li>
-          <li>Confirm its existance under Repositories/Staging web-site URL (in the summary window)</li>
-          <li>Grab its URL while there. You will need it for the Vote Letter.</li>
-          <li>Check your local Maven repository
-            <ul>
-              <li><em>~/.m2/repository/org/apache/datasketches/datasketches-&lt;component&gt;/A.B.0/</em></li>
-              <li>It should have 5 new jars and a .pom file each with .asc, .md5, and .sha1 signatures</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
+      <li><em>~/.m2/repository/org/apache/datasketches/datasketches-&lt;component&gt;/A.B.0/</em></li>
+      <li>It should have 5 new jars and a .pom file each with .asc, .md5, and .sha1 signatures</li>
     </ul>
   </li>
 </ul>
 
 <h3 id="create-copy-of-external-artifact-distributions">Create Copy of External Artifact Distributions</h3>
-<h4 id="java">JAVA</h4>
+<h4 id="java-only">JAVA ONLY</h4>
 <ul>
   <li>Place copies of the artifact jars deployed to Nexus under a “maven” directory.  For example see <a href="https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/">https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/</a></li>
   <li>Note that the <code class="highlighter-rouge">jar</code> files with their <code class="highlighter-rouge">asc</code>, <code class="highlighter-rouge">md5</code> and <code class="highlighter-rouge">sha1</code> signature are all together in the .md2 archive</li>
   <li>Add a <code class="highlighter-rouge">maven</code> directory under the <code class="highlighter-rouge">dist/dev/datasketches/\&lt;component\&gt;/A.B.0/</code></li>
   <li>Bulk copy the <code class="highlighter-rouge">jar, asc, md5</code> and <code class="highlighter-rouge">sha1</code> files into the <code class="highlighter-rouge">maven</code> directory.</li>
-  <li>Do: <code class="highlighter-rouge">svn status</code> # check to see if it is ready to add</li>
-  <li>Do: <code class="highlighter-rouge">svn add . --force</code></li>
-  <li>Do: <code class="highlighter-rouge">svn ci -m "add nexus jars to dist/dev/datasketches"</code></li>
+  <li><code class="highlighter-rouge">svn status</code> # check to see if it is ready to add</li>
+  <li><code class="highlighter-rouge">svn add . --force</code></li>
+  <li><code class="highlighter-rouge">svn ci -m "add nexus jars to dist/dev/datasketches"</code></li>
 </ul>
 
-<h4 id="non-java">Non-Java</h4>
+<h4 id="non-java">NON-JAVA</h4>
 <ul>
   <li>For external artifacts such as Python or Docker the subdirectory name should be relevant to the type.</li>
   <li>These must be signed with GPG (.asc) and SHA512 (.sha512)</li>
@@ -813,7 +842,7 @@
   <li>Summarize vote results</li>
 </ul>
 
-<h2 id="finalize-the-release">Finalize the Release</h2>
+<h2 id="if-successful-finalize-the-release">If Successful, Finalize the Release</h2>
 
 <h3 id="copy-files-from-distdev-to-distrelease">Copy files from <em>dist/dev</em> to <em>dist/release</em></h3>
 <ul>
@@ -876,7 +905,7 @@
   </li>
 </ul>
 
-<h3 id="java-release-jars-on-nexus-staging">Java: Release Jars on Nexus Staging</h3>
+<h3 id="java-only-release-jars-on-nexus-staging">Java Only: Release Jars on Nexus Staging</h3>
 <ul>
   <li>On Nexus <a href="https://repository.apache.org/">repository.apache.org</a> click on Staging Repositories</li>
   <li>Select “orgapachedatasketches-XXXX” (If more than one make sure you select the right one!)</li>
@@ -888,7 +917,7 @@
   </li>
 </ul>
 
-<h3 id="java-drop-any-previous-release-candidates-that-were-not-used">Java: Drop any previous Release Candidates that were not used.</h3>
+<h3 id="java-only-drop-any-previous-release-candidates-that-were-not-used">Java Only: Drop any previous Release Candidates that were not used.</h3>
 <ul>
   <li>On Nexus <a href="https://repository.apache.org/">repository.apache.org</a> click on Staging Repositories</li>
   <li>Select “orgapachedatasketches-XXXX” (If more than one make sure you select the right one!)</li>
@@ -932,8 +961,6 @@ reflected in the master. Use the <strong>git cherry-pick</strong> command for th
   </li>
   <li>When this is done, be sure to commit the changes to the website.</li>
 </ul>
-
-<h3 id="update-javadocs-or-equivalent-on-website">Update Javadocs (or Equivalent) on Website</h3>
 
 <h3 id="update-website-documentation-if-new-functionality">Update Website Documentation (if new functionality)</h3>
 
