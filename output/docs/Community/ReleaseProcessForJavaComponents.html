@@ -667,28 +667,22 @@
   <li>You may minimize your IDE, pointing at the release branch.</li>
 </ul>
 
-<h2 id="create-andor-checkout-local-distdev-directories-on-your-system">Create and/or Checkout Local <em>dist/dev</em> directories on your system</h2>
+<h2 id="if-absent-create-local-distdev-directories-on-your-system">If Absent, Create Local <em>dist/dev</em> directories on your system</h2>
 <ul>
-  <li>If you have not already, on your system create the two directory structures that mirror the dist.apache.org/repos/ directories:
+  <li>On your system create the two directory structures that mirror the dist.apache.org/repos/ directories:
     <ul>
       <li><code class="highlighter-rouge">mkdir dist/dev/datasketches/</code></li>
       <li><code class="highlighter-rouge">mkdir dist/release/datasketches/</code></li>
     </ul>
   </li>
-  <li>Checkout both “dev” and “release” directories
+</ul>
+
+<h2 id="checkout-the-distdev-directory-now">Checkout the <em>dist/dev</em> directory now</h2>
+<ul>
+  <li>Open a terminal in the dist/dev/datasketches directory and do a checkout:
     <ul>
-      <li>Open a terminal in the dist/dev/datasketches directory and do a checkout:
-        <ul>
-          <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>      #Note the DOT</li>
-          <li><code class="highlighter-rouge">svn status</code>    # make sure it is clean</li>
-        </ul>
-      </li>
-      <li>Open a terminal in the dist/release/datasketches directory and do a checkout:
-        <ul>
-          <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/release/datasketches/ .</code>  #Note the DOT</li>
-          <li><code class="highlighter-rouge">svn status</code>    # make sure it is clean</li>
-        </ul>
-      </li>
+      <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>      #Note the DOT</li>
+      <li><code class="highlighter-rouge">svn status</code>    # make sure it is clean: does not list any (?) or (!) files</li>
     </ul>
   </li>
 </ul>
@@ -854,7 +848,7 @@
           <li>Perform SVN Checkout:
             <ul>
               <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>  #note dot at end</li>
-              <li><code class="highlighter-rouge">svn status</code> #make sure checkout is clean</li>
+              <li><code class="highlighter-rouge">svn status</code> #make sure checkout is clean: does not list any (?) or (!) files</li>
             </ul>
           </li>
         </ul>
@@ -869,7 +863,7 @@
           <li>Perform SVN Checkout:
             <ul>
               <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/release/datasketches/ .</code> #note dot at end</li>
-              <li><code class="highlighter-rouge">svn status</code> #make sure checkout is clean</li>
+              <li><code class="highlighter-rouge">svn status</code> #make sure checkout is clean: does not list any (?) or (!) files</li>
             </ul>
           </li>
           <li>Create new version directory under appropriate component directory:
