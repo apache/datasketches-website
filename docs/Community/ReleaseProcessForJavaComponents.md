@@ -121,17 +121,15 @@ __NOTES:__
 * Return to release branch A.B.X (or A'.0.X)
 * You may minimize your IDE, pointing at the release branch.
 
-## Create and/or Checkout Local *dist/dev* directories on your system
-* If you have not already, on your system create the two directory structures that mirror the dist.apache.org/repos/ directories:
+## If Absent, Create Local *dist/dev* directories on your system
+* On your system create the two directory structures that mirror the dist.apache.org/repos/ directories:
     * `mkdir dist/dev/datasketches/`
     * `mkdir dist/release/datasketches/`
-* Checkout both "dev" and "release" directories 
-    * Open a terminal in the dist/dev/datasketches directory and do a checkout:
-        * `svn co https://dist.apache.org/repos/dist/dev/datasketches/ .`      #Note the DOT
-        * `svn status`    # make sure it is clean
-    * Open a terminal in the dist/release/datasketches directory and do a checkout:
-        * `svn co https://dist.apache.org/repos/dist/release/datasketches/ .`  #Note the DOT
-        * `svn status`    # make sure it is clean
+
+## Checkout the *dist/dev* directory now 
+* Open a terminal in the dist/dev/datasketches directory and do a checkout:
+    * `svn co https://dist.apache.org/repos/dist/dev/datasketches/ .`      #Note the DOT
+    * `svn status`    # make sure it is clean: does not list any (?) or (!) files
 
 ## Create the Candidate Apache Release Distribution on *dist/dev*
 ### Create Primary Zip Files & Signatures/Hashes
@@ -228,13 +226,13 @@ __NOTES:__
         * Confirm you are in the `/dev/` directory: `pwd`
         * Perform SVN Checkout:
             * `svn co https://dist.apache.org/repos/dist/dev/datasketches/ .`  #note dot at end
-            * `svn status` #make sure checkout is clean
+            * `svn status` #make sure checkout is clean: does not list any (?) or (!) files
 * In local *dist/__release__/datasketches/*
     * Open Terminal #2
-        * Confirm you are in the `/release/` directory: `pwd` 
+        * Confirm you are in the `/release/` directory: `pwd`
         * Perform SVN Checkout:
             * `svn co https://dist.apache.org/repos/dist/release/datasketches/ .` #note dot at end
-            * `svn status` #make sure checkout is clean
+            * `svn status` #make sure checkout is clean: does not list any (?) or (!) files
         * Create new version directory under appropriate component directory:
             * `mkdir -p \<component\>/A.B.0`
     * Using local file system copy files 
