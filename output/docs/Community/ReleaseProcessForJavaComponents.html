@@ -667,7 +667,9 @@
   <li>You may minimize your IDE, pointing at the release branch.</li>
 </ul>
 
-<h2 id="if-absent-create-local-distdev-directories-on-your-system">If Absent, Create Local <em>dist/dev</em> directories on your system</h2>
+<h2 id="push-candidate-release-to-distdev">Push Candidate Release to <em>dist/dev</em></h2>
+
+<h3 id="if-absent-create-local-distdev-directories-on-your-system">If Absent, Create Local <em>dist/dev</em> directories on your system</h3>
 <ul>
   <li>On your system create the two directory structures that mirror the dist.apache.org/repos/ directories:
     <ul>
@@ -677,7 +679,7 @@
   </li>
 </ul>
 
-<h2 id="checkout-the-distdev-directory-now">Checkout the <em>dist/dev</em> directory now</h2>
+<h3 id="checkout-the-distdev-directory">Checkout the <em>dist/dev</em> directory</h3>
 <ul>
   <li>Open a terminal in the dist/dev/datasketches directory and do a checkout:
     <ul>
@@ -687,8 +689,7 @@
   </li>
 </ul>
 
-<h2 id="create-the-candidate-apache-release-distribution-on-distdev">Create the Candidate Apache Release Distribution on <em>dist/dev</em></h2>
-<h3 id="create-primary-zip-files--signatureshashes">Create Primary Zip Files &amp; Signatures/Hashes</h3>
+<h3 id="create--push-zip-files--signatureshashes-to-distdev">Create &amp; Push Zip Files &amp; Signatures/Hashes to <em>dist/dev</em></h3>
 <ul>
   <li>You will need the following arguments:
     <ul>
@@ -698,7 +699,7 @@
       <li>Have your GPG passphrase handy – you may have only a few seconds to enter it!</li>
     </ul>
   </li>
-  <li>Start a new terminal in the above dist/dev/datasketches/scripts directory on your system:
+  <li>Start a new terminal in the above <em>dist/dev/datasketches/scripts</em> directory on your system:
     <ul>
       <li>Confirm <em>gpg-agent</em> is running:
         <ul>
@@ -711,9 +712,9 @@
           </li>
         </ul>
       </li>
-      <li>Run something like (you need to edit this):
+      <li>Run something like this (you need to copy &amp; edit):
         <ul>
-          <li><code class="highlighter-rouge">./bashDeployToDist.sh /Users/\&lt;name\&gt;/dev/git/Apache/datasketches-\&lt;component\&gt; datasketches-\&lt;component\&gt; A.B.0-RC1</code></li>
+          <li><code class="highlighter-rouge">./bashDeployToDist.sh /Users/&lt;name&gt;/dev/git/Apache/datasketches-&lt;component&gt; datasketches-&lt;component&gt; A.B.0-RC1</code></li>
           <li>Follow the instructions.</li>
           <li>NOTE: if you get the error “gpg: signing failed: No pinentry”:
             <ul>
@@ -809,7 +810,7 @@
 <ul>
   <li>Place copies of the artifact jars deployed to Nexus under a “maven” directory.  For example see <a href="https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/">https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/</a></li>
   <li>Note that the <code class="highlighter-rouge">jar</code> files with their <code class="highlighter-rouge">asc</code>, <code class="highlighter-rouge">md5</code> and <code class="highlighter-rouge">sha1</code> signature are all together in the .md2 archive</li>
-  <li>Add a <code class="highlighter-rouge">maven</code> directory under the <code class="highlighter-rouge">dist/dev/datasketches/\&lt;component\&gt;/A.B.0/</code></li>
+  <li>Add a <code class="highlighter-rouge">maven</code> directory under the <code class="highlighter-rouge">dist/dev/datasketches/&lt;component&gt;/A.B.0/</code></li>
   <li>Bulk copy the <code class="highlighter-rouge">jar, asc, md5</code> and <code class="highlighter-rouge">sha1</code> files into the <code class="highlighter-rouge">maven</code> directory.</li>
   <li><code class="highlighter-rouge">svn status</code> # check to see if it is ready to add</li>
   <li><code class="highlighter-rouge">svn add . --force</code></li>
@@ -868,7 +869,7 @@
           </li>
           <li>Create new version directory under appropriate component directory:
             <ul>
-              <li><code class="highlighter-rouge">mkdir -p \&lt;component\&gt;/A.B.0</code></li>
+              <li><code class="highlighter-rouge">mkdir -p &lt;component&gt;/A.B.0</code></li>
             </ul>
           </li>
         </ul>
@@ -885,7 +886,7 @@
           <li><code class="highlighter-rouge">svn add . --force</code></li>
           <li><code class="highlighter-rouge">svn ci -m "Release A.B.0"</code></li>
           <li>Remove the prior release…</li>
-          <li><code class="highlighter-rouge">svn remove \&lt;component\&gt;/X.Y.0</code></li>
+          <li><code class="highlighter-rouge">svn remove &lt;component&gt;/X.Y.0</code></li>
           <li><code class="highlighter-rouge">svn ci -m "Remove Prior release"</code></li>
           <li><code class="highlighter-rouge">svn status</code> # should be empty</li>
         </ul>
@@ -950,7 +951,7 @@ reflected in the master. Use the <strong>git cherry-pick</strong> command for th
   <li>Make sure your local website directory is pointing to master and up-to-date.</li>
   <li>Run the following with the argument specifying the location of your local website directory:
     <ul>
-      <li><code class="highlighter-rouge">./createDownloadsInclude.sh /Users/\&lt;name\&gt;/ ... /datasketches-website</code></li>
+      <li><code class="highlighter-rouge">./createDownloadsInclude.sh /Users/&lt;name&gt;/ ... /datasketches-website</code></li>
     </ul>
   </li>
   <li>When this is done, be sure to commit the changes to the website.</li>
