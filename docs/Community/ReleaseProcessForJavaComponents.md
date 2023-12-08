@@ -121,31 +121,32 @@ __NOTES:__
 * Return to release branch A.B.X (or A'.0.X)
 * You may minimize your IDE, pointing at the release branch.
 
-## If Absent, Create Local *dist/dev* directories on your system
+## Push Candidate Release to *dist/dev*
+
+### If Absent, Create Local *dist/dev* directories on your system
 * On your system create the two directory structures that mirror the dist.apache.org/repos/ directories:
     * `mkdir dist/dev/datasketches/`
     * `mkdir dist/release/datasketches/`
 
-## Checkout the *dist/dev* directory now 
+### Checkout the *dist/dev* directory 
 * Open a terminal in the dist/dev/datasketches directory and do a checkout:
     * `svn co https://dist.apache.org/repos/dist/dev/datasketches/ .`      #Note the DOT
     * `svn status`    # make sure it is clean: does not list any (?) or (!) files
 
-## Create the Candidate Apache Release Distribution on *dist/dev*
-### Create Primary Zip Files & Signatures/Hashes
+### Create & Push Zip Files & Signatures/Hashes to *dist/dev*
 * You will need the following arguments:
   * Absolute path of target project.basedir on your system
   * Project.artifactId : datasketches-\<component\> where component is e.g., java, pig, hive,...
   * GitHub Tag: A.B.0-RC1 (or RCn)
   * Have your GPG passphrase handy -- you may have only a few seconds to enter it!
-* Start a new terminal in the above dist/dev/datasketches/scripts directory on your system:
+* Start a new terminal in the above *dist/dev/datasketches/scripts* directory on your system:
   * Confirm *gpg-agent* is running:
       * `eval $(gpg-agent --daemon)`
           * if it is not running it will start it
           * if it is already running you will see something like:
           * `gpg-agent: a gpg-agent is already running - not starting a new one`  
-  * Run something like (you need to edit this):
-    * `./bashDeployToDist.sh /Users/\<name\>/dev/git/Apache/datasketches-\<component\> datasketches-\<component\> A.B.0-RC1`
+  * Run something like this (you need to copy & edit):
+    * `./bashDeployToDist.sh /Users/<name>/dev/git/Apache/datasketches-<component> datasketches-<component> A.B.0-RC1`
     * Follow the instructions.
     * NOTE: if you get the error "gpg: signing failed: No pinentry":
         * open .gnupg/gpg-agent.conf
@@ -198,7 +199,7 @@ __NOTES:__
 #### JAVA ONLY
 * Place copies of the artifact jars deployed to Nexus under a "maven" directory.  For example see <https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/>
 * Note that the `jar` files with their `asc`, `md5` and `sha1` signature are all together in the .md2 archive 
-* Add a `maven` directory under the `dist/dev/datasketches/\<component\>/A.B.0/`
+* Add a `maven` directory under the `dist/dev/datasketches/<component>/A.B.0/`
 * Bulk copy the `jar, asc, md5` and `sha1` files into the `maven` directory.
 * `svn status` # check to see if it is ready to add
 * `svn add . --force`
@@ -234,7 +235,7 @@ __NOTES:__
             * `svn co https://dist.apache.org/repos/dist/release/datasketches/ .` #note dot at end
             * `svn status` #make sure checkout is clean: does not list any (?) or (!) files
         * Create new version directory under appropriate component directory:
-            * `mkdir -p \<component\>/A.B.0`
+            * `mkdir -p <component>/A.B.0`
     * Using local file system copy files 
         * From  ... /dist/dev/datasketches/\<component\>/version-RCnn/*
         * To    ... /dist/release/datasketches/\<component\>/version (no RCnn)/*
@@ -243,7 +244,7 @@ __NOTES:__
         * `svn add . --force`
         * `svn ci -m "Release A.B.0"`
         * Remove the prior release...
-        * `svn remove \<component\>/X.Y.0`
+        * `svn remove <component>/X.Y.0`
         * `svn ci -m "Remove Prior release"`
         * `svn status` # should be empty
     * Using local file system
@@ -284,7 +285,7 @@ reflected in the master. Use the **git cherry-pick** command for this.
 * Start a new terminal in the *../dist/dev/datasketches/scripts* directory on your system:
 * Make sure your local website directory is pointing to master and up-to-date. 
 * Run the following with the argument specifying the location of your local website directory:
-    * `./createDownloadsInclude.sh /Users/\<name\>/ ... /datasketches-website`
+    * `./createDownloadsInclude.sh /Users/<name>/ ... /datasketches-website`
 * When this is done, be sure to commit the changes to the website.
 
 ### Update Website Documentation (if new functionality)
