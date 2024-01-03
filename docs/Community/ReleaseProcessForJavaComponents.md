@@ -39,6 +39,7 @@ __NOTES:__
 * `mvn versions:display-plugin-updates`
 * `mvn versions:display-dependency-updates`
 * `mvn versions:display-property-updates`
+* `mvn clean -Papache-release`
 
 ### Visual Checks for Correctness
 * LICENSE
@@ -59,6 +60,7 @@ __NOTES:__
 * `mvn clean test -P check-cpp-files`
 * `mvn clean javadoc:javadoc`
 * `mvn clean install -DskipTests=true`
+
 * Check that the /target/ directory has 5 jars: (may need to refresh)
     * datasketches-\<component\>-SNAPSHOT-javadoc.jar
     * datasketches-\<component\>-SNAPSHOT-sources.jar
