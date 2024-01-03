@@ -539,6 +539,7 @@
   <li><code class="highlighter-rouge">mvn versions:display-plugin-updates</code></li>
   <li><code class="highlighter-rouge">mvn versions:display-dependency-updates</code></li>
   <li><code class="highlighter-rouge">mvn versions:display-property-updates</code></li>
+  <li><code class="highlighter-rouge">mvn clean -Papache-release</code></li>
 </ul>
 
 <h3 id="visual-checks-for-correctness">Visual Checks for Correctness</h3>
@@ -562,7 +563,9 @@
   <li><code class="highlighter-rouge">mvn clean test -P strict</code></li>
   <li><code class="highlighter-rouge">mvn clean test -P check-cpp-files</code></li>
   <li><code class="highlighter-rouge">mvn clean javadoc:javadoc</code></li>
-  <li><code class="highlighter-rouge">mvn clean install -DskipTests=true</code></li>
+  <li>
+    <p><code class="highlighter-rouge">mvn clean install -DskipTests=true</code></p>
+  </li>
   <li>Check that the /target/ directory has 5 jars: (may need to refresh)
     <ul>
       <li>datasketches-&lt;component&gt;-SNAPSHOT-javadoc.jar</li>
