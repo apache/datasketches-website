@@ -33,7 +33,9 @@ layout: doc_page
 	* The C++ Core is extended using the python binding library [pybind11](https://github.com/pybind/pybind11) enabling high performance operation from Python.
 
 ### Cross Language Binary Compatibility
-* Sketches serialized from C++ or Python can be interpreted by compatible Java sketches and visa versa. 
+* Sketches serialized from C++ or Python can be interpreted by compatible Java sketches and visa versa.
+
+* All sketches have a serialized form which is able to be deserialized by any version of the library since the sketch was introduced.
 
 ### Speed
 * These single-pass, "one-touch" algorithms are <i>fast ([see example](https://datasketches.apache.org/docs/Theta/ThetaUpdateSpeed.html))</i> to enable real-time processing capability.
