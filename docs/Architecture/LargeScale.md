@@ -35,7 +35,14 @@ layout: doc_page
 ### Cross Language Binary Compatibility
 * Sketches serialized from C++ or Python can be interpreted by compatible Java sketches and visa versa.
 
-* Current library versions can read serialized images of sketches from older or newer library versions within a language. The current version of a serialized image is compatible across languages with the caveat that a new sketch may be introduced in one language before being ported to others. Sketches requiring user-written custom serialize/deserialize code rely on users to port that custom code themselves for cross-language compatibility.
+* A current library version can read serialized images of sketches from older _or_ newer library
+versions within a language. In the serialized form, sketches contain a version number which allows
+the library to deserialize sketches produced by older versions of the library.
+
+* The current version of a serialized sketch is compatible across languages
+with the caveat that a new sketch may be introduced in one language before being ported to others.
+Sketches requiring user-written custom serialize/deserialize code rely on users to port that custom
+code themselves for cross-language compatibility.
 
 ### Speed
 * These single-pass, "one-touch" algorithms are <i>fast ([see example](https://datasketches.apache.org/docs/Theta/ThetaUpdateSpeed.html))</i> to enable real-time processing capability.
