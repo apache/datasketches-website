@@ -23,7 +23,7 @@ layout: doc_page
 
 #### Multiple Languages
 
-* The DataSketches library is now available in three languages, Java, C++, and Python. A forth language, GoLang, is in development.
+* The DataSketches library is now available in three languages, Java, C++, and Python. A fourth language, Go, is in development.
  
 
 ### Compatibility Across Languages, Software Versions And Binary Serialization Versions
@@ -43,7 +43,7 @@ From the user's perspective, as long as the *SerVer* is the same, older *Softwar
 
 #### The Serialized Image of a Sketch
 * The structure (or image) of a serialized sketch is independent of the language from which it was created. 
-* The sketch image only contains little-endian primitives, such as int64, int32, int16, int8, double-64, float-32, UTF-8 strings, and simple array structures of those, which can be easily interpreted in many languages on modern CPUs. We do not support big-endian serialization.
+* The sketch image only contains little-endian primitives, such as int64, int32, int16, int8, double-64, float-32, UTF-8 strings, and simple array structures of those. While these serialized primitives between languages may not be strictly equal they can be interpreted to be logically equivalent. We do not support big-endian serialization.
 * The sketch image is unique for each type of sketch.
 * Simply speaking, a sketch image can be viewed as a blob of bytes, which is easily stored and easily transported using many different protocols, including Protobuf, Avro, Thrift, Byte64, etc.
 
