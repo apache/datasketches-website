@@ -41,6 +41,8 @@ With this goal in mind, here are some of the key strategic decisions we have mad
 
 From the user's perspective, as long as the *SerVer* is the same, older *Software Versions* should be able to read sketch images created by newer *Software Versions*. But the APIs may be different, obviously. An older *Software Version* will not be able to take advantage of new features introduced in new *Software Versions*, but it should be able to do what it did before. In other words, there will be no loss of access to the serialized sketch and the older *Software Version* capabilities. A user should not need to access the *SerVer*, nonetheless it is always stored in index one of the serialized image. If a sketch is presented with a *SerVer* that it is not compatible with, the sketch should throw an exception and say what the problem is, just like Java does with its *Class File Format Versions*.
 
+Sketches requiring user-written custom serialize/deserialize code rely on users to port that custom code themselves for cross-version, cross-language, and cross-platform compatibility.
+
 #### The Serialized Image of a Sketch
 * The structure (or image) of a serialized sketch is independent of the language from which it was created. 
 * The sketch image only contains little-endian primitives, such as int64, int32, int16, int8, double-64, float-32, UTF-8 strings, and simple array structures of those. While these serialized primitives between languages may not be strictly equal they can be interpreted to be logically equivalent. We do not support big-endian serialization.
