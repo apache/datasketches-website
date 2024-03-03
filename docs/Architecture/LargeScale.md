@@ -21,7 +21,7 @@ layout: doc_page
 -->
 ## Designed for Large-scale Computing Systems
 
-#### Multiple Languages
+### Multiple Languages
 
 * The DataSketches library is now available in three languages, Java, C++, and Python. A fourth language, Go, is in development.
  
