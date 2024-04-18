@@ -538,18 +538,32 @@
   <li>Confirm any new bug fixes have corresponding tests</li>
   <li>At major version releases, search for deprecated code and remove at <strong>Major Versions</strong> only.
     <ul>
-      <li><code class="highlighter-rouge">find . -name "*.java" -type f -print | xargs grep -i -n -s -A0 "deprecated"</code></li>
+      <li><code class="highlighter-rouge">find . -name "*.java" -type f -print | xargs grep -n -s -A0 "deprecat"</code> <br /> (This will find “deprecated”, “Deprecating”, “deprecation”, etc.)</li>
       <li><strong>Note:</strong> When first marking a segment of code deprecated, please add the current version number. This will make it easier to know when to remove the deprecated code.</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="check-maven-plugin-dependency-property-versions-of-the-pom">Check Maven Plugin, Dependency, Property Versions of the POM:</h3>
+<h3 id="check-pom-for-correctness">Check POM for Correctness</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">mvn clean</code> will check for most things</li>
+  <li>Import the pom into Eclipse’s POM Editor</li>
+</ul>
+
+<h4 id="check-project-dependencies">Check Project Dependencies</h4>
+
+<ul>
+  <li><code class="highlighter-rouge">mvn dependency:tree</code></li>
+  <li><code class="highlighter-rouge">mvn versions:display-dependency-updates</code> <br />
+For Java 8, the TestNG version must remain at 7.5.1</li>
+</ul>
+
+<h4 id="check-pom-plugin-updates">Check POM Plugin Updates</h4>
+
 <ul>
   <li><code class="highlighter-rouge">mvn versions:display-plugin-updates</code></li>
-  <li><code class="highlighter-rouge">mvn versions:display-dependency-updates</code></li>
-  <li><code class="highlighter-rouge">mvn versions:display-property-updates</code></li>
-  <li><code class="highlighter-rouge">mvn clean -Papache-release</code></li>
+  <li><code class="highlighter-rouge">mvn versions:display-property-updates</code> For all POM properties</li>
 </ul>
 
 <h3 id="visual-checks-for-correctness">Visual Checks for Correctness</h3>
@@ -559,10 +573,11 @@
   <li>README.md</li>
   <li>.asf.yaml</li>
   <li>.travis.yml (if used)</li>
-  <li>.gitattributes – used to exclude files from release zip, assumes .gitignore</li>
+  <li>.gitattributes – used to exclude files from release zip, assumes .gitignore <br />
+Also specifies line separator characters for text files.</li>
   <li>.github/workflows</li>
-  <li>.gitignore – used to exclude files from origin</li>
-  <li>pom.xml / apache-rat-plugin config – checks for license headers, assumes .gitignore</li>
+  <li>.gitignore – used to exclude files from git origin</li>
+  <li>pom.xml / apache-rat-plugin config – checks for license headers, assumes .gitignore <br /> Check if any files need to be added for exclusion.</li>
   <li>pom.xml</li>
 </ul>
 
@@ -570,19 +585,19 @@
 <ul>
   <li><code class="highlighter-rouge">mvn apache-rat:check</code></li>
   <li><code class="highlighter-rouge">mvn clean test</code></li>
-  <li><code class="highlighter-rouge">mvn clean test -P strict</code></li>
   <li><code class="highlighter-rouge">mvn clean test -P check-cpp-files</code></li>
+  <li><code class="highlighter-rouge">mvn clean test -P check-cpp-historical-files</code></li>
   <li><code class="highlighter-rouge">mvn clean javadoc:javadoc</code></li>
   <li>
     <p><code class="highlighter-rouge">mvn clean install -DskipTests=true</code></p>
   </li>
   <li>Check that the /target/ directory has 5 jars: (may need to refresh)
     <ul>
-      <li>datasketches-&lt;component&gt;-SNAPSHOT-javadoc.jar</li>
-      <li>datasketches-&lt;component&gt;-SNAPSHOT-sources.jar</li>
-      <li>datasketches-&lt;component&gt;-SNAPSHOT-test-sources.jar</li>
-      <li>datasketches-&lt;component&gt;-SNAPSHOT-tests.jar</li>
-      <li>datasketches-&lt;component&gt;-SNAPSHOT.jar</li>
+      <li>datasketches-&lt;component-version&gt;-SNAPSHOT-javadoc.jar</li>
+      <li>datasketches-&lt;component-version&gt;-SNAPSHOT-sources.jar</li>
+      <li>datasketches-&lt;component-version&gt;-SNAPSHOT-test-sources.jar</li>
+      <li>datasketches-&lt;component-version&gt;-SNAPSHOT-tests.jar</li>
+      <li>datasketches-&lt;component-version&gt;-SNAPSHOT.jar</li>
     </ul>
   </li>
   <li>Check your local Maven local repository
