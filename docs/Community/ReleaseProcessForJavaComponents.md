@@ -32,14 +32,25 @@ __NOTES:__
 * Confirm that all __temporary__ branches are checked into master and/or deleted, both local and remote.
 * Confirm any new bug fixes have corresponding tests
 * At major version releases, search for deprecated code and remove at __Major Versions__ only.
-    * `find . -name "*.java" -type f -print | xargs grep -i -n -s -A0 "deprecated"`
+    * `find . -name "*.java" -type f -print | xargs grep -n -s -A0 "deprecat"` <br/> (This will find "deprecated", "Deprecating", "deprecation", etc.)
     * **Note:** When first marking a segment of code deprecated, please add the current version number. This will make it easier to know when to remove the deprecated code.
 
-### Check Maven Plugin, Dependency, Property Versions of the POM:
+### Check POM for Correctness
+
+* `mvn clean` will check for most things
+* Import the pom into Eclipse's POM Editor
+
+#### Check Project Dependencies
+
+* `mvn dependency:tree`
+* `mvn versions:display-dependency-updates` <br/>
+For Java 8, the TestNG version must remain at 7.5.1
+
+#### Check POM Plugin Updates
+
 * `mvn versions:display-plugin-updates`
-* `mvn versions:display-dependency-updates`
-* `mvn versions:display-property-updates`
-* `mvn clean -Papache-release`
+* `mvn versions:display-property-updates` For all POM properties
+
 
 ### Visual Checks for Correctness
 * LICENSE
@@ -47,26 +58,27 @@ __NOTES:__
 * README.md
 * .asf.yaml
 * .travis.yml (if used)
-* .gitattributes -- used to exclude files from release zip, assumes .gitignore
+* .gitattributes -- used to exclude files from release zip, assumes .gitignore <br/>
+Also specifies line separator characters for text files.
 * .github/workflows
-* .gitignore -- used to exclude files from origin
-* pom.xml / apache-rat-plugin config -- checks for license headers, assumes .gitignore
+* .gitignore -- used to exclude files from git origin
+* pom.xml / apache-rat-plugin config -- checks for license headers, assumes .gitignore <br/> Check if any files need to be added for exclusion.
 * pom.xml
 
 ### Run Maven Tests
 * `mvn apache-rat:check`
 * `mvn clean test`
-* `mvn clean test -P strict`
 * `mvn clean test -P check-cpp-files`
+* `mvn clean test -P check-cpp-historical-files`
 * `mvn clean javadoc:javadoc`
 * `mvn clean install -DskipTests=true`
 
 * Check that the /target/ directory has 5 jars: (may need to refresh)
-    * datasketches-\<component\>-SNAPSHOT-javadoc.jar
-    * datasketches-\<component\>-SNAPSHOT-sources.jar
-    * datasketches-\<component\>-SNAPSHOT-test-sources.jar
-    * datasketches-\<component\>-SNAPSHOT-tests.jar
-    * datasketches-\<component\>-SNAPSHOT.jar
+    * datasketches-\<component-version\>-SNAPSHOT-javadoc.jar
+    * datasketches-\<component-version\>-SNAPSHOT-sources.jar
+    * datasketches-\<component-version\>-SNAPSHOT-test-sources.jar
+    * datasketches-\<component-version\>-SNAPSHOT-tests.jar
+    * datasketches-\<component-version\>-SNAPSHOT.jar
 * Check your local Maven local repository
     * _~/.m2/repository/org/apache/datasketches/datasketches-\<component\>/A.B.0-SNAPSHOT/_ 
     * It should have 5 new jars and a .pom file. 
