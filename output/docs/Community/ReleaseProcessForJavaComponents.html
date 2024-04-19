@@ -808,7 +808,7 @@ Also specifies line separator characters for text files.</li>
 
 <h3 id="deploy-check">DEPLOY-CHECK</h3>
 <ul>
-  <li>Login to <a href="https://repository.apache.org/">repository.apache.org</a> / Staging Repositories for orgapachedatasketches-XXXX</li>
+  <li>Login to Nexus: <a href="https://repository.apache.org/">repository.apache.org</a> / Staging Repositories for orgapachedatasketches-XXXX</li>
   <li>Click <strong>Content</strong> and search to the end.  Each jar &amp; pom should have .asc, .md5, .sha1 signatures</li>
 </ul>
 
@@ -828,7 +828,7 @@ Also specifies line separator characters for text files.</li>
   <li>Check your local Maven repository
     <ul>
       <li><em>~/.m2/repository/org/apache/datasketches/datasketches-&lt;component&gt;/A.B.0/</em></li>
-      <li>It should have 5 new jars and a .pom file each with .asc, .md5, and .sha1 signatures</li>
+      <li>It should have 5 new jars and a .pom file each with .asc, .md5, and .sha1 signatures. <br /> Note: Newer versions of the Maven deploy plugin do not copy the md5 and sha1 signatures into .m2, but they will still exist in Nexus. md5 and sha1 are obsolete.</li>
     </ul>
   </li>
 </ul>
@@ -837,9 +837,9 @@ Also specifies line separator characters for text files.</li>
 <h4 id="java-only">JAVA ONLY</h4>
 <ul>
   <li>Place copies of the artifact jars deployed to Nexus under a “maven” directory.  For example see <a href="https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/">https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/</a></li>
-  <li>Note that the <code class="highlighter-rouge">jar</code> files with their <code class="highlighter-rouge">asc</code>, <code class="highlighter-rouge">md5</code> and <code class="highlighter-rouge">sha1</code> signature are all together in the .md2 archive</li>
+  <li>Note that the <code class="highlighter-rouge">jar</code> files with their <code class="highlighter-rouge">asc</code>, (optional <code class="highlighter-rouge">md5</code> and <code class="highlighter-rouge">sha1</code>) signature are all together in the .md2 archive</li>
   <li>Add a <code class="highlighter-rouge">maven</code> directory under the <code class="highlighter-rouge">dist/dev/datasketches/&lt;component&gt;/A.B.0/</code></li>
-  <li>Bulk copy the <code class="highlighter-rouge">jar, asc, md5</code> and <code class="highlighter-rouge">sha1</code> files into the <code class="highlighter-rouge">maven</code> directory.</li>
+  <li>Bulk copy the <code class="highlighter-rouge">jar, asc, (optional md5</code> and <code class="highlighter-rouge">sha1</code>) files into the <code class="highlighter-rouge">maven</code> directory.</li>
   <li><code class="highlighter-rouge">svn status</code> # check to see if it is ready to add</li>
   <li><code class="highlighter-rouge">svn add . --force</code></li>
   <li><code class="highlighter-rouge">svn ci -m "add nexus jars to dist/dev/datasketches"</code></li>
