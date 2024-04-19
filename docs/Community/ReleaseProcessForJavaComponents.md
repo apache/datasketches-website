@@ -224,7 +224,6 @@ Also specifies line separator characters for text files.
 * These must be signed with GPG (.asc) and SHA512 (.sha512)
 
 ## Prepare & Send [VOTE] Letter to dev@
-* See VoteTemplates directory for a recent example
 * If vote is not successful, fix the problem and repeat above steps.
 * After a successful vote return to __this point__ and continue ...
 
