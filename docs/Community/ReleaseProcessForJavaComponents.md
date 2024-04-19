@@ -194,7 +194,7 @@ Also specifies line separator characters for text files.
 * `mvn clean deploy -Pnexus-jars -DskipTests=true`
 
 ### DEPLOY-CHECK
-* Login to [repository.apache.org](https://repository.apache.org/) / Staging Repositories for orgapachedatasketches-XXXX
+* Login to Nexus: [repository.apache.org](https://repository.apache.org/) / Staging Repositories for orgapachedatasketches-XXXX
 * Click __Content__ and search to the end.  Each jar & pom should have .asc, .md5, .sha1 signatures
 
 ### CLOSE (Very Important)
@@ -207,14 +207,14 @@ Also specifies line separator characters for text files.
 ### CHECK Local Maven Repo
 * Check your local Maven repository
     * _~/.m2/repository/org/apache/datasketches/datasketches-\<component\>/A.B.0/_ 
-    * It should have 5 new jars and a .pom file each with .asc, .md5, and .sha1 signatures
+    * It should have 5 new jars and a .pom file each with .asc, .md5, and .sha1 signatures. <br/> Note: Newer versions of the Maven deploy plugin do not copy the md5 and sha1 signatures into .m2, but they will still exist in Nexus. md5 and sha1 are obsolete.
 
 ### Create Copy of External Artifact Distributions
 #### JAVA ONLY
 * Place copies of the artifact jars deployed to Nexus under a "maven" directory.  For example see <https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/>
-* Note that the `jar` files with their `asc`, `md5` and `sha1` signature are all together in the .md2 archive 
+* Note that the `jar` files with their `asc`, (optional `md5` and `sha1`) signature are all together in the .md2 archive 
 * Add a `maven` directory under the `dist/dev/datasketches/<component>/A.B.0/`
-* Bulk copy the `jar, asc, md5` and `sha1` files into the `maven` directory.
+* Bulk copy the `jar, asc, (optional md5` and `sha1`) files into the `maven` directory.
 * `svn status` # check to see if it is ready to add
 * `svn add . --force`
 * `svn ci -m "add nexus jars to dist/dev/datasketches"`
