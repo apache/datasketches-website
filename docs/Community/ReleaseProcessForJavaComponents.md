@@ -126,8 +126,8 @@ Also specifies line separator characters for text files.
     * Confirm that there are no unstaged or staged changes.
     * Return to master branch
 
-### Edit Master Branch with the SNAPSHOT Version of the Next Release
-* Edit master pom.xml to A'.B'.0-SNAPSHOT where A' or B' will be incremented by 1. (Bug fix releases will change the 3rd digit)
+### Edit Master Branch with the SNAPSHOT Version of the Anticipated Next Future Release
+* Edit master pom.xml to A'.B'.0-SNAPSHOT where A' or B' will be incremented by 1.
 * Commit and Push this change to origin/master with the comment "Release Process: Change pom version to A'.B'.0-SNAPSHOT."
     * This may require changing to a temparary branch and creating a PR to be approved if master branch is restricted. 
 * Create a tag A'.B'.0-SNAPSHOT on master at the HEAD.
