@@ -249,6 +249,7 @@
         {"class":"Doc",  "desc" : "Using Sketches in ApacheDruid",            "dir" : "SystemIntegrations", "file": "ApacheDruidIntegration" },
         {"class":"Doc",  "desc" : "Using Sketches in Apache Hive",            "dir" : "SystemIntegrations", "file": "ApacheHiveIntegration" },
         {"class":"Doc",  "desc" : "Using Sketches in Apache Pig",             "dir" : "SystemIntegrations", "file": "ApachePigIntegration" },
+        {"class":"Doc",  "desc" : "Using Sketches in Apache Pinot",           "dir" : "SystemIntegrations", "file": "ApachePinotIntegration" },
         {"class":"Doc",  "desc" : "Using Sketches in PostgreSQL",             "dir" : "SystemIntegrations", "file": "PostgreSQLIntegration" },
       ]
     },
@@ -270,4 +271,3 @@
     },
   ]
 }
-
