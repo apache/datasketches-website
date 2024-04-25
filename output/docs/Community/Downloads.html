@@ -524,6 +524,7 @@
 <h1 id="downloads">Downloads</h1>
 
 <h2 id="signing-keys"><a href="https://downloads.apache.org/datasketches/KEYS">Signing Keys</a></h2>
+
 <p>It is essential that you verify the integrity of release downloads. See <a href="https://www.apache.org/dyn/closer.cgi#verify">instructions here.</a></p>
 
 <h2 id="latest-source-zip-files">Latest Source Zip Files</h2>
@@ -620,19 +621,22 @@
 <!-- End _includes/downloadsInclude.txt -->
 
 <h2 id="download-java-jar-files">Download Java Jar Files</h2>
-<p>From <a href="https://search.maven.org/search?q=g:%20org.apache.datasketches">Maven Central</a>.</p>
+
+<p>From <a href="https://central.sonatype.com/search?smo=true&amp;namespace=org.apache.datasketches">Maven Central</a>.</p>
 
 <h3 id="use-with-maven">Use with Maven</h3>
+
 <p>If you are developing using Maven and want to use, for example, datasketches-java, add the following dependencies to your pom.xml file:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.datasketches&lt;/groupId&gt;
-  &lt;artifactId&gt;datasketches-java&lt;/artifactId&gt;
-  &lt;version&gt;3.1.0&lt;/version&gt;
-&lt;/dependency&gt;
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.apache.datasketches<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>datasketches-java<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div></div>
 
 <h2 id="enabling-python">Enabling Python</h2>
+
 <ul>
   <li>First download the C++ core above, then read the <a href="https://github.com/apache/datasketches-cpp/tree/master/python">Python Installation Instructions</a></li>
 </ul>
@@ -646,6 +650,7 @@
 </ul>
 
 <h2 id="version-numbers">Version Numbers</h2>
+
 <p>Apache DataSketches uses <a href="https://semver.org/">semantic versioning</a>. Version numbers use the form major.minor.incremental and are updated as follows:</p>
 
 <ul>
@@ -659,20 +664,24 @@ This same number is also in the top section of the pom.xml file and is the same 
 the release was generated from.</p>
 
 <h3 id="version-history-and-release-notes">Version History and Release Notes</h3>
+
 <p>Please use GitHub version history on the respective component repositories. There are several ways to access the release notes:</p>
 
 <h4 id="direct-link-from-the-github-page">Direct link from the GitHub page</h4>
+
 <ul>
   <li>In the right-hand column click on <strong>Releases</strong>.</li>
 </ul>
 
 <h4 id="from-the-tags-button-on-the-github-page">From the <strong>tags</strong> button on the GitHub page</h4>
+
 <ul>
   <li>Click on <strong>tags</strong></li>
   <li>Select <strong>Releases</strong></li>
 </ul>
 
 <h4 id="from-the-branches-master-button">From the <strong>Branches (master)</strong> button</h4>
+
 <ul>
   <li>Click on the branch icon <strong>[master]</strong></li>
   <li>Click on <strong>[Tags]</strong></li>
@@ -681,29 +690,30 @@ the release was generated from.</p>
 </ul>
 
 <h4 id="or-you-can-go-directly-by-apending-releases-to-the-url-as-in">Or, you can go directly by apending <code class="highlighter-rouge">/releases</code> to the URL as in</h4>
+
 <ul>
   <li><code class="highlighter-rouge">https://github.com/apache/datasketches-java/releases</code></li>
 </ul>
 
 <h2 id="release-philosophy">Release Philosophy</h2>
 
-<p>These are fully tested, production quality releases, and hopefully as bug-free as humanly possible. 
-However, the code is continuously evolving and improvements in performance, documentation, additions 
-to the API, and bug fixes do occur.  When enough of these build up, especially for bug fixes or 
-performance improvements, a new release will be issued and the <b>minor version</b> 
-digit will be incremented.  The <b>incremental</b> digit will only be used for unscheduled bug fixes as stated above.</p>
+<p>These are fully tested, production quality releases, and hopefully as bug-free as humanly possible.
+However, the code is continuously evolving and improvements in performance, documentation, additions
+to the API, and bug fixes do occur.  When enough of these build up, especially for bug fixes or
+performance improvements, a new release will be issued and the <strong>minor version</strong>
+digit will be incremented.  The <strong>incremental</strong> digit will only be used for unscheduled bug fixes as stated above.</p>
 
-<p>As stated above, the <b>major</b> digit is being reserved for major refactorings of the library where backward API 
+<p>As stated above, the <strong>major</strong> digit is being reserved for major refactorings of the library where backward API
 compatibility may not be guaranteed.</p>
 
-<p>For the repositories that depend on java core, such as <i>datasketches-hive</i> and <i>datasketches-pig</i>,
-the version number may be incremented just to be in sync with the java core repository, 
-and may not reflect any actual code changes other than a change in the pom.xml to reflect the new 
+<p>For the repositories that depend on java core, such as <em>datasketches-hive</em> and <em>datasketches-pig</em>,
+the version number may be incremented just to be in sync with the java core repository,
+and may not reflect any actual code changes other than a change in the pom.xml to reflect the new
 dependency. Please refer to the release notes for that version.</p>
 
 <h3 id="binary-compatibilty">Binary Compatibilty</h3>
-<p>We try as much as possible to maintain <em>forward binary compatibility</em> of serialized (stored) sketch images.  For example, a Java Theta Sketch stored as a binary image using version 0.1.0 (Aug, 2015) can be read and merged into a C++ Theta Union version 1.2.0 (Jan, 2020).  The languages can be swapped in this scenario, but the versions cannot be.</p>
 
+<p>We try as much as possible to maintain <em>forward binary compatibility</em> of serialized (stored) sketch images.  For example, a Java Theta Sketch stored as a binary image using version 0.1.0 (Aug, 2015) can be read and merged into a C++ Theta Union version 1.2.0 (Jan, 2020).  The languages can be swapped in this scenario, but the versions cannot be.</p>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
