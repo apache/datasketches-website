@@ -208,8 +208,6 @@
             },
             { "class":"Dropdown", "desc" : "Quantiles Studies", "array":
               [
-
-                {"class":"Doc",  "desc" : "KLL sketch vs t-digest",                           "dir" : "QuantilesStudies", "file": "KllSketchVsTDigest" },
                 {"class":"Doc",  "desc" : "Druid Approximate Histogram",                      "dir" : "QuantilesStudies", "file": "DruidApproxHistogramStudy" },
                 {"class":"Doc",  "desc" : "Moments Sketch Study",                             "dir" : "QuantilesStudies", "file": "MomentsSketchStudy" },
                 {"class":"Doc",  "desc" : "Quantiles StreamA Study",                          "dir" : "QuantilesStudies", "file": "QuantilesStreamAStudy" },
@@ -249,6 +247,7 @@
         {"class":"Doc",  "desc" : "Using Sketches in ApacheDruid",            "dir" : "SystemIntegrations", "file": "ApacheDruidIntegration" },
         {"class":"Doc",  "desc" : "Using Sketches in Apache Hive",            "dir" : "SystemIntegrations", "file": "ApacheHiveIntegration" },
         {"class":"Doc",  "desc" : "Using Sketches in Apache Pig",             "dir" : "SystemIntegrations", "file": "ApachePigIntegration" },
+        {"class":"Doc",  "desc" : "Using Sketches in Apache Pinot",           "dir" : "SystemIntegrations", "file": "ApachePinotIntegration" },
         {"class":"Doc",  "desc" : "Using Sketches in PostgreSQL",             "dir" : "SystemIntegrations", "file": "PostgreSQLIntegration" },
       ]
     },
@@ -270,4 +269,3 @@
     },
   ]
 }
-
