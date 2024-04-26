@@ -68,4 +68,4 @@ System.out.println(Arrays.toString(sketch.getQuantiles(new double[]{0, 0.5, 1}))
 ```
 
 #### Pre-built Sketch Ingestion
-Apache Pinot can also ingest pre-built sketch objects both via Kafka (Realtime) or Spark (Batch) modes and merge(union) when running aggregations.
+Apache Pinot can also ingest pre-built sketch objects either via Kafka (Realtime) or Spark (Batch) and merge them when doing aggregations.
