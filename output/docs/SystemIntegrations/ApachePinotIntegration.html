@@ -522,65 +522,60 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="kll-sketch">KLL Sketch</h2>
+<h3 id="apache-pinot-integration">Apache Pinot Integration</h3>
+<p><a href="https://pinot.apache.org/">Apache Pinot</a> has built-in support for most major sketch families from Apache Datasketches as aggregation and transformation functions in its SQL dialect.</p>
 
-<p>Implementation of a very compact quantiles sketch with lazy compaction scheme and nearly optimal accuracy per bit.
-See <a href="https://arxiv.org/abs/1603.05346v2">Optimal Quantile Approximation in Streams, by Zohar Karnin, Kevin Lang, Edo Liberty</a>.
-The name KLL is composed of the initial letters of the last names of the authors.</p>
-
-<p>The usage of KllSketch is very similar to the classic quantiles DoublesSketch.</p>
-
-<ul>
-  <li>The key feature of this sketch is its compactness for a given accuracy.</li>
-  <li>It is separately implemented for both float and double values and can be configured for use on-heap or off-heap (Direct mode).</li>
-  <li>The parameter K that affects the accuracy and the size of the sketch is not restricted to powers of 2.</li>
-  <li>The default of 200 was chosen to yield approximately the same normalized rank error (1.65%) as the classic quantiles DoublesSketch (K=128, error 1.73%).</li>
-</ul>
-
-<h3 id="java-example">Java example</h3>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.datasketches.kll.KllFloatsSketch;
-
-KllFloatsSketch sketch = KllFloatsSketch.newHeapInstance();
-int n = 1000000;
-for (int i = 0; i &lt; n; i++) {
-  sketch.update(i);
-}
-float median = sketch.getQuantile(0.5);
-double rankOf1000 = sketch.getRank(1000);
+<p>Example:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">distinctCountThetaSketch</span><span class="p">(</span>
+  <span class="n">sketchCol</span><span class="p">,</span>
+  <span class="s1">'nominalEntries=1024'</span><span class="p">,</span>
+  <span class="s1">'country'</span><span class="o">=</span><span class="s1">''</span><span class="n">USA</span><span class="s1">''</span> <span class="k">AND</span> <span class="s1">'state'</span><span class="o">=</span><span class="s1">''</span><span class="n">CA</span><span class="s1">''</span><span class="p">,</span> <span class="s1">'device'</span><span class="o">=</span><span class="s1">''</span><span class="n">mobile</span><span class="s1">''</span><span class="p">,</span> <span class="s1">'SET_INTERSECT($1, $2)'</span>
+<span class="p">)</span>
+<span class="k">from</span> <span class="k">table</span>
+<span class="k">where</span> <span class="n">country</span> <span class="o">=</span> <span class="s1">'USA'</span> <span class="k">or</span> <span class="n">device</span> <span class="o">=</span> <span class="s1">'mobile...'</span>
 </code></pre></div></div>
 
-<h3 id="differences-of-kllsketch-from-the-original-quantiles-doublessketch">Differences of KllSketch from the original quantiles DoublesSketch</h3>
-
+<h3 id="cardinality-estimation">Cardinality Estimation</h3>
 <ul>
-  <li>KLL has a smaller size for the same accuracy.</li>
-  <li>KLL is slightly faster to update.</li>
-  <li>The KLL parameter K doesn’t have to be power of 2.</li>
-  <li>KLL operates with either float values or double values.</li>
-  <li>KLL uses a merge method rather than a union object.</li>
+  <li><a href="https://docs.pinot.apache.org/configuration-reference/functions/distinctcountthetasketch">DistinctCountThetaSketch</a></li>
+  <li><a href="https://docs.pinot.apache.org/users/user-guide-query/query-syntax/how-to-handle-unique-counting#compressed-probability-counting-cpc-sketches">CPCSketch</a></li>
+  <li><a href="https://docs.pinot.apache.org/users/user-guide-query/query-syntax/how-to-handle-unique-counting#tuple-sketches">TupleSketches</a></li>
 </ul>
 
-<p>The starting point for the comparison is setting K in such a way that rank error would be approximately the same. As pointed out above, the default K for both sketches should achieve this. Here is the comparison of the single-sided normalized rank error (getRank() method) for the default K:</p>
+<h3 id="quantiles">Quantiles</h3>
+<ul>
+  <li><a href="https://docs.pinot.apache.org/configuration-reference/functions/percentilekll">PercentileKLL</a></li>
+</ul>
 
-<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-rank-error.png" alt="RankError" /></p>
+<h3 id="frequent-items">Frequent Items</h3>
+<ul>
+  <li><a href="https://docs.pinot.apache.org/configuration-reference/functions/frequentlongssketch">FrequentLongsSketch</a></li>
+  <li><a href="https://docs.pinot.apache.org/configuration-reference/functions/frequentstringssketch">FrequentStringsSketch</a></li>
+</ul>
 
-<p>The classic quantiles DoublesSketch has two forms with different serialized sizes: UpdateDoublesSketch and CompactDoublesSketch. The KLL sketches makes this distinction differently. When the KllSketch is serialized using <em>toByteArray()</em> it is always in a compact form and immutable. When the KllSketch is on-heap it is always updatable. It can be created off-heap using the static factory method <em>newDirectInstance(…)</em> method, which is also updatable. It is possible to move from off-heap (Direct) to on-heap using the <em>heapify(Memory)</em> method.  The <em>merge(…)</em> method will work with off-heap sketches, on-heap sketches and Memory wrapped compact byte arrays.</p>
+<hr />
 
-<p>Here is the comparison of serialized sizes:</p>
+<h3 id="advanced-integration">Advanced Integration</h3>
+<h4 id="raw-output-mode">Raw Output Mode</h4>
+<p>Supported functions have ‘raw’ variants which can output binary representations of sketches for further processing.</p>
 
-<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-size.png" alt="SerializedSize" /></p>
+<p>Example:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="n">percentileRawKll</span><span class="p">(</span><span class="n">ArrDelayMinutes</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span> <span class="k">as</span> <span class="n">sketch</span>
+<span class="k">from</span> <span class="n">airlineStats</span>
+</code></pre></div></div>
+<p>Returns Base64 encoded string: <code class="highlighter-rouge">BQEPC...</code></p>
 
-<p>Here is the comparison of the number of retained items to see the difference with no influence of the size of the item type:</p>
+<p>Output can be processed as:</p>
 
-<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-items.png" alt="NumberOfRetainedItems" /></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">byte</span><span class="o">[]</span> <span class="n">decodedBytes</span> <span class="o">=</span> <span class="nc">Base64</span><span class="o">.</span><span class="na">getDecoder</span><span class="o">().</span><span class="na">decode</span><span class="o">(</span><span class="n">encoded</span><span class="o">);</span>
+<span class="nc">KllDoublesSketch</span> <span class="n">sketch</span> <span class="o">=</span> <span class="nc">KllDoublesSketch</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="nc">Memory</span><span class="o">.</span><span class="na">wrap</span><span class="o">(</span><span class="n">decodedBytes</span><span class="o">));</span>
 
-<p>Below is the accuracy per byte measure (the higher the better). Suppose rank error is 1%, so the corresponding accuracy would be 99%. Divide that by size in bytes to arrive at this measure of how expensive each percentage point is in terms of space needed:</p>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Min, Median, Max values:"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">sketch</span><span class="o">.</span><span class="na">getQuantiles</span><span class="o">(</span><span class="k">new</span> <span class="kt">double</span><span class="o">[]{</span><span class="mi">0</span><span class="o">,</span> <span class="mf">0.5</span><span class="o">,</span> <span class="mi">1</span><span class="o">})));</span>
+</code></pre></div></div>
 
-<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-accuracy-per-byte-log.png" alt="AccuracyPerByte" /></p>
-
-<p>Below is the update() method speed:</p>
-
-<p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-update.png" alt="UpdateTime" /></p>
+<h4 id="pre-built-sketch-ingestion">Pre-built Sketch Ingestion</h4>
+<p>Apache Pinot can also ingest pre-built sketch objects either via Kafka (Realtime) or Spark (Batch) and merge them when doing aggregations.</p>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
