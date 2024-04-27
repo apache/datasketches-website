@@ -82,6 +82,8 @@ The following are system integrations that we have been involved with, but there
 
 * [Apache Pig](https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html)
 
+* [Apache Pinot](https://datasketches.apache.org/docs/SystemIntegrations/ApachePinotIntegration.html)
+
 * [PostgreSQL](https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html)
 
 * [Spark Examples](https://datasketches.apache.org/docs/Theta/ThetaSparkExample.html) 
