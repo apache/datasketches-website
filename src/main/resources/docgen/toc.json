@@ -193,10 +193,10 @@
           [
             {"class":"Doc",  "desc" : "Quantiles and Ranks Tutorial",             "dir" : "Quantiles", "file": "SketchingQuantilesAndRanksTutorial"},
             {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "Quantiles", "file": "QuantilesOverview" },
-            {"class":"Doc",  "desc" : "KLL Floats sketch",                        "dir" : "KLL", "file": "KLLSketch" },
+            {"class":"Doc",  "desc" : "KLL Sketch Family",                        "dir" : "KLL", "file": "KLLSketch" },
             {"class":"Doc",  "desc" : "KLL Sketch Accuracy and Size",             "dir" : "KLL", "file": "KLLAccuracyAndSize" },
             {"class":"Doc",  "desc" : "REQ Floats sketch",                        "dir" : "REQ", "file": "ReqSketch" },
-            {"class":"Doc",  "desc" : "Original QuantilesSketch",                 "dir" : "Quantiles", "file": "OrigQuantilesSketch" },
+            {"class":"Doc",  "desc" : "Classic Quantiles Sketches",                 "dir" : "Quantiles", "file": "ClassicQuantilesSketch" },
 
             { "class":"Dropdown", "desc" : "Quantiles Examples", "array":
               [
