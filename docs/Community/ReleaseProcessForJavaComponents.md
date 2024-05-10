@@ -301,7 +301,11 @@ reflected in the master. Use the **git cherry-pick** command for this.
     * `./createDownloadsInclude.sh /Users/<name>/ ... /datasketches-website`
 * When this is done, be sure to commit the changes to the website.
 
-### Update Website Documentation (if new functionality)
+### Update Website Documentation
+ * Run JavaDoc GitHub action for the release tag
+ * Check that it finished successfully and, optionally, check that it created docs/X.Y.Z directory in the "gh-pages" branch
+ * Check https://apache.github.io/datasketches-java/X.Y.Z/
+ * Update link in _includes/javadocs.html in the datasketches-website repository
 
 ### Prepare Announce Letter to dev@
 * ASF requests that you wait 24 hours to publish Announce letter to allow the propagation to mirrors.
