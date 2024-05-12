@@ -107,9 +107,9 @@
 <div class="ds-header">
   <div class="container">
     <h4>API Snapshots:
-      <a href="https://apache.github.io/datasketches-java/4.2.0/">Java Core</a>,
-      <a href="https://apache.github.io/datasketches-cpp/5.0.0/">C++ Core</a>,
-      <a href="https://apache.github.io/datasketches-python/main/">Python</a>,
+      <a href="https://apache.github.io/datasketches-java/5.0.2/">Java Core</a>,
+      <a href="https://apache.github.io/datasketches-cpp/5.0.2/">C++ Core</a>,
+      <a href="https://apache.github.io/datasketches-python/5.0.2/">Python</a>,
       <a href="https://apache.github.io/datasketches-memory/master/">Memory</a>,
       <a href="/api/pig/snapshot/apidocs/index.html">Pig</a>,
       <a href="/api/hive/snapshot/apidocs/index.html">Hive</a>,
@@ -761,7 +761,13 @@
   <li>When this is done, be sure to commit the changes to the website.</li>
 </ul>
 
-<h2 id="update-website-documentation-if-new-functionality">Update Website Documentation (if new functionality)</h2>
+<h2 id="update-website-documentation">Update Website Documentation</h2>
+<ul>
+  <li>Run Doxygen GitHub action for the release tag</li>
+  <li>Check that it finished successfully and, optionally, check that it created docs/X.Y.Z directory in the “gh-pages” branch</li>
+  <li>Check https://apache.github.io/datasketches-cpp/X.Y.Z/</li>
+  <li>Update link in _includes/javadocs.html in the datasketches-website repository</li>
+</ul>
 
 <h2 id="prepare-announce-letter-to-dev">Prepare Announce Letter to dev@</h2>
 <ul>
