@@ -68,8 +68,8 @@ Also specifies line separator characters for text files.
 ### Run Maven Tests
 * `mvn apache-rat:check`
 * `mvn clean test`
-* `mvn clean test -P check-cpp-files`
-* `mvn clean test -P check-cpp-historical-files`
+* `mvn clean test -P check-cpp-files` (if relevant)
+* `mvn clean test -P check-cpp-historical-files` (only for ds-java)
 * `mvn clean javadoc:javadoc`
 * `mvn clean install -DskipTests=true`
 
