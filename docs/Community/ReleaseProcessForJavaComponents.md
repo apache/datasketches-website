@@ -25,6 +25,7 @@ __NOTES:__
 
 * This process covers major and minor releases only. Bug-fix releases, which increment the third digit, are performed on a A.B.X branch and not on master, but otherwise are similar.
 * Some of these operations can be performed either on the Command-Line or in your IDE, whatever you prefer.
+* The Java **datasketches-memory** project has its own specialized release process. Please consult the README.md file on that project.
 
 ## Preparation
 
