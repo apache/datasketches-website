@@ -988,10 +988,22 @@ reflected in the master. Use the <strong>git cherry-pick</strong> command for th
 
 <h3 id="update-website-documentation">Update Website Documentation</h3>
 <ul>
-  <li>Run JavaDoc GitHub action for the release tag</li>
-  <li>Check that it finished successfully and, optionally, check that it created docs/X.Y.Z directory in the “gh-pages” branch</li>
-  <li>Check https://apache.github.io/datasketches-java/X.Y.Z/</li>
-  <li>Update link in _includes/javadocs.html in the datasketches-website repository</li>
+  <li>From the <em>github.com/datasketches-&lt;component&gt;</em> website, run JavaDoc GitHub action for the release tag:
+    <ul>
+      <li>On the component website (github.com/apache/datasketches-&lt;component&gt;), go to <em>Actions</em> and select the <em>JavaDoc</em> workflow.</li>
+      <li>Open the <em>Run workflow</em> pull-down, then in the <em>Branch:master</em> pull-down, select the correct release tag instead of the branch.</li>
+      <li>Run the workflow and check that it finished successfully.</li>
+      <li>Return to the component website home, select the <em>gh-pages</em> branch and check that it created <em>docs/X.Y.Z</em> directory</li>
+    </ul>
+  </li>
+  <li>From your local <em>datasketches-website</em> directory:
+    <ul>
+      <li>Open the <em>_includes.html</em> directory and open the <em>javadocs.html</em> file in a text editor.</li>
+      <li>Update the tag at the end of the link to the just-released component <em>X.Y.Z</em> tag.</li>
+    </ul>
+  </li>
+  <li>Visit <a href="https://apache.github.io/datasketches-\&lt;component\">https://apache.github.io/datasketches-\&lt;component\</a>/X.Y.Z/&gt; to confirm.</li>
+  <li>Commit the changes to the website</li>
 </ul>
 
 <h3 id="prepare-announce-letter-to-dev">Prepare Announce Letter to dev@</h3>
