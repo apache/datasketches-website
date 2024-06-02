@@ -311,7 +311,7 @@ reflected in the master. Use the **git cherry-pick** command for this.
  * From your local *datasketches-website* directory:
      * Open the *_includes.html* directory and open the *javadocs.html* file in a text editor.
      * Update the tag at the end of the link to the just-released component *X.Y.Z* tag.
- * Visit <https://apache.github.io/datasketches-\<component\>/X.Y.Z/> to confirm.
+ * Visit *apache.github.io/datasketches-"component"/X.Y.Z* to confirm.
  * Commit the changes to the website
 
 ### Prepare Announce Letter to dev@
