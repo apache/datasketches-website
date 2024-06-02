@@ -303,10 +303,16 @@ reflected in the master. Use the **git cherry-pick** command for this.
 * When this is done, be sure to commit the changes to the website.
 
 ### Update Website Documentation
- * Run JavaDoc GitHub action for the release tag
- * Check that it finished successfully and, optionally, check that it created docs/X.Y.Z directory in the "gh-pages" branch
- * Check https://apache.github.io/datasketches-java/X.Y.Z/
- * Update link in _includes/javadocs.html in the datasketches-website repository
+ * From the *github.com/datasketches-\<component\>* website, run JavaDoc GitHub action for the release tag:
+    * On the component website (github.com/apache/datasketches-\<component\>), go to *Actions* and select the *JavaDoc* workflow.
+    * Open the *Run workflow* pull-down, then in the *Branch:master* pull-down, select the correct release tag instead of the branch. 
+    * Run the workflow and check that it finished successfully.
+    * Return to the component website home, select the *gh-pages* branch and check that it created *docs/X.Y.Z* directory
+ * From your local *datasketches-website* directory:
+     * Open the *_includes.html* directory and open the *javadocs.html* file in a text editor.
+     * Update the tag at the end of the link to the just-released component *X.Y.Z* tag.
+ * Visit <https://apache.github.io/datasketches-\<component\>/X.Y.Z/> to confirm.
+ * Commit the changes to the website
 
 ### Prepare Announce Letter to dev@
 * ASF requests that you wait 24 hours to publish Announce letter to allow the propagation to mirrors.
