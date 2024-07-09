@@ -523,200 +523,129 @@
     under the License.
 -->
 
-<h1 id="apache-datasketches-github-components">Apache DataSketches GitHub Components</h1>
+<h1 id="apache-datasketches-github-component-repositories">Apache DataSketches GitHub Component Repositories</h1>
 
-<p>Our library is made up of components that are partitioned into GitHub repositories by language and dependencies. The dependencies of the core components are kept to a bare minimum to enable flexible integration into many different environments. Meanwhile, the Hive and Pig components, for example, have major dependencies on those envionments.</p>
+<p>Our library is made up of multiple components that are partitioned into GitHub repositories by language and dependencies. The dependencies of the core components are kept to a bare minimum to enable flexible integration into many different environments. The Platform Adaptor components will have major dependencies on the respective platform envionments.</p>
 
 <p>If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository.</p>
 
-<h2 id="list-of-component-repositories-explained-below">List of Component Repositories (Explained below)</h2>
+<p>If you like what you see give us a <strong>Star</strong> on these sites!</p>
+
+<h2 id="core-sketch-libraries">Core Sketch Libraries</h2>
+<p>The key sketches of the Apache DataSketches libraries are available in three (soon four) programming languages.  By design, a sketch that is available in one language that is also available in a different language will be “binary compatible” via serialization.  For example, when serialized into its compact form, a sketch created by the DataSketches C++ library, can be read by the DataSketches Java library and visa versa.</p>
+
+<p>Because of differences inherent in the languages, there will be some differences in the APIs, but we try to make the same basic functionality available across all the languages.</p>
 
 <table>
   <thead>
     <tr>
       <th>Repository</th>
-      <th>URL</th>
+      <th>Distribution</th>
+      <th>Comments</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Java Core</td>
-      <td><a href="https://github.com/apache/datasketches-java">https://github.com/apache/datasketches-java</a></td>
+      <td><a href="https://github.com/apache/datasketches-java">Java Core</a></td>
+      <td><a href="https://datasketches.apache.org/docs/Community/Downloads.html">Downloads</a></td>
+      <td>This is the original and the most comprehensive collection of sketch algorithms. It has a dependency on the Memory component</td>
     </tr>
     <tr>
-      <td>C++ Core</td>
-      <td><a href="https://github.com/apache/datasketches-cpp">https://github.com/apache/datasketches-cpp</a></td>
+      <td><a href="https://github.com/apache/datasketches-memory">Memory (supports Java Core)</a></td>
+      <td><a href="https://datasketches.apache.org/docs/Community/Downloads.html">Downloads</a></td>
+      <td>Provides high-performance access to off-heap memory</td>
     </tr>
     <tr>
-      <td>Hive Adaptor</td>
-      <td><a href="https://github.com/apache/datasketches-hive">https://github.com/apache/datasketches-hive</a></td>
+      <td><a href="https://github.com/apache/datasketches-cpp">C++ Core</a></td>
+      <td><a href="https://datasketches.apache.org/docs/Community/Downloads.html">Downloads</a></td>
+      <td>C++ was our second core language library and provides most of the major algorithms available in Java as well as a few sketches unique to C++.</td>
     </tr>
     <tr>
-      <td>Pig Adaptor</td>
-      <td><a href="https://github.com/apache/datasketches-pig">https://github.com/apache/datasketches-pig</a></td>
+      <td><a href="https://github.com/apache/datasketches-python">Python Core</a></td>
+      <td><a href="https://datasketches.apache.org/docs/Community/Downloads.html">Downloads</a>, <a href="https://pypi.org/project/datasketches/">PyPI</a></td>
+      <td>Python was our third core language library and contains most of the major sketch families that are in Java and C++. All the Python sketches are backed by the C++ library via Pybind.</td>
     </tr>
     <tr>
-      <td>PostgreSQL Adaptor</td>
-      <td><a href="https://github.com/apache/datasketches-postgresql">https://github.com/apache/datasketches-postgresql</a></td>
-    </tr>
-    <tr>
-      <td>Memory</td>
-      <td><a href="https://github.com/apache/datasketches-memory">https://github.com/apache/datasketches-memory</a></td>
-    </tr>
-    <tr>
-      <td>Characterization</td>
-      <td><a href="https://github.com/apache/datasketches-characterization">https://github.com/apache/datasketches-characterization</a></td>
-    </tr>
-    <tr>
-      <td>Website</td>
-      <td><a href="https://github.com/apache/datasketches-website">https://github.com/apache/datasketches-website</a></td>
-    </tr>
-    <tr>
-      <td>Vector  (Experimental)</td>
-      <td><a href="https://github.com/apache/datasketches-vector">https://github.com/apache/datasketches-vector</a></td>
-    </tr>
-    <tr>
-      <td>Server  (Under Development)</td>
-      <td><a href="https://github.com/apache/datasketches-server">https://github.com/apache/datasketches-server</a></td>
-    </tr>
-    <tr>
-      <td>Reserved for future use</td>
-      <td><a href="https://github.com/apache/datasketches">https://github.com/apache/datasketches</a></td>
+      <td><a href="https://github.com/apache/datasketches-go">Go Core</a></td>
+      <td>Under Development</td>
+      <td>Go is our fourth core language and is still evolving.</td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="core-algorithms">Core Algorithms</h2>
-<p>If you like what you see give us a <strong>Star</strong> on one of these two sites!</p>
-
-<ul>
-  <li>
-    <p><strong><a href="https://github.com/apache/datasketches-java">Java</a></strong> (Versioned, Apache Released) This is the original and the most comprehensive collection of sketch algorithms. It has a dependence on the Memory component and the Java Adaptors have a dependence on this component.</p>
-  </li>
-  <li>
-    <p><strong><a href="https://github.com/apache/datasketches-cpp">C++</a>/<a href="https://github.com/apache/datasketches-cpp/tree/master/python">Python</a></strong> (Versioned, Apache Released) This is newer and provides most of the major algorithms available in Java.  Our C++ adaptors have a dependence on this component.  The Pybind adaptors for Python are included for all the C++ sketches.</p>
-  </li>
-</ul>
-
-<h2 id="adapters">Adapters</h2>
-<p>Adapters integrate the core components into the aggregation APIs of specific data processing systems. Some of these adapters are available as part of the library, other adapters are directly integrated into the target data processing application.</p>
-
-<h3 id="java-adaptors">Java Adaptors</h3>
-<ul>
-  <li><strong><a href="https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html">Apache Druid</a></strong> (Apach Released as part of Druid)</li>
-  <li><strong><a href="https://github.com/apache/datasketches-hive">Apache Hive</a></strong> (Versioned, Apache Released)
-    <ul>
-      <li><a href="https://datasketches.apache.org/docs/SystemIntegrations/ApacheHiveIntegration.html">Hive Integration</a></li>
-      <li><a href="/docs/Theta/ThetaHiveUDFs.html">Theta Sketch Example</a></li>
-      <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Sketch Example</a></li>
-    </ul>
-  </li>
-  <li><strong><a href="https://github.com/apache/datasketches-pig">Apache Pig</a></strong> (Versioned, Apache Released)
-    <ul>
-      <li><a href="https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html">Pig Integration</a></li>
-      <li><a href="/docs/Theta/ThetaPigUDFs.html">Theta Sketch Example</a></li>
-      <li><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Sketch Example</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="c-adaptors">C++ Adaptors</h3>
-<ul>
-  <li><strong><a href="https://github.com/apache/datasketches-postgresql">PostgreSQL</a></strong> (Versioned, Apache Released)
-This site provides the postgres-specific adaptors that wrap the C++ implementations making
-them available to the PostgreSQL database users. PostgreSQL users should download the PostgreSQL extension from <a href="https://pgxn.org/dist/datasketches/">pgxn.org</a>.  For examples refer to the README on the component site.
-    <ul>
-      <li><a href="https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html">PostgreSQL Integration</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="other-components">Other Components</h2>
-<ul>
-  <li><strong><a href="https://github.com/apache/datasketches-memory">Memory</a>:</strong> (Versioned, Apache Released) This is a low-level library that enables fast access to off-heap memory for Java.</li>
-  <li><strong><a href="https://github.com/apache/datasketches-characterization">Characterization</a>:</strong> This is a collection of Java and C++ code that we use for long-running studies of accuracy and speed performance over many different parameters. Feel free to run these tests to reproduce many of the graphs and charts you see on our website.</li>
-  <li><strong><a href="https://github.com/apache/datasketches-vector">Vector (Experimental)</a>:</strong> This component implements the <a href="/docs/Community/Research.html">Frequent Directions Algorithm</a> [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.</li>
-  <li><strong><a href="https://github.com/apache/datasketches-website">Website</a>:</strong> This repository is the home of our website and is constantly being updated with new material.</li>
-  <li><strong><a href="https://github.com/apache/datasketches-server">Server (Under Development)</a></strong></li>
-</ul>
-
-<h2 id="deprecated-components">Deprecated Components</h2>
-<p>The code in these components are no longer maintained and will eventually be removed.</p>
-
-<h3 id="sketches-android">sketches-android</h3>
-<p>This is a new repository dedicated to sketches designed to be run in a mobile client, such as a cell phone. 
-It is still in development and should be considered experimental.</p>
-
-<h3 id="experimental">experimental</h3>
-<p>This repository is an experimental staging area for code that will eventually end up in another 
-repository. This code is not versioned.</p>
-
-<h3 id="sketches-misc">sketches-misc</h3>
-<p>Demos, command-line access, characterization testing and other code not related to production 
-deployment.</p>
-
-<p>This code is offered “as is” and primarily as a reference so that users can understand how some of 
-the performance characterization plots were obtained. This code has few unit tests, if any, 
-and was never intended for production use. 
-Nonetheless, some folks have found it useful. If you find it useful, go for it. 
-This code is not versioned.</p>
+<h2 id="platform-adaptors">Platform Adaptors</h2>
+<p>Adapters integrate the core library components into the aggregation APIs of specific data processing platforms. Some of these adapters are available as an Apache DataSketches distribution, other adapters are directly integrated into the target platform.</p>
 
 <table>
   <thead>
     <tr>
-      <th>Sketches-misc Packages</th>
-      <th>Package Description</th>
+      <th>Repository</th>
+      <th>Distribution</th>
+      <th>Comments</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>org.apache.datasketches</td>
-      <td>Utility functions used by the sketches-misc packages</td>
+      <td><a href="https://github.com/apache/datasketches-bigquery">Google BigQuery Adaptor</a></td>
+      <td>Under Development</td>
+      <td>Depends on C++ Core</td>
     </tr>
     <tr>
-      <td>org.apache.datasketches.cmd</td>
-      <td>Support for Command Line functions <strong>Being Redesigned</strong></td>
+      <td><a href="https://github.com/apache/datasketches-hive">Apache Hive Adaptor</a></td>
+      <td><a href="https://datasketches.apache.org/docs/Community/Downloads.html">Downloads</a></td>
+      <td>Depends on Java Core, <a href="https://datasketches.apache.org/docs/SystemIntegrations/ApacheHiveIntegration.html">Integrations</a></td>
     </tr>
     <tr>
-      <td>org.apache.datasketches.demo</td>
-      <td>Simple demo for brute-force vs Theta and HLL sketches <strong>Will be superceded by Command Line functions</strong></td>
+      <td><a href="https://github.com/apache/datasketches-pig">Apache Pig Adaptor</a></td>
+      <td><a href="https://datasketches.apache.org/docs/Community/Downloads.html">Downloads</a></td>
+      <td>Depends on Java Core, <a href="https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html">Integrations</a></td>
     </tr>
     <tr>
-      <td>org.apache.datasketches.quantiles</td>
-      <td>Utility for computing &amp; printing space table for Quantiles Sketches (only in the test branch)</td>
+      <td><a href="https://github.com/apache/datasketches-postgresql">PostgreSQL Adaptor</a></td>
+      <td><a href="https://datasketches.apache.org/docs/Community/Downloads.html">Downloads</a>, <a href="https://pgxn.org/dist/datasketches/">pgxn.org</a></td>
+      <td>Depends on C++ Core, <a href="https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html">Integrations</a></td>
     </tr>
     <tr>
-      <td>org.apache.datasketches.sampling</td>
-      <td>Benchmarks and Entropy testing for sampling sketches</td>
+      <td><a href="https://druid.apache.org/docs/latest/development/extensions-core/datasketches-extension">Apache Druid Adaptor</a></td>
+      <td><a href="https://druid.apache.org/downloads">Apache Druid Release</a></td>
+      <td>Depends on Java Core, <a href="https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html">Integrations</a></td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="characterization-cpp">characterization-cpp</h3>
-<p>This is the parallel characterization repository with a parallel objective to the Java characterization repository.</p>
+<h2 id="other">Other</h2>
 
-<h3 id="experimental-cpp">experimental-cpp</h3>
-<p>This repository is an experimental staging area for C++ code that will eventually end up in another 
-repository.</p>
-
-<h3 id="command-line-tool">Command-Line Tool</h3>
-<p>These repositories provide a command-line tool that provides access to the following sketches:</p>
-<ul>
-  <li>Frequent Items</li>
-  <li>HLL</li>
-  <li>Quantiles</li>
-  <li>Reservoir Sampling</li>
-  <li>Theta Sketches</li>
-  <li>VarOpt Sampling</li>
-</ul>
-
-<p>This tool can be installed from Homebrew.</p>
-
-<h4 id="sketches-cmd">sketches-cmd</h4>
-
-<h4 id="homebrew-sketches">homebrew-sketches</h4>
-
-<h4 id="homebrew-sketches-cmd">homebrew-sketches-cmd</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Repository</th>
+      <th>Distribution</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://github.com/apache/datasketches-characterization">Characterization</a></td>
+      <td>Not Formally Released</td>
+      <td>Used for long-running studies of accuracy and speed performance over many different parameters.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/apache/datasketches-website">Website</a></td>
+      <td>Not Formally Released</td>
+      <td>Public website</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/apache/datasketches-vector">Vector</a></td>
+      <td>Not Formally Released</td>
+      <td>This component implements the <a href="/docs/Community/Research.html">Frequent Directions Algorithm</a> [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It dependends on the Memory component.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/apache/datasketches-server">Server</a></td>
+      <td>Not Formally Released</td>
+      <td>Under development</td>
+    </tr>
+  </tbody>
+</table>
 
       </div> <!-- End content -->
     </div> <!-- End row -->

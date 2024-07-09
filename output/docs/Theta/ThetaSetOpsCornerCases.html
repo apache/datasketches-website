@@ -682,14 +682,51 @@ an AnotB of two identical sets, or the Union of two <em>Degenerate</em> sets.</p
 
 <p>The <em>Has Seen Data</em> column is not an independent variable, but helps with the interpretation of the state.</p>
 
-<p>| Theta | Retained<br />Entries | Empty<br />Flag | Has Seen<br />Data | Comments                                                                                       |
-|:—–:|:——————-:|:————-:|:—————-:|:———————————————————————————————–|
-|  1.0  |        0            |      F        |       T          | If it has seen data, Empty = F.<sup>4</sup> <br />∴ Theta cannot be = 1.0 AND Entries = 0 |
-|  1.0  |       &gt;0            |      T        |       F          | If it has not seen data, Empty = T. <br />∴ Entries cannot be &gt; 0                         |
-| &lt;1.0  |       &gt;0            |      T        |       F          | If it has not seen data, Empty = T. <br />∴ Theta cannot be &lt; 1.0 OR Entries &gt; 0          |
-| &lt;1.0  |        0            |      T        |       F          | If it has not seen data, Empty = T.<sup>5</sup> <br />∴ Theta cannot be &lt; 1.0             |
-—
-<sup>4</sup>This can occur internally as the result from an intersection of two exact, disjoint sets, or AnotB of two exact, identical sets.
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Theta</th>
+      <th style="text-align: center">Retained<br />Entries</th>
+      <th style="text-align: center">Empty<br />Flag</th>
+      <th style="text-align: center">Has Seen<br />Data</th>
+      <th style="text-align: left">Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1.0</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">T</td>
+      <td style="text-align: left">If it has seen data, Empty = F.<sup>4</sup> <br />∴ Theta cannot be = 1.0 AND Entries = 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1.0</td>
+      <td style="text-align: center">&gt;0</td>
+      <td style="text-align: center">T</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: left">If it has not seen data, Empty = T. <br />∴ Entries cannot be &gt; 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&lt;1.0</td>
+      <td style="text-align: center">&gt;0</td>
+      <td style="text-align: center">T</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: left">If it has not seen data, Empty = T. <br />∴ Theta cannot be &lt; 1.0 OR Entries &gt; 0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&lt;1.0</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center">T</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: left">If it has not seen data, Empty = T.<sup>5</sup> <br />∴ Theta cannot be &lt; 1.0</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><sup>4</sup>This can occur internally as the result from an intersection of two exact, disjoint sets, or AnotB of two exact, identical sets.
 There is no probability distribution, so this is converted internally to EMPTY {1.0, 0, T}. A Union cannot produce this result.</p>
 
 <p><sup>5</sup>This can occur internally as the initial state of an UpdateSketch if p was set to less than 1.0 by the user and the sketch has not seen any data.
@@ -973,7 +1010,7 @@ There is no probability distribution because the sketch has not been offered any
 
 <h2 id="testing">Testing</h2>
 <p>The above information is encoded as a model into the special class 
-<em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.SetOperationCornerCases.java">org.apache.datasketches.SetOperationsCornerCases</a></em>. 
+<em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/thetacommon/SetOperationCornerCases.java">org.apache.datasketches.thetacommon.SetOperationsCornerCases</a></em>. 
 This class is made up of enums and static methods to quickly determine for a sketch what actions to take based on the state of the input arguments. 
 This model is independent of the implementation of the Theta Sketch, whether the set operation is performed as a Theta Sketch, or a Tuple Sketch and when translated can be used in other languages as well.</p>
 
@@ -981,12 +1018,12 @@ This model is independent of the implementation of the Theta Sketch, whether the
 These tests are slightly different for the Tuple Sketch than the Theta Sketch because the Tuple Sketch has more combinations to test, but the model is the same.</p>
 
 <p>The tests for the Theta Sketch can be found in the class 
-<em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest.java">org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest</a></em></p>
+<em><a href="https://github.com/apache/datasketches-java/blob/master/src/test/java/org/apache/datasketches/theta/CornerCaseThetaSetOperationsTest.java">org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest</a></em></p>
 
 <p>The tests for the Tuple Sketch can be found in the class 
-<em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest.java">org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest</a></em></p>
+<em><a href="https://github.com/apache/datasketches-java/blob/master/src/test/java/org/apache/datasketches/tuple/aninteger/CornerCaseTupleSetOperationsTest.java">org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest</a></em></p>
 
-<p>The details of how this model is used in run-time code can be found in the class <em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.tuple.AnotB.java">org.apache.datasketches.tuple.AnotB.java</a></em>.</p>
+<p>The details of how this model is used in run-time code can be found in the class <em><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/AnotB.java">org.apache.datasketches.tuple.AnotB.java</a></em>.</p>
 
 
       </div> <!-- End content -->
