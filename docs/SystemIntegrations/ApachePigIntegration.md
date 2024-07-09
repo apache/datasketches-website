@@ -37,4 +37,6 @@ layout: doc_page
 
 * [Theta Example](https://datasketches.apache.org/docs/Theta/ThetaPigUDFs.html)
 
+* [Tuple Example]({{site.docs_dir}}/Tuple/TuplePigUDFs.html)
+
 * [VarOpt Example](https://datasketches.apache.org/docs/Sampling/VarOptPigUDFs.html)

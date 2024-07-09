@@ -20,116 +20,43 @@ layout: doc_page
     under the License.
 -->
 
-# Apache DataSketches GitHub Components
+# Apache DataSketches GitHub Component Repositories
 
-Our library is made up of components that are partitioned into GitHub repositories by language and dependencies. The dependencies of the core components are kept to a bare minimum to enable flexible integration into many different environments. Meanwhile, the Hive and Pig components, for example, have major dependencies on those envionments. 
+Our library is made up of multiple components that are partitioned into GitHub repositories by language and dependencies. The dependencies of the core components are kept to a bare minimum to enable flexible integration into many different environments. The Platform Adaptor components will have major dependencies on the respective platform envionments. 
 
 If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository.
 
-## List of Component Repositories (Explained below)
+If you like what you see give us a **Star** on these sites!
 
-| Repository                  | URL                                                       |
-|-----------------------------|-----------------------------------------------------------|
-| Java Core                   | <https://github.com/apache/datasketches-java>             |
-| C++ Core                    | <https://github.com/apache/datasketches-cpp>              |
-| Hive Adaptor                | <https://github.com/apache/datasketches-hive>             |
-| Pig Adaptor                 | <https://github.com/apache/datasketches-pig>              |
-| PostgreSQL Adaptor          | <https://github.com/apache/datasketches-postgresql>       |
-| Memory                      | <https://github.com/apache/datasketches-memory>           |
-| Characterization            | <https://github.com/apache/datasketches-characterization> |
-| Website                     | <https://github.com/apache/datasketches-website>          |
-| Vector  (Experimental)      | <https://github.com/apache/datasketches-vector>           |
-| Server  (Under Development) | <https://github.com/apache/datasketches-server>           |
-| Reserved for future use     | <https://github.com/apache/datasketches>                  |
+## Core Sketch Libraries
+The key sketches of the Apache DataSketches libraries are available in three (soon four) programming languages.  By design, a sketch that is available in one language that is also available in a different language will be "binary compatible" via serialization.  For example, when serialized into its compact form, a sketch created by the DataSketches C++ library, can be read by the DataSketches Java library and visa versa.
 
+Because of differences inherent in the languages, there will be some differences in the APIs, but we try to make the same basic functionality available across all the languages.
 
-## Core Algorithms
-If you like what you see give us a **Star** on one of these two sites!
+| Repository                                                                   | Distribution                                                               | Comments |
+|------------------------------------------------------------------------------|----------------------------------------------------------------------------|--------|
+| [Java Core](https://github.com/apache/datasketches-java)                     | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | This is the original and the most comprehensive collection of sketch algorithms. It has a dependency on the Memory component |
+| [Memory (supports Java Core)](https://github.com/apache/datasketches-memory) | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | Provides high-performance access to off-heap memory |
+| [C++ Core](https://github.com/apache/datasketches-cpp)                       | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | C++ was our second core language library and provides most of the major algorithms available in Java as well as a few sketches unique to C++. |
+| [Python Core](https://github.com/apache/datasketches-python)                 | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html), [PyPI](https://pypi.org/project/datasketches/) | Python was our third core language library and contains most of the major sketch families that are in Java and C++. All the Python sketches are backed by the C++ library via Pybind. |
+| [Go Core](https://github.com/apache/datasketches-go)                         | Under Development |  Go is our fourth core language and is still evolving. |
 
-* **[Java](https://github.com/apache/datasketches-java)** (Versioned, Apache Released) This is the original and the most comprehensive collection of sketch algorithms. It has a dependence on the Memory component and the Java Adaptors have a dependence on this component. 
+## Platform Adaptors
+Adapters integrate the core library components into the aggregation APIs of specific data processing platforms. Some of these adapters are available as an Apache DataSketches distribution, other adapters are directly integrated into the target platform.
 
-* **[C++](https://github.com/apache/datasketches-cpp)/[Python](https://github.com/apache/datasketches-cpp/tree/master/python)** (Versioned, Apache Released) This is newer and provides most of the major algorithms available in Java.  Our C++ adaptors have a dependence on this component.  The Pybind adaptors for Python are included for all the C++ sketches.
+| Repository                                                                    | Distribution                                                               | Comments |
+|-------------------------------------------------------------------------------|----------------------------------------------------------------------------|----------|
+| [Google BigQuery Adaptor](https://github.com/apache/datasketches-bigquery)    | Under Development                                                          | Depends on C++ Core |
+| [Apache Hive Adaptor](https://github.com/apache/datasketches-hive)            | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | Depends on Java Core, [Integrations](https://datasketches.apache.org/docs/SystemIntegrations/ApacheHiveIntegration.html) |
+| [Apache Pig Adaptor](https://github.com/apache/datasketches-pig)              | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | Depends on Java Core, [Integrations](https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html) |
+| [PostgreSQL Adaptor](https://github.com/apache/datasketches-postgresql)       | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html), [pgxn.org](https://pgxn.org/dist/datasketches/) | Depends on C++ Core, [Integrations](https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html) |
+| [Apache Druid Adaptor](https://druid.apache.org/docs/latest/development/extensions-core/datasketches-extension) | [Apache Druid Release](https://druid.apache.org/downloads) | Depends on Java Core, [Integrations](https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html) |
 
-## Adapters
-Adapters integrate the core components into the aggregation APIs of specific data processing systems. Some of these adapters are available as part of the library, other adapters are directly integrated into the target data processing application.
+## Other
 
-### Java Adaptors
-* **[Apache Druid](https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html)** (Apach Released as part of Druid)
-* **[Apache Hive](https://github.com/apache/datasketches-hive)** (Versioned, Apache Released)
-    * [Hive Integration](https://datasketches.apache.org/docs/SystemIntegrations/ApacheHiveIntegration.html)
-    * [Theta Sketch Example]({{site.docs_dir}}/Theta/ThetaHiveUDFs.html)
-    * [Tuple Sketch Example]({{site.docs_dir}}/Tuple/TuplePigUDFs.html)
-* **[Apache Pig](https://github.com/apache/datasketches-pig)** (Versioned, Apache Released)
-    * [Pig Integration](https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html)
-    * [Theta Sketch Example]({{site.docs_dir}}/Theta/ThetaPigUDFs.html)
-    * [Tuple Sketch Example]({{site.docs_dir}}/Tuple/TuplePigUDFs.html) 
-
-
-### C++ Adaptors
-* **[PostgreSQL](https://github.com/apache/datasketches-postgresql)** (Versioned, Apache Released)
-This site provides the postgres-specific adaptors that wrap the C++ implementations making
-them available to the PostgreSQL database users. PostgreSQL users should download the PostgreSQL extension from [pgxn.org](https://pgxn.org/dist/datasketches/).  For examples refer to the README on the component site.
-    * [PostgreSQL Integration](https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html)
-
-## Other Components
-* **[Memory](https://github.com/apache/datasketches-memory):** (Versioned, Apache Released) This is a low-level library that enables fast access to off-heap memory for Java.
-* **[Characterization](https://github.com/apache/datasketches-characterization):** This is a collection of Java and C++ code that we use for long-running studies of accuracy and speed performance over many different parameters. Feel free to run these tests to reproduce many of the graphs and charts you see on our website.
-* **[Vector (Experimental)](https://github.com/apache/datasketches-vector):** This component implements the [Frequent Directions Algorithm](/docs/Community/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It has a dependence on the Memory component.
-* **[Website](https://github.com/apache/datasketches-website):** This repository is the home of our website and is constantly being updated with new material.
-* **[Server (Under Development)](https://github.com/apache/datasketches-server)** 
-
-
-
-## Deprecated Components
-The code in these components are no longer maintained and will eventually be removed.
-
-### sketches-android
-This is a new repository dedicated to sketches designed to be run in a mobile client, such as a cell phone. 
-It is still in development and should be considered experimental.
-
-### experimental
-This repository is an experimental staging area for code that will eventually end up in another 
-repository. This code is not versioned.
-
-
-### sketches-misc
-Demos, command-line access, characterization testing and other code not related to production 
-deployment.
-
-This code is offered "as is" and primarily as a reference so that users can understand how some of 
-the performance characterization plots were obtained. This code has few unit tests, if any, 
-and was never intended for production use. 
-Nonetheless, some folks have found it useful. If you find it useful, go for it. 
-This code is not versioned.
-    
-Sketches-misc Packages             | Package Description
------------------------------------|---------------------
-org.apache.datasketches                 | Utility functions used by the sketches-misc packages
-org.apache.datasketches.cmd             | Support for Command Line functions **Being Redesigned**
-org.apache.datasketches.demo            | Simple demo for brute-force vs Theta and HLL sketches **Will be superceded by Command Line functions**
-org.apache.datasketches.quantiles       | Utility for computing & printing space table for Quantiles Sketches (only in the test branch)
-org.apache.datasketches.sampling        | Benchmarks and Entropy testing for sampling sketches
-
-### characterization-cpp
-This is the parallel characterization repository with a parallel objective to the Java characterization repository.
-
-### experimental-cpp
-This repository is an experimental staging area for C++ code that will eventually end up in another 
-repository.
-
-### Command-Line Tool
-These repositories provide a command-line tool that provides access to the following sketches:
-- Frequent Items
-- HLL
-- Quantiles
-- Reservoir Sampling
-- Theta Sketches
-- VarOpt Sampling
-
-This tool can be installed from Homebrew.
-
-#### sketches-cmd
-
-#### homebrew-sketches
-
-#### homebrew-sketches-cmd
+| Repository                                                                   | Distribution          | Comments |
+|------------------------------------------------------------------------------|-----------------------|----------|
+| [Characterization](https://github.com/apache/datasketches-characterization)  | Not Formally Released | Used for long-running studies of accuracy and speed performance over many different parameters. |
+| [Website](https://github.com/apache/datasketches-website)                    | Not Formally Released | Public website |
+| [Vector](https://github.com/apache/datasketches-vector)                      | Not Formally Released | This component implements the [Frequent Directions Algorithm](/docs/Community/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It dependends on the Memory component. |
+| [Server](https://github.com/apache/datasketches-server)        | Not Formally Released | Under development |

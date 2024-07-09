@@ -128,7 +128,9 @@ The *Has Seen Data* column is not an independent variable, but helps with the in
 |  1.0  |       >0            |      T        |       F          | If it has not seen data, Empty = T. <br>&there4; Entries cannot be > 0                         |
 | <1.0  |       >0            |      T        |       F          | If it has not seen data, Empty = T. <br>&there4; Theta cannot be < 1.0 OR Entries > 0          |
 | <1.0  |        0            |      T        |       F          | If it has not seen data, Empty = T.<sup>5</sup> <br>&there4; Theta cannot be < 1.0             |
+
 ---
+
 <sup>4</sup>This can occur internally as the result from an intersection of two exact, disjoint sets, or AnotB of two exact, identical sets.
 There is no probability distribution, so this is converted internally to EMPTY {1.0, 0, T}. A Union cannot produce this result.
 
@@ -192,7 +194,7 @@ Note that the results of *Full Intersect*, *Full AnotB*, or *Full Union* actions
 
 ## Testing
 The above information is encoded as a model into the special class 
-*[org.apache.datasketches.SetOperationsCornerCases](https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.SetOperationCornerCases.java)*. 
+*[org.apache.datasketches.thetacommon.SetOperationsCornerCases](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/thetacommon/SetOperationCornerCases.java)*. 
 This class is made up of enums and static methods to quickly determine for a sketch what actions to take based on the state of the input arguments. 
 This model is independent of the implementation of the Theta Sketch, whether the set operation is performed as a Theta Sketch, or a Tuple Sketch and when translated can be used in other languages as well.  
 
@@ -200,11 +202,11 @@ Before this model was put to use an extensive set of tests was designed to test 
 These tests are slightly different for the Tuple Sketch than the Theta Sketch because the Tuple Sketch has more combinations to test, but the model is the same.
 
 The tests for the Theta Sketch can be found in the class 
-*[org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest](https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest.java)*
+*[org.apache.datasketches.theta.CornerCaseThetaSetOperationsTest](https://github.com/apache/datasketches-java/blob/master/src/test/java/org/apache/datasketches/theta/CornerCaseThetaSetOperationsTest.java)*
 
 The tests for the Tuple Sketch can be found in the class 
-*[org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest](https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest.java)*
+*[org.apache.datasketches.tuple.aninteger.CornerCaseTupleSetOperationsTest](https://github.com/apache/datasketches-java/blob/master/src/test/java/org/apache/datasketches/tuple/aninteger/CornerCaseTupleSetOperationsTest.java)*
 
-The details of how this model is used in run-time code can be found in the class *[org.apache.datasketches.tuple.AnotB.java](https://github.com/apache/datasketches-java/blob/master/src/main/java/org.apache.datasketches.tuple.AnotB.java)*.
+The details of how this model is used in run-time code can be found in the class *[org.apache.datasketches.tuple.AnotB.java](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/AnotB.java)*.
 
 
