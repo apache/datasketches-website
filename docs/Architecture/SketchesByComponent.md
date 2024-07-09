@@ -145,7 +145,8 @@ theta_sketch_c_adapter.h            | Theta Sketch
 ## Python Sketches
 
 ### datasketches-python
-Files (src/*)      | Description
+
+Files (src/*)          | Description
 -----------------------|---------------------
 count_wrapper.cpp      | Count-Min Sketch
 cpc_wrapper.cpp        | CPC Sketch
