@@ -47,7 +47,7 @@ If you are developing using Maven and want to use, for example, datasketches-jav
 
 ## Enabling Python
 
-* First download the C++ core above, then read the [Python Installation Instructions](https://github.com/apache/datasketches-cpp/tree/master/python)
+* First download the Python core above, then read the [Python Installation Instructions](https://github.com/apache/datasketches-python/blob/main/README.md)
 
 ## Download Earlier Versions
 
