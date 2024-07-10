@@ -67,7 +67,7 @@ All sketches have *a posteriori* error bounds methods.
 <sup>4</sup> Theta Sketch: C++/Python has no implementaion of the Jaccard, yet.<br>
 <sup>5</sup> Frequent Items Sketch: PostgreSQL implemented for Strings only.<br>
 <sup>6</sup> KLL & REQ Sketch: Python implemented for both just floats and ints.<br>
-<sup>7</sup> See [Python Install Instructions](https://github.com/apache/datasketches-cpp/tree/master/python)<br>
+<sup>7</sup> See [Python Install Instructions](https://github.com/apache/datasketches-python)<br>
 
 
 ## Definitions

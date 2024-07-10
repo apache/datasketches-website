@@ -123,8 +123,6 @@ tuple             | Tuple sketches
 
 ## C++ Platform Adaptors
 
-This site also has our [Python adaptors](https://github.com/apache/datasketches-cpp/tree/master/python) that basically wrap the C++ implementations, making the high performance C++ implementations available from Python.
-
 ### datasketches-postgresql
 This site provides the postgres-specific adaptors that wrap the C++ implementations making
 them available to the PostgreSQL database users. PostgreSQL users should download the PostgreSQL extension from [pgxn.org](https://pgxn.org/dist/datasketches/).  For examples refer to the README on the component site. This code is versioned and the latest release can be obtained from
@@ -143,6 +141,7 @@ req_float_sketch_c_adapter.h        | REQ Floats Sketch
 theta_sketch_c_adapter.h            | Theta Sketch
 
 ## Python Sketches
+This site has our [Python adaptors](https://github.com/apache/datasketches-python) that wrap the C++ implementations, making the high performance C++ implementations available from Python.
 
 ### datasketches-python
 

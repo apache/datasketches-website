@@ -98,4 +98,4 @@ In order to generate the following radar charts, the data was normalized as foll
 
 Depending on what is important in your environment you should choose the sketch that best suits your needs. 
 
-Note that all of these tests were performed with the Java implementations of these sketches.  The results for C++ or [Python](https://github.com/apache/datasketches-cpp/tree/master/python) may be completely different.
+Note that all of these tests were performed with the Java implementations of these sketches.  The results for C++ or [Python](https://github.com/apache/datasketches-python) may be completely different.

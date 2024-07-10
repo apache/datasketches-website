@@ -61,7 +61,7 @@ We strive to make our sketch library easy to integrate into larger systems by ke
 * [C++ Core](https://datasketches.apache.org/docs/Community/Downloads.html)
     * The C++ core is written as all header files allowing easy integration into a wide range of operating system environments. 
 
-* [Python](https://github.com/apache/datasketches-cpp/tree/master/python)
+* [Python](https://github.com/apache/datasketches-python)
 	* The C++ Core is extended using the python binding library [pybind11](https://github.com/pybind/pybind11) enabling high performance operation from Python.
 
 ### Speed

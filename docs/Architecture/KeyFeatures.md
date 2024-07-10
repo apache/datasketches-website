@@ -38,7 +38,7 @@ layout: doc_page
 * <b>Maven deployable</b> and registered with the [Central Repository](https://search.maven.org/#search|ga|1|DataSketches).
 * Extensive documentation with the systems developer in mind.
 * Designed for production environments:
-    * Available in multiple languages: Java, C++, [Python](https://github.com/apache/datasketches-cpp/tree/master/python)
+    * Available in multiple languages: Java, C++, [Python](https://github.com/apache/datasketches-python)
     * Binary compatible across systems and languages 
 
 ### Built-In, General Purpose Functions
