@@ -318,7 +318,7 @@ public final class Files {
    * @param numBytes The requested number of bytes to read.
    * @param out The target array for the bytes.
    * @return the actual number of bytes read.
-   * @throws BufferUnderflowException if numBytes is greater than bytes
+   * @throws java.nio.BufferUnderflowException if numBytes is greater than bytes
    * available in the buffer.
    */
   public static int readByteBuffer(final ByteBuffer bb, final int numBytes, final byte[] out) {

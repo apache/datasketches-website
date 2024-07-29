@@ -69,7 +69,7 @@ Also specifies line separator characters for text files.
 ### Run Maven Tests
 * `mvn apache-rat:check`
 * `mvn clean test`
-* `mvn clean test -P check-cpp-files` (if relevant)
+* `mvn clean test -P check-cpp-files` (only for ds-java)
 * `mvn clean test -P check-cpp-historical-files` (only for ds-java)
 * `mvn clean javadoc:javadoc`
 * `mvn clean install -DskipTests=true`
@@ -131,8 +131,6 @@ Also specifies line separator characters for text files.
 * Edit master pom.xml to A'.B'.0-SNAPSHOT where A' or B' will be incremented by 1.
 * Commit and Push this change to origin/master with the comment "Release Process: Change pom version to A'.B'.0-SNAPSHOT."
     * This may require changing to a temparary branch and creating a PR to be approved if master branch is restricted. 
-* Create a tag A'.B'.0-SNAPSHOT on master at the HEAD.
-* Push the tag to origin: `git push origin --tags`
 * Return to release branch A.B.X (or A'.0.X)
 * You may minimize your IDE, pointing at the release branch.
 
