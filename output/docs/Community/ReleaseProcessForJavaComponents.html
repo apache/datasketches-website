@@ -587,7 +587,7 @@ Also specifies line separator characters for text files.</li>
 <ul>
   <li><code class="highlighter-rouge">mvn apache-rat:check</code></li>
   <li><code class="highlighter-rouge">mvn clean test</code></li>
-  <li><code class="highlighter-rouge">mvn clean test -P check-cpp-files</code> (if relevant)</li>
+  <li><code class="highlighter-rouge">mvn clean test -P check-cpp-files</code> (only for ds-java)</li>
   <li><code class="highlighter-rouge">mvn clean test -P check-cpp-historical-files</code> (only for ds-java)</li>
   <li><code class="highlighter-rouge">mvn clean javadoc:javadoc</code></li>
   <li>
@@ -691,8 +691,6 @@ Also specifies line separator characters for text files.</li>
       <li>This may require changing to a temparary branch and creating a PR to be approved if master branch is restricted.</li>
     </ul>
   </li>
-  <li>Create a tag A’.B’.0-SNAPSHOT on master at the HEAD.</li>
-  <li>Push the tag to origin: <code class="highlighter-rouge">git push origin --tags</code></li>
   <li>Return to release branch A.B.X (or A’.0.X)</li>
   <li>You may minimize your IDE, pointing at the release branch.</li>
 </ul>
