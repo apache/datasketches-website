@@ -523,214 +523,119 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="frequent-distinct-tuples-sketch">Frequent Distinct Tuples Sketch</h2>
+<h1 id="understanding-kll-bounds">Understanding KLL Bounds</h1>
 
-<h3 id="the-task">The Task</h3>
-<p>Suppose our data is a stream of pairs {IP address, User ID} and we want to identify the IP addresses that
-have the most distinct User IDs.  Or conversely, we would like to identify the User IDs that have the 
-most distinct IP addresses.
-This is a common challenge in the analysis of big data and the FDT sketch helps solve this problem using
-probabilistic techniques.</p>
-
-<p>More generally, given a multiset of tuples with <i>N</i> dimensions <i>{d1,d2, d3, …, dN}</i>, 
-and a primary subset of dimensions <i>M &lt; N</i>, our task is to identify the combinations of 
-<i>M</i> subset dimensions that have the <i>most frequent</i> number of distinct combinations 
-of the <i>N - M</i> non-primary dimensions.</p>
-
-<h3 id="definitions">Definitions</h3>
+<p>This code example illustrates the use of 4 important bounds functions provided by the KLL sketches:</p>
 
 <ul>
-  <li><strong>Equal Distribution Threshold</strong></li>
+  <li>getRankLowerBound(normalized rank)</li>
+  <li>getRankUpperBound(normalized rank)</li>
+  <li>getQuantileLowerBound(normalized rank)</li>
+  <li>getQuantileUpperBound(normalized rank)</li>
 </ul>
 
-<p>Suppose we have a stream of 160 items where the stream consists of four item types: A, B, C, and D.
-If the distribution of occurances was shared equally across the four items each would
-occur exactly 40 times or 25% of the total distribution of 160 items. Thus the equally distributed
-(or fair share) <i>threshold</i> would be 25% or as a fraction 0.25.</p>
+<p>The input into the sketch is a simple monotonic sequence but with a big discontinuity in the middle. Then we extract the upper and lower bounds of both the rank and quantile domains on both sides of the discontinuity.</p>
 
-<ul>
-  <li><strong>Most Frequent</strong></li>
-</ul>
+<h2 id="first-the-code">First the code:</h2>
 
-<p>We define <i>Most Frequent</i> items as those that consume more than the fair share threshold of the
-total occurances (also called the <i>weight</i>) of the entire stream.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.testng.annotations.Test</span><span class="o">;</span>
 
-<p>Suppose we have a stream of 160 items where the stream consists of four item types: A, B, C, and D,
-which have the following frequency distribution:</p>
-
-<ul>
-  <li>A occurs 70 times</li>
-  <li>B occurs 50 times</li>
-  <li>C occurs 30 times</li>
-  <li>D occurs 10 times</li>
-</ul>
-
-<p>We would declare that A is the most frequent and B is the next most frequent. We would not
-declare C and D in a list of most frequent items since their respective frequencies are below 
-the threshold of 40 or 25%.</p>
-
-<p>If all items occured with a frequency of 40, we could not declare 
-any item as most frequent. Requesting a list of the “Top 4” items could be a list of the 4 items in any random
-order, or a list of zero items, depending on policy.</p>
-
-<ul>
-  <li><strong>Relative Standard Error or RSE</strong></li>
-</ul>
-
-<p>When a stream becomes too large with too many different item types to efficiently process exacty we must turn 
-to statistical methods to estimate the most frequent items. The returned list of “most frequent items” will
-have an associated “estimated frequency” that has an error component that is a random variable. 
-The RSE is a measure of the width of the error distribution of this component and computed similarly to how a 
-Standard Deviation is computed. It is relative to the estimated frequency in that the standard
-width of the error distribution can be computed as <i>estimate * (1 + RSE)</i> and <i>estimate * (1 - RSE)</i>.</p>
-
-<ul>
-  <li><strong>Primary Key</strong></li>
-</ul>
-
-<p>We define a specific combination of the <i>M</i> primary dimensions as a <i>Primary Key</i>
-and all combinations of the <i>M</i> primary dimensions as the set of <i>Primary Keys</i>.</p>
-
-<ul>
-  <li><strong>Group</strong></li>
-</ul>
-
-<p>We define the set of all combinations of <i>N-M</i> non-primary dimensions associated with a
-single primary key as a <i>Group</i>.</p>
-
-<p>For example, assume <i>N = 3, M = 2</i>, where the set of Primary Keys are defined by
-<i>{d1, d2}</i>. After populating the sketch with a stream of tuples all of size <i>N = 3</i>,
-we wish to identify the Primary Keys that have the most frequent number of distinct occurrences
-of <i>{d3}</i>. Equivalently, we want to identify the Primary Keys with the largest Groups.</p>
-
-<p>Alternatively, if we choose the Primary Key as <i>{d1}</i>, then we can identify the
-<i>{d1}</i>s that have the largest groups of <i>{d2, d3}</i>. The choice of
-which dimensions to choose for the Primary Keys is performed in a post-processing phase
-after the sketch has been populated. Thus, multiple queries can be performed against the
-populated sketch with different selections of Primary Keys.</p>
-
-<p>An important caveat is that if the distribution is too flat, there may not be any
-“most frequent” combinations of the primary keys above the threshold. 
-Also, if one primary key is too dominant, the sketch may be able to only report on the single 
-most frequent primary key combination, which means the possible existance of false negatives.</p>
-
-<p>In this implementation the input tuples presented to the sketch are string arrays.</p>
-
-<h3 id="using-the-fdtsketch">Using the FdtSketch</h3>
-
-<p>Let’s leverate the challenge at the beginning to crete a concrete example. 
-Let’s assume <i>N = 2</i> and let <i>d1 := IP address</i>, and <i>d2 := User ID</i>.</p>
-
-<p>If we choose <i>{d1}</i> as the Primary Keys, then the sketch will allow us to identify the
-<i>IP addresses</i> that have the largest populations of distinct <i>User IDs</i>.</p>
-
-<p>Conversely, if we choose <i>{d2}</i> as the Primary Keys, the sketch will allow us to identify the
-<i>User IDs</i> with the largest populations of distinct <i>IP addresses</i>.</p>
-
-<p>Let’s set the threshold to 0.01 (1%) and the RSE to 0.05 (5%). This is telling the sketch to size itself 
-such that items with distinct frequency counts greater than 1% of the total distinct population will be 
-detectable and have a distinct frequency estimation error of less than or equal to 5% with 86% confidence.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//Construct the sketch
-FdtSketch sketch = new FdtSketch(0.01, 0.05);
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">QuantileBoundsTest</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">400</span><span class="o">;</span>
+  
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">exampleQuantileBounds</span><span class="o">(</span> <span class="o">)</span> <span class="o">{</span>
+    <span class="nc">KllDoublesSketch</span> <span class="n">sk</span> <span class="o">=</span> <span class="nc">KllDoublesSketch</span><span class="o">.</span><span class="na">newHeapInstance</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">500</span><span class="o">)?</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">:</span> <span class="n">i</span><span class="o">;</span> <span class="c1">//note big jump at 501!</span>
+      <span class="n">sk</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">j</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="kt">double</span> <span class="n">rankError</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getNormalizedRankError</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"Normalized Rank Error: +/- "</span> <span class="o">+</span> <span class="n">rankError</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"Absolute Rank Error  : +/- "</span> <span class="o">+</span> <span class="n">rankError</span> <span class="o">*</span> <span class="n">n</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+    
+    <span class="kt">double</span> <span class="n">q1</span> <span class="o">=</span> <span class="mi">500</span><span class="o">;</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"q1: "</span> <span class="o">+</span> <span class="n">q1</span><span class="o">);</span>
+    <span class="kt">double</span> <span class="n">q2</span> <span class="o">=</span> <span class="mi">620</span><span class="o">;</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"q2: "</span> <span class="o">+</span> <span class="n">q2</span><span class="o">);</span>
+    
+    <span class="kt">double</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRank</span><span class="o">(</span><span class="n">q1</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"r1: "</span> <span class="o">+</span> <span class="n">r1</span><span class="o">);</span>
+    <span class="kt">double</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRank</span><span class="o">(</span><span class="n">q2</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"r2: "</span> <span class="o">+</span> <span class="n">r2</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+    
+    <span class="kt">double</span> <span class="n">r1LB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRankLowerBound</span><span class="o">(</span><span class="n">r1</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"r1LB: "</span> <span class="o">+</span> <span class="n">r1LB</span><span class="o">);</span>
+    <span class="kt">double</span> <span class="n">r1UB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRankUpperBound</span><span class="o">(</span><span class="n">r1</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"r1UB: "</span> <span class="o">+</span> <span class="n">r1UB</span><span class="o">);</span>
+    
+    <span class="kt">double</span> <span class="n">r2LB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRankLowerBound</span><span class="o">(</span><span class="n">r2</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"r2LB: "</span> <span class="o">+</span> <span class="n">r2LB</span><span class="o">);</span>
+    <span class="kt">double</span> <span class="n">r2UB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRankUpperBound</span><span class="o">(</span><span class="n">r2</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"r2UB: "</span> <span class="o">+</span> <span class="n">r2UB</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+    
+    <span class="kt">double</span> <span class="n">q1LB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getQuantileLowerBound</span><span class="o">(</span><span class="n">r1</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"q1LB(r1): "</span> <span class="o">+</span> <span class="n">q1LB</span><span class="o">);</span>
+    <span class="kt">double</span> <span class="n">q1UB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getQuantileUpperBound</span><span class="o">(</span><span class="n">r1</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"q1UB(r1): "</span> <span class="o">+</span> <span class="n">q1UB</span><span class="o">);</span>
+    
+    <span class="kt">double</span> <span class="n">q2LB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getQuantileLowerBound</span><span class="o">(</span><span class="n">r2</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"q2LB(r2): "</span> <span class="o">+</span> <span class="n">q2LB</span><span class="o">);</span>
+    <span class="kt">double</span> <span class="n">q2UB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getQuantileUpperBound</span><span class="o">(</span><span class="n">r2</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"q2UB(r2): "</span> <span class="o">+</span> <span class="n">q2UB</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+  <span class="o">}</span>
+  
+  <span class="kd">static</span> <span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span> <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<p>Assume the incoming data is a stream of {IP address, User ID} pairs:</p>
+<h2 id="the-output">The Output</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//Populate
-while (inputStream.hasRemainingItems()) {
-  String[] in = new String[] {Pair.IPaddress, Pair.userID};
-  sketch(in);
-}
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Normalized Rank Error: +/- 0.0067762427270138155
+Absolute Rank Error  : +/- 6.776242727013815
+
+q1: 500.0
+q2: 620.0
+r1: 0.5
+r2: 0.52
+
+r1LB: 0.4932237572729862
+r1UB: 0.5067762427270138
+r2LB: 0.5132237572729862
+r2UB: 0.5267762427270138
+
+q1LB(r1): 494.0
+q1UB(r1): 608.0
+q2LB(r2): 614.0
+q2UB(r2): 628.0
+
+PASSED: exampleQuantileBounds
 </code></pre></div></div>
 
-<p>We are done populating the sketch, now we post process the data in the sketch:</p>
+<h2 id="discussion">Discussion</h2>
+<p>The sketch is configured with a k=400, which results in a normalized rank error of +/- .68%.  Multiplying that by <em>n</em> produces the absolute (or natural) rank error of 6.8 relative to <em>n</em> of 1000.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int[] priKeyIndices = new int[] {0}; //identifies the IP address as the primary key
-int numStdDev = 2; //for 95% confidence intervals
-int limit = 20; //list only the top 20 groups
-char sep = '|'; //the separator charactor for the group dimensions as strings
-List&lt;Group&gt; list = sketch.getResult(priKeyIndices, limit, numStdDev, sep);
-System.out.println(Group.getHeader())
-Iterator&lt;Group&gt; itr = list.iterator()
-while (itr.hasNext()) {
-  System.out.println(itr.next())
-}
-</code></pre></div></div>
+<p>The input stream of 1000 values has a big discontinuity starting at <em>i</em> = 501. So the actual sequence of inputs is 1 to 500 and 601 to 1100.</p>
 
-<p>If we want the converse relation we assign the UserID as the primary key. Note that we do not have to repopulate the sketch!</p>
+<p><img class="doc-img-half" src="/docs/img/kll/QuantileBounds1.png" alt="QuantileBounds1.png" /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int[] priKeyIndices = new int[] {1}; //identifies the User ID as the primary key
-...
-</code></pre></div></div>
+<p>We choose two quantiles on either side of the discontinuity, 500 and 620, and get their respective ranks of 0.5 and 0.52. Note that because of the discontinuity the difference in the input quantiles is 120/1100 or ~10.9%, while the difference in their respective ranks is only 2%.</p>
 
-<h3 id="understanding-the-group-output-columns">Understanding the Group output columns</h3>
+<p>Next we compute the upper and lower rank bounds of the two resulting ranks of 0.5 and 0.52, which are given above. Note that the UB - LB of each rank is about .013 which is 2 X .0067.  This means that the true rank of each quantile is within the UB - LB range of ranks with a confidence of 99%, which is about +/- 2.6 standard deviations from the mean.</p>
 
-<p>When the Group is printed as a string, it will output seven columns as follows:</p>
+<p>Then we compute the upper and lower quantile bounds of the same two resulting ranks of 0.5 and 0.52. Note that the UB - LB quantile range of <em>r1</em> is 114/1100 or 10.4%, because in between the rank UB and LB is the discontinuity.  These points are shown in the next image.</p>
 
-<ul>
-  <li>
-    <p><strong>Count</strong>: This is the number of retained occurrences in the sketch that belong to this group.</p>
-  </li>
-  <li>
-    <p><strong>Est</strong> This is the sketch’s estimate of the distinct cardinality of this group based on the Count and the sketche’s internal state of Theta.</p>
-  </li>
-  <li>
-    <p><strong>UB</strong>: The Upper Bound of the confidence interval based on the given numStdDev.</p>
-  </li>
-  <li>
-    <p><strong>LB</strong>: The Lower Bound of the confidence interval based on the given numStdDev.</p>
-  </li>
-  <li>
-    <p><strong>Fraction</strong>: The fractional proportion of the cardinality of the entire sketch that this group represents.</p>
-  </li>
-  <li>
-    <p><strong>RSE</strong>: The estimated RSE of this group based on the properties of this group and the internal properties of this sketch.</p>
-  </li>
-  <li>
-    <p><strong>PriKey</strong>: The string identifying this group.</p>
-  </li>
-</ul>
+<p><img class="doc-img-half" src="/docs/img/kll/QuantileBounds2.png" alt="QuantileBounds2.png" /></p>
 
-<h3 id="error-behavior">Error Behavior</h3>
+<p>This graphically illustrates why the mathematical guarantee of error applies only to the rank domain, because the input quantile domian could have huge discontinuities. Nonetheless, we <strong>can</strong> say that the true quantile does lie within that UB - LB quantile range with a confidence of 99%. But we cannot guarantee anything about the UB - LB quantile difference and relate that to a quantile accuracy compared to the total range of the input values.</p>
 
-<p>Note: the code for the following study can be found in the characterization repository 
-<a href="https://github.com/DataSketches/characterization/tree/master/src/main/java/org/apache/datasketches/characterization/fdt">here</a> and the configuration file can be found <a href="https://github.com/DataSketches/characterization/tree/master/src/main/resources/fdt">here</a>.</p>
-
-<p>In order to study the error behavior of this sketch a power-law distribution with a slope of -1 was created. The head of the distribution was a single item with a cardinality of 16384, and the tail of the distribution was 16384 items each with a cardinality of one. All the points inbetween were items that have multiplicities and cardinalities that would fall on a straight line plotted on a Log-X, Log-Y graph. This generated an input stream of about 850K (Key, value) pairs, which was input into the sketch and is considered one trial.  The sketch was constructed with a target
-threshold of 1% and a target RSE of 5%.</p>
-
-<p>Twenty such trials were run and the error distribution quantiles of the results were computed and is shown in the following graph.</p>
-
-<p><img class="doc-img-half" src="/docs/img/fdt/FdtGroupErrorQuantiles.png" alt="FdtGroupErrorQuantiles.png" /></p>
-
-<p>The X-axis is the true cardinality. Of the nearly 24K groups captured by the sketch of the 
-input stream of over 100K groups this graph is a view of the top 500, which is more than enough to demonstrate the error behavior.</p>
-
-<p>The Y-axis is the relative error.</p>
-
-<p>The blue dots represent the error of a single group from the top 500 groups. Not all of the top 500 groups are shown on the graph as number of them had true cardinalities of less than 256. Also many of the dots represent multiple groups since groups with the same Count and the same true cardinality will result in the same exact computed error, thus plotted at the same exact point.</p>
-
-<p>The red line is the contour of the quantile(0.84) points of the error distribution at each point along the X-axis. This quantile contour would be equivalent to the +1 standard deviation from the mean of a Gaussian distribution. But since these are quantile measurements of the actual error distribution there is no assuption whatsoever that the error distribution is Gaussian.  It is just a convenient reference contour. Similarly the black line is the contour of the quantile(0.159), which corresponds to the -1 standard deviation from the mean. Between these two contours would represent 68% of the distribution (or 68% confidence), which is equivalent to saying within +/- 1 standard deviation of the mean (if it were Gaussian).  The green line is the contour of the medians (quantile(0.5)).</p>
-
-<p>The following table is the list of the top 10 results from just one of the trials. The Group class was extended to include more columns at the end which were useful for this study. (This was easy to do and does not require any special access.)</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Count         Est          UB          LB      Thresh         RSE      PriKey   xG      yU         Err
- 1338    16511.86    16957.05    16078.18    0.019521    0.026962   1,1,16384    1   16384    0.007804
-  666     8218.91     8536.72     7912.67    0.009717    0.038668    2,1,8192    2    8192    0.003285
-  660     8144.87     8461.30     7840.01    0.009629    0.038850    2,2,8192    2    8192   -0.005754
-  475     5861.83     6132.21     5603.08    0.006930    0.046124    3,1,5461    3    5461    0.073400
-  450     5553.32     5816.82     5301.44    0.006565    0.047449    3,2,5461    3    5461    0.016905
-  400     4936.28     5185.44     4698.76    0.005836    0.050475    3,3,5461    3    5461   -0.096085
-  355     4380.95     4616.42     4157.14    0.005179    0.053748    4,2,4096    4    4096    0.069568
-  344     4245.20     4477.19     4024.87    0.005019    0.054648    4,1,4096    4    4096    0.036426
-  321     3961.37     4185.90     3748.50    0.004683    0.056681    4,3,4096    4    4096   -0.032870
-  306     3776.26     3995.79     3568.40    0.004464    0.058134    5,5,3277    5    3277    0.152351
-</code></pre></div></div>
-
-<p>The blue dot on the very left represents the single item with the largest cardinality. As you can see from the table, it’s estimation error is quite small (about 0.78%). At this point the +/- 1 S.D. contours are at about +3.4% and -2.5% and the median is about 0.78%</p>
-
-<p>As you follow the graph to the right you are observing the error distribution as the cardinalities get smaller.  Smaller groups have fewer samples from the sketch thus their estimation error will, of course, grow larger.  What this graph demonstrates is the the error properties are well behaved and what one would expect from this sketch.</p>
+<p>Our Classic, KLL, and REQ quantiles sketches are input insensitive and do not know or care what the input distribution looks like. It does not have to be a smooth and well behaved function! This is not the case with other heuristic quantile algorithms,</p>
 
 
       </div> <!-- End content -->
