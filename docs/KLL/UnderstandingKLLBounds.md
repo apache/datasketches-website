@@ -113,7 +113,7 @@ The input stream of 1000 values has a big discontinuity starting at *i* = 501. S
 
 We choose two quantiles on either side of the discontinuity, 500 and 620, and get their respective ranks of 0.5 and 0.52. Note that because of the discontinuity the difference in the input quantiles is 120/1100 or ~10.9%, while the difference in their respective ranks is only 2%.
 
-Next we compute the rank upper bound (UB) and rank lower bound (LB) of the two resulting ranks of 0.5 and 0.52, which are given above. Note that the UB - LB of each rank is about .013 which is 2 X .0067.  This means that the true rank of each quantile is within the UB - LB range of ranks with a confidence of 99%, which is about +/- 2.6 standard deviations from the mean.
+Next we compute the rank upper bound (UB) and rank lower bound (LB) of the two resulting ranks of 0.5 and 0.52, which are given above. Note that the UB - LB of each rank is about .013 which is 2 X .0067.  This means that the true rank of each quantile is within the UB - LB range of ranks with a confidence of 99%, which is about +/- 2.6 standard deviations from the estimate.
 
 Then we compute the quantile UB and LB of the same two resulting ranks of 0.5 and 0.52. Note that the UB - LB quantile range of *r1* is 114/1100 or 10.4%, because in between the rank UB and LB is the discontinuity.  These points are shown in the next plot
 
