@@ -195,6 +195,7 @@
             {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "Quantiles", "file": "QuantilesOverview" },
             {"class":"Doc",  "desc" : "KLL Sketch Family",                        "dir" : "KLL", "file": "KLLSketch" },
             {"class":"Doc",  "desc" : "KLL Sketch Accuracy and Size",             "dir" : "KLL", "file": "KLLAccuracyAndSize" },
+            {"class":"Doc",  "desc" : "Understanding KLL Bounds",                 "dir" : "KLL", "file": "UnderstandingKLLBounds" },
             {"class":"Doc",  "desc" : "REQ Floats sketch",                        "dir" : "REQ", "file": "ReqSketch" },
             {"class":"Doc",  "desc" : "Classic Quantiles Sketches",                 "dir" : "Quantiles", "file": "ClassicQuantilesSketch" },
 
