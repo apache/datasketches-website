@@ -109,7 +109,7 @@ The sketch is configured with a k=400, which results in a normalized rank error 
 
 The input stream of 1000 values has a big discontinuity starting at *i* = 501. So the actual sequence of inputs is 1 to 500 and 601 to 1100.
 
-<img class="doc-img-half" src="../img/kll/QuantileBounds1.png" alt="QuantileBounds1.png" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/kll/QuantileBounds1.png" alt="QuantileBounds1.png" />
 
 We choose two quantiles on either side of the discontinuity, 500 and 620, and get their respective ranks of 0.5 and 0.52. Note that because of the discontinuity the difference in the input quantiles is 120/1100 or ~10.9%, while the difference in their respective ranks is only 2%.
 
@@ -117,9 +117,7 @@ Next we compute the rank upper bound (UB) and rank lower bound (LB) of the two r
 
 Then we compute the quantile UB and LB of the same two resulting ranks of 0.5 and 0.52. Note that the UB - LB quantile range of *r1* is 114/1100 or 10.4%, because in between the rank UB and LB is the discontinuity.  These points are shown in the next plot
 
-[//]: # ( {{site.docs_img_dir}} )
-
-<img class="doc-img-half" src="../img/kll/QuantileBounds2.png" alt="QuantileBounds2.png" />
+<img class="doc-img-half" src="{{site.docs_img_dir}}/kll/QuantileBounds2.png" alt="QuantileBounds2.png" />
 
 This graphically illustrates why the mathematical guarantee of error applies only to the rank domain, because the input quantile domian could have huge discontinuities. Nonetheless, we **can** say that the true quantile does lie within that UB - LB quantile range with a confidence of 99%. But we cannot guarantee anything about the UB - LB quantile difference and relate that to a quantile accuracy compared to the total range of the input values. 
 
