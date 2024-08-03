@@ -568,30 +568,20 @@
     <span class="n">println</span><span class="o">(</span><span class="s">"r2: "</span> <span class="o">+</span> <span class="n">r2</span><span class="o">);</span>
     <span class="n">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
     
-    <span class="kt">double</span> <span class="n">r1LB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRankLowerBound</span><span class="o">(</span><span class="n">r1</span><span class="o">);</span>
-    <span class="n">println</span><span class="o">(</span><span class="s">"r1LB: "</span> <span class="o">+</span> <span class="n">r1LB</span><span class="o">);</span>
-    <span class="kt">double</span> <span class="n">r1UB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRankUpperBound</span><span class="o">(</span><span class="n">r1</span><span class="o">);</span>
-    <span class="n">println</span><span class="o">(</span><span class="s">"r1UB: "</span> <span class="o">+</span> <span class="n">r1UB</span><span class="o">);</span>
-    
-    <span class="kt">double</span> <span class="n">r2LB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRankLowerBound</span><span class="o">(</span><span class="n">r2</span><span class="o">);</span>
-    <span class="n">println</span><span class="o">(</span><span class="s">"r2LB: "</span> <span class="o">+</span> <span class="n">r2LB</span><span class="o">);</span>
-    <span class="kt">double</span> <span class="n">r2UB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRankUpperBound</span><span class="o">(</span><span class="n">r2</span><span class="o">);</span>
-    <span class="n">println</span><span class="o">(</span><span class="s">"r2UB: "</span> <span class="o">+</span> <span class="n">r2UB</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"r1LB(r1): "</span> <span class="o">+</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRankLowerBound</span><span class="o">(</span><span class="n">r1</span><span class="o">));</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"r1UB(r1): "</span> <span class="o">+</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRankUpperBound</span><span class="o">(</span><span class="n">r1</span><span class="o">));</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"r2LB(r2): "</span> <span class="o">+</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRankLowerBound</span><span class="o">(</span><span class="n">r2</span><span class="o">));</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"r2UB(r2): "</span> <span class="o">+</span> <span class="n">sk</span><span class="o">.</span><span class="na">getRankUpperBound</span><span class="o">(</span><span class="n">r2</span><span class="o">));</span>
     <span class="n">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
     
-    <span class="kt">double</span> <span class="n">q1LB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getQuantileLowerBound</span><span class="o">(</span><span class="n">r1</span><span class="o">);</span>
-    <span class="n">println</span><span class="o">(</span><span class="s">"q1LB(r1): "</span> <span class="o">+</span> <span class="n">q1LB</span><span class="o">);</span>
-    <span class="kt">double</span> <span class="n">q1UB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getQuantileUpperBound</span><span class="o">(</span><span class="n">r1</span><span class="o">);</span>
-    <span class="n">println</span><span class="o">(</span><span class="s">"q1UB(r1): "</span> <span class="o">+</span> <span class="n">q1UB</span><span class="o">);</span>
-    
-    <span class="kt">double</span> <span class="n">q2LB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getQuantileLowerBound</span><span class="o">(</span><span class="n">r2</span><span class="o">);</span>
-    <span class="n">println</span><span class="o">(</span><span class="s">"q2LB(r2): "</span> <span class="o">+</span> <span class="n">q2LB</span><span class="o">);</span>
-    <span class="kt">double</span> <span class="n">q2UB</span> <span class="o">=</span> <span class="n">sk</span><span class="o">.</span><span class="na">getQuantileUpperBound</span><span class="o">(</span><span class="n">r2</span><span class="o">);</span>
-    <span class="n">println</span><span class="o">(</span><span class="s">"q2UB(r2): "</span> <span class="o">+</span> <span class="n">q2UB</span><span class="o">);</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"q1LB(r1): "</span> <span class="o">+</span> <span class="n">sk</span><span class="o">.</span><span class="na">getQuantileLowerBound</span><span class="o">(</span><span class="n">r1</span><span class="o">));</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"q1UB(r1): "</span> <span class="o">+</span> <span class="n">sk</span><span class="o">.</span><span class="na">getQuantileUpperBound</span><span class="o">(</span><span class="n">r1</span><span class="o">));</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"q2LB(r2): "</span> <span class="o">+</span> <span class="n">sk</span><span class="o">.</span><span class="na">getQuantileLowerBound</span><span class="o">(</span><span class="n">r2</span><span class="o">));</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">"q2UB(r2): "</span> <span class="o">+</span> <span class="n">sk</span><span class="o">.</span><span class="na">getQuantileUpperBound</span><span class="o">(</span><span class="n">r2</span><span class="o">));</span>
     <span class="n">println</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
   <span class="o">}</span>
   
-  <span class="kd">static</span> <span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span> <span class="o">}</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">println</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span> <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
@@ -605,10 +595,10 @@ q2: 620.0
 r1: 0.5
 r2: 0.52
 
-r1LB: 0.4932237572729862
-r1UB: 0.5067762427270138
-r2LB: 0.5132237572729862
-r2UB: 0.5267762427270138
+r1LB(r1): 0.4932237572729862
+r1UB(r1): 0.5067762427270138
+r2LB(r2): 0.5132237572729862
+r2UB(r2): 0.5267762427270138
 
 q1LB(r1): 494.0
 q1UB(r1): 608.0
@@ -627,15 +617,15 @@ PASSED: exampleQuantileBounds
 
 <p>We choose two quantiles on either side of the discontinuity, 500 and 620, and get their respective ranks of 0.5 and 0.52. Note that because of the discontinuity the difference in the input quantiles is 120/1100 or ~10.9%, while the difference in their respective ranks is only 2%.</p>
 
-<p>Next we compute the upper and lower rank bounds of the two resulting ranks of 0.5 and 0.52, which are given above. Note that the UB - LB of each rank is about .013 which is 2 X .0067.  This means that the true rank of each quantile is within the UB - LB range of ranks with a confidence of 99%, which is about +/- 2.6 standard deviations from the mean.</p>
+<p>Next we compute the rank upper bound (UB) and rank lower bound (LB) of the two resulting ranks of 0.5 and 0.52, which are given above. Note that the UB - LB of each rank is about .013 which is 2 X .0067.  This means that the true rank of each quantile is within the UB - LB range of ranks with a confidence of 99%, which is about +/- 2.6 standard deviations from the estimate.</p>
 
-<p>Then we compute the upper and lower quantile bounds of the same two resulting ranks of 0.5 and 0.52. Note that the UB - LB quantile range of <em>r1</em> is 114/1100 or 10.4%, because in between the rank UB and LB is the discontinuity.  These points are shown in the next image.</p>
+<p>Then we compute the quantile UB and LB of the same two resulting ranks of 0.5 and 0.52. Note that the UB - LB quantile range of <em>r1</em> is 114/1100 or 10.4%, because in between the rank UB and LB is the discontinuity.  These points are shown in the next plot</p>
 
 <p><img class="doc-img-half" src="/docs/img/kll/QuantileBounds2.png" alt="QuantileBounds2.png" /></p>
 
 <p>This graphically illustrates why the mathematical guarantee of error applies only to the rank domain, because the input quantile domian could have huge discontinuities. Nonetheless, we <strong>can</strong> say that the true quantile does lie within that UB - LB quantile range with a confidence of 99%. But we cannot guarantee anything about the UB - LB quantile difference and relate that to a quantile accuracy compared to the total range of the input values.</p>
 
-<p>Our Classic, KLL, and REQ quantiles sketches are input insensitive and do not know or care what the input distribution looks like. It does not have to be a smooth and well behaved function! This is not the case with other heuristic quantile algorithms,</p>
+<p>Our Classic, KLL, and REQ quantiles sketches are input insensitive and do not know or care what the input distribution looks like. It does not have to be a smooth and well behaved function. This is not the case with other heuristic quantile algorithms,</p>
 
 
       </div> <!-- End content -->
