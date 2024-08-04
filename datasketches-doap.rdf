@@ -50,7 +50,7 @@ If approximate results are acceptable, there is a class of specialized algorithm
     </repository>
     <repository>
       <GitRepository>
-        <browse rdf:resource="https://github.com/apache?q=datasketches&type=all"/>
+        <browse rdf:resource="https://github.com/apache?q=datasketches"/>
       </GitRepository>
     </repository>
     <maintainer>
