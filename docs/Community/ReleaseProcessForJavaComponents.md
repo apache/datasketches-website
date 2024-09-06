@@ -210,7 +210,7 @@ Also specifies line separator characters for text files.
 
 ### Create Copy of External Artifact Distributions
 #### JAVA ONLY
-* Place copies of the artifact jars deployed to Nexus under a "maven" directory.  For example see <https://dist.apache.org/repos/dist/dev/datasketches/memory/1.3.0-RC1/>
+* Place copies of the artifact jars deployed to Nexus under a "maven" directory.  For example see <https://dist.apache.org/repos/dist/dev/datasketches/memory/3.0.0-RC1/>
 * Note that the `jar` files with their `asc`, (optional `md5` and `sha1`) signature are all together in the .md2 archive 
 * Add a `maven` directory under the `dist/dev/datasketches/<component>/A.B.0/`
 * Bulk copy the `jar, asc, (optional md5` and `sha1`) files into the `maven` directory.
