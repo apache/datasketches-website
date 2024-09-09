@@ -73,9 +73,7 @@ We will discuss the RSE in a later section.
 
 [1] Z. Bar-Yossef, T. Jayram, R. Kumar, D. Sivakumar, and L. Trevisan. Counting distinct elements in a data stream. In <i>Randomization and Approximation Techniques in Computer Science</i>, pages 1–10. Springer, 2002.
 
-[2] See <a href="{{site.docs_dir}}/Theta/KMVempty.html">KMV Tutorial</a> and 
-<a href="https://research.neustar.biz/2012/07/09/sketch-of-the-day-k-minimum-values/">Sketch of the Day: K-Minimum Values</a> 
-for a brief tutorials on KMV Sketches.
+[2] See <a href="{{site.docs_dir}}/Theta/KMVempty.html">KMV Tutorial</a> for a brief tutorial on KMV Sketches.
 
 [3] This is a limited "KMV perspective" on how <i>&theta;</i> gets assigned.  The attached paper 
 <a href="{{site.docs_pdf_dir}}/ThetaSketchFramework.pdf">Theta Sketch Framework</a> 

@@ -35,7 +35,7 @@ It is important to understand that the sketch has no idea what the true value is
 it only knows the internal state of the sketch. 
 
 From the mathematical theory of these sketches 
-(see <a href="{{site.docs_pdf_dir}}/SketchEquations.pdf">Sketch Equations</a> and 
+(see <a href="{{site.docs_pdf_dir}}/ThetaSketchEquations.pdf">Theta Sketch Equations</a> and 
 <a href="{{site.docs_pdf_dir}}/ThetaSketchFramework.pdf">Theta Sketch Framework</a>) we know:
 
 * The estimate is unbiased.  If you were to feed the same data into the sketch using 

@@ -49,7 +49,7 @@ The Tuple sketch is effectively infinitely extendable and there are several comm
 - [tuple/adouble/DoubleSketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/adouble/DoubleSketch.java) with a single column of *double* values as the *summary*.
 - [tuple/aninteger/IntegerSketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/aninteger/IntegerSketch.java) with a single column of *int* values as the *summary*.
 - [tuple/strings/ArrayOfStringsSketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/strings/ArrayOfStringsSketch.java), which is effectively a variable number of columns of strings as the *summary*.
-- [tuple/ArrayOfDoublesSketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/ArrayOfDoublesSketch.java), which enables the user to specify the number of columns of double values as the *summary*. This variant also provides both on-heap and off-heap operation.
+- [tuple/ArrayOfDoublesSketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/arrayofdoubles/ArrayOfDoublesSketch.java), which enables the user to specify the number of columns of double values as the *summary*. This variant also provides both on-heap and off-heap operation.
 
 
 ### [HyperLogLog Sketches]({{site.docs_dir}}/HLL/HLL.html): Estimating Stream Cardinalities
