@@ -524,40 +524,208 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h3 id="apache-pig-integration">Apache Pig Integration</h3>
 
-<ul>
-  <li>
-    <p><a href="https://datasketches.apache.org/docs/Community/Downloads.html">Download</a></p>
-  </li>
-  <li>
-    <p>Build and Install, See <a href="https://github.com/apache/datasketches-pig">Pig README</a></p>
-  </li>
-  <li>
-    <p><a href="https://datasketches.apache.org/docs/CPC/CpcPigExample.html">CPC Example</a></p>
-  </li>
-  <li>
-    <p><a href="https://datasketches.apache.org/docs/Frequency/FrequentItemsPigUDFs.html">Frequent Items Example</a></p>
-  </li>
-  <li>
-    <p><a href="https://datasketches.apache.org/docs/HLL/HllPigUDFs.html">HLL Example</a></p>
-  </li>
-  <li>
-    <p><a href="https://datasketches.apache.org/docs/Quantiles/QuantilesPigUDFs.html">Quantiles Example</a></p>
-  </li>
-  <li>
-    <p><a href="https://datasketches.apache.org/docs/Sampling/ReservoirSamplingPigUDFs.html">Reservoir Example</a></p>
-  </li>
-  <li>
-    <p><a href="https://datasketches.apache.org/docs/Theta/ThetaPigUDFs.html">Theta Example</a></p>
-  </li>
-  <li>
-    <p><a href="/docs/Tuple/TuplePigUDFs.html">Tuple Example</a></p>
-  </li>
-  <li>
-    <p><a href="https://datasketches.apache.org/docs/Sampling/VarOptPigUDFs.html">VarOpt Example</a></p>
-  </li>
-</ul>
+<h2 id="hll-maximum1-sketch-size--error-table">HLL Maximum<sup>1</sup> Sketch Size &amp; Error Table</h2>
+
+<h3 id="maximum1-serialized-size-in-bytes-given-lgconfigk-and-tgthlltype-and">Maximum<sup>1</sup> Serialized Size in Bytes Given lgConfigK and tgtHllType And</h3>
+<h3 id="maximum-relative-error-given-chosen--of-standard-deviations-from-the-estimate">Maximum Relative Error given chosen # of Standard Deviations from the Estimate</h3>
+
+<h4 id="columns">Columns</h4>
+<ol>
+  <li>Chosen LgConfigK of the sketch</li>
+  <li>Chosen tgtHllType is HLL_4</li>
+  <li>Chosen tgtHllType is HLL_6</li>
+  <li>Chosen tgtHllThpe is HLL_8</li>
+  <li>Chosen # Standard Deviations = 1 corresponds to a 68.3% confidence interval</li>
+  <li>Chosen # Standard Deviations = 2 corresponds to a 95.5% confidence interval</li>
+  <li>Chosen # Standard Deviations = 3 corresponds to a 99.7% confidence interval</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">lgConfigK</th>
+      <th style="text-align: center">HLL_4<br />Bytes</th>
+      <th style="text-align: center">HLL_6<br />Bytes</th>
+      <th style="text-align: center">HLL_8<br />Bytes</th>
+      <th style="text-align: center">1 StdDev<br />68.3%</th>
+      <th style="text-align: center">2 StdDev<br />95.5%</th>
+      <th style="text-align: center">3 StdDev<br />99.7%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">64</td>
+      <td style="text-align: center">53</td>
+      <td style="text-align: center">56</td>
+      <td style="text-align: center">25.698%</td>
+      <td style="text-align: center">41.191%</td>
+      <td style="text-align: center">52.651%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">72</td>
+      <td style="text-align: center">65</td>
+      <td style="text-align: center">72</td>
+      <td style="text-align: center">18.233%</td>
+      <td style="text-align: center">31.028%</td>
+      <td style="text-align: center">41.266%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">88</td>
+      <td style="text-align: center">89</td>
+      <td style="text-align: center">104</td>
+      <td style="text-align: center">12.931%</td>
+      <td style="text-align: center">23.014%</td>
+      <td style="text-align: center">31.564%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">7</td>
+      <td style="text-align: center">136</td>
+      <td style="text-align: center">137</td>
+      <td style="text-align: center">168</td>
+      <td style="text-align: center">9.158%</td>
+      <td style="text-align: center">16.834%</td>
+      <td style="text-align: center">23.635%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">8</td>
+      <td style="text-align: center">200</td>
+      <td style="text-align: center">233</td>
+      <td style="text-align: center">296</td>
+      <td style="text-align: center">6.487%</td>
+      <td style="text-align: center">12.205%</td>
+      <td style="text-align: center">17.411%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">9</td>
+      <td style="text-align: center">328</td>
+      <td style="text-align: center">425</td>
+      <td style="text-align: center">552</td>
+      <td style="text-align: center">4.591%</td>
+      <td style="text-align: center">8.785%</td>
+      <td style="text-align: center">12.692%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">616</td>
+      <td style="text-align: center">809</td>
+      <td style="text-align: center">1,064</td>
+      <td style="text-align: center">3.243%</td>
+      <td style="text-align: center">6.290%</td>
+      <td style="text-align: center">9.186%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">11</td>
+      <td style="text-align: center">1,128</td>
+      <td style="text-align: center">1,577</td>
+      <td style="text-align: center">2,088</td>
+      <td style="text-align: center">2.296%</td>
+      <td style="text-align: center">4.488%</td>
+      <td style="text-align: center">6.574%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">12</td>
+      <td style="text-align: center">2,216</td>
+      <td style="text-align: center">3,113</td>
+      <td style="text-align: center">4,136</td>
+      <td style="text-align: center">1.619%</td>
+      <td style="text-align: center">3.183%</td>
+      <td style="text-align: center">4.697%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">13</td>
+      <td style="text-align: center">4,264</td>
+      <td style="text-align: center">6,185</td>
+      <td style="text-align: center">8,232</td>
+      <td style="text-align: center">1.148%</td>
+      <td style="text-align: center">2.296%</td>
+      <td style="text-align: center">3.444%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">14</td>
+      <td style="text-align: center">8,488</td>
+      <td style="text-align: center">12,329</td>
+      <td style="text-align: center">16,424</td>
+      <td style="text-align: center">0.812%</td>
+      <td style="text-align: center">1.623%</td>
+      <td style="text-align: center">2.435%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">15</td>
+      <td style="text-align: center">16,936</td>
+      <td style="text-align: center">24,617</td>
+      <td style="text-align: center">32,808</td>
+      <td style="text-align: center">0.574%</td>
+      <td style="text-align: center">1.148%</td>
+      <td style="text-align: center">1.722%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">16</td>
+      <td style="text-align: center">33,832</td>
+      <td style="text-align: center">49,193</td>
+      <td style="text-align: center">65,576</td>
+      <td style="text-align: center">0.406%</td>
+      <td style="text-align: center">0.812%</td>
+      <td style="text-align: center">1.218%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">17</td>
+      <td style="text-align: center">67,624</td>
+      <td style="text-align: center">98,345</td>
+      <td style="text-align: center">131,112</td>
+      <td style="text-align: center">0.287%</td>
+      <td style="text-align: center">0.574%</td>
+      <td style="text-align: center">0.861%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">18</td>
+      <td style="text-align: center">135,208</td>
+      <td style="text-align: center">196,649</td>
+      <td style="text-align: center">262,184</td>
+      <td style="text-align: center">0.203%</td>
+      <td style="text-align: center">0.406%</td>
+      <td style="text-align: center">0.609%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">19</td>
+      <td style="text-align: center">270,376</td>
+      <td style="text-align: center">393,257</td>
+      <td style="text-align: center">524,328</td>
+      <td style="text-align: center">0.143%</td>
+      <td style="text-align: center">0.287%</td>
+      <td style="text-align: center">0.430%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">540,712</td>
+      <td style="text-align: center">786,473</td>
+      <td style="text-align: center">1,048,616</td>
+      <td style="text-align: center">0.101%</td>
+      <td style="text-align: center">0.203%</td>
+      <td style="text-align: center">0.304%</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">21</td>
+      <td style="text-align: center">1,081,384</td>
+      <td style="text-align: center">1,572,905</td>
+      <td style="text-align: center">2,097,192</td>
+      <td style="text-align: center">0.072%</td>
+      <td style="text-align: center">0.143%</td>
+      <td style="text-align: center">0.215%</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="notes">Notes</h3>
+
+<ol>
+  <li>The max sizes for the HLL_4 sketch type can be exceeded, but it is very rare. If it is exceeded it would be by a few percent.</li>
+  <li>The minimum serialized size (for an empty sketch) is 8 bytes.</li>
+</ol>
+
 
       </div> <!-- End content -->
     </div> <!-- End row -->
