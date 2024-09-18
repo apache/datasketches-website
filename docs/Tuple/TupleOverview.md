@@ -40,3 +40,10 @@ Keep in mind that all of these operations are stream-based.  The raw data from w
 The Tuple Sketches also provide sufficient methods so that user could develop a wrapper class that could facilitate approximate joins or other common database operations.  This concept is illustrated in this next diagram.
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/tuple/TupleJoins.png" alt="TupleJoins" />
+
+## Tuple Sketch Examples
+
+* [Tuple Java Example](https://datasketches.apache.org/docs/Tuple/TupleJavaExample.html)
+* [Tuple Engagement](https://datasketches.apache.org/docs/Tuple/TupleEngagementExample.html)
+* [Tuple Pig UDFs](https://datasketches.apache.org/docs/Tuple/TuplePigUDFs.html)
+* [Tuple Hive UDFs](https://datasketches.apache.org/docs/Tuple/TupleHiveUDFs.html)
