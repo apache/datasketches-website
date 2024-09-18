@@ -143,6 +143,7 @@
               ]
             },
 
+<<<<<<< HEAD
             { "class":"Dropdown", "desc" : "Tuple Sketches", "array":
               [
                 {"class":"Doc",  "desc" : "Tuple Overview",           "dir" : "Tuple", "file": "TupleOverview" },
@@ -156,6 +157,9 @@
                 },
               ]
             },
+=======
+            { "class":"Doc",  "desc" : "Tuple Sketches",     "dir" : "Tuple", "file": "TupleSketches" },
+>>>>>>> stash
           ]
         },
 
