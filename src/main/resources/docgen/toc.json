@@ -55,6 +55,7 @@
             { "class":"Dropdown", "desc" : "HyperLogLog Sketches", "array":
               [
                 {"class":"Doc",  "desc" : "HLL Sketch",                               "dir" : "HLL", "file": "HLL" },
+                {"class":"Doc",  "desc" : "HLL Max Size & Error Table",               "dir" : "HLL", "file": "HllMaxSizeAndErrorTable" },
                 {"class":"Doc",  "desc" : "HLL Map Sketch",                           "dir" : "HLL", "file": "HllMap" },
                 { "class":"Dropdown", "desc" : "HLL Examples", "array":
                   [

@@ -59,8 +59,8 @@ These sketches have many parallel methods. Please refer to the sketch API docume
 		* Exclusive, which is compatible with the KLL and older Quantiles Sketch
 		* Inclusive, a common definition in some of the theoretical literature. 
 	* Accuracy %: a function of *K* and independent of rank. 
-	* Dedicated *double* implentation, which can be configured for off-heap operation.
-	* Generic implementation for arbitrary comparible types.
+	* Dedicated *double* and generic *item* implentations for arbitrary comparable types. 
+	* The *double* implementation can be configured for off-heap operation.
 
 
 ### The KLL Sketch
@@ -79,7 +79,8 @@ These sketches have many parallel methods. Please refer to the sketch API docume
 		* Inclusive, a common definition in some of the theoretical literature.
 	* Accuracy %: a function of *K* and independent of rank. 
 	* Near optimal accuracy per sketch size compared to other constant accuracy quantiles sketches. 
-	* Java: Dedicated *float* and *double* implementations.
+	* Java: Dedicated *float*, *double*, *long*, and generic *item* implementations.
+	* The *float*, *double*, and *long* implementations can be configured for off-heap operation.
 	* C++: Template implementation for arbitrary comparible types.
 	* Python: Dedicated *float* and *integer* implementations
 

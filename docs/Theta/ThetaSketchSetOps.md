@@ -41,7 +41,7 @@ The Union and Intersection operations are symmetric (i.e., sketch order insensit
 and naturally iterative. 
 The AnotB operation, however, is asymmetric (i.e., sketch order sensitive) and not iterative. 
 
-This is a Java example of all three operatins:
+This is a Java example of all three operations:
 
     import static org.testng.Assert.assertEquals;
     import org.testng.annotations.Test;
