@@ -512,344 +512,133 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h1 id="new-committer-process">New Committer Process</h1>
-
+<h2 id="contents">Contents</h2>
+<!-- TOC -->
 <ul>
-  <li>Reference: <a href="https://community.apache.org/newcommitter.html#new-committer-process">New Committer Process</a></li>
-</ul>
-
-<h2 id="create-proposal-for-new-candidate">Create Proposal for New Candidate</h2>
-<ul>
-  <li><strong><em>NOTE</em></strong> On private datasketches mail list ONLY!</li>
-</ul>
-
-<p>Here are some topics to consider when writing your proposal about the candidate. Any one of which may be sufficient to invite someone to join us as a new committer.</p>
-
-<h3 id="interpersonal-skills">Interpersonal Skills</h3>
-
-<ul>
-  <li>Ability to work cooperatively with peers
+  <li><a href="#theta-sketch-framework">Theta Sketch Framework</a></li>
+  <li>Theta Examples
     <ul>
-      <li>Is this person willing to help peers to balance workload?</li>
-      <li>Does this person respond positively to criticism?</li>
-      <li>Does this person participate in the group decision-making processes?</li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ConcurrentThetaSketch.html">Concurrent Theta Sketch</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
     </ul>
   </li>
-  <li>Ability and willingness to guide and mentor others
+  <li>KMV Tutorial
     <ul>
-      <li>How clearly does this person communicate?</li>
-      <li>Does this person take pains to explain elementary concepts?</li>
-      <li>Does this person demonstrate patience and respect when answering user queries?</li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/InverseEstimate.html">The Inverse Estimate</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/KMVempty.html">Empty Sketch</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/KMVfirstEst.html">First Estimator</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/KMVbetterEst.html">Better Estimator</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/KMVrejection.html">Rejection Rules</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/KMVupdateVkth.html">Update V(kth) Rule</a></li>
     </ul>
   </li>
-</ul>
-
-<h3 id="product-contributions">Product Contributions</h3>
-<p>This can be in a number of areas including:</p>
-
-<ul>
-  <li>PRs or code grants</li>
-  <li>Documentation</li>
-  <li>CI/CD automation</li>
-  <li>Build systems</li>
-  <li>Website structure and content</li>
-</ul>
-
-<h3 id="marketing-contributions">Marketing Contributions</h3>
-<ul>
-  <li>Evangelizing the use of sketches to solve problems</li>
-  <li>Organizing workshops, meetups</li>
-  <li>Doing or promoting tech talks with our team and with external scientists and engineers.</li>
-  <li>Writing blogposts and “what’s new” posts for community growth</li>
-</ul>
-
-<h3 id="scientific-contributions">Scientific Contributions</h3>
-
-<ul>
-  <li>Has this person authored research papers on sketching algorithms and contributed code that was developed as part of that research to our project?</li>
-  <li>Has this person provided substantial assistance to us in understanding the nuances 
-of a theoretical research paper on sketching and how it could be implemented in our library?</li>
-  <li>Has this person demonstrated a high level of interest in having their theoretical work implemented in our library even though this person may not be a fluent programmer?</li>
-</ul>
-
-<h3 id="community-contributions">Community Contributions</h3>
-
-<ul>
-  <li>Has this person participated in our mailing lists, Slack discussions, and GitHub issues?</li>
-  <li>Is this person known and respected by our active committers and our PMC?</li>
-  <li>Has exhibited a high level of interest and commitment to learn, 
-not only about our code base, but about the underlying 
-theory of sketching as well?</li>
-</ul>
-
-<h2 id="write-proposal-in-a-discuss-thread">Write Proposal in a DISCUSS thread</h2>
-<p><strong><em>NOTE</em></strong> On private datasketches mail list ONLY!</p>
-
-<hr />
-<p>From: (PMC Member)<br />
-To: private datasketches mail list <strong>ONLY! DO NOT CC!</strong><br />
-Subject: [DISCUSS] Proposal to invite <candidate> as new committer.</candidate></p>
-
-<p>Dear PMC,</p>
-
-<p>This is a proposal to offer to [Candidate] to join us as a committer on our project.</p>
-
-<p>(justification)</p>
-
-<p>This discussion will end on (month/ day at HH:MM [TimeZone]).</p>
-
-<p>If this discussion produces a positive consensus or no objections, I will use <a href="https://www.apache.org/foundation/voting.html">lazy consensus</a> and proceed to a vote.</p>
-
-<p>Regards,
-(PMC Member)</p>
-
-<hr />
-
-<h2 id="vote">Vote</h2>
-<h3 id="write-a-vote-email-similar-to-the-following">Write a vote email similar to the following:</h3>
-<p><strong><em>NOTE</em></strong> On private datasketches mail list ONLY!</p>
-
-<hr />
-<p>From: (PMC Member)<br />
-To: private datasketches mail list<br />
-Subject: [VOTE] [Candidate] as new Committer<br /></p>
-
-<p>(Summarize the results of the DISCUSS thread )</p>
-
-<p>The vote will be performed as follows:</p>
-
-<ul>
-  <li>Voting ends X days from today, i.e, midnight UTC on YYYY-MM-DD, <TimeZone>. (we recommend at least 3 days)</TimeZone></li>
-  <li>At least 3 (+1) PMC votes and no (-1) votes.</li>
-</ul>
-
-<p>Please vote accordingly:</p>
-
-<p>[ ] +1 approve<br />
-[ ] +0 no opinion<br />
-[ ] -1 disapprove with the reason</p>
-
-<p>Regards,<br />
-(PMC Member)</p>
-
-<hr />
-
-<h2 id="close-the-vote">Close the Vote</h2>
-<p><strong><em>NOTE</em></strong> On private datasketches mail list ONLY!</p>
-
-<p>After sufficient votes have been obtained and the time as elapsed, issue an email similar to the following:</p>
-
-<hr />
-<p>Subject: [RESULT][VOTE] [Candidate] as new Committer</p>
-
-<p>The vote is now closed.</p>
-
-<p>Passed/Did not pass with X (+1) binding votes (list names), and Y 0 votes and Z -1 votes.</p>
-
-<p>Regards,
-(PMC MEMBER)</p>
-
-<hr />
-
-<h2 id="committer-invite-example">Committer Invite Example</h2>
-<p><strong><em>NOTE</em></strong> CC’d to private datasketches mail list ONLY!</p>
-
-<p>Write a letter to the candidate similar to the following:</p>
-
-<hr />
-<p>To: [Candidate]<br />
-CC: private datasketches mail list<br />
-From: (PMC Member)<br />
-Subject: Invitation to become DataSketches Committer<br /></p>
-
-<p>Hello [Candidate]</p>
-
-<p>The datasketches Project Management Committee (PMC) hereby offers
-you committer privileges to the project. These privileges are offered on
-the understanding that you’ll use them reasonably and with common sense. We
-like to work on trust rather than unnecessary constraints.</p>
-
-<p>Being a committer grants you write access to all of our repositories. In our normal code committing process we all use PRs and like to have at least one other committer or PMC member review the code before it is merged into <em>master</em>. However, for trivial edits (e.g. typos, documentation corrections) you may make commits on your own.</p>
-
-<p>Being a committer does not require you to participate any more than
-you already do. It does tend to make one even more involved as you will
-probably find that you spend more time with our project.  Of course, you can decline and
-instead remain as a contributor, participating as you do now.</p>
-
-<p>A. This personal invitation is a chance for you to accept or decline
-in private.  Either way, please let us know in reply to the 
-private datasketches mail list address only.</p>
-
-<p>B. If you accept, you will receive a follow-up message with
-the next steps to establish you as a committer.</p>
-
-<p>Regards
-(PMC MEMBER)</p>
-
-<hr />
-
-<h2 id="if-candidate-accepts-followup-instructions">If Candidate Accepts, Followup Instructions</h2>
-<p><strong><em>NOTE</em></strong> CC’d to private datasketches mail list ONLY!</p>
-
-<hr />
-<p>To: [Candidate]<br />
-CC: private datasketches mail list<br />
-From: (PMC Member)<br />
-Subject: Welcome to the Apache DataSketches Project as a Committer!</p>
-
-<p>Dear (Candidate),</p>
-
-<p>Welcome to our project!  We are excited to have you join us.</p>
-
-<p>To complete your admission as a committer you need to register an <em>Individual Contributor License Agreement</em> (ICLA) with ASF.</p>
-
-<ul>
-  <li>Explanation of the ICLA: https://www.apache.org/licenses/contributor-agreements.html</li>
-  <li>ICLA form: https://www.apache.org/licenses/icla.pdf.
+  <li>Set Operations and P-sampling
     <ul>
-      <li>On the form choose a preferred Apache ID.  This will become your Apache email address, e.g. <ApacheID>@apache.org.  When your account gets set up you will be able to specify a forwarding email address for messages sent to your apache.org email. You can look to see if your preferred ID is already taken at &lt;https://people.apache.org/committer-index.html&gt;.</ApacheID></li>
-      <li>Under notify project write <em>Apache DataSketches</em></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaSketchSetOps.html">Set Operations</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaSetOpsCornerCases.html">Model &amp; Test Set Operations</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaPSampling.html">p-Sampling</a></li>
     </ul>
   </li>
-  <li>Note that the ICLA contains your confidential information and should only be sent directly to <a href="mailto:secretary@apache.org">secretary@apache.org</a> and not CC’d to this private@ email address nor to me</li>
-  <li>In your letter to the secretary please request the secretary to notify private datasketches mail list once the ICLA has been recorded.</li>
-  <li>Once you have sent your ICLA to the secretary please notify us on this private@ email address so that we can coordinate with the secretary in getting your account set up.</li>
-</ul>
-
-<p>After the ICLA has been recorded and your account created we will announce your joining the project on <a href="mailto:dev@datasketches.apache.org">dev@datasketches.apache.org</a>.</p>
-
-<p>The developer section of the website describes the roles and provides other resources:</p>
-<ul>
-  <li><a href="https://www.apache.org/foundation/how-it-works.html">https://www.apache.org/foundation/how-it-works.html</a></li>
-  <li><a href="https://www.apache.org/dev/">https://www.apache.org/dev/</a></li>
-</ul>
-
-<p>The Apache Incubator project also has some useful information for new committers:</p>
-<ul>
-  <li><a href="https://incubator.apache.org/guides/committer.html">https://incubator.apache.org/guides/committer.html</a></li>
-  <li><a href="https://incubator.apache.org/guides/ppmc.html">https://incubator.apache.org/guides/ppmc.html</a></li>
-</ul>
-
-<p>Just as before you became a committer, participation in any ASF community
-requires adherence to the ASF Code of Conduct:</p>
-<ul>
-  <li><a href="https://www.apache.org/foundation/policies/conduct.html">https://www.apache.org/foundation/policies/conduct.html</a></li>
-</ul>
-
-<p>Again, welcome to the DataSketches project!</p>
-
-<p>Best Regards,<br />
-(PMC Member)</p>
-
-<hr />
-
-<h2 id="sample-letter-from-secretary-confirming-filing-of-the-icla">Sample Letter from Secretary confirming filing of the ICLA</h2>
-<p><strong><em>NOTE</em></strong> CC’d to private datasketches mail list ONLY!</p>
-
-<hr />
-<p>From: Matt Sicker (secretary)<br />
-To: private datasketches mail list<br />
-Subject: [FORM] Account Request - candidate@gxyz.com: [Candidate]<br />
-Date:<br />
-List: private datasketches mail list</p>
-
-<p>Prospective userid: 123456<br />
-Full Name: [Candidate]<br />
-Forwarding emal address:  blah<br /></p>
-
-<hr />
-
-<h2 id="account-creation">Account Creation</h2>
-<p><strong><em>NOTE</em></strong> CC’d to private datasketches mail list ONLY!</p>
-
-<p>If the ICLA identifies the project and a valid Apache id, and the [RESULT][VOTE] message has been posted to the PMC private list, then the account creation request is made by the secretary or assistant who files the ICLA.</p>
-
-<p>Otherwise, new account requests will only be accepted from PMC chairs and ASF members.</p>
-
-<ul>
-  <li>See <a href="https://www.apache.org/dev/pmc.html#newcommitter">https://www.apache.org/dev/pmc.html#newcommitter</a></li>
-</ul>
-
-<h2 id="completing-the-new-committer-account-setup">Completing the New Committer Account Setup</h2>
-<p>After the committer account is established.</p>
-
-<hr />
-
-<p>To: private datasketches mail list, (new committer)<br />
-Subject: Completing the setup of your Account</p>
-
-<p>Hello (new committer),<br />
-The ASF Infrastructure team has set up your committer account with 
-the username ‘blah’ with an Apache email of <blah>@apache.org.
-The next portion of the setup you must do.</blah></p>
-
-<p>Please follow the instructions at the <a href="https://infra.apache.org/new-committers-guide.html">Guide For New Project Committers</a> to set up your SSH,
-svn password, svn configuration, mail forwarding, GitHub ID, etc.</p>
-
-<ul>
-  <li>For new PMC members only:
+  <li>Accuracy
     <ul>
-      <li>Please subscribe to the DataSketches Project Management 
-Committee mailing list private datasketches mail list.</li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaAccuracy.html">Basic Accuracy</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaAccuracyPlots.html">Accuracy Plots</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaErrorTable.html">Relative Error Table</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaSketchSetOpsAccuracy.html">SetOp Accuracy</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/AccuracyOfDifferentKUnions.html">Unions With Different k</a></li>
+    </ul>
+  </li>
+  <li>Size
+    <ul>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaSize.html">Theta Sketch Size</a></li>
+    </ul>
+  </li>
+  <li>Speed
+    <ul>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaUpdateSpeed.html">Update Speed</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaMergeSpeed.html">Merge Speed</a></li>
+    </ul>
+  </li>
+  <li>Theta Sketch Theory
+    <ul>
+      <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)</a></li>
+      <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchEquations.pdf">Theta Sketch Equations (PDF)</a></li>
+      <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches.pdf">Data Sketches (PDF)</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaConfidenceIntervals.html">Confidence Intervals; Notes</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaMergingAlgorithm.html">Merging Algorithm; Notes</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaReferences.html">Theta References</a>
+<!-- TOC --></li>
     </ul>
   </li>
 </ul>
 
-<p>As a committer on the DataSketches Project you will have commit access to the following DataSketches repositories as follows:</p>
+<p><a id="theta-sketch-framework"></a></p>
+<h2 id="theta-sketch-framework">Theta Sketch Framework</h2>
+<p>Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum Value</i> (KMV)<sup>1,2</sup> 
+sketches in that KMV sketches are a form of Theta Sketch, but not all Theta Sketches are KMV.</p>
 
-<ul>
-  <li>https://github.com/apache/datasketches-java</li>
-  <li>https://github.com/apache/datasketches-cpp</li>
-  <li>https://github.com/apache/datasketches-hive</li>
-  <li>https://github.com/apache/datasketches-pig</li>
-  <li>https://github.com/apache/datasketches-postgresql</li>
-  <li>https://github.com/apache/datasketches-characterization</li>
-  <li>https://github.com/apache/datasketches-website</li>
-  <li>https://github.com/apache/datasketches-memory</li>
-  <li>https://github.com/apache/datasketches-vector</li>
-  <li>https://github.com/apache/datasketches-server</li>
-  <li>https://github.com/apache/datasketches-experimentation</li>
-</ul>
+<p>The <a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework</a> (TSF) 
+is a mathematical framework 
+defined in a multi-stream setting that enables set expressions over these streams and encompasses many
+different sketching algorithms. A rudimentary introduction to the mathematics of the simpler sketch algorithms is developed in 
+the <a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchEquations.pdf">Theta Sketch Equations</a> document.</p>
 
-<p>Please become familiar with the following ASF resources:</p>
+<p>The TSF consists of the following components:</p>
 
-<ul>
-  <li><a href="https://www.apache.org/dev/">Apache developer’s pages</a></li>
-  <li><a href="https://gitbox.apache.org/setup/">Account Setup</a> (This is the part only you can do.)</li>
-</ul>
+<ol>
+  <li>A data type <i>(θ,S)</i>, known as a <i>Theta Sketch</i>, where 0 &lt; <i>θ</i> &lt; 1 is a 
+threshold, and <i>S</i>, the number of entries, is the set of all unique hashed stream items 0 &lt; <i>x</i> &lt; 1 
+that are less than <i>θ</i>.</li>
+  <li>A universal “combining function” <i>ThetaUnion</i> that takes as input a collection of <i>Theta Sketches</i> 
+and returns a single <i>Theta Sketch</i> that is a <i>Union</i> of the input sketches. 
+This combining function is extended to set <i>Intersections</i> and <i>Differences</i> as well.</li>
+  <li>A estimator function that takes as input a <i>Theta Sketch</i> and returns an estimate of the unique 
+hashed stream items presented to all the input sketches.</li>
+</ol>
 
-<p>Once this is completed, I will send you an invite to our ASF slack channel (with your ASF account) and will announce your joining our project on our dev@ list.</p>
+<p>The TSF enables this sketch library to encompass multiple sketching algorithms including the 
+KMV sketch with a common API and greatly simplifies implementation of set 
+expressions.</p>
 
-<p>ASF documentation is maintained by volunteers and hence can be out-of-date and incomplete, so we beg your understanding, and, of course, perhaps you can help us fix that!</p>
+<p>Note that in the KMV sketch the value <i>k</i> is overloaded with multiple roles:</p>
 
-<p>Naturally, if you have any questions be sure to ask us on the <a href="mailto:dev@datasketches.apache.org">dev@datasketches.apache.org</a> mailing list or on our slack channel.</p>
+<ol>
+  <li><i>k</i> determines the RSE (accuracy) of the sketch</li>
+  <li><i>k</i> determines the upper-bound size of the sketch</li>
+  <li><i>k</i> is used as a constant in the estimator and RSE equations</li>
+  <li><i>k</i> determines the <i>V(k<sup>th</sup>)</i> threshold, used to reject/accept hash values into the cache.</li>
+</ol>
 
-<p>Regards,
-(PMC Member)
-—</p>
+<p>By unloading some of these roles, we will gain degrees of freedom to do some innovative things.</p>
 
-<h2 id="adding-the-new-committer-to-the-datasketches-roster">Adding the New Committer to the DataSketches Roster</h2>
+<p>Instead of having to track <i>V(k<sup>th</sup>)</i>, which is a member of the list of hash values, 
+we are going to create a separate threshold variable and call it <i>theta (θ)</i>. 
+This effectively decouples #3 and #4 above from <i>k</i>. When the sketch is empty <i>θ</i> = 1.0. 
+After the sketch has filled with <i>k</i> minimum values <i>θ</i> is still 1.0. 
+When the next incoming unique value must be inserted into the sketch the <i>(k+1)<sup>th</sup></i> 
+minimum value, is assigned to <i>θ</i> and removed from the cache.<sup>3</sup></p>
 
-<h3 id="pmc">PMC</h3>
-<p>Any PMC Member can add the new committer to the roster on the <a href="https://whimsy.apache.org/roster/committee/datasketches">DataSketches Roster</a> by clicking the <strong>ADD</strong> button at the top of the page.</p>
+<p>Ultimately, it will be the size of <i>S</i>, <i>|S|</i>, that will determine the stored size of a 
+sketch, which decouples #2 above from the value <i>k</i>. 
+The <i>Nominal Entries</i> or <i>k</i> is a <i>user specified, configuration parameter</i>, 
+which is used by the software to determine the target accuracy of the sketch and the maximum size of the sketch.</p>
 
-<h2 id="committer-announce-template">Committer Announce Template</h2>
-<p>After the committer account is established.</p>
+<p>The unbiased estimate simplifies to |S|/<i>θ</i>, which is just the size of <i>S</i> divided by <i>θ</i>. 
+We will discuss the RSE in a later section.</p>
 
-<hr />
-<p>From: PMC Member
-To: dev@datasketches.apache.org
-Subject: Please Welcome (new committer) as new committer</p>
+<p><img class="doc-img-full" src="https://datasketches.apache.org/docs/img/theta/ThetaSketch1.png" alt="ThetaSketch1" /></p>
 
-<p>I am happy to announce that (new committer) has joined us as a new committer!</p>
+<p>[1] Z. Bar-Yossef, T. Jayram, R. Kumar, D. Sivakumar, and L. Trevisan. Counting distinct elements in a data stream. In <i>Randomization and Approximation Techniques in Computer Science</i>, pages 1–10. Springer, 2002.</p>
 
-<p>(add specific details here about new committer)</p>
+<p>[2] See <a href="/docs/Theta/KMVempty.html">KMV Tutorial</a> for a brief tutorial on KMV Sketches.</p>
 
-<p>Regards,
-(PMC Member)</p>
-
-<hr />
-
+<p>[3] This is a limited “KMV perspective” on how <i>θ</i> gets assigned.  The attached paper 
+<a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework</a> 
+presents multiple ways that <i>θ</i> can be assigned using the <i>Theta Choosing Function (TCF)</i>. 
+Different sketch algorithms have different TCFs.</p>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
