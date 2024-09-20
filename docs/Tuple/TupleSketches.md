@@ -19,6 +19,13 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
+## Contents
+<!-- TOC -->
+* [Tuple Sketch Overview](#tuple-sketch-overview)
+* [Tuple Sketch Examples](#tuple-sketch-examples)
+<!-- TOC -->
+
+<a id="tuple-sketch-overview"></a>
 ## Tuple Sketch Overview
 
 Tuple Sketches are extensions of the Theta Sketch, which can be represented internally as an array of hash values (of unique identifiers) and a value, theta, which represents the effective sampling rate determined by the sketch.
@@ -41,6 +48,7 @@ The Tuple Sketches also provide sufficient methods so that user could develop a 
 
 <img class="doc-img-half" src="{{site.docs_img_dir}}/tuple/TupleJoins.png" alt="TupleJoins" />
 
+<a id="tuple-sketch-examples"></a>
 ## Tuple Sketch Examples
 
 * [Tuple Java Example](https://datasketches.apache.org/docs/Tuple/TupleJavaExample.html)
