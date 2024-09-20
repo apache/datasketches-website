@@ -75,74 +75,7 @@
               ]
             },
 
-            { "class":"Dropdown", "desc" : "Theta Sketches", "array":
-              [
-                { "class":"Doc",  "desc" : "Theta Sketch Framework",            "dir" : "Theta", "file": "ThetaSketchFramework" },
-
-                { "class":"Dropdown", "desc" : "Theta Examples", "array":
-                  [
-                    {"class":"Doc",  "desc" : "Concurrent Theta Sketch",          "dir" : "Theta", "file": "ConcurrentThetaSketch" },
-                    {"class":"Doc",  "desc" : "Theta Sketch Java Example",        "dir" : "Theta", "file": "ThetaJavaExample" },
-                    {"class":"Doc",  "desc" : "Theta Sketch Spark Example",       "dir" : "Theta", "file": "ThetaSparkExample" },
-                    {"class":"Doc",  "desc" : "Theta Sketch Pig UDFs",            "dir" : "Theta", "file": "ThetaPigUDFs" },
-                    {"class":"Doc",  "desc" : "Theta Sketch Hive UDFs",           "dir" : "Theta", "file": "ThetaHiveUDFs" },
-                  ]
-                },
-
-                { "class":"Dropdown", "desc" : "KMV Tutorial", "array":
-                  [
-                    {"class":"Doc",  "desc" : "The Inverse Estimate",           "dir" : "Theta", "file": "InverseEstimate" },
-                    {"class":"Doc",  "desc" : "Empty Sketch",                   "dir" : "Theta", "file": "KMVempty" },
-                    {"class":"Doc",  "desc" : "First Estimator",                "dir" : "Theta", "file": "KMVfirstEst" },
-                    {"class":"Doc",  "desc" : "Better Estimator",               "dir" : "Theta", "file": "KMVbetterEst" },
-                    {"class":"Doc",  "desc" : "Rejection Rules",                "dir" : "Theta", "file": "KMVrejection" },
-                    {"class":"Doc",  "desc" : "Update V(kth) Rule",             "dir" : "Theta", "file": "KMVupdateVkth" },
-                  ]
-                },
-
-                { "class":"Dropdown", "desc" : "Set Operations and P-sampling", "array":
-                  [
-                    {"class":"Doc",  "desc" : "Set Operations",                 "dir" : "Theta", "file": "ThetaSketchSetOps" },
-                    {"class":"Doc",  "desc" : "Model & Test Set Operations",    "dir" : "Theta", "file": "ThetaSetOpsCornerCases" },
-                    {"class":"Doc",  "desc" : "<i>p</i>-Sampling",              "dir" : "Theta",  "file": "ThetaPSampling" },
-                  ]
-                },
-
-                { "class":"Dropdown", "desc" : "Accuracy", "array":
-                  [
-                    {"class":"Doc",  "desc" : "Basic Accuracy",                 "dir" : "Theta", "file": "ThetaAccuracy" },
-                    {"class":"Doc",  "desc" : "Accuracy Plots",                 "dir" : "Theta", "file": "ThetaAccuracyPlots" },
-                    {"class":"Doc",  "desc" : "Relative Error Table",           "dir" : "Theta", "file": "ThetaErrorTable" },
-                    {"class":"Doc",  "desc" : "SetOp Accuracy",                 "dir" : "Theta", "file": "ThetaSketchSetOpsAccuracy" },
-                    {"class":"Doc",  "desc" : "Unions With Different k",        "dir" : "Theta", "file": "AccuracyOfDifferentKUnions" },
-                  ]
-                },
-
-                { "class":"Dropdown", "desc" : "Size", "array":
-                  [
-                    {"class":"Doc",  "desc" : "Theta Sketch Size",                 "dir" : "Theta", "file": "ThetaSize" },
-                  ]
-                },
-
-                { "class":"Dropdown", "desc" : "Speed", "array":
-                  [
-                    {"class":"Doc",  "desc" : "Update Speed",                      "dir" : "Theta", "file": "ThetaUpdateSpeed" },
-                    {"class":"Doc",  "desc" : "Merge Speed",                       "dir" : "Theta", "file": "ThetaMergeSpeed" },
-                  ]
-                },
-
-                { "class":"Dropdown", "desc" : "Theta Sketch Theory", "array":
-                  [
-                    {"class":"Doc",  "desc" : "Theta Sketch Framework (PDF)",      "dir" : "",      "file": "ThetaSketchFramework", "pdf":"true" },
-                    {"class":"Doc",  "desc" : "Theta Sketch Equations (PDF)",      "dir" : "",      "file": "ThetaSketchEquations", "pdf":"true" },
-                    {"class":"Doc",  "desc" : "DataSketches (PDF)",                "dir" : "",      "file": "DataSketches",         "pdf":"true" },
-                    {"class":"Doc",  "desc" : "Confidence Intervals Notes",        "dir" : "Theta", "file": "ThetaConfidenceIntervals" },
-                    {"class":"Doc",  "desc" : "Merging Algorithm Notes",           "dir" : "Theta", "file": "ThetaMergingAlgorithm" },
-                    {"class":"Doc",  "desc" : "Theta References",                  "dir" : "Theta", "file": "ThetaReferences" },
-                  ]
-                },
-              ]
-            },
+            { "class":"Doc",  "desc" : "Theta Sketches",     "dir" : "Theta", "file": "ThetaSketches" },
             { "class":"Doc",  "desc" : "Tuple Sketches",     "dir" : "Tuple", "file": "TupleSketches" },
           ]
         },

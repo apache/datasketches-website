@@ -61,7 +61,7 @@ layout: doc_page
 
 <a id="theta-sketch-framework"></a>
 ## Theta Sketch Framework
-Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum Value</i> (KMV)<sup>1,2</sup> 
+Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum Value</i> (KMV) [^1],[^2] 
 sketches in that KMV sketches are a form of Theta Sketch, but not all Theta Sketches are KMV.
 
 The <a href="{{site.docs_pdf_dir}}/ThetaSketchFramework.pdf">Theta Sketch Framework</a> (TSF) 
@@ -99,7 +99,7 @@ we are going to create a separate threshold variable and call it <i>theta (&thet
 This effectively decouples #3 and #4 above from <i>k</i>. When the sketch is empty <i>&theta;</i> = 1.0. 
 After the sketch has filled with <i>k</i> minimum values <i>&theta;</i> is still 1.0. 
 When the next incoming unique value must be inserted into the sketch the <i>(k+1)<sup>th</sup></i> 
-minimum value, is assigned to <i>&theta;</i> and removed from the cache.<sup>3</sup>
+minimum value, is assigned to <i>&theta;</i> and removed from the cache.[^3]
 
 Ultimately, it will be the size of <i>S</i>, <i>|S|</i>, that will determine the stored size of a 
 sketch, which decouples #2 above from the value <i>k</i>. 
@@ -111,11 +111,11 @@ We will discuss the RSE in a later section.
 
 <img class="doc-img-full" src="https://datasketches.apache.org/docs/img/theta/ThetaSketch1.png" alt="ThetaSketch1" />
 
-[1] Z. Bar-Yossef, T. Jayram, R. Kumar, D. Sivakumar, and L. Trevisan. Counting distinct elements in a data stream. In <i>Randomization and Approximation Techniques in Computer Science</i>, pages 1–10. Springer, 2002.
+[^1]: Z. Bar-Yossef, T. Jayram, R. Kumar, D. Sivakumar, and L. Trevisan. Counting distinct elements in a data stream. In <i>Randomization and Approximation Techniques in Computer Science</i>, pages 1–10. Springer, 2002.
 
-[2] See <a href="{{site.docs_dir}}/Theta/KMVempty.html">KMV Tutorial</a> for a brief tutorial on KMV Sketches.
+[^2]: See <a href="{{site.docs_dir}}/Theta/InverseEstimate.html">KMV Tutorial</a> for a brief tutorial on KMV Sketches.
 
-[3] This is a limited "KMV perspective" on how <i>&theta;</i> gets assigned.  The attached paper 
+[^3]: This is a limited "KMV perspective" on how <i>&theta;</i> gets assigned.  The attached paper 
 <a href="{{site.docs_pdf_dir}}/ThetaSketchFramework.pdf">Theta Sketch Framework</a> 
 presents multiple ways that <i>&theta;</i> can be assigned using the <i>Theta Choosing Function (TCF)</i>. 
 Different sketch algorithms have different TCFs.  
