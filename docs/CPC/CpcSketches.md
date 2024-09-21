@@ -32,9 +32,12 @@ layout: doc_page
 
 <a id="cpc-sketches"></a>
 ## Compressed Probability Counting (CPC) Sketches[^1]
-The cpc package contains implementations of Kevin J. Lang's CPC sketch (footnote).
+The cpc package contains implementations of Kevin J. Lang's CPC sketch[^1].
 The stored CPC sketch can consume about 40% less space than an HLL sketch of comparable accuracy.
 Nonetheless, the HLL and CPC sketches have been intentially designed to offer different tradeoffs so that, in fact, they complement each other in many ways.
+
+* The CPC sketch has better accuracy for a given stored size then HLL
+* HLL has faster serialization and deserialization times than CPC.
 
 Similar to the HLL sketch, the primary use-case for the CPC sketch is for counting distinct values as a stream, and then merging multiple sketches together for a total distinct count. 
 
