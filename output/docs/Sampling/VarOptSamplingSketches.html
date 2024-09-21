@@ -236,19 +236,8 @@
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling</a>
     </p>
     <div class="collapse" id="collapse_sampling">
-      <li><a href="/docs/Sampling/ReservoirSampling.html">•Reservoir Sampling</a></li>
-      <li><a href="/docs/Sampling/ReservoirSamplingPerformance.html">•Reservoir Sampling Performance</a></li>
-      <li><a href="/docs/Sampling/VarOptSampling.html">•VarOpt Sampling</a></li>
-
-      <p id="sampling-examples">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling_examples">Sampling Examples</a>
-      </p>
-      <div class="collapse" id="collapse_sampling_examples">
-        <li><a href="/docs/Sampling/ReservoirSamplingJava.html">•Reservoir Sampling Java Example</a></li>
-        <li><a href="/docs/Sampling/ReservoirSamplingPigUDFs.html">•Reservoir Sampling Pig UDFs</a></li>
-        <li><a href="/docs/Sampling/VarOptSamplingJava.html">•VarOpt Sampling Java Example</a></li>
-        <li><a href="/docs/Sampling/VarOptPigUDFs.html">•VarOpt Sampling Pig UDFs</a></li>
-      </div>
+      <li><a href="/docs/Sampling/ReservoirSamplingSketches.html">•Reservoir Sampling Sketches</a></li>
+      <li><a href="/docs/Sampling/VarOptSamplingSketches.html">•VarOpt Sampling Sketches</a></li>
     </div>
   </div>
 
@@ -363,8 +352,21 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="varopt-sampling">VarOpt Sampling</h2>
+<h2 id="contents">Contents</h2>
+<!-- TOC -->
+<ul>
+  <li><a href="#varopt-sampling-sketches">VarOpt Sampling Sketches</a></li>
+  <li>VarOpt Sampling Examples
+    <ul>
+      <li><a href="https://datasketches.apache.org/docs/Sampling/VarOptSamplingJava.html">VarOpt Sampling Java Example</a></li>
+      <li><a href="https://datasketches.apache.org/docs/Sampling/VarOptPigUDFs.html">VarOpt Sampling Pig UDFs</a><br />
+<!-- TOC --></li>
+    </ul>
+  </li>
+</ul>
 
+<p><a id="varopt-sampling-sketches"></a></p>
+<h2 id="varopt-sampling-sketches">VarOpt Sampling Sketches</h2>
 <p>VarOpt sampling allows one to construct a random sample of weighted items from a stream. Like with reservoir sampling, varopt sampling does not require knowing the final length of the stream in advance. As with all sketches in the library, varopt sampling sketches can be efficiently unioned.</p>
 
 <p>The name VarOpt refers to the sketch’s property of producing estimates of subset sums with optimal variance for a given sketch size, <tt>k</tt>. If we apply a predicate to the items in a varopt sample and, the sum of weights (which may be adjusted by the sketching process) of items matching that predicate will estimate the sum of weights of matching items from the entire stream with provably minimal variance.</p>
@@ -404,7 +406,7 @@ duplicate items if the input stream contains duplicates.</p>
 
 <h3 id="more-on-varopt-sampling">More on VarOpt Sampling</h3>
 
-<p>The basic VarOpt algorithm was first presented by Cohen et al<sup>1</sup>. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.</p>
+<p>The basic VarOpt algorithm was first presented by Cohen et al<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.</p>
 
 <p>The underlying goal of VarOpt sampling is to provide the best possible estimate of subset sums of items in the sample. As an example, we might select a sample o size <tt>k</tt> from the ~3200 counties (a political administrative region below the level of a state) in the United States, using the county population as the weight. We could then apply a predicate to our sample – for instance, counties in the state of California – and sum the resulting weights. That sum is our estimate of the total population of the state. The weights used when computing subset sums will, in general, be adjusted values rather than the original input weights.</p>
 
@@ -422,9 +424,13 @@ duplicate items if the input stream contains duplicates.</p>
 
 <p>When using VarOpt with uniform input weights, for instance giving all items a weight of 1.0, the sketch will perform standard reservoir sampling. Similarly, if operating over an infinite stream of items with finite weights, there will also be no heavy items and the sketch will return a standard weighted sample of items.</p>
 
-<ol>
-  <li>E. Cohen, N. G. Guffield, H. Kapla, C. Lund, M. Thorup, <em>Efficient Stream Sampling for Variance-Optimal Estimation of Subset Sums</em>, SIAM J. Comput. 40(5): 1402-1431, 2011.</li>
-</ol>
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>E. Cohen, N. G. Guffield, H. Kapla, C. Lund, M. Thorup, <em>Efficient Stream Sampling for Variance-Optimal Estimation of Subset Sums</em>, SIAM J. Comput. 40(5): 1402-1431, 2011. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
       </div> <!-- End content -->
     </div> <!-- End row -->

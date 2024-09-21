@@ -236,19 +236,8 @@
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling</a>
     </p>
     <div class="collapse" id="collapse_sampling">
-      <li><a href="/docs/Sampling/ReservoirSampling.html">•Reservoir Sampling</a></li>
-      <li><a href="/docs/Sampling/ReservoirSamplingPerformance.html">•Reservoir Sampling Performance</a></li>
-      <li><a href="/docs/Sampling/VarOptSampling.html">•VarOpt Sampling</a></li>
-
-      <p id="sampling-examples">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling_examples">Sampling Examples</a>
-      </p>
-      <div class="collapse" id="collapse_sampling_examples">
-        <li><a href="/docs/Sampling/ReservoirSamplingJava.html">•Reservoir Sampling Java Example</a></li>
-        <li><a href="/docs/Sampling/ReservoirSamplingPigUDFs.html">•Reservoir Sampling Pig UDFs</a></li>
-        <li><a href="/docs/Sampling/VarOptSamplingJava.html">•VarOpt Sampling Java Example</a></li>
-        <li><a href="/docs/Sampling/VarOptPigUDFs.html">•VarOpt Sampling Pig UDFs</a></li>
-      </div>
+      <li><a href="/docs/Sampling/ReservoirSamplingSketches.html">•Reservoir Sampling Sketches</a></li>
+      <li><a href="/docs/Sampling/VarOptSamplingSketches.html">•VarOpt Sampling Sketches</a></li>
     </div>
   </div>
 
@@ -363,9 +352,29 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="reservoir-sampling">Reservoir Sampling</h2>
+<h2 id="contents">Contents</h2>
+<!-- TOC -->
 
-<p>Reservoir sampling provides a way to construct a uniform random sample of size <tt>k</tt> from an unweighted stream of items, without knowing the final length of the stream in advance. As with all sketches in the library, reservoir sampling sketches can be efficiently unioned.</p>
+<ul>
+  <li><a href="#reservoir-sampling-sketches">Reservoir Sampling Sketches</a>
+    <ul>
+      <li><a href="https://datasketches.apache.org/docs/Sampling/ReservoirSamplingPerformance.html">Reservoir Sampling Performance</a></li>
+      <li>Reservoir Sampling Examples
+        <ul>
+          <li><a href="https://datasketches.apache.org/docs/Sampling/ReservoirSamplingJava.html">Reservoir Sampling Java Example</a></li>
+          <li><a href="https://datasketches.apache.org/docs/Sampling/ReservoirSamplingPigUDFs.html">Reservoir Sampling Pig UDFs</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!-- TOC -->
+
+<p><a id="reservoir-sampling-sketches"></a></p>
+<h2 id="reservoir-sampling-sketches">Reservoir Sampling Sketches</h2>
+<p>Reservoir sampling provides a way to construct a uniform random sample of size <tt>k</tt> from an unweighted stream of items, 
+without knowing the final length of the stream in advance. As with all sketches in the library, reservoir sampling sketches can be efficiently unioned.</p>
 
 <p>The Sketches Library provides 2 forms of reservoir sampling sketches:</p>
 
