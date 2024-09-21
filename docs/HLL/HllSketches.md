@@ -19,7 +19,24 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-## HyperLogLog Sketch
+## Contents
+<!-- TOC -->
+* [HyperLogLog Sketches Overview](#hyperloglog-sketches)
+* [HLL Max Size & Error Table](https://datasketches.apache.org/docs/HLL/HllMaxSizeAndErrorTable.html)
+* [HLL Map Sketch](https://datasketches.apache.org/docs/HLL/HllMap.html)
+* HLL Examples
+    * [HLL Sketch Java Example](https://datasketches.apache.org/docs/HLL/HllJavaExample.html)
+    * [HLL Sketch C++ Example](https://datasketches.apache.org/docs/HLL/HllCppExample.html)
+    * [HLL Sketch Pig UDFs](https://datasketches.apache.org/docs/HLL/HllPigUDFs.html)
+    * [HLL Sketch Hive UDFs](https://datasketches.apache.org/docs/HLL/HllHiveUDFs.html)
+* HLL Studies
+    *  [HLL Sketch Performance](https://datasketches.apache.org/docs/HLL/HllPerformance.html)
+    *  [HLL vs Clearspring](https://datasketches.apache.org/docs/HLL/Hll_vs_CS_Hllpp.html)
+    *  [HLL Sketch vs Druid's HyperLogLogCollector](https://datasketches.apache.org/docs/HLL/HllSketchVsDruidHyperLogLogCollector.html)
+<!-- TOC -->
+
+<a id="hyperloglog-sketches"></a>
+## HyperLogLog Sketches Overview
 The hll package contains a set of very compact implementations of Phillipe Flajolet's
 HyperLogLog (HLL) sketch but with significantly improved error behavior and excellent speed performance.
 
@@ -87,9 +104,9 @@ The following plot was generated with <i>LgK</i> = 14 using 2<sup>20</sup> trial
 The <i>Factor = 0.8326</i> is directly relatable to the Flajolet alpha factor of 1.04. 
 As a result, this plot demonstrates that this implementation of the HLL sketch
 will be about 20% = (0.8326/1.04 - 1) more accurate than a conventional HLL sketch using Flajolet's estimators (or derived estimators). 
-This is partially due to the use of the HIP estimator[1] for range above the transition point, which occurs at about 1500 on the graph. 
+This is partially due to the use of the HIP estimator[^1] for range above the transition point, which occurs at about 1500 on the graph. 
 Below this transition point the accuracy is near zero (an RSE of about 50 ppm), which is far better than any known implementation of HLL. 
-This is due to a newly developed theory and estimator developed by Kevin Lang[2].
+This is due to a newly developed theory and estimator developed by Kevin Lang[^2].
 
 The base Relative Standard Error (RSE) for this sketch (at LgK = 14) is 0.0065 = 0.8326 / sqrt(2<sup>14</sup>).
 The horizontal gridlines are configured to be +/- multiples of the base RSE.
@@ -160,5 +177,5 @@ HLL sketches cannot be intermixed or merged in any way with Theta Sketches.
 
 ****
 
-* [1] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, PODS 2014.
-* [2] Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https://arxiv.org/abs/1708.06839
+[^1]: Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, PODS 2014.
+[^2]: Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https://arxiv.org/abs/1708.06839

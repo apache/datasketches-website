@@ -51,30 +51,7 @@
                 },
               ]
             },
-
-            { "class":"Dropdown", "desc" : "HyperLogLog Sketches", "array":
-              [
-                {"class":"Doc",  "desc" : "HLL Sketch",                               "dir" : "HLL", "file": "HLL" },
-                {"class":"Doc",  "desc" : "HLL Max Size & Error Table",               "dir" : "HLL", "file": "HllMaxSizeAndErrorTable" },
-                {"class":"Doc",  "desc" : "HLL Map Sketch",                           "dir" : "HLL", "file": "HllMap" },
-                { "class":"Dropdown", "desc" : "HLL Examples", "array":
-                  [
-                    {"class":"Doc",  "desc" : "HLL Sketch Java Example",              "dir" : "HLL", "file": "HllJavaExample" },
-                    {"class":"Doc",  "desc" : "HLL Sketch C++ Example",               "dir" : "HLL", "file": "HllCppExample" },
-                    {"class":"Doc",  "desc" : "HLL Sketch Pig UDFs",                  "dir" : "HLL", "file": "HllPigUDFs" },
-                    {"class":"Doc",  "desc" : "HLL Sketch Hive UDFs",                 "dir" : "HLL", "file": "HllHiveUDFs" },
-                  ]
-                },
-                { "class":"Dropdown", "desc" : "HLL Studies", "array":
-                  [
-                    {"class":"Doc",  "desc" : "HLL Sketch Performance",                   "dir" : "HLL", "file": "HllPerformance" },
-                    {"class":"Doc",  "desc" : "HLL vs Clearspring HLL++",                 "dir" : "HLL", "file": "Hll_vs_CS_Hllpp" },
-                    {"class":"Doc",  "desc" : "HLL Sketch vs Druid HyperLogLogCollector", "dir" : "HLL", "file": "HllSketchVsDruidHyperLogLogCollector" },
-                  ]
-                },
-              ]
-            },
-
+            { "class":"Doc",  "desc" : "HyperLogLog Sketches",     "dir" : "HLL", "file": "HllSketches" },
             { "class":"Doc",  "desc" : "Theta Sketches",     "dir" : "Theta", "file": "ThetaSketches" },
             { "class":"Doc",  "desc" : "Tuple Sketches",     "dir" : "Tuple", "file": "TupleSketches" },
           ]
