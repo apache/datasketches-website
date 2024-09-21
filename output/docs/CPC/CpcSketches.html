@@ -176,24 +176,7 @@
     <div class="collapse" id="collapse_distinct_counting">
       <li><a href="/docs/DistinctCountFeaturesMatrix.html">•Features Matrix</a></li>
       <li><a href="/docs/DistinctCountMeritComparisons.html">•Figures-of-Merit Comparison</a></li>
-
-      <p id="cpc-sketches">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_cpc_sketches">CPC Sketches</a>
-      </p>
-      <div class="collapse" id="collapse_cpc_sketches">
-        <li><a href="/docs/CPC/CPC.html">•CPC Sketch</a></li>
-        <li><a href="/docs/CPC/CpcPerformance.html">•CPC Sketch Performance</a></li>
-
-        <p id="cpc-examples">
-          <a data-toggle="collapse" class="menu collapsed" href="#collapse_cpc_examples">CPC Examples</a>
-        </p>
-        <div class="collapse" id="collapse_cpc_examples">
-          <li><a href="/docs/CPC/CpcJavaExample.html">•CPC Sketch Java Example</a></li>
-          <li><a href="/docs/CPC/CpcCppExample.html">•CPC Sketch C++ Example</a></li>
-          <li><a href="/docs/CPC/CpcPigExample.html">•CPC Sketch Pig UDFs</a></li>
-          <li><a href="/docs/CPC/CpcHiveExample.html">•CPC Sketch Hive UDFs</a></li>
-        </div>
-      </div>
+      <li><a href="/docs/CPC/CpcSketches.html">•CPC Sketches</a></li>
       <li><a href="/docs/HLL/HllSketches.html">•HyperLogLog Sketches</a></li>
       <li><a href="/docs/Theta/ThetaSketches.html">•Theta Sketches</a></li>
       <li><a href="/docs/Tuple/TupleSketches.html">•Tuple Sketches</a></li>
@@ -405,7 +388,24 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="compressed-probability-counting-cpc-sketch1">Compressed Probability Counting (CPC) Sketch<sup>1</sup></h2>
+<h2 id="contents">Contents</h2>
+<!-- TOC -->
+<ul>
+  <li><a href="#cpc-sketches">CPC Sketches</a></li>
+  <li><a href="https://datasketches.apache.org/docs/CPC/CpcPerformance.html">CPC Sketch Performance</a></li>
+  <li>CPC Examples
+    <ul>
+      <li><a href="https://datasketches.apache.org/docs/CPC/CpcJavaExample.html">CPC Sketch Java Example</a></li>
+      <li><a href="https://datasketches.apache.org/docs/CPC/CpcCppExample.html">CPC Sketch C++ Example</a></li>
+      <li><a href="https://datasketches.apache.org/docs/CPC/CpcPigExample.html">CPC Sketch Pig UDFs</a></li>
+      <li><a href="https://datasketches.apache.org/docs/CPC/CpcHiveExample.html">CPC Sketch Hive UDFs</a> 
+<!-- TOC --></li>
+    </ul>
+  </li>
+</ul>
+
+<p><a id="cpc-sketches"></a></p>
+<h2 id="compressed-probability-counting-cpc-sketches">Compressed Probability Counting (CPC) Sketches<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></h2>
 <p>The cpc package contains implementations of Kevin J. Lang’s CPC sketch (footnote).
 The stored CPC sketch can consume about 40% less space than an HLL sketch of comparable accuracy.
 Nonetheless, the HLL and CPC sketches have been intentially designed to offer different tradeoffs so that, in fact, they complement each other in many ways.</p>
@@ -416,9 +416,13 @@ Nonetheless, the HLL and CPC sketches have been intentially designed to offer di
 
 <hr />
 
-<p><sup>1</sup><small>
-Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. arXiv preprint https://arxiv.org/abs/1708.06839, 2017.
-</small></p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. arXiv preprint https://arxiv.org/abs/1708.06839, 2017. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
