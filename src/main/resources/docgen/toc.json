@@ -36,40 +36,18 @@
           [
             {"class":"Doc",  "desc" : "Features Matrix",             "dir" : "", "file": "DistinctCountFeaturesMatrix" },
             {"class":"Doc",  "desc" : "Figures-of-Merit Comparison", "dir" : "", "file": "DistinctCountMeritComparisons"},
-            { "class":"Doc",  "desc" : "CPC Sketches",         "dir" : "CPC",   "file": "CpcSketches" },
-            { "class":"Doc",  "desc" : "HyperLogLog Sketches", "dir" : "HLL",   "file": "HllSketches" },
-            { "class":"Doc",  "desc" : "Theta Sketches",       "dir" : "Theta", "file": "ThetaSketches" },
-            { "class":"Doc",  "desc" : "Tuple Sketches",       "dir" : "Tuple", "file": "TupleSketches" },
+            { "class":"Doc",  "desc" : "CPC Sketches",               "dir" : "CPC",   "file": "CpcSketches" },
+            { "class":"Doc",  "desc" : "HyperLogLog Sketches",       "dir" : "HLL",   "file": "HllSketches" },
+            { "class":"Doc",  "desc" : "Theta Sketches",             "dir" : "Theta", "file": "ThetaSketches" },
+            { "class":"Doc",  "desc" : "Tuple Sketches",             "dir" : "Tuple", "file": "TupleSketches" },
           ]
         },
 
         { "class":"Dropdown", "desc" : "Most Frequent", "array":
           [
-            {"class":"Doc",  "desc" : "Frequency Sketches Overview",  "dir" : "Frequency", "file": "FrequencySketchesOverview" },
-
-            { "class":"Dropdown", "desc" : "Frequent Item Sketches", "array":
-              [
-                {"class":"Doc",  "desc" : "Frequent Items Overview",      "dir" : "Frequency", "file": "FrequentItemsOverview" },
-                {"class":"Doc",  "desc" : "Frequent Items Error Table",   "dir" : "Frequency", "file": "FrequentItemsErrorTable" },
-                {"class":"Doc",  "desc" : "Frequent Items References",    "dir" : "Frequency", "file": "FrequentItemsReferences" },
-                {"class":"Doc",  "desc" : "Frequent Items Performance",   "dir" : "Frequency", "file": "FrequentItemsPerformance" },
-
-                { "class":"Dropdown", "desc" : "Most Frequent Examples", "array":
-                  [
-                    {"class":"Doc",  "desc" : "Frequent Items Java Example",  "dir" : "Frequency", "file": "FrequentItemsJavaExample" },
-                    {"class":"Doc",  "desc" : "Frequent Items C++ Example",   "dir" : "Frequency", "file": "FrequentItemsCppExample" },
-                    {"class":"Doc",  "desc" : "Frequent Items Pig UDFs",      "dir" : "Frequency", "file": "FrequentItemsPigUDFs" },
-                    {"class":"Doc",  "desc" : "Frequent Items Hive UDFs",     "dir" : "Frequency", "file": "FrequentItemsHiveUDFs" },
-                  ]
-                },
-              ]
-            },
-
-            { "class":"Dropdown", "desc" : "Frequent Distinct Sketches", "array":
-              [
-                {"class":"Doc",  "desc" : "Frequent Distinct Tuples Sketch", "dir" : "Frequency", "file": "FrequentDistinctTuplesSketch" },
-              ]
-            },
+            {"class":"Doc",  "desc" : "Frequency Sketches",                 "dir" : "Frequency", "file": "FrequencySketches" },
+            {"class":"Doc",  "desc" : "Frequent Items Sketches",            "dir" : "Frequency", "file": "FrequencySketches", "sub" : "#frequent-items-sketches" },
+            {"class":"Doc",  "desc" : "Frequent Distinct Tuples Sketches",  "dir" : "Frequency", "file": "FrequencySketches", "sub" : "#frequent-distinct-tuples-sketches" },
           ]
         },
 
@@ -81,7 +59,7 @@
             {"class":"Doc",  "desc" : "KLL Sketch Accuracy and Size",             "dir" : "KLL", "file": "KLLAccuracyAndSize" },
             {"class":"Doc",  "desc" : "Understanding KLL Bounds",                 "dir" : "KLL", "file": "UnderstandingKLLBounds" },
             {"class":"Doc",  "desc" : "REQ Floats sketch",                        "dir" : "REQ", "file": "ReqSketch" },
-            {"class":"Doc",  "desc" : "Classic Quantiles Sketches",                 "dir" : "Quantiles", "file": "ClassicQuantilesSketch" },
+            {"class":"Doc",  "desc" : "Classic Quantiles Sketches",               "dir" : "Quantiles", "file": "ClassicQuantilesSketch" },
 
             { "class":"Dropdown", "desc" : "Quantiles Examples", "array":
               [
