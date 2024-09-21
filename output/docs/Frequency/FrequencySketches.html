@@ -186,34 +186,9 @@
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent">Most Frequent</a>
     </p>
     <div class="collapse" id="collapse_most_frequent">
-      <li><a href="/docs/Frequency/FrequencySketchesOverview.html">•Frequency Sketches Overview</a></li>
-
-      <p id="frequent-item-sketches">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_item_sketches">Frequent Item Sketches</a>
-      </p>
-      <div class="collapse" id="collapse_frequent_item_sketches">
-        <li><a href="/docs/Frequency/FrequentItemsOverview.html">•Frequent Items Overview</a></li>
-        <li><a href="/docs/Frequency/FrequentItemsErrorTable.html">•Frequent Items Error Table</a></li>
-        <li><a href="/docs/Frequency/FrequentItemsReferences.html">•Frequent Items References</a></li>
-        <li><a href="/docs/Frequency/FrequentItemsPerformance.html">•Frequent Items Performance</a></li>
-
-        <p id="most-frequent-examples">
-          <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent_examples">Most Frequent Examples</a>
-        </p>
-        <div class="collapse" id="collapse_most_frequent_examples">
-          <li><a href="/docs/Frequency/FrequentItemsJavaExample.html">•Frequent Items Java Example</a></li>
-          <li><a href="/docs/Frequency/FrequentItemsCppExample.html">•Frequent Items C++ Example</a></li>
-          <li><a href="/docs/Frequency/FrequentItemsPigUDFs.html">•Frequent Items Pig UDFs</a></li>
-          <li><a href="/docs/Frequency/FrequentItemsHiveUDFs.html">•Frequent Items Hive UDFs</a></li>
-        </div>
-      </div>
-
-      <p id="frequent-distinct-sketches">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_distinct_sketches">Frequent Distinct Sketches</a>
-      </p>
-      <div class="collapse" id="collapse_frequent_distinct_sketches">
-        <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">•Frequent Distinct Tuples Sketch</a></li>
-      </div>
+      <li><a href="/docs/Frequency/FrequencySketches.html">•Frequency Sketches</a></li>
+      <li><a href="/docs/Frequency/FrequencySketches.html#frequent-items-sketches">•Frequent Items Sketches</a></li>
+      <li><a href="/docs/Frequency/FrequencySketches.html#frequent-distinct-tuples-sketches">•Frequent Distinct Tuples Sketches</a></li>
     </div>
 
     <p id="quantiles-and-histograms">
@@ -388,9 +363,43 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="frequency-sketches-overview">Frequency Sketches Overview</h2>
+<h2 id="contents">Contents</h2>
+<!-- TOC -->
+<ul>
+  <li><a href="#frequency-sketches">Frequency Sketches</a>
+    <ul>
+      <li><a href="#frequent-items-sketches">Frequent Items Sketches</a>
+        <ul>
+          <li><a href="https://datasketches.apache.org/docs/Frequency/FrequentItemsOverview.html">Frequent Items Overview</a></li>
+          <li><a href="https://datasketches.apache.org/docs/Frequency/FrequentItemsErrorTable.html">Frequent Items Error Table</a></li>
+          <li><a href="https://datasketches.apache.org/docs/Frequency/FrequentItemsPerformance.html">Frequent Items Performance</a></li>
+          <li><a href="https://datasketches.apache.org/docs/Frequency/FrequentItemsReferences.html">Frequent Items References</a></li>
+          <li>Frequent Items Examples
+            <ul>
+              <li><a href="https://datasketches.apache.org/docs/Frequency/FrequentItemsJavaExample.html">Frequent Items Java Example</a></li>
+              <li><a href="https://datasketches.apache.org/docs/Frequency/FrequentItemsCppExample.html">Frequent Items C++ Example</a></li>
+              <li><a href="https://datasketches.apache.org/docs/Frequency/FrequentItemsPigUDFs.html">Frequent Items Pig UDFs</a></li>
+              <li><a href="https://datasketches.apache.org/docs/Frequency/FrequentItemsHiveUDFs.html">Frequent Items Hive UDFs</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#frequent-distinct-tuples-sketches">Frequent Distinct Tuples Sketches</a>
+        <ul>
+          <li><a href="https://datasketches.apache.org/docs/Frequency/FrequentDistinctTuplesSketch.html">Frequent Distinct Tuples Sketch</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-<h3 id="frequent-items">Frequent Items</h3>
+<!-- TOC -->
+
+<p><a id="frequency-sketches"></a></p>
+<h2 id="frequency-sketches">Frequency Sketches</h2>
+
+<p><a id="frequent-items-sketches"></a></p>
+<h3 id="frequent-items-sketches">Frequent Items Sketches</h3>
 <p>These sketches implement algorithms that are members of a class of “Heavy Hitters” algorithms that identify 
 the “heaviest” or “most frequently occurring” items in a stream.</p>
 
@@ -423,11 +432,11 @@ instead of fractional dollars.</p>
 <p>The Frequent Items Sketch is an “aggregating” sketch in that duplicate items in the stream can have different weights and the 
 sketch properly tracks the total weight for each distinct item.</p>
 
-<h3 id="frequent-distinct-tuples-sketch">Frequent Distinct Tuples Sketch</h3>
+<p><a id="frequent-distinct-tuples-sketches"></a></p>
+<h3 id="frequent-distinct-tuples-sketches">Frequent Distinct Tuples Sketches</h3>
 
 <p>This is a very different algorithm that identifies the most frequent distinct occurrences associated with a specific key, and it is
 called the <i>Frequent Distinct Tuples Sketch</i> or <i>FdtSketch</i>.  See the documentation for this sketch.</p>
-
 
       </div> <!-- End content -->
     </div> <!-- End row -->

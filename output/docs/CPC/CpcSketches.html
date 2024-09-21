@@ -186,34 +186,9 @@
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent">Most Frequent</a>
     </p>
     <div class="collapse" id="collapse_most_frequent">
-      <li><a href="/docs/Frequency/FrequencySketchesOverview.html">•Frequency Sketches Overview</a></li>
-
-      <p id="frequent-item-sketches">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_item_sketches">Frequent Item Sketches</a>
-      </p>
-      <div class="collapse" id="collapse_frequent_item_sketches">
-        <li><a href="/docs/Frequency/FrequentItemsOverview.html">•Frequent Items Overview</a></li>
-        <li><a href="/docs/Frequency/FrequentItemsErrorTable.html">•Frequent Items Error Table</a></li>
-        <li><a href="/docs/Frequency/FrequentItemsReferences.html">•Frequent Items References</a></li>
-        <li><a href="/docs/Frequency/FrequentItemsPerformance.html">•Frequent Items Performance</a></li>
-
-        <p id="most-frequent-examples">
-          <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent_examples">Most Frequent Examples</a>
-        </p>
-        <div class="collapse" id="collapse_most_frequent_examples">
-          <li><a href="/docs/Frequency/FrequentItemsJavaExample.html">•Frequent Items Java Example</a></li>
-          <li><a href="/docs/Frequency/FrequentItemsCppExample.html">•Frequent Items C++ Example</a></li>
-          <li><a href="/docs/Frequency/FrequentItemsPigUDFs.html">•Frequent Items Pig UDFs</a></li>
-          <li><a href="/docs/Frequency/FrequentItemsHiveUDFs.html">•Frequent Items Hive UDFs</a></li>
-        </div>
-      </div>
-
-      <p id="frequent-distinct-sketches">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_frequent_distinct_sketches">Frequent Distinct Sketches</a>
-      </p>
-      <div class="collapse" id="collapse_frequent_distinct_sketches">
-        <li><a href="/docs/Frequency/FrequentDistinctTuplesSketch.html">•Frequent Distinct Tuples Sketch</a></li>
-      </div>
+      <li><a href="/docs/Frequency/FrequencySketches.html">•Frequency Sketches</a></li>
+      <li><a href="/docs/Frequency/FrequencySketches.html#frequent-items-sketches">•Frequent Items Sketches</a></li>
+      <li><a href="/docs/Frequency/FrequencySketches.html#frequent-distinct-tuples-sketches">•Frequent Distinct Tuples Sketches</a></li>
     </div>
 
     <p id="quantiles-and-histograms">
@@ -406,9 +381,14 @@
 
 <p><a id="cpc-sketches"></a></p>
 <h2 id="compressed-probability-counting-cpc-sketches">Compressed Probability Counting (CPC) Sketches<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup></h2>
-<p>The cpc package contains implementations of Kevin J. Lang’s CPC sketch (footnote).
+<p>The cpc package contains implementations of Kevin J. Lang’s CPC sketch<sup id="fnref:1:1"><a href="#fn:1" class="footnote">1</a></sup>.
 The stored CPC sketch can consume about 40% less space than an HLL sketch of comparable accuracy.
 Nonetheless, the HLL and CPC sketches have been intentially designed to offer different tradeoffs so that, in fact, they complement each other in many ways.</p>
+
+<ul>
+  <li>The CPC sketch has better accuracy for a given stored size then HLL</li>
+  <li>HLL has faster serialization and deserialization times than CPC.</li>
+</ul>
 
 <p>Similar to the HLL sketch, the primary use-case for the CPC sketch is for counting distinct values as a stream, and then merging multiple sketches together for a total distinct count.</p>
 
@@ -419,7 +399,7 @@ Nonetheless, the HLL and CPC sketches have been intentially designed to offer di
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. arXiv preprint https://arxiv.org/abs/1708.06839, 2017. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. arXiv preprint https://arxiv.org/abs/1708.06839, 2017. <a href="#fnref:1" class="reversefootnote">&#8617;</a> <a href="#fnref:1:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
     </li>
   </ol>
 </div>
