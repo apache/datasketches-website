@@ -88,18 +88,8 @@
 
         { "class":"Dropdown", "desc" : "Sampling", "array":
           [
-            {"class":"Doc",  "desc" : "Reservoir Sampling",               "dir" : "Sampling", "file": "ReservoirSampling" },
-            {"class":"Doc",  "desc" : "Reservoir Sampling Performance",   "dir" : "Sampling", "file": "ReservoirSamplingPerformance" },
-            {"class":"Doc",  "desc" : "VarOpt Sampling",                  "dir" : "Sampling", "file": "VarOptSampling" },
-
-            { "class":"Dropdown", "desc" : "Sampling Examples", "array":
-              [
-                {"class":"Doc",  "desc" : "Reservoir Sampling Java Example",  "dir" : "Sampling", "file": "ReservoirSamplingJava" },
-                {"class":"Doc",  "desc" : "Reservoir Sampling Pig UDFs",      "dir" : "Sampling", "file": "ReservoirSamplingPigUDFs" },
-                {"class":"Doc",  "desc" : "VarOpt Sampling Java Example",     "dir" : "Sampling", "file": "VarOptSamplingJava" },
-                {"class":"Doc",  "desc" : "VarOpt Sampling Pig UDFs",         "dir" : "Sampling", "file": "VarOptPigUDFs" },
-              ]
-            },
+            {"class":"Doc",  "desc" : "Reservoir Sampling Sketches",      "dir" : "Sampling", "file": "ReservoirSamplingSketches" },
+            {"class":"Doc",  "desc" : "VarOpt Sampling Sketches",                  "dir" : "Sampling", "file": "VarOptSamplingSketches" },
           ]
         },
       ]
