@@ -194,34 +194,7 @@
           <li><a href="/docs/CPC/CpcHiveExample.html">•CPC Sketch Hive UDFs</a></li>
         </div>
       </div>
-
-      <p id="hyperloglog-sketches">
-        <a data-toggle="collapse" class="menu collapsed" href="#collapse_hyperloglog_sketches">HyperLogLog Sketches</a>
-      </p>
-      <div class="collapse" id="collapse_hyperloglog_sketches">
-        <li><a href="/docs/HLL/HLL.html">•HLL Sketch</a></li>
-        <li><a href="/docs/HLL/HllMaxSizeAndErrorTable.html">•HLL Max Size & Error Table</a></li>
-        <li><a href="/docs/HLL/HllMap.html">•HLL Map Sketch</a></li>
-
-        <p id="hll-examples">
-          <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_examples">HLL Examples</a>
-        </p>
-        <div class="collapse" id="collapse_hll_examples">
-          <li><a href="/docs/HLL/HllJavaExample.html">•HLL Sketch Java Example</a></li>
-          <li><a href="/docs/HLL/HllCppExample.html">•HLL Sketch C++ Example</a></li>
-          <li><a href="/docs/HLL/HllPigUDFs.html">•HLL Sketch Pig UDFs</a></li>
-          <li><a href="/docs/HLL/HllHiveUDFs.html">•HLL Sketch Hive UDFs</a></li>
-        </div>
-
-        <p id="hll-studies">
-          <a data-toggle="collapse" class="menu collapsed" href="#collapse_hll_studies">HLL Studies</a>
-        </p>
-        <div class="collapse" id="collapse_hll_studies">
-          <li><a href="/docs/HLL/HllPerformance.html">•HLL Sketch Performance</a></li>
-          <li><a href="/docs/HLL/Hll_vs_CS_Hllpp.html">•HLL vs Clearspring HLL++</a></li>
-          <li><a href="/docs/HLL/HllSketchVsDruidHyperLogLogCollector.html">•HLL Sketch vs Druid HyperLogLogCollector</a></li>
-        </div>
-      </div>
+      <li><a href="/docs/HLL/HllSketches.html">•HyperLogLog Sketches</a></li>
       <li><a href="/docs/Theta/ThetaSketches.html">•Theta Sketches</a></li>
       <li><a href="/docs/Tuple/TupleSketches.html">•Tuple Sketches</a></li>
     </div>
@@ -432,7 +405,32 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="hyperloglog-sketch">HyperLogLog Sketch</h2>
+<h2 id="contents">Contents</h2>
+<!-- TOC -->
+<ul>
+  <li><a href="#hyperloglog-sketches">HyperLogLog Sketches Overview</a></li>
+  <li><a href="https://datasketches.apache.org/docs/HLL/HllMaxSizeAndErrorTable.html">HLL Max Size &amp; Error Table</a></li>
+  <li><a href="https://datasketches.apache.org/docs/HLL/HllMap.html">HLL Map Sketch</a></li>
+  <li>HLL Examples
+    <ul>
+      <li><a href="https://datasketches.apache.org/docs/HLL/HllJavaExample.html">HLL Sketch Java Example</a></li>
+      <li><a href="https://datasketches.apache.org/docs/HLL/HllCppExample.html">HLL Sketch C++ Example</a></li>
+      <li><a href="https://datasketches.apache.org/docs/HLL/HllPigUDFs.html">HLL Sketch Pig UDFs</a></li>
+      <li><a href="https://datasketches.apache.org/docs/HLL/HllHiveUDFs.html">HLL Sketch Hive UDFs</a></li>
+    </ul>
+  </li>
+  <li>HLL Studies
+    <ul>
+      <li><a href="https://datasketches.apache.org/docs/HLL/HllPerformance.html">HLL Sketch Performance</a></li>
+      <li><a href="https://datasketches.apache.org/docs/HLL/Hll_vs_CS_Hllpp.html">HLL vs Clearspring</a></li>
+      <li><a href="https://datasketches.apache.org/docs/HLL/HllSketchVsDruidHyperLogLogCollector.html">HLL Sketch vs Druid’s HyperLogLogCollector</a>
+<!-- TOC --></li>
+    </ul>
+  </li>
+</ul>
+
+<p><a id="hyperloglog-sketches"></a></p>
+<h2 id="hyperloglog-sketches-overview">HyperLogLog Sketches Overview</h2>
 <p>The hll package contains a set of very compact implementations of Phillipe Flajolet’s
 HyperLogLog (HLL) sketch but with significantly improved error behavior and excellent speed performance.</p>
 
@@ -503,9 +501,9 @@ The following plot was generated with <i>LgK</i> = 14 using 2<sup>20</sup> trial
 <p>The <i>Factor = 0.8326</i> is directly relatable to the Flajolet alpha factor of 1.04. 
 As a result, this plot demonstrates that this implementation of the HLL sketch
 will be about 20% = (0.8326/1.04 - 1) more accurate than a conventional HLL sketch using Flajolet’s estimators (or derived estimators). 
-This is partially due to the use of the HIP estimator[1] for range above the transition point, which occurs at about 1500 on the graph. 
+This is partially due to the use of the HIP estimator<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> for range above the transition point, which occurs at about 1500 on the graph. 
 Below this transition point the accuracy is near zero (an RSE of about 50 ppm), which is far better than any known implementation of HLL. 
-This is due to a newly developed theory and estimator developed by Kevin Lang[2].</p>
+This is due to a newly developed theory and estimator developed by Kevin Lang<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
 
 <p>The base Relative Standard Error (RSE) for this sketch (at LgK = 14) is 0.0065 = 0.8326 / sqrt(2<sup>14</sup>).
 The horizontal gridlines are configured to be +/- multiples of the base RSE.</p>
@@ -575,10 +573,16 @@ or difference operations with reasonable accuracy.  Instead, use the Theta sketc
 
 <hr />
 
-<ul>
-  <li>[1] Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, PODS 2014.</li>
-  <li>[2] Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https://arxiv.org/abs/1708.06839</li>
-</ul>
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, PODS 2014. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https://arxiv.org/abs/1708.06839 <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
