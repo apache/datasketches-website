@@ -36,24 +36,10 @@
           [
             {"class":"Doc",  "desc" : "Features Matrix",             "dir" : "", "file": "DistinctCountFeaturesMatrix" },
             {"class":"Doc",  "desc" : "Figures-of-Merit Comparison", "dir" : "", "file": "DistinctCountMeritComparisons"},
-
-            { "class":"Dropdown", "desc" : "CPC Sketches", "array":
-              [
-                {"class":"Doc",  "desc" : "CPC Sketch",                               "dir" : "CPC", "file": "CPC" },
-                {"class":"Doc",  "desc" : "CPC Sketch Performance",                   "dir" : "CPC", "file": "CpcPerformance" },
-                { "class":"Dropdown", "desc" : "CPC Examples", "array":
-                  [
-                    {"class":"Doc",  "desc" : "CPC Sketch Java Example",              "dir" : "CPC", "file": "CpcJavaExample" },
-                    {"class":"Doc",  "desc" : "CPC Sketch C++ Example",               "dir" : "CPC", "file": "CpcCppExample" },
-                    {"class":"Doc",  "desc" : "CPC Sketch Pig UDFs",                  "dir" : "CPC", "file": "CpcPigExample" },
-                    {"class":"Doc",  "desc" : "CPC Sketch Hive UDFs",                 "dir" : "CPC", "file": "CpcHiveExample" },
-                  ]
-                },
-              ]
-            },
-            { "class":"Doc",  "desc" : "HyperLogLog Sketches",     "dir" : "HLL", "file": "HllSketches" },
-            { "class":"Doc",  "desc" : "Theta Sketches",     "dir" : "Theta", "file": "ThetaSketches" },
-            { "class":"Doc",  "desc" : "Tuple Sketches",     "dir" : "Tuple", "file": "TupleSketches" },
+            { "class":"Doc",  "desc" : "CPC Sketches",         "dir" : "CPC",   "file": "CpcSketches" },
+            { "class":"Doc",  "desc" : "HyperLogLog Sketches", "dir" : "HLL",   "file": "HllSketches" },
+            { "class":"Doc",  "desc" : "Theta Sketches",       "dir" : "Theta", "file": "ThetaSketches" },
+            { "class":"Doc",  "desc" : "Tuple Sketches",       "dir" : "Tuple", "file": "TupleSketches" },
           ]
         },
 
