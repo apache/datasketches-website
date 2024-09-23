@@ -22,7 +22,7 @@ layout: doc_page
 # Classic Quantiles Sketch
 
 ## Quantiles Sketches Accuracy and Size
-Please review the Quantiles [Tutorial]({{site.docs_dir}}/Quantiles/SketchingQuantilesAndRanksTutorial.html).
+Please review the Quantiles [Tutorial]({{site.docs_dir}}/QuantilesAll/SketchingQuantilesAndRanksTutorial.html).
 
 The accuracy of a quantile sketch is a function of the configured value <i>k</i>, which also affects
 the overall size of the sketch. 

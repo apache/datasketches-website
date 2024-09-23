@@ -48,12 +48,12 @@ These sketches have many parallel methods. Please refer to the sketch API docume
 ### The Classic Quantiles Sketch
 
 * Java
-	* Release 0.3.0, 25 Jan 2016
 	* Repo: <https://github.com/apache/datasketches-java>
 	* Package: org.apache.datasketches.quantiles
-* C++, Python
-	* Release 1.0.0, 17 Sep 2019
+* C++
 	* Repo: <https://github.com/apache/datasketches-cpp>
+* Python
+    * Repo: <https://github.com/apache/datasketches-python> 
 * Key Features (both Java & C++)
     * User selectable search criteria QuantileSearchCriteria: 
 		* Exclusive, which is compatible with the KLL and older Quantiles Sketch
@@ -66,13 +66,13 @@ These sketches have many parallel methods. Please refer to the sketch API docume
 ### The KLL Sketch
 
 * Java
-	* Release 0.11.0, 15 Mar 2018
 	* Repo: <https://github.com/apache/datasketches-java>:
 	* Package: org.apache.datasketches.kll
-* C++, Python
-	* Release 1.0.0, 17 Sep 2019
+* C++
 	* Repo: <https://github.com/apache/datasketches-cpp>
 	* Directory: kll
+* Python
+    * Repo: <https://github.com/apache/datasketches-python>  
 * Key Features (both Java & C++)
 	* User selectable comparison QuantileSearchCriteria: 
 		* Exclusive, which is compatible with the KLL and older Quantiles Sketch
@@ -87,13 +87,14 @@ These sketches have many parallel methods. Please refer to the sketch API docume
 ### The REQ Sketch
 
 * Java 
-	* Release 2.0.0, 12 Feb 2021
 	* Repo: <https://github.com/apache/datasketches-java>
 	* Package: org.apache.datasketches.req
-* C++, Python
-	* Release 2.2.0, Soon
+* C++
 	* Repo: <https://github.com/apache/datasketches-cpp>
 	* Directory: req
+* Python
+    * Repo: <https://github.com/apache/datasketches-python>
+
 * Key Features (both Java & C++)
 	* Accuracy %: a function of *K* and **relative** with respect to rank. The user can select either High Rank Accuracy (HRA) or Low Rank Accuracy (LRA). This enables extremely high accuracy for the ends of the rank domain. E.g., 99.999%ile quantiles.
 	* User selectable comparison QuantileSearchCriteria: 

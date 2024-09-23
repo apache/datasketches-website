@@ -286,6 +286,7 @@ under the License.
               <exclude>**/*.ipynb</exclude>
               <exclude>**/package-list</exclude>
               <exclude>**/*.svg</exclude>
+              <exclude>**/*.rdf</exclude>
               <!-- END: UNIQUE FOR THIS JAVA COMPONENT -->
               <exclude>**/test/resources/**/*.txt</exclude>
               <exclude>.asf.yaml</exclude>
