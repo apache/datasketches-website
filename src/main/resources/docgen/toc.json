@@ -34,12 +34,12 @@
       [
         { "class":"Dropdown", "desc" : "Distinct Counting", "array":
           [
-            {"class":"Doc",  "desc" : "Features Matrix",             "dir" : "", "file": "DistinctCountFeaturesMatrix" },
-            {"class":"Doc",  "desc" : "Figures-of-Merit Comparison", "dir" : "", "file": "DistinctCountMeritComparisons"},
-            { "class":"Doc",  "desc" : "CPC Sketches",               "dir" : "CPC",   "file": "CpcSketches" },
-            { "class":"Doc",  "desc" : "HyperLogLog Sketches",       "dir" : "HLL",   "file": "HllSketches" },
-            { "class":"Doc",  "desc" : "Theta Sketches",             "dir" : "Theta", "file": "ThetaSketches" },
-            { "class":"Doc",  "desc" : "Tuple Sketches",             "dir" : "Tuple", "file": "TupleSketches" },
+            {"class":"Doc",  "desc" : "Features Matrix",             "dir" : "",      "file": "DistinctCountFeaturesMatrix" },
+            {"class":"Doc",  "desc" : "Figures-of-Merit Comparison", "dir" : "",      "file": "DistinctCountMeritComparisons" },
+            {"class":"Doc",  "desc" : "CPC Sketches",                "dir" : "CPC",   "file": "CpcSketches" },
+            {"class":"Doc",  "desc" : "HyperLogLog Sketches",        "dir" : "HLL",   "file": "HllSketches" },
+            {"class":"Doc",  "desc" : "Theta Sketches",              "dir" : "Theta", "file": "ThetaSketches" },
+            {"class":"Doc",  "desc" : "Tuple Sketches",              "dir" : "Tuple", "file": "TupleSketches" },
           ]
         },
 
@@ -53,8 +53,8 @@
 
         { "class":"Dropdown", "desc" : "Quantiles And Histograms", "array":
           [
-            {"class":"Doc",  "desc" : "Quantiles and Ranks Tutorial",             "dir" : "Quantiles", "file": "SketchingQuantilesAndRanksTutorial"},
-            {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "Quantiles", "file": "QuantilesOverview" },
+            {"class":"Doc",  "desc" : "Quantiles and Ranks Tutorial",             "dir" : "QuantilesAll", "file": "SketchingQuantilesAndRanksTutorial"},
+            {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "QuantilesAll", "file": "QuantilesOverview" },
             {"class":"Doc",  "desc" : "KLL Sketch Family",                        "dir" : "KLL", "file": "KLLSketch" },
             {"class":"Doc",  "desc" : "KLL Sketch Accuracy and Size",             "dir" : "KLL", "file": "KLLAccuracyAndSize" },
             {"class":"Doc",  "desc" : "Understanding KLL Bounds",                 "dir" : "KLL", "file": "UnderstandingKLLBounds" },
@@ -80,7 +80,7 @@
             { "class":"Dropdown", "desc" : "Quantiles Sketch Theory", "array":
               [
                 {"class":"Doc",  "desc" : "Optimal Quantile Approximation in Streams",        "dir" : "", "file": "Quantiles_KLL", "pdf":"true" },
-                {"class":"Doc",  "desc" : "Quantiles References",                             "dir" : "Quantiles", "file": "QuantilesReferences" },
+                {"class":"Doc",  "desc" : "Quantiles References",                             "dir" : "QuantilesAll", "file": "QuantilesReferences" },
               ]
             },
           ]

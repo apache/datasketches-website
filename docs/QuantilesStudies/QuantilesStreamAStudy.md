@@ -23,7 +23,7 @@ layout: doc_page
 
 The goal of this article is to compare the accuracy performance of the DataSketches Quantiles Sketch to an exact, brute-force computation using actual data extracted from one of our back-end servers. 
 
-Please get familiar with the [Tutorial]({{site.docs_dir}}/Quantiles/SketchingQuantilesAndRanksTutorial.html) for quantiles.
+Please get familiar with the [Tutorial]({{site.docs_dir}}/QuantilesAll/SketchingQuantilesAndRanksTutorial.html) for quantiles.
 
 ## Versions
 
