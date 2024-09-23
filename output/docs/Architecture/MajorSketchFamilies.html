@@ -195,8 +195,8 @@
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
     </p>
     <div class="collapse" id="collapse_quantiles_and_histograms">
-      <li><a href="/docs/Quantiles/SketchingQuantilesAndRanksTutorial.html">•Quantiles and Ranks Tutorial</a></li>
-      <li><a href="/docs/Quantiles/QuantilesOverview.html">•Quantiles Overview</a></li>
+      <li><a href="/docs/QuantilesAll/SketchingQuantilesAndRanksTutorial.html">•Quantiles and Ranks Tutorial</a></li>
+      <li><a href="/docs/QuantilesAll/QuantilesOverview.html">•Quantiles Overview</a></li>
       <li><a href="/docs/KLL/KLLSketch.html">•KLL Sketch Family</a></li>
       <li><a href="/docs/KLL/KLLAccuracyAndSize.html">•KLL Sketch Accuracy and Size</a></li>
       <li><a href="/docs/KLL/UnderstandingKLLBounds.html">•Understanding KLL Bounds</a></li>
@@ -228,7 +228,7 @@
       </p>
       <div class="collapse" id="collapse_quantiles_sketch_theory">
         <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">•Optimal Quantile Approximation in Streams</a></li>
-        <li><a href="/docs/Quantiles/QuantilesReferences.html">•Quantiles References</a></li>
+        <li><a href="/docs/QuantilesAll/QuantilesReferences.html">•Quantiles References</a></li>
       </div>
     </div>
 
@@ -395,8 +395,8 @@ However, if an approximate answer to these problems is acceptable, <a href="/doc
 
 <h2 id="quantiles-sketches">Quantiles Sketches</h2>
 
-<h3 id="quantiles-sketches-estimating-distributions-from-a-stream-of-values"><a href="/docs/Quantiles/QuantilesOverview.html">Quantiles Sketches</a>: Estimating Distributions from a Stream of Values</h3>
-<p>There are many situations where is valuable to understand the distribution of values in a stream. For example, from a stream of web-page time-spent values, it would be useful to know arbitrary quantiles of the distribution, such as the 25th percentile value, the median value and the 75th percentile value. The <a href="/docs/Quantiles/QuantilesOverview.html">Quantiles Sketches</a> solve this problem and enable the inverse functions such as the Probability Mass Function (PMF) and the Cumulative Distribution Function (CDF) as well. It is relatively easy to produce frequency histograms such as the following diagram, which was produced from a stream of over 230 million time spent events. The space consumed by the sketch was about 43KB.</p>
+<h3 id="quantiles-sketches-estimating-distributions-from-a-stream-of-values"><a href="/docs/QuantilesAll/QuantilesOverview.html">Quantiles Sketches</a>: Estimating Distributions from a Stream of Values</h3>
+<p>There are many situations where is valuable to understand the distribution of values in a stream. For example, from a stream of web-page time-spent values, it would be useful to know arbitrary quantiles of the distribution, such as the 25th percentile value, the median value and the 75th percentile value. The <a href="/docs/QuantilesAll/QuantilesOverview.html">Quantiles Sketches</a> solve this problem and enable the inverse functions such as the Probability Mass Function (PMF) and the Cumulative Distribution Function (CDF) as well. It is relatively easy to produce frequency histograms such as the following diagram, which was produced from a stream of over 230 million time spent events. The space consumed by the sketch was about 43KB.</p>
 
 <p><img class="doc-img-full" src="/docs/img/quantiles/TimeSpentHistogram.png" alt="TimeSpentHistogram" /></p>
 

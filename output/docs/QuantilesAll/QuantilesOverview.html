@@ -195,8 +195,8 @@
       <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
     </p>
     <div class="collapse" id="collapse_quantiles_and_histograms">
-      <li><a href="/docs/Quantiles/SketchingQuantilesAndRanksTutorial.html">•Quantiles and Ranks Tutorial</a></li>
-      <li><a href="/docs/Quantiles/QuantilesOverview.html">•Quantiles Overview</a></li>
+      <li><a href="/docs/QuantilesAll/SketchingQuantilesAndRanksTutorial.html">•Quantiles and Ranks Tutorial</a></li>
+      <li><a href="/docs/QuantilesAll/QuantilesOverview.html">•Quantiles Overview</a></li>
       <li><a href="/docs/KLL/KLLSketch.html">•KLL Sketch Family</a></li>
       <li><a href="/docs/KLL/KLLAccuracyAndSize.html">•KLL Sketch Accuracy and Size</a></li>
       <li><a href="/docs/KLL/UnderstandingKLLBounds.html">•Understanding KLL Bounds</a></li>
@@ -228,7 +228,7 @@
       </p>
       <div class="collapse" id="collapse_quantiles_sketch_theory">
         <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">•Optimal Quantile Approximation in Streams</a></li>
-        <li><a href="/docs/Quantiles/QuantilesReferences.html">•Quantiles References</a></li>
+        <li><a href="/docs/QuantilesAll/QuantilesReferences.html">•Quantiles References</a></li>
       </div>
     </div>
 
@@ -352,20 +352,142 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="selected-references-on-quantile-sketches">Selected References on Quantile Sketches</h2>
+<h1 id="introduction-to-the-quantile-sketches">Introduction to the Quantile Sketches</h1>
+
+<p>This is a quick overview of the quantiles sketches in the library. Each of these quantile types may have one or more specific implementaions and some variation in API depending on the language. Three of the quantile sketches have mathematically provable error bounds while the fourth is an empirical algorithm.</p>
+
+<p>The three sketches with mathematically provable error bounds are:</p>
 
 <ul>
-  <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">Zohar Karnin, Kevin Lang, Edo Liberty. Optimal Quantile Approximation in Streams. IEEE FOCS 2016.</a></li>
-  <li>J.I. Munro and M.S. Paterson. Selection and sorting with limited storage. Theoretical Computer Science, 12(3):315 – 323, 1980.</li>
-  <li>Gurmeet Singh Manku, Sridhar Rajagopalan, and Bruce G. Lindsay. Random sampling techniques for space efficient online computation of order statistics of large datasets. SIGMOD 1999.</li>
-  <li>Michael Greenwald and Sanjeev Khanna. Space-efficient online computation of quantile summaries. In Proceedings of the 2001 ACM SIGMOD 2001</li>
-  <li>Pankaj K. Agarwal, Graham Cormode, Zengfeng Huang, Jeff Phillips, Zhewei Wei, and Ke Yi. Mergeable summaries. In Proceedings of the 31st Symposium on Principles of Database Systems, PODS ’12</li>
-  <li>Lu Wang, Ge Luo, Ke Yi, and Graham Cormode. Quantiles over data streams: An experimental study. In Proceedings of the 2013 SIGMOD</li>
-  <li>In J. Gehrke M. Garofalakis and R. Rastogi, editors, In Data Stream Management: Processing High-Speed Data Streams. Springer, 2016.</li>
-  <li>David Felber and Rafail Ostrovsky. A randomized online quantile summary in O((1/ε) log(1/ε))</li>
-  <li>Graham Cormode, Zohar Karnin, Edo Liberty, Justin Thaler, Pavel Veselý. Relative Error Streaming Quantiles. https://arxiv.org/abs/2004.01668.</li>
-  <li>Graham Cormode, Zohar Karnin, Edo Liberty, Justin Thaler, Pavel Veselý. Relative Error Streaming Quantiles. In <em>PODS ‘21 Proceedings</em>, 2021.</li>
+  <li>The Classic quantile sketch family</li>
+  <li>The KLL quantile sketch family</li>
+  <li>The REQ quantile sketch</li>
 </ul>
+
+<p>The one empirical quantile sketch is the T-Digest sketch.</p>
+
+<p>The mathematical error bounds of the Classic, KLL and REQ sketches are specified with respect to rank and not with respect to quantiles.</p>
+
+<p>The T-Digest is empirical and has no mathematical basis for estimating its error and its results are dependent on the input data. However, for many common data distributions, it can produce excellent results. Please refer to the spcific documentation about the T-Digest sketch.</p>
+
+<p>For the Classic and KLL sketches, the difference between the rank upper bound and the rank lower bound is a 99% confidence interval and is an additive constant for all normalized ranks between 0.0 and 1.0. The specific error is a function of the parameter <i>K</i> of the sketch and can be derived from the sketch.  For example, if the rank error for a given K is 1%, then the error of a result rank of .01 is +/- .01 with a 99% confidence; the error of a result rank of .99 is +/- .01 with a 99% confidence.</p>
+
+<p>The REQ sketch is special in that it’s error is also relative to the actual result rank (thus its name: Relative Error Quantiles). It was designed to proved very high rank accuacy for either the high end of the range of ranks (close to 1.0) or, based on the user’s choice, the low end of ranks (close to 0.0). Please refer to the spcific documentation about the REQ sketch.</p>
+
+<p>Although upper and lower quantile bounds can be approximately computed from the upper and lower rank bounds, and the difference between the quantile bounds is also an approximate confidence interval, the size of the quantile confidence interval may not be meaningful and is not constrained by the defined rank error of the sketch.</p>
+
+<p>For example, a 1% rank error at a result rank of .50 corresponds to a rank range of .49 to .51. However, in the quantile domain, there could be step function in the values such that the difference in the quantiles corresponding to ranks .49 and .51 are as large as the the entire dynamic range of all quantiles. It is possible to retrieve the upper and lower quantile bounds at a specific rank, but the difference between these quantile bounds may not be meaningful.</p>
+
+<p>These sketches have many parallel methods. Please refer to the sketch API documentation by language for more information.</p>
+
+<h3 id="the-classic-quantiles-sketch">The Classic Quantiles Sketch</h3>
+
+<ul>
+  <li>Java
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-java">https://github.com/apache/datasketches-java</a></li>
+      <li>Package: org.apache.datasketches.quantiles</li>
+    </ul>
+  </li>
+  <li>C++
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-cpp">https://github.com/apache/datasketches-cpp</a></li>
+    </ul>
+  </li>
+  <li>Python
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-python">https://github.com/apache/datasketches-python</a></li>
+    </ul>
+  </li>
+  <li>Key Features (both Java &amp; C++)
+    <ul>
+      <li>User selectable search criteria QuantileSearchCriteria:
+        <ul>
+          <li>Exclusive, which is compatible with the KLL and older Quantiles Sketch</li>
+          <li>Inclusive, a common definition in some of the theoretical literature.</li>
+        </ul>
+      </li>
+      <li>Accuracy %: a function of <em>K</em> and independent of rank.</li>
+      <li>Dedicated <em>double</em> and generic <em>item</em> implentations for arbitrary comparable types.</li>
+      <li>The <em>double</em> implementation can be configured for off-heap operation.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="the-kll-sketch">The KLL Sketch</h3>
+
+<ul>
+  <li>Java
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-java">https://github.com/apache/datasketches-java</a>:</li>
+      <li>Package: org.apache.datasketches.kll</li>
+    </ul>
+  </li>
+  <li>C++
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-cpp">https://github.com/apache/datasketches-cpp</a></li>
+      <li>Directory: kll</li>
+    </ul>
+  </li>
+  <li>Python
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-python">https://github.com/apache/datasketches-python</a></li>
+    </ul>
+  </li>
+  <li>Key Features (both Java &amp; C++)
+    <ul>
+      <li>User selectable comparison QuantileSearchCriteria:
+        <ul>
+          <li>Exclusive, which is compatible with the KLL and older Quantiles Sketch</li>
+          <li>Inclusive, a common definition in some of the theoretical literature.</li>
+        </ul>
+      </li>
+      <li>Accuracy %: a function of <em>K</em> and independent of rank.</li>
+      <li>Near optimal accuracy per sketch size compared to other constant accuracy quantiles sketches.</li>
+      <li>Java: Dedicated <em>float</em>, <em>double</em>, <em>long</em>, and generic <em>item</em> implementations.</li>
+      <li>The <em>float</em>, <em>double</em>, and <em>long</em> implementations can be configured for off-heap operation.</li>
+      <li>C++: Template implementation for arbitrary comparible types.</li>
+      <li>Python: Dedicated <em>float</em> and <em>integer</em> implementations</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="the-req-sketch">The REQ Sketch</h3>
+
+<ul>
+  <li>Java
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-java">https://github.com/apache/datasketches-java</a></li>
+      <li>Package: org.apache.datasketches.req</li>
+    </ul>
+  </li>
+  <li>C++
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-cpp">https://github.com/apache/datasketches-cpp</a></li>
+      <li>Directory: req</li>
+    </ul>
+  </li>
+  <li>Python
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-python">https://github.com/apache/datasketches-python</a></li>
+    </ul>
+  </li>
+  <li>Key Features (both Java &amp; C++)
+    <ul>
+      <li>Accuracy %: a function of <em>K</em> and <strong>relative</strong> with respect to rank. The user can select either High Rank Accuracy (HRA) or Low Rank Accuracy (LRA). This enables extremely high accuracy for the ends of the rank domain. E.g., 99.999%ile quantiles.</li>
+      <li>User selectable comparison QuantileSearchCriteria:
+        <ul>
+          <li>Exclusive, which is compatible with the KLL and older Quantiles Sketch</li>
+          <li>Inclusive, a common definition in some of the theoretical literature.</li>
+        </ul>
+      </li>
+      <li>Java: Dedicated <em>float</em> implementation.</li>
+      <li>C++: Template implementation for arbitrary comparible types.</li>
+      <li>Python: Dedicated <em>float</em> and <em>integer</em> implementations.</li>
+    </ul>
+  </li>
+</ul>
+
 
       </div> <!-- End content -->
     </div> <!-- End row -->
