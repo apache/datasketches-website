@@ -352,7 +352,17 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h1 id="quantiles-sketch-overview">Quantiles Sketch Overview</h1>
+<h2 id="contents">Contents</h2>
+
+<ul>
+  <li><a href="#overview">Classic Quantiles Sketch Overview</a></li>
+  <li><a href="#numeric-quantiles">Numeric Quantiles</a></li>
+  <li><a href="#extending">Extending Generic Quantiles Classes</a></li>
+  <li><a href="#notes">Implementation Notes</a></li>
+</ul>
+
+<p><a id="overview"></a></p>
+<h1 id="classic-quantiles-sketch-overview">Classic Quantiles Sketch Overview</h1>
 
 <p>Package: org.apache.datasketches.quantiles</p>
 
@@ -365,14 +375,8 @@ Probability Mass Function, getPMF(), and the Cumulative Distribution Function, g
   <li><strong>NOTE:</strong> See also the <a href="/docs/KLL/KLLSketch.html">KLL Sketch</a>.</li>
 </ul>
 
-<h3 id="section-links">Section links:</h3>
-<ul>
-  <li><a href="#Section 1">Section 1</a> Numeric Quantiles</li>
-  <li><a href="#Section 2">Section 2</a> Extending Generic Quantiles Classes</li>
-  <li><a href="#Section 3">Section 3</a> Implementation Notes</li>
-</ul>
-
-<h2 id="numeric-quantiles"><a name="Section 1"></a>Numeric Quantiles</h2>
+<p><a id="numeric-quantiles"></a></p>
+<h2 id="numeric-quantiles">Numeric Quantiles</h2>
 
 <p>Consider this real data example of a stream of 230 million time-spent events collected from one our systems for a period of just 30 minutes. Each event records the amount of time in milliseconds that a user spends on a web page before moving to a different web page by taking some action, such as a click.</p>
 
@@ -517,7 +521,8 @@ System.out.println(qs3.toString()); //Primarily for debugging
 */
 </code></pre></div></div>
 
-<h2 id="extending-generic-quantiles-classes"><a name="Section 2"></a>Extending Generic Quantiles Classes</h2>
+<p><a id="extending"></a></p>
+<h2 id="extending-generic-quantiles-classes">Extending Generic Quantiles Classes</h2>
 
 <p>Any item type that is comparable, or for which you can create a Comparator, can also be analyzed by extending the abstract generic classes for that particular item.</p>
 
@@ -583,7 +588,8 @@ MyItem[] itemSplitPoints = sketch.getQuantiles(rankFractions);
 
 <p>Using a simple binary search you can now split your data into the 10 partitions.</p>
 
-<h2 id="implementation-notes"><a name="Section 3"></a>Implementation Notes</h2>
+<p><a id="notes"></a></p>
+<h2 id="implementation-notes">Implementation Notes</h2>
 
 <p>The quantiles algorithm is an implementation of the Low Discrepancy Mergeable Quantiles Sketch, using double values, described in section 3.2 of the journal version of the paper “Mergeable Summaries” by Agarwal, Cormode, Huang, Phillips, Wei, and Yi. 
 <a href="http://dblp.org/rec/html/journals/tods/AgarwalCHPWY13"></a> <!-- does not work with https --></p>

@@ -352,45 +352,116 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="kll-sketch">KLL Sketch</h2>
-
-<p>Implementation of a very compact quantiles sketch with lazy compaction scheme and nearly optimal accuracy per bit.
-See <a href="https://arxiv.org/abs/1603.05346v2">Optimal Quantile Approximation in Streams, by Zohar Karnin, Kevin Lang, Edo Liberty</a>.
-The name KLL is composed of the initial letters of the last names of the authors.</p>
-
-<p>The usage of KllSketch is very similar to the classic quantiles DoublesSketch.</p>
-
+<h2 id="contents">Contents</h2>
+<!-- TOC -->
 <ul>
-  <li>The key feature of this sketch is its compactness for a given accuracy.</li>
-  <li>It is separately implemented for both float and double values and can be configured for use on-heap or off-heap (Direct mode).</li>
-  <li>The parameter K that affects the accuracy and the size of the sketch is not restricted to powers of 2.</li>
-  <li>The default of 200 was chosen to yield approximately the same normalized rank error (1.65%) as the classic quantiles DoublesSketch (K=128, error 1.73%).</li>
+  <li><a href="https://datasketches.apache.org/docs/QuantilesAll/QuantilesOverview.html">Introduction to the Quantile Sketches</a></li>
+  <li><a href="#kll-sketch">Kll Sketch</a>
+    <ul>
+      <li><a href="#comparing">Comparing the KllSketches with the original classic Quantiles Sketches</a></li>
+      <li><a href="#plots">Plots for KllDoublesSketch vs. classic Quantiles DoublesSketch</a></li>
+      <li><a href="#simple-example">Simple Java KLL Example</a></li>
+    </ul>
+  </li>
+  <li><a href="https://datasketches.apache.org/docs/KLL/KLLAccuracyAndSize.html">KLL Accuracy And Size</a></li>
+  <li><a href="https://datasketches.apache.org/docs/KLL/UnderstandingKLLBounds.html">Understanding KLL Bounds</a></li>
+  <li>Examples
+    <ul>
+      <li><a href="https://datasketches.apache.org/docs/KLL/KLLCppExample.html">KLL Sketch C++ Example</a></li>
+    </ul>
+  </li>
+  <li>Tutorials
+    <ul>
+      <li><a href="https://datasketches.apache.org/docs/QuantilesAll/SketchingQuantilesAndRanksTutorial.html">Sketching Quantiles and Ranks Tutorial</a></li>
+    </ul>
+  </li>
+  <li>Theory
+    <ul>
+      <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf">Optimal Quantile Approximation in Streams</a></li>
+      <li><a href="https://datasketches.apache.org/docs/QuantilesAll/QuantilesReferences.html">References</a>
+<!-- TOC --></li>
+    </ul>
+  </li>
 </ul>
 
-<h3 id="java-example">Java example</h3>
+<p><a id="kll-sketch"></a></p>
+<h2 id="kll-sketch">KLL Sketch</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.datasketches.kll.KllFloatsSketch;
+<p>This is an implementation of a very compact quantiles sketch with lazy compaction scheme and nearly optimal accuracy per bit of storage.  The underlying theoretical work is the paper 
+<a href="https://arxiv.org/abs/1603.05346v2">Optimal Quantile Approximation in Streams, by Zohar Karnin, Kevin Lang, Edo Liberty</a>. The name KLL is composed of the initial letters of the last names of the authors.</p>
 
-KllFloatsSketch sketch = KllFloatsSketch.newHeapInstance();
-int n = 1000000;
-for (int i = 0; i &lt; n; i++) {
-  sketch.update(i);
-}
-float median = sketch.getQuantile(0.5);
-double rankOf1000 = sketch.getRank(1000);
-</code></pre></div></div>
-
-<h3 id="differences-of-kllsketch-from-the-original-quantiles-doublessketch">Differences of KllSketch from the original quantiles DoublesSketch</h3>
+<p>This implementation includes 16 variations of the KLL Sketch, including a base KllSketch for methods common to all sketches. The implementation variations are across 3 different dimensions:</p>
 
 <ul>
-  <li>KLL has a smaller size for the same accuracy.</li>
-  <li>KLL is slightly faster to update.</li>
-  <li>The KLL parameter K doesn’t have to be power of 2.</li>
-  <li>KLL operates with either float values or double values.</li>
+  <li>Input type: double, float, long, item(generic)</li>
+  <li>Memory type: heap, direct (off-heap)</li>
+  <li>Stored Size: compact (read-only), updatable</li>
+</ul>
+
+<p>With the one exception that the KllItemSketch is not available in direct, updatable form.
+The classes are organized in an inheritance hierarchy as follows:</p>
+
+<ul>
+  <li>Public KllSketch
+    <ul>
+      <li>Public KllDoublesSketch
+        <ul>
+          <li>KllHeapDoublesSketch</li>
+          <li>KllDirectDoublesSketch
+            <ul>
+              <li>KllDirectCompactDoublesSketch</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Public KllFloatsSketch
+        <ul>
+          <li>KllHeapFloatsSketch</li>
+          <li>KllDirectFloatsSketch
+            <ul>
+              <li>KllDirectCompactFloatsSketch</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Public KllItemsSketch<T>
+</T>        <ul>
+          <li>KllHeapItemsSketch<T></T></li>
+          <li>KllDirectCompactItemsSketch<T></T></li>
+        </ul>
+      </li>
+      <li>Public KllLongsSketch
+        <ul>
+          <li>KllHeapLongsSketch</li>
+          <li>KllDirectLongsSketch
+            <ul>
+              <li>KllDirectCompactLongsSketch</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>The internal package-private variations are constructed using static factory methods from the 4 outer public classes for doubles, floats, items, and longs, respectively</p>
+
+<p><a id="comparing"></a></p>
+<h3 id="comparing-the-kll-sketches-with-the-original-classic-quantiles-sketches">Comparing the KLL Sketches with the original classic Quantiles Sketches</h3>
+
+<p>The usage of KllDoublesSketch is very similar to the classic quantiles DoublesSketch.</p>
+
+<ul>
+  <li>The key feature of KLL sketch is its compactness for a given accuracy. KLL has a much smaller size for the same accuracy (see the plots below).</li>
+  <li>The KLL parameter K, which affects accuracy and size, doesn’t have to be power of 2. The default K of 200 was chosen to yield approximately the same normalized rank error (1.65%) as the classic quantiles DoublesSketch (K=128, error 1.73%).</li>
+  <li>The classic quantiles sketch only has double and item(generic) input types, while KLL (as mentioned above) is implemented with double, float, long, and item(generic) types.</li>
   <li>KLL uses a merge method rather than a union object.</li>
 </ul>
 
-<p>The starting point for the comparison is setting K in such a way that rank error would be approximately the same. As pointed out above, the default K for both sketches should achieve this. Here is the comparison of the single-sided normalized rank error (getRank() method) for the default K:</p>
+<p><a id="plots"></a></p>
+<h3 id="plot-comparisons-of-klldoublessketch-vs-classic-quantiles-doublessketch">Plot Comparisons of KllDoublesSketch vs. classic Quantiles DoublesSketch</h3>
+
+<p>The starting point for the plot comparisons is setting K in such a way that rank error would be approximately the same. As pointed out above, the default K for both sketches should achieve this. Here is the comparison of the single-sided normalized rank error (getRank() method) for the default K:</p>
 
 <p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-rank-error.png" alt="RankError" /></p>
 
@@ -411,6 +482,20 @@ double rankOf1000 = sketch.getRank(1000);
 <p>Below is the update() method speed:</p>
 
 <p><img class="doc-img-full" src="/docs/img/kll/kll200-vs-ds128-update.png" alt="UpdateTime" /></p>
+
+<p><a id="simple-example"></a></p>
+<h3 id="simple-java-kll-floats-example">Simple Java KLL Floats example</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.datasketches.kll.KllFloatsSketch;
+
+KllFloatsSketch sketch = KllFloatsSketch.newHeapInstance();
+int n = 1000000;
+for (int i = 0; i &lt; n; i++) {
+  sketch.update(i);
+}
+float median = sketch.getQuantile(0.5);
+double rankOf1000 = sketch.getRank(1000);
+</code></pre></div></div>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
