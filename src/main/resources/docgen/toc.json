@@ -53,36 +53,10 @@
 
         { "class":"Dropdown", "desc" : "Quantiles And Histograms", "array":
           [
-            {"class":"Doc",  "desc" : "Quantiles and Ranks Tutorial",             "dir" : "QuantilesAll", "file": "SketchingQuantilesAndRanksTutorial"},
             {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "QuantilesAll", "file": "QuantilesOverview" },
-            {"class":"Doc",  "desc" : "KLL Sketch Family",                        "dir" : "KLL", "file": "KLLSketch" },
-            {"class":"Doc",  "desc" : "KLL Sketch Accuracy and Size",             "dir" : "KLL", "file": "KLLAccuracyAndSize" },
-            {"class":"Doc",  "desc" : "Understanding KLL Bounds",                 "dir" : "KLL", "file": "UnderstandingKLLBounds" },
-            {"class":"Doc",  "desc" : "REQ Floats sketch",                        "dir" : "REQ", "file": "ReqSketch" },
+            {"class":"Doc",  "desc" : "KLL Sketches",                             "dir" : "KLL", "file": "KLLSketch" },
             {"class":"Doc",  "desc" : "Classic Quantiles Sketches",               "dir" : "Quantiles", "file": "ClassicQuantilesSketch" },
-
-            { "class":"Dropdown", "desc" : "Quantiles Examples", "array":
-              [
-                {"class":"Doc",  "desc" : "Quantiles Sketch Java Example",            "dir" : "Quantiles", "file": "QuantilesJavaExample" },
-                {"class":"Doc",  "desc" : "KLL Quantiles Sketch C++ Example",         "dir" : "KLL", "file": "KLLCppExample" },
-                {"class":"Doc",  "desc" : "Quantiles Sketch Pig UDFs",                "dir" : "Quantiles", "file": "QuantilesPigUDFs" },
-                {"class":"Doc",  "desc" : "Quantiles Sketch Hive UDFs",               "dir" : "Quantiles", "file": "QuantilesHiveUDFs" },
-              ]
-            },
-            { "class":"Dropdown", "desc" : "Quantiles Studies", "array":
-              [
-                {"class":"Doc",  "desc" : "Druid Approximate Histogram",                      "dir" : "QuantilesStudies", "file": "DruidApproxHistogramStudy" },
-                {"class":"Doc",  "desc" : "Moments Sketch Study",                             "dir" : "QuantilesStudies", "file": "MomentsSketchStudy" },
-                {"class":"Doc",  "desc" : "Quantiles StreamA Study",                          "dir" : "QuantilesStudies", "file": "QuantilesStreamAStudy" },
-                {"class":"Doc",  "desc" : "Exact Quantiles for Studies",                      "dir" : "QuantilesStudies", "file": "ExactQuantiles" },
-              ]
-            },
-            { "class":"Dropdown", "desc" : "Quantiles Sketch Theory", "array":
-              [
-                {"class":"Doc",  "desc" : "Optimal Quantile Approximation in Streams",        "dir" : "", "file": "Quantiles_KLL", "pdf":"true" },
-                {"class":"Doc",  "desc" : "Quantiles References",                             "dir" : "QuantilesAll", "file": "QuantilesReferences" },
-              ]
-            },
+            {"class":"Doc",  "desc" : "REQ Floats Sketch",                        "dir" : "REQ", "file": "ReqSketch" },
           ]
         },
 
