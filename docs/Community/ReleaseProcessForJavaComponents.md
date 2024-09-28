@@ -174,6 +174,8 @@ Also specifies line separator characters for text files.
     * Copy the URL for later.
 
 ## Java Only: Push Jars to Nexus (Maven Central) Staging
+* **NOTE:** If you are deploying datasketches-memory to Nexus use the *sign-deploy-jar.sh* script in the *datasketches-memory/tools/scripts/ directory* instead.
+
 * Return to original terminal at the project.basedir, still in the A.B.X branch.
 * If starting new terminal make sure GPG is running:
   * Confirm *gpg-agent* is running:
