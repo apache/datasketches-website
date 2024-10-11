@@ -170,7 +170,7 @@ Also specifies line separator characters for text files.
 
 ### Check Primary Zip Files & Signatures/Hashes
 * Check this web URL ~ *https://dist.apache.org/repos/dist/dev/datasketches/\<component\>/A.B.0-RC1/*
-    * Redo CheckOut: `svn co https://dist.apache.org/repos/dist/dev/datasketches/ .`      #Note the DOT
+    * Update SVN: `svn up`
     * There should be 3 files: \*-src.zip, \*-src.zip.asc, \*-src.zip.sha512
     * Copy the URL for later.
 
