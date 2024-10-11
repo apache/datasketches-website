@@ -562,6 +562,7 @@ Also specifies line separator characters for text files.</li>
 <ul>
   <li>Check this web URL ~ <em>https://dist.apache.org/repos/dist/dev/datasketches/&lt;component&gt;/A.B.0-RC1/</em>
     <ul>
+      <li>Update SVN: <code class="highlighter-rouge">svn up</code></li>
       <li>There should be 3 files: *-src.zip, *-src.zip.asc, *-src.zip.sha512</li>
       <li>Copy the URL for later.</li>
     </ul>
@@ -597,7 +598,7 @@ Also specifies line separator characters for text files.</li>
   <li><strong>Have your GPG passphrase handy – you may have only a few seconds to enter it!</strong></li>
   <li><code class="highlighter-rouge">mvn clean install -Pnexus-jars -DskipTests=true</code>
     <ul>
-      <li>Check target/ that jars &amp; pom have .asc signatures</li>
+      <li>Check target/ that jars &amp; pom exist</li>
     </ul>
   </li>
 </ul>
@@ -612,6 +613,7 @@ Also specifies line separator characters for text files.</li>
 <ul>
   <li>Login to Nexus: <a href="https://repository.apache.org/">repository.apache.org</a> / Staging Repositories for orgapachedatasketches-XXXX</li>
   <li>Click <strong>Content</strong> and search to the end.  Each jar &amp; pom should have .asc, .md5, .sha1 signatures</li>
+  <li>Check target/ &amp; .m2 that jars &amp; pom exist and have .asc signatures</li>
 </ul>
 
 <h3 id="close-very-important">CLOSE (Very Important)</h3>
