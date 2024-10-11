@@ -170,6 +170,7 @@ Also specifies line separator characters for text files.
 
 ### Check Primary Zip Files & Signatures/Hashes
 * Check this web URL ~ *https://dist.apache.org/repos/dist/dev/datasketches/\<component\>/A.B.0-RC1/*
+    * Update SVN: `svn up`
     * There should be 3 files: \*-src.zip, \*-src.zip.asc, \*-src.zip.sha512
     * Copy the URL for later.
 
@@ -188,7 +189,7 @@ Also specifies line separator characters for text files.
 ### TRIAL-RUN:
 * **Have your GPG passphrase handy -- you may have only a few seconds to enter it!**
 * `mvn clean install -Pnexus-jars -DskipTests=true`
-    * Check target/ that jars & pom have .asc signatures
+    * Check target/ that jars & pom exist
 
 ### DEPLOY
 * **Have your GPG passphrase handy -- you may have only a few seconds to enter it, but it may be automatic!**
@@ -197,6 +198,7 @@ Also specifies line separator characters for text files.
 ### DEPLOY-CHECK
 * Login to Nexus: [repository.apache.org](https://repository.apache.org/) / Staging Repositories for orgapachedatasketches-XXXX
 * Click __Content__ and search to the end.  Each jar & pom should have .asc, .md5, .sha1 signatures
+* Check target/ & .m2 that jars & pom exist and have .asc signatures
 
 ### CLOSE (Very Important)
 * [CLOSE] the Staging Repository with a comment: "\<component\> A.B.0"
