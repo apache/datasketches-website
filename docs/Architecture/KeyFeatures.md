@@ -78,9 +78,9 @@ its garbage collection.
 
 #### Four families of Count Unique algorithms:
 
-* [The HLL Sketch]({{site.docs_dir}}/HLL/HLL.html). The famous HyperLogLog algorithm when stored sketch size is of utmost concern.
-* [The CPC Sketch]({{site.docs_dir}}/CPC/CPC.html). The Compressed Probabilistic Counting algorithm when maximizing accuracy per stored sketch size is of utmost concern.
-* [The Theta Sketch Framework]({{site.docs_dir}}/Theta/ThetaSketchFramework.html). Theta sketches enable real-time set-expression computations and can operate on or off the java heap.
+* [The HLL Sketch]({{site.docs_dir}}/HLL/HllSketches.html). The famous HyperLogLog algorithm when stored sketch size is of utmost concern.
+* [The CPC Sketch]({{site.docs_dir}}/CPC/CpcSketches.html). The Compressed Probabilistic Counting algorithm when maximizing accuracy per stored sketch size is of utmost concern.
+* [The Theta Sketch Framework]({{site.docs_dir}}/Theta/ThetaSketches.html). Theta sketches enable real-time set-expression computations and can operate on or off the java heap.
 * [The Tuple Sketch]({{site.docs_dir}}/Tuple/TupleOverview.html). Tuple sketches are associative sketches that are useful for performing approximate join operations and extracting other kinds of statistical behavior associated with unique identifiers.
 
   
