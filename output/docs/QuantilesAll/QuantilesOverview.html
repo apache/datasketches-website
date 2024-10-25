@@ -323,7 +323,7 @@
 -->
 <h1 id="introduction-to-the-quantile-sketches">Introduction to the Quantile Sketches</h1>
 
-<p>This is a quick overview of the quantiles sketches in the library. Each of these quantile types may have one or more specific implementaions and some variation in API depending on the language. Three of the quantile sketches have mathematically provable error bounds while the fourth is an empirical algorithm.</p>
+<p>This is an overview of the quantiles sketches in the library. Each of these quantile types may have one or more specific implementaions and some variation in API depending on the language. Three of the quantile sketches have mathematically provable error bounds while the fourth is an empirical algorithm.</p>
 
 <p>The three sketches with mathematically provable error bounds are:</p>
 
@@ -341,7 +341,7 @@
 
 <p>For the Classic and KLL sketches, the difference between the rank upper bound and the rank lower bound is a 99% confidence interval and is an additive constant for all normalized ranks between 0.0 and 1.0. The specific error is a function of the parameter <i>K</i> of the sketch and can be derived from the sketch.  For example, if the rank error for a given K is 1%, then the error of a result rank of .01 is +/- .01 with a 99% confidence; the error of a result rank of .99 is +/- .01 with a 99% confidence.</p>
 
-<p>The REQ sketch is special in that it’s error is also relative to the actual result rank (thus its name: Relative Error Quantiles). It was designed to proved very high rank accuacy for either the high end of the range of ranks (close to 1.0) or, based on the user’s choice, the low end of ranks (close to 0.0). Please refer to the spcific documentation about the REQ sketch.</p>
+<p>The REQ sketch is special in that its error is also relative to the actual result rank (thus its name: Relative Error Quantiles). It was designed to provide very high rank accuacy for either the high end of the range of ranks (close to 1.0) or, based on the user’s choice, the low end of ranks (close to 0.0). Please refer to the spcific documentation about the REQ sketch.</p>
 
 <p>Although upper and lower quantile bounds can be approximately computed from the upper and lower rank bounds, and the difference between the quantile bounds is also an approximate confidence interval, the size of the quantile confidence interval may not be meaningful and is not constrained by the defined rank error of the sketch.</p>
 
@@ -349,114 +349,149 @@
 
 <p>These sketches have many parallel methods. Please refer to the sketch API documentation by language for more information.</p>
 
-<h3 id="the-classic-quantiles-sketch">The Classic Quantiles Sketch</h3>
-
+<h3 id="classic-quantiles-sketch">Classic Quantiles Sketch</h3>
 <ul>
   <li>Java
     <ul>
       <li>Repo: <a href="https://github.com/apache/datasketches-java">https://github.com/apache/datasketches-java</a></li>
-      <li>Package: org.apache.datasketches.quantiles</li>
+      <li>Package: <a href="https://github.com/apache/datasketches-java/tree/master/src/main/java/org/apache/datasketches/quantiles">org.apache.datasketches.quantiles</a></li>
+      <li>Dedicated <em>double</em> and generic <em>item</em> implentations for arbitrary comparable types.
+        <ul>
+          <li>The <em>double</em> implementation can be configured for off-heap operation.</li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li>C++
     <ul>
       <li>Repo: <a href="https://github.com/apache/datasketches-cpp">https://github.com/apache/datasketches-cpp</a></li>
+      <li>Directory: <a href="https://github.com/apache/datasketches-cpp/tree/master/quantiles">quantiles</a></li>
+      <li>Template implementation for arbitrary comparable types.</li>
     </ul>
   </li>
   <li>Python
     <ul>
       <li>Repo: <a href="https://github.com/apache/datasketches-python">https://github.com/apache/datasketches-python</a></li>
+      <li>Dedicated <em>float</em>, <em>double</em>, <em>integer</em> and arbitrary Python object implementations</li>
     </ul>
   </li>
-  <li>Key Features (both Java &amp; C++)
+  <li>Key Features (Java, C++ and Python)
     <ul>
+      <li>Accuracy %: a function of <em>K</em> and independent of rank.</li>
       <li>User selectable search criteria QuantileSearchCriteria:
         <ul>
-          <li>Exclusive, which is compatible with the KLL and older Quantiles Sketch</li>
-          <li>Inclusive, a common definition in some of the theoretical literature.</li>
+          <li>Inclusive, a common definition in some of the theoretical literature (default).</li>
+          <li>Exclusive, which is compatible with older Quantiles Sketch.</li>
         </ul>
       </li>
-      <li>Accuracy %: a function of <em>K</em> and independent of rank.</li>
-      <li>Dedicated <em>double</em> and generic <em>item</em> implentations for arbitrary comparable types.</li>
-      <li>The <em>double</em> implementation can be configured for off-heap operation.</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="the-kll-sketch">The KLL Sketch</h3>
-
-<ul>
-  <li>Java
-    <ul>
-      <li>Repo: <a href="https://github.com/apache/datasketches-java">https://github.com/apache/datasketches-java</a>:</li>
-      <li>Package: org.apache.datasketches.kll</li>
-    </ul>
-  </li>
-  <li>C++
-    <ul>
-      <li>Repo: <a href="https://github.com/apache/datasketches-cpp">https://github.com/apache/datasketches-cpp</a></li>
-      <li>Directory: kll</li>
-    </ul>
-  </li>
-  <li>Python
-    <ul>
-      <li>Repo: <a href="https://github.com/apache/datasketches-python">https://github.com/apache/datasketches-python</a></li>
-    </ul>
-  </li>
-  <li>Key Features (both Java &amp; C++)
-    <ul>
-      <li>User selectable comparison QuantileSearchCriteria:
-        <ul>
-          <li>Exclusive, which is compatible with the KLL and older Quantiles Sketch</li>
-          <li>Inclusive, a common definition in some of the theoretical literature.</li>
-        </ul>
-      </li>
-      <li>Accuracy %: a function of <em>K</em> and independent of rank.</li>
-      <li>Near optimal accuracy per sketch size compared to other constant accuracy quantiles sketches.</li>
-      <li>Java: Dedicated <em>float</em>, <em>double</em>, <em>long</em>, and generic <em>item</em> implementations.</li>
-      <li>The <em>float</em>, <em>double</em>, and <em>long</em> implementations can be configured for off-heap operation.</li>
-      <li>C++: Template implementation for arbitrary comparible types.</li>
-      <li>Python: Dedicated <em>float</em> and <em>integer</em> implementations</li>
-    </ul>
-  </li>
-</ul>
-
-<h3 id="the-req-sketch">The REQ Sketch</h3>
-
+<h3 id="kll-sketch">KLL Sketch</h3>
 <ul>
   <li>Java
     <ul>
       <li>Repo: <a href="https://github.com/apache/datasketches-java">https://github.com/apache/datasketches-java</a></li>
-      <li>Package: org.apache.datasketches.req</li>
+      <li>Package: <a href="https://github.com/apache/datasketches-java/tree/master/src/main/java/org/apache/datasketches/kll">org.apache.datasketches.kll</a></li>
+      <li>Dedicated <em>float</em>, <em>double</em>, <em>long</em>, and generic <em>item</em> implementations.
+        <ul>
+          <li>The <em>float</em>, <em>double</em>, and <em>long</em> implementations can be configured for off-heap operation.</li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li>C++
     <ul>
       <li>Repo: <a href="https://github.com/apache/datasketches-cpp">https://github.com/apache/datasketches-cpp</a></li>
-      <li>Directory: req</li>
+      <li>Directory: <a href="https://github.com/apache/datasketches-cpp/tree/master/kll">kll</a></li>
+      <li>Template implementation for arbitrary comparable types.</li>
     </ul>
   </li>
   <li>Python
     <ul>
       <li>Repo: <a href="https://github.com/apache/datasketches-python">https://github.com/apache/datasketches-python</a></li>
+      <li>Dedicated <em>float</em>, <em>double</em>, <em>integer</em> and arbitrary Python object implementations</li>
     </ul>
   </li>
-  <li>Key Features (both Java &amp; C++)
+  <li>Key Features (Java, C++ and Python)
+    <ul>
+      <li>Accuracy %: a function of <em>K</em> and independent of rank.</li>
+      <li>User selectable comparison QuantileSearchCriteria:
+        <ul>
+          <li>Inclusive, a common definition in some of the theoretical literature (default).</li>
+          <li>Exclusive, which is compatible with older Quantiles Sketch.</li>
+        </ul>
+      </li>
+      <li>Near optimal accuracy per sketch size compared to other constant accuracy quantiles sketches.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="req-sketch">REQ Sketch</h3>
+<ul>
+  <li>Java
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-java">https://github.com/apache/datasketches-java</a></li>
+      <li>Package: <a href="https://github.com/apache/datasketches-java/tree/master/src/main/java/org/apache/datasketches/req">org.apache.datasketches.req</a></li>
+      <li>Dedicated <em>float</em> implementation.</li>
+    </ul>
+  </li>
+  <li>C++
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-cpp">https://github.com/apache/datasketches-cpp</a></li>
+      <li>Directory: <a href="https://github.com/apache/datasketches-cpp/tree/master/req">req</a></li>
+      <li>Template implementation for arbitrary comparable types.</li>
+    </ul>
+  </li>
+  <li>Python
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-python">https://github.com/apache/datasketches-python</a></li>
+      <li>Dedicated <em>float</em>, <em>integer</em> and arbitrary Python object implementations</li>
+    </ul>
+  </li>
+  <li>Key Features (Java, C++ and Python)
     <ul>
       <li>Accuracy %: a function of <em>K</em> and <strong>relative</strong> with respect to rank. The user can select either High Rank Accuracy (HRA) or Low Rank Accuracy (LRA). This enables extremely high accuracy for the ends of the rank domain. E.g., 99.999%ile quantiles.</li>
       <li>User selectable comparison QuantileSearchCriteria:
         <ul>
-          <li>Exclusive, which is compatible with the KLL and older Quantiles Sketch</li>
-          <li>Inclusive, a common definition in some of the theoretical literature.</li>
+          <li>Inclusive, a common definition in some of the theoretical literature (default).</li>
+          <li>Exclusive, which is compatible with older Quantiles Sketch.</li>
         </ul>
       </li>
-      <li>Java: Dedicated <em>float</em> implementation.</li>
-      <li>C++: Template implementation for arbitrary comparible types.</li>
-      <li>Python: Dedicated <em>float</em> and <em>integer</em> implementations.</li>
     </ul>
   </li>
 </ul>
 
+<h3 id="t-digest">T-Digest</h3>
+<ul>
+  <li>Java
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-java">https://github.com/apache/datasketches-java</a></li>
+      <li>Package: <a href="https://github.com/apache/datasketches-java/tree/master/src/main/java/org/apache/datasketches/tdigest">org.apache.datasketches.req</a></li>
+      <li>Dedicated <em>double</em> implementation.</li>
+    </ul>
+  </li>
+  <li>C++
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-cpp">https://github.com/apache/datasketches-cpp</a></li>
+      <li>Directory: <a href="https://github.com/apache/datasketches-cpp/tree/master/tdigest">req</a></li>
+      <li>Template implementation for <em>float</em> and <em>double</em> types.</li>
+    </ul>
+  </li>
+  <li>Python
+    <ul>
+      <li>Repo: <a href="https://github.com/apache/datasketches-python">https://github.com/apache/datasketches-python</a></li>
+      <li>Dedicated <em>float</em> and <em>double</em> implementations</li>
+    </ul>
+  </li>
+  <li>Key Features (Java, C++ and Python)
+    <ul>
+      <li>Works on numeric (floating point) types only.</li>
+      <li>Accuracy: a function of <em>K</em> and <strong>relative</strong> with respect to rank. Prioritizes both high rank accuracy and low rank accuracy with lower accuracy in the middle.</li>
+    </ul>
+  </li>
+</ul>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
