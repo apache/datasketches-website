@@ -37,7 +37,7 @@ The T-Digest is empirical and has no mathematical basis for estimating its error
 
 For the Classic and KLL sketches, the difference between the rank upper bound and the rank lower bound is a 99% confidence interval and is an additive constant for all normalized ranks between 0.0 and 1.0. The specific error is a function of the parameter <i>K</i> of the sketch and can be derived from the sketch.  For example, if the rank error for a given K is 1%, then the error of a result rank of .01 is +/- .01 with a 99% confidence; the error of a result rank of .99 is +/- .01 with a 99% confidence.
 
-The REQ sketch is special in that its error is also relative to the actual result rank (thus its name: Relative Error Quantiles). It was designed to proved very high rank accuacy for either the high end of the range of ranks (close to 1.0) or, based on the user's choice, the low end of ranks (close to 0.0). Please refer to the spcific documentation about the REQ sketch.
+The REQ sketch is special in that its error is also relative to the actual result rank (thus its name: Relative Error Quantiles). It was designed to provide very high rank accuacy for either the high end of the range of ranks (close to 1.0) or, based on the user's choice, the low end of ranks (close to 0.0). Please refer to the spcific documentation about the REQ sketch.
 
 Although upper and lower quantile bounds can be approximately computed from the upper and lower rank bounds, and the difference between the quantile bounds is also an approximate confidence interval, the size of the quantile confidence interval may not be meaningful and is not constrained by the defined rank error of the sketch.
 
