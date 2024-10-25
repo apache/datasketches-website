@@ -327,10 +327,10 @@
 
 <h2 id="cardinality-sketches">Cardinality Sketches</h2>
 
-<h3 id="cpc-sketch-estimating-stream-cardinalities-more-efficiently-than-the-famous-hll-sketch"><a href="/docs/CPC/CPC.html">CPC Sketch</a>: Estimating Stream Cardinalities more efficiently than the famous HLL sketch!</h3>
+<h3 id="cpc-sketch-estimating-stream-cardinalities-more-efficiently-than-the-famous-hll-sketch"><a href="/docs/CPC/CpcSketches.html">CPC Sketch</a>: Estimating Stream Cardinalities more efficiently than the famous HLL sketch!</h3>
 <p>This sketch was developed by the late Keven J. Lang, our chief scientist at the time. It is an amazing <em>tour de force</em> of scientific design and engineering and has substantially better accuracy / per stored size than the famous HLL sketch. The theory and demonstration of its performance is detailed in Lang’s paper <a href="https://arxiv.org/abs/1708.06839">Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm</a>.</p>
 
-<h3 id="theta-sketches-estimating-stream-expression-cardinalities"><a href="/docs/Theta/ThetaSketchFramework.html">Theta Sketches</a>: Estimating Stream Expression Cardinalities</h3>
+<h3 id="theta-sketches-estimating-stream-expression-cardinalities"><a href="/docs/Theta/ThetaSketches.html">Theta Sketches</a>: Estimating Stream Expression Cardinalities</h3>
 <p>Internet content, search and media companies like Yahoo, Google, Facebook, etc., collect many tens of billions of event records from the many millions of users to their web sites each day.  These events can be classified by many different dimensions, such as the page visited and user location and profile information.  Each event also contains some unique identifiers associated with the user, specific device (cell phone, tablet, or computer) and the web browser used.</p>
 
 <p><img class="doc-img-full" src="/docs/img/PeopleCloud.png" alt="PeopleCloud" /></p>
@@ -338,7 +338,7 @@
 <p>These same unique identifiers will appear on every page that the user visits.  In order to measure the number of unique identifiers on a page or across a number of different pages, it is necessary to discount the identifier duplicates.  Obtaining an exact answer to a <em>COUNT DISTINCT</em> query with massive data is a difficult computational challenge. It is even more challenging if it is necessary to compute arbitrary expressions across sets of unique identifiers. For example, if set <em>S</em> is the set of user identifiers visiting the Sports page and set <em>F</em> is the set of user identifiers visiting the Finance page, the intersection expression <em>S ∩ F</em> represents the user identifiers that visited both Sports and Finance.</p>
 
 <p>Computing cardinalities with massive data requires lots of computer resources and time.
-However, if an approximate answer to these problems is acceptable, <a href="/docs/Theta/ThetaSketchFramework.html">Theta Sketches</a> can provide reasonable estimates, in a single pass, orders of magnitude faster, even fast enough for analysis in near-real time.</p>
+However, if an approximate answer to these problems is acceptable, <a href="/docs/Theta/ThetaSketches.html">Theta Sketches</a> can provide reasonable estimates, in a single pass, orders of magnitude faster, even fast enough for analysis in near-real time.</p>
 
 <p>The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/theta/Sketch.java">theta/Sketch</a> can operate both on-heap and off-heap, has powerful Union, Intersection, AnotB and Jaccard operators, has a high-performance concurrent form for multi-threaded environments, has both immutable compact, and updatable representations, and is quite fast. Because of its flexibility, it is one of the most popular sketches in our library.</p>
 
@@ -354,7 +354,7 @@ However, if an approximate answer to these problems is acceptable, <a href="/doc
   <li><a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/arrayofdoubles/ArrayOfDoublesSketch.java">tuple/ArrayOfDoublesSketch</a>, which enables the user to specify the number of columns of double values as the <em>summary</em>. This variant also provides both on-heap and off-heap operation.</li>
 </ul>
 
-<h3 id="hyperloglog-sketches-estimating-stream-cardinalities"><a href="/docs/HLL/HLL.html">HyperLogLog Sketches</a>: Estimating Stream Cardinalities</h3>
+<h3 id="hyperloglog-sketches-estimating-stream-cardinalities"><a href="/docs/HLL/HllSketches.html">HyperLogLog Sketches</a>: Estimating Stream Cardinalities</h3>
 <p>The HyperLogLog (HLL) is a cardinality sketch similar to the above Theta sketches except they are anywhere from 2 to 16 times smaller in size.  The HLL sketches can be merged via the Union operator, but set intersection and difference operations are not provided intrinsically, because the resulting error would be quite poor.  If your application only requires cardinality estimation and merging and space is at a premium, the HLL or CPC sketches would be your best choice.</p>
 
 <p>The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/hll/HllSketch.java">hll/HllSketch</a> can operate both on-heap and off-heap, provides the Union operators, and has both immutable compact and updatable representations.</p>
