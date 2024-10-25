@@ -65,8 +65,6 @@ We are also open to the submission of entirely new sketch algorithms.  If you ha
 ### What to work on
 * Our library is made up of components that are partitioned into GitHub repositories. If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository. But most important, please contact us on <dev@datasketches.apache.org>
 
-* We have three TODO lists for [Java](https://github.com/apache/datasketches-java/projects/1), [C++](https://github.com/apache/datasketches-cpp/projects/1) and the [Website](https://github.com/apache/datasketches-website/projects/1). Please check these out for potential contribution!
-
 ### Getting your proposed changes accepted
 
 Proposed changes to the code or documentation are usually done through GitHub Pull Requests (PRs).
