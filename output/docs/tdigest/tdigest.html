@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!-- Start _layouts/doc_page.html-->
+<html lang="en">
+
+<head>
+<!-- Start _include/site_head.html -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="datasketches">
+
+<title>DataSketches | </title>
+
+<link rel="shortcut icon" href="/img/favicon.png">
+
+<!-- original source: https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css -->
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<!-- original source: https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/css/fonts.css" type="text/css">
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/syntax.css">
+<link rel="stylesheet" href="/css/docs.css">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},showMathMenu:false,showMathMenuMSIE:false,showProcessingMessages:false});
+</script>
+
+<!-- original source: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMX_HTML-full -->
+<script src="/js/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<!-- original source: https://code.jquery.com/jquery.min.js -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- original source: https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js -->
+<script src="/js/bootstrap.min.js"></script> <!-- 3.2.0-->
+<!-- End _include/site_head.html -->
+
+</head>
+
+<body>
+<!-- Start _include/nav_bar.html -->
+<div class="navbar navbar-inverse navbar-static-top ds-nav">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" style="padding-top: 0px; padding-bottom: 0px;">
+        <span class="ds-small-h-logo"></span></a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/docs/Background/TheChallenge.html">
+            <span class="fa fa-info-circle"></span> DOCUMENTATION</a>
+        </li>
+        <li>
+          <a href="/docs/Community/Downloads.html">
+            <span class="fa fa-download"></span> DOWNLOAD</a>
+        </li>
+        <!--
+        <li>
+          <a href="/docs/Architecture/Components.html">
+            <span class="fa fa-github"></span> GITHUB</a>
+        </li>
+        -->
+        <li>
+          <a href="/docs/Community/Research.html">
+            <span class="fa fa-paper-plane"></span> RESEARCH</a>
+        </li>
+        <li>
+          <a href="/docs/Community/index.html" style="padding-top: 0; padding-bottom: 0;">
+            <img class="ds-small-man" src="/img/datasketches-ManWhite.svg" alt="Man in community">COMMUNITY</a>
+        </li>
+        <li>
+          <ul class="nav navbar-nav navbar-right ds-nav">
+            <li class="dropdown ds-nav" >
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-top: 0; padding-bottom: 0;"><img class="apache-logo" src="/img/feather.svg" alt="Apache feather">Apache <span class="caret"></span></a>
+              <ul class="dropdown-menu ds-nav">
+                <li><a href="https://www.apache.org/" target="_blank">Foundation</a></li>
+                <li><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></li>
+                <li><a href="https://www.apache.org/licenses/" target="_blank">License</a></li>
+                <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html" target="_blank">Privacy Policy</a></li>
+                <li><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></li>
+                <li><a href="https://www.apache.org/security/" target="_blank">Security</a></li>
+                <li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- End _include/nav_bar.html -->
+
+
+<!-- Start _include/javadocs.html -->
+<div class="ds-header">
+  <div class="container">
+    <h4>API Latest Releases:
+      <a href="https://apache.github.io/datasketches-java/6.1.1/">Java Core</a>,
+      <a href="https://apache.github.io/datasketches-cpp/5.1.0/">C++ Core</a>,
+      <a href="https://apache.github.io/datasketches-python/5.1.0/">Python</a>,
+      <a href="https://apache.github.io/datasketches-memory/4.0.0/">Memory</a>,
+      <a href="/api/pig/snapshot/apidocs/index.html">Pig</a>,
+      <a href="/api/hive/snapshot/apidocs/index.html">Hive</a>,
+    </h4>
+  </div>
+</div>
+<!-- End _include/javadocs.html -->
+
+
+  <div class="container">
+    <div class="row">
+      <!-- Start ToC Block -->
+      <div class="col-md-3">
+        <div class="searchbox" style="position:relative">
+          <gcse:searchbox-only></gcse:searchbox-only>
+        </div>
+<!-- Start _includes/toc.html -->
+<!-- Computer Generated File, Do Not Edit! -->
+<link rel="stylesheet" href="/css/toc.css">
+<div id="toc" class="nav toc hidden-print">
+
+  <p id="background">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_background">Background</a>
+  </p>
+  <div class="collapse" id="collapse_background">
+    <li><a href="/docs/Background/TheChallenge.html">•The Challenge</a></li>
+    <li><a href="/docs/Background/SketchOrigins.html">•Sketch Origins</a></li>
+    <li><a href="/docs/Background/SketchElements.html">•Sketch Elements</a></li>
+    <li><a href="/docs/Background/Presentations.html">•Presentations</a></li>
+    <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches_deck.pdf">•Overview Slide Deck</a></li>
+  </div>
+
+  <p id="architecture-and-design">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_architecture_and_design">Architecture And Design</a>
+  </p>
+  <div class="collapse" id="collapse_architecture_and_design">
+    <li><a href="/docs/Architecture/MajorSketchFamilies.html">•The Major Sketch Families</a></li>
+    <li><a href="/docs/Architecture/LargeScale.html">•Large Scale Computing</a></li>
+    <li><a href="/docs/Architecture/KeyFeatures.html">•Key Features</a></li>
+    <li><a href="/docs/Architecture/SketchFeaturesMatrix.html">•Sketch Features Matrix</a></li>
+    <li><a href="/docs/Architecture/Components.html">•Components</a></li>
+    <li><a href="/docs/Architecture/SketchesByComponent.html">•Sketches by Component</a></li>
+    <li><a href="/docs/Architecture/SketchCriteria.html">•Sketch Criteria</a></li>
+
+    <p id="memory-component">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_memory_component">Memory Component</a>
+    </p>
+    <div class="collapse" id="collapse_memory_component">
+      <li><a href="/docs/Memory/MemoryComponent.html">•Memory Component</a></li>
+      <li><a href="/docs/Memory/MemoryPerformance.html">•Memory Component Performance</a></li>
+    </div>
+    <li><a href="/docs/Architecture/OrderSensitivity.html">•Notes on Order Sensitivity</a></li>
+    <li><a href="/docs/Architecture/Concurrency.html">•Notes on Concurrency</a></li>
+  </div>
+
+  <p id="sketch-families">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_sketch_families">Sketch Families</a>
+  </p>
+  <div class="collapse" id="collapse_sketch_families">
+
+    <p id="distinct-counting">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_distinct_counting">Distinct Counting</a>
+    </p>
+    <div class="collapse" id="collapse_distinct_counting">
+      <li><a href="/docs/DistinctCountFeaturesMatrix.html">•Features Matrix</a></li>
+      <li><a href="/docs/DistinctCountMeritComparisons.html">•Figures-of-Merit Comparison</a></li>
+      <li><a href="/docs/CPC/CpcSketches.html">•CPC Sketches</a></li>
+      <li><a href="/docs/HLL/HllSketches.html">•HyperLogLog Sketches</a></li>
+      <li><a href="/docs/Theta/ThetaSketches.html">•Theta Sketches</a></li>
+      <li><a href="/docs/Tuple/TupleSketches.html">•Tuple Sketches</a></li>
+    </div>
+
+    <p id="most-frequent">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent">Most Frequent</a>
+    </p>
+    <div class="collapse" id="collapse_most_frequent">
+      <li><a href="/docs/Frequency/FrequencySketches.html">•Frequency Sketches</a></li>
+      <li><a href="/docs/Frequency/FrequencySketches.html#frequent-items-sketches">•Frequent Items Sketches</a></li>
+      <li><a href="/docs/Frequency/FrequencySketches.html#frequent-distinct-tuples-sketches">•Frequent Distinct Tuples Sketches</a></li>
+    </div>
+
+    <p id="quantiles-and-histograms">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_and_histograms">
+      <li><a href="/docs/QuantilesAll/QuantilesOverview.html">•Quantiles Overview</a></li>
+      <li><a href="/docs/KLL/KLLSketch.html">•KLL Sketches</a></li>
+      <li><a href="/docs/Quantiles/ClassicQuantilesSketch.html">•Classic Quantiles Sketches</a></li>
+      <li><a href="/docs/REQ/ReqSketch.html">•REQ Floats Sketch</a></li>
+    </div>
+
+    <p id="sampling">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling</a>
+    </p>
+    <div class="collapse" id="collapse_sampling">
+      <li><a href="/docs/Sampling/ReservoirSamplingSketches.html">•Reservoir Sampling Sketches</a></li>
+      <li><a href="/docs/Sampling/VarOptSamplingSketches.html">•VarOpt Sampling Sketches</a></li>
+    </div>
+  </div>
+
+  <p id="system-integrations">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_system_integrations">System Integrations</a>
+  </p>
+  <div class="collapse" id="collapse_system_integrations">
+    <li><a href="/docs/SystemIntegrations/ApacheDruidIntegration.html">•Using Sketches in ApacheDruid</a></li>
+    <li><a href="/docs/SystemIntegrations/ApacheHiveIntegration.html">•Using Sketches in Apache Hive</a></li>
+    <li><a href="/docs/SystemIntegrations/ApachePigIntegration.html">•Using Sketches in Apache Pig</a></li>
+    <li><a href="/docs/SystemIntegrations/ApachePinotIntegration.html">•Using Sketches in Apache Pinot</a></li>
+    <li><a href="/docs/SystemIntegrations/PostgreSQLIntegration.html">•Using Sketches in PostgreSQL</a></li>
+  </div>
+
+  <p id="community">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_community">Community</a>
+  </p>
+  <div class="collapse" id="collapse_community">
+    <li><a href="/docs/Community/index.html">•Community</a></li>
+    <li><a href="/docs/Community/Downloads.html">•Downloads</a></li>
+    <li><a href="/docs/Community/NewCommitterProcess.html">•Committer Process</a></li>
+    <li><a href="/docs/Community/ReleaseProcessForCppComponents.html">•Release Process For CPP Components</a></li>
+    <li><a href="/docs/Community/ReleaseProcessForJavaComponents.html">•Release Process For Java Components</a></li>
+    <li><a href="/docs/Community/Transitioning.html">•Transitioning from prior GitHub Site</a></li>
+  </div>
+
+  <p id="research">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_research">Research</a>
+  </p>
+  <div class="collapse" id="collapse_research">
+    <li><a href="/docs/Community/Research.html">•Research</a></li>
+  </div>
+</div>
+<!-- End _includes/toc.html -->
+
+
+<!-- Start _includes/tocScript.html -->
+<script>
+  (function () {
+
+    var findLineItem = function (path) {
+      return document.querySelector(`#toc [href="${path}"]`);
+    };
+
+    function findNavItem(path) {
+      return document.querySelector(`.nav [href="${path}"]`);
+    }
+
+    var highlighLineItem = function (element) {
+      element.classList.add('highlight');
+    };
+
+    var checkHasClass = function (element, className) {
+      return element.className.split(' ').find(function (item) { return item === className || '' })
+    }
+
+    var findAllCollapseParents = function (element) {
+      var collapseMenus = [];
+      var elementPointer = element;
+      while (elementPointer !== document.body) {
+        if (checkHasClass(elementPointer, 'collapse')) {
+          collapseMenus.push(elementPointer);
+        }
+        elementPointer = elementPointer.parentElement
+      }
+      return collapseMenus
+    };
+
+    var openMenuItem = function (element) {
+      // $(element).collapse('show') would start a transition, adding `in` class instead.
+      element.classList.add('in');
+    };
+
+    var openAllFromList = function (elementList) {
+      elementList.forEach(openMenuItem);
+    };
+
+    var highlightAndOpenMenu = function () {
+      // Highlight & expand nav item in the TOC
+      var currentLineItem = findLineItem(document.location.pathname);
+      highlighLineItem(currentLineItem);
+      openAllFromList(findAllCollapseParents(currentLineItem));
+
+      // Highlight nav item in top navigation
+      highlighLineItem(findNavItem(document.location.pathname));
+    };
+
+    $(highlightAndOpenMenu);
+
+  }());
+</script>
+<!-- End _includes/tocScript.html -->
+
+      </div>
+      <!-- End ToC Block -->
+      <div class="col-md-9 doc-content">
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<h1 id="t-digest-overview">t-digest overview</h1>
+
+<p>This is an algorithm and data structure for estimating ranks and quantiles of distributions of numerical values.</p>
+
+<p>The implementation in this library is based on the MergingDigest in following <a href="https://github.com/tdunning/t-digest">reference implementation</a>.</p>
+
+<p>The implementation in this library has a few differences from the reference implementation:</p>
+
+<ul>
+  <li>merge does not modify the input</li>
+  <li>serialization similar to other sketches in this library, although reading the reference implementation format is supported</li>
+  <li>C++ template implementation for float and double types</li>
+</ul>
+
+<p>Unlike all other algorithms in the library, t-digest is empirical and has no mathematical basis for estimating its error and its results are dependent on the input data. However, for many common data distributions, it can produce excellent results.</p>
+
+<p>The library contains a few different quantile sketches for estimating distributions (ranks and quantiles). All other quantile skeches can handle arbitrary comparable types and always retain a small set of items from the input stream. All queries that return approximations in the input domain return one of the retained items from the input. t-digest is different: it works on numeric data only (floating point types), retains and returns values not necessarilly seen in the input (interpolated).</p>
+
+<p>The closest alternative to t-digest in this library is <a href="https://datasketches.apache.org/docs/REQ/ReqSketch.html">REQ sketch</a>. It prioritizes one chosen side of the rank domain: either low rank accuracy or high rank accuracy. t-digest (in this implementation) prioritizes both ends of the rank domain and has lower accuracy towards the middle of the rank domain (median).</p>
+
+<p>Measurements show that t-digest is slightly biased (tends to underestimate low ranks and overestimate high ranks), while still doing very well close to the extremes. The effect seems to be more pronounced with more input values:</p>
+
+<p><img class="doc-img-full" src="/docs/img/tdigest/tdigest_err_vs_rank_k100_n2e10.png" alt="ErrorVsRank2e10" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/tdigest/tdigest_err_vs_rank_k100_n2e15.png" alt="ErrorVsRank2e15" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/tdigest/tdigest_err_vs_rank_k100_n2e20.png" alt="ErrorVsRank2e20" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/tdigest/tdigest_err_vs_rank_k100_n2e25.png" alt="ErrorVsRank2e25" /></p>
+
+<p>Rank error vs stream size:</p>
+
+<p><img class="doc-img-full" src="/docs/img/tdigest/tdigest_rank_error_k100.png" alt="RankErrorK100" /></p>
+
+<p>Comparisons with REQ sketch:</p>
+
+<p><img class="doc-img-full" src="/docs/img/tdigest/tdigest_vs_req_memory.png" alt="TDigestVsReqMemory" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/tdigest/tgigest_vs_req_serialized_size.png" alt="TDigestVsReqSeializedSize" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/tdigest/tdigest_vs_req_rank_error_0.99.png" alt="TDigestVsReq0.99" /></p>
+
+<p><img class="doc-img-full" src="/docs/img/tdigest/tdigest_vs_req_hra_exp_1.5.png" alt="TDigestVsReqHRAexp1.5" /></p>
+
+      </div> <!-- End content -->
+    </div> <!-- End row -->
+  </div> <!-- End Container -->
+
+<!-- Start _include/page_footer.html -->
+<footer class="ds-footer">
+  <div class="container">
+    <div class="text-center">
+      <p>
+        <div>Copyright © 2024 <a href="https://www.apache.org">Apache Software Foundation</a>, 
+          Licensed under the Apache License, Version 2.0. All Rights Reserved.
+          | <a href="https://privacy.apache.org/policies/privacy-policy-public.html">Privacy Policy</a><br>
+          Apache DataSketches, Apache, the Apache feather logo, and the Apache DataSketches project logos are trademarks of The Apache Software Foundation.<br>
+          All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+        </div>
+
+    </div>
+  </div>
+</footer>
+<!-- End _include/page_footer.html -->
+
+</body>
+
+</html>
+<!-- End _layouts/doc_page.html-->
