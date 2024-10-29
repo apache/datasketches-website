@@ -28,7 +28,7 @@ The implementation in this library is based on the MergingDigest in following [r
 The implementation in this library has a few differences from the reference implementation:
 
 * merge does not modify the input
-* different serialization similar to other sketches in this library, reading the reference implementation format is supported
+* serialization similar to other sketches in this library, although reading the reference implementation format is supported
 * C++ template implementation for float and double types
 
 Unlike all other algorithms in the library, t-digest is empirical and has no mathematical basis for estimating its error and its results are dependent on the input data. However, for many common data distributions, it can produce excellent results.
@@ -37,7 +37,7 @@ The library contains a few different quantile sketches for estimating distributi
 
 The closest alternative to t-digest in this library is [REQ sketch](https://datasketches.apache.org/docs/REQ/ReqSketch.html). It prioritizes one chosen side of the rank domain: either low rank accuracy or high rank accuracy. t-digest (in this implementation) prioritizes both ends of the rank domain and has lower accuracy towards the middle of the rank domain (median).
 
-The more input values t-digest observes the more it tends to be biased (tends to underestimate low ranks and overestimate high ranks):
+Measurements show that t-digest is slightly biased (tends to underestimate low ranks and overestimate high ranks), while still doing very well close to the extremes. The effect seems to be more pronounced with more input values:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/tdigest/tdigest_err_vs_rank_k100_n2e10.png" alt="ErrorVsRank2e10" />
 
