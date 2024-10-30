@@ -55,7 +55,7 @@ Comparisons with REQ sketch:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/tdigest/tdigest_vs_req_memory.png" alt="TDigestVsReqMemory" />
 
-<img class="doc-img-full" src="{{site.docs_img_dir}}/tdigest/tgigest_vs_req_serialized_size.png" alt="TDigestVsReqSeializedSize" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/tdigest/tdigest_vs_req_serialized_size.png" alt="TDigestVsReqSeializedSize" />
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/tdigest/tdigest_vs_req_rank_error_0.99.png" alt="TDigestVsReq0.99" />
 
