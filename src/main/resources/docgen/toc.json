@@ -56,7 +56,8 @@
             {"class":"Doc",  "desc" : "Quantiles Overview",                       "dir" : "QuantilesAll", "file": "QuantilesOverview" },
             {"class":"Doc",  "desc" : "KLL Sketches",                             "dir" : "KLL", "file": "KLLSketch" },
             {"class":"Doc",  "desc" : "Classic Quantiles Sketches",               "dir" : "Quantiles", "file": "ClassicQuantilesSketch" },
-            {"class":"Doc",  "desc" : "REQ Floats Sketch",                        "dir" : "REQ", "file": "ReqSketch" },
+            {"class":"Doc",  "desc" : "REQ Sketch",                               "dir" : "REQ", "file": "ReqSketch" },
+			{"class":"Doc",  "desc" : "t-digest",                                 "dir" : "tdigest", "file": "tdigest" },
           ]
         },
 
