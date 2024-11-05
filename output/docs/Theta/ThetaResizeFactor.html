@@ -322,139 +322,47 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<h2 id="contents">Contents</h2>
-<!-- TOC -->
+<h2 id="theta-sketch-resize-factor">Theta Sketch Resize Factor</h2>
+<p>For Theta Sketches, the <em>Resize Factor</em> is a dynamic, speed performance vs. memory size tradeoff.</p>
+
+<p>Sketches that are created on-heap and configured with a Resize Factor of &gt; X1 start out with an internal hash table size that is the smallest submultiple of the the target Nominal Entries, and larger than the minimum required hash table size, which is 16.</p>
+
+<p>When the sketch needs to be resized larger the <em>Resize Factor</em> is used as a multiplier of the current sketch cache array size.</p>
+
+<p><strong>X1</strong> means no resizing is allowed and the sketch will be intialized at full target size.</p>
+
+<p><strong>X2</strong> means the internal cache will start very small and double in size until the target size is reached.</p>
+
+<p>Similarly, <strong>X4</strong> is a factor of 4 and <strong>X8</strong> is a factor of 8.</p>
+
+<p>For example, suppose you configure a sketch with a <em>lgK</em> = 10 (<em>k</em> =1024) and a resize factor as follows:</p>
+
 <ul>
-  <li><a href="#theta-sketch-framework">Theta Sketch Framework</a></li>
-  <li>Theta Examples
+  <li><strong>X8</strong> (the default):<br />
+Internally the sketch will start out with an internal hash array of size 16 (which corresponds to the smallest allowed value of k).  Its memory size is 128+24 bytes.
     <ul>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ConcurrentThetaSketch.html">Concurrent Theta Sketch</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaJavaExample.html">Theta Sketch Java Example</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaSparkExample.html">Theta Sketch Spark Example</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaPigUDFs.html">Theta Sketch Pig UDFs</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaHiveUDFs.html">Theta Sketch Hive UDFs</a></li>
+      <li>When the hash array has filled it will grow the hash array by a factor of 8, to 1024+24 bytes.</li>
+      <li>When it needs to grow again it will grow by a factor of 8 again, to 819+24 bytes, which is the max size.</li>
+      <li>So the growth sequence of the effective internal k is 16, 128, 1024 for a total of 2 resize operations.</li>
     </ul>
   </li>
-  <li>KMV Tutorial
-    <ul>
-      <li><a href="https://datasketches.apache.org/docs/Theta/InverseEstimate.html">The Inverse Estimate</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/KMVempty.html">Empty Sketch</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/KMVfirstEst.html">First Estimator</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/KMVbetterEst.html">Better Estimator</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/KMVrejection.html">Rejection Rules</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/KMVupdateVkth.html">Update V(kth) Rule</a></li>
-    </ul>
+  <li>
+    <p><strong>Similarly with X4:</strong><br />
+The growth sequence is 16, 64, 256, 1024 for a total of 3 resize operations.</p>
   </li>
-  <li>Set Operations and P-sampling
-    <ul>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaSketchSetOps.html">Set Operations</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaSetOpsCornerCases.html">Model &amp; Test Set Operations</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaPSampling.html">p-Sampling</a></li>
-    </ul>
+  <li>
+    <p><strong>Similarly with X2:</strong><br /> 
+The growth sequence is 16, 32, 64, 128, 256, 512, 1024 for a total of 6 resize operations.</p>
   </li>
-  <li>Accuracy
-    <ul>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaAccuracy.html">Basic Accuracy</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaAccuracyPlots.html">Accuracy Plots</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaErrorTable.html">Relative Error Table</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaSketchSetOpsAccuracy.html">SetOp Accuracy</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/AccuracyOfDifferentKUnions.html">Unions With Different k</a></li>
-    </ul>
-  </li>
-  <li>Size
-    <ul>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaSize.html">Theta Sketch Size</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaResizeFactor.html">Theta Resize Factor</a></li>
-    </ul>
-  </li>
-  <li>Speed
-    <ul>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaUpdateSpeed.html">Update Speed</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaMergeSpeed.html">Merge Speed</a></li>
-    </ul>
-  </li>
-  <li>Theta Sketch Theory
-    <ul>
-      <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework (PDF)</a></li>
-      <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchEquations.pdf">Theta Sketch Equations (PDF)</a></li>
-      <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches.pdf">Data Sketches (PDF)</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaConfidenceIntervals.html">Confidence Intervals; Notes</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaMergingAlgorithm.html">Merging Algorithm; Notes</a></li>
-      <li><a href="https://datasketches.apache.org/docs/Theta/ThetaReferences.html">Theta References</a>
-<!-- TOC --></li>
-    </ul>
-  </li>
+  <li><strong>With X1:</strong><br />
+The growth multiplier is one, so it must start the sketch at full size of 1024 with no resizing operations.</li>
 </ul>
 
-<p><a id="theta-sketch-framework"></a></p>
-<h2 id="theta-sketch-framework">Theta Sketch Framework</h2>
-<p>Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum Value</i> (KMV) <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup><sup>,</sup><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup> 
-sketches in that KMV sketches are a form of Theta Sketch, but not all Theta Sketches are KMV.</p>
+<p>Resizing the internal hash array is an expensive operation, relatively speaking, so if real-time performance is critical you might set the resize factor to <strong>X1</strong>, but you pay in memory usage up front with a sketch that is always full size.</p>
 
-<p>The <a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework</a> (TSF) 
-is a mathematical framework 
-defined in a multi-stream setting that enables set expressions over these streams and encompasses many
-different sketching algorithms. A rudimentary introduction to the mathematics of the simpler sketch algorithms is developed in 
-the <a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchEquations.pdf">Theta Sketch Equations</a> document.</p>
+<p>If you want to minimize memory usage then you want the sketch to stay as small as possible and let it grow only as required, so you would use <strong>X2</strong>, but the real-time performance will be a little slower because of the resizing operations.</p>
 
-<p>The TSF consists of the following components:</p>
-
-<ol>
-  <li>A data type <i>(θ,S)</i>, known as a <i>Theta Sketch</i>, where 0 &lt; <i>θ</i> &lt; 1 is a 
-threshold, and <i>S</i>, the number of entries, is the set of all unique hashed stream items 0 &lt; <i>x</i> &lt; 1 
-that are less than <i>θ</i>.</li>
-  <li>A universal “combining function” <i>ThetaUnion</i> that takes as input a collection of <i>Theta Sketches</i> 
-and returns a single <i>Theta Sketch</i> that is a <i>Union</i> of the input sketches. 
-This combining function is extended to set <i>Intersections</i> and <i>Differences</i> as well.</li>
-  <li>A estimator function that takes as input a <i>Theta Sketch</i> and returns an estimate of the unique 
-hashed stream items presented to all the input sketches.</li>
-</ol>
-
-<p>The TSF enables this sketch library to encompass multiple sketching algorithms including the 
-KMV sketch with a common API and greatly simplifies implementation of set 
-expressions.</p>
-
-<p>Note that in the KMV sketch the value <i>k</i> is overloaded with multiple roles:</p>
-
-<ol>
-  <li><i>k</i> determines the RSE (accuracy) of the sketch</li>
-  <li><i>k</i> determines the upper-bound size of the sketch</li>
-  <li><i>k</i> is used as a constant in the estimator and RSE equations</li>
-  <li><i>k</i> determines the <i>V(k<sup>th</sup>)</i> threshold, used to reject/accept hash values into the cache.</li>
-</ol>
-
-<p>By unloading some of these roles, we will gain degrees of freedom to do some innovative things.</p>
-
-<p>Instead of having to track <i>V(k<sup>th</sup>)</i>, which is a member of the list of hash values, 
-we are going to create a separate threshold variable and call it <i>theta (θ)</i>. 
-This effectively decouples #3 and #4 above from <i>k</i>. When the sketch is empty <i>θ</i> = 1.0. 
-After the sketch has filled with <i>k</i> minimum values <i>θ</i> is still 1.0. 
-When the next incoming unique value must be inserted into the sketch the <i>(k+1)<sup>th</sup></i> 
-minimum value, is assigned to <i>θ</i> and removed from the cache.<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup></p>
-
-<p>Ultimately, it will be the size of <i>S</i>, <i>|S|</i>, that will determine the stored size of a 
-sketch, which decouples #2 above from the value <i>k</i>. 
-The <i>Nominal Entries</i> or <i>k</i> is a <i>user specified, configuration parameter</i>, 
-which is used by the software to determine the target accuracy of the sketch and the maximum size of the sketch.</p>
-
-<p>The unbiased estimate simplifies to |S|/<i>θ</i>, which is just the size of <i>S</i> divided by <i>θ</i>. 
-We will discuss the RSE in a later section.</p>
-
-<p><img class="doc-img-full" src="https://datasketches.apache.org/docs/img/theta/ThetaSketch1.png" alt="ThetaSketch1" /></p>
-
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>Z. Bar-Yossef, T. Jayram, R. Kumar, D. Sivakumar, and L. Trevisan. Counting distinct elements in a data stream. In <i>Randomization and Approximation Techniques in Computer Science</i>, pages 1–10. Springer, 2002. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:2">
-      <p>See <a href="/docs/Theta/InverseEstimate.html">KMV Tutorial</a> for a brief tutorial on KMV Sketches. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:3">
-      <p>This is a limited “KMV perspective” on how <i>θ</i> gets assigned.  The attached paper <a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework</a> presents multiple ways that <i>θ</i> can be assigned using the <i>Theta Choosing Function (TCF)</i>. Different sketch algorithms have different TCFs. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
+<p><strong>X4</strong> and <strong>X8</strong> are in between <strong>X1</strong> and <strong>X2</strong>.</p>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
