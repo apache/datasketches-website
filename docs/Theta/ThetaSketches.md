@@ -47,6 +47,7 @@ layout: doc_page
     * [Unions With Different k](https://datasketches.apache.org/docs/Theta/AccuracyOfDifferentKUnions.html)
 * Size
     * [Theta Sketch Size](https://datasketches.apache.org/docs/Theta/ThetaSize.html)
+    * [Theta Resize Factor](https://datasketches.apache.org/docs/Theta/ThetaResizeFactor.html)
 * Speed
     * [Update Speed](https://datasketches.apache.org/docs/Theta/ThetaUpdateSpeed.html)
     * [Merge Speed](https://datasketches.apache.org/docs/Theta/ThetaMergeSpeed.html)
