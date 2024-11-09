@@ -327,16 +327,16 @@
 <p><strong>NOTES:</strong></p>
 
 <ul>
-  <li>This process covers major and minor releases only. Bug-fix releases, which increment the third digit, are performed on a A.B.X branch and not on master, but otherwise are similar.</li>
+  <li>This process covers major and minor releases only. Patch-fix releases, which increment the third digit, are performed on a A.B.X branch and not on master/main, but otherwise are similar.</li>
   <li>Some of these operations can be performed either on the Command-Line or in your IDE, whatever you prefer.</li>
-  <li>The Java <strong>datasketches-memory</strong> project has its own specialized release process. Please consult the README.md file on that project.</li>
+  <li>The Java <strong>datasketches-memory-2.X and 3.X</strong> projects have their own specialized release process. Please consult the README.md file on those projects.</li>
 </ul>
 
 <h2 id="preparation">Preparation</h2>
 
-<h3 id="check-for-code-completeness">Check for Code Completeness</h3>
+<h3 id="check-for-code-completeness">Check For Code Completeness</h3>
 <ul>
-  <li>Confirm that all <strong>temporary</strong> branches are checked into master and/or deleted, both local and remote.</li>
+  <li>Confirm that all <strong>temporary</strong> branches are checked into master/main and/or deleted, both local and remote.</li>
   <li>Confirm any new bug fixes have corresponding tests</li>
   <li>At major version releases, search for deprecated code and remove at <strong>Major Versions</strong> only.
     <ul>
@@ -390,24 +390,6 @@ Also specifies line separator characters for text files.</li>
   <li><code class="highlighter-rouge">mvn clean test -P check-cpp-files</code> (only for ds-java)</li>
   <li><code class="highlighter-rouge">mvn clean test -P check-cpp-historical-files</code> (only for ds-java)</li>
   <li><code class="highlighter-rouge">mvn clean javadoc:javadoc</code></li>
-  <li>
-    <p><code class="highlighter-rouge">mvn clean install -DskipTests=true</code></p>
-  </li>
-  <li>Check that the /target/ directory has 5 jars: (may need to refresh)
-    <ul>
-      <li>datasketches-&lt;component-version&gt;-SNAPSHOT-javadoc.jar</li>
-      <li>datasketches-&lt;component-version&gt;-SNAPSHOT-sources.jar</li>
-      <li>datasketches-&lt;component-version&gt;-SNAPSHOT-test-sources.jar</li>
-      <li>datasketches-&lt;component-version&gt;-SNAPSHOT-tests.jar</li>
-      <li>datasketches-&lt;component-version&gt;-SNAPSHOT.jar</li>
-    </ul>
-  </li>
-  <li>Check your local Maven local repository
-    <ul>
-      <li><em>~/.m2/repository/org/apache/datasketches/datasketches-&lt;component&gt;/A.B.0-SNAPSHOT/</em></li>
-      <li>It should have 5 new jars and a .pom file.</li>
-    </ul>
-  </li>
 </ul>
 
 <h3 id="run-ide-checks">Run IDE Checks</h3>
@@ -417,47 +399,51 @@ Also specifies line separator characters for text files.</li>
   <li>Checkstyle (is it properly configured?)</li>
 </ul>
 
-<h2 id="create-permanent-release-branch--update-pom-version">Create Permanent Release Branch &amp; Update POM Version</h2>
+<h2 id="create-permanent-release-branch--update-pom-versions">Create Permanent Release Branch &amp; Update POM Versions</h2>
 
-<h3 id="make-sure-gpg-agent-is-running-and-github-is-clean">Make sure GPG-Agent is running and GitHub is clean</h3>
+<h3 id="assume-semantic-versioning">Assume Semantic Versioning</h3>
 <ul>
-  <li>From Command Line at Component root:
+  <li>Current master/main POM version = A.B.0-SNAPSHOT</li>
+  <li>Next anticipated future release of master/main = A.B’.0-SNAPSHOT where B’ = B + 1.</li>
+  <li>Release branch = A.B.X.</li>
+  <li>Target release version = A.B.0.
     <ul>
-      <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code>
-        <ul>
-          <li>if it is not running it will start it.</li>
-          <li>if it is already running you will see something like:</li>
-          <li><code class="highlighter-rouge">gpg-agent: a gpg-agent is already running - not starting a new one</code></li>
-        </ul>
-      </li>
-      <li>Confirm GitHub repository is current and git status is clean:
-        <ul>
-          <li><code class="highlighter-rouge">git status</code> # should return:</li>
-          <li>“On branch master, your branch is up to date with ‘origin/master’, nothing to commit, working tree clean.”</li>
-        </ul>
-      </li>
+      <li>Except for patch releases where the 3rd digit is modified on the same release branch A.B.X</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="create-new-release-branch">Create New Release Branch</h3>
+<h3 id="make-sure-mastermain-branch-is-clean">Make Sure Master/Main Branch Is Clean</h3>
 <ul>
-  <li>Assume current master POM version = A.B.0-SNAPSHOT</li>
-  <li>Create new <strong>Permanent Branch</strong>: “A.B.X”
+  <li>From command line at component root on master/main branch:</li>
+  <li>Confirm master/main branch is current and git status is clean:
     <ul>
-      <li>Note: This assumes a normal progression of release numbers. However, when moving to a new major release the current A.B.0-SNAPSHOT will be followed by a new <strong>Permanent Branch</strong>: A’.0.X, where A’ = A + 1.</li>
+      <li><code class="highlighter-rouge">git status</code> # should return:</li>
+      <li>“On branch master/main, your branch is up to date with ‘origin/master(main)’, nothing to commit, working tree clean.”</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="edit-release-branch-pom-version-to-target-release-version">Edit Release Branch POM Version to Target Release Version</h3>
+<h3 id="edit-mastermain-branch-pom-with-the-snapshot-version-of-the-anticipated-next-future-release">Edit Master/Main Branch POM with the SNAPSHOT Version of the Anticipated Next Future Release</h3>
 <ul>
-  <li>Switch to new Release Branch</li>
+  <li>Edit master/main pom.xml to A’.B’.0-SNAPSHOT where A’ or B’ will be incremented by 1.</li>
+  <li>Commit and Push this change to origin/master(main) with the comment “Release Process: Change master/main pom version to A’.B’.0-SNAPSHOT.”
+    <ul>
+      <li>This may require changing to a temparary branch and creating a PR to be approved if master/main branch is restricted.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="create-and-switch-to-new-permanent-release-branch-abx">Create And Switch to New <strong>Permanent Release Branch</strong> “A.B.X”</h3>
+
+<h3 id="edit-release-branch-pom-version-to-target-release-version-ab0">Edit Release Branch POM Version to Target Release Version “A.B.0”</h3>
+<ul>
+  <li>Note: if major version change, the target release version will be A’.0.0, where A’ = A + 1.</li>
   <li>Edit pom.xml version to A.B.0 (remove -SNAPSHOT, do not change A or B) in case of normal progression, or A’.0.0 in the case of a new major release.</li>
-  <li>Commit the change. <strong>DO NOT PUSH!</strong></li>
+  <li>Commit the change locally. <strong>DO NOT PUSH YET!</strong></li>
   <li>Create Annotated TAG for this commit: A.B.0-RC1 (or RCn) or A’.0.0-RC1</li>
   <li>Write down the Git hash : example: 40c6f4f (you will need it later)</li>
-  <li><strong>Now Push</strong> Branch  “A.B.X” with edited pom.xml to origin <strong>NEVER MERGE THIS PERMANENT BRANCH INTO MASTER</strong></li>
+  <li><strong>NOW PUSH</strong> Release Branch  “A.B.X” with edited pom.xml to origin <strong>DO NOT MERGE THIS PERMANENT BRANCH INTO MASTER/MAIN</strong></li>
   <li>Do explicit push of tags on new branch A.B.X (or A’.0.X) to origin:
     <ul>
       <li><code class="highlighter-rouge">git push origin --tags</code></li>
@@ -465,33 +451,42 @@ Also specifies line separator characters for text files.</li>
   </li>
 </ul>
 
-<h3 id="confirm-new-release-branch-tag-and-git-hash">Confirm new Release Branch, Tag and Git hash</h3>
+<h3 id="run-maven-install-on-release-branch">Run Maven Install on Release Branch</h3>
+<ul>
+  <li><code class="highlighter-rouge">mvn clean install -DskipTests=true</code></li>
+  <li>Check that the /target/ directory has 5 jars: (may need to refresh)
+    <ul>
+      <li>datasketches-&lt;component-version&gt;-javadoc.jar</li>
+      <li>datasketches-&lt;component-version&gt;-sources.jar</li>
+      <li>datasketches-&lt;component-version&gt;-test-sources.jar</li>
+      <li>datasketches-&lt;component-version&gt;-tests.jar</li>
+      <li>datasketches-&lt;component-version&gt;.jar</li>
+    </ul>
+  </li>
+  <li>Check your local Maven local repository
+    <ul>
+      <li><em>~/.m2/repository/org/apache/datasketches/datasketches-&lt;component&gt;/A.B.0/</em></li>
+      <li>It should have 5 new jars and a .pom file.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="confirm-new-release-branch-tag-and-git-hash">Confirm new Release Branch, Tag and Git hash</h4>
 <ul>
   <li>From a web browser at origin web site: github.com/apache/datasketches-&lt;component&gt;
     <ul>
       <li>Select the A.B.X branch or A’.0.X</li>
       <li>Confirm that the tag: A.B.0-RC1 (or A’.0.0-RC1) exists and that the tag is on the latest commit and with the correct Git hash.</li>
-      <li><strong>DO NOT CREATE PR OR MERGE THIS PERMANENT BRANCH INTO MASTER</strong></li>
+      <li><strong>DO NOT CREATE PR OR MERGE THIS PERMANENT BRANCH INTO MASTER/MAIN</strong></li>
     </ul>
   </li>
   <li>From IDE or Command Line:
     <ul>
       <li>Confirm that the tag A.B.0-RC1 and the branch A.B.X, (or A’.0.0-RC1 and the branch A’.0.X) and HEAD coincide with the correct Git hash.</li>
       <li>Confirm that there are no unstaged or staged changes.</li>
-      <li>Return to master branch</li>
+      <li>Return to master/main branch</li>
     </ul>
   </li>
-</ul>
-
-<h3 id="edit-master-branch-with-the-snapshot-version-of-the-anticipated-next-future-release">Edit Master Branch with the SNAPSHOT Version of the Anticipated Next Future Release</h3>
-<ul>
-  <li>Edit master pom.xml to A’.B’.0-SNAPSHOT where A’ or B’ will be incremented by 1.</li>
-  <li>Commit and Push this change to origin/master with the comment “Release Process: Change pom version to A’.B’.0-SNAPSHOT.”
-    <ul>
-      <li>This may require changing to a temparary branch and creating a PR to be approved if master branch is restricted.</li>
-    </ul>
-  </li>
-  <li>Return to release branch A.B.X (or A’.0.X)</li>
   <li>You may minimize your IDE, pointing at the release branch.</li>
 </ul>
 
@@ -512,7 +507,11 @@ Also specifies line separator characters for text files.</li>
   <li>Open a terminal in the dist/dev/datasketches directory and do a checkout:
     <ul>
       <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>      #Note the DOT</li>
-      <li><code class="highlighter-rouge">svn status</code>    # make sure it is clean: does not list any (?) or (!) files</li>
+      <li><code class="highlighter-rouge">svn status</code>    # make sure it is clean: does not list any (?) or (!) files
+        <ul>
+          <li>If any (?) or (!) files exist they must be resolved before proceding.</li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
@@ -521,9 +520,9 @@ Also specifies line separator characters for text files.</li>
 <ul>
   <li>You will need the following arguments:
     <ul>
-      <li>Absolute path of target project.basedir on your system</li>
-      <li>Project.artifactId : datasketches-&lt;component&gt; where component is e.g., java, pig, hive,…</li>
-      <li>GitHub Tag: A.B.0-RC1 (or RCn)</li>
+      <li>Absolute system path of target project.basedir pointing to the release branch</li>
+      <li>Project.artifactId : “datasketches-&lt;component&gt;” where component is e.g., java, memory, pig, hive,…</li>
+      <li>Release GitHub Tag: A.B.0-RC1 (or RCn)</li>
       <li>Have your GPG passphrase handy – you may have only a few seconds to enter it!</li>
     </ul>
   </li>
@@ -540,7 +539,7 @@ Also specifies line separator characters for text files.</li>
           </li>
         </ul>
       </li>
-      <li>Run something like this (you need to copy &amp; edit):
+      <li>Run something like this (you must copy &amp; edit):
         <ul>
           <li><code class="highlighter-rouge">./bashDeployToDist.sh /Users/&lt;name&gt;/dev/git/Apache/datasketches-&lt;component&gt; datasketches-&lt;component&gt; A.B.0-RC1</code></li>
           <li>Follow the instructions.</li>
@@ -552,14 +551,14 @@ Also specifies line separator characters for text files.</li>
               <li>restart the <em>./bashDeployToDist</em> script</li>
             </ul>
           </li>
-          <li>Close the terminal</li>
         </ul>
       </li>
+      <li>Close the terminal</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="check-primary-zip-files--signatureshashes">Check Primary Zip Files &amp; Signatures/Hashes</h3>
+<h4 id="check-primary-zip-files--signatureshashes">Check Primary Zip Files &amp; Signatures/Hashes</h4>
 <ul>
   <li>Check this web URL ~ <em>https://dist.apache.org/repos/dist/dev/datasketches/&lt;component&gt;/A.B.0-RC1/</em>
     <ul>
@@ -610,7 +609,7 @@ Also specifies line separator characters for text files.</li>
   <li><code class="highlighter-rouge">mvn clean deploy -Pnexus-jars -DskipTests=true</code></li>
 </ul>
 
-<h3 id="deploy-check">DEPLOY-CHECK</h3>
+<h4 id="deploy-check">DEPLOY-CHECK</h4>
 <ul>
   <li>Login to Nexus: <a href="https://repository.apache.org/">repository.apache.org</a> / Staging Repositories for orgapachedatasketches-XXXX</li>
   <li>Click <strong>Content</strong> and search to the end.  Each jar &amp; pom should have .asc, .md5, .sha1 signatures</li>
@@ -622,13 +621,13 @@ Also specifies line separator characters for text files.</li>
   <li>[CLOSE] the Staging Repository with a comment: “&lt;component&gt; A.B.0”</li>
 </ul>
 
-<h3 id="check-close">CHECK CLOSE</h3>
+<h4 id="check-close">CHECK CLOSE</h4>
 <ul>
   <li>Confirm its existance under Repositories/Staging web-site URL (in the summary window)</li>
   <li>Grab its URL while there. You will need it for the Vote Letter.</li>
 </ul>
 
-<h3 id="check-local-maven-repo">CHECK Local Maven Repo</h3>
+<h4 id="check-local-maven-repo">CHECK Local Maven Repo</h4>
 <ul>
   <li>Check your local Maven repository
     <ul>
@@ -751,9 +750,9 @@ Also specifies line separator characters for text files.</li>
   <li>At the top of the window, select “Drop”</li>
 </ul>
 
-<h3 id="if-necessary-update-branch-master-from-branch-abx">If necessary, update branch <em>master</em> from branch <em>A.B.X</em></h3>
+<h3 id="if-necessary-update-branch-mastermain-from-branch-abx">If necessary, update branch <em>master/main</em> from branch <em>A.B.X</em></h3>
 <p>If you have gone through more than one Release Candidate, you may have changes that need to be 
-reflected in the master. Use the <strong>git cherry-pick</strong> command for this.</p>
+reflected in the master/main. Use the <strong>git cherry-pick</strong> command for this.</p>
 
 <h2 id="finalize-release-documentation">Finalize Release Documentation</h2>
 
@@ -780,7 +779,7 @@ reflected in the master. Use the <strong>git cherry-pick</strong> command for th
 <ul>
   <li>This script assumes that the remote <em>…/dist/release/datasketches/…</em> directories are up-to-date with no old releases.</li>
   <li>Start a new terminal in the <em>../dist/dev/datasketches/scripts</em> directory on your system:</li>
-  <li>Make sure your local website directory is pointing to master and up-to-date.</li>
+  <li>Make sure your local website directory is pointing to master/main and up-to-date.</li>
   <li>Run the following with the argument specifying the location of your local website directory:
     <ul>
       <li><code class="highlighter-rouge">./createDownloadsInclude.sh /Users/&lt;name&gt;/ ... /datasketches-website</code></li>
@@ -794,7 +793,7 @@ reflected in the master. Use the <strong>git cherry-pick</strong> command for th
   <li>From the <em>github.com/datasketches-&lt;component&gt;</em> website, run JavaDoc GitHub action for the release tag:
     <ul>
       <li>On the component website (github.com/apache/datasketches-&lt;component&gt;), go to <em>Actions</em> and select the <em>JavaDoc</em> workflow.</li>
-      <li>Open the <em>Run workflow</em> pull-down, then in the <em>Branch:master</em> pull-down, select the correct release tag instead of the branch.</li>
+      <li>Open the <em>Run workflow</em> pull-down, then in the <em>Branch:master/main</em> pull-down, select the correct release tag instead of the branch.</li>
       <li>Run the workflow and check that it finished successfully.</li>
       <li>Return to the component website home, select the <em>gh-pages</em> branch and check that it created <em>docs/X.Y.Z</em> directory</li>
     </ul>
