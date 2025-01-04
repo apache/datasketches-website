@@ -133,7 +133,6 @@ Also specifies line separator characters for text files.
 * From IDE or Command Line:
     * Confirm that the tag A.B.0-RC1 and the branch A.B.X, (or A'.0.0-RC1 and the branch A'.0.X) and HEAD coincide with the correct Git hash.
     * Confirm that there are no unstaged or staged changes.
-    * Return to master/main branch
 * You may minimize your IDE, pointing at the release branch.
 
 ## Push Candidate Release to *dist/dev*
