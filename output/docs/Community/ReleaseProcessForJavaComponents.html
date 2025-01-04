@@ -394,7 +394,11 @@ Also specifies line separator characters for text files.</li>
 
 <h3 id="run-ide-checks">Run IDE Checks</h3>
 <ul>
-  <li>Run Code Coverage &gt; 90%</li>
+  <li>Run Code Coverage &gt; 90%
+    <ul>
+      <li><strong>Hint:</strong> Run <code class="highlighter-rouge">mvn clean test</code> first so that /target/ has a complete set of class files before you attempt the Eclipse <code class="highlighter-rouge">coverage</code> test.</li>
+    </ul>
+  </li>
   <li>SpotBugs checks (is it properly configured?)</li>
   <li>Checkstyle (is it properly configured?)</li>
 </ul>
