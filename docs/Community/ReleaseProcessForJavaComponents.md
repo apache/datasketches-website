@@ -74,6 +74,7 @@ Also specifies line separator characters for text files.
 
 ### Run IDE Checks
 * Run Code Coverage > 90%
+    * **Hint:** Run `mvn clean test` first so that /target/ has a complete set of class files before you attempt the Eclipse `coverage` test.
 * SpotBugs checks (is it properly configured?)
 * Checkstyle (is it properly configured?)
 
