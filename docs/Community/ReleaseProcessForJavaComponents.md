@@ -77,6 +77,9 @@ Also specifies line separator characters for text files.
 * SpotBugs checks (is it properly configured?)
 * Checkstyle (is it properly configured?)
 
+### Run all GitHub Actions Workflows
+* Make sure they can run from both 'main' and the release branch.
+
 ## Create Permanent Release Branch & Update POM Versions
 
 ### Assume Semantic Versioning
