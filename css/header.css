@@ -185,6 +185,11 @@ a:hover, a:focus {
   margin-right: 5px;
 }
 
+.java-logo {
+  height: 50px;
+  margin-right: 5px;
+}
+
 .dropdown:hover .dropdown-menu {
   display: block;
   margin-top: 0; // remove the gap so it doesn't close
