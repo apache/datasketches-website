@@ -67,7 +67,7 @@ This means, of course, that depending on the operations and the data, the result
 zero, all, or some number in between of the retained values of the Union sketch. 
 Mixed set expressions can produce an error distribution that is larger that of a standard sketch
 of a given <i>Nominal Entries</i> or <i>k</i> and is mathematically described in 
-<a href="{{site.docs_pdf_dir}}/SketchEquations.pdf">Sketch Equations / Subsets of Fixed <i>k</i> Sampling</a>. 
+<a href="{{site.docs_pdf_dir}}/ThetaSketchEquations.pdf">Theta Sketch Equations / 2.3 Subsets of Fixed <i>k</i> Sampling</a>. 
 
 #### Source sketches and target with the same <i>Nominal Entries</i> or <i>k</i>
 
@@ -115,7 +115,7 @@ or approximately 4 of the bottom values will remain.
 The mean estimate from the intersection sketch will be 4/.001 = 4K. 
 This happens to be correct using this hand-wavy analysis but in general is a random result with a variance. 
 The proof that the estimate will be unbiased is in the attached 
-<a href="{{site.docs_pdf_dir}}/SketchEquations.pdf">Sketch Equations</a>.
+<a href="{{site.docs_pdf_dir}}/ThetaSketchEquations.pdf">Theta Sketch Equations</a>.
 
 The RSE of a sketch with only 4 values is ~ 1/sqrt(4) = .5 or 50% error. 
 This is considerably larger than the RSE of either <i>S<sub>A</sub></i> or <i>S<sub>B</sub></i>, 

@@ -19,9 +19,21 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-## Reservoir Sampling
+## Contents
+<!-- TOC -->
 
-Reservoir sampling provides a way to construct a uniform random sample of size <tt>k</tt> from an unweighted stream of items, without knowing the final length of the stream in advance. As with all sketches in the library, reservoir sampling sketches can be efficiently unioned.
+* [Reservoir Sampling Sketches](#reservoir-sampling-sketches)
+    * [Reservoir Sampling Performance](https://datasketches.apache.org/docs/Sampling/ReservoirSamplingPerformance.html)
+    * Reservoir Sampling Examples
+        * [Reservoir Sampling Java Example](https://datasketches.apache.org/docs/Sampling/ReservoirSamplingJava.html)
+        * [Reservoir Sampling Pig UDFs](https://datasketches.apache.org/docs/Sampling/ReservoirSamplingPigUDFs.html)
+ 
+<!-- TOC -->
+
+<a id="reservoir-sampling-sketches"></a>
+## Reservoir Sampling Sketches
+Reservoir sampling provides a way to construct a uniform random sample of size <tt>k</tt> from an unweighted stream of items, 
+without knowing the final length of the stream in advance. As with all sketches in the library, reservoir sampling sketches can be efficiently unioned.
 
 The Sketches Library provides 2 forms of reservoir sampling sketches:
 

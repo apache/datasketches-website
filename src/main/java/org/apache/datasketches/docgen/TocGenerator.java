@@ -179,7 +179,10 @@ public class TocGenerator {
       }
     }
     sb.append(file);
-    final String sfx = pdf ? ".pdf" : ".html";
+    String sfx = pdf ? ".pdf" : ".html";
+    if (doc.has("sub") && !pdf) { 
+      sfx = sfx + doc.getString("sub");
+    } 
     sb.append(sfx + "\">");
     sb.append("\u2022" + desc); //Prefix with bullet
     sb.append("</a></li>").append(LS);

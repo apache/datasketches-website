@@ -19,23 +19,52 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
+## Contents
+<!-- TOC -->
+* [Introduction to the Quantile Sketches](https://datasketches.apache.org/docs/QuantilesAll/QuantilesOverview.html)
+* [Classic Quantiles Sketch](#classic-quantiles-sketch)
+    * [Classsic Quantiles Sketch Overview](https://datasketches.apache.org/docs/Quantiles/QuantilesSketchOverview.html)
+    * [Accuracy and Size](#accuracy-and-size)
+        * [Absolute vs Relative Error](#absolute-vs-relative-error)
+    * [Quantiles Sketches and Data Independence](#data-independence)
+    * [Accuracy Table](#accuracy-table)
+    * [Accuracy Plots](#accuracy-plots)
+* Examples
+    * [Classic Quantiles Java Example](https://datasketches.apache.org/docs/Quantiles/QuantilesJavaExample.html)
+    * [Classic Quantiles Pig UDFs](https://datasketches.apache.org/docs/Quantiles/QuantilesPigUDFs.html)
+    * [Classic Quantiles Hive UDFs](https://datasketches.apache.org/docs/Quantiles/QuantilesHiveUDFs.html)
+* Classic Quantiles Studies
+    * [Druid Approximate Histogram](https://datasketches.apache.org/docs/QuantilesStudies/DruidApproxHistogramStudy.html)
+    * [Moments Sketch Study](https://datasketches.apache.org/docs/QuantilesStudies/MomentsSketchStudy.html)
+    * [Quantiles StreamA Study](https://datasketches.apache.org/docs/QuantilesStudies/QuantilesStreamAStudy.html)
+    * [Exact Quantiles for Studies](https://datasketches.apache.org/docs/QuantilesStudies/ExactQuantiles.html)
+* Tutorials
+    * [Sketching Quantiles and Ranks Tutorial](https://datasketches.apache.org/docs/QuantilesAll/SketchingQuantilesAndRanksTutorial.html)  
+* Theory
+    * [Relative Error Streaming Quantiles](https://arxiv.org/abs/2004.01668)
+    * [More References](https://datasketches.apache.org/docs/QuantilesAll/QuantilesReferences.html)
+<!-- TOC -->
+
+<a id="classic-quantiles-sketch"></a>
 # Classic Quantiles Sketch
 
+<a id="accuracy-and-size"></a>
 ## Quantiles Sketches Accuracy and Size
-Please review the Quantiles [Definitions]({{site.docs_dir}}/Quantiles/Definitions.html).
+Please review the Quantiles [Tutorial]({{site.docs_dir}}/QuantilesAll/SketchingQuantilesAndRanksTutorial.html).
 
 The accuracy of a quantile sketch is a function of the configured value <i>k</i>, which also affects
 the overall size of the sketch. 
 
 Accuracy for quantiles sketches is specified and measured with respect to the *rank* only, not the values.
 
+<a id="absolute-vs-relative-error"></a>
 ### Absolute vs Relative Error
 The Quantiles/DoublesSketch and the KLL Sketch have *absolute error*.  For example, a specified accuracy of 1% at the median (rank = 0.50) means that the true value (if you could extract it from the set) should be 
 between *getQuantile(0.49)* and *getQuantile(0.51)*. This same 1% error applied at a rank of 0.95 means that the true value should be between *getQuantile(0.94)* and *getQuantile(0.96)*. In other words, the error is a fixed +/- epsilon for the entire range of rank values.
 
 The ReqSketch, however, has relative rank error and the user can choose which end of the rank domain should have high accuracy.  Refer to the sketch documentation for more information.
 
-
+<a id="data-independence"></a>
 ## Quantiles Sketches and Data Independence
 A *sketch* is an implementation of a *streaming algorithm*. By definition, a sketch has only one chance to examine each item of the stream.  It is this property that makes a sketch a *streaming* algorithm and useful for real-time analysis of very large streams that may be impractical to actually store. 
 
@@ -43,7 +72,8 @@ We also assume that the sketch knows nothing about the input data stream: its le
 
 The only thing the user needs to know is how to extract the values from the stream so that they can be fed into the sketch. It is reasonable that the user knows the *type* of values in the stream: e.g., are they alphanumeric strings, numeric strings, or numeric primitives. These properties may determine the type of sketch to use as well as how to extract the appropriate quantities to feed into the sketch.
 
-## Accuracy Information for the org.apache.datasketches.quantiles Sketch Package
+<a id="accuracy-table"></a>
+## Accuracy Table for the Classic Quantiles Sketch
 A <i>k</i> of 256 produces a normalized rank error of less than 1%.
 For example, the median value returned from getQuantile(0.5) will be between the actual values
 from the hypothetically sorted array of input values at normalized ranks of 0.49 and 0.51, with 
@@ -94,6 +124,9 @@ Table Guide for Quantiles DoublesSketch Size in Bytes and Approximate Error:
  2,147,483,647 |     3,616     6,944    13,344    25,632    49,184    94,240   180,256   344,096   655,392 1,245,216 2,359,328 4,456,480
  4,294,967,295 |     3,744     7,200    13,856    26,656    51,232    98,336   188,448   360,480   688,160 1,310,752 2,490,400 4,718,624
 </pre>
+
+<a id="accuracy-plots"></a>
+## Accuracy Plots
 
 The following graphs illustrate the ability of the Quantiles DoublesSketch to characterize value distributions.
 

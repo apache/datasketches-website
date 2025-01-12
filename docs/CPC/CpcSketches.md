@@ -19,10 +19,25 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-## Compressed Probability Counting (CPC) Sketch<sup>1</sup>
-The cpc package contains implementations of Kevin J. Lang's CPC sketch (footnote).
+## Contents
+<!-- TOC -->
+* [CPC Sketches](#cpc-sketches)
+* [CPC Sketch Performance](https://datasketches.apache.org/docs/CPC/CpcPerformance.html)
+* CPC Examples
+    * [CPC Sketch Java Example](https://datasketches.apache.org/docs/CPC/CpcJavaExample.html)
+    * [CPC Sketch C++ Example](https://datasketches.apache.org/docs/CPC/CpcCppExample.html)
+    * [CPC Sketch Pig UDFs](https://datasketches.apache.org/docs/CPC/CpcPigExample.html)
+    * [CPC Sketch Hive UDFs](https://datasketches.apache.org/docs/CPC/CpcHiveExample.html) 
+<!-- TOC -->
+
+<a id="cpc-sketches"></a>
+## Compressed Probability Counting (CPC) Sketches[^1]
+The cpc package contains implementations of Kevin J. Lang's CPC sketch[^1].
 The stored CPC sketch can consume about 40% less space than an HLL sketch of comparable accuracy.
 Nonetheless, the HLL and CPC sketches have been intentially designed to offer different tradeoffs so that, in fact, they complement each other in many ways.
+
+* The CPC sketch has better accuracy for a given stored size then HLL
+* HLL has faster serialization and deserialization times than CPC.
 
 Similar to the HLL sketch, the primary use-case for the CPC sketch is for counting distinct values as a stream, and then merging multiple sketches together for a total distinct count. 
 
@@ -37,6 +52,4 @@ Neither HLL nor CPC sketches provide means for set intersections or set differen
 ________________________
 
 
-<sup>1</sup><small>
-Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. arXiv preprint https://arxiv.org/abs/1708.06839, 2017.
-</small>
+[^1]: Kevin J Lang. Back to the future: an even more nearly optimal cardinality estimation algorithm. arXiv preprint https://arxiv.org/abs/1708.06839, 2017.

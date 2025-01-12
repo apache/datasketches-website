@@ -19,9 +19,29 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-## Frequency Sketches Overview
+## Contents
+<!-- TOC -->
+* [Frequency Sketches](#frequency-sketches)
+    * [Frequent Items Sketches](#frequent-items-sketches)
+        * [Frequent Items Overview](https://datasketches.apache.org/docs/Frequency/FrequentItemsOverview.html)
+        * [Frequent Items Error Table](https://datasketches.apache.org/docs/Frequency/FrequentItemsErrorTable.html)
+        * [Frequent Items Performance](https://datasketches.apache.org/docs/Frequency/FrequentItemsPerformance.html)
+        * [Frequent Items References](https://datasketches.apache.org/docs/Frequency/FrequentItemsReferences.html)
+        * Frequent Items Examples
+            * [Frequent Items Java Example](https://datasketches.apache.org/docs/Frequency/FrequentItemsJavaExample.html)
+            * [Frequent Items C++ Example](https://datasketches.apache.org/docs/Frequency/FrequentItemsCppExample.html)
+            * [Frequent Items Pig UDFs](https://datasketches.apache.org/docs/Frequency/FrequentItemsPigUDFs.html)
+            * [Frequent Items Hive UDFs](https://datasketches.apache.org/docs/Frequency/FrequentItemsHiveUDFs.html) 
+    * [Frequent Distinct Tuples Sketches](#frequent-distinct-tuples-sketches)
+        * [Frequent Distinct Tuples Sketch](https://datasketches.apache.org/docs/Frequency/FrequentDistinctTuplesSketch.html)
 
-### Frequent Items
+<!-- TOC -->
+
+<a id="frequency-sketches"></a>
+## Frequency Sketches
+
+<a id="frequent-items-sketches"></a>
+### Frequent Items Sketches
 These sketches implement algorithms that are members of a class of "Heavy Hitters" algorithms that identify 
 the "heaviest" or "most frequently occurring" items in a stream.  
 
@@ -52,9 +72,8 @@ instead of fractional dollars.
 The Frequent Items Sketch is an "aggregating" sketch in that duplicate items in the stream can have different weights and the 
 sketch properly tracks the total weight for each distinct item.
 
-### Frequent Distinct Tuples Sketch
+<a id="frequent-distinct-tuples-sketches"></a>
+### Frequent Distinct Tuples Sketches
 
 This is a very different algorithm that identifies the most frequent distinct occurrences associated with a specific key, and it is
 called the <i>Frequent Distinct Tuples Sketch</i> or <i>FdtSketch</i>.  See the documentation for this sketch.
-
-
