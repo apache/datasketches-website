@@ -449,13 +449,13 @@ Let’s assume <i>N = 2</i> and let <i>d1 := IP address</i>, and <i>d2 := User I
 such that items with distinct frequency counts greater than 1% of the total distinct population will be 
 detectable and have a distinct frequency estimation error of less than or equal to 5% with 86% confidence.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//Construct the sketch
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//Construct the sketch
 FdtSketch sketch = new FdtSketch(0.01, 0.05);
 </code></pre></div></div>
 
 <p>Assume the incoming data is a stream of {IP address, User ID} pairs:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//Populate
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//Populate
 while (inputStream.hasRemainingItems()) {
   String[] in = new String[] {Pair.IPaddress, Pair.userID};
   sketch(in);
@@ -464,7 +464,7 @@ while (inputStream.hasRemainingItems()) {
 
 <p>We are done populating the sketch, now we post process the data in the sketch:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int[] priKeyIndices = new int[] {0}; //identifies the IP address as the primary key
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int[] priKeyIndices = new int[] {0}; //identifies the IP address as the primary key
 int numStdDev = 2; //for 95% confidence intervals
 int limit = 20; //list only the top 20 groups
 char sep = '|'; //the separator charactor for the group dimensions as strings
@@ -478,7 +478,7 @@ while (itr.hasNext()) {
 
 <p>If we want the converse relation we assign the UserID as the primary key. Note that we do not have to repopulate the sketch!</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int[] priKeyIndices = new int[] {1}; //identifies the User ID as the primary key
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int[] priKeyIndices = new int[] {1}; //identifies the User ID as the primary key
 ...
 </code></pre></div></div>
 
@@ -533,7 +533,7 @@ input stream of over 100K groups this graph is a view of the top 500, which is m
 
 <p>The following table is the list of the top 10 results from just one of the trials. The Group class was extended to include more columns at the end which were useful for this study. (This was easy to do and does not require any special access.)</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Count         Est          UB          LB      Thresh         RSE      PriKey   xG      yU         Err
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Count         Est          UB          LB      Thresh         RSE      PriKey   xG      yU         Err
  1338    16511.86    16957.05    16078.18    0.019521    0.026962   1,1,16384    1   16384    0.007804
   666     8218.91     8536.72     7912.67    0.009717    0.038668    2,1,8192    2    8192    0.003285
   660     8144.87     8461.30     7840.01    0.009629    0.038850    2,2,8192    2    8192   -0.005754

@@ -348,12 +348,12 @@ Romeo and Juliet and Hamlet. The scripts, available from various
 sources including http://shakespeare.mit.edu/, were converted to
 (word, count) files with the following Perl command:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>perl -lane 's/^\s+//; s/[;\.,!?:\x27\[\]&amp;]//g; s/--//g; s/\s+/\n/g; print lc if length &gt; 0' input.txt | sort | uniq -c | awk '{print $1 "\t" $2}' &gt; output.txt
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>perl -lane 's/^\s+//; s/[;\.,!?:\x27\[\]&amp;]//g; s/--//g; s/\s+/\n/g; print lc if length &gt; 0' input.txt | sort | uniq -c | awk '{print $1 "\t" $2}' &gt; output.txt
 </code></pre></div></div>
 
 <p>These were then used in the following example, slightly modified to remove error handling for clarity. Serialization and deserialization are completely parallel to the Reservoir Sampling sketch, and example code for that may be found in those Java examples.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import java.io.BufferedReader;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -407,7 +407,7 @@ private static VarOptItemsSketch&lt;String&gt; loadFile(final String filename,
 
 <p>Sample Output:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>i	567.0
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>i	567.0
 i	580.0
 to	737.0
 of	667.0
@@ -426,7 +426,7 @@ a	560.5978260869568
 
 <p>Lower bound, estimate, upper bound:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[594.395954, 2242.391304, 5611.681344]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[594.395954, 2242.391304, 5611.681344]
 </code></pre></div></div>
 
       </div> <!-- End content -->

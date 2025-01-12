@@ -349,14 +349,14 @@ Each test of size k was repeated up to millions of times to reduce noise in the 
 
 <p>The inner timing loop for writing into a java array:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  startTime_nS = System.nanoTime();
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  startTime_nS = System.nanoTime();
   for (int i=0; i&lt;arrLongs; i++) { array[i] = i; }
   stopTime_nS = System.nanoTime();
 </code></pre></div></div>
 
 <p>The inner timing loop for reading from that array:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  startTime_nS = System.nanoTime();
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  startTime_nS = System.nanoTime();
   for (int i=0; i&lt;arrLongs; i++) { trialSum += array[i]; }
   stopTime_nS = System.nanoTime();
 </code></pre></div></div>

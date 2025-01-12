@@ -371,7 +371,7 @@ count estimation (see method getAverageSketchMemoryPerKey()) is about 10 bytes.<
 
 <p>Assuming that the frequency distribution of your identifiers per key is roughly power-law with a log-log slope of about -1, the total storage required for this sketch can be roughly computed as</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Size = (K + S) * T
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Size = (K + S) * T
     where K = Key size in bytes
           S = Average HLL Sketch Memory Per Key
           T = Total number of keys seen by the sketch

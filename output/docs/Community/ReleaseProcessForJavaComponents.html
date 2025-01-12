@@ -359,7 +359,7 @@
   <li>Confirm any new bug fixes have corresponding tests</li>
   <li>At major version releases, search for deprecated code and remove at <strong>Major Versions</strong> only.
     <ul>
-      <li><code class="highlighter-rouge">find . -name "*.java" -type f -print | xargs grep -n -s -A0 "deprecat"</code> <br /> (This will find “deprecated”, “Deprecating”, “deprecation”, etc.)</li>
+      <li><code class="language-plaintext highlighter-rouge">find . -name "*.java" -type f -print | xargs grep -n -s -A0 "deprecat"</code> <br /> (This will find “deprecated”, “Deprecating”, “deprecation”, etc.)</li>
       <li><strong>Note:</strong> When first marking a segment of code deprecated, please add the current version number. This will make it easier to know when to remove the deprecated code.</li>
     </ul>
   </li>
@@ -368,23 +368,23 @@
 <h3 id="check-pom-for-correctness">Check POM for Correctness</h3>
 
 <ul>
-  <li><code class="highlighter-rouge">mvn clean</code> will check for most things</li>
+  <li><code class="language-plaintext highlighter-rouge">mvn clean</code> will check for most things</li>
   <li>Import the pom into Eclipse’s POM Editor</li>
 </ul>
 
 <h4 id="check-project-dependencies">Check Project Dependencies</h4>
 
 <ul>
-  <li><code class="highlighter-rouge">mvn dependency:tree</code></li>
-  <li><code class="highlighter-rouge">mvn versions:display-dependency-updates</code> <br />
+  <li><code class="language-plaintext highlighter-rouge">mvn dependency:tree</code></li>
+  <li><code class="language-plaintext highlighter-rouge">mvn versions:display-dependency-updates</code> <br />
 For Java 8, the TestNG version must remain at 7.5.1</li>
 </ul>
 
 <h4 id="check-pom-plugin-updates">Check POM Plugin Updates</h4>
 
 <ul>
-  <li><code class="highlighter-rouge">mvn versions:display-plugin-updates</code></li>
-  <li><code class="highlighter-rouge">mvn versions:display-property-updates</code> For all POM properties</li>
+  <li><code class="language-plaintext highlighter-rouge">mvn versions:display-plugin-updates</code></li>
+  <li><code class="language-plaintext highlighter-rouge">mvn versions:display-property-updates</code> For all POM properties</li>
 </ul>
 
 <h3 id="visual-checks-for-correctness">Visual Checks for Correctness</h3>
@@ -404,18 +404,18 @@ Also specifies line separator characters for text files.</li>
 
 <h3 id="run-maven-tests">Run Maven Tests</h3>
 <ul>
-  <li><code class="highlighter-rouge">mvn apache-rat:check</code></li>
-  <li><code class="highlighter-rouge">mvn clean test</code></li>
-  <li><code class="highlighter-rouge">mvn clean test -P check-cpp-files</code> (only for ds-java)</li>
-  <li><code class="highlighter-rouge">mvn clean test -P check-cpp-historical-files</code> (only for ds-java)</li>
-  <li><code class="highlighter-rouge">mvn clean javadoc:javadoc</code></li>
+  <li><code class="language-plaintext highlighter-rouge">mvn apache-rat:check</code></li>
+  <li><code class="language-plaintext highlighter-rouge">mvn clean test</code></li>
+  <li><code class="language-plaintext highlighter-rouge">mvn clean test -P check-cpp-files</code> (only for ds-java)</li>
+  <li><code class="language-plaintext highlighter-rouge">mvn clean test -P check-cpp-historical-files</code> (only for ds-java)</li>
+  <li><code class="language-plaintext highlighter-rouge">mvn clean javadoc:javadoc</code></li>
 </ul>
 
 <h3 id="run-ide-checks">Run IDE Checks</h3>
 <ul>
   <li>Run Code Coverage &gt; 90%
     <ul>
-      <li><strong>Hint:</strong> Run <code class="highlighter-rouge">mvn clean test</code> first so that /target/ has a complete set of class files before you attempt the Eclipse <code class="highlighter-rouge">coverage</code> test.</li>
+      <li><strong>Hint:</strong> Run <code class="language-plaintext highlighter-rouge">mvn clean test</code> first so that /target/ has a complete set of class files before you attempt the Eclipse <code class="language-plaintext highlighter-rouge">coverage</code> test.</li>
     </ul>
   </li>
   <li>SpotBugs checks (is it properly configured?)</li>
@@ -446,7 +446,7 @@ Also specifies line separator characters for text files.</li>
   <li>From command line at component root on master/main branch:</li>
   <li>Confirm master/main branch is current and git status is clean:
     <ul>
-      <li><code class="highlighter-rouge">git status</code> # should return:</li>
+      <li><code class="language-plaintext highlighter-rouge">git status</code> # should return:</li>
       <li>“On branch master/main, your branch is up to date with ‘origin/master(main)’, nothing to commit, working tree clean.”</li>
     </ul>
   </li>
@@ -474,14 +474,14 @@ Also specifies line separator characters for text files.</li>
   <li><strong>NOW PUSH</strong> Release Branch  “A.B.X” with edited pom.xml to origin <strong>DO NOT MERGE THIS PERMANENT BRANCH INTO MASTER/MAIN</strong></li>
   <li>Do explicit push of tags on new branch A.B.X (or A’.0.X) to origin:
     <ul>
-      <li><code class="highlighter-rouge">git push origin --tags</code></li>
+      <li><code class="language-plaintext highlighter-rouge">git push origin --tags</code></li>
     </ul>
   </li>
 </ul>
 
 <h3 id="run-maven-install-on-release-branch">Run Maven Install on Release Branch</h3>
 <ul>
-  <li><code class="highlighter-rouge">mvn clean install -DskipTests=true</code></li>
+  <li><code class="language-plaintext highlighter-rouge">mvn clean install -DskipTests=true</code></li>
   <li>Check that the /target/ directory has 5 jars: (may need to refresh)
     <ul>
       <li>datasketches-&lt;component-version&gt;-javadoc.jar</li>
@@ -523,8 +523,8 @@ Also specifies line separator characters for text files.</li>
 <ul>
   <li>On your system create the two directory structures that mirror the dist.apache.org/repos/ directories:
     <ul>
-      <li><code class="highlighter-rouge">mkdir dist/dev/datasketches/</code></li>
-      <li><code class="highlighter-rouge">mkdir dist/release/datasketches/</code></li>
+      <li><code class="language-plaintext highlighter-rouge">mkdir dist/dev/datasketches/</code></li>
+      <li><code class="language-plaintext highlighter-rouge">mkdir dist/release/datasketches/</code></li>
     </ul>
   </li>
 </ul>
@@ -533,8 +533,8 @@ Also specifies line separator characters for text files.</li>
 <ul>
   <li>Open a terminal in the dist/dev/datasketches directory and do a checkout:
     <ul>
-      <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>      #Note the DOT</li>
-      <li><code class="highlighter-rouge">svn status</code>    # make sure it is clean: does not list any (?) or (!) files
+      <li><code class="language-plaintext highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>      #Note the DOT</li>
+      <li><code class="language-plaintext highlighter-rouge">svn status</code>    # make sure it is clean: does not list any (?) or (!) files
         <ul>
           <li>If any (?) or (!) files exist they must be resolved before proceding.</li>
         </ul>
@@ -557,24 +557,24 @@ Also specifies line separator characters for text files.</li>
     <ul>
       <li>Confirm <em>gpg-agent</em> is running:
         <ul>
-          <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code>
+          <li><code class="language-plaintext highlighter-rouge">eval $(gpg-agent --daemon)</code>
             <ul>
               <li>if it is not running it will start it</li>
               <li>if it is already running you will see something like:</li>
-              <li><code class="highlighter-rouge">gpg-agent: a gpg-agent is already running - not starting a new one</code></li>
+              <li><code class="language-plaintext highlighter-rouge">gpg-agent: a gpg-agent is already running - not starting a new one</code></li>
             </ul>
           </li>
         </ul>
       </li>
       <li>Run something like this (you must copy &amp; edit):
         <ul>
-          <li><code class="highlighter-rouge">./bashDeployToDist.sh /Users/&lt;name&gt;/dev/git/Apache/datasketches-&lt;component&gt; datasketches-&lt;component&gt; A.B.0-RC1</code></li>
+          <li><code class="language-plaintext highlighter-rouge">./bashDeployToDist.sh /Users/&lt;name&gt;/dev/git/Apache/datasketches-&lt;component&gt; datasketches-&lt;component&gt; A.B.0-RC1</code></li>
           <li>Follow the instructions.</li>
           <li>NOTE: if you get the error “gpg: signing failed: No pinentry”:
             <ul>
               <li>open .gnupg/gpg-agent.conf</li>
               <li>change to: pinentry-program <em>/usr/local/bin/pinentry-tty</em></li>
-              <li>reload the gpg agent in the terminal: <code class="highlighter-rouge">gpg-connect-agent reloadagent /bye</code></li>
+              <li>reload the gpg agent in the terminal: <code class="language-plaintext highlighter-rouge">gpg-connect-agent reloadagent /bye</code></li>
               <li>restart the <em>./bashDeployToDist</em> script</li>
             </ul>
           </li>
@@ -589,7 +589,7 @@ Also specifies line separator characters for text files.</li>
 <ul>
   <li>Check this web URL ~ <em>https://dist.apache.org/repos/dist/dev/datasketches/&lt;component&gt;/A.B.0-RC1/</em>
     <ul>
-      <li>Update SVN: <code class="highlighter-rouge">svn up</code></li>
+      <li>Update SVN: <code class="language-plaintext highlighter-rouge">svn up</code></li>
       <li>There should be 3 files: *-src.zip, *-src.zip.asc, *-src.zip.sha512</li>
       <li>Copy the URL for later.</li>
     </ul>
@@ -606,24 +606,24 @@ Also specifies line separator characters for text files.</li>
     <ul>
       <li>Confirm <em>gpg-agent</em> is running:
         <ul>
-          <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code>
+          <li><code class="language-plaintext highlighter-rouge">eval $(gpg-agent --daemon)</code>
             <ul>
               <li>if it is not running it will start it</li>
               <li>if it is already running you will see something like:</li>
-              <li><code class="highlighter-rouge">gpg-agent: a gpg-agent is already running - not starting a new one</code></li>
+              <li><code class="language-plaintext highlighter-rouge">gpg-agent: a gpg-agent is already running - not starting a new one</code></li>
             </ul>
           </li>
         </ul>
       </li>
     </ul>
   </li>
-  <li><code class="highlighter-rouge">git status</code> # make sure you are still on the release branch: A.B.X</li>
+  <li><code class="language-plaintext highlighter-rouge">git status</code> # make sure you are still on the release branch: A.B.X</li>
 </ul>
 
 <h3 id="trial-run">TRIAL-RUN:</h3>
 <ul>
   <li><strong>Have your GPG passphrase handy – you may have only a few seconds to enter it!</strong></li>
-  <li><code class="highlighter-rouge">mvn clean install -Pnexus-jars -DskipTests=true</code>
+  <li><code class="language-plaintext highlighter-rouge">mvn clean install -Pnexus-jars -DskipTests=true</code>
     <ul>
       <li>Check target/ that jars &amp; pom exist</li>
     </ul>
@@ -633,7 +633,7 @@ Also specifies line separator characters for text files.</li>
 <h3 id="deploy">DEPLOY</h3>
 <ul>
   <li><strong>Have your GPG passphrase handy – you may have only a few seconds to enter it, but it may be automatic!</strong></li>
-  <li><code class="highlighter-rouge">mvn clean deploy -Pnexus-jars -DskipTests=true</code></li>
+  <li><code class="language-plaintext highlighter-rouge">mvn clean deploy -Pnexus-jars -DskipTests=true</code></li>
 </ul>
 
 <h4 id="deploy-check">DEPLOY-CHECK</h4>
@@ -668,12 +668,12 @@ Also specifies line separator characters for text files.</li>
 <h4 id="java-only">JAVA ONLY</h4>
 <ul>
   <li>Place copies of the artifact jars deployed to Nexus under a “maven” directory.  For example see <a href="https://dist.apache.org/repos/dist/dev/datasketches/memory/3.0.0-RC1/">https://dist.apache.org/repos/dist/dev/datasketches/memory/3.0.0-RC1/</a></li>
-  <li>Note that the <code class="highlighter-rouge">jar</code> files with their <code class="highlighter-rouge">asc</code>, (optional <code class="highlighter-rouge">md5</code> and <code class="highlighter-rouge">sha1</code>) signature are all together in the .md2 archive</li>
-  <li>Add a <code class="highlighter-rouge">maven</code> directory under the <code class="highlighter-rouge">dist/dev/datasketches/&lt;component&gt;/A.B.0/</code></li>
-  <li>Bulk copy the <code class="highlighter-rouge">jar, asc, (optional md5</code> and <code class="highlighter-rouge">sha1</code>) files into the <code class="highlighter-rouge">maven</code> directory.</li>
-  <li><code class="highlighter-rouge">svn status</code> # check to see if it is ready to add</li>
-  <li><code class="highlighter-rouge">svn add . --force</code></li>
-  <li><code class="highlighter-rouge">svn ci -m "add nexus jars to dist/dev/datasketches"</code></li>
+  <li>Note that the <code class="language-plaintext highlighter-rouge">jar</code> files with their <code class="language-plaintext highlighter-rouge">asc</code>, (optional <code class="language-plaintext highlighter-rouge">md5</code> and <code class="language-plaintext highlighter-rouge">sha1</code>) signature are all together in the .md2 archive</li>
+  <li>Add a <code class="language-plaintext highlighter-rouge">maven</code> directory under the <code class="language-plaintext highlighter-rouge">dist/dev/datasketches/&lt;component&gt;/A.B.0/</code></li>
+  <li>Bulk copy the <code class="language-plaintext highlighter-rouge">jar, asc, (optional md5</code> and <code class="language-plaintext highlighter-rouge">sha1</code>) files into the <code class="language-plaintext highlighter-rouge">maven</code> directory.</li>
+  <li><code class="language-plaintext highlighter-rouge">svn status</code> # check to see if it is ready to add</li>
+  <li><code class="language-plaintext highlighter-rouge">svn add . --force</code></li>
+  <li><code class="language-plaintext highlighter-rouge">svn ci -m "add nexus jars to dist/dev/datasketches"</code></li>
 </ul>
 
 <h4 id="non-java">NON-JAVA</h4>
@@ -703,11 +703,11 @@ Also specifies line separator characters for text files.</li>
     <ul>
       <li>Open Terminal #1
         <ul>
-          <li>Confirm you are in the <code class="highlighter-rouge">/dev/</code> directory: <code class="highlighter-rouge">pwd</code></li>
+          <li>Confirm you are in the <code class="language-plaintext highlighter-rouge">/dev/</code> directory: <code class="language-plaintext highlighter-rouge">pwd</code></li>
           <li>Perform SVN Checkout:
             <ul>
-              <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>  #note dot at end</li>
-              <li><code class="highlighter-rouge">svn status</code> #make sure checkout is clean: does not list any (?) or (!) files</li>
+              <li><code class="language-plaintext highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>  #note dot at end</li>
+              <li><code class="language-plaintext highlighter-rouge">svn status</code> #make sure checkout is clean: does not list any (?) or (!) files</li>
             </ul>
           </li>
         </ul>
@@ -718,16 +718,16 @@ Also specifies line separator characters for text files.</li>
     <ul>
       <li>Open Terminal #2
         <ul>
-          <li>Confirm you are in the <code class="highlighter-rouge">/release/</code> directory: <code class="highlighter-rouge">pwd</code></li>
+          <li>Confirm you are in the <code class="language-plaintext highlighter-rouge">/release/</code> directory: <code class="language-plaintext highlighter-rouge">pwd</code></li>
           <li>Perform SVN Checkout:
             <ul>
-              <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/release/datasketches/ .</code> #note dot at end</li>
-              <li><code class="highlighter-rouge">svn status</code> #make sure checkout is clean: does not list any (?) or (!) files</li>
+              <li><code class="language-plaintext highlighter-rouge">svn co https://dist.apache.org/repos/dist/release/datasketches/ .</code> #note dot at end</li>
+              <li><code class="language-plaintext highlighter-rouge">svn status</code> #make sure checkout is clean: does not list any (?) or (!) files</li>
             </ul>
           </li>
           <li>Create new version directory under appropriate component directory:
             <ul>
-              <li><code class="highlighter-rouge">mkdir -p &lt;component&gt;/A.B.0</code></li>
+              <li><code class="language-plaintext highlighter-rouge">mkdir -p &lt;component&gt;/A.B.0</code></li>
             </ul>
           </li>
         </ul>
@@ -741,12 +741,12 @@ Also specifies line separator characters for text files.</li>
       </li>
       <li>Using Terminal #2 at … /dist/release/datasketches directory:
         <ul>
-          <li><code class="highlighter-rouge">svn add . --force</code></li>
-          <li><code class="highlighter-rouge">svn ci -m "Release A.B.0"</code></li>
+          <li><code class="language-plaintext highlighter-rouge">svn add . --force</code></li>
+          <li><code class="language-plaintext highlighter-rouge">svn ci -m "Release A.B.0"</code></li>
           <li>Remove the prior release…</li>
-          <li><code class="highlighter-rouge">svn remove &lt;component&gt;/X.Y.0</code></li>
-          <li><code class="highlighter-rouge">svn ci -m "Remove Prior release"</code></li>
-          <li><code class="highlighter-rouge">svn status</code> # should be empty</li>
+          <li><code class="language-plaintext highlighter-rouge">svn remove &lt;component&gt;/X.Y.0</code></li>
+          <li><code class="language-plaintext highlighter-rouge">svn ci -m "Remove Prior release"</code></li>
+          <li><code class="language-plaintext highlighter-rouge">svn status</code> # should be empty</li>
         </ul>
       </li>
       <li>Using local file system
@@ -785,8 +785,8 @@ reflected in the master/main. Use the <strong>git cherry-pick</strong> command f
 
 <h3 id="update-apache-reporter">Update Apache Reporter</h3>
 <ul>
-  <li>Because of the commit to the <code class="highlighter-rouge">dist/release</code> branch, you should get an automated email requesting you to update the Apache DataBase about the releaase. The email should point you to the <a href="https://reporter.apache.org/addrelease.html?datasketches">Apache Committee Report Helper</a>. You can choose to go there directly without waiting for the notice, there is only one box to fillout.</li>
-  <li>Update the full name of the component release. For example: <code class="highlighter-rouge">Apache datasketches-memory-1.3.0</code></li>
+  <li>Because of the commit to the <code class="language-plaintext highlighter-rouge">dist/release</code> branch, you should get an automated email requesting you to update the Apache DataBase about the releaase. The email should point you to the <a href="https://reporter.apache.org/addrelease.html?datasketches">Apache Committee Report Helper</a>. You can choose to go there directly without waiting for the notice, there is only one box to fillout.</li>
+  <li>Update the full name of the component release. For example: <code class="language-plaintext highlighter-rouge">Apache datasketches-memory-1.3.0</code></li>
 </ul>
 
 <h3 id="create--document-release-tag-on-github">Create &amp; Document Release Tag on GitHub</h3>
@@ -796,7 +796,7 @@ reflected in the master/main. Use the <strong>git cherry-pick</strong> command f
   <li>At that same GitHub ID hash, create a new tag A.B.0 (without the RCn).</li>
   <li>From the Command Line: Push the new tag to origin:
     <ul>
-      <li><code class="highlighter-rouge">git push origin --tags</code></li>
+      <li><code class="language-plaintext highlighter-rouge">git push origin --tags</code></li>
     </ul>
   </li>
   <li>On the GitHub component site document the release</li>
@@ -809,7 +809,7 @@ reflected in the master/main. Use the <strong>git cherry-pick</strong> command f
   <li>Make sure your local website directory is pointing to master/main and up-to-date.</li>
   <li>Run the following with the argument specifying the location of your local website directory:
     <ul>
-      <li><code class="highlighter-rouge">./createDownloadsInclude.sh /Users/&lt;name&gt;/ ... /datasketches-website</code></li>
+      <li><code class="language-plaintext highlighter-rouge">./createDownloadsInclude.sh /Users/&lt;name&gt;/ ... /datasketches-website</code></li>
     </ul>
   </li>
   <li>When this is done, be sure to commit the changes to the website.</li>

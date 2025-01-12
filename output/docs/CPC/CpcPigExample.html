@@ -356,7 +356,7 @@
 
 <h3 id="cpcpig-script-building-sketches-merging-sketches-and-getting-estimates">cpc.pig script: building sketches, merging sketches and getting estimates</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-2.0.0.jar;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-2.0.0.jar;
 register datasketches-java-3.1.0.jar;
 register datasketches-pig-1.1.0.jar;
 
@@ -396,18 +396,18 @@ Most of the IDs in these categories overlap, so that there are 60 unique IDs in 
 <p>Results:
 From ‘dump d’:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(a,50.09992602861082)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(a,50.09992602861082)
 (b,50.09992602861082)
 </code></pre></div></div>
 
 <p>From ‘dump g’ (merged across categories):</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(60.14445031168714)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(60.14445031168714)
 </code></pre></div></div>
 
 <p>From ‘dump h’ (with error bounds, 99% confidence interval):</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(60.14445031168714,60.0,63.0)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(60.14445031168714,60.0,63.0)
 </code></pre></div></div>
 
       </div> <!-- End content -->

@@ -356,7 +356,7 @@
 
 <h3 id="thetapig-script-building-sketches-merging-sketches-and-getting-estimates">theta.pig script: building sketches, merging sketches and getting estimates</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-2.0.0.jar;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-2.0.0.jar;
 register datasketches-java-3.1.0.jar;
 register datasketches-pig-1.1.0.jar;
 
@@ -392,13 +392,13 @@ Most of the IDs in these categories overlap, so that there are 60 unique IDs in 
 <p>Results:
 From ‘dump d’:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(a,46.91487058420659)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(a,46.91487058420659)
 (b,46.23988568048073)
 </code></pre></div></div>
 
 <p>From ‘dump g’ (merged across categories):</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(50.415577215639736)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(50.415577215639736)
 </code></pre></div></div>
 
 <p>The expected exact result would be (60.0). The estimate has high relative error because the sketch was configured with only 32 nominal entries
@@ -406,7 +406,7 @@ to show the estimation mode for the purposes of this example.</p>
 
 <h3 id="theta_setopspig-script-set-operations-on-sketches">theta_setops.pig script: set operations on sketches</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-2.0.0-incubating.jar;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-2.0.0-incubating.jar;
 register datasketches-java-3.1.0.jar;
 register datasketches-pig-1.1.0.jar;
 
@@ -442,7 +442,7 @@ dump e;
 
 <p>Result:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(10.0,12.0,18.0,4.0,6.0,8.0)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(10.0,12.0,18.0,4.0,6.0,8.0)
 </code></pre></div></div>
 
       </div> <!-- End content -->

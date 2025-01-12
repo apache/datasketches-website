@@ -395,7 +395,7 @@ duplicate items if the input stream contains duplicates.</p>
 
 <h3 id="more-on-varopt-sampling">More on VarOpt Sampling</h3>
 
-<p>The basic VarOpt algorithm was first presented by Cohen et al<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.</p>
+<p>The basic VarOpt algorithm was first presented by Cohen et al<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.</p>
 
 <p>The underlying goal of VarOpt sampling is to provide the best possible estimate of subset sums of items in the sample. As an example, we might select a sample o size <tt>k</tt> from the ~3200 counties (a political administrative region below the level of a state) in the United States, using the county population as the weight. We could then apply a predicate to our sample – for instance, counties in the state of California – and sum the resulting weights. That sum is our estimate of the total population of the state. The weights used when computing subset sums will, in general, be adjusted values rather than the original input weights.</p>
 
@@ -413,10 +413,10 @@ duplicate items if the input stream contains duplicates.</p>
 
 <p>When using VarOpt with uniform input weights, for instance giving all items a weight of 1.0, the sketch will perform standard reservoir sampling. Similarly, if operating over an infinite stream of items with finite weights, there will also be no heavy items and the sketch will return a standard weighted sample of items.</p>
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>E. Cohen, N. G. Guffield, H. Kapla, C. Lund, M. Thorup, <em>Efficient Stream Sampling for Variance-Optimal Estimation of Subset Sums</em>, SIAM J. Comput. 40(5): 1402-1431, 2011. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>E. Cohen, N. G. Guffield, H. Kapla, C. Lund, M. Thorup, <em>Efficient Stream Sampling for Variance-Optimal Estimation of Subset Sums</em>, SIAM J. Comput. 40(5): 1402-1431, 2011. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

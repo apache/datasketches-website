@@ -377,7 +377,7 @@ accuracy than the Theta Sketches mentioned above, and the CPC sketch is another 
 
 <p>A new HLL sketch is created with a simple constructor:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int lgK = 12; //This is log-base2 of k, so k = 4096. lgK can be from 4 to 21
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int lgK = 12; //This is log-base2 of k, so k = 4096. lgK can be from 4 to 21
 HllSketch sketch = new HllSketch(lgK); //TgtHllType.HLL_4 is the default
 //OR
 HllSketch sketch = new HllSketch(lgK, TgtHllType.HLL_6);
@@ -393,7 +393,7 @@ The HLL_4 is the most compressed but generally slightly slower than the other tw
 
 <p>All three types share the same API. Updating the HllSketch is very simple:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>long n = 1000000;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>long n = 1000000;
 for (int i = 0; i &lt; n; i++) {
   sketch.update(i);
 }
@@ -405,7 +405,7 @@ initialized with a seed so that the sequence is deterministic.</p>
 
 <p>Obtaining the cardinality results from the sketch is also simple:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>double estimate = sketch.getEstimate();
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>double estimate = sketch.getEstimate();
 double estUB = sketch.getUpperBound(1.0); //the upper bound at 1 standard deviation.
 double estLB = sketch.getLowerBound(1.0); //the lower bound at 1 standard deviation.
 //OR
@@ -414,7 +414,7 @@ System.out.println(sketch.toString()); //will output a summary of the sketch.
 
 <p>Which produces a console output something like this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>### HLL SKETCH SUMMARY: 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>### HLL SKETCH SUMMARY: 
   Log Config K   : 12
   Hll Target     : HLL_4
   Current Mode   : HLL
@@ -437,9 +437,9 @@ The following plot was generated with <i>LgK</i> = 14 using 2<sup>20</sup> trial
 <p>The <i>Factor = 0.8326</i> is directly relatable to the Flajolet alpha factor of 1.04. 
 As a result, this plot demonstrates that this implementation of the HLL sketch
 will be about 20% = (0.8326/1.04 - 1) more accurate than a conventional HLL sketch using Flajolet’s estimators (or derived estimators). 
-This is partially due to the use of the HIP estimator<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> for range above the transition point, which occurs at about 1500 on the graph. 
+This is partially due to the use of the HIP estimator<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> for range above the transition point, which occurs at about 1500 on the graph. 
 Below this transition point the accuracy is near zero (an RSE of about 50 ppm), which is far better than any known implementation of HLL. 
-This is due to a newly developed theory and estimator developed by Kevin Lang<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
+This is due to a newly developed theory and estimator developed by Kevin Lang<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>.</p>
 
 <p>The base Relative Standard Error (RSE) for this sketch (at LgK = 14) is 0.0065 = 0.8326 / sqrt(2<sup>14</sup>).
 The horizontal gridlines are configured to be +/- multiples of the base RSE.</p>
@@ -509,13 +509,13 @@ or difference operations with reasonable accuracy.  Instead, use the Theta sketc
 
 <hr />
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1">
-      <p>Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, PODS 2014. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:1" role="doc-endnote">
+      <p>Edith Cohen, All-Distances Sketches, Revisited: HIP Estimators for Massive Graphs Analysis, PODS 2014. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2">
-      <p>Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https://arxiv.org/abs/1708.06839 <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:2" role="doc-endnote">
+      <p>Kevin Lang, Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm. https://arxiv.org/abs/1708.06839 <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

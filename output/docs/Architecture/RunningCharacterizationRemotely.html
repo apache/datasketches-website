@@ -345,27 +345,27 @@
 
 <p>The following is a short manual how to set up running <a href="https://github.com/apache/datasketches-characterization">characterization tests</a> remotely on a server (with an access to Linux command line) so that the characterization code sees local changes in the implementation of the sketches — here, we choose the <a href="https://github.com/apache/datasketches-java">Java implemenation</a> to experiment with. This allows us, for example, to verify a bug fix or test effects of changing some internal parameters of the sketches.</p>
 
-<p>As a first step, check that the server has Java version 1.8, using <code class="highlighter-rouge">java -version</code>, as the DataSketches code requires JDK8. If not, install (or ask administrators to install) OpenJDK 8. Furthermore, we will need <a href="https://maven.apache.org/">Maven</a>, which may also be installed locally.</p>
+<p>As a first step, check that the server has Java version 1.8, using <code class="language-plaintext highlighter-rouge">java -version</code>, as the DataSketches code requires JDK8. If not, install (or ask administrators to install) OpenJDK 8. Furthermore, we will need <a href="https://maven.apache.org/">Maven</a>, which may also be installed locally.</p>
 
 <p>Next, start with cloning the required repositories into the desired location, including <a href="https://github.com/apache/datasketches-memory">DataSketches Memory</a> which is needed as a dependency. We will assume below that all repositories are in the same directory.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone https://github.com/apache/datasketches-java.git    
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone https://github.com/apache/datasketches-java.git    
 $ git clone https://github.com/apache/datasketches-characterization.git
 $ git clone https://github.com/apache/datasketches-memory.git
 </code></pre></div></div>
 
 <p>Then go to the DataSketches Java component, possibly change the code as desired, and compile and install the Java component using Maven:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mvn clean install
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mvn clean install
 </code></pre></div></div>
 
-<p>While the Java component gets compiled and installed in the <code class="highlighter-rouge">target/</code> subdirectory, the build may actually fail due to “Too many files with unapproved license” — this error should not affect the experiments in any way. When installing the Java component after some experimental changes, tests may need to be skipped during the installation (unless we update them), using option <code class="highlighter-rouge">-DskipTests=true</code>.</p>
+<p>While the Java component gets compiled and installed in the <code class="language-plaintext highlighter-rouge">target/</code> subdirectory, the build may actually fail due to “Too many files with unapproved license” — this error should not affect the experiments in any way. When installing the Java component after some experimental changes, tests may need to be skipped during the installation (unless we update them), using option <code class="language-plaintext highlighter-rouge">-DskipTests=true</code>.</p>
 
-<p>Compile and install the Memory component in the same way, that is using <code class="highlighter-rouge">mvn clean install</code> in directory <code class="highlighter-rouge">datasketches-memory</code>.</p>
+<p>Compile and install the Memory component in the same way, that is using <code class="language-plaintext highlighter-rouge">mvn clean install</code> in directory <code class="language-plaintext highlighter-rouge">datasketches-memory</code>.</p>
 
-<p>The crucial step is to make the characterization components use the local compiled Java component and not the one in the public repository. For this, we need to modify file <code class="highlighter-rouge">pom.xml</code> in the datasketches-characterization repository, which contains two <code class="highlighter-rouge">dependency</code> tags with element <code class="highlighter-rouge">artifactID</code> set to <code class="highlighter-rouge">datasketches-java</code>:</p>
+<p>The crucial step is to make the characterization components use the local compiled Java component and not the one in the public repository. For this, we need to modify file <code class="language-plaintext highlighter-rouge">pom.xml</code> in the datasketches-characterization repository, which contains two <code class="language-plaintext highlighter-rouge">dependency</code> tags with element <code class="language-plaintext highlighter-rouge">artifactID</code> set to <code class="language-plaintext highlighter-rouge">datasketches-java</code>:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;dependency&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;dependency&gt;
     &lt;groupId&gt;org.apache.datasketches&lt;/groupId&gt;
     &lt;artifactId&gt;datasketches-java&lt;/artifactId&gt;
     &lt;version&gt;${datasketches-java.version}&lt;/version&gt;
@@ -380,9 +380,9 @@ $ git clone https://github.com/apache/datasketches-memory.git
 &lt;/dependency&gt;
 </code></pre></div></div>
 
-<p>We modify both of them by adding the <code class="highlighter-rouge">scope</code> tag, set to <code class="highlighter-rouge">system</code>, and the <code class="highlighter-rouge">systemPath</code> tag as follows:</p>
+<p>We modify both of them by adding the <code class="language-plaintext highlighter-rouge">scope</code> tag, set to <code class="language-plaintext highlighter-rouge">system</code>, and the <code class="language-plaintext highlighter-rouge">systemPath</code> tag as follows:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;dependency&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;dependency&gt;
     &lt;groupId&gt;org.apache.datasketches&lt;/groupId&gt;
     &lt;artifactId&gt;datasketches-java&lt;/artifactId&gt;
     &lt;version&gt;${datasketches-java.version}&lt;/version&gt;
@@ -401,17 +401,17 @@ $ git clone https://github.com/apache/datasketches-memory.git
 &lt;/dependency&gt;    
 </code></pre></div></div>
 
-<p>The particular version of the Java component needs to be checked (see the <code class="highlighter-rouge">target/</code> subdirectory). <strong>Do not commit the modified pom.xml file.</strong></p>
+<p>The particular version of the Java component needs to be checked (see the <code class="language-plaintext highlighter-rouge">target/</code> subdirectory). <strong>Do not commit the modified pom.xml file.</strong></p>
 
-<p>Having modified <code class="highlighter-rouge">pom.xml</code>, compile the characterization code using <code class="highlighter-rouge">mvn clean test</code> (no need to install this time). Some Maven warnings because of the modified <code class="highlighter-rouge">pom.xml</code> may appear, which we can nevertheless ignore.</p>
+<p>Having modified <code class="language-plaintext highlighter-rouge">pom.xml</code>, compile the characterization code using <code class="language-plaintext highlighter-rouge">mvn clean test</code> (no need to install this time). Some Maven warnings because of the modified <code class="language-plaintext highlighter-rouge">pom.xml</code> may appear, which we can nevertheless ignore.</p>
 
-<p>Finally, choose a test to run, for example, <code class="highlighter-rouge">KllSketchAccuracyProfile</code>. After setting up the test configuration (in file <code class="highlighter-rouge">datasketches-characterization/src/main/resources/quantiles/KllSketchAccuracyJob.conf</code>) appropriately, it remains to run the test, for which we need to set the CLASSPATH enviroment variable before running <code class="highlighter-rouge">java</code> by executing the following in the datasketches-characterization directory (as above, the particular version of <code class="highlighter-rouge">datasketches-memory</code> and <code class="highlighter-rouge">datasketches-java</code> needs to be checked):</p>
+<p>Finally, choose a test to run, for example, <code class="language-plaintext highlighter-rouge">KllSketchAccuracyProfile</code>. After setting up the test configuration (in file <code class="language-plaintext highlighter-rouge">datasketches-characterization/src/main/resources/quantiles/KllSketchAccuracyJob.conf</code>) appropriately, it remains to run the test, for which we need to set the CLASSPATH enviroment variable before running <code class="language-plaintext highlighter-rouge">java</code> by executing the following in the datasketches-characterization directory (as above, the particular version of <code class="language-plaintext highlighter-rouge">datasketches-memory</code> and <code class="language-plaintext highlighter-rouge">datasketches-java</code> needs to be checked):</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export CLASSPATH="$CLASSPATH:$PWD/target/test-classes:$PWD/target/classes:$PWD/../datasketches-memory/target/datasketches-memory-1.3.0-SNAPSHOT.jar:$PWD/../datasketches-java/target/datasketches-java-1.4.0-SNAPSHOT.jar"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ export CLASSPATH="$CLASSPATH:$PWD/target/test-classes:$PWD/target/classes:$PWD/../datasketches-memory/target/datasketches-memory-1.3.0-SNAPSHOT.jar:$PWD/../datasketches-java/target/datasketches-java-1.4.0-SNAPSHOT.jar"
 $ java -ea -Dfile.encoding=UTF-8 org.apache.datasketches.Job src/main/resources/quantiles/KllSketchAccuracyJob.conf 
 </code></pre></div></div>
 
-<p>Then the test should run and when finishes, it writes the test results into a file in directory <code class="highlighter-rouge">datasketches-characterization</code>.</p>
+<p>Then the test should run and when finishes, it writes the test results into a file in directory <code class="language-plaintext highlighter-rouge">datasketches-characterization</code>.</p>
 
       </div> <!-- End content -->
     </div> <!-- End row -->

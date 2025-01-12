@@ -358,7 +358,7 @@
 
 <h3 id="hllpig-script-build-sketches-union-sketches-and-get-estimates">hll.pig script: build sketches, union sketches and get estimates</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-2.0.0.jar;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-2.0.0.jar;
 register datasketches-java-3.1.0.jar;
 register datasketches-pig-1.1.0.jar;
 
@@ -399,18 +399,18 @@ Most of the IDs in these categories overlap, so that there are 60 unique IDs in 
 <p>Results:
 From ‘dump d’ (unique count estimate per category):</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(a,50.00000608464168)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(a,50.00000608464168)
 (b,50.00000608464168)
 </code></pre></div></div>
 
 <p>From ‘dump g’ (union across categories):</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(60.00000879168661)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(60.00000879168661)
 </code></pre></div></div>
 
 <p>From ‘dump h’:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(### HLL SKETCH SUMMARY: 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(### HLL SKETCH SUMMARY: 
   Log Config K   : 10
   Hll Target     : HLL_4
   Current Mode   : SET
@@ -423,7 +423,7 @@ From ‘dump d’ (unique count estimate per category):</p>
 
 <h3 id="hll_unionpig-script-union-sketches-from-different-columns">hll_union.pig script: union sketches from different columns</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-2.0.0.jar;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>register datasketches-memory-2.0.0.jar;
 register datasketches-java-3.1.0.jar;
 register datasketches-pig-1.1.0.jar;
 
@@ -451,7 +451,7 @@ dump e;
 
 <p>Result:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(10.000000223517425,12.000000327825557,18.00000075995926)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(10.000000223517425,12.000000327825557,18.00000075995926)
 </code></pre></div></div>
 
       </div> <!-- End content -->

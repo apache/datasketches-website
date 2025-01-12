@@ -387,7 +387,7 @@ that are being downloaded from your store.</p>
 <p>This is a perfect use-case for the frequencies/ItemsSketch, which is a Generic class that can be configured to
 count the number of occurrences of any arbitrary item. In this case our song-titles are strings. For example,</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ItemsSketch&lt;String&gt; sketch = new ItemsSketch&lt;String&gt;();
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ItemsSketch&lt;String&gt; sketch = new ItemsSketch&lt;String&gt;();
 while (remainingItems) { sketch.update("songTitle"); }
 </code></pre></div></div>
 
@@ -400,7 +400,7 @@ a list of the “most frequently occurring” song titles with an approximate co
 revenue. In this case each item can carry a different “weight” which is the price. We can use the same sketch as before, but
 we update it using a “weight”.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ItemsSketch&lt;String&gt; sketch = new ItemsSketch&lt;String&gt;();
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ItemsSketch&lt;String&gt; sketch = new ItemsSketch&lt;String&gt;();
 while (remainingItems) { sketch.update("songTitle", priceCents); }
 </code></pre></div></div>
 

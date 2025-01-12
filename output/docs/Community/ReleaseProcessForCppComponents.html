@@ -373,27 +373,27 @@
     <ul>
       <li>To confirm <em>gpg-agent</em> is running type:
         <ul>
-          <li><code class="highlighter-rouge">ps -axww | grep gpg</code>  # you should see something like:
+          <li><code class="language-plaintext highlighter-rouge">ps -axww | grep gpg</code>  # you should see something like:
             <ul>
               <li><em>64438 ??         0:30.33 gpg-agent –homedir /Users/&lt;name&gt;/.gnupg –use-standard-socket –daemon</em></li>
             </ul>
           </li>
           <li>To start GPG if GPG Agent is not running:
             <ul>
-              <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
+              <li><code class="language-plaintext highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
             </ul>
           </li>
         </ul>
       </li>
       <li>Confirm GitHub repository is current and git status is clean:
         <ul>
-          <li><code class="highlighter-rouge">git status</code>  # should return:</li>
+          <li><code class="language-plaintext highlighter-rouge">git status</code>  # should return:</li>
           <li>“nothing to commit, working tree clean”</li>
         </ul>
       </li>
       <li>At major version releases, search for deprecated code and remove at <strong>Major Versions</strong> only.
         <ul>
-          <li><code class="highlighter-rouge">find . -name "*.?pp" -type f -print | xargs grep -i -n -s -A0 "deprecated"</code></li>
+          <li><code class="language-plaintext highlighter-rouge">find . -name "*.?pp" -type f -print | xargs grep -i -n -s -A0 "deprecated"</code></li>
           <li>you may need to ignore false positives in the pybind11 directory</li>
         </ul>
       </li>
@@ -415,7 +415,7 @@
       <li><strong>DO NOT MERGE THIS PERMANENT BRANCH INTO MASTER</strong></li>
       <li>Do explicit push of tags on branch “A.B.X” to origin:
         <ul>
-          <li><code class="highlighter-rouge">git push origin --tags</code></li>
+          <li><code class="language-plaintext highlighter-rouge">git push origin --tags</code></li>
         </ul>
       </li>
     </ul>
@@ -443,22 +443,22 @@
 <ul>
   <li>If you have not already, on your system create the two directory structures that mirror the dist.apache.org/repos/ directories:
     <ul>
-      <li><code class="highlighter-rouge">mkdir dist/dev/datasketches/</code></li>
-      <li><code class="highlighter-rouge">mkdir dist/release/datasketches/</code></li>
+      <li><code class="language-plaintext highlighter-rouge">mkdir dist/dev/datasketches/</code></li>
+      <li><code class="language-plaintext highlighter-rouge">mkdir dist/release/datasketches/</code></li>
     </ul>
   </li>
   <li>Checkout both “dev” and “release” directories
     <ul>
       <li>Open a terminal in the dist/dev/datasketches directory and do a checkout:
         <ul>
-          <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>      #Note the DOT</li>
-          <li><code class="highlighter-rouge">svn status</code>    # make sure it is clean</li>
+          <li><code class="language-plaintext highlighter-rouge">svn co https://dist.apache.org/repos/dist/dev/datasketches/ .</code>      #Note the DOT</li>
+          <li><code class="language-plaintext highlighter-rouge">svn status</code>    # make sure it is clean</li>
         </ul>
       </li>
       <li>Open a terminal in the dist/release/datasketches directory and do a checkout:
         <ul>
-          <li><code class="highlighter-rouge">svn co https://dist.apache.org/repos/dist/release/datasketches/ .</code>  #Note the DOT</li>
-          <li><code class="highlighter-rouge">svn status</code>    # make sure it is clean</li>
+          <li><code class="language-plaintext highlighter-rouge">svn co https://dist.apache.org/repos/dist/release/datasketches/ .</code>  #Note the DOT</li>
+          <li><code class="language-plaintext highlighter-rouge">svn status</code>    # make sure it is clean</li>
         </ul>
       </li>
     </ul>
@@ -479,27 +479,27 @@
     <ul>
       <li>To confirm <em>gpg-agent</em> is running type:
         <ul>
-          <li><code class="highlighter-rouge">ps -axww | grep gpg</code>  # you should see something like:
+          <li><code class="language-plaintext highlighter-rouge">ps -axww | grep gpg</code>  # you should see something like:
             <ul>
               <li><em>64438 ??         0:30.33 gpg-agent –homedir /Users/&lt;name&gt;/.gnupg –use-standard-socket –daemon</em></li>
             </ul>
           </li>
           <li>To start GPG if GPG Agent is not running:
             <ul>
-              <li><code class="highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
+              <li><code class="language-plaintext highlighter-rouge">eval $(gpg-agent --daemon)</code></li>
             </ul>
           </li>
         </ul>
       </li>
       <li>Run something like:
         <ul>
-          <li><code class="highlighter-rouge">./bashDeployToDist.sh /Users/\&lt;name\&gt;/dev/git/Apache/datasketches-\&lt;component\&gt; datasketches-\&lt;component\&gt; A.B.0-RC1</code></li>
+          <li><code class="language-plaintext highlighter-rouge">./bashDeployToDist.sh /Users/\&lt;name\&gt;/dev/git/Apache/datasketches-\&lt;component\&gt; datasketches-\&lt;component\&gt; A.B.0-RC1</code></li>
           <li>Follow the instructions.</li>
           <li>NOTE: if you get the error “gpg: signing failed: No pinentry”:
             <ul>
               <li>open .gnupg/gpg-agent.conf</li>
               <li>change to: pinentry-program /usr/local/bin/pinentry-tty</li>
-              <li>reload the gpg agent in the terminal: <code class="highlighter-rouge">gpg-connect-agent reloadagent /bye</code></li>
+              <li>reload the gpg agent in the terminal: <code class="language-plaintext highlighter-rouge">gpg-connect-agent reloadagent /bye</code></li>
               <li>restart the ./bashDeployToDist script</li>
             </ul>
           </li>
@@ -561,7 +561,7 @@
   <li>At that same GitHub ID hash, create a new tag A.B.0 (without the RCn).</li>
   <li>From the Command Line: Push the new tag to origin:
     <ul>
-      <li><code class="highlighter-rouge">git push origin --tags</code></li>
+      <li><code class="language-plaintext highlighter-rouge">git push origin --tags</code></li>
     </ul>
   </li>
   <li>On the GitHub component site document the release</li>
@@ -574,7 +574,7 @@
   <li>Make sure you local website directory is pointing to master and up-to-date.</li>
   <li>Run the following with the argument specifying the location of your local website directory:
     <ul>
-      <li><code class="highlighter-rouge">./createDownloadsInclude.sh /Users/\&lt;name\&gt;/ ... /datasketches-website</code></li>
+      <li><code class="language-plaintext highlighter-rouge">./createDownloadsInclude.sh /Users/\&lt;name\&gt;/ ... /datasketches-website</code></li>
     </ul>
   </li>
   <li>When this is done, be sure to commit the changes to the website.</li>

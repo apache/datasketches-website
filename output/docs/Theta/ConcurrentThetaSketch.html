@@ -368,7 +368,7 @@ A <em>background propagation thread</em> continuously merges full local sketches
 However, it is important that the shared sketch is only used to get the estimate, while updates only go through the local sketches.
 The shared sketch can be allocated either off-heap or on-heap, while the local sketch is always allocated on-heap.</p>
 
-<p>Like other Theta sketches, <code class="highlighter-rouge">UpdateSketchBuilder</code> is used to build the shared and local sketches. 
+<p>Like other Theta sketches, <code class="language-plaintext highlighter-rouge">UpdateSketchBuilder</code> is used to build the shared and local sketches. 
 It is imperative that the shared sketch is built first. 
 Then, at the context of an application thread(/s) that feeds the data a local sketch is created and connected to the shared sketch.
 This is a list of the configuration parameters for the builder:</p>
@@ -383,7 +383,7 @@ This is a list of the configuration parameters for the builder:</p>
 
 <h2 id="code-example-for-building-a-concurrent-theta-sketch">Code Example for Building a Concurrent Theta Sketch</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.datasketches.memory.WritableDirectHandle;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.datasketches.memory.WritableDirectHandle;
 import org.apache.datasketches.memory.WritableMemory;
 import org.apache.datasketches.theta.Sketch;
 import org.apache.datasketches.theta.UpdateSketch;
@@ -472,12 +472,12 @@ class WriterThread extends Thread {
 <h2 id="serializing-a-concurrent-sketch">Serializing a Concurrent Sketch</h2>
 <p>A concurrent sketch is not a single unit of computation. It is composed of the shared sketch and the local buffers. 
 Only the shared sketch supports serialization as it captures the most up-to-date content of the sketch.
-In the current implementation, deserializing a shred sketch yields an <code class="highlighter-rouge">UpdateSketch</code>.
+In the current implementation, deserializing a shred sketch yields an <code class="language-plaintext highlighter-rouge">UpdateSketch</code>.
 Therefore when de-serializing a concurrent sketch both the shared sketch and the local buffers need to be re-created again.</p>
 
 <h2 id="code-example-for-serializing-and-deserializing-a-concurrent-theta-sketch">Code Example for Serializing and Deserializing a Concurrent Theta Sketch</h2>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.datasketches.memory.WritableMemory;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.datasketches.memory.WritableMemory;
 import org.apache.datasketches.theta.Sketch;
 import org.apache.datasketches.theta.UpdateSketch;
 import org.apache.datasketches.theta.UpdateSketchBuilder;

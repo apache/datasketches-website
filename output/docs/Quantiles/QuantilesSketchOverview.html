@@ -373,7 +373,7 @@ Probability Mass Function, getPMF(), and the Cumulative Distribution Function, g
 
 <p>The relevant pseudo-code snippets would look something like this:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int k = 256; //256 gives &lt; 1% normalized rank error
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int k = 256; //256 gives &lt; 1% normalized rank error
 UpdateDoublesSketch sketch = DoublesSketch.builder().setK(k).build();
 
 while ( remainingValuesExist ) { //stream in all the values, one by one
@@ -399,7 +399,7 @@ the upper and lower bounds returned from the sketch.</p>
 <p>In this case the values ranged from one to 1.8 million, which is a little over 6 orders-of-magnitude. (There are zero values in the raw data, which often happens, but they can be ignored in 
 this analysis.) In order to plot such a large dynamic range I used a log X-axis and a plot resolution of 5 points per factor of 10. Then I computed 36 equally spaced (on the log axis) split points with values from 1.0 to 1E7. These 36 split points are then provided to the getPMF() function:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>double[] splitpoints = {1.00, 1.58, ... , 6.3E6, 1E7};
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>double[] splitpoints = {1.00, 1.58, ... , 6.3E6, 1E7};
 double[] pmf = sketch.getPMF(splitpoints);
 </code></pre></div></div>
 
@@ -425,7 +425,7 @@ way off.</p>
 
 <h4 id="median-and-top-quartile">Median and Top Quartile</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>UpdateDoublesSketch qs = DoublesSketch.builder().build(); //default k = 128
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>UpdateDoublesSketch qs = DoublesSketch.builder().build(); //default k = 128
 
 for (int i=0; i &lt; 1000000; i++) { //stream length is generally unknown
   qs.update(i); //load the sketch
@@ -444,7 +444,7 @@ Median = 500087.0
 
 <h4 id="simple-frequency-histogram">Simple Frequency Histogram</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>UpdateDoublesSketch qs = DoublesSketch.builder().build(); //default k = 128
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>UpdateDoublesSketch qs = DoublesSketch.builder().build(); //default k = 128
 
 for (int i=0; i &lt; 1000000; i++) { //stream length is generally unknown
   qs.update(i); //load the sketch
@@ -475,7 +475,7 @@ System.out.println(freq + " &gt;= "+ splitPoints[bins-2]);
 
 <h4 id="merging-quantile-sketches">Merging Quantile Sketches</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>UpdateDoublesSketch qs1 = DoublesSketch.builder().build(); //default k = 128
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>UpdateDoublesSketch qs1 = DoublesSketch.builder().build(); //default k = 128
 UpdateDoublesSketch qs2 = DoublesSketch.builder().build();
 long size = 1000000; //generally unknown
 for (int i=0; i &lt; size; i++) { //update each value into the sketch
@@ -520,7 +520,7 @@ The task is to figure out how to equally partition your data.</p>
 
 <p>First you build a comparator for MyItem:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyComparator implements java.util.Comparator&lt;MyItem&gt; {
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MyComparator implements java.util.Comparator&lt;MyItem&gt; {
     @Override
     public int compare(MyItem item1, MyItem item2) {
         //compute equivalent to ...
@@ -533,7 +533,7 @@ The task is to figure out how to equally partition your data.</p>
 Serialization and deserialization is required to move sketch images across JVMs.
 The methods in this class are called by the sketch toByteArray() and sketch constructor as necessary.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.datasketches.ArrayOfItemsSerDe;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.datasketches.ArrayOfItemsSerDe;
 import org.apache.datasketches.memory.Memory;
 
 public class ArrayOfMyItemsSerDe extends ArrayOfItemsSerDe&lt;MyItem&gt; {
@@ -561,7 +561,7 @@ public class ArrayOfMyItemsSerDe extends ArrayOfItemsSerDe&lt;MyItem&gt; {
 
 <p>You are ready to feed all of MyItems into the sketch:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.datasketches.quantiles.ItemsSketch;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.datasketches.quantiles.ItemsSketch;
 
 ItemsSketch&lt;MyItem&gt; sketch = ItemsSketch.getInstance(128, new MyComparator());
 while ( remainingItemsExist ) {
@@ -571,7 +571,7 @@ while ( remainingItemsExist ) {
 
 <p>Then obtain the split point values that equally partition the data into 10 partitions.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>double[] rankFractions = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>double[] rankFractions = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
 MyItem[] itemSplitPoints = sketch.getQuantiles(rankFractions);
 </code></pre></div></div>
 

@@ -347,7 +347,7 @@
 
 <p>Building one sketch using old Spark API:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.spark.SparkContext;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.spark.SparkContext;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.JavaRDD;
@@ -392,7 +392,7 @@ public class Aggregate {
 
 <p>Wrapper to make ThetaSketch serializable:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import java.io.ObjectInputStream;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
@@ -462,7 +462,7 @@ public class ThetaSketchJavaSerializable implements Serializable {
 
 <p>Building one sketch using new Spark 2.x API and reading input from a Hive table:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.spark.sql.SparkSession;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 
@@ -523,7 +523,7 @@ public class Spark2DatasetMapPartitionsReduceJavaSerialization {
 
 <p>Building multiple sketches (one sketch per key or dimension):</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.spark.SparkContext;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.spark.SparkContext;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.JavaRDD;
@@ -606,7 +606,7 @@ public class MapPartitionsToPairReduceByKey {
 
 <p>Building multiple sketches using SparkSession and reading input from a Hive table:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.spark.sql.SparkSession;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.api.java.JavaPairRDD;
