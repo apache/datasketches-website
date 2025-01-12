@@ -19,7 +19,15 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-# Quantiles Sketch Overview
+## Contents
+
+* [Classic Quantiles Sketch Overview](#overview)
+* [Numeric Quantiles](#numeric-quantiles)
+* [Extending Generic Quantiles Classes](#extending)
+* [Implementation Notes](#notes)
+
+<a id="overview"></a>
+# Classic Quantiles Sketch Overview
 
 Package: org.apache.datasketches.quantiles
 
@@ -30,12 +38,10 @@ Probability Mass Function, getPMF(), and the Cumulative Distribution Function, g
 
 * **NOTE:** See also the <a href="{{site.docs_dir}}/KLL/KLLSketch.html">KLL Sketch</a>.
 
-### Section links:
-* [Section 1](#Section 1) Numeric Quantiles
-* [Section 2](#Section 2) Extending Generic Quantiles Classes
-* [Section 3](#Section 3) Implementation Notes
 
-## <a name="Section 1"></a>Numeric Quantiles
+
+<a id="numeric-quantiles"></a>
+## Numeric Quantiles
 
 Consider this real data example of a stream of 230 million time-spent events collected from one our systems for a period of just 30 minutes. Each event records the amount of time in milliseconds that a user spends on a web page before moving to a different web page by taking some action, such as a click. 
 
@@ -175,8 +181,8 @@ Code examples are best gleaned from the test code that exercises all the various
     ### END SKETCH SUMMARY
     */
 
-
-## <a name="Section 2"></a>Extending Generic Quantiles Classes
+<a id="extending"></a>
+## Extending Generic Quantiles Classes
 
 Any item type that is comparable, or for which you can create a Comparator, can also be analyzed by extending the abstract generic classes for that particular item.
 
@@ -240,8 +246,8 @@ Then obtain the split point values that equally partition the data into 10 parti
 Using a simple binary search you can now split your data into the 10 partitions. 
 
 
-
-## <a name="Section 3"></a>Implementation Notes
+<a id="notes"></a>
+## Implementation Notes
 
 The quantiles algorithm is an implementation of the Low Discrepancy Mergeable Quantiles Sketch, using double values, described in section 3.2 of the journal version of the paper "Mergeable Summaries" by Agarwal, Cormode, Huang, Phillips, Wei, and Yi. 
 <a href="http://dblp.org/rec/html/journals/tods/AgarwalCHPWY13"></a> <!-- does not work with https -->

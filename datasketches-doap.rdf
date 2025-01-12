@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl"?>
+<rdf:RDF xml:lang="en"
+         xmlns="http://usefulinc.com/ns/doap#" 
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+         xmlns:asfext="http://projects.apache.org/ns/asfext#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/">
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+   
+         https://www.apache.org/licenses/LICENSE-2.0
+   
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+  <Project rdf:about="https://datasketches.apache.org">
+    <created>2020-12-14</created>
+    <license rdf:resource="https://spdx.org/licenses/Apache-2.0" />
+    <name>Apache datasketches</name>
+    <homepage rdf:resource="https://datasketches.apache.org" />
+    <asfext:pmc rdf:resource="https://datasketches.apache.org" />
+    <shortdesc>A library of production quality streaming algorithms with platform plugins for real-time analysis of big data in Java, C++, Python, and Go.</shortdesc>
+    <description>In the analysis of big data there are often problem queries that don’t scale because they require huge compute resources and time to generate exact results. Examples include count distinct, quantiles, distribution analysis, most-frequent items, joins, matrix computations, and graph analysis.
+
+If approximate results are acceptable, there is a class of specialized algorithms, called streaming algorithms, or sketches, that can produce results orders-of magnitude faster and with mathematically proven error bounds. For interactive queries there may not be other viable alternatives, and in the case of real-time analysis, sketches are the only known solution.</description>
+    <bug-database rdf:resource="https://github.com/apache/datasketches-java/issues" />
+    <bug-database rdf:resource="https://github.com/apache/datasketches-cpp/issues" />
+    <bug-database rdf:resource="https://github.com/apache/datasketches-python/issues" />
+    <bug-database rdf:resource="https://github.com/apache/datasketches-go/issues" />
+    <mailing-list rdf:resource="https://lists.apache.org/list.html?users@datasketches.apache.org" />
+    <download-page rdf:resource="https//datasketches.apache.org/docs/Community/Downloads.html" />
+    <programming-language>Java</programming-language>
+    <programming-language>C++</programming-language>
+    <programming-language>Python</programming-language>
+    <programming-language>Go</programming-language>
+    <category rdf:resource="https://projects.apache.org/category/library" />
+    <category rdf:resource="https://projects.apache.org/category/big-data" />
+    <repository>
+      <SVNRepository>
+        <browse rdf:resource="https://dlcdn.apache.org/datasketches"/>
+      </SVNRepository>
+    </repository>
+    <repository>
+      <GitRepository>
+        <browse rdf:resource="https://github.com/apache?q=datasketches"/>
+      </GitRepository>
+    </repository>
+    <maintainer>
+      <foaf:Person>
+        <foaf:name>Lee Rhodes</foaf:name>
+          <foaf:mbox rdf:resource="mailto:leerho@apache.org"/>
+      </foaf:Person>
+    </maintainer>
+  </Project>
+</rdf:RDF>
+

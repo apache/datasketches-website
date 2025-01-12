@@ -131,8 +131,8 @@ number of valid entries is never larger than <i>k</i>.
 
 
 &nbsp;  | Empty | After Rebuild() | Estimating Avg | Estimating Max
-Nominal Entries (k) : Formula -> | 8 | k*8 +24 | k*12 + 24 | k*15 + 24
 ----------------|-------------|-------------|------------|--------------
+**Nominal Entries (k) : Formula ->** | **8** | **k*8 +24** | **k*12 + 24** | **k*15 + 24**
 16 | 8 | 152 | 216 | 264
 32 | 8 | 280 | 408 | 504
 64 | 8 | 536 | 792 | 984
@@ -160,8 +160,8 @@ plus 4 standard deviations.
 
 
 &nbsp;  | Empty | Estimating Avg | Std Dev | Max @ 99.997% 
-Nominal Entries (k) : Formula -> | 8 | k*8 + 24 | sqrt(k) | (k+4SD)*8 +24
 ----------------|-------------|-------------|------------|----------
+**Nominal Entries (k) : Formula ->** | **8** | **k*8 + 24** | **sqrt(k)** | **(k+4SD)*8 +24**
 512 | 8 | 4,120 | 23 | 4,844
 1,024 | 9 | 8,216 | 32 | 9,240
 2,048 | 10 | 16,408 | 45 | 17,856

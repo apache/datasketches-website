@@ -19,42 +19,75 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
+## Contents
+<!-- TOC -->
+* [Introduction to the Quantile Sketches](https://datasketches.apache.org/docs/QuantilesAll/QuantilesOverview.html)
+* [Kll Sketch](#kll-sketch)
+    * [Comparing the KllSketches with the original classic Quantiles Sketches](#comparing)
+    * [Plots for KllDoublesSketch vs. classic Quantiles DoublesSketch](#plots)
+    * [Simple Java KLL Example](#simple-example)
+* [KLL Accuracy And Size](https://datasketches.apache.org/docs/KLL/KLLAccuracyAndSize.html)
+* [Understanding KLL Bounds](https://datasketches.apache.org/docs/KLL/UnderstandingKLLBounds.html)
+* Examples
+    * [KLL Sketch C++ Example](https://datasketches.apache.org/docs/KLL/KLLCppExample.html)
+* Tutorials
+    * [Sketching Quantiles and Ranks Tutorial](https://datasketches.apache.org/docs/QuantilesAll/SketchingQuantilesAndRanksTutorial.html)
+* Theory
+    * [Optimal Quantile Approximation in Streams](https://github.com/apache/datasketches-website/tree/master/docs/pdf/Quantiles_KLL.pdf)
+    * [References](https://datasketches.apache.org/docs/QuantilesAll/QuantilesReferences.html)
+<!-- TOC -->
+
+<a id="kll-sketch"></a>
 ## KLL Sketch
 
-Implementation of a very compact quantiles sketch with lazy compaction scheme and nearly optimal accuracy per bit.
-See <a href="https://arxiv.org/abs/1603.05346v2">Optimal Quantile Approximation in Streams, by Zohar Karnin, Kevin Lang, Edo Liberty</a>.
-The name KLL is composed of the initial letters of the last names of the authors.
+This is an implementation of a very compact quantiles sketch with lazy compaction scheme and nearly optimal accuracy per bit of storage.  The underlying theoretical work is the paper 
+<a href="https://arxiv.org/abs/1603.05346v2">Optimal Quantile Approximation in Streams, by Zohar Karnin, Kevin Lang, Edo Liberty</a>. The name KLL is composed of the initial letters of the last names of the authors.
 
-The usage of KllSketch is very similar to the classic quantiles DoublesSketch. 
+This implementation includes 16 variations of the KLL Sketch, including a base KllSketch for methods common to all sketches. The implementation variations are across 3 different dimensions:
 
-* The key feature of this sketch is its compactness for a given accuracy.  
-* It is separately implemented for both float and double values and can be configured for use on-heap or off-heap (Direct mode).
-* The parameter K that affects the accuracy and the size of the sketch is not restricted to powers of 2.
-* The default of 200 was chosen to yield approximately the same normalized rank error (1.65%) as the classic quantiles DoublesSketch (K=128, error 1.73%). 
+* Input type: double, float, long, item(generic)
+* Memory type: heap, direct (off-heap)
+* Stored Size: compact (read-only), updatable 
 
-### Java example
+With the one exception that the KllItemSketch is not available in direct, updatable form.
+The classes are organized in an inheritance hierarchy as follows:
 
-```
-import org.apache.datasketches.kll.KllFloatsSketch;
+* Public KllSketch
+    * Public KllDoublesSketch
+        * KllHeapDoublesSketch
+        * KllDirectDoublesSketch
+            * KllDirectCompactDoublesSketch
 
-KllFloatsSketch sketch = KllFloatsSketch.newHeapInstance();
-int n = 1000000;
-for (int i = 0; i < n; i++) {
-  sketch.update(i);
-}
-float median = sketch.getQuantile(0.5);
-double rankOf1000 = sketch.getRank(1000);
-```
+    * Public KllFloatsSketch
+        * KllHeapFloatsSketch
+        * KllDirectFloatsSketch
+            * KllDirectCompactFloatsSketch
 
-### Differences of KllSketch from the original quantiles DoublesSketch
+    * Public KllItemsSketch<T>
+        * KllHeapItemsSketch<T>
+        * KllDirectCompactItemsSketch<T>
 
-* KLL has a smaller size for the same accuracy.
-* KLL is slightly faster to update.
-* The KLL parameter K doesn't have to be power of 2.
-* KLL operates with either float values or double values.
+    * Public KllLongsSketch
+        * KllHeapLongsSketch
+        * KllDirectLongsSketch
+            * KllDirectCompactLongsSketch
+
+The internal package-private variations are constructed using static factory methods from the 4 outer public classes for doubles, floats, items, and longs, respectively
+
+<a id="comparing"></a>
+### Comparing the KLL Sketches with the original classic Quantiles Sketches
+
+The usage of KllDoublesSketch is very similar to the classic quantiles DoublesSketch. 
+
+* The key feature of KLL sketch is its compactness for a given accuracy. KLL has a much smaller size for the same accuracy (see the plots below).
+* The KLL parameter K, which affects accuracy and size, doesn't have to be power of 2. The default K of 200 was chosen to yield approximately the same normalized rank error (1.65%) as the classic quantiles DoublesSketch (K=128, error 1.73%).
+* The classic quantiles sketch only has double and item(generic) input types, while KLL (as mentioned above) is implemented with double, float, long, and item(generic) types.
 * KLL uses a merge method rather than a union object.
 
-The starting point for the comparison is setting K in such a way that rank error would be approximately the same. As pointed out above, the default K for both sketches should achieve this. Here is the comparison of the single-sided normalized rank error (getRank() method) for the default K:
+<a id="plots"></a>
+### Plot Comparisons of KllDoublesSketch vs. classic Quantiles DoublesSketch
+
+The starting point for the plot comparisons is setting K in such a way that rank error would be approximately the same. As pointed out above, the default K for both sketches should achieve this. Here is the comparison of the single-sided normalized rank error (getRank() method) for the default K:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-ds128-rank-error.png" alt="RankError" />
 
@@ -75,3 +108,18 @@ Below is the accuracy per byte measure (the higher the better). Suppose rank err
 Below is the update() method speed:
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/kll/kll200-vs-ds128-update.png" alt="UpdateTime" />
+
+<a id="simple-example"></a>
+### Simple Java KLL Floats example
+
+```
+import org.apache.datasketches.kll.KllFloatsSketch;
+
+KllFloatsSketch sketch = KllFloatsSketch.newHeapInstance();
+int n = 1000000;
+for (int i = 0; i < n; i++) {
+  sketch.update(i);
+}
+float median = sketch.getQuantile(0.5);
+double rankOf1000 = sketch.getRank(1000);
+```

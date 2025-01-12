@@ -40,47 +40,60 @@ The fact that set operations produce sketches as results enables full set expres
 The Union and Intersection operations are symmetric (i.e., sketch order insensitive) 
 and naturally iterative. 
 The AnotB operation, however, is asymmetric (i.e., sketch order sensitive) and not iterative. 
-For example:
 
-    int k = 4096;
-    UpdateSketch skA = Sketches.updateSketchBuilder().setNominalEntries(k).build();
-    UpdateSketch skB = Sketches.updateSketchBuilder().setNominalEntries(k).build();
-    UpdateSketch skC = Sketches.updateSketchBuilder().setNominalEntries(k).build();
-    
-    for (int i=1;  i<=10; i++) { skA.update(i); }
-    for (int i=1;  i<=20; i++) { skB.update(i); }
-    for (int i=6;  i<=15; i++) { skC.update(i); } //overlapping set
-    
-    Union union = Sketches.setOperationBuilder().setNominalEntries(k).buildUnion();
-    union.update(skA);
-    union.update(skB);
-    // ... continue to iterate on the input sketches to union
-    
-    CompactSketch unionSk = union.getResult();   //the result union sketch
-    System.out.println("A U B      : "+unionSk.getEstimate());   //the estimate of union
-    
-    //Intersection is similar
-    
-    Intersection inter = Sketches.setOperationBuilder().setNominalEntries(k).buildIntersection();
-    inter.update(unionSk);
-    inter.update(skC);
-    // ... continue to iterate on the input sketches to intersect
-    
-    CompactSketch interSk = inter.getResult();  //the result intersection sketch 
-    System.out.println("(A U B) ^ C: "+interSk.getEstimate());  //the estimate of intersection
-    
-    //The AnotB operation is a little different as it is stateless and not iterative:
-    
-    AnotB aNotB = Sketches.setOperationBuilder().setNominalEntries(k).buildANotB();
-    aNotB.update(skA, skC);
-    
-    CompactSketch not = aNotB.getResult();
-    System.out.println("A \\ C      : "+not.getEstimate()); //the estimate of AnotB
+This is a Java example of all three operations:
+
+    import static org.testng.Assert.assertEquals;
+    import org.testng.annotations.Test;
+
+    public class SetOpsExample {
+      int k = 4096;
+      UpdateSketch skA = Sketches.updateSketchBuilder().setNominalEntries(k).build();
+      UpdateSketch skB = Sketches.updateSketchBuilder().setNominalEntries(k).build();
+      UpdateSketch skC = Sketches.updateSketchBuilder().setNominalEntries(k).build();
+
+      @Test
+      public void check() {
+        for (int i=1;  i<=10; i++) { skA.update(i); } //{1,2,...,10}
+        for (int i=1;  i<=20; i++) { skB.update(i); } //{1,2,...,20}
+        for (int i=6;  i<=15; i++) { skC.update(i); } //{6,7,...,15}
+  
+        Union union = Sketches.setOperationBuilder().setNominalEntries(k).buildUnion();
+        union.union(skA);
+        union.union(skB);
+        // ... option to continue to iterate on the input sketches to union
+  
+        CompactSketch unionSk = union.getResult();   //the result union sketch
+        double est = Math.round(unionSk.getEstimate());
+        System.out.println("A U B      : " + est);   //the estimate of union
+        assertEquals(est, 20.0);
+  
+        //Intersection is similar
+  
+        Intersection inter = Sketches.setOperationBuilder().setNominalEntries(k).buildIntersection();
+        inter.intersect(unionSk);
+        inter.intersect(skC);
+        // ... option to continue to iterate on the input sketches to intersect
+  
+        CompactSketch interSk = inter.getResult();  //the result intersection sketch
+        est = Math.round(interSk.getEstimate());
+        System.out.println("(A U B) ^ C: " + est); //the estimate of intersection
+        assertEquals(est, 10.0);
+  
+        //The AnotB operation is a little different as it is stateless and not iterative:
+  
+        AnotB aNotB = Sketches.setOperationBuilder().setNominalEntries(k).buildANotB();
+        CompactSketch diff = aNotB.aNotB(skA, skC);
+        est = Math.round(diff.getEstimate());
+        System.out.println("A \\ C      :  " + est); //the estimate of AnotB
+        assertEquals(est, 5.0);
+      }
+    }
     
     /* OUTPUT:
     A U B      : 20.0
     (A U B) ^ C: 10.0
-    A \ C      : 5.0
+    A \ C      :  5.0
     */
 
 
