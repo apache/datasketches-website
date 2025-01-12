@@ -34,7 +34,7 @@ layout: doc_page
 | Title     | Relative Error Streaming Quantiles                                            |
 | --------- | ----------------------------------------------------------------------------  |
 | Synopsis  | Explanation of the theory and operation of this new sketch.                   |
-| Presenter | [Pavel Vesely](https://warwick.ac.uk/fac/sci/dcs/people/pavel_vesely/) from [CSI Charles Univ, Prague](https://www.mff.cuni.cz/en/iuuk)  |
+| Presenter | [Pavel Vesely](https://iuuk.mff.cuni.cz/~vesely/) from [CSI Charles Univ, Prague](https://www.mff.cuni.cz/en/iuuk)  |
 | Date      | July 16, 2020                                                                 |
 | Conference| [WOLA 2020](https://www.mit.edu/~mahabadi/workshops/WOLA-2020.html)           |   
 | Link      | [YouTube](https://www.youtube.com/watch?v=bstWkj0EdVQ)                        |

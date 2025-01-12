@@ -19,9 +19,9 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-# HLL sketch vs Druid HyperLogLogCollector
+# HLL sketch vs Druid's HyperUnique Aggregator
 
-The goal of this article is to compare the HLL sketch implemented in this library to the <a href="https://github.com/apache/druid/tree/master/hll">Druid HyperLogLogCollector</a>.
+The goal of this article is to compare the HLL sketch implemented in this library to <a href="https://druid.apache.org/docs/latest/querying/aggregations/#count-distinct">Druid's original HyperUnique aggregator sketch</a>.
 
 ## Versions
 

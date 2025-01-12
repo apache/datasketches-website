@@ -19,8 +19,16 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-## VarOpt Sampling
+## Contents
+<!-- TOC -->
+* [VarOpt Sampling Sketches](#varopt-sampling-sketches)
+* VarOpt Sampling Examples
+    * [VarOpt Sampling Java Example](https://datasketches.apache.org/docs/Sampling/VarOptSamplingJava.html)
+    * [VarOpt Sampling Pig UDFs](https://datasketches.apache.org/docs/Sampling/VarOptPigUDFs.html)  
+<!-- TOC -->
 
+<a id="varopt-sampling-sketches"></a>
+## VarOpt Sampling Sketches
 VarOpt sampling allows one to construct a random sample of weighted items from a stream. Like with reservoir sampling, varopt sampling does not require knowing the final length of the stream in advance. As with all sketches in the library, varopt sampling sketches can be efficiently unioned.
 
 The name VarOpt refers to the sketch's property of producing estimates of subset sums with optimal variance for a given sketch size, <tt>k</tt>. If we apply a predicate to the items in a varopt sample and, the sum of weights (which may be adjusted by the sketching process) of items matching that predicate will estimate the sum of weights of matching items from the entire stream with provably minimal variance.
@@ -59,7 +67,7 @@ duplicate items if the input stream contains duplicates.
 
 ### More on VarOpt Sampling
 
-The basic VarOpt algorithm was first presented by Cohen et al<sup>1</sup>. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.
+The basic VarOpt algorithm was first presented by Cohen et al[^1]. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.
 
 The underlying goal of VarOpt sampling is to provide the best possible estimate of subset sums of items in the sample. As an example, we might select a sample o size <tt>k</tt> from the ~3200 counties (a political administrative region below the level of a state) in the United States, using the county population as the weight. We could then apply a predicate to our sample -- for instance, counties in the state of California -- and sum the resulting weights. That sum is our estimate of the total population of the state. The weights used when computing subset sums will, in general, be adjusted values rather than the original input weights.
 
@@ -78,4 +86,4 @@ When extracting items from a sketch, the heavy items retain their original weigh
 
 When using VarOpt with uniform input weights, for instance giving all items a weight of 1.0, the sketch will perform standard reservoir sampling. Similarly, if operating over an infinite stream of items with finite weights, there will also be no heavy items and the sketch will return a standard weighted sample of items.
 
-1. E. Cohen, N. G. Guffield, H. Kapla, C. Lund, M. Thorup, <em>Efficient Stream Sampling for Variance-Optimal Estimation of Subset Sums</em>, SIAM J. Comput. 40(5): 1402-1431, 2011.
+[^1]: E. Cohen, N. G. Guffield, H. Kapla, C. Lund, M. Thorup, <em>Efficient Stream Sampling for Variance-Optimal Estimation of Subset Sums</em>, SIAM J. Comput. 40(5): 1402-1431, 2011.

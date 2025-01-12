@@ -226,7 +226,7 @@ Depending on the chosen configuration, the *HllSketch* can be from one to almost
 ****
 
 * [1] [DataSketches HllSketch GitHub](https://github.com/apache/datasketches-java/tree/master/src/main/java/org/apache/datasketches/hll)
-* [2] [DataSketches HllSketch JavaDocs](/api/java/snapshot/apidocs/index.html)
+* [2] [DataSketches HllSketch JavaDocs (top of page)](https://datasketches.apache.org/docs/HLL/HllSketches.html)
 * [3] [HyperLogLogPlus GitHub](https://github.com/addthis/stream-lib/blob/master/src/main/java/com/clearspring/analytics/stream/cardinality/HyperLogLogPlus.java)
 * [4] [Google: HyperLogLog in Practice: Algorithmic Engineering of a State of The Art Cardinality Estimation Algorithm](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40671.pdf)
 * [5] The Root-Mean-Square of the Relative Error (RMS-RE) is sensitive to bias of the mean if there is any. However, if the bias is zero RMS-RE will produce the same results as the theoretical Relative Standard Error (RSE) of the stochastic process.

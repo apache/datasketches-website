@@ -26,10 +26,10 @@ Please see the [Sketch Features Matrix]({{site.docs_dir}}/Architecture/SketchFea
 
 ## Cardinality Sketches
 
-### [CPC Sketch]({{site.docs_dir}}/CPC/CPC.html): Estimating Stream Cardinalities more efficiently than the famous HLL sketch!
+### [CPC Sketch]({{site.docs_dir}}/CPC/CpcSketches.html): Estimating Stream Cardinalities more efficiently than the famous HLL sketch!
 This sketch was developed by the late Keven J. Lang, our chief scientist at the time. It is an amazing *tour de force* of scientific design and engineering and has substantially better accuracy / per stored size than the famous HLL sketch. The theory and demonstration of its performance is detailed in Lang's paper [Back to the Future: an Even More Nearly Optimal Cardinality Estimation Algorithm](https://arxiv.org/abs/1708.06839).  
 
-### [Theta Sketches]({{site.docs_dir}}/Theta/ThetaSketchFramework.html): Estimating Stream Expression Cardinalities
+### [Theta Sketches]({{site.docs_dir}}/Theta/ThetaSketches.html): Estimating Stream Expression Cardinalities
 Internet content, search and media companies like Yahoo, Google, Facebook, etc., collect many tens of billions of event records from the many millions of users to their web sites each day.  These events can be classified by many different dimensions, such as the page visited and user location and profile information.  Each event also contains some unique identifiers associated with the user, specific device (cell phone, tablet, or computer) and the web browser used.  
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/PeopleCloud.png" alt="PeopleCloud" />
@@ -37,7 +37,7 @@ Internet content, search and media companies like Yahoo, Google, Facebook, etc.,
 These same unique identifiers will appear on every page that the user visits.  In order to measure the number of unique identifiers on a page or across a number of different pages, it is necessary to discount the identifier duplicates.  Obtaining an exact answer to a _COUNT DISTINCT_ query with massive data is a difficult computational challenge. It is even more challenging if it is necessary to compute arbitrary expressions across sets of unique identifiers. For example, if set _S_ is the set of user identifiers visiting the Sports page and set _F_ is the set of user identifiers visiting the Finance page, the intersection expression _S &#8745; F_ represents the user identifiers that visited both Sports and Finance.
 
 Computing cardinalities with massive data requires lots of computer resources and time.
-However, if an approximate answer to these problems is acceptable, [Theta Sketches]({{site.docs_dir}}/Theta/ThetaSketchFramework.html) can provide reasonable estimates, in a single pass, orders of magnitude faster, even fast enough for analysis in near-real time.
+However, if an approximate answer to these problems is acceptable, [Theta Sketches]({{site.docs_dir}}/Theta/ThetaSketches.html) can provide reasonable estimates, in a single pass, orders of magnitude faster, even fast enough for analysis in near-real time.
 
 The [theta/Sketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/theta/Sketch.java) can operate both on-heap and off-heap, has powerful Union, Intersection, AnotB and Jaccard operators, has a high-performance concurrent form for multi-threaded environments, has both immutable compact, and updatable representations, and is quite fast. Because of its flexibility, it is one of the most popular sketches in our library.
 
@@ -49,10 +49,10 @@ The Tuple sketch is effectively infinitely extendable and there are several comm
 - [tuple/adouble/DoubleSketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/adouble/DoubleSketch.java) with a single column of *double* values as the *summary*.
 - [tuple/aninteger/IntegerSketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/aninteger/IntegerSketch.java) with a single column of *int* values as the *summary*.
 - [tuple/strings/ArrayOfStringsSketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/strings/ArrayOfStringsSketch.java), which is effectively a variable number of columns of strings as the *summary*.
-- [tuple/ArrayOfDoublesSketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/ArrayOfDoublesSketch.java), which enables the user to specify the number of columns of double values as the *summary*. This variant also provides both on-heap and off-heap operation.
+- [tuple/ArrayOfDoublesSketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/tuple/arrayofdoubles/ArrayOfDoublesSketch.java), which enables the user to specify the number of columns of double values as the *summary*. This variant also provides both on-heap and off-heap operation.
 
 
-### [HyperLogLog Sketches]({{site.docs_dir}}/HLL/HLL.html): Estimating Stream Cardinalities
+### [HyperLogLog Sketches]({{site.docs_dir}}/HLL/HllSketches.html): Estimating Stream Cardinalities
 The HyperLogLog (HLL) is a cardinality sketch similar to the above Theta sketches except they are anywhere from 2 to 16 times smaller in size.  The HLL sketches can be merged via the Union operator, but set intersection and difference operations are not provided intrinsically, because the resulting error would be quite poor.  If your application only requires cardinality estimation and merging and space is at a premium, the HLL or CPC sketches would be your best choice. 
 
 The [hll/HllSketch](https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/hll/HllSketch.java) can operate both on-heap and off-heap, provides the Union operators, and has both immutable compact and updatable representations.
@@ -62,8 +62,8 @@ This is a specially designed sketch that addresses the problem of individually t
 
 ## Quantiles Sketches
 
-### [Quantiles Sketches]({{site.docs_dir}}/Quantiles/QuantilesOverview.html): Estimating Distributions from a Stream of Values
-There are many situations where is valuable to understand the distribution of values in a stream. For example, from a stream of web-page time-spent values, it would be useful to know arbitrary quantiles of the distribution, such as the 25th percentile value, the median value and the 75th percentile value. The [Quantiles Sketches]({{site.docs_dir}}/Quantiles/QuantilesOverview.html) solve this problem and enable the inverse functions such as the Probability Mass Function (PMF) and the Cumulative Distribution Function (CDF) as well. It is relatively easy to produce frequency histograms such as the following diagram, which was produced from a stream of over 230 million time spent events. The space consumed by the sketch was about 43KB.
+### [Quantiles Sketches]({{site.docs_dir}}/QuantilesAll/QuantilesOverview.html): Estimating Distributions from a Stream of Values
+There are many situations where is valuable to understand the distribution of values in a stream. For example, from a stream of web-page time-spent values, it would be useful to know arbitrary quantiles of the distribution, such as the 25th percentile value, the median value and the 75th percentile value. The [Quantiles Sketches]({{site.docs_dir}}/QuantilesAll/QuantilesOverview.html) solve this problem and enable the inverse functions such as the Probability Mass Function (PMF) and the Cumulative Distribution Function (CDF) as well. It is relatively easy to produce frequency histograms such as the following diagram, which was produced from a stream of over 230 million time spent events. The space consumed by the sketch was about 43KB.
 
 <img class="doc-img-full" src="{{site.docs_img_dir}}/quantiles/TimeSpentHistogram.png" alt="TimeSpentHistogram" />
 

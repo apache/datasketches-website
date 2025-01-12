@@ -79,7 +79,7 @@ From 'describe g':
 
 In this example the results are exact due to small input.
 
-### [data.txt]({{site.docs_dir}}/FrequentItems/data.txt) (tab separated)
+### [data.txt]({{site.docs_dir}}/Frequency/data.txt) (tab separated)
     a	c1
     a	c1
     a	c1
