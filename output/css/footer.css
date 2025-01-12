@@ -13,14 +13,17 @@ footer a {
    color: #000000;
 }
 
-/* footer address { */
-/*    margin: 0 0 30px 30px; */
-/* } */
+/* 
+footer address {
+    margin: 0 0 30px 30px; */
+}
+*/
 
 footer .soc {
 	text-align:left;
 	margin:5px 0 0 0;
 }
+
 /*
 footer .soc a {
 	display:inline-block;
@@ -29,6 +32,7 @@ footer .soc a {
 	background:url(../img/icons-soc.png) no-repeat;
 }
 */
+
 footer .soc a.github {
 	background-position:0 -34px;
 }
