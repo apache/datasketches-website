@@ -173,7 +173,7 @@ a:hover, a:focus {
 }
 
 .navbar-inverse .navbar-nav>li>a,.dropdown-menu>li>a {
-  color: rgba(227,204,255, 1); //was 177,186,198,.7
+  color: rgba(227,204,255, 1); /* was 177,186,198,.7 */
   transition: color 0.1s ease;
   font-weight: 300;
   text-transform: uppercase;
@@ -192,7 +192,7 @@ a:hover, a:focus {
 
 .dropdown:hover .dropdown-menu {
   display: block;
-  margin-top: 0; // remove the gap so it doesn't close
+  margin-top: 0; /* remove the gap so it doesn't close */
 }
 
 .nav>li>a {
@@ -200,11 +200,13 @@ a:hover, a:focus {
   padding-right: 10px;
 }
 
-/* .navbar-collapse { */
-/*    padding-left: 20px; */
-/*    padding-right: 5px; */
-/*    margin-left: 15px; */
-/* } */
+/* 
+.navbar-collapse {
+  padding-left: 20px;
+  padding-right: 5px;
+  margin-left: 15px;
+} 
+*/
 
 /*
 .social-button.twitter {
