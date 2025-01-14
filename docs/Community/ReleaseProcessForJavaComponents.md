@@ -314,10 +314,10 @@ reflected in the master/main. Use the **git cherry-pick** command for this.
     * Return to the component website home, select the *gh-pages* branch and check that it created *docs/X.Y.Z* directory
  * From your local *datasketches-website* directory:
      * Open the *_includes.html* directory and open the *javadocs.html* file in a text editor.
-     * Update the tag at the end of the link to the just-released component *X.Y.Z* tag.
- * Visit *apache.github.io/datasketches-"component"/X.Y.Z* to confirm.
+     * Update or add the appropriate link for the just-released component/*X.Y.Z* tag.
  * Commit the changes to the website
-
+ * Visit *apache.github.io/datasketches-"component"/X.Y.Z* to confirm.
+ 
 ### Prepare Announce Letter to dev@
 * ASF requests that you wait 24 hours to publish Announce letter to allow the propagation to mirrors.
 * Use recent template
