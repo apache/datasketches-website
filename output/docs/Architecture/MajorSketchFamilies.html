@@ -403,15 +403,17 @@ However, if an approximate answer to these problems is acceptable, <a href="/doc
 
 <h2 id="sampling-sketches">Sampling Sketches</h2>
 
-<h3 id="sampling-sketches-uniform-and-weighted-sampling-of-a-stream-into-a-fixed-size-space"><a href="/docs/Sampling/ReservoirSampling.html">Sampling Sketches</a>: Uniform and Weighted Sampling of a Stream into a fixed size space</h3>
+<h3 id="reservoir-sampling-sketches-uniform-sampling-of-a-stream-into-a-fixed-size-space"><a href="/docs/Sampling/ReservoirSamplingSketches.html">Reservoir Sampling Sketches</a>: Uniform Sampling of a Stream into a fixed size space</h3>
 <p>This family of sketches implements an enhanced version of the famous Reservoir sampling algorithm and extends it with the capabilities that large-scale distributed systems really need: mergability (even with different sized sketches). The Java implementaion uses Java Generics so that the base classes can be trivially extended for any input type (even polymorphic types), and also enables an extensible means of performing serialization and deserialization.</p>
 
 <p>The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/sampling/ReservoirLongsSketch.java">sampling/ReservoirLongsSketch</a> accepts a stream of <em>long</em> values as identifiers with a weight of one, and produces a result Reservoir of a pre-determined size that represents a uniform random sample of the stream.</p>
 
 <p>The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/sampling/ReservoirItemsSketch.java">sampling/ReservoirItemsSketch</a> accepts a stream of type <em>T</em> as identifiers with a weight of one, and produces a result Reservoir of a pre-determined size that represents a uniform random sample of the stream.</p>
 
-<p>The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/sampling/VarOptItemsSketch.java">sampling/VarOptItemsSketch</a> extends the Reservoir family to weighted sampling, additionally providing subset sum estimates from the sample with provably optimal variance.</p>
+<h3 id="varopt-sampling-sketches-weighted-sampling-of-a-stream-into-a-fixed-size-space"><a href="/docs/Sampling/VarOptSamplingSketches.html">VarOpt Sampling Sketches</a>: Weighted Sampling of a Stream into a fixed size space</h3>
+<p>This family of sketches implements an enhanced version of Edith Cohen, et al, “Stream sampling for variance-optimal estimation of subset sums” and extends it with the capabilities that large-scale distributed systems really need: mergability (even with different sized sketches). The Java implementaion uses Java Generics so that the base classes can be trivially extended for any input type (even polymorphic types), and also enables an extensible means of performing serialization and deserialization.</p>
 
+<p>The <a href="https://github.com/apache/datasketches-java/blob/master/src/main/java/org/apache/datasketches/sampling/VarOptItemsSketch.java">sampling/VarOptItemsSketch</a> extends the Reservoir family to weighted sampling, additionally providing subset sum estimates from the sample with provably optimal variance.</p>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
