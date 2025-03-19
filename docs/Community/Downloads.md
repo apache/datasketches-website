@@ -53,7 +53,7 @@ If you are developing using Maven and want to use, for example, datasketches-jav
 
 * [Recent ZIP Releases](http://archive.apache.org/dist/datasketches)
 * [Older ZIP Releases](http://archive.apache.org/dist/incubator/datasketches)
-* [Maven Central for Java Jar files](https://search.maven.org/search?q=g:%20org.apache.datasketches)
+* [Maven Central for Java Jar files](https://search.maven.org/search?q=g:org.apache.datasketches)
 
 ## Version Numbers
 
