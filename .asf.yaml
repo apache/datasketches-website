@@ -7,3 +7,6 @@ publish:
 
 github:
   homepage: "https://datasketches.apache.org"
+  labels:
+    - website
+    - jekyll
