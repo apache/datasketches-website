@@ -403,7 +403,7 @@ under the License.
           This profile is only active when the property "m2e.version" is set, 
           which is the case when building in Eclipse with m2e.
           The ignore below tells m2eclipse to skip the execution.
-    
+    -->
     <profile>
       <id>m2e</id>
       <activation>
@@ -442,7 +442,7 @@ under the License.
         </pluginManagement>
       </build>
     </profile>
-    -->
+
 
     <profile>
       <id>strict</id>
