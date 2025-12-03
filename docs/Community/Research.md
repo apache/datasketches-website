@@ -97,7 +97,8 @@ This solution suffices in some applications, but for other applications the chun
 
 ## References
 
-**[ABL+17]** Daniel Anderson, Pryce Bevan, Kevin J. Lang, Edo Liberty, Lee Rhodes, and Justin Thaler. A high-performance algorithm for identifying frequent items in data streams. In *ACM IMC 2017 (To Appear)*, 2017. [Preliminary paper](https://arxiv.org/abs/1705.07001).
+**[ABL+17]** Daniel Anderson, Pryce Bevan, Kevin J. Lang, Edo Liberty, Lee Rhodes, and Justin Thaler. A high-performance algorithm for identifying frequent items in data streams. In *ACM IMC 2017*, 2017. 
+(dl.acm.org),(arxiv.org/abs/1705.07001).
 
 **[AC+13]** Pankaj K. Agarwal, Graham Cormode, Zengfeng Huang, Jeff M. Phillips, Zhewei Wei, Ke Yi. Mergeable summaries. In *ACM Trans. Database Syst.* 38(4): 26:1-26:28, 2013
 

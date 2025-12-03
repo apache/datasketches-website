@@ -36,6 +36,9 @@ public class ByteArrayBuilder {
   private int count_ = 0;
   private int capacity_;
 
+  /**
+   * Constructor, no arguments
+   */
   public ByteArrayBuilder() {
     this(1024);
   }
