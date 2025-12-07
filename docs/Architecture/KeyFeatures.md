@@ -30,23 +30,25 @@ layout: doc_page
   configurable by trading off sketch size with accuracy.
 * Designed for <a href="{{site.docs_dir}}/Architecture/LargeScale.html">Large-scale</a> computing environments 
   that must handle <b>Big Data</b>, e.g.:
-    * [Hadoop](https://hadoop.apache.org/)
-    * [Pig](https://pig.apache.org)
-    * [Hive](https://hive.apache.org)
+    * [Google/BigQuery](https://cloud.google.com/blog/products/data-analytics/bigquery-supports-apache-datasketches-for-approximate-analytics)
     * [Druid](https://druid.apache.org)
-    * [Spark](https://spark.apache.org)
-* <b>Maven deployable</b> and registered with the [Central Repository](https://search.maven.org/#search|ga|1|DataSketches).
+    * [Spark](https://github.com/apache/datasketches-spark)
+    * [PostgreSQL](https://github.com/apache/datasketches-postgresql)
+    * [Hadoop/Hive](https://github.com/apache/datasketches-hive)
+    * [Pig](https://github.com/apache/datasketches-pig)
+
+* The Java-based sketches are registered with the <b>Maven Central Repository</b>. For example: [DataSketches-Java](https://search.maven.org/search?q=datasketches-java).
 * Extensive documentation with the systems developer in mind.
 * Designed for production environments:
-    * Available in multiple languages: Java, C++, [Python](https://github.com/apache/datasketches-python)
-    * Binary compatible across systems and languages 
+    * Available in multiple languages: [Java](https://github.com/apache/datasketches-java), [C++](https://github.com/apache/datasketches-cpp), [Python](https://github.com/apache/datasketches-python), and [Go](https://github.com/apache/datasketches-go).
+    * Binary compatible across systems and languages. For example, a sketch can be built and loaded in a C++ platform, then serialized and transported to a Java platform where it can be merged with other sketches and queried.
 
 ### Built-In, General Purpose Functions
 
 * General purpose [Memory Component]({{site.docs_dir}}/Memory/MemoryComponent.html) for managing data off the Java Heap. 
 This enables systems designers the ability to manage their own large data heaps with 
 dedicated processor threads that would otherwise put undue pressure on the Java heap and 
-its garbage collection.
+its garbage collection.  Starting with Java Version 9.0.0, this functionality is now native to the Java 25 language.
 * General purpose implementaion of Austin Appleby's 128-bit MurmurHash3 algorithm, 
   with a number of useful extensions.
 
@@ -58,8 +60,7 @@ its garbage collection.
 * Reproducible Characterization Studies
     * All our published speed and accuracy performance results can be reproduced using the code included in the 
 [Characterization](https://github.com/apache/datasketches-characterization) repository.
-* Comprehensive Javadocs that satisfy 
-[JDK8 Javadoc](https://docs.oracle.com/javase/8/docs/technotes/guides/javadoc/index.html) standards.
+* Comprehensive Javadocs.
 
 ### Opportunities to Extend
 
@@ -86,15 +87,23 @@ its garbage collection.
   
 ### Quantiles
 
-* [Quantiles Sketch Overview]({{site.docs_dir}}/Quantiles/QuantilesSketchOverview.html). Get normal or inverse PDFs or CDFs of the distributions of any numeric value from your raw data in a single pass with well defined error bounds on the results.
-  
-### Frequent Items
+#### [Four families of Quantile algorithms]({{site.docs_dir}}/QuantilesAll/QuantilesOverview.html)
+Get normal or inverse PDFs or CDFs of the distributions of any numeric value from your raw data in a single pass with well defined error bounds on the results.
+
+### Frequency
 
 * [Frequent Items Sketches]({{site.docs_dir}}/Frequency/FrequencySketchesOverview.html) Get the most frequent items from a stream of items.
+* [CountMin sketch of Cormode and Muthukrishnan](https://github.com/apache/datasketches-java/blob/main/src/main/java/org/apache/datasketches/count/CountMinSketch.java)
+* [Frequent Distinct Tuples](https://github.com/apache/datasketches-java/blob/main/src/main/java/org/apache/datasketches/fdt/FdtSketch.java)
   
 ### Sampling
 
 * [Reservoir Sampling]({{site.docs_dir}}/Sampling/ReservoirSampling.html) Knuth's well known Reservoir sampling "Algorithm R", but extended to enable merging across different sized reservoirs.
 * [Weighted Sampling]({{site.docs_dir}}/Sampling/VarOptSampling.html) Edith Cohen's famous sampling algorithm that enables computing subset sums of weighted samples with optimum variance.
+* [Exact and Bounded Sampling Proportional to Size](https://github.com/apache/datasketches-java/blob/main/src/main/java/org/apache/datasketches/sampling/EbppsItemsSketch.java)
+
+### Filters and Set Membership
+
+* [Bloom Filter](https://github.com/apache/datasketches-java/blob/main/src/main/java/org/apache/datasketches/filters/bloomfilter/BloomFilter.java)
 
 
