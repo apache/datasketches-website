@@ -30,12 +30,12 @@ layout: doc_page
   configurable by trading off sketch size with accuracy.
 * Designed for <a href="{{site.docs_dir}}/Architecture/LargeScale.html">Large-scale</a> computing environments 
   that must handle <b>Big Data</b>, e.g.:
-    * [Google/BigQuery](https://cloud.google.com/blog/products/data-analytics/bigquery-supports-apache-datasketches-for-approximate-analytics)
-    * [Druid](https://druid.apache.org)
-    * [Spark](https://github.com/apache/datasketches-spark)
-    * [PostgreSQL](https://github.com/apache/datasketches-postgresql)
-    * [Hadoop/Hive](https://github.com/apache/datasketches-hive)
-    * [Pig](https://github.com/apache/datasketches-pig)
+    * [Google/BigQuery website](https://cloud.google.com/blog/products/data-analytics/bigquery-supports-apache-datasketches-for-approximate-analytics), [DataSketches-BigQuery repo](https://github.com/apache/datasketches-bigquery)
+    * [Druid Website](https://druid.apache.org/docs/latest/development/extensions-core/datasketches-extension)
+    * [DataSketches-Spark repo](https://github.com/apache/datasketches-spark)
+    * [DataSketches-PostgreSQL repo](https://github.com/apache/datasketches-postgresql)
+    * [Hive Website](https://hive.apache.org/docs/latest/language/datasketches-integration), [DataSketches-hive repo](https://github.com/apache/datasketches-hive)
+    * [DataSketches-Pig repo](https://github.com/apache/datasketches-pig)
 
 * The Java-based sketches are registered with the <b>Maven Central Repository</b>. For example: [DataSketches-Java](https://search.maven.org/search?q=datasketches-java).
 * Extensive documentation with the systems developer in mind.
