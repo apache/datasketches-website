@@ -345,30 +345,20 @@ configurable by trading off sketch size with accuracy.</li>
   <li>Designed for <a href="/docs/Architecture/LargeScale.html">Large-scale</a> computing environments 
 that must handle <b>Big Data</b>, e.g.:
     <ul>
-      <li><a href="https://hadoop.apache.org/">Hadoop</a></li>
-      <li><a href="https://pig.apache.org">Pig</a></li>
-      <li><a href="https://hive.apache.org">Hive</a></li>
+      <li><a href="https://cloud.google.com/blog/products/data-analytics/bigquery-supports-apache-datasketches-for-approximate-analytics">Google/BigQuery</a></li>
       <li><a href="https://druid.apache.org">Druid</a></li>
-      <li><a href="https://spark.apache.org">Spark</a></li>
+      <li><a href="https://github.com/apache/datasketches-spark">Spark</a></li>
+      <li><a href="https://github.com/apache/datasketches-postgresql">PostgreSQL</a></li>
+      <li><a href="https://github.com/apache/datasketches-hive">Hadoop/Hive</a></li>
+      <li><a href="https://github.com/apache/datasketches-pig">Pig</a></li>
     </ul>
   </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td><b>Maven deployable</b> and registered with the [Central Repository](https://search.maven.org/#search</td>
-          <td>ga</td>
-          <td>1</td>
-          <td>DataSketches).</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>The Java-based sketches are registered with the <b>Maven Central Repository</b>. For example: <a href="https://search.maven.org/search?q=datasketches-java">DataSketches-Java</a>.</li>
   <li>Extensive documentation with the systems developer in mind.</li>
   <li>Designed for production environments:
     <ul>
-      <li>Available in multiple languages: Java, C++, <a href="https://github.com/apache/datasketches-python">Python</a></li>
-      <li>Binary compatible across systems and languages</li>
+      <li>Available in multiple languages: <a href="https://github.com/apache/datasketches-java">Java</a>, <a href="https://github.com/apache/datasketches-cpp">C++</a>, <a href="https://github.com/apache/datasketches-python">Python</a>, and <a href="https://github.com/apache/datasketches-go">Go</a>.</li>
+      <li>Binary compatible across systems and languages. For example, a sketch can be built and loaded in a C++ platform, then serialized and transported to a Java platform where it can be merged with other sketches and queried.</li>
     </ul>
   </li>
 </ul>
@@ -379,7 +369,7 @@ that must handle <b>Big Data</b>, e.g.:
   <li>General purpose <a href="/docs/Memory/MemoryComponent.html">Memory Component</a> for managing data off the Java Heap. 
 This enables systems designers the ability to manage their own large data heaps with 
 dedicated processor threads that would otherwise put undue pressure on the Java heap and 
-its garbage collection.</li>
+its garbage collection.  Starting with Java Version 9.0.0, this functionality is now native to the Java 25 language.</li>
   <li>General purpose implementaion of Austin Appleby’s 128-bit MurmurHash3 algorithm, 
 with a number of useful extensions.</li>
 </ul>
@@ -399,8 +389,7 @@ with a number of useful extensions.</li>
 <a href="https://github.com/apache/datasketches-characterization">Characterization</a> repository.</li>
     </ul>
   </li>
-  <li>Comprehensive Javadocs that satisfy 
-<a href="https://docs.oracle.com/javase/8/docs/technotes/guides/javadoc/index.html">JDK8 Javadoc</a> standards.</li>
+  <li>Comprehensive Javadocs.</li>
 </ul>
 
 <h3 id="opportunities-to-extend">Opportunities to Extend</h3>
@@ -433,14 +422,15 @@ and Difference) on sets of unique identifiers</li>
 
 <h3 id="quantiles">Quantiles</h3>
 
-<ul>
-  <li><a href="/docs/Quantiles/QuantilesSketchOverview.html">Quantiles Sketch Overview</a>. Get normal or inverse PDFs or CDFs of the distributions of any numeric value from your raw data in a single pass with well defined error bounds on the results.</li>
-</ul>
+<h4 id="four-families-of-quantile-algorithms"><a href="/docs/QuantilesAll/QuantilesOverview.html">Four families of Quantile algorithms</a></h4>
+<p>Get normal or inverse PDFs or CDFs of the distributions of any numeric value from your raw data in a single pass with well defined error bounds on the results.</p>
 
-<h3 id="frequent-items">Frequent Items</h3>
+<h3 id="frequency">Frequency</h3>
 
 <ul>
   <li><a href="/docs/Frequency/FrequencySketchesOverview.html">Frequent Items Sketches</a> Get the most frequent items from a stream of items.</li>
+  <li><a href="https://github.com/apache/datasketches-java/blob/main/src/main/java/org/apache/datasketches/count/CountMinSketch.java">CountMin sketch of Cormode and Muthukrishnan</a></li>
+  <li><a href="https://github.com/apache/datasketches-java/blob/main/src/main/java/org/apache/datasketches/fdt/FdtSketch.java">Frequent Distinct Tuples</a></li>
 </ul>
 
 <h3 id="sampling">Sampling</h3>
@@ -448,6 +438,13 @@ and Difference) on sets of unique identifiers</li>
 <ul>
   <li><a href="/docs/Sampling/ReservoirSampling.html">Reservoir Sampling</a> Knuth’s well known Reservoir sampling “Algorithm R”, but extended to enable merging across different sized reservoirs.</li>
   <li><a href="/docs/Sampling/VarOptSampling.html">Weighted Sampling</a> Edith Cohen’s famous sampling algorithm that enables computing subset sums of weighted samples with optimum variance.</li>
+  <li><a href="https://github.com/apache/datasketches-java/blob/main/src/main/java/org/apache/datasketches/sampling/EbppsItemsSketch.java">Exact and Bounded Sampling Proportional to Size</a></li>
+</ul>
+
+<h3 id="filters-and-set-membership">Filters and Set Membership</h3>
+
+<ul>
+  <li><a href="https://github.com/apache/datasketches-java/blob/main/src/main/java/org/apache/datasketches/filters/bloomfilter/BloomFilter.java">Bloom Filter</a></li>
 </ul>
 
 
