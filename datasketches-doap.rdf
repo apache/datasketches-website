@@ -35,12 +35,14 @@ If approximate results are acceptable, there is a class of specialized algorithm
     <bug-database rdf:resource="https://github.com/apache/datasketches-cpp/issues" />
     <bug-database rdf:resource="https://github.com/apache/datasketches-python/issues" />
     <bug-database rdf:resource="https://github.com/apache/datasketches-go/issues" />
+    <bug-database rdf:resource="https://github.com/apache/datasketches-rust/issues" />
     <mailing-list rdf:resource="https://lists.apache.org/list.html?users@datasketches.apache.org" />
     <download-page rdf:resource="https//datasketches.apache.org/docs/Community/Downloads.html" />
     <programming-language>Java</programming-language>
     <programming-language>C++</programming-language>
     <programming-language>Python</programming-language>
     <programming-language>Go</programming-language>
+    <programming-language>Rust</programming-language>
     <category rdf:resource="https://projects.apache.org/category/library" />
     <category rdf:resource="https://projects.apache.org/category/big-data" />
     <repository>
@@ -55,7 +57,7 @@ If approximate results are acceptable, there is a class of specialized algorithm
     </repository>
     <maintainer>
       <foaf:Person>
-        <foaf:name>Lee Rhodes</foaf:name>
+        <foaf:name>Lee Rhodes (leerho)</foaf:name>
           <foaf:mbox rdf:resource="mailto:leerho@apache.org"/>
       </foaf:Person>
     </maintainer>
