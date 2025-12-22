@@ -575,7 +575,7 @@ To wit:</p>
 <h2 id="the-need-for-inequality-search">The need for inequality search</h2>
 <p>The quantile sketch algorithms discussed in the literature primarily differ by how they choose which quantiles in the stream should be discarded. After the elimination process, all of the quantiles sketch implementations are left with the challenge of how to reconstruct the actual distribution of the stream, approximately and with good accuracy.</p>
 
-<p>Given the presence of duplicates and absence of values from the stream we must redefine the above quantile and rank functions as inequalities while retaining the properties of 1:1 functions as closely as possible.**</p>
+<p>Given the presence of duplicates and absence of values from the stream we must redefine the above quantile and rank functions as inequalities while retaining the properties of 1:1 functions as closely as possible.</p>
 
 <p>One can find examples of the following definitions in the research literature.  All of our library quantile sketches allow the user to choose the searching criteria.</p>
 
