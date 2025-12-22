@@ -26,7 +26,7 @@ under the License.
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
-    <version>23</version>
+    <version>32</version>
   </parent>
 
   <groupId>org.apache.datasketches</groupId>
@@ -85,14 +85,14 @@ under the License.
 
   <properties>
     <!-- UNIQUE FOR THIS JAVA COMPONENT -->
-        <org-json.version>20230227</org-json.version> <!-- was 20231013 -->
+        <org-json.version>20250517</org-json.version> <!-- was 20230227 -->
     <!-- END:UNIQUE FOR THIS JAVA COMPONENT -->
 
     <!-- Test -->
     <testng.version>7.5.1</testng.version>
 
     <!-- System-wide properties -->
-    <maven.version>3.5.0</maven.version>
+    <maven.version>3.6.3</maven.version>
     <java.version>1.8</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -105,26 +105,26 @@ under the License.
     <!-- org.codehaus.plexus used for strict profile testing-->
     <plexus-compiler-javac-errorprone.version>2.8.8</plexus-compiler-javac-errorprone.version>
     <!--  Maven Plugins -->
-    <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version> <!-- overrides parent -->
-    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version> <!-- overrides parent -->
-    <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version> <!-- overrides parent -->
-    <maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version> <!-- overrides parent -->
-    <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version> <!-- overrides parent -->
-    <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version> <!-- overrides parent -->
-    <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version> <!-- overrides parent -->
-    <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version> <!-- overrides parent -->
+    <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version> <!-- overrides parent -->
+    <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version> <!-- overrides parent -->
+    <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version> <!-- overrides parent -->
+    <maven-enforcer-plugin.version>3.6.2</maven-enforcer-plugin.version> <!-- overrides parent -->
+    <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version> <!-- overrides parent -->
+    <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version> <!-- overrides parent -->
+    <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version> <!-- overrides parent -->
+    <maven-release-plugin.version>3.2.0</maven-release-plugin.version> <!-- overrides parent -->
     <maven-remote-resources-plugin.version>[1.7.0,)</maven-remote-resources-plugin.version> <!-- overrides parent -->
-    <maven-source-plugin.version>3.2.1</maven-source-plugin.version> <!-- overrides parent -->
-    <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version> <!-- overrides parent -->
+    <maven-source-plugin.version>3.3.1</maven-source-plugin.version> <!-- overrides parent -->
+    <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version> <!-- overrides parent -->
     <!-- Apache Plugins -->
-    <apache-rat-plugin.version>0.13</apache-rat-plugin.version> <!-- overrides parent -->
+    <apache-rat-plugin.version>0.17</apache-rat-plugin.version> <!-- overrides parent -->
     <!-- org.jacoco Maven Plugins -->
-    <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
+    <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
     <!-- org.eluder Maven Plugins -->
     <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
     <!-- other -->
     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
-    <git-commit-id-plugin.version>4.0.4</git-commit-id-plugin.version>
+    <git-commit-id-plugin.version>4.9.10</git-commit-id-plugin.version>
   </properties>
 
   <repositories>
@@ -271,7 +271,6 @@ under the License.
             <useDefaultExcludes>true</useDefaultExcludes>
             <excludes>
               <!-- rat uses .gitignore for excludes by default -->
-              <!-- UNIQUE FOR THIS JAVA COMPONENT -->
               <exclude>**/*.yaml</exclude>
               <exclude>**/*.yml</exclude>
               <exclude>**/*.txt</exclude>
@@ -287,7 +286,7 @@ under the License.
               <exclude>**/package-list</exclude>
               <exclude>**/*.svg</exclude>
               <exclude>**/*.rdf</exclude>
-              <!-- END: UNIQUE FOR THIS JAVA COMPONENT -->
+              <exclude>**/*.pdf</exclude>
               <exclude>**/test/resources/**/*.txt</exclude>
               <exclude>.asf.yaml</exclude>
               <exclude>LICENSE</exclude>
@@ -403,7 +402,7 @@ under the License.
           This profile is only active when the property "m2e.version" is set, 
           which is the case when building in Eclipse with m2e.
           The ignore below tells m2eclipse to skip the execution.
-    -->
+
     <profile>
       <id>m2e</id>
       <activation>
@@ -442,7 +441,7 @@ under the License.
         </pluginManagement>
       </build>
     </profile>
-
+    -->
 
     <profile>
       <id>strict</id>
