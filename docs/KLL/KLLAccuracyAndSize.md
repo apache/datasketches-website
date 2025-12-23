@@ -119,10 +119,10 @@ The approximate rank error values listed in the second row of the header in the 
 # KLL Sketch Typical Growth Path: Size vs N
 The following graph illustrates the typical size of KLL Floats and KLL Doubles Sketches vs number of items. Once the sketch, of a given K, reaches its "full compaction shape" its size grows very, very slowly. As you can see here, a KllDoubles sketch of 10^10 items would be about 6KB in size. The KllFloats sketch is about half that. This means for practical stream sizes, the KLL sketches stay pretty small.
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}/kll/KllGrowthPath_Floats&Doubles.png" alt="KllGrowthPath_Floats&Doubles.png" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/KllGrowthPath_Floats&Doubles.png" alt="KllGrowthPath_Floats&Doubles.png" />
 
 The growth path for KLL can be estimated from equations and plots that predict the size of the sketch fairly accurately. The following plot shows the growth path normalized per byte of item size. This can be used even for items of variable size as long as you can estimate the average item size.
 
-<img class="doc-img-half" src="{{site.docs_img_dir}}/kll/NormalizedGrowth_1B_K200.png" alt="NormalizedGrowth_1B_K200.png" />
+<img class="doc-img-full" src="{{site.docs_img_dir}}/kll/NormalizedGrowth_1B_K200.png" alt="NormalizedGrowth_1B_K200.png" />
 
 A KLL sketch of a larger"K", would shift this graph to the right. A smaller "K" would shift it to the left.
