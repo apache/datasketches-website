@@ -19,7 +19,7 @@ layout: doc_page
     specific language governing permissions and limitations
     under the License.
 -->
-# KLL Sketch Accuracy and Size
+# KLL Sketch Accuracy and Size Vs K and N
 
 The accuracy of the KLL quantile sketch is a function of the configured <i>K</i>, which also affects the overall size of the sketch (default K = 200).
 
@@ -115,3 +115,14 @@ The approximate rank error values listed in the second row of the header in the 
 | 4,294,967,296      | 2,088  | 2,584 | 3,604 | 5,832 | 10,412 | 19,848 | 38,868 |
 | 8,589,934,592      | 2,164  | 2,636 | 3,648 | 5,860 | 10,504 | 19,948 | 38,968 |
 | 17,179,869,184     | 2,240  | 2,728 | 3,740 | 5,952 | 10,564 | 19,984 | 39,036 |
+
+# KLL Sketch Typical Growth Path: Size vs N
+The following graph illustrates the typical size of KLL Floats and KLL Doubles Sketches vs number of items. Once the sketch, of a given K, reaches its "full compaction shape" its size grows very, very slowly. As you can see here, a KllDoubles sketch of 10^10 items would be about 6KB in size. The KllFloats sketch is about half that. This means for practical stream sizes, the KLL sketches stay pretty small.
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}/kll/KllGrowthPath_Floats&Doubles.png" alt="KllGrowthPath_Floats&Doubles.png" />
+
+The growth path for KLL can be estimated from equations and plots that predict the size of the sketch fairly accurately. The following plot shows the growth path normalized per byte of item size. This can be used even for items of variable size as long as you can estimate the average item size.
+
+<img class="doc-img-half" src="{{site.docs_img_dir}}/kll/NormalizedGrowth_1B_K200.png" alt="NormalizedGrowth_1B_K200.png" />
+
+A KLL sketch of a larger"K", would shift this graph to the right. A smaller "K" would shift it to the left.
