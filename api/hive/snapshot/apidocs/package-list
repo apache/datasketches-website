@@ -1,3 +1,4 @@
+org.apache.datasketches.hive.common
 org.apache.datasketches.hive.cpc
 org.apache.datasketches.hive.frequencies
 org.apache.datasketches.hive.hll
