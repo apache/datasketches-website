@@ -40,14 +40,14 @@ of the <i>N - M</i> non-primary dimensions.
 * __Equal Distribution Threshold__
 
 Suppose we have a stream of 160 items where the stream consists of four item types: A, B, C, and D.
-If the distribution of occurances was shared equally across the four items each would
+If the distribution of occurrences was shared equally across the four items each would
 occur exactly 40 times or 25% of the total distribution of 160 items. Thus the equally distributed
 (or fair share) <i>threshold</i> would be 25% or as a fraction 0.25. 
 
 * __Most Frequent__
 
 We define <i>Most Frequent</i> items as those that consume more than the fair share threshold of the
-total occurances (also called the <i>weight</i>) of the entire stream. 
+total occurrences (also called the <i>weight</i>) of the entire stream. 
 
 Suppose we have a stream of 160 items where the stream consists of four item types: A, B, C, and D,
 which have the following frequency distribution: 
@@ -61,7 +61,7 @@ We would declare that A is the most frequent and B is the next most frequent. We
 declare C and D in a list of most frequent items since their respective frequencies are below 
 the threshold of 40 or 25%. 
 
-If all items occured with a frequency of 40, we could not declare 
+If all items occurred with a frequency of 40, we could not declare 
 any item as most frequent. Requesting a list of the "Top 4" items could be a list of the 4 items in any random
 order, or a list of zero items, depending on policy.
 
@@ -104,7 +104,7 @@ In this implementation the input tuples presented to the sketch are string array
 
 ### Using the FdtSketch
 
-Let's leverate the challenge at the beginning to crete a concrete example. 
+Let's leverage the challenge at the beginning to create a concrete example. 
 Let's assume <i>N = 2</i> and let <i>d1 := IP address</i>, and <i>d2 := User ID</i>.
 
 If we choose <i>{d1}</i> as the Primary Keys, then the sketch will allow us to identify the
@@ -133,7 +133,7 @@ We are done populating the sketch, now we post process the data in the sketch:
     int[] priKeyIndices = new int[] {0}; //identifies the IP address as the primary key
     int numStdDev = 2; //for 95% confidence intervals
     int limit = 20; //list only the top 20 groups
-    char sep = '|'; //the separator charactor for the group dimensions as strings
+    char sep = '|'; //the separator character for the group dimensions as strings
     List<Group> list = sketch.getResult(priKeyIndices, limit, numStdDev, sep);
     System.out.println(Group.getHeader())
     Iterator<Group> itr = list.iterator()
@@ -183,7 +183,7 @@ The Y-axis is the relative error.
 
 The blue dots represent the error of a single group from the top 500 groups. Not all of the top 500 groups are shown on the graph as number of them had true cardinalities of less than 256. Also many of the dots represent multiple groups since groups with the same Count and the same true cardinality will result in the same exact computed error, thus plotted at the same exact point.
 
-The red line is the contour of the quantile(0.84) points of the error distribution at each point along the X-axis. This quantile contour would be equivalent to the +1 standard deviation from the mean of a Gaussian distribution. But since these are quantile measurements of the actual error distribution there is no assuption whatsoever that the error distribution is Gaussian.  It is just a convenient reference contour. Similarly the black line is the contour of the quantile(0.159), which corresponds to the -1 standard deviation from the mean. Between these two contours would represent 68% of the distribution (or 68% confidence), which is equivalent to saying within +/- 1 standard deviation of the mean (if it were Gaussian).  The green line is the contour of the medians (quantile(0.5)).
+The red line is the contour of the quantile(0.84) points of the error distribution at each point along the X-axis. This quantile contour would be equivalent to the +1 standard deviation from the mean of a Gaussian distribution. But since these are quantile measurements of the actual error distribution there is no assumption whatsoever that the error distribution is Gaussian.  It is just a convenient reference contour. Similarly the black line is the contour of the quantile(0.159), which corresponds to the -1 standard deviation from the mean. Between these two contours would represent 68% of the distribution (or 68% confidence), which is equivalent to saying within +/- 1 standard deviation of the mean (if it were Gaussian).  The green line is the contour of the medians (quantile(0.5)).
 
 The following table is the list of the top 10 results from just one of the trials. The Group class was extended to include more columns at the end which were useful for this study. (This was easy to do and does not require any special access.)
 
