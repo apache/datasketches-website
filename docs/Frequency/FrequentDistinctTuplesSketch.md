@@ -21,6 +21,8 @@ layout: doc_page
 -->
 ## Frequent Distinct Tuples Sketch
 
+See also: [FDT: Kevin's Last Sketch 2019](https://github.com/apache/datasketches-website/tree/master/docs/pdf/KevinsLastSketch_FDT_2019.pdf)
+
 ### The Task
 Suppose our data is a stream of pairs {IP address, User ID} and we want to identify the IP addresses that
 have the most distinct User IDs.  Or conversely, we would like to identify the User IDs that have the 
