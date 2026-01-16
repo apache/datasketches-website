@@ -23,7 +23,7 @@ layout: doc_page
 
 ### Multiple Languages
 
-* The DataSketches library is now available in three languages, Java, C++, and Python. A fourth language, Go, is in development.
+* The DataSketches library is now available in four languages, Java, C++, Python, and Rust. A fifth language, Go, is in development.
  
 
 ### Compatibility Across Languages, Software Versions And Binary Serialization Versions

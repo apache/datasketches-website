@@ -29,7 +29,7 @@ If you have a specific issue or bug report that impacts only one of these compon
 If you like what you see give us a **Star** on these sites!
 
 ## Core Sketch Libraries
-The key sketches of the Apache DataSketches libraries are available in three (soon four) programming languages.  By design, a sketch that is available in one language that is also available in a different language will be "binary compatible" via serialization.  For example, when serialized into its compact form, a sketch created by the DataSketches C++ library, can be read by the DataSketches Java library and visa versa.
+The key sketches of the Apache DataSketches libraries are available in four (soon five) programming languages.  By design, a sketch that is available in one language that is also available in a different language will be "binary compatible" via serialization.  For example, when serialized into its compact form, a sketch created by the DataSketches C++ library, can be read by the DataSketches Java library and visa versa.
 
 Because of differences inherent in the languages, there will be some differences in the APIs, but we try to make the same basic functionality available across all the languages.
 
@@ -39,7 +39,8 @@ Because of differences inherent in the languages, there will be some differences
 | [Memory (supports Java Core)](https://github.com/apache/datasketches-memory) | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | Provides high-performance access to off-heap memory |
 | [C++ Core](https://github.com/apache/datasketches-cpp)                       | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | C++ was our second core language library and provides most of the major algorithms available in Java as well as a few sketches unique to C++. |
 | [Python Core](https://github.com/apache/datasketches-python)                 | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html), [PyPI](https://pypi.org/project/datasketches/) | Python was our third core language library and contains most of the major sketch families that are in Java and C++. All the Python sketches are backed by the C++ library via Pybind. |
-| [Go Core](https://github.com/apache/datasketches-go)                         | Under Development |  Go is our fourth core language and is still evolving. |
+| [Rust Core](https://github.com/apache/datasketches-rust)                     | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | Rust is our fourth core language and is still evolving. |
+| [Go Core](https://github.com/apache/datasketches-go)                         | Under Development |  Go is our fifth core language and is still evolving. |
 
 ## Platform Adaptors
 Adapters integrate the core library components into the aggregation APIs of specific data processing platforms. Some of these adapters are available as an Apache DataSketches distribution, other adapters are directly integrated into the target platform.

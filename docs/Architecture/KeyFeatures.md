@@ -40,7 +40,7 @@ layout: doc_page
 * The Java-based sketches are registered with the <b>Maven Central Repository</b>. For example: [DataSketches-Java](https://search.maven.org/search?q=datasketches-java).
 * Extensive documentation with the systems developer in mind.
 * Designed for production environments:
-    * Available in multiple languages: [Java](https://github.com/apache/datasketches-java), [C++](https://github.com/apache/datasketches-cpp), [Python](https://github.com/apache/datasketches-python), and [Go](https://github.com/apache/datasketches-go).
+    * Available in multiple languages: [Java](https://github.com/apache/datasketches-java), [C++](https://github.com/apache/datasketches-cpp), [Python](https://github.com/apache/datasketches-python), [Rust](https://github.com/apache/datasketches-rust), and [Go](https://github.com/apache/datasketches-go).
     * Binary compatible across systems and languages. For example, a sketch can be built and loaded in a C++ platform, then serialized and transported to a Java platform where it can be merged with other sketches and queried.
 
 ### Built-In, General Purpose Functions
@@ -105,5 +105,4 @@ Get normal or inverse PDFs or CDFs of the distributions of any numeric value fro
 ### Filters and Set Membership
 
 * [Bloom Filter](https://github.com/apache/datasketches-java/blob/main/src/main/java/org/apache/datasketches/filters/bloomfilter/BloomFilter.java)
-
 
