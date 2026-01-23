@@ -60,7 +60,7 @@ We are always open to contributions from our community.  Contributions can be of
 
 We are also open to the submission of entirely new sketch algorithms.  If you have a sketch algorithm (or a significant enhancement of our current algorithms), please read our [Sketch Criteria]({{site.docs_dir}}/Architecture/SketchCriteria.html) and contact us on our <dev@datasketches.apache.org> list.
 
-## [Our Component Repositories]({{site.docs_dir}}/Architecture/Components.html)
+## [<u>Our Component Repositories</u>]({{site.docs_dir}}/Architecture/Components.html)
 
 ### What to work on
 * Our library is made up of components that are partitioned into GitHub repositories. If you have a specific issue or bug report that impacts only one of these components please open an issue on the respective component. If you are a developer and wish to submit a PR, please choose the appropriate repository. But most important, please contact us on <dev@datasketches.apache.org>
