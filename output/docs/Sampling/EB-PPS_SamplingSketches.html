@@ -340,8 +340,53 @@
 <!-- TOC -->
 <ul>
   <li><a href="#eb-pps-sampling-sketch">EB-PPS Sampling Sketches</a>
-<!-- TOC --></li>
+    <ul>
+      <li><a href="#key-concepts-of-eb-pps">Key Concepts of EB-PPS</a></li>
+      <li><a href="#computational-advantages">Computational Advantages</a></li>
+      <li><a href="#applications-in-ML">Applications in Machine Learning</a></li>
+      <li><a href="#eb-pps-vs-varopt1">EB-PPS versus VarOpt for large datasets</a></li>
+      <li><a href="#sample-size-vs-pps-tradeoff">The fixed sample size verses PPS property tradeoff</a>
+        <ul>
+          <li><a href="#the-core-conflict">The Core Conflict</a></li>
+          <li><a href="#fixed-sample-size">Prioritizing Fixed Sample Size (e.g., VarOpt)</a></li>
+          <li><a href="#pps-property">Prioritizing the PPS Property (e.g., EB-PPS)</a></li>
+          <li><a href="#summary-table">Summary Table</a></li>
+        </ul>
+      </li>
+      <li><a href="#eb-pps-weights">How EB-PPS works with varying weights</a>
+        <ul>
+          <li><a href="#eb-pps-vs-varopt2">EB-PPS versus VarOpt Table </a></li>
+        </ul>
+      </li>
+      <li><a href="#pps-for-classifiers">Situations that make PPS vital for classifier performance</a>
+        <ul>
+          <li>
+            <ol>
+              <li><a href="#training-classifiers">Training Bayes-Optimal Classifiers</a></li>
+            </ol>
+          </li>
+          <li>
+            <ol>
+              <li><a href="#class-imbalance">Handling Severe Class Imbalance</a></li>
+            </ol>
+          </li>
+          <li>
+            <ol>
+              <li><a href="#probability-calibration">Maintaining Probability Calibration</a></li>
+            </ol>
+          </li>
+          <li>
+            <ol>
+              <li><a href="#legal-ethical-fairness">Legal and Ethical Fairness</a></li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
+
+<!-- TOC -->
 
 <p><a id="eb-pps-sampling-sketch"></a></p>
 <h2 id="exact-bound-probability-proportional-to-size-eb-pps-sampling-sketches">Exact Bound Probability-Proportional-to-Size (EB-PPS) Sampling Sketches</h2>
@@ -361,10 +406,9 @@ B. Hentschel, P. J. Haas, Y. Tian. Information Processing Letters, 2023.</p>
   <li><strong>Comparison with Other Methods:</strong> In the above referenced paper, EB-PPS is compared to other methods such as Conditional Poisson Sampling (CPS) and Pareto PPS sampling, which also aim to have inclusion probabilities proportional to given size measures.</li>
 </ul>
 
-<p>EB-PPS is advantageous for its simplicity, efficiency, and ability to balance the need for exact PPS with the constraint of a fixed sample size.</p>
+<p>EB-PPS is a modern sampling scheme designed to resolve a fundamental conflict in statistical sampling: the inability to simultaneously guarantee exact <strong>Probability Proportional to Size (PPS)</strong> and a fixed sample size for all datasets. It is advantageous for its simplicity, efficiency, and ability to balance the need for exact PPS with the constraint of a fixed sample size.</p>
 
-<p>EB-PPS is a modern sampling scheme designed to resolve a fundamental conflict in statistical sampling: the inability to simultaneously guarantee exact <strong>Probability Proportional to Size (PPS)</strong> and a fixed sample size for all datasets.</p>
-
+<p><a id="key-concepts-of-eb-pps"></a></p>
 <h3 id="key-concepts-of-eb-pps">Key Concepts of EB-PPS</h3>
 <p>Traditional PPS schemes often prioritize keeping a fixed sample size <em>k</em>, which sometimes forces them to violate the PPS property (where each item’s selection probability must be exactly proportional to its weight). EB-PPS flips this trade-off: </p>
 
@@ -374,30 +418,188 @@ B. Hentschel, P. J. Haas, Y. Tian. Information Processing Letters, 2023.</p>
   <li><strong>Optimality:</strong> If the sample size cannot be exactly <em>k</em> while maintaining strict PPS, the algorithm produces a sample with the maximal possible expected size and minimal variance.</li>
 </ul>
 
+<p><a id="computational-advantages"></a></p>
 <h3 id="computational-advantages">Computational Advantages</h3>
 
-<p>EB-PPS is particularly suited for high-volume data environments and 2026+ era big data analytics: </p>
+<p>EB-PPS is particularly suited for high-volume data environments and modern era big data analytics: </p>
 
 <ul>
   <li>
     <p><strong>One-Pass Streaming:</strong> It processes items sequentially and does not need to know the total population size in advance.</p>
   </li>
   <li>
-    <p><strong>Efficiency:</strong> It features an amortized processing time of <em>O(1)</em> <strong>per item</strong>, making it computationally superior to older state-of-the-art algorithms like VarOpt, which has <em>O(\log n)</em> complexity.</p>
+    <p><strong>Efficiency:</strong> It features an amortized processing time of <em>O(1)</em> <strong>per item</strong>, making it computationally superior to older state-of-the-art algorithms like VarOpt, which has <em>O(log k)</em> complexity.</p>
   </li>
   <li>
     <p><strong>Memory Management:</strong> By bounding the sample size, it prevents storage overflows during real-time data ingestion.</p>
   </li>
 </ul>
 
+<p><a id="applications-in-ML"></a></p>
 <h3 id="applications-in-machine-learning">Applications in Machine Learning</h3>
 
-<p>A primary 2026 application for EB-PPS is training classifiers on imbalanced datasets: </p>
+<p>A primary modern application for EB-PPS is training classifiers on imbalanced datasets: </p>
 
 <ul>
   <li><strong>Bayes-Optimality:</strong> By maintaining exact PPS, it allows standard training techniques (designed for 0-1 loss) to produce Bayes-optimal classifiers even when the true loss function is imbalanced.</li>
   <li><strong>Superior Performance:</strong> Research indicates that smaller, well-curated EB-PPS samples can outperform larger samples from traditional schemes (like VarOpt) because they avoid the bias introduced by violating PPS.</li>
 </ul>
+
+<p><a id="eb-pps-vs-varopt1"></a></p>
+<h3 id="eb-pps-versus-varopt-for-large-datasets">EB-PPS versus VarOpt for large datasets</h3>
+<p>EB-PPS is more efficient than VarOpt for large, high-volume datasets due to its superior computational complexity and optimized sample curation. Key advantages include:</p>
+
+<ul>
+  <li><strong>Optimal Computational Complexity:</strong> EB-PPS achieves an <em>O(1)</em> <strong>amortized processing time</strong> per item. This is an improvement over VarOpt, which typically requires <em>O(log k)</em> (or <em>O(log log k)</em> in some streaming implementations) time per item to maintain its internal structures.</li>
+  <li><strong>Reduced Sample Size Requirements:</strong> Because EB-PPS maintains strict PPS properties, it can achieve superior results with smaller samples. Research shows EB-PPS can produce classifiers with roughly 36% less loss than VarOpt while using sample sizes that are <strong>one-third to one-half as large.</strong> Smaller samples directly translate to faster downstream analytics and lower memory overhead.</li>
+  <li><strong>Simplified Data Structures:</strong> EB-PPS uses a single array of size <em>k</em> and does not require complex heap-based management, making it easier to implement and maintain in parallel systems.</li>
+  <li><strong>Avoidance of Bias-Correction Overhead:</strong> VarOpt often violates exact PPS to maintain a fixed sample size, requiring complex customized loss functions or additional training procedures to correct this bias. EB-PPS avoids these secondary computational costs by ensuring inclusion probabilities are “as advertised” from the start.</li>
+</ul>
+
+<p><a id="sample-size-vs-pps-tradeoff"></a></p>
+<h3 id="the-fixed-sample-size-verses-pps-property-tradeoff">The fixed sample size verses PPS property tradeoff</h3>
+<p>The primary trade-off in weighted sampling remains the tension between maintaining a fixed sample size <em>k</em> and strictly adhering to the PPS property. These two goals are mathematically incompatible in many real-world datasets.</p>
+
+<p><a id="the-core-conflict"></a></p>
+<h4 id="the-core-conflict">The Core Conflict</h4>
+<p>The fundamental issue arises when some items have such high weights that they “crowd out” the rest of the sample:</p>
+
+<ul>
+  <li><strong>Incompatibility:</strong> If an item’s weight is disproportionately large compared to the total weight of the population, a fixed <em>k</em> may force the algorithm to sample lower-weight items more frequently than their weight allows just to fill the <em>k</em> slots.</li>
+  <li><strong>Statistical Implication:</strong> When a fixed size is prioritized, the inclusion probabilities are no longer truly proportional to size (PPS), introducing statistical bias.</li>
+</ul>
+
+<p><a id="fixed-sample-size"></a></p>
+<h4 id="prioritizing-fixed-sample-size-eg-varopt">Prioritizing Fixed Sample Size (e.g., VarOpt)</h4>
+<p>Most traditional PPS schemes, like VarOpt, prioritize keeping the sample size exactly at <em>k</em>.</p>
+
+<ul>
+  <li><strong>Advantage:</strong> Predictable resource consumption and downstream processing time, as the analyst knows exactly how many data points will be returned.</li>
+  <li><strong>Disadvantage:</strong> Violates the PPS property when large-weight items exist. This requires complex bias-correction or specialized loss functions during model training.</li>
+</ul>
+
+<p><a id="pps-property"></a></p>
+<h4 id="prioritizing-the-pps-property-eg-eb-pps">Prioritizing the PPS Property (e.g., EB-PPS)</h4>
+<p>Modern approaches like EB-PPS prioritize strict adherence to the PPS property over a fixed count.</p>
+
+<ul>
+  <li><strong>Advantage:</strong> Maintains “as advertised” inclusion probabilities. This allows standard training algorithms to produce <strong>Bayes-optimal classifiers</strong> directly, which is critical for imbalanced datasets.</li>
+  <li><strong>Disadvantage:</strong> The sample size becomes a variable (though bounded by <em>k</em>). The actual size may fall below <em>k</em> if strict PPS compliance necessitates a smaller, more representative sample. </li>
+</ul>
+
+<p><a id="summary-table"></a></p>
+<h4 id="summary-table">Summary Table</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Priority</th>
+      <th style="text-align: left">Strategy</th>
+      <th style="text-align: left">Consequence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><b>Fixed Size</b></td>
+      <td style="text-align: left">Fill k slots at all costs.</td>
+      <td style="text-align: left">PPS property is violated; statistical bias is introduced.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><b>Strict PPS</b></td>
+      <td style="text-align: left">Use probabilities strictly proportional to weights.</td>
+      <td style="text-align: left">Sample size becomes a variable upper-bounded by <em>k</em>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a id="eb-pps-weights"></a></p>
+<h3 id="how-eb-pps-works-with-varying-weights">How EB-PPS works with varying weights</h3>
+<p>The algorithm’s efficiency stems from how it handles incoming items regardless of their individual “size” or weight:</p>
+
+<ul>
+  <li><strong>Flat Data Structure:</strong> EB-PPS uses only a single array of size <em>k</em> (where <em>k</em> is the target sample size). Unlike VarOpt, which relies on a heap or priority queue to manage items by weight (resulting in <em>O(log k)</em> costs), EB-PPS performs simple updates to its array.</li>
+  <li><strong>Constant-Time Decision Logic:</strong> When a new item arrives with a specific weight, the algorithm performs a fixed number of arithmetic operations to determine if it should be included. These operations do not scale with the total population size or the sample size <em>k</em>.</li>
+  <li><strong>Amortized Rebalancing:</strong> While most items are processed in a single step, certain items may trigger a “reweighting” or rebalancing of the internal sample. Because these events occur with predictable, low frequency relative to the total number of items, the cost is spread out (amortized) to maintain an average of <em>O(1)</em> <strong>per item</strong>.</li>
+  <li><strong>Weight Independence:</strong> The computational cost remains constant whether the item has a very large weight (making it almost certain to be included) or a very small weight (making it rare). The algorithm only processes the current item’s weight against its internal state, never needing to re-sort or re-scan the entire reservoir for every new entry.</li>
+</ul>
+
+<p><a id="eb-pps-vs-varopt2"></a></p>
+<h4 id="eb-pps-versus-varopt-table">EB-PPS versus VarOpt Table</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Feature</th>
+      <th style="text-align: left">EB-PPS</th>
+      <th style="text-align: left">VarOpt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><b>Complexity per Item</b></td>
+      <td style="text-align: left"><em>O(1)</em> (Amortized)</td>
+      <td style="text-align: left"><em>O(log k)</em> (Standard)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><b>Data Structure</b></td>
+      <td style="text-align: left">Simple Array</td>
+      <td style="text-align: left">Priority Queue / Heap</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><b>PPS Property</b></td>
+      <td style="text-align: left"><b>Strictly enforced</b></td>
+      <td style="text-align: left">Violated if necessary to fix <em>k</em></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><b>Sample Size <em>(k)</em></b></td>
+      <td style="text-align: left">Upper bound (Variable)</td>
+      <td style="text-align: left">Fixed (Strict)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a id="pps-for-classifiers"></a></p>
+<h3 id="situations-that-make-pps-vital-for-classifier-performance">Situations that make PPS vital for classifier performance</h3>
+<p>Today, strict adherence to the Probability Proportional to Size (PPS) property—as prioritized by schemes like EB-PPS—is considered vital for classifier performance in the following high-stakes scenarios:</p>
+
+<p><a id="training-classifiers"></a></p>
+<h4 id="1-training-bayes-optimal-classifiers">1. Training Bayes-Optimal Classifiers</h4>
+
+<p>For a classifier to be truly “optimal,” it must minimize expected risk based on the data’s true underlying distribution.</p>
+
+<ul>
+  <li><strong>The PPS Link:</strong> Exact PPS sampling ensures that the training subset maintains the statistical integrity of the original dataset’s weights.</li>
+  <li><strong>Direct Training:</strong> When PPS is strictly maintained, you can use standard training algorithms (optimized for 0-1 loss) to produce Bayes-optimal decision boundaries. If PPS is violated (as often happens with fixed-size schemes like VarOpt), the resulting decision boundary shifts, leading to suboptimal performance unless complex, custom loss-correction is applied.</li>
+</ul>
+
+<p><a id="class-imbalance"></a></p>
+<h4 id="2-handling-severe-class-imbalance">2. Handling Severe Class Imbalance</h4>
+<p>In datasets where the minority class is extremely rare (e.g., fraud detection or rare disease diagnosis), small errors in inclusion probability can cause the classifier to ignore critical but rare signals.</p>
+
+<ul>
+  <li><strong>Avoiding “Majority Bias”:</strong> Inaccurate sampling often leads a model to simply predict the majority class for all instances to achieve high “accuracy” while failing at its actual task.</li>
+  <li><strong>Exact Representation:</strong> Strict PPS ensures that the weight assigned to these rare cases is exactly preserved in the sample, forcing the model to learn the minority class features correctly.</li>
+</ul>
+
+<p><a id="probability-calibration"></a></p>
+<h4 id="3-maintaining-probability-calibration">3. Maintaining Probability Calibration</h4>
+<p>Calibration refers to the model’s ability to provide accurate probability estimates (e.g., “there is a 70% chance of malignancy”) rather than just a 0/1 label.</p>
+
+<ul>
+  <li><strong>Clinical Utility:</strong> In healthcare, over- or under-estimating risks can lead to dangerous overtreatment or missed diagnoses.</li>
+  <li><strong>PPS Advantage:</strong> Because EB-PPS does not distort the inclusion probabilities to force a fixed sample size, the resulting model is inherently better calibrated. The probabilities it outputs reflect the true risk levels of the original population.</li>
+</ul>
+
+<p><a id="legal-ethical-fairness"></a></p>
+<h4 id="4-legal-and-ethical-fairness">4. Legal and Ethical Fairness</h4>
+<p>Today, algorithmic fairness is a major regulatory focus. Biased sampling is a primary source of “AI bias” that leads to prejudiced outcomes in lending, hiring, or healthcare.</p>
+
+<ul>
+  <li><strong>Predictive Parity:</strong> Strict PPS allows for the construction of fair Bayes-optimal classifiers that satisfy “predictive parity,” ensuring that the model’s error rates and accuracy are consistent across different protected groups (e.g., race, gender).</li>
+  <li><strong>Liability Mitigation:</strong> Using sampling methods that guarantee statistical integrity (like EB-PPS) helps developers demonstrate that their models were trained on a representative, unbiased representation of the data, reducing legal liability for “erroneous training data”.</li>
+</ul>
+
+<p><em>(Note: much of this overview was generated by Gemini AI, it may contain errors.)</em></p>
 
       </div> <!-- End content -->
     </div> <!-- End row -->
