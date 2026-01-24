@@ -39,6 +39,10 @@ public class TocGenerator {
   private PrintWriter pw = null;
   private String jsonSrcFile;
 
+  private static final String defaultJsonSrcFile = "src/main/resources/docgen/toc.json";
+  private static final String defaultTgtTocFile = "_includes/toc.html";
+  
+  
   TocGenerator() {} //needed for TestNG
 
   /**
@@ -48,8 +52,8 @@ public class TocGenerator {
    *  <li>Be careful not to use any HTML reserved symbols!</li>
    *  <li>All links in the ToC should be unique within the ToC.</li>
    *  <li>Note that the javascript required is located in the _includes directory.</li>
-   *  <li>Execute this test.  The result will be placed in the proper location as part of the web
-   *  source.</li>
+   *  <li>Execute this test using TestNG or as an application. Using the defaults,
+   *  the result will be placed in the proper location as part of the web source.</li>
    *  <li>Stage the changes and push the web site source to origin.</li>
    *  <li>Refresh your browser and confirm that the TOC is correct.</li>
    * </ol>
@@ -57,12 +61,20 @@ public class TocGenerator {
    */
     @Test
     public static void runTocGenerator() {
-      final String jsonSrcFile = "src/main/resources/docgen/toc.json";
-      final String tgtTocFile = "_includes/toc.html";
-      final TocGenerator tocgen = new TocGenerator(jsonSrcFile, tgtTocFile);
+      final TocGenerator tocgen = new TocGenerator(defaultJsonSrcFile, defaultTgtTocFile);
       tocgen.readJson();
     }
 
+    /**
+     * Command line access.
+     * @param args is not used.
+     */
+    public static void main(final String[] args) {
+      final TocGenerator tocgen = new TocGenerator(defaultJsonSrcFile, defaultTgtTocFile);
+      tocgen.readJson();
+    }
+    
+    
   /**
    * Execute the runTocGenerator above.
    * @param jsonSrcFile The JSON source file
@@ -242,20 +254,6 @@ public class TocGenerator {
    */
   public final void flush() {
     if (pw != null) { pw.flush(); }
-  }
-
-  /**
-   * Command line access.
-   * @param args two arguments are required:
-   * <ol><li>The JSON source file</li>
-   * <li>The target toc.html file</li>
-   * </ol>
-   */
-  public static void main(final String[] args) {
-    final String jsonSrcFile = args[0];
-    final String tgtTocFile = args[1];
-    final TocGenerator tocgen = new TocGenerator(jsonSrcFile, tgtTocFile);
-    tocgen.readJson();
   }
 
 }

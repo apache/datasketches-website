@@ -63,7 +63,7 @@
 
         { "class":"Dropdown", "desc" : "Sampling", "array":
           [
-            {"class":"Doc",  "desc" : "Reservoir Sampling Sketches",      "dir" : "Sampling", "file": "ReservoirSamplingSketches" },
+            {"class":"Doc",  "desc" : "Reservoir Sampling Sketches",               "dir" : "Sampling", "file": "ReservoirSamplingSketches" },
             {"class":"Doc",  "desc" : "VarOpt Sampling Sketches",                  "dir" : "Sampling", "file": "VarOptSamplingSketches" },
           ]
         },
@@ -72,10 +72,11 @@
 
     { "class":"Dropdown", "desc" : "System Integrations", "array":
       [
-        {"class":"Doc",  "desc" : "Using Sketches in ApacheDruid",            "dir" : "SystemIntegrations", "file": "ApacheDruidIntegration" },
+        {"class":"Doc",  "desc" : "Using Sketches in Apache Druid",           "dir" : "SystemIntegrations", "file": "ApacheDruidIntegration" },
         {"class":"Doc",  "desc" : "Using Sketches in Apache Hive",            "dir" : "SystemIntegrations", "file": "ApacheHiveIntegration" },
         {"class":"Doc",  "desc" : "Using Sketches in Apache Pig",             "dir" : "SystemIntegrations", "file": "ApachePigIntegration" },
         {"class":"Doc",  "desc" : "Using Sketches in Apache Pinot",           "dir" : "SystemIntegrations", "file": "ApachePinotIntegration" },
+        {"class":"Doc",  "desc" : "Using Sketches in Google BigQuery",        "dir" : "SystemIntegrations", "file": "GoogleBigQueryIntegration" },
         {"class":"Doc",  "desc" : "Using Sketches in PostgreSQL",             "dir" : "SystemIntegrations", "file": "PostgreSQLIntegration" },
       ]
     },
