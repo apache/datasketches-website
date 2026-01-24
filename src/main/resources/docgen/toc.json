@@ -63,6 +63,7 @@
 
         { "class":"Dropdown", "desc" : "Sampling", "array":
           [
+            {"class":"Doc",  "desc" : "EB-PPS Sampling Sketches",                  "dir" : "Sampling", "file": "EB-PPS_SamplingSketches" },
             {"class":"Doc",  "desc" : "Reservoir Sampling Sketches",               "dir" : "Sampling", "file": "ReservoirSamplingSketches" },
             {"class":"Doc",  "desc" : "VarOpt Sampling Sketches",                  "dir" : "Sampling", "file": "VarOptSamplingSketches" },
           ]
