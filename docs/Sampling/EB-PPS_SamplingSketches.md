@@ -152,7 +152,7 @@ The algorithm's efficiency stems from how it handles incoming items regardless o
 Today, strict adherence to the Probability Proportional to Size (PPS) property—as prioritized by schemes like EB-PPS—is considered vital for classifier performance in the following high-stakes scenarios:
 
 <a id="training-classifiers"></a>
-#### 1. Training Bayes-Optimal Classifiers
+#### 1: Training Bayes-Optimal Classifiers
 
 For a classifier to be truly "optimal," it must minimize expected risk based on the data's true underlying distribution.
 
@@ -160,21 +160,21 @@ For a classifier to be truly "optimal," it must minimize expected risk based on 
 * **Direct Training:** When PPS is strictly maintained, you can use standard training algorithms (optimized for 0-1 loss) to produce Bayes-optimal decision boundaries. If PPS is violated (as often happens with fixed-size schemes like VarOpt), the resulting decision boundary shifts, leading to suboptimal performance unless complex, custom loss-correction is applied.
 
 <a id="class-imbalance"></a>
-#### 2. Handling Severe Class Imbalance
+#### 2: Handling Severe Class Imbalance
 In datasets where the minority class is extremely rare (e.g., fraud detection or rare disease diagnosis), small errors in inclusion probability can cause the classifier to ignore critical but rare signals.
 
 * **Avoiding "Majority Bias":** Inaccurate sampling often leads a model to simply predict the majority class for all instances to achieve high "accuracy" while failing at its actual task.
 * **Exact Representation:** Strict PPS ensures that the weight assigned to these rare cases is exactly preserved in the sample, forcing the model to learn the minority class features correctly.
 
 <a id="probability-calibration"></a>
-#### 3. Maintaining Probability Calibration
+#### 3: Maintaining Probability Calibration
 Calibration refers to the model's ability to provide accurate probability estimates (e.g., "there is a 70% chance of malignancy") rather than just a 0/1 label.
 
 * **Clinical Utility:** In healthcare, over- or under-estimating risks can lead to dangerous overtreatment or missed diagnoses.
 * **PPS Advantage:** Because EB-PPS does not distort the inclusion probabilities to force a fixed sample size, the resulting model is inherently better calibrated. The probabilities it outputs reflect the true risk levels of the original population.
 
 <a id="legal-ethical-fairness"></a>
-#### 4. Legal and Ethical Fairness
+#### 4: Legal and Ethical Fairness
 Today, algorithmic fairness is a major regulatory focus. Biased sampling is a primary source of "AI bias" that leads to prejudiced outcomes in lending, hiring, or healthcare. 
 
 * **Predictive Parity:** Strict PPS allows for the construction of fair Bayes-optimal classifiers that satisfy "predictive parity," ensuring that the model's error rates and accuracy are consistent across different protected groups (e.g., race, gender).
