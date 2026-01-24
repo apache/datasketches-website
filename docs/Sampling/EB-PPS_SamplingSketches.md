@@ -34,10 +34,10 @@ layout: doc_page
     * [How EB-PPS works with varying weights](#eb-pps-weights)
         * [EB-PPS versus VarOpt Table ](#eb-pps-vs-varopt2)
     * [Situations that make PPS vital for classifier performance](#pps-for-classifiers)
-        * 1. [Training Bayes-Optimal Classifiers](#training-classifiers)
-        * 2. [Handling Severe Class Imbalance](#class-imbalance)
-        * 3. [Maintaining Probability Calibration](#probability-calibration)
-        * 4. [Legal and Ethical Fairness](#legal-ethical-fairness)
+        1. [Training Bayes-Optimal Classifiers](#training-classifiers)
+        2. [Handling Severe Class Imbalance](#class-imbalance)
+        3. [Maintaining Probability Calibration](#probability-calibration)
+        4. [Legal and Ethical Fairness](#legal-ethical-fairness)
 
 <!-- TOC -->
 
