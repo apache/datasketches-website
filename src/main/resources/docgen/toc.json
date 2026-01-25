@@ -68,6 +68,12 @@
             {"class":"Doc",  "desc" : "VarOpt Sampling Sketches",                  "dir" : "Sampling", "file": "VarOptSamplingSketches" },
           ]
         },
+
+        { "class":"Dropdown", "desc" : "Density & Coresets", "array":
+          [
+            {"class":"Doc",  "desc" : "Density Sketch",                            "dir" : "Density", "file": "DensitySketch" },
+          ]
+        },
       ]
     },
 
