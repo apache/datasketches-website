@@ -33,7 +33,7 @@ layout: doc_page
 **Quick summary:** This sketch builds a coreset from the given set of input points as multi-dimensional vectors. Provides density estimate at a given point.
 
 <a id="paper"></a>
-### Our implementation is based on the following paper:<br>
+### Our implementation is based on the following paper:
 
 * Zohar Karnin, Edo Liberty "Discrepancy, Coresets, and Sketches in Machine Learning"
 https://proceedings.mlr.press/v99/karnin19a/karnin19a.pdf
@@ -42,6 +42,7 @@ https://proceedings.mlr.press/v99/karnin19a/karnin19a.pdf
 
 <a id="highlights"></a>
 #### Key Highlights:
+
 * **New Complexity Measure:** The authors define "class discrepancy" as a way to characterize the coreset complexity of different function families, similar to how Rademacher complexity is used for generalization.
 * **Improved Coreset Sizes:** They prove the existence of &epsilon;-approximation coresets of size *O(&radic;d/&epsilon;)* for several common machine learning problems, including:
     * Logistic regression
@@ -58,6 +59,7 @@ The findings allow for significantly faster optimization in large-scale machine 
 
 <a id="inspiration"></a>
 ### Our implementations was inspired by the following code, example, and tests by Edo Liberty:
+
 * **Code:** https://github.com/edoliberty/streaming-quantiles/blob/f688c8161a25582457b0a09deb4630a81406293b/gde.py
 * **Example** https://github.com/edoliberty/streaming-quantiles/blob/f688c8161a25582457b0a09deb4630a81406293b/gde_example_usage.ipynb
 * **Tests** https://github.com/edoliberty/streaming-quantiles/blob/f688c8161a25582457b0a09deb4630a81406293b/gde_test.py
