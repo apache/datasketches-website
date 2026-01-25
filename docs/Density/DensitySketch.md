@@ -43,12 +43,12 @@ https://proceedings.mlr.press/v99/karnin19a/karnin19a.pdf
 <a id="highlights"></a>
 #### Key Highlights:
 * **New Complexity Measure:** The authors define "class discrepancy" as a way to characterize the coreset complexity of different function families, similar to how Rademacher complexity is used for generalization.
-* **Improved Coreset Sizes:** They prove the existence of $\epsilon$-approximation coresets of size $O(\sqrt{d}/\epsilon)$ for several common machine learning problems, including:
+* **Improved Coreset Sizes:** They prove the existence of &epsilon;-approximation coresets of size *O(&radic;d/&epsilon;)* for several common machine learning problems, including:
     * Logistic regression
     * Sigmoid activation loss
     * Matrix covariance
     * Kernel density estimation
-* **Gaussian Kernel Resolution:** The paper resolves a long-standing open problem by matching the lower bound for the coreset complexity of Gaussian kernel density estimation at $O(\sqrt{d}/\epsilon)$.
+* **Gaussian Kernel Resolution:** The paper resolves a long-standing open problem by matching the lower bound for the coreset complexity of Gaussian kernel density estimation at *O(&radic;d/&epsilon;)*.
 * **Streaming Algorithms:** It introduces an exponential improvement to the "merge-and-reduce" trick, leading to better streaming sketches for any problem with low discrepancy.
 * **Deterministic Algorithm:** The authors provide a simple, deterministic algorithm for finding low-discrepancy sequences and coresets for any positive semi-definite kernel.
 
@@ -57,7 +57,7 @@ https://proceedings.mlr.press/v99/karnin19a/karnin19a.pdf
 The findings allow for significantly faster optimization in large-scale machine learning. By reducing a massive dataset into a much smaller coreset, researchers can perform complex calculations (like training a logistic regression model) with a fraction of the computational cost while maintaining a high level of accuracy.
 
 <a id="inspiration"></a>
-### Our implementations was inspired by the following implementation, example, and tests by Edo Liberty:
+### Our implementations was inspired by the following code, example, and tests by Edo Liberty:
 * **Code:** https://github.com/edoliberty/streaming-quantiles/blob/f688c8161a25582457b0a09deb4630a81406293b/gde.py
 * **Example** https://github.com/edoliberty/streaming-quantiles/blob/f688c8161a25582457b0a09deb4630a81406293b/gde_example_usage.ipynb
 * **Tests** https://github.com/edoliberty/streaming-quantiles/blob/f688c8161a25582457b0a09deb4630a81406293b/gde_test.py
