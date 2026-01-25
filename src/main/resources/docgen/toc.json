@@ -69,7 +69,7 @@
           ]
         },
 
-        { "class":"Dropdown", "desc" : "Density & Coresets", "array":
+        { "class":"Dropdown", "desc" : "Density And Coresets", "array":
           [
             {"class":"Doc",  "desc" : "Density Sketch",                            "dir" : "Density", "file": "DensitySketch" },
           ]
