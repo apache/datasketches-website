@@ -17,4 +17,4 @@
 | BigQuery Adaptor | 1.1.1 | [Download](https://www.apache.org/dyn/closer.lua/datasketches/bigquery/1.1.1/apache-datasketches-bigquery-1.1.1-src.zip) | [Signature](https://downloads.apache.org/datasketches/bigquery/1.1.1/apache-datasketches-bigquery-1.1.1-src.zip.asc) | [Hash](https://downloads.apache.org/datasketches/bigquery/1.1.1/apache-datasketches-bigquery-1.1.1-src.zip.sha512) | 2025-05-31T03:56:13Z | 77265 | alsay |
 
 <!-- End _includes/downloadsInclude.txt -->
-
+ 
