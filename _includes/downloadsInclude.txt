@@ -1,7 +1,7 @@
 <!-- Start _includes/downloadsInclude.txt. Computer generated, do not edit! -->
 
-| Component | Release | Archive | ASC | SHA512 | Date-Time UTC | SVN ID | Committer |
-|:---------:|:-------:|:-------:|:---:|:------:|:---------:|:------:|:---------:|
+| Component | Release | ZIP | ASC | SHA512 | Date-Time UTC | SVN ID | Committer |
+|:---------:|:-------:|:---:|:---:|:------:|:---------:|:------:|:---------:|
 | Java 8,11 Core | 6.2.0 | [Download](https://www.apache.org/dyn/closer.lua/datasketches/java/6.2.0/apache-datasketches-java-6.2.0-src.zip) | [Signature](https://downloads.apache.org/datasketches/java/6.2.0/apache-datasketches-java-6.2.0-src.zip.asc) | [Hash](https://downloads.apache.org/datasketches/java/6.2.0/apache-datasketches-java-6.2.0-src.zip.sha512) | 2025-01-16T01:14:21Z | 74221 | leerho |
 | Java 17 Core | 7.0.1 | [Download](https://www.apache.org/dyn/closer.lua/datasketches/java17/7.0.1/apache-datasketches-java-7.0.1-src.zip) | [Signature](https://downloads.apache.org/datasketches/java17/7.0.1/apache-datasketches-java-7.0.1-src.zip.asc) | [Hash](https://downloads.apache.org/datasketches/java17/7.0.1/apache-datasketches-java-7.0.1-src.zip.sha512) | 2025-01-22T00:11:05Z | 74348 | leerho |
 | Java 21 Core | 8.0.0 | [Download](https://www.apache.org/dyn/closer.lua/datasketches/java21/8.0.0/apache-datasketches-java-8.0.0-src.zip) | [Signature](https://downloads.apache.org/datasketches/java21/8.0.0/apache-datasketches-java-8.0.0-src.zip.asc) | [Hash](https://downloads.apache.org/datasketches/java21/8.0.0/apache-datasketches-java-8.0.0-src.zip.sha512) | 2025-04-15T17:48:44Z | 76283 | leerho |
