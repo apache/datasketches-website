@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<?xml-stylesheet type="text/xsl"?>
+<?xml-stylesheet type="text/xsl" href="style.xsl"?>
 <rdf:RDF xml:lang="en"
          xmlns="http://usefulinc.com/ns/doap#" 
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
@@ -24,7 +24,7 @@
   <Project rdf:about="https://datasketches.apache.org">
     <created>2020-12-14</created>
     <license rdf:resource="https://spdx.org/licenses/Apache-2.0" />
-    <name>Apache datasketches</name>
+    <name>Apache DataSketches</name>
     <homepage rdf:resource="https://datasketches.apache.org" />
     <asfext:pmc rdf:resource="https://datasketches.apache.org" />
     <shortdesc>A library of production quality streaming algorithms with platform plugins for real-time analysis of big data in Java, C++, Python, and Go.</shortdesc>
@@ -37,7 +37,7 @@ If approximate results are acceptable, there is a class of specialized algorithm
     <bug-database rdf:resource="https://github.com/apache/datasketches-go/issues" />
     <bug-database rdf:resource="https://github.com/apache/datasketches-rust/issues" />
     <mailing-list rdf:resource="https://lists.apache.org/list.html?users@datasketches.apache.org" />
-    <download-page rdf:resource="https//datasketches.apache.org/docs/Community/Downloads.html" />
+    <download-page rdf:resource="https://datasketches.apache.org/docs/Community/Downloads.html" />
     <programming-language>Java</programming-language>
     <programming-language>C++</programming-language>
     <programming-language>Python</programming-language>
