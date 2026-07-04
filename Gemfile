@@ -28,8 +28,8 @@ source 'https://rubygems.org'
 
 ruby ">= 2.5"
 
-gem 'github-pages'
-
-gem "jekyll"
-
+gem "jekyll", "~> 4.3"
 gem "rubyzip", ">=1.3.0"
+gem "csv"
+gem "bigdecimal"
+

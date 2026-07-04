@@ -15,6 +15,12 @@
 
 # example: <img class="doc-img-full" src="{{site.docs_img_dir}}PeopleCloud.png" alt="PeopleCloud" />
 
+title: DataSketches Website
+description: Main website
+url: "https://datasketches.apache.com"
+
+baseurl: ""
+    
 exclude: 
   - DISCLAIMER-WIP
   - LICENSE
