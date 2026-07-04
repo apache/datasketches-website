@@ -68,20 +68,20 @@
   <li class="dropdown ds-nav" > <!--  <img class="java-logo" src="/img/JavaLogo.png" alt="java-logo"> -->
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding: 0px 10px 0px 0px; line-height: 50px;"><span style="padding: 0px 10px 0px 0px;"> CODE DOCS<span class="caret"></span></span></a>
     <ul class="dropdown-menu ds-nav">
+      <li><a href="https://apache.github.io/datasketches-cpp/5.2.0/">DS-CPP v5.2.0 C++ 11</a></li>
+      <li><a href="https://pkg.go.dev/github.com/apache/datasketches-go@v0.2.0">DS-Go v0.2.0</a></li>
+      <li><a href="/api/hive/snapshot/apidocs/index.html">DS-Hive v2.0.0 JDK 8</a></li>
       <li><a href="https://apache.github.io/datasketches-java/6.2.0/">DS-Java v6.2.0 JDK 8,11</a></li>
       <li><a href="https://apache.github.io/datasketches-java/7.0.1/">DS-Java v7.0.1 JDK 17</a></li>
       <li><a href="https://apache.github.io/datasketches-java/8.0.0/">DS-Java v8.0.0 JDK 21</a></li>
       <li><a href="https://apache.github.io/datasketches-java/9.0.0/">DS-Java v9.0.0 JDK 25+</a></li>
       <li><a href="https://apache.github.io/datasketches-java/main/">DS-Java main 07c5ae9 JDK 25+</a></li>
-      <li><a href="https://apache.github.io/datasketches-cpp/5.2.0/">DS-CPP v5.2.0 C++ 11</a></li>
+      <li><a href="https://apache.github.io/datasketches-memory/3.0.2/">DS-Memory v3.0.2 JDK 8</a></li>
+      <li><a href="https://apache.github.io/datasketches-memory/7.0.0/java11">DS-Memory v7.0.0 JDK 11</a></li>
+      <li><a href="https://apache.github.io/datasketches-memory/7.0.0/java17_25">DS-Memory v7.0.0 JDK 17-25</a></li>
+      <li><a href="/api/pig/snapshot/apidocs/index.html">DS-Pig v1.1.0 JDK 8</a></li>
       <li><a href="https://apache.github.io/datasketches-python/5.2.0/">DS-Python v5.2.0</a></li>
       <li><a href="https://docs.rs/datasketches/0.3.0">DS-Rust v0.3.0</a></li>
-      <li><a href="https://pkg.go.dev/github.com/apache/datasketches-go@v0.2.0">DS-Go v0.2.0</a></li>
-      <li><a href="https://apache.github.io/datasketches-memory/3.0.2/">DS-Memory v3.0.1 JDK 8,11</a></li>
-      <li><a href="https://apache.github.io/datasketches-memory/4.1.0/">DS-Memory v4.1.0 JDK 17</a></li>
-      <li><a href="https://apache.github.io/datasketches-memory/6.0.0/">DS-Memory v6.0.0 JDK 21</a></li>
-      <li><a href="/api/pig/snapshot/apidocs/index.html">DS-Pig v1.1.0 JDK 8</a></li>
-      <li><a href="/api/hive/snapshot/apidocs/index.html">DS-Hive v2.0.0 JDK 8</a></li>
     </ul>
   </li>
 </ul>
@@ -412,7 +412,7 @@
 
 <p><a id="theta-sketch-framework"></a></p>
 <h2 id="theta-sketch-framework">Theta Sketch Framework</h2>
-<p>Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum Value</i> (KMV) <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup><sup>,</sup><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> 
+<p>Theta Sketches are a generalization of the well known <i>K<sup>th</sup> Minimum Value</i> (KMV) <sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup><sup>,</sup><sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> 
 sketches in that KMV sketches are a form of Theta Sketch, but not all Theta Sketches are KMV.</p>
 
 <p>The <a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework</a> (TSF) 
@@ -454,7 +454,7 @@ we are going to create a separate threshold variable and call it <i>theta (θ)</
 This effectively decouples #3 and #4 above from <i>k</i>. When the sketch is empty <i>θ</i> = 1.0. 
 After the sketch has filled with <i>k</i> minimum values <i>θ</i> is still 1.0. 
 When the next incoming unique value must be inserted into the sketch the <i>(k+1)<sup>th</sup></i> 
-minimum value, is assigned to <i>θ</i> and removed from the cache.<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup></p>
+minimum value, is assigned to <i>θ</i> and removed from the cache.<sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup></p>
 
 <p>Ultimately, it will be the size of <i>S</i>, <i>|S|</i>, that will determine the stored size of a 
 sketch, which decouples #2 above from the value <i>k</i>. 
@@ -468,13 +468,13 @@ We will discuss the RSE in a later section.</p>
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
+    <li id="fn:1">
       <p>Z. Bar-Yossef, T. Jayram, R. Kumar, D. Sivakumar, and L. Trevisan. Counting distinct elements in a data stream. In <i>Randomization and Approximation Techniques in Computer Science</i>, pages 1–10. Springer, 2002. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2" role="doc-endnote">
+    <li id="fn:2">
       <p>See <a href="/docs/Theta/InverseEstimate.html">KMV Tutorial</a> for a brief tutorial on KMV Sketches. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3" role="doc-endnote">
+    <li id="fn:3">
       <p>This is a limited “KMV perspective” on how <i>θ</i> gets assigned.  The attached paper <a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThetaSketchFramework.pdf">Theta Sketch Framework</a> presents multiple ways that <i>θ</i> can be assigned using the <i>Theta Choosing Function (TCF)</i>. Different sketch algorithms have different TCFs. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>

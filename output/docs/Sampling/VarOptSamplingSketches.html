@@ -68,20 +68,20 @@
   <li class="dropdown ds-nav" > <!--  <img class="java-logo" src="/img/JavaLogo.png" alt="java-logo"> -->
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding: 0px 10px 0px 0px; line-height: 50px;"><span style="padding: 0px 10px 0px 0px;"> CODE DOCS<span class="caret"></span></span></a>
     <ul class="dropdown-menu ds-nav">
+      <li><a href="https://apache.github.io/datasketches-cpp/5.2.0/">DS-CPP v5.2.0 C++ 11</a></li>
+      <li><a href="https://pkg.go.dev/github.com/apache/datasketches-go@v0.2.0">DS-Go v0.2.0</a></li>
+      <li><a href="/api/hive/snapshot/apidocs/index.html">DS-Hive v2.0.0 JDK 8</a></li>
       <li><a href="https://apache.github.io/datasketches-java/6.2.0/">DS-Java v6.2.0 JDK 8,11</a></li>
       <li><a href="https://apache.github.io/datasketches-java/7.0.1/">DS-Java v7.0.1 JDK 17</a></li>
       <li><a href="https://apache.github.io/datasketches-java/8.0.0/">DS-Java v8.0.0 JDK 21</a></li>
       <li><a href="https://apache.github.io/datasketches-java/9.0.0/">DS-Java v9.0.0 JDK 25+</a></li>
       <li><a href="https://apache.github.io/datasketches-java/main/">DS-Java main 07c5ae9 JDK 25+</a></li>
-      <li><a href="https://apache.github.io/datasketches-cpp/5.2.0/">DS-CPP v5.2.0 C++ 11</a></li>
+      <li><a href="https://apache.github.io/datasketches-memory/3.0.2/">DS-Memory v3.0.2 JDK 8</a></li>
+      <li><a href="https://apache.github.io/datasketches-memory/7.0.0/java11">DS-Memory v7.0.0 JDK 11</a></li>
+      <li><a href="https://apache.github.io/datasketches-memory/7.0.0/java17_25">DS-Memory v7.0.0 JDK 17-25</a></li>
+      <li><a href="/api/pig/snapshot/apidocs/index.html">DS-Pig v1.1.0 JDK 8</a></li>
       <li><a href="https://apache.github.io/datasketches-python/5.2.0/">DS-Python v5.2.0</a></li>
       <li><a href="https://docs.rs/datasketches/0.3.0">DS-Rust v0.3.0</a></li>
-      <li><a href="https://pkg.go.dev/github.com/apache/datasketches-go@v0.2.0">DS-Go v0.2.0</a></li>
-      <li><a href="https://apache.github.io/datasketches-memory/3.0.2/">DS-Memory v3.0.1 JDK 8,11</a></li>
-      <li><a href="https://apache.github.io/datasketches-memory/4.1.0/">DS-Memory v4.1.0 JDK 17</a></li>
-      <li><a href="https://apache.github.io/datasketches-memory/6.0.0/">DS-Memory v6.0.0 JDK 21</a></li>
-      <li><a href="/api/pig/snapshot/apidocs/index.html">DS-Pig v1.1.0 JDK 8</a></li>
-      <li><a href="/api/hive/snapshot/apidocs/index.html">DS-Hive v2.0.0 JDK 8</a></li>
     </ul>
   </li>
 </ul>
@@ -400,7 +400,7 @@ duplicate items if the input stream contains duplicates.</p>
 
 <h3 id="more-on-varopt-sampling">More on VarOpt Sampling</h3>
 
-<p>The basic VarOpt algorithm was first presented by Cohen et al<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.</p>
+<p>The basic VarOpt algorithm was first presented by Cohen et al<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>. We have modified and extended that work to allow for unions of VarOpt samples, producing a result that remains a valid VarOpt sketch.</p>
 
 <p>The underlying goal of VarOpt sampling is to provide the best possible estimate of subset sums of items in the sample. As an example, we might select a sample o size <tt>k</tt> from the ~3200 counties (a political administrative region below the level of a state) in the United States, using the county population as the weight. We could then apply a predicate to our sample – for instance, counties in the state of California – and sum the resulting weights. That sum is our estimate of the total population of the state. The weights used when computing subset sums will, in general, be adjusted values rather than the original input weights.</p>
 
@@ -420,7 +420,7 @@ duplicate items if the input stream contains duplicates.</p>
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
+    <li id="fn:1">
       <p>E. Cohen, N. G. Guffield, H. Kapla, C. Lund, M. Thorup, <em>Efficient Stream Sampling for Variance-Optimal Estimation of Subset Sums</em>, SIAM J. Comput. 40(5): 1402-1431, 2011. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
