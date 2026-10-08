@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<!-- Start _layouts/doc_page.html-->
+<html lang="en">
+
+<head>
+<!-- Start _include/site_head.html -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="datasketches">
+
+<title>DataSketches | </title>
+
+<link rel="shortcut icon" href="/img/favicon.png">
+
+<!-- original source: https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css -->
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<!-- original source: https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/css/fonts.css" type="text/css">
+
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/syntax.css">
+<link rel="stylesheet" href="/css/docs.css">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},showMathMenu:false,showMathMenuMSIE:false,showProcessingMessages:false});
+</script>
+
+<!-- original source: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMX_HTML-full -->
+<script src="/js/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<!-- original source: https://code.jquery.com/jquery.min.js -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- original source: https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js -->
+<script src="/js/bootstrap.min.js"></script> <!-- 3.2.0-->
+<!-- End _include/site_head.html -->
+
+</head>
+
+<body>
+<!-- Start _include/nav_bar.html -->
+<div class="navbar navbar-inverse navbar-static-top ds-nav">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" style="padding-top: 0px; padding-bottom: 0px;">
+        <span class="ds-small-h-logo"></span></a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/docs/Background/TheChallenge.html">
+            <span class="fa fa-info-circle"></span> DOCUMENTATION</a>
+        </li>
+        <li>
+          <!-- Start _include/javadocs.html -->
+<ul class="nav navbar-nav navbar-right ds-nav">
+  <li class="dropdown ds-nav" > <!--  <img class="java-logo" src="/img/JavaLogo.png" alt="java-logo"> -->
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding: 0px 10px 0px 0px; line-height: 50px;"><span style="padding: 0px 10px 0px 0px;"> CODE DOCS<span class="caret"></span></span></a>
+    <ul class="dropdown-menu ds-nav">
+      <li><a href="https://apache.github.io/datasketches-cpp/5.2.0/">DS-CPP v5.2.0 C++ 11</a></li>
+      <li><a href="https://pkg.go.dev/github.com/apache/datasketches-go@v0.2.0">DS-Go v0.2.0</a></li>
+      <li><a href="/api/hive/snapshot/apidocs/index.html">DS-Hive v2.0.0 JDK 8</a></li>
+      <li><a href="https://apache.github.io/datasketches-java/6.2.0/">DS-Java v6.2.0 JDK 8,11</a></li>
+      <li><a href="https://apache.github.io/datasketches-java/7.0.1/">DS-Java v7.0.1 JDK 17</a></li>
+      <li><a href="https://apache.github.io/datasketches-java/8.0.0/">DS-Java v8.0.0 JDK 21</a></li>
+      <li><a href="https://apache.github.io/datasketches-java/9.0.0/">DS-Java v9.0.0 JDK 25+</a></li>
+      <li><a href="https://apache.github.io/datasketches-java/main/">DS-Java main 07c5ae9 JDK 25+</a></li>
+      <li><a href="https://apache.github.io/datasketches-memory/3.0.2/">DS-Memory v3.0.2 JDK 8</a></li>
+      <li><a href="https://apache.github.io/datasketches-memory/7.0.0/java11">DS-Memory v7.0.0 JDK 11</a></li>
+      <li><a href="https://apache.github.io/datasketches-memory/7.0.0/java17_25">DS-Memory v7.0.0 JDK 17-25</a></li>
+      <li><a href="/api/pig/snapshot/apidocs/index.html">DS-Pig v1.1.0 JDK 8</a></li>
+      <li><a href="https://apache.github.io/datasketches-python/5.2.0/">DS-Python v5.2.0</a></li>
+      <li><a href="https://docs.rs/datasketches/0.5.0">DS-Rust v0.5.0</a></li>
+    </ul>
+  </li>
+</ul>
+<!-- End _include/javadocs.html -->
+
+        </li>
+        <li>
+          <span style="padding: 0px 10px 0px 0px;"></span>
+        </li>
+        <li>
+          <a href="/docs/Community/Downloads.html">
+            <span class="fa fa-download"></span> DOWNLOAD</a>
+        </li>
+        <!--
+        <li>
+          <a href="/docs/Architecture/Components.html">
+            <span class="fa fa-github"></span> GITHUB</a>
+        </li>
+        -->
+        <li>
+          <a href="/docs/Community/Research.html">
+            <span class="fa fa-paper-plane"></span> RESEARCH</a>
+        </li>
+        <li>
+          <a href="/docs/Community/index.html" style="padding-top: 0; padding-bottom: 0;">
+            <img class="ds-small-man" src="/img/datasketches-ManWhite.svg" alt="Man in community"><span style="line-height: 50px;">COMMUNITY</span></a>
+        </li>
+        <li>
+          <ul class="nav navbar-nav navbar-right ds-nav">
+            <li class="dropdown ds-nav" >
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-top: 0; padding-bottom: 0;"><img class="apache-logo" src="/img/feather.svg" alt="Apache feather"><span style="line-height: 50px;">Apache</span><span class="caret"></span></a>
+              <ul class="dropdown-menu ds-nav">
+                <li><a href="https://www.apache.org/" target="_blank">Foundation</a></li>
+                <li><a href="https://www.apache.org/events/current-event" target="_blank">Events</a></li>
+                <li><a href="https://www.apache.org/licenses/" target="_blank">License</a></li>
+                <li><a href="https://privacy.apache.org/policies/privacy-policy-public.html" target="_blank">Privacy Policy</a></li>
+                <li><a href="https://www.apache.org/foundation/thanks.html" target="_blank">Thanks</a></li>
+                <li><a href="https://www.apache.org/security/" target="_blank">Security</a></li>
+                <li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank">Sponsorship</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- End _include/nav_bar.html -->
+
+
+  <div class="container">
+    <div class="row">
+      <!-- Start ToC Block -->
+      <div class="col-md-3">
+        <div class="searchbox" style="position:relative">
+          <gcse:searchbox-only></gcse:searchbox-only>
+        </div>
+<!-- Start _includes/toc.html -->
+<!-- Computer Generated File, Do Not Edit! -->
+<link rel="stylesheet" href="/css/toc.css">
+<div id="toc" class="nav toc hidden-print">
+
+  <p id="background">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_background">Background</a>
+  </p>
+  <div class="collapse" id="collapse_background">
+    <li><a href="/docs/Background/TheChallenge.html">•The Challenge</a></li>
+    <li><a href="/docs/Background/SketchOrigins.html">•Sketch Origins</a></li>
+    <li><a href="/docs/Background/SketchElements.html">•Sketch Elements</a></li>
+    <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/AnatomyOfError_13Jan2026.pdf">•Anatomy of Error</a></li>
+    <li><a href="/docs/Background/Presentations.html">•Presentations</a></li>
+    <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/DataSketches_13Mar2025.pdf">•Overview Slide Deck</a></li>
+  </div>
+
+  <p id="architecture-and-design">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_architecture_and_design">Architecture And Design</a>
+  </p>
+  <div class="collapse" id="collapse_architecture_and_design">
+    <li><a href="/docs/Architecture/MajorSketchFamilies.html">•The Major Sketch Families</a></li>
+    <li><a href="/docs/Architecture/LargeScale.html">•Large Scale Computing</a></li>
+    <li><a href="/docs/Architecture/KeyFeatures.html">•Key Features</a></li>
+    <li><a href="/docs/Architecture/SketchFeaturesMatrix.html">•Sketch Features Matrix</a></li>
+    <li><a href="/docs/Architecture/Components.html">•Components</a></li>
+    <li><a href="/docs/Architecture/SketchesByComponent.html">•Sketches by Component</a></li>
+    <li><a href="/docs/Architecture/SketchCriteria.html">•Sketch Criteria</a></li>
+    <li><a href="https://github.com/apache/datasketches-website/tree/master/docs/pdf/ThreePowerfulSketches_13Jan2026.pdf">•Three Powerful Sketches</a></li>
+
+    <p id="memory-component">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_memory_component">Memory Component</a>
+    </p>
+    <div class="collapse" id="collapse_memory_component">
+      <li><a href="/docs/Memory/MemoryComponent.html">•Memory Component</a></li>
+      <li><a href="/docs/Memory/MemoryPerformance.html">•Memory Component Performance</a></li>
+    </div>
+    <li><a href="/docs/Architecture/OrderSensitivity.html">•Notes on Order Sensitivity</a></li>
+    <li><a href="/docs/Architecture/Concurrency.html">•Notes on Concurrency</a></li>
+  </div>
+
+  <p id="sketch-families">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_sketch_families">Sketch Families</a>
+  </p>
+  <div class="collapse" id="collapse_sketch_families">
+
+    <p id="distinct-counting">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_distinct_counting">Distinct Counting</a>
+    </p>
+    <div class="collapse" id="collapse_distinct_counting">
+      <li><a href="/docs/DistinctCountFeaturesMatrix.html">•Features Matrix</a></li>
+      <li><a href="/docs/DistinctCountMeritComparisons.html">•Figures-of-Merit Comparison</a></li>
+      <li><a href="/docs/CPC/CpcSketches.html">•CPC Sketches</a></li>
+      <li><a href="/docs/HLL/HllSketches.html">•HyperLogLog Sketches</a></li>
+      <li><a href="/docs/Theta/ThetaSketches.html">•Theta Sketches</a></li>
+      <li><a href="/docs/Tuple/TupleSketches.html">•Tuple Sketches</a></li>
+    </div>
+
+    <p id="most-frequent">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_most_frequent">Most Frequent</a>
+    </p>
+    <div class="collapse" id="collapse_most_frequent">
+      <li><a href="/docs/Frequency/FrequencySketches.html">•Frequency Sketches</a></li>
+      <li><a href="/docs/Frequency/FrequencySketches.html#frequent-items-sketches">•Frequent Items Sketches</a></li>
+      <li><a href="/docs/Frequency/FrequencySketches.html#frequent-distinct-tuples-sketches">•Frequent Distinct Tuples Sketches</a></li>
+    </div>
+
+    <p id="quantiles-and-histograms">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_quantiles_and_histograms">Quantiles And Histograms</a>
+    </p>
+    <div class="collapse" id="collapse_quantiles_and_histograms">
+      <li><a href="/docs/QuantilesAll/QuantilesOverview.html">•Quantiles Overview</a></li>
+      <li><a href="/docs/KLL/KLLSketch.html">•KLL Sketches</a></li>
+      <li><a href="/docs/Quantiles/ClassicQuantilesSketch.html">•Classic Quantiles Sketches</a></li>
+      <li><a href="/docs/REQ/ReqSketch.html">•REQ Sketch</a></li>
+      <li><a href="/docs/tdigest/tdigest.html">•t-digest</a></li>
+    </div>
+
+    <p id="sampling">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_sampling">Sampling</a>
+    </p>
+    <div class="collapse" id="collapse_sampling">
+      <li><a href="/docs/Sampling/EB-PPS_SamplingSketches.html">•EB-PPS Sampling Sketches</a></li>
+      <li><a href="/docs/Sampling/ReservoirSamplingSketches.html">•Reservoir Sampling Sketches</a></li>
+      <li><a href="/docs/Sampling/VarOptSamplingSketches.html">•VarOpt Sampling Sketches</a></li>
+    </div>
+
+    <p id="density-and-coresets">
+      <a data-toggle="collapse" class="menu collapsed" href="#collapse_density_and_coresets">Density And Coresets</a>
+    </p>
+    <div class="collapse" id="collapse_density_and_coresets">
+      <li><a href="/docs/Density/DensitySketch.html">•Density Sketch</a></li>
+    </div>
+  </div>
+
+  <p id="system-integrations">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_system_integrations">System Integrations</a>
+  </p>
+  <div class="collapse" id="collapse_system_integrations">
+    <li><a href="/docs/SystemIntegrations/ApacheDruidIntegration.html">•Using Sketches in Apache Druid</a></li>
+    <li><a href="/docs/SystemIntegrations/ApacheHiveIntegration.html">•Using Sketches in Apache Hive</a></li>
+    <li><a href="/docs/SystemIntegrations/ApachePigIntegration.html">•Using Sketches in Apache Pig</a></li>
+    <li><a href="/docs/SystemIntegrations/ApachePinotIntegration.html">•Using Sketches in Apache Pinot</a></li>
+    <li><a href="/docs/SystemIntegrations/GoogleBigQueryIntegration.html">•Using Sketches in Google BigQuery</a></li>
+    <li><a href="/docs/SystemIntegrations/PostgreSQLIntegration.html">•Using Sketches in PostgreSQL</a></li>
+  </div>
+
+  <p id="community">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_community">Community</a>
+  </p>
+  <div class="collapse" id="collapse_community">
+    <li><a href="/docs/Community/index.html">•Community</a></li>
+    <li><a href="/docs/Community/Downloads.html">•Downloads</a></li>
+    <li><a href="/docs/Community/NewCommitterProcess.html">•Committer Process</a></li>
+    <li><a href="/docs/Community/ReleaseProcessForCppComponents.html">•Release Process For CPP Components</a></li>
+    <li><a href="/docs/Community/ReleaseProcessForJavaComponents.html">•Release Process For Java Components</a></li>
+    <li><a href="/docs/Community/Transitioning.html">•Transitioning from prior GitHub Site</a></li>
+  </div>
+
+  <p id="research">
+    <a data-toggle="collapse" class="menu collapsed" href="#collapse_research">Research</a>
+  </p>
+  <div class="collapse" id="collapse_research">
+    <li><a href="/docs/Community/Research.html">•Research</a></li>
+  </div>
+</div>
+<!-- End _includes/toc.html -->
+
+
+<!-- Start _includes/tocScript.html -->
+<script>
+  (function () {
+
+    var findLineItem = function (path) {
+      return document.querySelector(`#toc [href="${path}"]`);
+    };
+
+    function findNavItem(path) {
+      return document.querySelector(`.nav [href="${path}"]`);
+    }
+
+    var highlighLineItem = function (element) {
+      element.classList.add('highlight');
+    };
+
+    var checkHasClass = function (element, className) {
+      return element.className.split(' ').find(function (item) { return item === className || '' })
+    }
+
+    var findAllCollapseParents = function (element) {
+      var collapseMenus = [];
+      var elementPointer = element;
+      while (elementPointer !== document.body) {
+        if (checkHasClass(elementPointer, 'collapse')) {
+          collapseMenus.push(elementPointer);
+        }
+        elementPointer = elementPointer.parentElement
+      }
+      return collapseMenus
+    };
+
+    var openMenuItem = function (element) {
+      // $(element).collapse('show') would start a transition, adding `in` class instead.
+      element.classList.add('in');
+    };
+
+    var openAllFromList = function (elementList) {
+      elementList.forEach(openMenuItem);
+    };
+
+    var highlightAndOpenMenu = function () {
+      // Highlight & expand nav item in the TOC
+      var currentLineItem = findLineItem(document.location.pathname);
+      highlighLineItem(currentLineItem);
+      openAllFromList(findAllCollapseParents(currentLineItem));
+
+      // Highlight nav item in top navigation
+      highlighLineItem(findNavItem(document.location.pathname));
+    };
+
+    $(highlightAndOpenMenu);
+
+  }());
+</script>
+<!-- End _includes/tocScript.html -->
+
+      </div>
+      <!-- End ToC Block -->
+      <div class="col-md-9 doc-content">
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+
+<h1 id="unique-counting-sketch-accuracy-characterization">Unique Counting Sketch Accuracy Characterization</h1>
+
+<h3 id="goal">Goal</h3>
+<p>The goal is to produce an accuracy plot like this:</p>
+
+<p><img src="HllHipLgK14LgT20_Quantiles.png" /></p>
+
+<h3 id="generating-the-x-axis-plot-points-series">Generating the X-axis Plot Points Series</h3>
+
+<p>The x-axis is logarithmic in base 2 and defines the accuracy characterization range of <em>n</em> for the sketch. The range of the above plot consists of 20 powers of 2 or 20 octaves.  For good plot visualization, we want the actual plotted points to be evenly spaced and close enough so that there are no visual jagged edges in the curves, but no closer.</p>
+
+<p>For this plot I chose Plot Points per Octave (PPO) of 16.  We generate an exponential series of integers corresponding to the desired plot points.  In theory, this would produce 320 (20 x 16) plot points. However, there are obviously not 16 integers between the low powers of 2 on the left so I created a simple function to generate the power series that adjusts for this:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Math</span><span class="o">.*;</span>
+
+<span class="kn">import</span> <span class="nn">org.testng.annotations.Test</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CreatePowerSeries</span> <span class="o">{</span>
+
+  <span class="kd">static</span> <span class="kt">double</span> <span class="nf">log2</span><span class="o">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">log</span><span class="o">(</span><span class="n">x</span><span class="o">)/</span><span class="n">log</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span> <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">long</span> <span class="nf">pwr2SeriesNext</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">ppo</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">curPoint</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="kt">long</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">curPoint</span> <span class="o">&lt;</span> <span class="mi">1L</span> <span class="o">?</span> <span class="mi">1L</span> <span class="o">:</span> <span class="n">curPoint</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">gi</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">round</span><span class="o">(</span><span class="n">log2</span><span class="o">(</span><span class="n">cur</span><span class="o">)</span> <span class="o">*</span> <span class="n">ppo</span><span class="o">);</span> <span class="c1">//current generating index</span>
+    <span class="kt">long</span> <span class="n">next</span><span class="o">;</span>
+    <span class="k">do</span> <span class="o">{</span>
+      <span class="n">next</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">round</span><span class="o">(</span><span class="n">pow</span><span class="o">(</span><span class="mf">2.0</span><span class="o">,</span> <span class="o">(</span><span class="kt">double</span><span class="o">)</span> <span class="o">++</span><span class="n">gi</span> <span class="o">/</span> <span class="n">ppo</span><span class="o">));</span>
+    <span class="o">}</span> <span class="k">while</span> <span class="o">(</span> <span class="n">next</span> <span class="o">&lt;=</span> <span class="n">curPoint</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">next</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">static</span> <span class="kt">long</span> <span class="n">maxPt</span> <span class="o">=</span> <span class="mi">1L</span> <span class="o">&lt;&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="c1">//for the power series 1 ... 1024</span>
+  <span class="kd">static</span> <span class="kt">long</span> <span class="n">minPt</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
+  <span class="kd">static</span> <span class="kt">int</span> <span class="n">ppo</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>  <span class="c1">//adjust as needed</span>
+  
+  <span class="nd">@Test</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printSeries</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">long</span> <span class="n">p</span> <span class="o">=</span> <span class="n">minPt</span><span class="o">;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">maxPt</span><span class="o">;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">pwr2SeriesNext</span><span class="o">(</span><span class="n">ppo</span><span class="o">,</span> <span class="n">p</span><span class="o">))</span> <span class="o">{</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">p</span> <span class="o">+</span> <span class="s">" "</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>To keep the output small for this document I set $maxPt = 2^{10}$ and $ppo = 4$.  The result series is <br />1 2 3 4 5 6 7 8 10 11 13 16 19 23 27 32 38 45 54 64 76 91 108 128 152 181 215 256 304 362 431 512 609 724 861 1024</p>
+
+<h3 id="the-hll-sketch">The HLL sketch</h3>
+<p>The HLL sketch was configured with $lgK = 14$</p>
+
+<h3 id="the-y-axis">The Y-axis</h3>
+
+<p>The Y-axis of the above plot has the grid intervals at multiples of the inherent Relative Standard Error (RSE) of the sketch, computed as $RSE=.8326/sqrt(2^{lgK})= 0.0065$.  Therefore the grid lines above and below the X-axis represent +/- # of standard deviations. As you can see in the plot the sketch accuracy is asymtotic to +/- 2 standard deviations from the mean or +/- 1.3% with 95.4% confidence. Or, equivalently, +/- 3 standard deviations from the mean or +/- 1.95% with a 99.73% confidence.</p>
+
+<h3 id="configuring-each-plot-point-pp">Configuring each Plot Point (PP)</h3>
+
+<p>At each Plot Point I configure a high accuracy Quantile Sketch with a $lgK=12$. Each point also has an associated value, $v$ from the Plot Point Series indicating its true value.  Each PP also records cumulative statistics for each estimate value computed for that PP.</p>
+
+<p>Let q[i] be the index of a PP in the PP array.<br />
+Let q[i].v be the true-value of that plot point.</p>
+
+<h3 id="running-a-single-trial">Running a single trial</h3>
+<p>A single trial consists of these steps:</p>
+
+<ol>
+  <li>Configure a new sketch</li>
+  <li>At the first PP update the sketch with $q[i].v$ values.  Get the estimate from the sketch and feed it to the quantile sketch. With each update the cumulative statistics values are computed.</li>
+  <li>At each subsquent PP, update the sketch with $delta = q[i].v - q[i-1].v$ values. Get the estimate from the sketch and feed it to the quantile sketch. Update the cumulative statistics.</li>
+  <li>Reset the sketch for the next trial</li>
+</ol>
+
+<h4 id="running-multiple-trials">Running multiple trials</h4>
+<p>The number of trials can be in the millions, It is important to understand that scanning across the plot-points and incrementing the sketches with deltas is critical for performing the characterization test in minimum time.  If $T$ is the number of trials and $n=2^{20}$, the number of updates to the sketch is $Tn$. If $T=1M$ and $n=1M$ the number of sketch updates is ~1B.</p>
+
+<p>If, however, you create a new sketch at each PP and update the sketch with $q[i].v$ at each PP, you would end up with $T(n^{2} + n)$ sketch updates. Running a test with a million trials and $n=1M$, would be ~1T updates!</p>
+
+<p>At the end of running all the trials the quantile statistics are collected from all the quantile sketches and the plots are generated.</p>
+
+<p>The major code for this test can be found in these files:</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/apache/datasketches-characterization/blob/master/java-base/src/main/java/org/apache/datasketches/characterization/hll/HllAccuracyProfile.java">HllAccuracyProfile.java</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apache/datasketches-characterization/blob/master/java-base/src/main/java/org/apache/datasketches/characterization/uniquecount/BaseAccuracyProfile.java">BaseAccuracyProfile.java</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apache/datasketches-characterization/blob/master/java-base/src/main/java/org/apache/datasketches/characterization/AccuracyStats.java">AccuracyStats</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/apache/datasketches-characterization/blob/master/java-base/src/main/resources/hll/HllAccuracyJob.conf">HllAccuracyJob.conf</a></p>
+  </li>
+</ul>
+
+<p>Lee Rhodes<br />
+9 Jul 2026</p>
+
+
+      </div> <!-- End content -->
+    </div> <!-- End row -->
+  </div> <!-- End Container -->
+
+<!-- Start _include/page_footer.html -->
+<footer class="ds-footer">
+  <div class="container">
+    <div class="text-center">
+      <p>
+        <div>Copyright © 2025 <a href="https://www.apache.org">Apache Software Foundation</a>, 
+          Licensed under the Apache License, Version 2.0. All Rights Reserved.
+          | <a href="https://privacy.apache.org/policies/privacy-policy-public.html">Privacy Policy</a><br>
+          Apache DataSketches, Apache, the Apache feather logo, and the Apache DataSketches project logos are trademarks of The Apache Software Foundation.<br>
+          All other marks mentioned may be trademarks or registered trademarks of their respective owners.
+        </div>
+
+    </div>
+  </div>
+</footer>
+<!-- End _include/page_footer.html -->
+
+</body>
+
+</html>
+<!-- End _layouts/doc_page.html-->
