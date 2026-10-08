@@ -52,6 +52,7 @@ Adapters integrate the core library components into the aggregation APIs of spec
 | [Apache Pig Adaptor](https://github.com/apache/datasketches-pig)              | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | Depends on Java Core, [Integrations](https://datasketches.apache.org/docs/SystemIntegrations/ApachePigIntegration.html) |
 | [PostgreSQL Adaptor](https://github.com/apache/datasketches-postgresql)       | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html), [pgxn.org](https://pgxn.org/dist/datasketches/) | Depends on C++ Core, [Integrations](https://datasketches.apache.org/docs/SystemIntegrations/PostgreSQLIntegration.html) |
 | [Apache Druid Adaptor](https://druid.apache.org/docs/latest/development/extensions-core/datasketches-extension) | [Apache Druid Release](https://druid.apache.org/downloads) | Depends on Java Core, [Integrations](https://datasketches.apache.org/docs/SystemIntegrations/ApacheDruidIntegration.html) |
+| [DuckDB Adaptor](https://github.com/Query-farm/datasketches) | [DuckDB community extension](https://duckdb.org/community_extensions/extensions/datasketches.html) | Community-maintained by Query.Farm; depends on C++ Core. [Documentation](https://query.farm/products/extensions/datasketches/) |
 
 ## Other
 
