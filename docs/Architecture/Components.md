@@ -29,18 +29,18 @@ If you have a specific issue or bug report that impacts only one of these compon
 If you like what you see, give us a **Star** on these sites!
 
 ## Core Sketch Libraries
-The key sketches of the Apache DataSketches libraries are available in five programming languages.  By design, a sketch that is available in one language that is also available in a different language will be "binary compatible" via serialization.  For example, when serialized into its compact form, a sketch created by the DataSketches C++ library, can be read by the DataSketches Java library and visa versa.
+The key sketches of the Apache DataSketches libraries are available in five (soon six) programming languages.  By design, a sketch that is available in one language that is also available in a different language will be "functionally compatible" via serialization.  For example, when serialized into its compact form, a sketch created by the DataSketches C++ library, can be read by the DataSketches Java library and visa versa.
 
 Because of differences inherent in the languages, there will be some differences in the APIs, but we try to make the same basic functionality available across all the languages.
 
 | Repository                                                                   | Distribution                                                               | Comments |
 |------------------------------------------------------------------------------|----------------------------------------------------------------------------|--------|
 | [Java Core](https://github.com/apache/datasketches-java)                     | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | This is the original and the most comprehensive collection of sketch algorithms. It has a dependency on the Memory component |
-| [Memory (supports Java Core)](https://github.com/apache/datasketches-memory) | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | Provides high-performance access to off-heap memory. This is no longer used starting with datasketches-java version 9.0.0. |
 | [C++ Core](https://github.com/apache/datasketches-cpp)                       | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | C++ was our second core language library and provides most of the major algorithms available in Java as well as a few sketches unique to C++. |
 | [Python Core](https://github.com/apache/datasketches-python)                 | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html), [PyPI](https://pypi.org/project/datasketches/) | Python was our third core language library and contains most of the major sketch families that are in Java and C++. All the Python sketches are backed by the C++ library via Pybind. |
-| [Rust Core](https://github.com/apache/datasketches-rust)                     | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | Rust is our fourth core language and is still evolving. |
-| [Go Core](https://github.com/apache/datasketches-go)                         | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | Go is our fifth core language and is still evolving. |
+| [Go Core](https://github.com/apache/datasketches-go)                         | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | Go is our forth core language and is still evolving. |
+| [Rust Core](https://github.com/apache/datasketches-rust)                     | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | Rust is our fifth core language and is still evolving. |
+| [CUDA Core](https://github.com/apache/datasketches-cuda)                     | Not Formally Released.                                                     | CUDA will be our sixth core language and is still evolving. |
 
 ## Platform Adaptors
 Adapters integrate the core library components into the aggregation APIs of specific data processing platforms. Some of these adapters are available as an Apache DataSketches distribution, other adapters are directly integrated into the target platform.
@@ -56,9 +56,10 @@ Adapters integrate the core library components into the aggregation APIs of spec
 
 ## Other
 
-| Repository                                                                   | Distribution          | Comments |
-|------------------------------------------------------------------------------|-----------------------|----------|
+| Repository                                                                   | Distribution                                                                | Comments |
+|------------------------------------------------------------------------------|-----------------------------------------------------------------------------|----------|
+| [Memory (supports Java Core)](https://github.com/apache/datasketches-memory) | [Downloads](https://datasketches.apache.org/docs/Community/Downloads.html) | Provides high-performance access to off-heap memory. This is no longer used starting with datasketches-java version 9.0.0. |
 | [Characterization](https://github.com/apache/datasketches-characterization)  | Not Formally Released | Used for long-running studies of accuracy and speed performance over many different parameters. |
 | [Website](https://github.com/apache/datasketches-website)                    | Not Formally Released | Public website |
 | [Vector](https://github.com/apache/datasketches-vector)                      | Not Formally Released | This component implements the [Frequent Directions Algorithm](/docs/Community/Research.html) [GLP16].  It is still experimental in that the theoretical work has not yet supplied a suitable measure of error for production work. It can be used as is, but it will not go through a formal Apache Release until we can find a way to provide better error properties.  It dependends on the Memory component. |
-| [Server](https://github.com/apache/datasketches-server)        | Not Formally Released | Under development |
+| [Server](https://github.com/apache/datasketches-server)                      | Not Formally Released | Under development |
