@@ -54,3 +54,5 @@ This affects only applications that deserialize sketches from untrusted sources.
 | CVE | Severity | Description | Affected versions |
 |-----|----------|-------------|-------------------|
 | [CVE-2026-122096](https://www.cve.org/CVERecord?id=CVE-2026-122096) | low | [Uncontrolled resource consumption when deserializing crafted sketch images](https://lists.apache.org/thread/52t65lh23zttq41dj5qnnchx1832bbow) | through 9.0.0 |
+
+Credit: Jaideep Pyne (finder) for CVE-2026-122096.
