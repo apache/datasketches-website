@@ -46,3 +46,11 @@ All of the following affect only applications that deserialize sketches from unt
 | [CVE-2026-103634](https://www.cve.org/CVERecord?id=CVE-2026-103634) | moderate | [Out-of-bounds read and write in Count-Min sketch deserialization](https://lists.apache.org/thread/rkx9oh06g5cjc6vmmpqloxwfz0gzz01h) | 4.1.0 through 5.2.0 |
 | [CVE-2026-103635](https://www.cve.org/CVERecord?id=CVE-2026-103635) | low | [Out-of-bounds read in compact Theta sketch deserialization](https://lists.apache.org/thread/15b86y9jstco39kzppjw7l5kvhjvwqvv) | 3.1.0 through 5.2.0 |
 | [CVE-2026-103636](https://www.cve.org/CVERecord?id=CVE-2026-103636) | low | [Out-of-bounds read in VarOpt union deserialization](https://lists.apache.org/thread/znn94s463w7wy125khcywxsp82y2qkq5) | 2.0.0-incubating through 5.2.0 |
+
+### DataSketches Java
+
+This affects only applications that deserialize sketches from untrusted sources. It is fixed in [DataSketches Java 9.1.0](https://github.com/apache/datasketches-java/releases/tag/9.1.0).
+
+| CVE | Severity | Description | Affected versions |
+|-----|----------|-------------|-------------------|
+| [CVE-2026-122096](https://www.cve.org/CVERecord?id=CVE-2026-122096) | low | [Uncontrolled resource consumption when deserializing crafted sketch images](https://lists.apache.org/thread/52t65lh23zttq41dj5qnnchx1832bbow) | through 9.0.0 |
