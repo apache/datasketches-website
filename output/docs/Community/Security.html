@@ -364,7 +364,7 @@
 
 <h3 id="datasketches-c">DataSketches C++</h3>
 
-<p>All of the following affect only applications that deserialize sketches from untrusted sources. They are fixed in <a href="https://github.com/apache/datasketches-cpp/releases/tag/5.3.0">DataSketches C++ 5.3.0</a>.</p>
+<p>All of the following affect only applications that deserialize sketches from untrusted sources. CVE-2026-123274 and CVE-2026-123338 are fixed in <a href="https://github.com/apache/datasketches-cpp/releases/tag/5.3.1">DataSketches C++ 5.3.1</a>. The others are fixed in <a href="https://github.com/apache/datasketches-cpp/releases/tag/5.3.0">DataSketches C++ 5.3.0</a>.</p>
 
 <table>
   <thead>
@@ -376,6 +376,18 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td><a href="https://www.cve.org/CVERecord?id=CVE-2026-123274">CVE-2026-123274</a></td>
+      <td>moderate</td>
+      <td><a href="https://lists.apache.org/thread/t4rngyg9cbv1b42f1d0crgpgtpby0594">Out-of-bounds write in KLL sketch deserialization</a></td>
+      <td>1.0.0-incubating through 5.3.0</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.cve.org/CVERecord?id=CVE-2026-123338">CVE-2026-123338</a></td>
+      <td>moderate</td>
+      <td><a href="https://lists.apache.org/thread/wjsso4wl0f0nczwh7gd74kc5wckn1635">Out-of-bounds write in REQ sketch deserialization</a></td>
+      <td>3.0.0 through 5.3.0</td>
+    </tr>
     <tr>
       <td><a href="https://www.cve.org/CVERecord?id=CVE-2026-103501">CVE-2026-103501</a></td>
       <td>moderate</td>
@@ -408,6 +420,8 @@
     </tr>
   </tbody>
 </table>
+
+<p>Credit: hataehoon (reporter) for CVE-2026-123274.</p>
 
 <h3 id="datasketches-java">DataSketches Java</h3>
 
